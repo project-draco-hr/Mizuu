@@ -1,0 +1,3 @@
+{
+  return database.query(DATABASE_TABLE,allRows,KEY_EPISODE_TITLE + " = 'MIZ_REMOVED_EPISODE'",null,null,null,null);
+}

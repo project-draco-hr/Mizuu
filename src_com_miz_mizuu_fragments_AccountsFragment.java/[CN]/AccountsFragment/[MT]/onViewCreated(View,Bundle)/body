@@ -1,0 +1,47 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  traktUser=(TextView)v.findViewById(R.id.traktUsername);
+  traktPass=(TextView)v.findViewById(R.id.traktPassword);
+  traktLogIn=(Button)v.findViewById(R.id.traktLogIn);
+  traktLogIn.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      traktLogin();
+    }
+  }
+);
+  traktRemoveAccount=(Button)v.findViewById(R.id.traktRemoveAccount);
+  traktRemoveAccount.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      traktRemove();
+    }
+  }
+);
+  syncTrakt=(CheckBox)v.findViewById(R.id.syncTrakt);
+  syncTrakt.setChecked(settings.getBoolean("syncLibrariesWithTrakt",true));
+  syncTrakt.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
+      Editor editor=settings.edit();
+      editor.putBoolean("syncLibrariesWithTrakt",isChecked);
+      editor.commit();
+    }
+  }
+);
+  traktUser.setText(settings.getString("traktUsername",""));
+  if (settings.getString("traktPassword","").isEmpty()) {
+    traktPass.setText("");
+    traktUser.setEnabled(true);
+    traktPass.setEnabled(true);
+    traktLogIn.setEnabled(true);
+    traktRemoveAccount.setEnabled(false);
+    syncTrakt.setEnabled(false);
+    syncTrakt.setChecked(false);
+  }
+ else {
+    traktPass.setText("password");
+    traktUser.setEnabled(false);
+    traktPass.setEnabled(false);
+    traktLogIn.setEnabled(false);
+    traktRemoveAccount.setEnabled(true);
+    syncTrakt.setEnabled(true);
+  }
+}

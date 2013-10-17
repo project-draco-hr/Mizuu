@@ -1,0 +1,3 @@
+{
+  LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(i);
+}

@@ -1,0 +1,4 @@
+{
+  SearchWebMoviesFragment pageFragment=new SearchWebMoviesFragment();
+  return pageFragment;
+}

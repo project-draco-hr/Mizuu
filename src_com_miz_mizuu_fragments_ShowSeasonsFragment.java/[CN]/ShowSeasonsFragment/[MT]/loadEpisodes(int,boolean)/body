@@ -1,0 +1,8 @@
+{
+  if (!isLoading && isAdded())   if (resetSelection)   setLoading(true);
+  seasonEpisodeCount.clear();
+  seasons.clear();
+  EpisodeLoader loader=new EpisodeLoader();
+  loader.setResetSelection(resetSelection);
+  loader.execute(type);
+}

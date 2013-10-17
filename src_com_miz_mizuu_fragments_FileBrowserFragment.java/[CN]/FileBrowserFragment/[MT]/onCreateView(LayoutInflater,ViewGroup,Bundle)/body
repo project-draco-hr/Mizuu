@@ -1,0 +1,51 @@
+{
+  final View v=inflater.inflate(R.layout.filebrowser,container,false);
+  content=(LinearLayout)v.findViewById(R.id.content);
+  pbar=(ProgressBar)v.findViewById(R.id.progress);
+  addSource=(Button)v.findViewById(R.id.ok);
+  addSource.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      DbAdapterSources dbHelper=MizuuApplication.getSourcesAdapter();
+      if (isMovie) {
+        dbHelper.createSource(currentFolder.getAbsolutePath(),DbAdapterSources.KEY_TYPE_MOVIE,0,"","","");
+        getActivity().setResult(0);
+      }
+ else {
+        dbHelper.createSource(currentFolder.getAbsolutePath(),DbAdapterSources.KEY_TYPE_SHOW,0,"","","");
+        getActivity().setResult(1);
+      }
+      getActivity().finish();
+    }
+  }
+);
+  parent=(ListView)v.findViewById(R.id.parent);
+  parent.setAdapter(new ParentAdapter());
+  parent.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      if (arg2 == 0) {
+        if (currentFolder.getParentFile() != null)         if (currentFolder.getParentFile().getParentFile() != null)         currentFolder=currentFolder.getParentFile().getParentFile();
+      }
+ else {
+        currentFolder=showingParents.get(arg2 - 1);
+      }
+      browseFolder(currentFolder);
+    }
+  }
+);
+  current=(ListView)v.findViewById(R.id.current);
+  current.setAdapter(new CurrentFolderAdapter());
+  current.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      if (arg2 == 0) {
+        if (currentFolder.getParentFile() != null)         currentFolder=currentFolder.getParentFile();
+      }
+ else {
+        currentFolder=showingFiles.get(arg2 - 1);
+      }
+      browseFolder(currentFolder);
+    }
+  }
+);
+  browseFolder(currentFolder);
+  return v;
+}

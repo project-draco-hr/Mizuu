@@ -1,0 +1,10 @@
+{
+  PackageManager pm=c.getPackageManager();
+  try {
+    pm.getPackageInfo("com.imdb.mobile",PackageManager.GET_ACTIVITIES);
+    return true;
+  }
+ catch (  PackageManager.NameNotFoundException e) {
+    return false;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  Bitmap bm;
+  if (file.equals("nobackdrop")) {
+    Context c=(Context)params[4];
+    if (MizLib.runsInPortraitMode(c))     return BitmapFactory.decodeResource(c.getResources(),R.drawable.nobackdrop);
+  }
+  if (width > 0 && height > 0) {
+    bm=MizLib.decodeSampledBitmapFromFile(file,width,height);
+  }
+ else {
+    if (img.getWidth() > 0 && img.getHeight() > 0) {
+      bm=MizLib.decodeSampledBitmapFromFile(file,img.getWidth(),img.getHeight());
+    }
+ else {
+      bm=BitmapFactory.decodeFile(file);
+    }
+  }
+  return bm;
+}

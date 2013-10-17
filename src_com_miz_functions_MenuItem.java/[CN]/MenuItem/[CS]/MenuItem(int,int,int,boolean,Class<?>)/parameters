@@ -1,0 +1,5 @@
+int title
+int icon
+int count
+boolean isHeader
+Class<?> className

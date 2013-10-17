@@ -1,0 +1,17 @@
+{
+  RemoteViews view=new RemoteViews(mContext.getPackageName(),R.layout.widget_item);
+  BitmapFactory.Options options=new BitmapFactory.Options();
+  options.inPreferredConfig=Config.RGB_565;
+  options.inPreferQualityOverSpeed=true;
+  Bitmap cover=BitmapFactory.decodeFile(movies.get(position).getThumbnail(),options);
+  if (cover != null)   view.setImageViewBitmap(R.id.widget_item,cover);
+ else {
+    view.setImageViewResource(R.id.widget_item,R.drawable.loading_image);
+    view.setTextViewText(R.id.widgetTitle,movies.get(position).getTitle());
+    view.setViewVisibility(R.id.widgetTitle,View.VISIBLE);
+  }
+  Intent fillInIntent=new Intent(MovieStackWidgetProvider.MOVIE_STACK_WIDGET);
+  fillInIntent.putExtra("rowId",Integer.parseInt(movies.get(position).getRowId()));
+  view.setOnClickFillInIntent(R.id.widget_item,fillInIntent);
+  return view;
+}

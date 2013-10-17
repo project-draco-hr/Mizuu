@@ -1,0 +1,38 @@
+{
+  try {
+    if (status == null)     throw new Error("sendResponse(): Status can't be null.");
+    OutputStream out=socket.getOutputStream();
+    PrintWriter pw=new PrintWriter(out);
+    pw.print("HTTP/1.0 " + status + " \r\n");
+    if (mime != null)     pw.print("Content-Type: " + mime + "\r\n");
+    if (header == null || header.getProperty("Date") == null)     pw.print("Date: " + gmtFrmt.format(new Date()) + "\r\n");
+    if (header != null) {
+      Enumeration<Object> e=header.keys();
+      while (e.hasMoreElements()) {
+        String key=(String)e.nextElement();
+        String value=header.getProperty(key);
+        pw.print(key + ": " + value+ "\r\n");
+      }
+    }
+    pw.print("\r\n");
+    pw.flush();
+    if (data != null) {
+      data.open();
+      byte[] buff=new byte[bufsize];
+      int read=0;
+      while ((read=data.read(buff)) > 0) {
+        out.write(buff,0,read);
+      }
+    }
+    out.flush();
+    out.close();
+    if (data != null)     data.close();
+  }
+ catch (  IOException ioe) {
+    try {
+      socket.close();
+    }
+ catch (    Throwable t) {
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  try {
+    BitmapFactory.Options options=new BitmapFactory.Options();
+    options.inPreferredConfig=Config.RGB_565;
+    options.inDither=true;
+    Bitmap bm=BitmapFactory.decodeFile(url,options);
+    float scaleWidth=bm.getWidth() / ((float)width);
+    float scaleHeight=bm.getHeight() / ((float)height);
+    if (scaleWidth > scaleHeight)     bm=Bitmap.createScaledBitmap(bm,(int)(bm.getWidth() / scaleHeight),(int)(bm.getHeight() / scaleHeight),true);
+ else     bm=Bitmap.createScaledBitmap(bm,(int)(bm.getWidth() / scaleWidth),(int)(bm.getHeight() / scaleWidth),true);
+    bm=Bitmap.createBitmap(bm,(bm.getWidth() - width) / 2,(bm.getHeight() - height) / 2,width,height);
+    return bm;
+  }
+ catch (  Exception e) {
+    return null;
+  }
+}

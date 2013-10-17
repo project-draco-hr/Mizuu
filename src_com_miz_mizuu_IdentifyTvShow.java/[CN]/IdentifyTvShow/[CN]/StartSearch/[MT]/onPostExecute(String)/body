@@ -1,0 +1,6 @@
+{
+  hideProgressBar();
+  if (searchText.getText().toString().length() > 0) {
+    mAdapter.notifyDataSetChanged();
+  }
+}

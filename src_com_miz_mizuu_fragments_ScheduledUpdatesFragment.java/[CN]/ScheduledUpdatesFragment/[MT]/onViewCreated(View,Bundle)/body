@@ -1,0 +1,49 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  movies=(CheckBox)v.findViewById(R.id.moviesCheckBox);
+  shows=(CheckBox)v.findViewById(R.id.showsCheckBox);
+  moviesSpinner=(Spinner)v.findViewById(R.id.moviesSpinner);
+  showsSpinner=(Spinner)v.findViewById(R.id.showsSpinner);
+  nextMovieUpdate=(TextView)v.findViewById(R.id.nextMovieUpdate);
+  nextShowsUpdate=(TextView)v.findViewById(R.id.nextShowsUpdate);
+  movieUpdateType=settings.getInt(MOVIE_UPDATE_PREF,NOT_ENABLED);
+  showsUpdateType=settings.getInt(SHOWS_UPDATE_PREF,NOT_ENABLED);
+  if (movieUpdateType == NOT_ENABLED) {
+    movies.setChecked(false);
+    moviesSpinner.setEnabled(false);
+    setOnCheckedListenerMovie();
+  }
+ else {
+    movies.setChecked(true);
+    moviesSpinner.setEnabled(true);
+    moviesSpinner.setSelection(movieUpdateType - 1);
+    setOnCheckedListenerMovie();
+  }
+  if (showsUpdateType == NOT_ENABLED) {
+    shows.setChecked(false);
+    showsSpinner.setEnabled(false);
+    setOnCheckedListenerShows();
+  }
+ else {
+    shows.setChecked(true);
+    showsSpinner.setEnabled(true);
+    showsSpinner.setSelection(showsUpdateType - 1);
+    setOnCheckedListenerShows();
+  }
+  updateNextMovieUpdateText();
+  updateNextShowsUpdateText();
+  movies.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
+      moviesSpinner.setEnabled(isChecked);
+      saveMovieSchedule(!isChecked);
+    }
+  }
+);
+  shows.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
+      showsSpinner.setEnabled(isChecked);
+      saveShowsSchedule(!isChecked);
+    }
+  }
+);
+}

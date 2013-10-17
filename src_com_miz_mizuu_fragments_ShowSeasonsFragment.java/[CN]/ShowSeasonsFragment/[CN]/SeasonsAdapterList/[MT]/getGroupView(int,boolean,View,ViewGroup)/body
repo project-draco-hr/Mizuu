@@ -1,0 +1,22 @@
+{
+  RowItem holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.seasons_row_header,parent,false);
+    holder=new RowItem();
+    holder.title=(TextView)convertView.findViewById(R.id.seasonTitle);
+    holder.episodeCount=(TextView)convertView.findViewById(R.id.episodeCount);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(RowItem)convertView.getTag();
+  }
+  if (seasons.get(groupPosition).equals("00")) {
+    holder.title.setText(R.string.stringSpecials);
+  }
+ else {
+    holder.title.setText(getString(R.string.showSeason) + " " + seasons.get(groupPosition));
+  }
+  int size=seasonEpisodeCount.get(Integer.valueOf(seasons.get(groupPosition)));
+  holder.episodeCount.setText(size + " " + getResources().getQuantityString(R.plurals.episodes,size,size));
+  return convertView;
+}

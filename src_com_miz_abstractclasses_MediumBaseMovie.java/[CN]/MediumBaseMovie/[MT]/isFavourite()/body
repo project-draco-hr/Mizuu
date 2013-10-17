@@ -1,0 +1,4 @@
+{
+  if (FAVOURITE.equals("1"))   return true;
+  return false;
+}

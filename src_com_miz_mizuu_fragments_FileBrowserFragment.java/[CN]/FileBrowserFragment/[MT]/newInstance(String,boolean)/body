@@ -1,0 +1,8 @@
+{
+  FileBrowserFragment frag=new FileBrowserFragment();
+  Bundle b=new Bundle();
+  b.putString("path",path);
+  b.putBoolean("isMovie",isMovie);
+  frag.setArguments(b);
+  return frag;
+}

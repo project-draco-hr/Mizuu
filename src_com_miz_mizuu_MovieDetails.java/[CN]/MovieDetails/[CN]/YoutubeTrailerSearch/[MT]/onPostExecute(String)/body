@@ -1,0 +1,15 @@
+{
+  if (result != null) {
+    if (YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(getApplicationContext()).equals(YouTubeInitializationResult.SUCCESS)) {
+      Intent intent=YouTubeStandalonePlayer.createVideoIntent(MovieDetails.this,MizLib.YOUTUBE_API,MizLib.getYouTubeId(result),0,false,true);
+      startActivity(intent);
+    }
+ else {
+      Intent intent=new Intent(Intent.ACTION_VIEW);
+      intent.setData(Uri.parse(result));
+    }
+  }
+ else {
+    Toast.makeText(getApplicationContext(),getString(R.string.errorSomethingWentWrong),Toast.LENGTH_LONG).show();
+  }
+}

@@ -1,0 +1,6 @@
+{
+  this.file=file;
+  this.nfoFile=nfoFile;
+  this.c=c;
+  readFile();
+}

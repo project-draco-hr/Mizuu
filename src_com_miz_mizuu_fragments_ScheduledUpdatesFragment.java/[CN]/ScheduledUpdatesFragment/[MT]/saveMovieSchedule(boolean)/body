@@ -1,0 +1,14 @@
+{
+  editor=settings.edit();
+  editor.putInt(MOVIE_UPDATE_PREF,isDisabled ? NOT_ENABLED : moviesSpinner.getSelectedItemPosition() + 1);
+  editor.commit();
+  if (isAdded()) {
+    if ((moviesSpinner.getSelectedItemPosition() + 1) > AT_LAUNCH) {
+      MizLib.scheduleMovieUpdate(getActivity());
+    }
+ else {
+      ScheduledUpdatesAlarmManager.cancelUpdate(ScheduledUpdatesAlarmManager.MOVIES,getActivity());
+    }
+    updateNextMovieUpdateText();
+  }
+}

@@ -1,0 +1,5 @@
+{
+  int count=0;
+  for (  String day : days)   count+=dayEpisodeCount.get(Integer.valueOf(day));
+  return count;
+}

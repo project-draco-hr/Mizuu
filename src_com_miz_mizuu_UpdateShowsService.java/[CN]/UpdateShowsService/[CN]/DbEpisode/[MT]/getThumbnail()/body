@@ -1,0 +1,3 @@
+{
+  return new File(MizLib.getTvShowThumbFolder(getApplicationContext()),getShowId() + ".jpg").getAbsolutePath();
+}

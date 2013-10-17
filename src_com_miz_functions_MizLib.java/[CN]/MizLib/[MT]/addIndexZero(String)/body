@@ -1,0 +1,9 @@
+{
+  if (isEmpty(s))   return "00";
+  try {
+    return String.format(Locale.ENGLISH,"%02d",Integer.parseInt(s));
+  }
+ catch (  NumberFormatException e) {
+    return "00";
+  }
+}

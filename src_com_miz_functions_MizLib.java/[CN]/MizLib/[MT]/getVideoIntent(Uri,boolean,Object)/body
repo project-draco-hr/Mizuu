@@ -1,0 +1,6 @@
+{
+  Intent videoIntent=new Intent(Intent.ACTION_VIEW);
+  videoIntent.setDataAndType(file,getMimeType(file.getPath(),useWildcard,false));
+  videoIntent.putExtras(getVideoIntentBundle(videoObject));
+  return videoIntent;
+}

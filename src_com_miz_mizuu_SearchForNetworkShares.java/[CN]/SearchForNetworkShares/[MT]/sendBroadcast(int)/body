@@ -1,0 +1,7 @@
+{
+  Intent i=new Intent("mizuu-network-search");
+  i.putExtra("ip",((NetworkAdapter)list.getAdapter()).getHost(number));
+  LocalBroadcastManager.getInstance(this).sendBroadcast(i);
+  running=false;
+  finish();
+}

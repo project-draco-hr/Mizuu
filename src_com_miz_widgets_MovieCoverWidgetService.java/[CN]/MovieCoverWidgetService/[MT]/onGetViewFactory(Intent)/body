@@ -1,0 +1,7 @@
+{
+  int widgetId=intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,-1);
+  if (widgetId < 0) {
+    return null;
+  }
+  return new BookmarkFactory(getApplicationContext(),widgetId);
+}

@@ -1,0 +1,16 @@
+{
+  AlertDialog.Builder builder=new AlertDialog.Builder(this);
+  builder.setMessage(getString(R.string.areYouSure)).setTitle(getString(R.string.removeShow)).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int id){
+      MizLib.deleteShow(getApplicationContext(),thisShow,true);
+      LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent("mizuu-shows-update"));
+      finish();
+    }
+  }
+).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int id){
+      dialog.cancel();
+    }
+  }
+).create().show();
+}

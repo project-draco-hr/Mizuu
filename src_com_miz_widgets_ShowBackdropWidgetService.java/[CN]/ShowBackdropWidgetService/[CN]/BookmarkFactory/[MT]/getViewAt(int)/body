@@ -1,0 +1,16 @@
+{
+  RemoteViews view=new RemoteViews(mContext.getPackageName(),R.layout.movie_backdrop_widget_item);
+  BitmapFactory.Options options=new BitmapFactory.Options();
+  options.inPreferredConfig=Config.RGB_565;
+  options.inPreferQualityOverSpeed=true;
+  if (isTablet)   options.inSampleSize=4;
+ else   options.inSampleSize=2;
+  Bitmap cover=BitmapFactory.decodeFile(shows.get(position).getBackdrop(),options);
+  view.setImageViewBitmap(R.id.thumb,cover);
+  view.setTextViewText(R.id.widgetTitle,shows.get(position).getTitle());
+  view.setViewVisibility(R.id.widgetTitle,View.VISIBLE);
+  Intent i=new Intent(ShowBackdropWidgetProvider.SHOW_BACKDROP_WIDGET);
+  i.putExtra("showId",shows.get(position).getId());
+  view.setOnClickFillInIntent(R.id.list_item,i);
+  return view;
+}

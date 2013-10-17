@@ -1,0 +1,6 @@
+{
+  super.onCreate(savedInstanceState);
+  type=getIntent().getExtras().getInt("type",MOVIE);
+  setTitle(R.string.stringCancelUpdate);
+  setContentView(R.layout.cancel_update);
+}

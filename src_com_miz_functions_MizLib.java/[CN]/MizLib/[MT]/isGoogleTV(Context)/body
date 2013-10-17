@@ -1,0 +1,3 @@
+{
+  return context.getPackageManager().hasSystemFeature("com.google.android.tv");
+}

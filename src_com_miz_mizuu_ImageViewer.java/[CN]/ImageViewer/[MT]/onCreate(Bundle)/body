@@ -1,0 +1,21 @@
+{
+  super.onCreate(savedInstanceState);
+  getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+  setContentView(R.layout.viewpager);
+  photos=getIntent().getStringArrayExtra("photos");
+  setTitle(getIntent().getStringExtra("actorName"));
+  getActionBar().setSubtitle((getIntent().getIntExtra("selectedIndex",0) + 1) + " " + getString(R.string.of)+ " "+ photos.length);
+  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
+  awesomePager.setAdapter(new ActorPhotosAdapter(getSupportFragmentManager()));
+  awesomePager.setOnPageChangeListener(new OnPageChangeListener(){
+    @Override public void onPageScrollStateChanged(    int arg0){
+    }
+    @Override public void onPageScrolled(    int arg0,    float arg1,    int arg2){
+    }
+    @Override public void onPageSelected(    int arg0){
+      getActionBar().setSubtitle((arg0 + 1) + " " + getString(R.string.of)+ " "+ photos.length);
+    }
+  }
+);
+  awesomePager.setCurrentItem(getIntent().getIntExtra("selectedIndex",0));
+}

@@ -1,0 +1,21 @@
+{
+  inflater.inflate(R.menu.menu,menu);
+  menu.removeItem(R.id.update);
+  SearchView searchView=(SearchView)menu.findItem(R.id.search_textbox).getActionView();
+  searchView.setOnQueryTextListener(new OnQueryTextListener(){
+    @Override public boolean onQueryTextChange(    String newText){
+      if (newText.length() > 0) {
+        search(newText);
+      }
+ else {
+        showAllMovies();
+      }
+      return true;
+    }
+    @Override public boolean onQueryTextSubmit(    String query){
+      return false;
+    }
+  }
+);
+  super.onCreateOptionsMenu(menu,inflater);
+}

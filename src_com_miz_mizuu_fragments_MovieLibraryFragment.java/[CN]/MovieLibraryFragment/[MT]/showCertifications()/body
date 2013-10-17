@@ -1,0 +1,38 @@
+{
+  showCollectionBasedOnNavigationIndex(actionBar.getSelectedNavigationIndex());
+  final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
+  for (int i=0; i < shownMovies.size(); i++) {
+    String certification=shownMovies.get(i).getCertification();
+    if (!MizLib.isEmpty(certification)) {
+      if (map.containsKey(certification.trim())) {
+        map.put(certification.trim(),map.get(certification.trim()) + 1);
+      }
+ else {
+        map.put(certification.trim(),1);
+      }
+    }
+  }
+  final CharSequence[] tempArray=map.keySet().toArray(new CharSequence[map.keySet().size()]);
+  for (int i=0; i < tempArray.length; i++)   tempArray[i]=tempArray[i] + " (" + map.get(tempArray[i])+ ")";
+  final CharSequence[] temp=new CharSequence[tempArray.length + 1];
+  temp[0]=getString(R.string.allCertifications);
+  for (int i=1; i < temp.length; i++)   temp[i]=tempArray[i - 1];
+  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+  builder.setTitle(R.string.selectCertification).setItems(temp,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      if (which > 0) {
+        ArrayList<MediumMovie> currentlyShown=new ArrayList<MediumMovie>();
+        currentlyShown.addAll(shownMovies);
+        shownMovies.clear();
+        String selectedGenre=temp[which].toString();
+        selectedGenre=selectedGenre.substring(0,selectedGenre.lastIndexOf("(")).trim();
+        for (int i=0; i < currentlyShown.size(); i++)         if (currentlyShown.get(i).getCertification().trim().contains(selectedGenre))         shownMovies.add(currentlyShown.get(i));
+        sortMovies();
+        notifyDataSetChanged();
+      }
+      dialog.dismiss();
+    }
+  }
+);
+  builder.show();
+}

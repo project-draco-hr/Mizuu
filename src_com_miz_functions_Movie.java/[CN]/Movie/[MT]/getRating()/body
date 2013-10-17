@@ -1,0 +1,4 @@
+{
+  if (!MizLib.isEmpty(RATING))   return RATING + "/10";
+  return "0.0/10";
+}

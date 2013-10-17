@@ -1,0 +1,38 @@
+{
+  shownMovies.clear();
+  if (searchQuery.startsWith("actor:")) {
+    for (int i=0; i < movies.size(); i++) {
+      if (isCancelled())       return null;
+      if (movies.get(i).getCast().toLowerCase(Locale.ENGLISH).contains(searchQuery.replace("actor:","").trim()))       shownMovies.add(movies.get(i));
+    }
+  }
+ else   if (searchQuery.equalsIgnoreCase("show_duplicates")) {
+    Set<String> f=new HashSet<String>(), dupes=new HashSet<String>();
+    for (int i=0; i < movies.size(); i++) {
+      if (isCancelled())       return null;
+      if (!f.add(movies.get(i).getTmdbId()))       dupes.add(movies.get(i).getTmdbId());
+    }
+    for (int i=0; i < movies.size(); i++) {
+      if (isCancelled())       return null;
+      for (      String s : dupes)       if (s.equals(movies.get(i).getTmdbId()))       shownMovies.add(movies.get(i));
+    }
+    f.clear();
+    f=null;
+    dupes.clear();
+    dupes=null;
+  }
+ else   if (searchQuery.equalsIgnoreCase("missing_genres")) {
+    for (int i=0; i < movies.size(); i++) {
+      if (isCancelled())       return null;
+      if (MizLib.isEmpty(movies.get(i).getGenres()))       shownMovies.add(movies.get(i));
+    }
+  }
+ else {
+    for (int i=0; i < movies.size(); i++) {
+      if (isCancelled())       return null;
+      if (movies.get(i).getTitle().toLowerCase(Locale.ENGLISH).indexOf(searchQuery) != -1 || movies.get(i).getFilepath().toLowerCase(Locale.ENGLISH).indexOf(searchQuery) != -1)       shownMovies.add(movies.get(i));
+    }
+  }
+  sortMovies();
+  return null;
+}

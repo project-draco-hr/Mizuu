@@ -1,0 +1,23 @@
+{
+  String COLLECTION_ID=params[0];
+  try {
+    String baseUrl;
+    JSONObject jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/configuration?api_key=" + MizLib.TMDB_API);
+    try {
+      baseUrl=jObject.getJSONObject("images").getString("base_url");
+    }
+ catch (    Exception e) {
+      baseUrl="http://cf2.imgobject.com/t/p/";
+    }
+    jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/collection/" + COLLECTION_ID + "/images?api_key="+ MizLib.TMDB_API);
+    JSONArray array=jObject.getJSONArray("posters");
+    for (int i=0; i < array.length(); i++) {
+      JSONObject o=array.getJSONObject(i);
+      covers.add(new Cover(baseUrl + MizLib.getImageUrlSize(getActivity()) + o.getString("file_path"),o.getString("iso_639_1")));
+      pics_sources.add(baseUrl + MizLib.getImageUrlSize(getActivity()) + o.getString("file_path"));
+    }
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

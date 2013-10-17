@@ -1,0 +1,7 @@
+{
+  Intent intent=new Intent();
+  intent.putExtra("fileName",thisMovie.getFullFilepath());
+  intent.putExtra("rowId",thisMovie.getRowId());
+  intent.setClass(this,IdentifyMovie.class);
+  startActivityForResult(intent,0);
+}

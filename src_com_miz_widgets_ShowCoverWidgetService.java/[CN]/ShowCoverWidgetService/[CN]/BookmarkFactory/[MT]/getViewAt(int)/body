@@ -1,0 +1,19 @@
+{
+  RemoteViews view=new RemoteViews(mContext.getPackageName(),R.layout.movie_cover_widget_item);
+  BitmapFactory.Options options=new BitmapFactory.Options();
+  options.inPreferredConfig=Config.RGB_565;
+  options.inPreferQualityOverSpeed=true;
+  if (isTablet)   options.inSampleSize=2;
+ else   options.inSampleSize=1;
+  Bitmap cover=BitmapFactory.decodeFile(shows.get(position).getThumbnail(),options);
+  if (cover != null)   view.setImageViewBitmap(R.id.thumb,cover);
+ else {
+    view.setImageViewResource(R.id.thumb,R.drawable.loading_image);
+    view.setTextViewText(R.id.widgetTitle,shows.get(position).getTitle());
+    view.setViewVisibility(R.id.widgetTitle,View.VISIBLE);
+  }
+  Intent i=new Intent(ShowCoverWidgetProvider.SHOW_COVER_WIDGET);
+  i.putExtra("showId",shows.get(position).getId());
+  view.setOnClickFillInIntent(R.id.list_item,i);
+  return view;
+}

@@ -1,0 +1,16 @@
+{
+  DecryptedShowEpisode mEpisode=new DecryptedShowEpisode();
+  mEpisode.setFilepath(filepath);
+  mEpisode.setFileNameYear(decryptYear(mEpisode.getFileName()));
+  mEpisode.setDecryptedFileName(decryptName(getStringBeforeSeasonAndEpisode(mEpisode.getFileName()),customTags));
+  mEpisode.setEpisode(getEpisodeOrSeasonFromFileName(mEpisode.getFileName(),EPISODE));
+  mEpisode.setSeason(getEpisodeOrSeasonFromFileName(mEpisode.getFileName(),SEASON));
+  if (mEpisode.hasSeasonsFolder()) {
+    mEpisode.setSeason(getSeasonFromFolderName(mEpisode.getSeasonFolder()));
+  }
+  if (mEpisode.hasParentName()) {
+    mEpisode.setParentNameYear(decryptYear(mEpisode.getParentName()));
+    mEpisode.setDecryptedParentName(decryptName(getStringBeforeSeason(mEpisode.getParentName()),customTags));
+  }
+  return mEpisode;
+}

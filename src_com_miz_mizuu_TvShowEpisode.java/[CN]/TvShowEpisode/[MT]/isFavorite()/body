@@ -1,0 +1,3 @@
+{
+  return (FAVORITE.isEmpty() || FAVORITE.equals("0")) ? false : true;
+}

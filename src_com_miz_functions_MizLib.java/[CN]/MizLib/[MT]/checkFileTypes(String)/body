@@ -1,0 +1,9 @@
+{
+  if (file.contains(".")) {
+    String type=file.substring(file.lastIndexOf("."));
+    String[] filetypes=allFileTypes.split("\\.");
+    int count=filetypes.length;
+    for (int i=0; i < count; i++)     if (type.toLowerCase(Locale.ENGLISH).equals("." + filetypes[i]))     return true;
+  }
+  return false;
+}

@@ -1,0 +1,22 @@
+{
+  if (isAdded()) {
+    pbar.setVisibility(View.GONE);
+    mAdapter.notifyDataSetChanged();
+    TreeSet<String> languages=new TreeSet<String>();
+    for (    Cover c : covers) {
+      if (!c.getLanguage().equals("Null"))       languages.add(c.getLanguage());
+    }
+    items=new String[languages.size() + 1];
+    items[0]=getString(R.string.stringShowAllLanguages);
+    Iterator<String> itr=languages.iterator();
+    int i=1;
+    while (itr.hasNext()) {
+      items[i]=itr.next();
+      i++;
+    }
+    getActivity().invalidateOptionsMenu();
+    Intent intent=new Intent("mizuu-cover-search-fragment");
+    intent.putExtra("coverCount",pics_sources.size());
+    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+  }
+}

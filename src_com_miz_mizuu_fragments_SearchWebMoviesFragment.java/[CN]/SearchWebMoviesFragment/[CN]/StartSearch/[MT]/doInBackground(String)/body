@@ -1,0 +1,16 @@
+{
+  try {
+    TMDb tmdb=new TMDb(getActivity().getApplicationContext());
+    ArrayList<TMDbMovie> movieResults;
+    if (useSystemLanguage.isChecked())     movieResults=tmdb.searchForMovies(params[0],"",getLocaleShortcode());
+ else     movieResults=tmdb.searchForMovies(params[0],"","en");
+    int count=movieResults.size();
+    for (int i=0; i < count; i++) {
+      results.add(new Result(movieResults.get(i).getTitle(),movieResults.get(i).getId(),movieResults.get(i).getCover(),movieResults.get(i).getOriginalTitle(),movieResults.get(i).getReleasedate()));
+    }
+    return "";
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

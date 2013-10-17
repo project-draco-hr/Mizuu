@@ -1,0 +1,7 @@
+{
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
+  String username=settings.getString("traktUsername","").trim();
+  String password=settings.getString("traktPassword","");
+  if (username.isEmpty() || password.isEmpty())   return false;
+  return true;
+}

@@ -1,0 +1,19 @@
+{
+  int tempCount=0;
+  ArrayList<TvShowEpisode> tempEpisodes=new ArrayList<TvShowEpisode>(allEpisodes);
+  for (  TvShowEpisode episode : tempEpisodes) {
+    if (episode.hasWatched() == hasWatched) {
+      if (seasonEpisodeCount.get(Integer.valueOf(episode.getSeason())) == 0) {
+        seasonEpisodeCount.append(Integer.valueOf(episode.getSeason()),1);
+        seasons.add(episode.getSeason());
+      }
+ else {
+        tempCount=seasonEpisodeCount.get(Integer.valueOf(episode.getSeason()));
+        seasonEpisodeCount.append(Integer.valueOf(episode.getSeason()),tempCount + 1);
+      }
+      shownEpisodes.add(episode);
+    }
+  }
+  tempEpisodes.clear();
+  tempEpisodes=null;
+}

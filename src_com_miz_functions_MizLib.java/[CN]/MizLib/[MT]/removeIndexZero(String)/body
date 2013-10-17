@@ -1,0 +1,8 @@
+{
+  if (!isEmpty(s))   try {
+    return String.valueOf(Integer.parseInt(s));
+  }
+ catch (  NumberFormatException e) {
+  }
+  return s;
+}

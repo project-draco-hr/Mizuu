@@ -1,0 +1,7 @@
+{
+  ActorBiographyFragment pageFragment=new ActorBiographyFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("actorId",actorId);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

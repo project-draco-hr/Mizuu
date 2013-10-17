@@ -1,0 +1,39 @@
+{
+  int bufferSize=8192;
+  byte[] retVal=null;
+  InputStream in=null;
+  OutputStream fileos=null;
+  HttpURLConnection urlConnection=null;
+  try {
+    urlConnection=(HttpURLConnection)new URL(url).openConnection();
+    fileos=new BufferedOutputStream(new FileOutputStream(savePath));
+    in=new BufferedInputStream(urlConnection.getInputStream(),bufferSize);
+    retVal=new byte[bufferSize];
+    int length=0;
+    while ((length=in.read(retVal)) > -1) {
+      fileos.write(retVal,0,length);
+    }
+  }
+ catch (  IOException e) {
+    return false;
+  }
+ finally {
+    if (fileos != null) {
+      try {
+        fileos.flush();
+        fileos.close();
+      }
+ catch (      IOException e) {
+      }
+    }
+    if (in != null) {
+      try {
+        in.close();
+      }
+ catch (      IOException e) {
+      }
+    }
+    if (urlConnection != null)     urlConnection.disconnect();
+  }
+  return true;
+}

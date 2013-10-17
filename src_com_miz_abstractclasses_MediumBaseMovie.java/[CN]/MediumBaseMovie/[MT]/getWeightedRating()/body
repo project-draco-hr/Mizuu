@@ -1,0 +1,5 @@
+{
+  if (isFavourite())   return (10 + getRawRating()) / 2;
+  if (hasWatched())   return (6 + getRawRating()) / 2;
+  return (getRawRating() + 5) / 2;
+}

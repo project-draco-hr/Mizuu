@@ -1,0 +1,9 @@
+{
+  if (getShow(showId).getCount() == 0) {
+    ContentValues initialValues=createContentValues(showId,showTitle,showPlot,showActors,showGenres,showRating,showCertification,showRuntime,showFirstAirdate,isFavorite);
+    return database.insert(DATABASE_TABLE,null,initialValues);
+  }
+ else {
+    return -1;
+  }
+}

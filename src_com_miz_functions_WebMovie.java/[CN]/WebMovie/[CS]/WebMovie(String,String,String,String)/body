@@ -1,0 +1,6 @@
+{
+  this.title=title;
+  this.id=id;
+  this.url=url;
+  this.date=date;
+}

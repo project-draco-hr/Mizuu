@@ -1,0 +1,6 @@
+{
+  super.onActivityCreated(savedInstanceState);
+  actionBar=getActivity().getActionBar();
+  actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+  actionBar.setListNavigationCallbacks(new ActionBarSpinner(),this);
+}

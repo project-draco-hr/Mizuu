@@ -1,0 +1,28 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  if (setBackground && !MizLib.runsInPortraitMode(getActivity()))   v.findViewById(R.id.container).setBackgroundResource(R.drawable.bg);
+  if (!MizLib.runsInPortraitMode(getActivity()))   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
+  pbar=(ProgressBar)v.findViewById(R.id.progress);
+  if (actors.size() > 0)   pbar.setVisibility(View.GONE);
+  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mAdapter=new ImageAdapter(getActivity());
+  mGridView.setAdapter(mAdapter);
+  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+      if (numColumns > 0) {
+        final int columnWidth=(mGridView.getWidth() / numColumns) - mImageThumbSpacing;
+        mAdapter.setItemHeight(columnWidth);
+      }
+    }
+  }
+);
+  mGridView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      Intent i=new Intent(Intent.ACTION_VIEW);
+      i.setData(Uri.parse("http://www.imdb.com/find?s=nm&q=" + actors.get(arg2).getName().replace(" ","+")));
+      startActivity(i);
+    }
+  }
+);
+}

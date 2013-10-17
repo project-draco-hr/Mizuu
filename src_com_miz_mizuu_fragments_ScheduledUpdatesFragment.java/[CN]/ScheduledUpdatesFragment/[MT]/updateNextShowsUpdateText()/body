@@ -1,0 +1,25 @@
+{
+  if (shows.isChecked() && showsSpinner.getSelectedItemPosition() > 0) {
+    nextShowsUpdate.setVisibility(View.VISIBLE);
+    long nextUpdate=settings.getLong(ScheduledUpdatesAlarmManager.prefNextShows,0);
+    if (nextUpdate > 0) {
+      long timeUntilNext=(nextUpdate - System.currentTimeMillis()) / 1000 / 60;
+      long minutes=timeUntilNext % 60;
+      timeUntilNext/=60;
+      long hours=timeUntilNext % 24;
+      timeUntilNext/=24;
+      long days=timeUntilNext;
+      String minutes_string="", hours_string="", days_string="";
+      if (minutes > 0)       minutes_string=minutes + " " + getResources().getQuantityString(R.plurals.minute,(int)minutes,(int)minutes);
+      if (hours > 0)       hours_string=hours + " " + getResources().getQuantityString(R.plurals.hour,(int)hours,(int)hours);
+      if (days > 0)       days_string=days + " " + getResources().getQuantityString(R.plurals.day,(int)days,(int)days);
+      nextShowsUpdate.setText(getString(R.string.nextUpdateIn) + " " + ((days > 0) ? days_string + ", " : "")+ ((hours > 0) ? hours_string + ", " : "")+ ((minutes > 0) ? minutes_string : ""));
+    }
+ else {
+      nextShowsUpdate.setVisibility(View.GONE);
+    }
+  }
+ else {
+    nextShowsUpdate.setVisibility(View.GONE);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  final View v=inflater.inflate(R.layout.viewpager_with_tabs,container,false);
+  awesomePager=(ViewPager)v.findViewById(R.id.awesomepager);
+  awesomePager.setAdapter(new IgnoredFilesAdapter());
+  return v;
+}

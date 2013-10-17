@@ -1,0 +1,3 @@
+{
+  return WebVideoFragment.newInstance(spinnerItems.get(index).getSubtitle());
+}

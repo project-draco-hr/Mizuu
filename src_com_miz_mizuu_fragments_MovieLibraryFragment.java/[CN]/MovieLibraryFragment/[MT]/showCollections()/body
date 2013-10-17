@@ -1,0 +1,17 @@
+{
+  showProgressBar();
+  shownMovies.clear();
+  HashMap<String,MediumMovie> map=new HashMap<String,MediumMovie>();
+  for (  MediumMovie m : movies) {
+    if (!MizLib.isEmpty(m.getCollection()) && !m.getCollection().equals("null")) {
+      if (!map.containsKey(m.getCollection())) {
+        map.put(m.getCollection(),m);
+        shownMovies.add(m);
+      }
+    }
+  }
+  map.clear();
+  sortMovies();
+  notifyDataSetChanged();
+  hideProgressBar();
+}

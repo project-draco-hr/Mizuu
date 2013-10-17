@@ -1,0 +1,15 @@
+{
+  ArrayList<SmbFile> subs=new ArrayList<SmbFile>();
+  try {
+    String s=filepath.substring(0,filepath.lastIndexOf("/"));
+    SmbFile dir=new SmbFile(createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),s,true));
+    SmbFile[] listFiles=dir.listFiles();
+    int count=listFiles.length;
+    for (int i=0; i < count; i++) {
+      if (!listFiles[i].getName().equalsIgnoreCase("video_ts.ifo"))       subs.add(listFiles[i]);
+    }
+  }
+ catch (  Exception e) {
+  }
+  return subs;
+}

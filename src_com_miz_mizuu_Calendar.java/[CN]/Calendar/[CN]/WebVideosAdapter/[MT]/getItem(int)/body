@@ -1,0 +1,9 @@
+{
+switch (index) {
+case 0:
+case 1:
+    return WebVideoFragment.newInstance(getString(R.string.choiceReddit));
+default :
+  return null;
+}
+}

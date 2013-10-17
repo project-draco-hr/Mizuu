@@ -1,0 +1,6 @@
+{
+  ImageView imageView=new ImageView(this);
+  imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+  imageView.setLayoutParams(new ImageSwitcher.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+  return imageView;
+}

@@ -1,0 +1,5 @@
+{
+  Intent i=new Intent(Intent.ACTION_VIEW);
+  i.setData(Uri.parse(photos[awesomePager.getCurrentItem()]));
+  startActivity(i);
+}

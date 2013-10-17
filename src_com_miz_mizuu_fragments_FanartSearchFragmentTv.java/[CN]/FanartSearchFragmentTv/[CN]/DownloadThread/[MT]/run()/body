@@ -1,0 +1,14 @@
+{
+  if (isAdded()) {
+    getActivity().runOnUiThread(new Runnable(){
+      @Override public void run(){
+        Toast.makeText(getActivity(),getString(R.string.addingCover),Toast.LENGTH_SHORT).show();
+      }
+    }
+);
+    MizLib.downloadFile(url,new File(MizLib.getTvShowBackdropFolder(getActivity()),TVDB_ID + "_tvbg.jpg").getAbsolutePath());
+    updateWidgets();
+    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-show-backdrop-change"));
+  }
+  if (isAdded())   getActivity().finish();
+}

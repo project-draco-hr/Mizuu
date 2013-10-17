@@ -1,0 +1,3 @@
+{
+  return !COLLECTION_ID.isEmpty() || COLLECTION_ID == null;
+}

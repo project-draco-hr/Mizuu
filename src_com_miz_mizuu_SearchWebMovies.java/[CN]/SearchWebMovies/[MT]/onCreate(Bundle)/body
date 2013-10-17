@@ -1,0 +1,10 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.empty_layout);
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.add(android.R.id.content,SearchWebMoviesFragment.newInstance(),TAG);
+    ft.commit();
+  }
+}

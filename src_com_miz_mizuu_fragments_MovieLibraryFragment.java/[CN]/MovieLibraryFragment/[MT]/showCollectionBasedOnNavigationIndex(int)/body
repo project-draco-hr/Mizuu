@@ -1,0 +1,23 @@
+{
+  if (spinnerAdapter != null)   spinnerAdapter.notifyDataSetChanged();
+switch (itemPosition) {
+case 0:
+    showAllMovies();
+  break;
+case 1:
+showFavorites();
+break;
+case 2:
+showAvailableFiles();
+break;
+case 3:
+showCollections();
+break;
+case 4:
+showWatchedMovies(true);
+break;
+case 5:
+showWatchedMovies(false);
+break;
+}
+}

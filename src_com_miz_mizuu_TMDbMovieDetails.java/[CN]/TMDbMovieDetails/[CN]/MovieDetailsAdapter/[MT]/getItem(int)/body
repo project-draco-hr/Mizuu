@@ -1,0 +1,11 @@
+{
+switch (index) {
+case 0:
+    return TmdbMovieDetailsFragment.newInstance(movieId);
+case 1:
+  return ActorBrowserFragment.newInstance(movieId,true);
+case 2:
+return RelatedMoviesFragment.newInstance(movieId,true);
+}
+return null;
+}

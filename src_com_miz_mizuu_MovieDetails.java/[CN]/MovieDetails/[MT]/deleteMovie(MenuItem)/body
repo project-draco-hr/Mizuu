@@ -1,0 +1,46 @@
+{
+  AlertDialog.Builder builder=new AlertDialog.Builder(this);
+  View dialogLayout=getLayoutInflater().inflate(R.layout.delete_file_dialog_layout,null);
+  final CheckBox cb=(CheckBox)dialogLayout.findViewById(R.id.deleteFile);
+  builder.setTitle(getString(R.string.removeMovie)).setView(dialogLayout).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int id){
+      boolean deleted=false;
+      if (ignoreDeletedFiles)       deleted=db.ignoreMovie(Long.valueOf(thisMovie.getRowId()));
+ else       deleted=db.deleteMovie(Long.valueOf(thisMovie.getRowId()));
+      if (deleted) {
+        try {
+          File coverArt=new File(thisMovie.getPoster());
+          if (coverArt.exists() && coverArt.getAbsolutePath().contains("com.miz.mizuu")) {
+            MizLib.deleteFile(coverArt);
+          }
+          File thumbnail=new File(thisMovie.getThumbnail());
+          if (thumbnail.exists() && thumbnail.getAbsolutePath().contains("com.miz.mizuu")) {
+            MizLib.deleteFile(thumbnail);
+          }
+          File backdrop=new File(thisMovie.getBackdrop());
+          if (backdrop.exists() && backdrop.getAbsolutePath().contains("com.miz.mizuu")) {
+            MizLib.deleteFile(backdrop);
+          }
+          if (cb.isChecked()) {
+            Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
+            deleteIntent.putExtra("filepath",thisMovie.getFilepath());
+            getApplicationContext().startService(deleteIntent);
+          }
+        }
+ catch (        NullPointerException e) {
+        }
+        notifyDatasetChanges();
+        finish();
+      }
+ else {
+        Toast.makeText(getApplicationContext(),getString(R.string.failedToRemoveMovie),Toast.LENGTH_SHORT).show();
+      }
+    }
+  }
+).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int id){
+      dialog.cancel();
+    }
+  }
+).create().show();
+}

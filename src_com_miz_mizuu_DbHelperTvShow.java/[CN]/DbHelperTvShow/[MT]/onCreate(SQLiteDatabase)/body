@@ -1,0 +1,4 @@
+{
+  database.execSQL(DATABASE_CREATE);
+  database.execSQL(DATABASE_CREATE_SHOW_ID_INDEX);
+}

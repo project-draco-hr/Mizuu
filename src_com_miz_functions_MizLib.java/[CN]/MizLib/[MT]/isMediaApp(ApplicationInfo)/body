@@ -1,0 +1,4 @@
+{
+  for (  String s : MEDIA_APPS)   if (s.equals(ai.packageName))   return true;
+  return false;
+}

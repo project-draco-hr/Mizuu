@@ -1,0 +1,4 @@
+{
+  super.onResume();
+  if (mAdapter != null)   mAdapter.notifyDataSetChanged();
+}

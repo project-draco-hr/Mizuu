@@ -1,0 +1,5 @@
+{
+  super.onResume();
+  checkBox.setChecked(settings.getBoolean("prefsClearLibrary",false));
+  checkBox2.setChecked(settings.getBoolean("prefsRemoveUnavailable",false));
+}

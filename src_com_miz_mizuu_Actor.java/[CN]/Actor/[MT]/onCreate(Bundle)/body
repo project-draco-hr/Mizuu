@@ -1,0 +1,24 @@
+{
+  super.onCreate(savedInstanceState);
+  if (!MizLib.runsInPortraitMode(this))   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+  setContentView(R.layout.viewpager);
+  actorId=getIntent().getExtras().getString("actorID");
+  actorName=getIntent().getExtras().getString("actorName");
+  setTitle(actorName);
+  final ActionBar bar=getActionBar();
+  bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
+  awesomePager.setOffscreenPageLimit(2);
+  awesomePager.setAdapter(new ActorDetailsAdapter(getSupportFragmentManager()));
+  awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+    @Override public void onPageSelected(    int position){
+      bar.getTabAt(position).select();
+      ViewParent root=findViewById(android.R.id.content).getParent();
+      MizLib.findAndUpdateSpinner(root,position);
+    }
+  }
+);
+  bar.addTab(bar.newTab().setText(getString(R.string.actorBiography)).setTabListener(this));
+  bar.addTab(bar.newTab().setText(getString(R.string.chooserMovies)).setTabListener(this));
+  bar.addTab(bar.newTab().setText(getString(R.string.actorsShowAllPhotos)).setTabListener(this));
+}

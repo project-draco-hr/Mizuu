@@ -1,0 +1,6 @@
+{
+  this.name=name;
+  this.character=character;
+  this.id=id;
+  this.url=url;
+}

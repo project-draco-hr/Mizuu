@@ -1,0 +1,25 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  if (!MizLib.runsInPortraitMode(getActivity()))   MizLib.addActionBarMargin(getActivity(),v.findViewById(R.id.linearLayout1));
+  pbar=(ProgressBar)v.findViewById(R.id.progress);
+  mActorBirthday=(TextView)v.findViewById(R.id.overviewMessage);
+  mActorBirth=(TextView)v.findViewById(R.id.textView2);
+  mActorName=(TextView)v.findViewById(R.id.textView3);
+  mActorName.setTypeface(tf);
+  mActorName.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+  if (MizLib.runsOnTablet(getActivity()))   mActorName.setTextSize(48f);
+  mActorBio=(TextView)v.findViewById(R.id.textView4);
+  mActorImage=(ImageView)v.findViewById(R.id.traktIcon);
+  mActorImageBackground=(ImageView)v.findViewById(R.id.imageView2);
+  if (image == null)   new GetActorDetails().execute(getArguments().getString("actorId"));
+ else {
+    mActorName.setText(mName);
+    mActorBio.setText(mBio);
+    mActorBirth.setText(mBirth);
+    mActorBirthday.setText(mBirthday);
+    mActorImage.setImageBitmap(image);
+    mActorImage.setVisibility(View.VISIBLE);
+    new BlurImage().execute();
+    pbar.setVisibility(View.GONE);
+  }
+}

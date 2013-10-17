@@ -1,0 +1,8 @@
+{
+  if (isAdded() && syncTrakt.isChecked()) {
+    Intent movies=new Intent(getActivity(),TraktMoviesSyncService.class);
+    getActivity().startService(movies);
+    Intent shows=new Intent(getActivity(),TraktTvShowsSyncService.class);
+    getActivity().startService(shows);
+  }
+}

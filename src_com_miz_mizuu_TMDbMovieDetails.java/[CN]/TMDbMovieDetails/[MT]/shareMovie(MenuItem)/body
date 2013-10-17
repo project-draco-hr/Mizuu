@@ -1,0 +1,6 @@
+{
+  Intent intent=new Intent(Intent.ACTION_SEND);
+  intent.setType("text/plain");
+  intent.putExtra(Intent.EXTRA_TEXT,"http://www.themoviedb.org/movie/" + movieId);
+  startActivity(Intent.createChooser(intent,getString(R.string.shareWith)));
+}

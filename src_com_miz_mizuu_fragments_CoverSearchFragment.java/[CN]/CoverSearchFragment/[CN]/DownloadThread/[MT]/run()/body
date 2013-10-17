@@ -1,0 +1,14 @@
+{
+  if (isAdded()) {
+    getActivity().runOnUiThread(new Runnable(){
+      @Override public void run(){
+        Toast.makeText(getActivity(),getString(R.string.addingCover),Toast.LENGTH_SHORT).show();
+      }
+    }
+);
+    MizLib.downloadFile(url,new File(MizLib.getMovieThumbFolder(getActivity()),TMDB_ID + ".jpg").getAbsolutePath());
+    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-movie-cover-change"));
+    updateWidgets();
+  }
+  if (isAdded())   getActivity().finish();
+}

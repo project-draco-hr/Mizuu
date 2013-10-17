@@ -1,0 +1,28 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.viewpager);
+  tvdbId=getIntent().getExtras().getString("id");
+  startPosition=getIntent().getExtras().getInt("startPosition");
+  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
+  awesomePager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
+  bar=getActionBar();
+  bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+  bar.addTab(bar.newTab().setText(getString(R.string.coverart)).setTabListener(this));
+  bar.addTab(bar.newTab().setText(getString(R.string.backdrop)).setTabListener(this));
+  awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+    @Override public void onPageSelected(    int position){
+      bar.getTabAt(position).select();
+      ViewParent root=findViewById(android.R.id.content).getParent();
+      MizLib.findAndUpdateSpinner(root,position);
+    }
+  }
+);
+  bar.setSelectedNavigationItem(startPosition);
+  if (savedInstanceState != null) {
+    bar.setSelectedNavigationItem(savedInstanceState.getInt("tab",0));
+    coverCount=savedInstanceState.getInt("coverCount");
+    backdropCount=savedInstanceState.getInt("backdropCount");
+    displayCount();
+  }
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-cover-search-fragment-tv"));
+}

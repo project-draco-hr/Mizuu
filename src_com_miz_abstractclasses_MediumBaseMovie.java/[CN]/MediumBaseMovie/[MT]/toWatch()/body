@@ -1,0 +1,3 @@
+{
+  return (TO_WATCH.equals("0")) ? false : true;
+}

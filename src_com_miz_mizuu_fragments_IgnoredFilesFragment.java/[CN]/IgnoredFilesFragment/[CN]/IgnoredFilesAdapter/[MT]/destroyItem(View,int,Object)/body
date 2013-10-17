@@ -1,0 +1,3 @@
+{
+  ((ViewPager)collection).removeView((View)view);
+}

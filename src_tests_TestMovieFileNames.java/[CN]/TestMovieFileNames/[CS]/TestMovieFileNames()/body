@@ -1,0 +1,4 @@
+{
+  d=new DecryptedMovie[TEST_FILENAMES.length];
+  for (int i=0; i < TEST_FILENAMES.length; i++)   d[i]=MizLib.decryptMovie(TEST_FILENAMES[i],"");
+}

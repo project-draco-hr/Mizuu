@@ -1,0 +1,3 @@
+{
+  return database.query(DATABASE_TABLE,SELECT_ALL,"NOT(" + KEY_SHOW_ID + " = 'invalid')",null,null,null,KEY_SHOW_TITLE + " ASC");
+}

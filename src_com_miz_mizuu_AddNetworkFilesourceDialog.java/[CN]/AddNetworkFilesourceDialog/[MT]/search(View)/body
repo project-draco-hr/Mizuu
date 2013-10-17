@@ -1,0 +1,40 @@
+{
+  final ArrayList<FileSource> sources=new ArrayList<FileSource>();
+  DbAdapterSources dbHelper=MizuuApplication.getSourcesAdapter();
+  Cursor cursor=dbHelper.fetchAllSources();
+  while (cursor.moveToNext()) {
+    if (cursor.getInt(cursor.getColumnIndex(DbAdapterSources.KEY_IS_SMB)) == 1)     sources.add(new FileSource(cursor.getLong(cursor.getColumnIndex(DbAdapterSources.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),cursor.getInt(cursor.getColumnIndex(DbAdapterSources.KEY_IS_SMB)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_USER)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_TYPE))));
+  }
+  cursor.close();
+  TreeSet<String> uniqueSources=new TreeSet<String>();
+  int count=sources.size();
+  for (int i=0; i < count; i++) {
+    String temp=sources.get(i).getFilepath().replace("smb://","");
+    temp=temp.substring(0,temp.indexOf("/"));
+    uniqueSources.add(temp);
+  }
+  final CharSequence[] items=new CharSequence[uniqueSources.size() + 1];
+  count=0;
+  Iterator<String> it=uniqueSources.iterator();
+  while (it.hasNext()) {
+    items[count]=it.next();
+    count++;
+  }
+  items[items.length - 1]=getString(R.string.scanForSources);
+  AlertDialog.Builder builder=new AlertDialog.Builder(this);
+  builder.setTitle(getString(R.string.browseSources));
+  builder.setItems(items,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      if (which == (items.length - 1)) {
+        Intent intent=new Intent();
+        intent.setClass(getApplicationContext(),SearchForNetworkShares.class);
+        startActivity(intent);
+      }
+ else {
+        showUserDialog(items,which);
+      }
+    }
+  }
+);
+  builder.show();
+}

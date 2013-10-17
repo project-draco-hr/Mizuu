@@ -1,0 +1,27 @@
+{
+switch (item.getItemId()) {
+case android.R.id.home:
+    if (getIntent().getExtras().getBoolean("isFromWidget")) {
+      Intent i=new Intent(Intent.ACTION_VIEW);
+      i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+      i.setClass(getApplicationContext(),MainMovies.class);
+      startActivity(i);
+      finish();
+    }
+ else     onBackPressed();
+  return true;
+case R.id.share:
+Intent intent=new Intent(Intent.ACTION_SEND);
+intent.setType("text/plain");
+intent.putExtra(Intent.EXTRA_TEXT,"http://www.imdb.com/title/" + thisMovie.getImdbId());
+startActivity(intent);
+return true;
+case R.id.imdb:
+Intent i=new Intent(Intent.ACTION_VIEW);
+i.setData(Uri.parse("http://www.imdb.com/title/" + thisMovie.getImdbId()));
+startActivity(i);
+return true;
+default :
+return super.onOptionsItemSelected(item);
+}
+}

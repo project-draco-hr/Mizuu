@@ -1,0 +1,98 @@
+{
+  if (isAdded()) {
+    getActivity().setTitle(thisMovie.getTitle());
+    if (thisMovie.getReleasedate().contains("-")) {
+      try {
+        getActivity().getActionBar().setSubtitle(thisMovie.getReleasedate().substring(0,4));
+      }
+ catch (      Exception e) {
+        getActivity().getActionBar().setSubtitle(getString(R.string.stringNA));
+      }
+    }
+    textTitle.setVisibility(View.VISIBLE);
+    textTitle.setText(thisMovie.getTitle());
+    textTitle.setTypeface(tf);
+    textTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+    textPlot.setText(thisMovie.getPlot());
+    if (thisMovie.getTagline().equals("NOTAGLINE") || thisMovie.getTagline().isEmpty())     textTagline.setVisibility(TextView.GONE);
+ else     textTagline.setText(thisMovie.getTagline());
+    if (!MizLib.isEmpty(thisMovie.getGenres())) {
+      textGenre.setText(thisMovie.getGenres());
+    }
+ else {
+      if (t3 != null)       t3.setVisibility(View.GONE);
+ else {
+        tv3.setVisibility(View.GONE);
+        textGenre.setVisibility(View.GONE);
+      }
+    }
+    try {
+      int hours=Integer.parseInt(thisMovie.getRuntime()) / 60;
+      int minutes=Integer.parseInt(thisMovie.getRuntime()) % 60;
+      String hours_string=hours + " " + getResources().getQuantityString(R.plurals.hour,hours,hours);
+      String minutes_string=minutes + " " + getResources().getQuantityString(R.plurals.minute,minutes,minutes);
+      if (hours > 0) {
+        if (minutes == 0)         textRuntime.setText(hours_string);
+ else         textRuntime.setText(hours_string + " " + minutes_string);
+      }
+ else {
+        textRuntime.setText(minutes_string);
+      }
+    }
+ catch (    Exception e) {
+      if (!MizLib.isEmpty(thisMovie.getRuntime())) {
+        textRuntime.setText(thisMovie.getRuntime());
+      }
+ else {
+        if (t1 != null)         t1.setVisibility(View.GONE);
+ else {
+          tv1.setVisibility(View.GONE);
+          textRuntime.setVisibility(View.GONE);
+        }
+      }
+    }
+    if (!MizLib.isEmpty(thisMovie.getReleasedate())) {
+      try {
+        String[] date=thisMovie.getReleasedate().split("-");
+        Calendar cal=Calendar.getInstance();
+        cal.set(Integer.parseInt(date[0]),Integer.parseInt(date[1]) - 1,Integer.parseInt(date[2]));
+        textReleaseDate.setText(DateFormat.getDateInstance(DateFormat.MEDIUM,Locale.getDefault()).format(cal.getTime()));
+      }
+ catch (      Exception e) {
+        textReleaseDate.setText(thisMovie.getReleasedate());
+      }
+    }
+ else {
+      if (t4 != null)       t4.setVisibility(View.GONE);
+ else {
+        tv5.setVisibility(View.GONE);
+        textReleaseDate.setVisibility(View.GONE);
+      }
+    }
+    if (!thisMovie.getRating().equals("0.0/10"))     textRating.setText(thisMovie.getRating());
+ else {
+      if (t5 != null)       t5.setVisibility(View.GONE);
+ else {
+        tv4.setVisibility(View.GONE);
+        textRating.setVisibility(View.GONE);
+      }
+    }
+    if (!MizLib.isEmpty(thisMovie.getCertification())) {
+      textCertification.setText(thisMovie.getCertification());
+    }
+ else {
+      if (t2 != null)       t2.setVisibility(View.GONE);
+ else {
+        tv2.setVisibility(View.GONE);
+        textCertification.setVisibility(View.GONE);
+      }
+    }
+    setLoading(false);
+    try {
+      new LoadImage().execute(thisMovie.getCover(),LoadImage.COVER);
+      new LoadImage().execute(thisMovie.getBackdrop(),LoadImage.BACKDROP);
+    }
+ catch (    Exception e) {
+    }
+  }
+}

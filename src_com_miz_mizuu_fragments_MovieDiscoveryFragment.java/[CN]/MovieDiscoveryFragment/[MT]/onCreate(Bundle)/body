@@ -1,0 +1,12 @@
+{
+  super.onCreate(savedInstanceState);
+  db=MizuuApplication.getMovieAdapter();
+  settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
+  showGridTitles=settings.getBoolean("prefsShowGridTitles",false);
+  PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  imageLoader=ImageLoader.getInstance();
+  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  new GetTrailers().execute(getArguments().getString("type"));
+}

@@ -1,0 +1,6 @@
+{
+  if (path == null || path.length() < 2)   return null;
+  int slash=path.lastIndexOf('/');
+  if (slash == -1)   return path;
+  return path.substring(slash + 1);
+}

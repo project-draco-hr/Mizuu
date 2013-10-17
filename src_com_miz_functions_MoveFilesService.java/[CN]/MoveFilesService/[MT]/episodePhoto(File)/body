@@ -1,0 +1,7 @@
+{
+  try {
+    MizLib.copyFile(episode,new File(MizLib.getTvShowEpisodeFolder(this),episode.getName()));
+  }
+ catch (  IOException e) {
+  }
+}

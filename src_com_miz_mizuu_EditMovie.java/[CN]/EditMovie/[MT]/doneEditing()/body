@@ -1,0 +1,6 @@
+{
+  if (rating.getText().toString().isEmpty())   rating.setText("0.0");
+  dbHelper.editUpdateMovie(rowID,title.getText().toString(),plot.getText().toString(),rating.getText().toString(),tagline.getText().toString(),release.getText().toString(),certifications[certification.getSelectedItemPosition()],runtime.getText().toString(),genres.getText().toString(),"0","0",String.valueOf(System.currentTimeMillis()));
+  setResult(4);
+  finish();
+}

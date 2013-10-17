@@ -1,0 +1,10 @@
+String showId
+String showTitle
+String showPlot
+String showActors
+String showGenres
+String showRating
+String showCertification
+String showRuntime
+String showFirstAirdate
+String isFavorite

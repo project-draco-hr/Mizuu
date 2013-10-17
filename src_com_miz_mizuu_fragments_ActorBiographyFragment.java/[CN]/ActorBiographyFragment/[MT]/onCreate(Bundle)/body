@@ -1,0 +1,5 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  tf=Typeface.createFromAsset(getActivity().getAssets(),"Roboto-Thin.ttf");
+}

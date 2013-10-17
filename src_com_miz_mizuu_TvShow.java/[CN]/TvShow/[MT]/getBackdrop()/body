@@ -1,0 +1,3 @@
+{
+  return new File(MizLib.getTvShowBackdropFolder(CONTEXT),ID + "_tvbg.jpg").getAbsolutePath();
+}

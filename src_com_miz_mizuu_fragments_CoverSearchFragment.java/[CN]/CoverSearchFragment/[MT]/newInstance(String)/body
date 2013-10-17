@@ -1,0 +1,7 @@
+{
+  CoverSearchFragment pageFragment=new CoverSearchFragment();
+  Bundle b=new Bundle();
+  b.putString("tmdbId",tmdbId);
+  pageFragment.setArguments(b);
+  return pageFragment;
+}

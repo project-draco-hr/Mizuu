@@ -1,0 +1,4 @@
+{
+  showCollectionBasedOnNavigationIndex(itemPosition);
+  return true;
+}

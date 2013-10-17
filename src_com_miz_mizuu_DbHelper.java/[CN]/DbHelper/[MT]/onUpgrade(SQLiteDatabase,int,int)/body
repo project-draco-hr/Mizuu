@@ -1,0 +1,4 @@
+{
+  database.execSQL("DROP TABLE IF EXISTS movie");
+  onCreate(database);
+}

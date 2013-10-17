@@ -1,0 +1,12 @@
+{
+switch (index) {
+case 0:
+    return MovieDiscoveryFragment.newInstance("upcoming");
+case 1:
+  return MovieDiscoveryFragment.newInstance("now_playing");
+case 2:
+return MovieDiscoveryFragment.newInstance("popular");
+default :
+return MovieDiscoveryFragment.newInstance("top_rated");
+}
+}

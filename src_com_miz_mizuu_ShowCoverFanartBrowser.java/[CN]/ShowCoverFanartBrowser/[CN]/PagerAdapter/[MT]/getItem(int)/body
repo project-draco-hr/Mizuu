@@ -1,0 +1,8 @@
+{
+switch (index) {
+case 0:
+    return CoverSearchFragmentTv.newInstance(tvdbId);
+default :
+  return FanartSearchFragmentTv.newInstance(tvdbId);
+}
+}

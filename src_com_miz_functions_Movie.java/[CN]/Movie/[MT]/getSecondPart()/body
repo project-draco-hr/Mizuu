@@ -1,0 +1,5 @@
+{
+  if (getFilepath().contains("cd1."))   return getFilepath().replace("cd1.","cd2.");
+  if (getFilepath().contains("part1."))   return getFilepath().replace("part1.","part2.");
+  return "";
+}

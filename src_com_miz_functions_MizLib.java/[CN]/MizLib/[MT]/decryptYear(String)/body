@@ -1,0 +1,14 @@
+{
+  String result="";
+  Pattern searchPattern=Pattern.compile(YEAR_PATTERN);
+  Matcher searchMatcher=searchPattern.matcher(input);
+  while (searchMatcher.find()) {
+    try {
+      int lastIndex=searchMatcher.end();
+      result=input.substring(lastIndex - 4,lastIndex);
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  return result;
+}

@@ -1,0 +1,16 @@
+{
+  try {
+    handleResponse(socket);
+  }
+  finally {
+    if (is != null) {
+      try {
+        is.close();
+        socket.close();
+      }
+ catch (      IOException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+}

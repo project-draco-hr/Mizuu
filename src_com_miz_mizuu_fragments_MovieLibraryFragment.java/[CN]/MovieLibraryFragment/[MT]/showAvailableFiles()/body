@@ -1,0 +1,45 @@
+{
+  showProgressBar();
+  shownMovies.clear();
+  new Thread(){
+    @Override public void run(){
+      ArrayList<MediumMovie> tempMovies=new ArrayList<MediumMovie>();
+      ArrayList<FileSource> filesources=MizLib.getFileSources(MizLib.TYPE_MOVIE,true);
+      for (int i=0; i < movies.size(); i++) {
+        if (movies.get(i).isNetworkFile()) {
+          if (MizLib.isWifiConnected(getActivity(),prefsDisableEthernetWiFiCheck)) {
+            FileSource source=null;
+            for (int j=0; j < filesources.size(); j++)             if (movies.get(i).getFilepath().contains(filesources.get(j).getFilepath())) {
+              source=filesources.get(j);
+              continue;
+            }
+            if (source == null)             continue;
+            try {
+              final SmbFile file=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(source.getDomain(),"utf-8"),URLEncoder.encode(source.getUser(),"utf-8"),URLEncoder.encode(source.getPassword(),"utf-8"),movies.get(i).getFilepath(),false));
+              if (file.exists())               tempMovies.add(movies.get(i));
+            }
+ catch (            Exception e) {
+            }
+          }
+        }
+ else {
+          if (new File(movies.get(i).getFilepath()).exists())           tempMovies.add(movies.get(i));
+        }
+      }
+      if (isAdded())       if (getActivity().getActionBar().getSelectedNavigationIndex() == 2) {
+        shownMovies.addAll(tempMovies);
+        tempMovies.clear();
+        tempMovies=null;
+        sortMovies();
+        getActivity().runOnUiThread(new Runnable(){
+          @Override public void run(){
+            notifyDataSetChanged();
+            hideProgressBar();
+          }
+        }
+);
+      }
+    }
+  }
+.start();
+}

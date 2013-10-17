@@ -1,0 +1,11 @@
+{
+  episodes.clear();
+  DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+  Cursor cursor=db.getAllUnidentifiedEpisodesInDatabase();
+  while (cursor.moveToNext()) {
+    episodes.add(new TvShowEpisode(this,cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SHOW_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SEASON)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_AIRDATE)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_DIRECTOR)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_WRITER)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_GUESTSTARS)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EXTRA_1))));
+  }
+  cursor.close();
+  mList.setAdapter(new ListAdapter(this));
+  enableNoFilesMessage(episodes.size() == 0);
+}

@@ -1,0 +1,8 @@
+{
+  try {
+    return FIRST_AIR_DATE.substring(0,4);
+  }
+ catch (  Exception e) {
+    return "N/A";
+  }
+}

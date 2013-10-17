@@ -1,0 +1,23 @@
+{
+  try {
+    String filename=FILEPATH.substring(0,FILEPATH.lastIndexOf(".")).replace("cd1","").replace("cd2","").replace("part1","").replace("part2","").trim();
+    File parentFolder=new File(FILEPATH).getParentFile();
+    if (parentFolder != null) {
+      File[] list=parentFolder.listFiles();
+      if (list != null) {
+        String name, absolutePath;
+        int count=list.length;
+        for (int i=0; i < count; i++) {
+          name=list[i].getName();
+          absolutePath=list[i].getAbsolutePath();
+          if (absolutePath.toLowerCase(Locale.ENGLISH).startsWith(filename.toLowerCase(Locale.ENGLISH) + "-trailer.") || absolutePath.toLowerCase(Locale.ENGLISH).startsWith(filename.toLowerCase(Locale.ENGLISH) + "_trailer.") || absolutePath.toLowerCase(Locale.ENGLISH).startsWith(filename.toLowerCase(Locale.ENGLISH) + " trailer.")|| name.toLowerCase(Locale.ENGLISH).startsWith("trailer.")) {
+            return absolutePath;
+          }
+        }
+      }
+    }
+  }
+ catch (  Exception e) {
+  }
+  return "";
+}

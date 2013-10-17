@@ -1,0 +1,24 @@
+{
+  if (!MizLib.runsInPortraitMode(getActivity())) {
+    ImageLoad posterLoader=new ImageLoad();
+    posterLoader.setFileUrl(thisShow.getCoverPhoto());
+    posterLoader.setOnFailResource(R.drawable.loading_image);
+    posterLoader.setImageView(cover);
+    posterLoader.setDuration(0);
+    posterLoader.execute();
+    ImageLoad backdropLoader=new ImageLoad();
+    backdropLoader.setFileUrl(thisShow.getBackdrop());
+    backdropLoader.setImageView(background);
+    backdropLoader.setOnFailResource(R.drawable.bg);
+    backdropLoader.setDuration(0);
+    backdropLoader.execute();
+  }
+ else {
+    ImageLoad backdropLoader=new ImageLoad();
+    backdropLoader.setFileUrl(thisShow.getBackdrop());
+    backdropLoader.setImageView(background);
+    backdropLoader.setOnFailResource(R.drawable.bg);
+    backdropLoader.setDuration(0);
+    backdropLoader.execute();
+  }
+}

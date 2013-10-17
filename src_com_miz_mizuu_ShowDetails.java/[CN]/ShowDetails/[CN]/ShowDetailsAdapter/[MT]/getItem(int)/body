@@ -1,0 +1,10 @@
+{
+switch (index) {
+case 0:
+    return ShowDetailsFragment.newInstance(thisShow.getId());
+case 1:
+  return ShowEpisodesFragment.newInstance(thisShow.getId());
+default :
+return ActorBrowserFragmentTv.newInstance(thisShow.getId(),true);
+}
+}

@@ -1,0 +1,9 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.filesources_layout);
+  noFileSources=(LinearLayout)findViewById(R.id.noFileSources);
+  list=(ListView)findViewById(R.id.listView1);
+  list.setAdapter(new ListAdapter());
+  loadSources();
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-filesource-change"));
+}

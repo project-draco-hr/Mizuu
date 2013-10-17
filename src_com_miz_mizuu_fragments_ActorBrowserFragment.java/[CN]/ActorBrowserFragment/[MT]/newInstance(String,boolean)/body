@@ -1,0 +1,8 @@
+{
+  ActorBrowserFragment pageFragment=new ActorBrowserFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("movieId",movieId);
+  bundle.putBoolean("setBackground",setBackground);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

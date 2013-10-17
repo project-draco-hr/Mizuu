@@ -1,0 +1,4 @@
+{
+  MizLib.scheduleMovieUpdate(context);
+  MizLib.scheduleShowsUpdate(context);
+}

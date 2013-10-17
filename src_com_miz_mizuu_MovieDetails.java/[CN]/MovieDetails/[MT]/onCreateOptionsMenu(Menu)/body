@@ -1,0 +1,37 @@
+{
+  getMenuInflater().inflate(R.menu.details,menu);
+  try {
+    if (thisMovie.isFavourite()) {
+      menu.findItem(R.id.movie_fav).setIcon(R.drawable.fav);
+      menu.findItem(R.id.movie_fav).setTitle(R.string.menuFavouriteTitleRemove);
+    }
+ else {
+      menu.findItem(R.id.movie_fav).setIcon(R.drawable.reviews);
+      menu.findItem(R.id.movie_fav).setTitle(R.string.menuFavouriteTitle);
+    }
+    if (!MizLib.runsOnTablet(this) && MizLib.runsInPortraitMode(this))     menu.findItem(R.id.watch_list).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+    if (thisMovie.toWatch()) {
+      menu.findItem(R.id.watch_list).setIcon(R.drawable.watchlist_remove);
+      menu.findItem(R.id.watch_list).setTitle(R.string.removeFromWatchlist);
+    }
+ else {
+      menu.findItem(R.id.watch_list).setIcon(R.drawable.watchlist_add);
+      menu.findItem(R.id.watch_list).setTitle(R.string.watchLater);
+    }
+    if (thisMovie.hasWatched()) {
+      menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsUnwatched);
+    }
+ else {
+      menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsWatched);
+    }
+    if (!thisMovie.isPartOfCollection()) {
+      menu.findItem(R.id.change_collection_cover).setVisible(false);
+    }
+    if (!MizLib.isImdbInstalled(this)) {
+      menu.findItem(R.id.imdb).setVisible(false);
+    }
+  }
+ catch (  Exception e) {
+  }
+  return true;
+}

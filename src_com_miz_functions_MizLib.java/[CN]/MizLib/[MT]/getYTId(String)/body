@@ -1,0 +1,16 @@
+{
+  String result=url;
+  if (result.contains("v=")) {
+    result=result.substring(result.indexOf("v=") + 2);
+    if (result.contains("&")) {
+      result=result.substring(0,result.indexOf("&"));
+    }
+  }
+  if (result.contains("youtu.be/")) {
+    result=result.substring(result.indexOf("youtu.be/") + 9);
+    if (result.contains("&")) {
+      result=result.substring(0,result.indexOf("&"));
+    }
+  }
+  return result;
+}

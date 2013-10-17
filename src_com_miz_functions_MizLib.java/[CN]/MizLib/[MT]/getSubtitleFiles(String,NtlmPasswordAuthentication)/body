@@ -1,0 +1,12 @@
+{
+  ArrayList<SmbFile> subs=new ArrayList<SmbFile>();
+  String fileType="";
+  if (filepath.contains(".")) {
+    fileType=filepath.substring(filepath.lastIndexOf("."));
+  }
+  int count=subtitleFormats.length;
+  for (int i=0; i < count; i++) {
+    subs.add(new SmbFile(createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),filepath.replace(fileType,subtitleFormats[i]),false)));
+  }
+  return subs;
+}

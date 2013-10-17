@@ -1,0 +1,48 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.drawer_test);
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
+  confirmExit=settings.getBoolean("prefsConfirmBackPress",false);
+  startup=settings.getString("prefsStartup","1");
+  showMediaApps=settings.getBoolean("showMediaApps",true);
+  settings.registerOnSharedPreferenceChangeListener(this);
+  dbHelper=MizuuApplication.getMovieAdapter();
+  dbHelperTv=MizuuApplication.getTvDbAdapter();
+  tf=Typeface.createFromAsset(getAssets(),"Roboto-Thin.ttf");
+  setupMenuItems();
+  mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
+  mDrawerLayout.setDrawerShadow(R.drawable.drawer_list_shadow,GravityCompat.START);
+  mDrawerList=(ListView)findViewById(R.id.left_drawer);
+  mDrawerList.setAdapter(new MenuAdapter());
+  mDrawerList.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      if (menu.get(arg2).isThirdPartyApp()) {
+        final PackageManager pm=getPackageManager();
+        Intent i=pm.getLaunchIntentForPackage(menu.get(arg2).getPackageName());
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+      }
+ else {
+        Intent i=new Intent();
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.setClass(getApplicationContext(),menu.get(arg2).getClassName());
+        startActivity(i);
+        overridePendingTransition(R.anim.mainfadein,R.anim.splashfadeout);
+      }
+    }
+  }
+);
+  getActionBar().setDisplayHomeAsUpEnabled(true);
+  if (MizLib.hasICS())   getActionBar().setHomeButtonEnabled(true);
+  mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){
+    public void onDrawerClosed(    View view){
+    }
+    public void onDrawerOpened(    View drawerView){
+    }
+  }
+;
+  mDrawerLayout.setDrawerListener(mDrawerToggle);
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movies-update"));
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-library-change"));
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-shows-update"));
+}

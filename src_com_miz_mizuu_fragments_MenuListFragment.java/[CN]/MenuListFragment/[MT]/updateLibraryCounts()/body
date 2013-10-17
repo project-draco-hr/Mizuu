@@ -1,0 +1,20 @@
+{
+  new Thread(){
+    @Override public void run(){
+      try {
+        mNumMovies=dbHelper.count();
+        mNumWatchlist=dbHelper.countWatchlist();
+        mNumShows=dbHelperTv.count();
+        getActivity().runOnUiThread(new Runnable(){
+          @Override public void run(){
+            ((BaseAdapter)list.getAdapter()).notifyDataSetChanged();
+          }
+        }
+);
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+.start();
+}

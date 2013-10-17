@@ -1,0 +1,17 @@
+{
+  for (int i=0; i < appWidgetIds.length; ++i) {
+    Intent intent=new Intent(context,MovieStackWidgetService.class);
+    intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetIds[i]);
+    intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+    RemoteViews rv=new RemoteViews(context.getPackageName(),R.layout.widget_layout);
+    rv.setRemoteAdapter(appWidgetIds[i],R.id.stack_view,intent);
+    rv.setEmptyView(R.id.stack_view,R.id.empty_view);
+    Intent toastIntent=new Intent(context,MovieStackWidgetProvider.class);
+    toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetIds[i]);
+    intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+    PendingIntent toastPendingIntent=PendingIntent.getBroadcast(context,0,toastIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+    rv.setPendingIntentTemplate(R.id.stack_view,toastPendingIntent);
+    appWidgetManager.updateAppWidget(appWidgetIds[i],rv);
+  }
+  super.onUpdate(context,appWidgetManager,appWidgetIds);
+}

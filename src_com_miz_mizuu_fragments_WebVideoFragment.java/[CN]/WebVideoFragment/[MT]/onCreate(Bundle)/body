@@ -1,0 +1,19 @@
+{
+  super.onCreate(savedInstanceState);
+  settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
+  PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
+  mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.backdrop_thumbnail_width) * 1.4);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  imageLoader=ImageLoader.getInstance();
+  options=MizuuApplication.getDefaultBackdropLoadingOptions();
+  type=getArguments().getString("type");
+  if (type.equals(getString(R.string.choiceYouTube))) {
+    new GetYouTubeVideos().execute();
+  }
+ else   if (type.equals(getString(R.string.choiceReddit))) {
+    new RedditSearch().execute();
+  }
+ else {
+    new TEDSearch().execute();
+  }
+}

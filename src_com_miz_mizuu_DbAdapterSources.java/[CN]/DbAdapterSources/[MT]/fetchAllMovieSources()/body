@@ -1,0 +1,3 @@
+{
+  return database.query(DATABASE_TABLE,new String[]{KEY_ROWID,KEY_FILEPATH,KEY_IS_SMB,KEY_USER,KEY_PASSWORD,KEY_DOMAIN,KEY_TYPE},KEY_TYPE + "='" + KEY_TYPE_MOVIE+ "'",null,null,null,null);
+}

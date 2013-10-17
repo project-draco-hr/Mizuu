@@ -1,0 +1,34 @@
+{
+  super.onAttachedToWindow();
+  isRunning=true;
+  setInteractive(false);
+  setFullscreen(true);
+  setContentView(R.layout.welcome);
+  findViewById(R.id.list).setVisibility(View.GONE);
+  title=(TextView)findViewById(R.id.title);
+  if (MizLib.runsOnTablet(this))   title.setTextSize(26f);
+  dbHelper=MizuuApplication.getMovieAdapter();
+  dbHelperTv=MizuuApplication.getTvDbAdapter();
+  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
+  while (cursor.moveToNext()) {
+    try {
+      backdrops.add(new Backdrop(new File(MizLib.getMovieBackdropFolder(this),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)) + "_bg.jpg").getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE))));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  cursor=dbHelperTv.getAllShows();
+  while (cursor.moveToNext()) {
+    try {
+      backdrops.add(new Backdrop(new File(MizLib.getTvShowBackdropFolder(this),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ID)) + "_tvbg.jpg").getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_TITLE))));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  cursor.close();
+  Collections.shuffle(backdrops,new Random(System.nanoTime()));
+  if (backdrops.size() > 0) {
+    title.setText(backdrops.get(index).getTitle());
+    startAnimatedBackground();
+  }
+}

@@ -1,0 +1,13 @@
+{
+  setup();
+  if (clearLibrary) {
+    editor.putBoolean("prefsClearLibrary",false);
+    editor.commit();
+    removeShowsFromDatabase();
+  }
+ else   if (!clearLibrary && clearUnavailable) {
+    removeUnavailableFiles();
+  }
+  goThroughFiles();
+  return null;
+}

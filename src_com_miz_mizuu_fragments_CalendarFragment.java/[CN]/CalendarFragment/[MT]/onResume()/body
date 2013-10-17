@@ -1,0 +1,5 @@
+{
+  super.onResume();
+  if (mImageFetcher != null)   mImageFetcher.setExitTasksEarly(false);
+  if (mAdapter != null)   mAdapter.notifyDataSetChanged();
+}

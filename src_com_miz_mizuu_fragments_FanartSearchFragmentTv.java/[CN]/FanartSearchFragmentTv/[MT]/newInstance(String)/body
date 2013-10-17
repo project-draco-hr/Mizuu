@@ -1,0 +1,7 @@
+{
+  FanartSearchFragmentTv pageFragment=new FanartSearchFragmentTv();
+  Bundle b=new Bundle();
+  b.putString("tvdbId",tvdbId);
+  pageFragment.setArguments(b);
+  return pageFragment;
+}

@@ -1,0 +1,4 @@
+{
+  if (hasWatched)   HAS_WATCHED="1";
+ else   HAS_WATCHED="0";
+}

@@ -1,0 +1,17 @@
+{
+  ContentValues values=new ContentValues();
+  values.put(KEY_FILEPATH,filepath);
+  values.put(KEY_SEASON,season);
+  values.put(KEY_EPISODE,episode);
+  values.put(KEY_SHOW_ID,showId);
+  values.put(KEY_EPISODE_TITLE,episodeTitle);
+  values.put(KEY_EPISODE_PLOT,episodePlot);
+  values.put(KEY_EPISODE_AIRDATE,episodeAirdate);
+  values.put(KEY_EPISODE_RATING,episodeRating);
+  values.put(KEY_EPISODE_DIRECTOR,episodeDirector);
+  values.put(KEY_EPISODE_WRITER,episodeWriter);
+  values.put(KEY_EPISODE_GUESTSTARS,episodeGuestStars);
+  values.put(KEY_HAS_WATCHED,hasWatched);
+  values.put(KEY_EXTRA_1,favorite);
+  return values;
+}

@@ -1,0 +1,6 @@
+{
+  Intent intent=new Intent();
+  intent.setClass(this,AddNetworkFilesourceDialog.class);
+  intent.putExtra("type","tvshow");
+  startActivity(intent);
+}

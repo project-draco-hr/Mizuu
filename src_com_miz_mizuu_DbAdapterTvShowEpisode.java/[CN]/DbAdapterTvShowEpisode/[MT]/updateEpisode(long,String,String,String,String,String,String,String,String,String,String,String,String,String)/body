@@ -1,0 +1,4 @@
+{
+  ContentValues initialValues=createContentValues(filepath,season,episode,showId,episodeTitle,episodePlot,episodeAirdate,episodeRating,episodeDirector,episodeWriter,episodeGuestStars,hasWatched,favorite);
+  return database.update(DATABASE_TABLE,initialValues,KEY_ROWID + "=" + rowId,null) > 0;
+}

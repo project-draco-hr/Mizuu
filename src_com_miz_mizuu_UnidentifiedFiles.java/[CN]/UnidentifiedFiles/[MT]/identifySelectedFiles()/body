@@ -1,0 +1,17 @@
+{
+  SparseBooleanArray sba=mList.getCheckedItemPositions();
+  ArrayList<String> filepaths=new ArrayList<String>(), rowIds=new ArrayList<String>();
+  for (int i=0; i < sba.size(); i++) {
+    filepaths.add(episodes.get(sba.keyAt(i)).getFullFilepath());
+    rowIds.add(episodes.get(sba.keyAt(i)).getRowId());
+  }
+  Intent i=new Intent();
+  i.setClass(this,IdentifyTvShow.class);
+  i.putExtra("rowIds",rowIds.toArray(new String[rowIds.size()]));
+  i.putExtra("rowId","0");
+  i.putExtra("files",filepaths.toArray(new String[filepaths.size()]));
+  i.putExtra("showName","");
+  i.putExtra("oldShowId","0");
+  i.putExtra("includeShowData",true);
+  startActivity(i);
+}

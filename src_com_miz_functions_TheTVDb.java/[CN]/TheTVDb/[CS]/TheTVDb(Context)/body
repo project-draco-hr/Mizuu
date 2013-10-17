@@ -1,0 +1,4 @@
+{
+  this.c=c;
+  ratingsProvider=PreferenceManager.getDefaultSharedPreferences(c).getString("prefsShowsRatingsSource",c.getString(R.string.ratings_option_4));
+}

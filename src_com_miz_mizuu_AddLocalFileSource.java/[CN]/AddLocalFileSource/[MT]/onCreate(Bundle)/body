@@ -1,0 +1,9 @@
+{
+  super.onCreate(savedInstanceState);
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.add(android.R.id.content,FileBrowserFragment.newInstance(Environment.getExternalStorageDirectory().getAbsolutePath(),getIntent().getExtras().getString("type").equals("movie")),TAG);
+    ft.commit();
+  }
+}

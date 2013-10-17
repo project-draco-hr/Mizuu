@@ -1,0 +1,14 @@
+{
+  StringBuilder buf=new StringBuilder();
+  int count=data.length;
+  for (int i=0; i < count; i++) {
+    int halfbyte=(data[i] >>> 4) & 0x0F;
+    int two_halfs=0;
+    do {
+      buf.append((0 <= halfbyte) && (halfbyte <= 9) ? (char)('0' + halfbyte) : (char)('a' + (halfbyte - 10)));
+      halfbyte=data[i] & 0x0F;
+    }
+ while (two_halfs++ < 1);
+  }
+  return buf.toString();
+}

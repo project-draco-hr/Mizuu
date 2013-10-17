@@ -1,0 +1,26 @@
+{
+  CONTEXT=context;
+  ROW_ID=rowId;
+  FILEPATH=filepath;
+  TITLE=title;
+  PLOT=plot;
+  TAGLINE=tagline;
+  TMDB_ID=tmdbId;
+  IMDB_ID=imdbId;
+  RATING=rating;
+  RELEASEDATE=releasedate;
+  CERTIFICATION=certification;
+  RUNTIME=runtime;
+  TRAILER=trailer;
+  GENRES=genres;
+  FAVOURITE=favourite;
+  CAST=cast;
+  COLLECTION=collection;
+  COLLECTION_ID=collectionId;
+  TO_WATCH=toWatch;
+  HAS_WATCHED=hasWatched;
+  COVER=cover;
+  DATE_ADDED=date_added;
+  this.ignorePrefixes=ignorePrefixes;
+  this.ignoreNfo=ignoreNfo;
+}

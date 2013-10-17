@@ -1,0 +1,3 @@
+String fileUrl
+boolean useWildcard
+Object videoObject

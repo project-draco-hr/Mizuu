@@ -1,0 +1,11 @@
+{
+  super.onCreate(savedInstanceState);
+  setHasOptionsMenu(true);
+  setRetainInstance(true);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  TVDB_ID=getArguments().getString("tvdbId");
+  imageLoader=ImageLoader.getInstance();
+  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  new GetCoverImages().execute(TVDB_ID);
+}

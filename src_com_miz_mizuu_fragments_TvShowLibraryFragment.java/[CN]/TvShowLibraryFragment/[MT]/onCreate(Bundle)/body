@@ -1,0 +1,16 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  setHasOptionsMenu(true);
+  setupSpinnerItems();
+  PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
+  settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
+  showGridTitles=settings.getBoolean("prefsShowGridTitles",false);
+  ignorePrefixes=settings.getBoolean("prefsIgnorePrefixesInTitles",false);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  imageLoader=ImageLoader.getInstance();
+  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  mAdapter=new LoaderAdapter(getActivity());
+  forceLoaderLoad();
+}

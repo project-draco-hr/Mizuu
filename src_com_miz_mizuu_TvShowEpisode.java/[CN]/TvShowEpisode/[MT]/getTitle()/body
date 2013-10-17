@@ -1,0 +1,9 @@
+{
+  if (TITLE == null || TITLE.isEmpty()) {
+    File fileName=new File(FILEPATH);
+    return fileName.getName().substring(0,fileName.getName().lastIndexOf("."));
+  }
+ else {
+    return TITLE;
+  }
+}

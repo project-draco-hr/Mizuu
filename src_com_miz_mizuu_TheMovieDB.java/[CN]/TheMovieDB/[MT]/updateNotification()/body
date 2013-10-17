@@ -1,0 +1,17 @@
+{
+  Intent intent=null;
+  if (!isFromManualIdentify) {
+    intent=new Intent("mizuu-movies-object");
+    intent.putExtra("movieName",movie.getTitle());
+    intent.putExtra("thumbFile",new File(thumbsFolder,movie.getId() + ".jpg").getAbsolutePath());
+    File backdropFile=new File(MizLib.getMovieBackdropFolder(this),movie.getId() + "_bg.jpg");
+    if (!backdropFile.exists())     backdropFile=new File(thumbsFolder,movie.getId() + ".jpg");
+    intent.putExtra("backdrop",backdropFile.getAbsolutePath());
+  }
+ else {
+    intent=new Intent("mizuu-movies-identification");
+  }
+  sendUpdateBroadcast(intent);
+  sendUpdateBroadcast(new Intent("mizuu-movies-update"));
+  updateWidgets();
+}

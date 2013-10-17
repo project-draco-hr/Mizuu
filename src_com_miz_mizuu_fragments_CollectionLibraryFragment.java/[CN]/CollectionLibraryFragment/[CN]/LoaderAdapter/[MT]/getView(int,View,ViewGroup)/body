@@ -1,0 +1,27 @@
+{
+  CoverItem holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.grid_item_cover,container,false);
+    holder=new CoverItem();
+    holder.layout=(RelativeLayout)convertView.findViewById(R.id.cover_layout);
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    holder.text=(TextView)convertView.findViewById(R.id.text);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(CoverItem)convertView.getTag();
+  }
+  if (holder.layout.getLayoutParams().height != mItemHeight) {
+    holder.layout.setLayoutParams(mImageViewLayoutParams);
+  }
+  if (showGridTitles) {
+    holder.text.setVisibility(TextView.VISIBLE);
+    holder.text.setText(shownMovies.get(position).getTitle());
+  }
+ else {
+    holder.text.setVisibility(TextView.INVISIBLE);
+  }
+  if (showGridTitles)   imageLoader.displayImage(shownMovies.get(position).getThumbnail(),holder.cover,options);
+ else   imageLoader.displayImage(shownMovies.get(position).getThumbnail(),holder.cover,options,new ImageLoadingErrorListener(shownMovies.get(position).getTitle(),null,null));
+  return convertView;
+}

@@ -1,0 +1,11 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
+  localizedInfo=settings.getBoolean("prefsUseLocalData",false);
+  imageLoader=ImageLoader.getInstance();
+  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  mAdapter=new ListAdapter(getActivity());
+  locale=Locale.getDefault();
+  startSearch=new StartSearch();
+}

@@ -1,0 +1,10 @@
+{
+  ContentValues values=new ContentValues();
+  values.put(KEY_FILEPATH,filepath);
+  values.put(KEY_TYPE,type);
+  values.put(KEY_IS_SMB,isSmb);
+  values.put(KEY_USER,user);
+  values.put(KEY_PASSWORD,password);
+  values.put(KEY_DOMAIN,domain);
+  return values;
+}

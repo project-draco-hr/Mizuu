@@ -1,0 +1,4 @@
+{
+  if (toWatch)   TO_WATCH="1";
+ else   TO_WATCH="0";
+}

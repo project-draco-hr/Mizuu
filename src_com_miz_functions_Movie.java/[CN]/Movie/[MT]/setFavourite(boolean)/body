@@ -1,0 +1,4 @@
+{
+  if (isFavourite)   FAVOURITE="1";
+ else   FAVOURITE="0";
+}

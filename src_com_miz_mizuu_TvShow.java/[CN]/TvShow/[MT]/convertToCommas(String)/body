@@ -1,0 +1,7 @@
+{
+  input=input.replace("|",", ");
+  if (input.startsWith(","))   input=input.substring(1);
+  input=input.trim();
+  if (input.endsWith(","))   input=input.substring(0,input.length() - 1);
+  return input;
+}

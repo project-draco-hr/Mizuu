@@ -1,0 +1,8 @@
+{
+  ShowSeasonsFragment frag=new ShowSeasonsFragment();
+  Bundle b=new Bundle();
+  b.putString("showId",showId);
+  b.putBoolean("setBackground",setBackground);
+  frag.setArguments(b);
+  return frag;
+}

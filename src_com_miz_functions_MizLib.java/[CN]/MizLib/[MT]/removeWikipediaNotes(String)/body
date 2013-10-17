@@ -1,0 +1,8 @@
+{
+  original=original.replaceAll("(?i)from wikipedia, the free encyclopedia.","").replaceAll("(?i)from wikipedia, the free encyclopedia","");
+  if (original.contains("Description above from the Wikipedia")) {
+    original=original.substring(0,original.lastIndexOf("Description above from the Wikipedia"));
+  }
+  original=original.trim();
+  return original;
+}

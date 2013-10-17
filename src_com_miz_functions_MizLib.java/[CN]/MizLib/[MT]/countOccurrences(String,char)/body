@@ -1,0 +1,9 @@
+{
+  int count=0;
+  for (  char c : haystack.toCharArray()) {
+    if (c == needle) {
+      ++count;
+    }
+  }
+  return count;
+}

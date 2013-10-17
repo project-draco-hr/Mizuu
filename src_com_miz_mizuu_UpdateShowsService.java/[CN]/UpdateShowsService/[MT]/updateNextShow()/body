@@ -1,0 +1,24 @@
+{
+  sendUpdateBroadcast();
+  if (queue.peek() != null) {
+    String show=queue.pop();
+    ArrayList<MizFile> mizfiles=map.get(show);
+    String[] files=new String[mizfiles.size()];
+    for (int i=0; i < mizfiles.size(); i++)     files[i]=mizfiles.get(i).getAbsolutePath();
+    mapCount+=mizfiles.size();
+    if (MizLib.isOnline(getApplicationContext())) {
+      Intent tvdbIntent=new Intent(this,TheTVDB.class);
+      tvdbIntent.putExtra("showName",show);
+      tvdbIntent.putExtra("files",files);
+      tvdbIntent.putExtra("isUpdate",true);
+      startService(tvdbIntent);
+    }
+ else {
+      Toast.makeText(getApplicationContext(),getString(R.string.noInternet),Toast.LENGTH_LONG).show();
+      stopSelf();
+    }
+  }
+ else {
+    stopSelf();
+  }
+}

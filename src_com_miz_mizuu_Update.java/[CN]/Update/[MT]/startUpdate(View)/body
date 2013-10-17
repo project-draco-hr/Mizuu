@@ -1,0 +1,6 @@
+{
+  if (isMovie)   getApplicationContext().startService(new Intent(getApplicationContext(),UpdateMovieService.class));
+ else   getApplicationContext().startService(new Intent(getApplicationContext(),UpdateShowsService.class));
+  setResult(1);
+  finish();
+}

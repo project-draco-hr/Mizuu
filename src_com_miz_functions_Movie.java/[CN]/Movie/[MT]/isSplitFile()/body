@@ -1,0 +1,3 @@
+{
+  return (getFilepath().contains("cd1.") || getFilepath().contains("part1."));
+}

@@ -1,0 +1,57 @@
+{
+  try {
+    if (subfolderSearch) {
+      if (dir.isDirectory()) {
+        if (dir.getName().equalsIgnoreCase("video_ts/") || dir.getName().equalsIgnoreCase("video_ts")) {
+          MizFile[] children=dir.listFiles();
+          for (int i=0; i < children.length; i++) {
+            if (children[i].getName().equalsIgnoreCase("video_ts.ifo"))             addToResults(children[i]);
+          }
+        }
+ else         if (dir.getName().equalsIgnoreCase("bdmv/") || dir.getName().equalsIgnoreCase("bdmv")) {
+          MizFile[] children=dir.listFiles();
+          for (int i=0; i < children.length; i++) {
+            if (children[i].getName().equalsIgnoreCase("stream/") || children[i].getName().equalsIgnoreCase("stream")) {
+              MizFile[] m2tsVideoFiles=children[i].listFiles();
+              if (m2tsVideoFiles.length > 0) {
+                MizFile largestFile=m2tsVideoFiles[0];
+                for (int j=0; j < m2tsVideoFiles.length; j++)                 if (largestFile.length() < m2tsVideoFiles[j].length())                 largestFile=m2tsVideoFiles[j];
+                addToResults(largestFile);
+              }
+            }
+          }
+        }
+ else {
+          String[] childs=dir.list();
+          for (int i=0; i < childs.length; i++) {
+            if (dir.getAbsolutePath().startsWith("smb://")) {
+              tempSmbFile=new SmbFile(dir.getAbsolutePath() + childs[i] + "/");
+              if (tempSmbFile.isDirectory()) {
+                tempMizFile=new MizFile(tempSmbFile);
+                checkAllDirsAndFiles(tempMizFile);
+              }
+ else {
+                tempSmbFile=new SmbFile(dir.getAbsolutePath() + childs[i]);
+                tempMizFile=new MizFile(tempSmbFile);
+                addToResults(tempMizFile);
+              }
+            }
+ else {
+              tempMizFile=new MizFile(new File(dir.getAbsolutePath() + "/" + childs[i]));
+              checkAllDirsAndFiles(tempMizFile);
+            }
+          }
+        }
+      }
+ else {
+        addToResults(dir);
+      }
+    }
+ else {
+      MizFile[] children=dir.listFiles();
+      for (int i=0; i < children.length; i++)       addToResults(children[i]);
+    }
+  }
+ catch (  Exception e) {
+  }
+}

@@ -1,0 +1,7 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  tmdb=new TMDb(getActivity());
+  movieId=getArguments().getString("movieId");
+  tf=Typeface.createFromAsset(getActivity().getAssets(),"Roboto-Thin.ttf");
+}

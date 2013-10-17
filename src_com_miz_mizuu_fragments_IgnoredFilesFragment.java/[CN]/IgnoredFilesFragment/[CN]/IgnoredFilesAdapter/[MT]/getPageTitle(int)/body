@@ -1,0 +1,8 @@
+{
+switch (position) {
+case 0:
+    return getString(R.string.chooserMovies);
+default :
+  return getString(R.string.chooserTVShows);
+}
+}

@@ -1,0 +1,12 @@
+{
+  results.clear();
+  if (MizLib.isOnline(this)) {
+    if (!searchText.getText().toString().isEmpty()) {
+      startSearch.cancel(true);
+      startSearch=new StartSearch();
+      startSearch.execute(searchText.getText().toString());
+    }
+ else     mAdapter.notifyDataSetChanged();
+  }
+ else   Toast.makeText(getApplicationContext(),getString(R.string.noInternet),Toast.LENGTH_SHORT).show();
+}

@@ -1,0 +1,11 @@
+{
+  ArrayList<FileSource> filesources=MizLib.getFileSources(type,true);
+  FileSource source=null;
+  for (int i=0; i < filesources.size(); i++) {
+    if (filepath.contains(filesources.get(i).getFilepath())) {
+      source=filesources.get(i);
+      continue;
+    }
+  }
+  return getAuthFromFilesource(source);
+}

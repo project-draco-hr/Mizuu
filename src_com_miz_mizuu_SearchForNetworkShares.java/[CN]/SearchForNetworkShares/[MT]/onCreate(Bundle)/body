@@ -1,0 +1,38 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.simple_list);
+  pbar=(ProgressBar)findViewById(R.id.progressBar);
+  status=(TextView)findViewById(R.id.overviewMessage);
+  list=(ListView)findViewById(R.id.listView1);
+  adapter=new NetworkAdapter();
+  list.setAdapter(adapter);
+  list.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      sendBroadcast(arg2);
+    }
+  }
+);
+  new Thread(){
+    @Override public void run(){
+      ExecutorService executor=Executors.newFixedThreadPool(10);
+      for (int dest=0; dest < 255; dest++) {
+        String host="192.168.1." + dest;
+        executor.execute(pingRunnable(host));
+      }
+      executor.shutdown();
+      try {
+        executor.awaitTermination(60 * 1000,TimeUnit.MILLISECONDS);
+      }
+ catch (      InterruptedException ignored) {
+      }
+      if (running)       runOnUiThread(new Runnable(){
+        @Override public void run(){
+          pbar.setVisibility(View.GONE);
+          status.setVisibility(View.GONE);
+        }
+      }
+);
+    }
+  }
+.start();
+}

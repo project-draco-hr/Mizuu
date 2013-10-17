@@ -1,0 +1,30 @@
+{
+  TMDbMovie movie=new TMDbMovie();
+  try {
+    JSONObject jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/search/movie?query=" + URLEncoder.encode(query,"utf-8") + "&api_key="+ MizLib.TMDB_API+ (!MizLib.isEmpty(year) ? "&year=" + year : "")+ (includeAdult ? "&include_adult=true" : ""));
+    if (jObject.getJSONArray("results").length() > 0)     movie.setId(jObject.getJSONArray("results").getJSONObject(0).getString("id"));
+ else     movie.setId("invalid");
+  }
+ catch (  Exception e) {
+    movie.setId("invalid");
+  }
+  if (!movie.getId().equals("invalid")) {
+    movie=getMovie(movie.getId(),language);
+  }
+ else {
+    if (!hasTriedFileNameOnce) {
+      hasTriedFileNameOnce=true;
+      movie=searchForMovie(query,"",filepath,language);
+    }
+ else {
+      if (!hasTriedParent) {
+        hasTriedParent=true;
+        DecryptedMovie dm=MizLib.decryptMovie(filepath,PreferenceManager.getDefaultSharedPreferences(c).getString("ignoredTags",""));
+        if (dm.hasParentName()) {
+          movie=searchForMovie(dm.getDecryptedParentName(),dm.getParentNameYear(),filepath,language);
+        }
+      }
+    }
+  }
+  return movie;
+}

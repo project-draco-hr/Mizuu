@@ -1,0 +1,28 @@
+{
+  ViewHolder holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.list_item_movie,parent,false);
+    holder=new ViewHolder();
+    holder.title=(TextView)convertView.findViewById(R.id.text);
+    holder.description=(TextView)convertView.findViewById(R.id.origTitle);
+    holder.descriptionTitle=(TextView)convertView.findViewById(R.id.overviewMessage);
+    holder.descriptionTitle.setText(getString(R.string.overview));
+    holder.release=(TextView)convertView.findViewById(R.id.releasedate);
+    holder.releasedate=(TextView)convertView.findViewById(R.id.TextView01);
+    holder.releasedate.setText(getString(R.string.detailsFirstAired));
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    holder.layout=(LinearLayout)convertView.findViewById(R.id.cover_layout);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(ViewHolder)convertView.getTag();
+  }
+  if (holder.layout.getLayoutParams().height != mItemHeight) {
+    holder.layout.setLayoutParams(mImageViewLayoutParams);
+  }
+  holder.title.setText(results.get(position).getName());
+  holder.description.setText(results.get(position).getOriginalTitle());
+  holder.release.setText(results.get(position).getRelease());
+  imageLoader.displayImage(results.get(position).getPic().contains("null") ? "" : results.get(position).getPic(),holder.cover,options);
+  return convertView;
+}

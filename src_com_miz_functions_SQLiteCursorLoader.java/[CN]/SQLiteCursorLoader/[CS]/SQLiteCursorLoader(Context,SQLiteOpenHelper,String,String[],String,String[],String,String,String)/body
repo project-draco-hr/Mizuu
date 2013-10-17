@@ -1,0 +1,11 @@
+{
+  super(context);
+  this.db=db;
+  this.table=table;
+  this.selection=selection;
+  this.groupBy=groupBy;
+  this.having=having;
+  this.orderBy=orderBy;
+  this.columns=columns;
+  this.selectionArgs=selectionArgs;
+}

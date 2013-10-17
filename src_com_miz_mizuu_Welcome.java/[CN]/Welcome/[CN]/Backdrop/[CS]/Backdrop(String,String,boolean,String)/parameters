@@ -1,0 +1,4 @@
+String path
+String id
+boolean isMovie
+String title

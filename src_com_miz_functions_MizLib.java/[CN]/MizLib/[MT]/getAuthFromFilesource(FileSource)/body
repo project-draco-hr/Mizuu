@@ -1,0 +1,15 @@
+{
+  NtlmPasswordAuthentication auth;
+  if (source == null) {
+    auth=NtlmPasswordAuthentication.ANONYMOUS;
+  }
+ else {
+    if (source.getDomain().isEmpty() && source.getUser().isEmpty() && source.getPassword().isEmpty()) {
+      auth=NtlmPasswordAuthentication.ANONYMOUS;
+    }
+ else {
+      auth=new NtlmPasswordAuthentication(source.getDomain(),source.getUser(),source.getPassword());
+    }
+  }
+  return auth;
+}

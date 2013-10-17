@@ -1,0 +1,3 @@
+{
+  return ShowEpisodeDetailsFragment.newInstance(episodes.get(index).getRowId());
+}

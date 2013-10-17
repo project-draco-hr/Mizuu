@@ -1,0 +1,7 @@
+{
+  WebVideoFragment pageFragment=new WebVideoFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("type",type);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

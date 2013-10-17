@@ -1,0 +1,14 @@
+{
+  ContentValues values=new ContentValues();
+  values.put(KEY_SHOW_ID,showId);
+  values.put(KEY_SHOW_TITLE,showTitle);
+  values.put(KEY_SHOW_PLOT,showPlot);
+  values.put(KEY_SHOW_ACTORS,showActors);
+  values.put(KEY_SHOW_GENRES,showGenres);
+  values.put(KEY_SHOW_RATING,showRating);
+  values.put(KEY_SHOW_CERTIFICATION,showCertification);
+  values.put(KEY_SHOW_RUNTIME,showRuntime);
+  values.put(KEY_SHOW_FIRST_AIRDATE,showFirstAirdate);
+  values.put(KEY_SHOW_EXTRA1,isFavorite);
+  return values;
+}

@@ -1,0 +1,3 @@
+{
+  return inflater.inflate(R.layout.scheduled_updates,container,false);
+}

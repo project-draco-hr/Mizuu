@@ -1,0 +1,41 @@
+{
+  if (!isLoading && folder.isDirectory())   new Thread(){
+    @Override public void run(){
+      getActivity().runOnUiThread(new Runnable(){
+        @Override public void run(){
+          setLoading(true);
+        }
+      }
+);
+      final ArrayList<File> currentFiles=new ArrayList<File>();
+      if (folder.listFiles() != null) {
+        for (        File f : folder.listFiles())         currentFiles.add(f);
+      }
+      sort(currentFiles);
+      showingFiles.clear();
+      showingFiles.addAll(currentFiles);
+      final ArrayList<File> parentFolders=new ArrayList<File>();
+      File parentFile=folder.getParentFile();
+      if (parentFile != null) {
+        if (parentFile.listFiles() != null) {
+          for (          File f : parentFile.listFiles())           if (f.isDirectory())           parentFolders.add(f);
+        }
+      }
+      sort(parentFolders);
+      showingParents.clear();
+      showingParents.addAll(parentFolders);
+      getActivity().runOnUiThread(new Runnable(){
+        @Override public void run(){
+          ((CurrentFolderAdapter)current.getAdapter()).setFiles(currentFiles);
+          current.setSelection(0);
+          ((ParentAdapter)parent.getAdapter()).setFiles(parentFolders);
+          parent.setSelection(0);
+          getActivity().getActionBar().setSubtitle(currentFolder.getAbsolutePath());
+          setLoading(false);
+        }
+      }
+);
+    }
+  }
+.start();
+}

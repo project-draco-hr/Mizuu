@@ -1,0 +1,7 @@
+{
+  spinnerItems.clear();
+  spinnerItems.add(new SpinnerItem(getString(R.string.chooserMovies),getString(R.string.stringUpcoming)));
+  spinnerItems.add(new SpinnerItem(getString(R.string.chooserMovies),getString(R.string.stringNowPlaying)));
+  spinnerItems.add(new SpinnerItem(getString(R.string.chooserMovies),getString(R.string.stringPopular)));
+  spinnerItems.add(new SpinnerItem(getString(R.string.chooserMovies),getString(R.string.stringTopRated)));
+}

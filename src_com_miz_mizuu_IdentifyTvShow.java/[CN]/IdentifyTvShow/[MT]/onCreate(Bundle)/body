@@ -1,0 +1,59 @@
+{
+  super.onCreate(savedInstanceState);
+  getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+  setContentView(R.layout.identify_episode_layout);
+  settings=PreferenceManager.getDefaultSharedPreferences(this);
+  localizedInfo=settings.getBoolean("prefsUseLocalData",false);
+  imageLoader=ImageLoader.getInstance();
+  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  isShow=getIntent().getExtras().getBoolean("isShow");
+  includeShowData=getIntent().getExtras().getBoolean("includeShowData");
+  rowId=Long.valueOf(getIntent().getExtras().getString("rowId"));
+  files=getIntent().getExtras().getStringArray("files");
+  if (getIntent().getExtras().getString("showName") != null) {
+    oldShowId=getIntent().getExtras().getString("oldShowId");
+  }
+  mAdapter=new ListAdapter(this);
+  locale=Locale.getDefault();
+  pbar=(ProgressBar)findViewById(R.id.pbar);
+  useSystemLanguage=(CheckBox)findViewById(R.id.searchLanguage);
+  useSystemLanguage.setText(getString(R.string.searchIn) + " " + locale.getDisplayLanguage(Locale.ENGLISH));
+  if (localizedInfo)   useSystemLanguage.setChecked(true);
+  lv=(ListView)findViewById(android.R.id.list);
+  lv.setAdapter(mAdapter);
+  lv.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      update(arg2);
+    }
+  }
+);
+  lv.setOnScrollListener(new PauseOnScrollListener(imageLoader,true,true));
+  DecryptedShowEpisode result=MizLib.decryptEpisode(files[0],settings.getString("ignoredTags",""));
+  seasonText=(EditText)findViewById(R.id.seasonText);
+  seasonText.setText(String.valueOf(result.getSeason()));
+  episodeText=(EditText)findViewById(R.id.episodeText);
+  episodeText.setText(String.valueOf(result.getEpisode()));
+  if (isShow || files.length > 1) {
+    seasonText.setVisibility(View.GONE);
+    episodeText.setVisibility(View.GONE);
+    setTitle(getString(R.string.identifyShow));
+  }
+  searchText=(EditText)findViewById(R.id.search);
+  searchText.setText(result.getDecryptedFileName());
+  searchText.setSelection(searchText.length());
+  searchText.setOnEditorActionListener(new OnEditorActionListener(){
+    @Override public boolean onEditorAction(    TextView v,    int actionId,    KeyEvent event){
+      if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN || actionId == EditorInfo.IME_ACTION_SEARCH)       searchForShows();
+      return true;
+    }
+  }
+);
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-tvshows-identification"));
+  startSearch=new StartSearch();
+  if (MizLib.isOnline(this)) {
+    startSearch.execute(searchText.getText().toString());
+  }
+ else {
+    Toast.makeText(getApplicationContext(),getString(R.string.noInternet),Toast.LENGTH_SHORT).show();
+  }
+}

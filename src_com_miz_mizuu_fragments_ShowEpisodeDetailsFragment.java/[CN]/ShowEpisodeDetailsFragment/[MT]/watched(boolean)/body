@@ -1,0 +1,25 @@
+{
+  dbHelper=MizuuApplication.getTvEpisodeDbAdapter();
+  thisEpisode.setHasWatched(!thisEpisode.hasWatched());
+  if (dbHelper.updateSingleItem(Long.valueOf(thisEpisode.getRowId()),DbAdapter.KEY_HAS_WATCHED,thisEpisode.getHasWatched())) {
+    getActivity().invalidateOptionsMenu();
+    if (showToast)     if (thisEpisode.hasWatched()) {
+      Toast.makeText(getActivity(),getString(R.string.markedAsWatched),Toast.LENGTH_SHORT).show();
+    }
+ else {
+      Toast.makeText(getActivity(),getString(R.string.markedAsUnwatched),Toast.LENGTH_SHORT).show();
+    }
+    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("tvshow-episode-changed"));
+  }
+ else {
+    if (showToast)     Toast.makeText(getActivity(),getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();
+  }
+  new Thread(){
+    @Override public void run(){
+      ArrayList<TvShowEpisode> episode=new ArrayList<TvShowEpisode>();
+      episode.add(thisEpisode);
+      MizLib.markEpisodeAsWatched(episode,getActivity());
+    }
+  }
+.start();
+}

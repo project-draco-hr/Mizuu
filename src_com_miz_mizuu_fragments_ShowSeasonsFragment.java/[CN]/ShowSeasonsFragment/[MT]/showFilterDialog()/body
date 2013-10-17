@@ -1,0 +1,11 @@
+{
+  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+  builder.setTitle(R.string.filters).setItems(R.array.actionlist_episodes,new OnClickListener(){
+    @Override public void onClick(    DialogInterface dialog,    int which){
+      selectedFilter=which;
+      loadEpisodes(selectedFilter,true);
+    }
+  }
+);
+  builder.show();
+}

@@ -1,0 +1,33 @@
+{
+  String output=getNameFromFilename(input);
+  output=fixAbbreviations(output);
+  if (output.startsWith("[") && output.contains("]")) {
+    String after="";
+    if (output.matches("(?i)^\\[SET .*\\].*?")) {
+      try {
+        after=output.substring(output.indexOf("]") + 1,output.length());
+      }
+ catch (      IndexOutOfBoundsException e) {
+      }
+    }
+    if (!after.isEmpty())     output=after;
+  }
+  output=output.replaceAll(WAREZ_PATTERN + "|\\)|\\(|\\[|\\]|\\{|\\}|\\'|\\<|\\>|\\-","");
+  if (output.matches("(?i)^(c|l)(\\_|\\.)\\w.*?")) {
+    StringBuilder sb=new StringBuilder(output);
+    sb.replace(1,2,"'");
+    output=sb.toString();
+  }
+  if (!customTags.isEmpty()) {
+    String[] custom=customTags.split("<MiZ>");
+    int count=custom.length;
+    for (int i=0; i < count; i++)     try {
+      output=output.replaceAll("(?i)" + custom[i],"");
+    }
+ catch (    Exception e) {
+    }
+  }
+  output=output.replaceAll("\\s\\-\\s|\\.|\\,|\\_"," ");
+  output=output.trim().replaceAll("(?i)(part)$","");
+  return output.replaceAll(" +"," ").trim();
+}

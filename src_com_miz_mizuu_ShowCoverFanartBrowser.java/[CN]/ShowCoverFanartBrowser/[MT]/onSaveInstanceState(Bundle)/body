@@ -1,0 +1,6 @@
+{
+  super.onSaveInstanceState(outState);
+  outState.putInt("tab",getActionBar().getSelectedNavigationIndex());
+  outState.putInt("coverCount",coverCount);
+  outState.putInt("backdropCount",backdropCount);
+}

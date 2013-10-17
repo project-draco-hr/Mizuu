@@ -1,0 +1,5 @@
+{
+  if (useGridView)   mGridAdapter.notifyDataSetChanged();
+ else   mListAdapter.notifyDataSetChanged();
+  if (invalidateViews && useGridView)   getCollectionView().invalidateViews();
+}

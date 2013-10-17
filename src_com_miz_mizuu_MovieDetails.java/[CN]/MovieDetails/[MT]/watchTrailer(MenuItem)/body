@@ -1,0 +1,25 @@
+{
+  if (!MizLib.isEmpty(thisMovie.getLocalTrailer())) {
+    try {
+      startActivity(MizLib.getVideoIntent(thisMovie.getLocalTrailer(),false,thisMovie.getTitle() + " " + getString(R.string.detailsTrailer)));
+    }
+ catch (    Exception e) {
+      try {
+        startActivity(MizLib.getVideoIntent(thisMovie.getLocalTrailer(),"video/*",thisMovie.getTitle() + " " + getString(R.string.detailsTrailer)));
+      }
+ catch (      Exception e2) {
+        Toast.makeText(this,getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
+      }
+    }
+  }
+ else {
+    if (!MizLib.isEmpty(thisMovie.getTrailer())) {
+      Intent intent=YouTubeStandalonePlayer.createVideoIntent(this,MizLib.YOUTUBE_API,MizLib.getYouTubeId(thisMovie.getTrailer()),0,false,true);
+      startActivity(intent);
+    }
+ else {
+      Toast.makeText(this,getString(R.string.searching),Toast.LENGTH_SHORT).show();
+      new TmdbTrailerSearch().execute(thisMovie.getTmdbId());
+    }
+  }
+}

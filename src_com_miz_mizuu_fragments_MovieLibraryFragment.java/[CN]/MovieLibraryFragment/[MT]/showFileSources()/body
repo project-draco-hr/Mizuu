@@ -1,0 +1,51 @@
+{
+  ArrayList<FileSource> sources=new ArrayList<FileSource>();
+  DbAdapterSources dbHelper=MizuuApplication.getSourcesAdapter();
+  Cursor cursor=dbHelper.fetchAllMovieSources();
+  while (cursor.moveToNext()) {
+    sources.add(new FileSource(cursor.getLong(cursor.getColumnIndex(DbAdapterSources.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),cursor.getInt(cursor.getColumnIndex(DbAdapterSources.KEY_IS_SMB)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_USER)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_TYPE))));
+  }
+  cursor.close();
+  showCollectionBasedOnNavigationIndex(actionBar.getSelectedNavigationIndex());
+  final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
+  for (int i=0; i < shownMovies.size(); i++) {
+    String filepath=shownMovies.get(i).getFilepath();
+    for (int j=0; j < sources.size(); j++) {
+      String source=sources.get(j).getFilepath();
+      if (!MizLib.isEmpty(source) && !MizLib.isEmpty(filepath) && filepath.contains(source)) {
+        if (map.containsKey(source.trim())) {
+          map.put(source.trim(),map.get(source.trim()) + 1);
+        }
+ else {
+          map.put(source.trim(),1);
+        }
+      }
+    }
+  }
+  final CharSequence[] tempArray=map.keySet().toArray(new CharSequence[map.keySet().size()]);
+  for (int i=0; i < tempArray.length; i++)   tempArray[i]=tempArray[i] + " (" + map.get(tempArray[i])+ ")";
+  final CharSequence[] temp=new CharSequence[tempArray.length + 1];
+  temp[0]=getString(R.string.allFileSources);
+  for (int i=1; i < temp.length; i++)   temp[i]=tempArray[i - 1];
+  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+  builder.setTitle(R.string.selectFileSource).setItems(temp,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      if (which > 0) {
+        ArrayList<MediumMovie> currentlyShown=new ArrayList<MediumMovie>();
+        currentlyShown.addAll(shownMovies);
+        shownMovies.clear();
+        String selectedFolder=temp[which].toString();
+        selectedFolder=selectedFolder.substring(0,selectedFolder.lastIndexOf("(")).trim();
+        for (int i=0; i < currentlyShown.size(); i++)         if (currentlyShown.get(i).getFilepath().trim().contains(selectedFolder))         shownMovies.add(currentlyShown.get(i));
+        sortMovies();
+        notifyDataSetChanged();
+        int size=shownMovies.size();
+        if (actionBar.getSelectedNavigationIndex() == 3)         actionBar.setSubtitle(size + " " + getResources().getQuantityString(R.plurals.collectionsInLibrary,size,size));
+ else         actionBar.setSubtitle(size + " " + getResources().getQuantityString(R.plurals.moviesInLibrary,size,size));
+      }
+      dialog.dismiss();
+    }
+  }
+);
+  builder.show();
+}

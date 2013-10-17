@@ -1,0 +1,9 @@
+{
+  try {
+    String pathWithoutEnding=filepath.substring(0,filepath.lastIndexOf("/"));
+    return pathWithoutEnding;
+  }
+ catch (  Exception e) {
+    return "";
+  }
+}

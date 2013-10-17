@@ -1,0 +1,14 @@
+{
+  CONTEXT=context;
+  ID=id;
+  TITLE=title;
+  DESCRIPTION=description;
+  RATING=rating;
+  GENRES=genres;
+  ACTORS=actors;
+  CERTIFICATION=certification;
+  FIRST_AIR_DATE=firstAirdate;
+  RUNTIME=runtime;
+  this.ignorePrefixes=ignorePrefixes;
+  this.isFavorite=!(isFavorite.equals("0") || isFavorite.isEmpty());
+}

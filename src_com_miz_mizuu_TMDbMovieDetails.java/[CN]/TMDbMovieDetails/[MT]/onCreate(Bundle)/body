@@ -1,0 +1,24 @@
+{
+  super.onCreate(savedInstanceState);
+  if (!MizLib.runsInPortraitMode(this))   setTheme(R.style.Theme_Example_NoBackGround);
+  if (!MizLib.runsInPortraitMode(this))   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+  setContentView(R.layout.viewpager);
+  movieId=getIntent().getExtras().getString("tmdbid");
+  setTitle(getIntent().getExtras().getString("title"));
+  final ActionBar bar=getActionBar();
+  bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
+  awesomePager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
+  awesomePager.setOffscreenPageLimit(2);
+  awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+    @Override public void onPageSelected(    int position){
+      bar.getTabAt(position).select();
+      ViewParent root=findViewById(android.R.id.content).getParent();
+      MizLib.findAndUpdateSpinner(root,position);
+    }
+  }
+);
+  bar.addTab(bar.newTab().setText(getString(R.string.overview)).setTabListener(this));
+  bar.addTab(bar.newTab().setText(getString(R.string.detailsActors)).setTabListener(this));
+  bar.addTab(bar.newTab().setText(getString(R.string.relatedMovies)).setTabListener(this));
+}

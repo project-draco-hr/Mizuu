@@ -1,0 +1,18 @@
+{
+  String SORT_TYPE=settings.getString("prefsSorting","sortTitle");
+  if (SORT_TYPE.equals("sortRelease")) {
+    sortByRelease();
+  }
+ else   if (SORT_TYPE.equals("sortRating")) {
+    sortByRating();
+  }
+ else   if (SORT_TYPE.equals("sortWeightedRating")) {
+    sortByWeightedRating();
+  }
+ else   if (SORT_TYPE.equals("sortNewestEpisode")) {
+    sortByNewestEpisode();
+  }
+ else {
+    sortByTitle();
+  }
+}

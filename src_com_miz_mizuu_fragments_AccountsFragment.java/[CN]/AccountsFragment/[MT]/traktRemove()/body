@@ -1,0 +1,15 @@
+{
+  Editor editor=settings.edit();
+  editor.putString("traktUsername","");
+  editor.putString("traktPassword","");
+  editor.commit();
+  traktUser.setText("");
+  traktUser.setEnabled(true);
+  traktPass.setText("");
+  traktPass.setEnabled(true);
+  syncTrakt.setEnabled(false);
+  syncTrakt.setChecked(false);
+  traktLogIn.setEnabled(true);
+  traktRemoveAccount.setEnabled(false);
+  Toast.makeText(getActivity(),getString(R.string.removedAccount),Toast.LENGTH_LONG).show();
+}

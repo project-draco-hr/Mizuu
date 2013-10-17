@@ -1,0 +1,12 @@
+{
+switch (index) {
+case 0:
+    return ActorBiographyFragment.newInstance(actorId);
+case 1:
+  return ActorMoviesFragment.newInstance(actorId);
+case 2:
+return ActorPhotosFragment.newInstance(actorId,actorName);
+default :
+return null;
+}
+}

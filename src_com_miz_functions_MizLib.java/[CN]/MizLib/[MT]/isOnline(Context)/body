@@ -1,0 +1,7 @@
+{
+  ConnectivityManager cm=(ConnectivityManager)c.getSystemService(Context.CONNECTIVITY_SERVICE);
+  NetworkInfo[] netInfo=cm.getAllNetworkInfo();
+  int count=netInfo.length;
+  for (int i=0; i < count; i++)   if (netInfo[i] != null && netInfo[i].isConnected())   return true;
+  return false;
+}

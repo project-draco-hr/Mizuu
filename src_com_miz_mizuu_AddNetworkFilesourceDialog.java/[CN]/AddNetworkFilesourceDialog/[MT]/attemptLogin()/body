@@ -1,0 +1,11 @@
+{
+  Intent intent=new Intent();
+  intent.setClass(getApplicationContext(),AddNetworkFileSource.class);
+  intent.putExtra("user",USER);
+  intent.putExtra("pass",PASS);
+  intent.putExtra("domain",DOMAIN);
+  intent.putExtra("server",SERVER);
+  intent.putExtra("isMovie",isMovie);
+  startActivity(intent);
+  finish();
+}

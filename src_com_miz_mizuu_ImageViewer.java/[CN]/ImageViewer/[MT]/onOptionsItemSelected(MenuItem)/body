@@ -1,0 +1,11 @@
+{
+switch (item.getItemId()) {
+case android.R.id.home:
+    onBackPressed();
+  return true;
+case R.id.openInBrowser:
+openInBrowser();
+default :
+return super.onOptionsItemSelected(item);
+}
+}

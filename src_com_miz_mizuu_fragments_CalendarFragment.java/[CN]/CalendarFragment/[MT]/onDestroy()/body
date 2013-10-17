@@ -1,0 +1,5 @@
+{
+  super.onDestroy();
+  PreferenceManager.getDefaultSharedPreferences(getActivity()).unregisterOnSharedPreferenceChangeListener(this);
+  mImageFetcher.closeCache();
+}

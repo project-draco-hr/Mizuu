@@ -1,0 +1,7 @@
+{
+  CollectionCoverSearchFragment pageFragment=new CollectionCoverSearchFragment();
+  Bundle b=new Bundle();
+  b.putString("collectionId",collectionId);
+  pageFragment.setArguments(b);
+  return pageFragment;
+}

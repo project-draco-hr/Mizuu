@@ -1,0 +1,5 @@
+{
+  this.c=c;
+  ratingsProvider=PreferenceManager.getDefaultSharedPreferences(c).getString("prefsMovieRatingsSource",c.getString(R.string.ratings_option_1));
+  includeAdult=PreferenceManager.getDefaultSharedPreferences(c).getBoolean("prefsIncludeAdultContent",false);
+}

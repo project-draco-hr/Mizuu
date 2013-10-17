@@ -1,0 +1,8 @@
+{
+  showProgressBar();
+  shownMovies.clear();
+  shownMovies.addAll(movies);
+  sortMovies();
+  notifyDataSetChanged();
+  hideProgressBar();
+}

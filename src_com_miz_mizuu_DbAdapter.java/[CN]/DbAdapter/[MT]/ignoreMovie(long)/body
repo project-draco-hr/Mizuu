@@ -1,0 +1,4 @@
+{
+  ContentValues updateValues=createEditContentValues("MIZ_REMOVED_MOVIE","","","","","","","","","","");
+  return database.update(DATABASE_TABLE,updateValues,KEY_ROWID + "=" + rowId,null) > 0;
+}

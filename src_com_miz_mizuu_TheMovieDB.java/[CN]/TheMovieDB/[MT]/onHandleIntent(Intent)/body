@@ -1,0 +1,16 @@
+{
+  initializeFields();
+  Bundle bundle=intent.getExtras();
+  filepath=bundle.getString("filepath");
+  isFromManualIdentify=bundle.getBoolean("isFromManualIdentify",false);
+  rowId=bundle.getLong("rowId",0);
+  language=bundle.getString("language","");
+  setup();
+  TMDb tmdb=new TMDb(this);
+  if (isFromManualIdentify)   movie=tmdb.getMovie(bundle.getString("tmdbId","invalid"),LOCALE);
+ else {
+    DecryptedMovie mMovie=MizLib.decryptMovie(filepath,settings.getString("ignoredTags",""));
+    movie=tmdb.searchForMovie(mMovie.getDecryptedFileName(),mMovie.getFileNameYear(),filepath,LOCALE);
+  }
+  download();
+}

@@ -1,0 +1,4 @@
+{
+  db.execSQL("DROP TABLE IF EXISTS tvshow_episodes");
+  onCreate(db);
+}

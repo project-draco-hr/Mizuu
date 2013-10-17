@@ -1,0 +1,7 @@
+{
+  WindowManager wm=(WindowManager)c.getSystemService(Context.WINDOW_SERVICE);
+  Display display=wm.getDefaultDisplay();
+  Point size=new Point();
+  display.getSize(size);
+  return type == HEIGHT ? size.y : size.x;
+}

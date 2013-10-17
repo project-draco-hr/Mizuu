@@ -1,0 +1,7 @@
+{
+  if (type == COVER)   cover.setImageBitmap(mCover);
+ else {
+    if (mBackdrop != null)     background.setImageBitmap(mBackdrop);
+ else     background.setImageResource(R.drawable.bg);
+  }
+}

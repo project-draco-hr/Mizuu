@@ -1,0 +1,33 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.viewpager);
+  tmdbId=getIntent().getExtras().getString("tmdbId");
+  startPosition=getIntent().getExtras().getInt("startPosition");
+  if (startPosition == 2)   collectionId=getIntent().getExtras().getString("collectionId");
+  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
+  awesomePager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
+  bar=getActionBar();
+  bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+  bar.addTab(bar.newTab().setText(getString(R.string.coverart)).setTabListener(this));
+  bar.addTab(bar.newTab().setText(getString(R.string.backdrop)).setTabListener(this));
+  if (startPosition == 2) {
+    bar.addTab(bar.newTab().setText(getString(R.string.collectionart)).setTabListener(this));
+  }
+  awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+    @Override public void onPageSelected(    int position){
+      bar.getTabAt(position).select();
+      ViewParent root=findViewById(android.R.id.content).getParent();
+      MizLib.findAndUpdateSpinner(root,position);
+    }
+  }
+);
+  bar.setSelectedNavigationItem(startPosition);
+  if (savedInstanceState != null) {
+    bar.setSelectedNavigationItem(savedInstanceState.getInt("tab",0));
+    coverCount=savedInstanceState.getInt("coverCount");
+    backdropCount=savedInstanceState.getInt("backdropCount");
+    collectionCount=savedInstanceState.getInt("collectionCount");
+    displayCount();
+  }
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-cover-search-fragment"));
+}

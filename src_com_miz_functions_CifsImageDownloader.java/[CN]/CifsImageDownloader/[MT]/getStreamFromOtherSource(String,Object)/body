@@ -1,0 +1,19 @@
+{
+  if (imageUri.contains("smb")) {
+    String[] split=imageUri.split("<MiZ>");
+    String smbPath=split[0].replace("MIZ_BG",""), backup=split[1];
+    SmbFile s=null;
+    if (imageUri.contains("MIZ_BG")) {
+      s=MizLib.getCustomCoverArt(smbPath,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.BACKDROP);
+    }
+ else     s=MizLib.getCustomCoverArt(smbPath,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.COVER);
+    if (s != null)     return s.getInputStream();
+ else {
+      return new BufferedInputStream(new FileInputStream(backup),BUFFER_SIZE);
+    }
+  }
+ else {
+    if (imageUri.startsWith("/"))     return new BufferedInputStream(new FileInputStream(imageUri),BUFFER_SIZE);
+    return getStream(imageUri,extra);
+  }
+}

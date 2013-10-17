@@ -1,0 +1,7 @@
+{
+  ActorPhotoFragment frag=new ActorPhotoFragment();
+  Bundle b=new Bundle();
+  b.putString("photo",url);
+  frag.setArguments(b);
+  return frag;
+}

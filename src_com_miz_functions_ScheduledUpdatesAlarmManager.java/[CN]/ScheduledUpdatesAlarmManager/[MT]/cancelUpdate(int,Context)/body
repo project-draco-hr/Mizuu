@@ -1,0 +1,15 @@
+{
+  try {
+    AlarmManager alarmMan=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+    Intent defineIntent=new Intent(context,(type == MOVIES) ? UpdateMovieService.class : UpdateShowsService.class);
+    defineIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    PendingIntent piWakeUp=PendingIntent.getService(context,0,defineIntent,PendingIntent.FLAG_NO_CREATE);
+    if (piWakeUp != null)     alarmMan.cancel(piWakeUp);
+    SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(context);
+    Editor editor=settings.edit();
+    editor.putLong((type == MOVIES) ? prefNextMovies : prefNextShows,0);
+    editor.commit();
+  }
+ catch (  Exception ignored) {
+  }
+}

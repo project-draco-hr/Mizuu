@@ -1,0 +1,5 @@
+{
+  super.onCreate(savedInstanceState);
+  settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
+  editor=settings.edit();
+}

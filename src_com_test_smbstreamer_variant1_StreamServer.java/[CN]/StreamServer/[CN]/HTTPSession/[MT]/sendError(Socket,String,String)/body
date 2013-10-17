@@ -1,0 +1,4 @@
+{
+  sendResponse(socket,status,MIME_PLAINTEXT,null,null);
+  throw new InterruptedException();
+}

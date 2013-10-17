@@ -1,0 +1,12 @@
+{
+  int size=getThumbnailNotificationSize(c);
+  try {
+    Bitmap bm=decodeSampledBitmapFromFile(filepath,size,size);
+    bm=Bitmap.createScaledBitmap(bm,size,(int)(size * 1.5),true);
+    bm=Bitmap.createBitmap(bm,0,0,size,size);
+    return bm;
+  }
+ catch (  Exception e) {
+    return decodeSampledBitmapFromResource(c.getResources(),R.drawable.refresh,size,size);
+  }
+}

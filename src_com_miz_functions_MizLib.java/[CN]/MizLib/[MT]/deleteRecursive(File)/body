@@ -1,0 +1,10 @@
+{
+  if (fileOrDirectory.isDirectory()) {
+    File[] listFiles=fileOrDirectory.listFiles();
+    if (listFiles != null) {
+      int count=listFiles.length;
+      for (int i=0; i < count; i++)       deleteRecursive(listFiles[i]);
+    }
+  }
+  fileOrDirectory.delete();
+}

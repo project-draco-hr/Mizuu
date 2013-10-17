@@ -1,0 +1,69 @@
+{
+  if (queue.peek() != null) {
+    final MizFile file=queue.pop();
+    count++;
+    if (ignoreNfoFiles) {
+      if (MizLib.isOnline(getApplicationContext())) {
+        Intent tmdbIntent=new Intent(this,TheMovieDB.class);
+        Bundle b=new Bundle();
+        b.putString("filepath",file.getAbsolutePath());
+        tmdbIntent.putExtras(b);
+        startService(tmdbIntent);
+      }
+ else {
+        Toast.makeText(getApplicationContext(),getString(R.string.noInternet),Toast.LENGTH_LONG).show();
+        stopSelf();
+      }
+    }
+ else {
+      new Thread(){
+        @Override public void run(){
+          MizFile nfoFile=null;
+          String filename=file.getAbsolutePath().substring(0,file.getAbsolutePath().lastIndexOf(".")).replace("cd1","").replace("cd2","").replace("part1","").replace("part2","").trim();
+          MizFile parent=null;
+          if (file.isSmb()) {
+            try {
+              parent=new MizFile(new SmbFile(file.getParent()));
+            }
+ catch (            MalformedURLException e) {
+            }
+          }
+ else {
+            parent=new MizFile(new File(file.getParent()));
+          }
+          if (parent != null) {
+            MizFile[] allFiles=parent.listFiles();
+            for (int i=0; i < allFiles.length; i++) {
+              String name=allFiles[i].getName();
+              String absolutePath=allFiles[i].getAbsolutePath();
+              if (name.equalsIgnoreCase("movie.nfo") || absolutePath.equalsIgnoreCase(filename + ".nfo")) {
+                nfoFile=allFiles[i];
+                continue;
+              }
+            }
+          }
+          if (nfoFile != null) {
+            new NfoMovie(file,nfoFile,getApplicationContext());
+          }
+ else {
+            if (MizLib.isOnline(getApplicationContext())) {
+              Intent tmdbIntent=new Intent(getApplicationContext(),TheMovieDB.class);
+              Bundle b=new Bundle();
+              b.putString("filepath",file.getAbsolutePath());
+              tmdbIntent.putExtras(b);
+              startService(tmdbIntent);
+            }
+ else {
+              Toast.makeText(getApplicationContext(),getString(R.string.noInternet),Toast.LENGTH_LONG).show();
+              stopSelf();
+            }
+          }
+        }
+      }
+.start();
+    }
+  }
+ else {
+    stopSelf();
+  }
+}

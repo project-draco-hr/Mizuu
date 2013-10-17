@@ -1,0 +1,38 @@
+{
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
+  String username=settings.getString("traktUsername","").trim();
+  String password=settings.getString("traktPassword","");
+  if (username.isEmpty() || password.isEmpty())   return false;
+  if (movies.size() == 0)   return false;
+  HttpClient httpclient=new DefaultHttpClient();
+  HttpPost httppost=null;
+  if (movies.get(0).hasWatched())   httppost=new HttpPost("http://api.trakt.tv/movie/seen/" + MizLib.TRAKT_API);
+ else   httppost=new HttpPost("http://api.trakt.tv/movie/unseen/" + MizLib.TRAKT_API);
+  try {
+    JSONObject json=new JSONObject();
+    json.put("username",username);
+    json.put("password",password);
+    JSONArray array=new JSONArray();
+    int count=movies.size();
+    for (int i=0; i < count; i++) {
+      JSONObject jsonMovie=new JSONObject();
+      jsonMovie.put("imdb_id",movies.get(i).getImdbId());
+      jsonMovie.put("tmdb_id",movies.get(i).getTmdbId());
+      jsonMovie.put("year",movies.get(i).getReleaseYear());
+      jsonMovie.put("title",movies.get(i).getTitle());
+      if (movies.get(i).hasWatched()) {
+        jsonMovie.put("plays","1");
+        jsonMovie.put("last_played",String.valueOf(System.currentTimeMillis() / 1000L));
+      }
+      array.put(jsonMovie);
+    }
+    json.put("movies",array);
+    httppost.setEntity(new StringEntity(json.toString()));
+    ResponseHandler<String> responseHandler=new BasicResponseHandler();
+    httpclient.execute(httppost,responseHandler);
+    return true;
+  }
+ catch (  Exception e) {
+  }
+  return false;
+}

@@ -1,0 +1,9 @@
+{
+  CONTEXT=context;
+  ROW_ID=rowId;
+  FILEPATH=filepath;
+  TITLE=title;
+  TMDB_ID=tmdbId;
+  this.ignorePrefixes=ignorePrefixes;
+  this.ignoreNfo=ignoreNfo;
+}

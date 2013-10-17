@@ -1,0 +1,3 @@
+{
+  return shownShows.get(position).getThumbnail();
+}

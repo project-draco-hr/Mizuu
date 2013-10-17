@@ -1,0 +1,37 @@
+{
+  showCollectionBasedOnNavigationIndex(actionBar.getSelectedNavigationIndex());
+  final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
+  for (int i=0; i < shownShows.size(); i++) {
+    if (!shownShows.get(i).getGenres().isEmpty())     for (    String genre : shownShows.get(i).getGenres().split(",")) {
+      if (map.containsKey(genre.trim())) {
+        map.put(genre.trim(),map.get(genre.trim()) + 1);
+      }
+ else {
+        map.put(genre.trim(),1);
+      }
+    }
+  }
+  final CharSequence[] tempArray=map.keySet().toArray(new CharSequence[map.keySet().size()]);
+  for (int i=0; i < tempArray.length; i++)   tempArray[i]=tempArray[i] + " (" + map.get(tempArray[i])+ ")";
+  final CharSequence[] temp=new CharSequence[tempArray.length + 1];
+  temp[0]=getString(R.string.allGenres);
+  for (int i=1; i < temp.length; i++)   temp[i]=tempArray[i - 1];
+  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+  builder.setTitle(R.string.selectGenre).setItems(temp,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      if (which > 0) {
+        ArrayList<TvShow> currentlyShown=new ArrayList<TvShow>();
+        currentlyShown.addAll(shownShows);
+        shownShows.clear();
+        String selectedGenre=temp[which].toString();
+        selectedGenre=selectedGenre.substring(0,selectedGenre.lastIndexOf("(")).trim();
+        for (int i=0; i < currentlyShown.size(); i++)         if (currentlyShown.get(i).getGenres().contains(selectedGenre))         shownShows.add(currentlyShown.get(i));
+        sortShows();
+        notifyDataSetChanged();
+      }
+      dialog.dismiss();
+    }
+  }
+);
+  builder.show();
+}

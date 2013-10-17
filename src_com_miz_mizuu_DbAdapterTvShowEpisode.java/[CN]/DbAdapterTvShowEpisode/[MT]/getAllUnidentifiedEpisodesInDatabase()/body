@@ -1,0 +1,3 @@
+{
+  return database.query(DATABASE_TABLE,allRows,KEY_SHOW_ID + " = 'invalid'",null,null,null,null);
+}

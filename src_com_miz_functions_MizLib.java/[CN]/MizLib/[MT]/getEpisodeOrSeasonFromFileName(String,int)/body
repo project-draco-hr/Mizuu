@@ -1,0 +1,86 @@
+{
+  int episode=0, season=0;
+  Pattern searchPattern=Pattern.compile("(?i)(\\d){1,2}e(\\d){1,3}");
+  Matcher searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      String result=input.substring(searchMatcher.start(),searchMatcher.end());
+      episode=Integer.valueOf(result.split("(?i)e")[1].trim());
+      season=Integer.valueOf(result.split("(?i)e")[0].trim());
+      if (type == SEASON)       return season;
+      return episode;
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  searchPattern=Pattern.compile("(?i)(\\d){1,2}x(\\d){1,3}");
+  searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      String result=input.substring(searchMatcher.start(),searchMatcher.end());
+      episode=Integer.valueOf(result.split("(?i)x")[1].trim());
+      season=Integer.valueOf(result.split("(?i)x")[0].trim());
+      if (type == SEASON)       return season;
+      return episode;
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  searchPattern=Pattern.compile("(?i)season((\\s)+)(\\d){1,2}((\\s)+)episode((\\s)+)(\\d){1,3}");
+  searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      String result=input.substring(searchMatcher.start(),searchMatcher.end());
+      episode=Integer.valueOf(result.split("(?i)episode")[1].trim());
+      season=Integer.valueOf(result.split("(?i)episode")[0].replaceAll("(?i)season","").trim());
+      if (type == SEASON)       return season;
+      return episode;
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  searchPattern=Pattern.compile("(?i)episode((\\s)+)(\\d){1,3}");
+  searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      String result=input.substring(searchMatcher.start(),searchMatcher.end());
+      episode=Integer.valueOf(result.split("(?i)episode")[1].trim());
+      if (type == SEASON)       return season;
+      return episode;
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  searchPattern=Pattern.compile("(\\d){1,5}");
+  searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      String result=input.substring(searchMatcher.start(),searchMatcher.end());
+switch (result.length()) {
+case 1:
+        episode=Integer.valueOf(result);
+      break;
+case 2:
+    episode=Integer.valueOf(result);
+  break;
+case 3:
+episode=Integer.valueOf(result.substring(1,3));
+season=Integer.valueOf(result.substring(0,1));
+break;
+case 4:
+episode=Integer.valueOf(result.substring(2,4));
+season=Integer.valueOf(result.substring(0,2));
+break;
+case 5:
+episode=Integer.valueOf(result.substring(2,5));
+season=Integer.valueOf(result.substring(0,2));
+break;
+}
+if (type == SEASON) return season;
+return episode;
+}
+ catch (IndexOutOfBoundsException e) {
+}
+}
+return episode;
+}

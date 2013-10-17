@@ -1,0 +1,8 @@
+{
+  CollectionLibraryFragment frag=new CollectionLibraryFragment();
+  Bundle b=new Bundle();
+  b.putString("collectionId",collectionId);
+  b.putString("collectionTitle",collectionTitle);
+  frag.setArguments(b);
+  return frag;
+}

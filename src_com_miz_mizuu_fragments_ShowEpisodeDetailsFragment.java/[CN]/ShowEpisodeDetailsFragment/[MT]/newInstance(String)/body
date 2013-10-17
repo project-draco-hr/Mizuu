@@ -1,0 +1,7 @@
+{
+  ShowEpisodeDetailsFragment frag=new ShowEpisodeDetailsFragment();
+  Bundle b=new Bundle();
+  b.putString("rowId",rowId);
+  frag.setArguments(b);
+  return frag;
+}

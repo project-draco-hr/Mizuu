@@ -1,0 +1,17 @@
+{
+  AlertDialog.Builder builder=new AlertDialog.Builder(this);
+  builder.setTitle(R.string.addFileSource).setItems(R.array.filesource_picker,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      if (isLocalSource) {
+        if (which == 0)         addLocalMovie();
+ else         addLocalShow();
+      }
+ else {
+        if (which == 0)         addNetworkMovie();
+ else         addNetworkShow();
+      }
+    }
+  }
+);
+  builder.show();
+}

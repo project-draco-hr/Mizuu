@@ -1,0 +1,15 @@
+{
+  thisMovie.setToWatch(false);
+  if (db.updateMovieSingleItem(Long.valueOf(thisMovie.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch())) {
+    getActivity().invalidateOptionsMenu();
+    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-library-change"));
+  }
+  new Thread(){
+    @Override public void run(){
+      ArrayList<Movie> watchlist=new ArrayList<Movie>();
+      watchlist.add(thisMovie);
+      MizLib.movieWatchlist(watchlist,getActivity());
+    }
+  }
+.start();
+}

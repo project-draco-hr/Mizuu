@@ -1,0 +1,13 @@
+{
+  if (!(!MizLib.runsInPortraitMode(getActivity()) && MizLib.runsOnTablet(getActivity())) && isVisible())   inflater.inflate(R.menu.episode_details,menu);
+  try {
+    if (thisEpisode.hasWatched()) {
+      menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsUnwatched);
+    }
+ else {
+      menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsWatched);
+    }
+  }
+ catch (  Exception e) {
+  }
+}

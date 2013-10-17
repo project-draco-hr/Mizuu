@@ -1,0 +1,6 @@
+{
+  Editor editor=settings.edit();
+  editor.putString("prefsSorting","sortRating");
+  editor.apply();
+  sortBy(RATING);
+}

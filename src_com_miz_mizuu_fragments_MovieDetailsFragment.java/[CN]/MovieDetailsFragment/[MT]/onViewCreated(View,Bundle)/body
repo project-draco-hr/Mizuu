@@ -1,0 +1,130 @@
+{
+  super.onViewCreated(view,savedInstanceState);
+  playbutton=(ImageView)view.findViewById(R.id.imageView2);
+  playbutton.requestFocus();
+  background=(ImageView)view.findViewById(R.id.imageBackground);
+  textTitle=(TextView)view.findViewById(R.id.movieTitle);
+  textPlot=(TextView)view.findViewById(R.id.textView2);
+  textSrc=(TextView)view.findViewById(R.id.textView3);
+  textGenre=(TextView)view.findViewById(R.id.textView7);
+  textRuntime=(TextView)view.findViewById(R.id.textView9);
+  textReleaseDate=(TextView)view.findViewById(R.id.textReleaseDate);
+  textRating=(TextView)view.findViewById(R.id.textView12);
+  textTagline=(TextView)view.findViewById(R.id.textView6);
+  textCertification=(TextView)view.findViewById(R.id.textView11);
+  cover=(AspectRatioImageViewCover)view.findViewById(R.id.traktIcon);
+  textTitle.setVisibility(View.VISIBLE);
+  textTitle.setText(thisMovie.getTitle());
+  textTitle.setTypeface(tf);
+  textTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+  textPlot.setText(thisMovie.getPlot());
+  textSrc.setText(thisMovie.getFilepath());
+  if (thisMovie.getTagline().equals("NOTAGLINE") || thisMovie.getTagline().isEmpty())   textTagline.setVisibility(TextView.GONE);
+ else   textTagline.setText(thisMovie.getTagline());
+  if (!MizLib.isEmpty(thisMovie.getGenres())) {
+    textGenre.setText(thisMovie.getGenres());
+  }
+ else {
+    View tableRow=view.findViewById(R.id.tableRow3);
+    if (tableRow != null)     tableRow.setVisibility(View.GONE);
+ else {
+      view.findViewById(R.id.TextView03).setVisibility(View.GONE);
+      textGenre.setVisibility(View.GONE);
+    }
+  }
+  try {
+    int hours=Integer.parseInt(thisMovie.getRuntime()) / 60;
+    int minutes=Integer.parseInt(thisMovie.getRuntime()) % 60;
+    String hours_string=hours + " " + getResources().getQuantityString(R.plurals.hour,hours,hours);
+    String minutes_string=minutes + " " + getResources().getQuantityString(R.plurals.minute,minutes,minutes);
+    if (hours > 0) {
+      if (minutes == 0)       textRuntime.setText(hours_string);
+ else       textRuntime.setText(hours_string + " " + minutes_string);
+    }
+ else {
+      textRuntime.setText(minutes_string);
+    }
+  }
+ catch (  Exception e) {
+    if (!MizLib.isEmpty(thisMovie.getRuntime())) {
+      textRuntime.setText(thisMovie.getRuntime());
+    }
+ else {
+      View tableRow=view.findViewById(R.id.tableRow1);
+      if (tableRow != null)       tableRow.setVisibility(View.GONE);
+ else {
+        view.findViewById(R.id.TextView01).setVisibility(View.GONE);
+        textRuntime.setVisibility(View.GONE);
+      }
+    }
+  }
+  if (!MizLib.isEmpty(thisMovie.getReleasedate())) {
+    try {
+      String[] date=thisMovie.getReleasedate().split("-");
+      Calendar cal=Calendar.getInstance();
+      cal.set(Integer.parseInt(date[0]),Integer.parseInt(date[1]) - 1,Integer.parseInt(date[2]));
+      textReleaseDate.setText(DateFormat.getDateInstance(DateFormat.MEDIUM,Locale.getDefault()).format(cal.getTime()));
+    }
+ catch (    Exception e) {
+      textReleaseDate.setText(thisMovie.getReleasedate());
+    }
+  }
+ else {
+    View tableRow=view.findViewById(R.id.TableRow01);
+    if (tableRow != null)     tableRow.setVisibility(View.GONE);
+ else {
+      view.findViewById(R.id.TextView05).setVisibility(View.GONE);
+      textReleaseDate.setVisibility(View.GONE);
+    }
+  }
+  if (!thisMovie.getRating().equals("0.0/10"))   textRating.setText(thisMovie.getRating());
+ else {
+    View tableRow=view.findViewById(R.id.tableRow5);
+    if (tableRow != null)     tableRow.setVisibility(View.GONE);
+ else {
+      view.findViewById(R.id.TextView04).setVisibility(View.GONE);
+      textRating.setVisibility(View.GONE);
+    }
+  }
+  if (!MizLib.isEmpty(thisMovie.getCertification())) {
+    textCertification.setText(thisMovie.getCertification());
+  }
+ else {
+    View tableRow=view.findViewById(R.id.tableRow2);
+    if (tableRow != null)     tableRow.setVisibility(View.GONE);
+ else {
+      view.findViewById(R.id.row_title_movies_online).setVisibility(View.GONE);
+      textCertification.setVisibility(View.GONE);
+    }
+  }
+  playbutton.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      videoPlaybackStarted=System.currentTimeMillis();
+      if (thisMovie.isSplitFile()) {
+        showSplitFileDialog();
+      }
+ else {
+        if (thisMovie.isNetworkFile()) {
+          playNetworkFile(thisMovie.getFilepath());
+        }
+ else {
+          try {
+            getActivity().startActivity(MizLib.getVideoIntent(thisMovie.getFilepath(),useWildcard,thisMovie));
+            checkIn();
+          }
+ catch (          Exception e) {
+            try {
+              getActivity().startActivity(MizLib.getVideoIntent(thisMovie.getFilepath(),"video/*",thisMovie));
+              checkIn();
+            }
+ catch (            Exception e2) {
+              Toast.makeText(getActivity(),getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
+            }
+          }
+        }
+      }
+    }
+  }
+);
+  loadImages();
+}

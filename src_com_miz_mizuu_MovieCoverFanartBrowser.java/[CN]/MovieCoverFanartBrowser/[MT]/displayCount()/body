@@ -1,0 +1,11 @@
+{
+  if (awesomePager.getCurrentItem() == 0) {
+    bar.setSubtitle(coverCount + " " + getString(R.string.numberOfCovers));
+  }
+ else   if (awesomePager.getCurrentItem() == 1) {
+    bar.setSubtitle(backdropCount + " " + getString(R.string.numberOfBackdrops));
+  }
+ else {
+    bar.setSubtitle(collectionCount + " " + getString(R.string.numberOfCovers));
+  }
+}

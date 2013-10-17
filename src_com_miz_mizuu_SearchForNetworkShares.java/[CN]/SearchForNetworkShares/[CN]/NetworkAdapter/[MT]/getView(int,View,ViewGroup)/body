@@ -1,0 +1,18 @@
+{
+  ViewHolder holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.file_list_item,null);
+    holder=new ViewHolder();
+    holder.name=(TextView)convertView.findViewById(R.id.text1);
+    holder.desc=(TextView)convertView.findViewById(R.id.size);
+    holder.icon=(ImageView)convertView.findViewById(R.id.icon);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(ViewHolder)convertView.getTag();
+  }
+  holder.name.setText(hosts.get(position));
+  holder.desc.setVisibility(View.GONE);
+  holder.icon.setImageResource(R.drawable.folder);
+  return convertView;
+}

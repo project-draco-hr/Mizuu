@@ -1,0 +1,4 @@
+{
+  for (  WebMovie m : pics_sources)   if (id.equals(m.getId()))   return true;
+  return false;
+}

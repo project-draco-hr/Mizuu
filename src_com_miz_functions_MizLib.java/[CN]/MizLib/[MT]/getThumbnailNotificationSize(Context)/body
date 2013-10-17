@@ -1,0 +1,4 @@
+{
+  Resources r=c.getResources();
+  return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,64,r.getDisplayMetrics());
+}

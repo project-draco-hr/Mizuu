@@ -1,0 +1,3 @@
+{
+  return (isGoogleTV(c) && c.getResources().getDisplayMetrics().densityDpi == DisplayMetrics.DENSITY_TV);
+}

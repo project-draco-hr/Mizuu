@@ -1,0 +1,14 @@
+{
+  editor=settings.edit();
+  editor.putInt(SHOWS_UPDATE_PREF,isDisabled ? NOT_ENABLED : showsSpinner.getSelectedItemPosition() + 1);
+  editor.commit();
+  if (isAdded()) {
+    if ((showsSpinner.getSelectedItemPosition() + 1) > AT_LAUNCH) {
+      MizLib.scheduleShowsUpdate(getActivity());
+    }
+ else {
+      ScheduledUpdatesAlarmManager.cancelUpdate(ScheduledUpdatesAlarmManager.SHOWS,getActivity());
+    }
+    updateNextShowsUpdateText();
+  }
+}

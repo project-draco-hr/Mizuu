@@ -1,0 +1,7 @@
+{
+  ShowDetailsFragment pageFragment=new ShowDetailsFragment();
+  Bundle b=new Bundle();
+  b.putString("showId",showId);
+  pageFragment.setArguments(b);
+  return pageFragment;
+}

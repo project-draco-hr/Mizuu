@@ -1,0 +1,4 @@
+{
+  if (mAdapter != null)   mAdapter.notifyDataSetChanged();
+  if (spinnerAdapter != null)   spinnerAdapter.notifyDataSetChanged();
+}

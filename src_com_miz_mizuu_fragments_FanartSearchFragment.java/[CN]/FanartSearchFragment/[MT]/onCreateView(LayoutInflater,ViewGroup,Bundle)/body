@@ -1,0 +1,3 @@
+{
+  return inflater.inflate(R.layout.backdrop_grid_fragment,container,false);
+}

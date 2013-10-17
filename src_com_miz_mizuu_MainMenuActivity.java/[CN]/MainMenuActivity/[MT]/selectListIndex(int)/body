@@ -1,0 +1,3 @@
+{
+  if (!menu.get(index).isThirdPartyApp())   mDrawerList.setItemChecked(index,true);
+}

@@ -1,0 +1,5 @@
+{
+  Intent intent=new Intent(this,EditMovie.class);
+  intent.putExtra("rowId",Integer.valueOf(thisMovie.getRowId()));
+  startActivityForResult(intent,1);
+}

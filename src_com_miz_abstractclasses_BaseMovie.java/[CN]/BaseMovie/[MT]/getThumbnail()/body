@@ -1,0 +1,25 @@
+{
+  if (!ignoreNfo) {
+    try {
+      String filename=FILEPATH.substring(0,FILEPATH.lastIndexOf(".")).replace("cd1","").replace("cd2","").replace("part1","").replace("part2","").trim();
+      File parentFolder=new File(FILEPATH).getParentFile();
+      if (parentFolder != null) {
+        File[] list=parentFolder.listFiles();
+        if (list != null) {
+          String name, absolutePath;
+          int count=list.length;
+          for (int i=0; i < count; i++) {
+            name=list[i].getName();
+            absolutePath=list[i].getAbsolutePath();
+            if (name.equalsIgnoreCase("poster.jpg") || name.equalsIgnoreCase("poster.jpeg") || name.equalsIgnoreCase("poster.tbn")|| name.equalsIgnoreCase("folder.jpg")|| name.equalsIgnoreCase("folder.jpeg")|| name.equalsIgnoreCase("folder.tbn")|| name.equalsIgnoreCase("cover.jpg")|| name.equalsIgnoreCase("cover.jpeg")|| name.equalsIgnoreCase("cover.tbn")|| absolutePath.equalsIgnoreCase(filename + ".jpg")|| absolutePath.equalsIgnoreCase(filename + ".jpeg")|| absolutePath.equalsIgnoreCase(filename + ".tbn")) {
+              return absolutePath;
+            }
+          }
+        }
+      }
+    }
+ catch (    Exception e) {
+    }
+  }
+  return new File(MizLib.getMovieThumbFolder(CONTEXT),TMDB_ID + ".jpg").getAbsolutePath();
+}

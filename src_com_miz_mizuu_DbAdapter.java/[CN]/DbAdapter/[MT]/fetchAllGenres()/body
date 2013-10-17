@@ -1,0 +1,3 @@
+{
+  return database.query(DATABASE_TABLE,SELECT_ALL,null,null,KEY_GENRES,null,KEY_GENRES + " ASC");
+}

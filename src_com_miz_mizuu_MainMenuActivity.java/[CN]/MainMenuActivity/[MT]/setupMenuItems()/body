@@ -1,0 +1,17 @@
+{
+  menu.clear();
+  menu.add(new MenuItem(R.string.stringLocal,0,0,true,null));
+  menu.add(new MenuItem(R.string.chooserMovies,R.drawable.ic_action_movie,mNumMovies,false,MainMovies.class));
+  menu.add(new MenuItem(R.string.chooserTVShows,R.drawable.ic_action_tv,mNumShows,false,MainTvShows.class));
+  menu.add(new MenuItem(R.string.chooserWatchList,R.drawable.ic_action_list_2,mNumWatchlist,false,MainWatchlist.class));
+  menu.add(new MenuItem(R.string.stringDiscover,0,0,true,null));
+  menu.add(new MenuItem(R.string.chooserMovies,R.drawable.ic_action_movie,0,false,MovieDiscovery.class));
+  menu.add(new MenuItem(R.string.chooserWebVideos,R.drawable.ic_action_globe,0,false,MainWeb.class));
+  if (showMediaApps) {
+    setupThirdPartyApps();
+    if (thirdPartyApps.size() > 0) {
+      menu.add(new MenuItem(R.string.installed_media_apps,0,0,true,null));
+      menu.addAll(thirdPartyApps);
+    }
+  }
+}

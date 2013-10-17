@@ -1,0 +1,11 @@
+{
+  awesomePager.setCurrentItem(getActionBar().getSelectedTab().getPosition(),true);
+switch (getActionBar().getSelectedTab().getPosition()) {
+case 0:
+    getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+  break;
+default :
+getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+break;
+}
+}

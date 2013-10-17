@@ -1,0 +1,25 @@
+{
+  if (!ignoreNfo) {
+    try {
+      String filename=FILEPATH.substring(0,FILEPATH.lastIndexOf(".")).replace("cd1","").replace("cd2","").replace("part1","").replace("part2","").trim();
+      File parentFolder=new File(FILEPATH).getParentFile();
+      if (parentFolder != null) {
+        File[] list=parentFolder.listFiles();
+        if (list != null) {
+          String name, absolutePath;
+          int count=list.length;
+          for (int i=0; i < count; i++) {
+            name=list[i].getName();
+            absolutePath=list[i].getAbsolutePath();
+            if (name.equalsIgnoreCase("fanart.jpg") || name.equalsIgnoreCase("fanart.jpeg") || name.equalsIgnoreCase("fanart.tbn")|| name.equalsIgnoreCase("banner.jpg")|| name.equalsIgnoreCase("banner.jpeg")|| name.equalsIgnoreCase("banner.tbn")|| name.equalsIgnoreCase("backdrop.jpg")|| name.equalsIgnoreCase("backdrop.jpeg")|| name.equalsIgnoreCase("backdrop.tbn")|| absolutePath.equalsIgnoreCase(filename + "-fanart.jpg")|| absolutePath.equalsIgnoreCase(filename + "-fanart.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-fanart.tbn")|| absolutePath.equalsIgnoreCase(filename + "-banner.jpg")|| absolutePath.equalsIgnoreCase(filename + "-banner.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-banner.tbn")|| absolutePath.equalsIgnoreCase(filename + "-backdrop.jpg")|| absolutePath.equalsIgnoreCase(filename + "-backdrop.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-backdrop.tbn")) {
+              return absolutePath;
+            }
+          }
+        }
+      }
+    }
+ catch (    Exception e) {
+    }
+  }
+  return new File(MizLib.getMovieBackdropFolder(CONTEXT),TMDB_ID + "_bg.jpg").getAbsolutePath();
+}

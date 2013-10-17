@@ -1,0 +1,3 @@
+{
+  ignoreNfoFiles=settings.getBoolean("prefsIgnoreNfoFiles",true);
+}

@@ -1,0 +1,4 @@
+{
+  super.onCreate(savedInstanceState);
+  settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
+}

@@ -1,0 +1,42 @@
+{
+  super.onCreate(savedInstanceState);
+  setupDoneDiscard();
+  getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+  setContentView(R.layout.editmovie);
+  title=(EditText)findViewById(R.id.titleText);
+  tagline=(EditText)findViewById(R.id.taglineText);
+  plot=(EditText)findViewById(R.id.plotText);
+  runtime=(EditText)findViewById(R.id.runtimeText);
+  rating=(EditText)findViewById(R.id.ratingText);
+  genres=(EditText)findViewById(R.id.genresText);
+  release=(TextView)findViewById(R.id.releasedateText);
+  certification=(Spinner)findViewById(R.id.certificationSpinner);
+  rowID=getIntent().getExtras().getInt("rowId");
+  dbHelper=MizuuApplication.getMovieAdapter();
+  cursor=dbHelper.fetchMovie(rowID);
+  if (cursor.moveToFirst()) {
+    title.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)));
+    plot.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)));
+    tagline.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)));
+    if (tagline.getText().toString().equals("NOTAGLINE") || !(tagline.getText().toString().length() > 0))     tagline.setText("");
+    runtime.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)));
+    try {
+      rating.setText(String.valueOf(Float.valueOf(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)).trim()).floatValue()));
+    }
+ catch (    Exception e) {
+      rating.setText("0.0");
+    }
+    boolean found=false;
+    for (int i=0; i < certifications.length; i++) {
+      if (certifications[i].equals(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)))) {
+        certification.setSelection(i);
+        found=true;
+        break;
+      }
+    }
+    if (!found)     certification.setSelection(certifications.length - 1);
+    release.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)));
+    genres.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)));
+  }
+  cursor.close();
+}

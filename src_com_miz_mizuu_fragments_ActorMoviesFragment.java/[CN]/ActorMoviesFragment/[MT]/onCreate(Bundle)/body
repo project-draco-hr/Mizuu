@@ -1,0 +1,11 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  db=MizuuApplication.getMovieAdapter();
+  settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
+  showGridTitles=settings.getBoolean("prefsShowGridTitles",false);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  new GetActorDetails().execute(getArguments().getString("actorId"));
+}

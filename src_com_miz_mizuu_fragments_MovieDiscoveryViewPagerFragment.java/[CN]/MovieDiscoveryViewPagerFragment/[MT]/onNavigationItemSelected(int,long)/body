@@ -1,0 +1,4 @@
+{
+  awesomePager.setCurrentItem(itemPosition);
+  return true;
+}

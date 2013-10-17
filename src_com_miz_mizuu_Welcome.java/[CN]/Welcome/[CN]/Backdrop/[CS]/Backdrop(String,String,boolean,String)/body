@@ -1,0 +1,6 @@
+{
+  this.path=path;
+  this.id=id;
+  this.isMovie=isMovie;
+  this.title=title;
+}

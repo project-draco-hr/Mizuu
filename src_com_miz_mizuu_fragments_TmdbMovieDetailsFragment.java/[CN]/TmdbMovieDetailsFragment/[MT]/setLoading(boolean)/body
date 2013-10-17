@@ -1,0 +1,12 @@
+{
+  if (isLoading) {
+    progressBar.setVisibility(View.VISIBLE);
+    movieDetailsLayout.setVisibility(View.GONE);
+    container.setBackgroundResource(R.drawable.bg);
+  }
+ else {
+    progressBar.setVisibility(View.GONE);
+    movieDetailsLayout.setVisibility(View.VISIBLE);
+    container.setBackgroundResource(0);
+  }
+}

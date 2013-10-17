@@ -1,0 +1,14 @@
+{
+  super.onDestroy();
+  LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+  PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+  AppWidgetManager awm=AppWidgetManager.getInstance(this);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,MovieStackWidgetProvider.class)),R.id.stack_view);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,MovieCoverWidgetProvider.class)),R.id.widget_grid);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,MovieBackdropWidgetProvider.class)),R.id.widget_grid);
+  MizLib.scheduleMovieUpdate(this);
+  if (MizLib.hasTraktAccount(this) && syncLibraries) {
+    Intent movies=new Intent(getApplicationContext(),TraktMoviesSyncService.class);
+    getApplicationContext().startService(movies);
+  }
+}

@@ -1,0 +1,32 @@
+{
+  CharSequence[] items=new CharSequence[]{getString(R.string.part) + " 1",getString(R.string.part) + " 2"};
+  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+  builder.setTitle(getString(R.string.playPart));
+  builder.setItems(items,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      String filepath;
+      if (which == 0)       filepath=thisMovie.getFilepath();
+ else       filepath=thisMovie.getSecondPart();
+      if (thisMovie.isNetworkFile()) {
+        playNetworkFile(filepath);
+      }
+ else {
+        try {
+          getActivity().startActivity(MizLib.getVideoIntent(filepath,useWildcard,thisMovie));
+          checkIn();
+        }
+ catch (        Exception e) {
+          try {
+            getActivity().startActivity(MizLib.getVideoIntent(filepath,"video/*",thisMovie));
+            checkIn();
+          }
+ catch (          Exception e2) {
+            Toast.makeText(getActivity(),getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
+          }
+        }
+      }
+    }
+  }
+);
+  builder.show();
+}

@@ -1,0 +1,47 @@
+{
+  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+  View dialogLayout=getActivity().getLayoutInflater().inflate(R.layout.delete_file_dialog_layout,null);
+  final CheckBox cb=(CheckBox)dialogLayout.findViewById(R.id.deleteFile);
+  builder.setTitle(getString(R.string.removeEpisode) + " S" + thisEpisode.getSeason()+ "E"+ thisEpisode.getEpisode()).setView(dialogLayout).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int id){
+      dbHelper=MizuuApplication.getTvEpisodeDbAdapter();
+      boolean deleted=false;
+      if (ignoreDeletedFiles)       deleted=dbHelper.ignoreEpisode(thisEpisode.getRowId());
+ else       deleted=dbHelper.deleteEpisode(thisEpisode.getRowId());
+      if (deleted) {
+        try {
+          File episodePhoto=new File(MizLib.getTvShowEpisodeFolder(getActivity()),thisEpisode.getShowId() + "_S" + thisEpisode.getSeason()+ "E"+ thisEpisode.getEpisode()+ ".jpg");
+          if (episodePhoto.exists()) {
+            MizLib.deleteFile(episodePhoto);
+          }
+        }
+ catch (        NullPointerException e) {
+        }
+        if (dbHelper.getEpisodeCount(thisEpisode.getShowId()) == 0) {
+          DbAdapterTvShow dbShow=MizuuApplication.getTvDbAdapter();
+          boolean deletedShow=dbShow.deleteShow(thisEpisode.getShowId());
+          if (deletedShow) {
+            MizLib.deleteFile(new File(MizLib.getTvShowThumbFolder(getActivity()),thisEpisode.getShowId() + ".jpg"));
+            MizLib.deleteFile(new File(MizLib.getTvShowBackdropFolder(getActivity()),thisEpisode.getShowId() + "_tvbg.jpg"));
+          }
+        }
+        if (cb.isChecked()) {
+          Intent deleteIntent=new Intent(getActivity(),DeleteFile.class);
+          deleteIntent.putExtra("filepath",thisEpisode.getFilepath());
+          getActivity().startService(deleteIntent);
+        }
+        notifyDatasetChanges();
+        getActivity().finish();
+      }
+ else {
+        Toast.makeText(getActivity(),getString(R.string.failedToRemoveEpisode),Toast.LENGTH_SHORT).show();
+      }
+    }
+  }
+).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int id){
+      dialog.cancel();
+    }
+  }
+).show();
+}

@@ -1,0 +1,4 @@
+{
+  lv.setVisibility(View.VISIBLE);
+  pbar.setVisibility(View.GONE);
+}

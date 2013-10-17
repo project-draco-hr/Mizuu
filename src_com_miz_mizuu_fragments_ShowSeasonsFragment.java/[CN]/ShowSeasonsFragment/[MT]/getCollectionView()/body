@@ -1,0 +1,4 @@
+{
+  if (useGridView)   return mGridView;
+  return mListView;
+}

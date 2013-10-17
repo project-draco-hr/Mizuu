@@ -1,0 +1,42 @@
+{
+  super.onOptionsItemSelected(item);
+switch (item.getItemId()) {
+case R.id.update:
+    startActivityForResult(getUpdateIntent(),0);
+  break;
+case R.id.menuSortAdded:
+sortByDateAdded();
+break;
+case R.id.menuSortRating:
+sortByRating();
+break;
+case R.id.menuSortWeightedRating:
+sortByWeightedRating();
+break;
+case R.id.menuSortRelease:
+sortByRelease();
+break;
+case R.id.menuSortTitle:
+sortByTitle();
+break;
+case R.id.menuSettings:
+startActivity(new Intent(getActivity(),Preferences.class));
+break;
+case R.id.menuContact:
+MizLib.contactDev(getActivity());
+break;
+case R.id.genres:
+showGenres();
+break;
+case R.id.certifications:
+showCertifications();
+break;
+case R.id.folders:
+showFolders();
+break;
+case R.id.fileSources:
+showFileSources();
+break;
+}
+return true;
+}

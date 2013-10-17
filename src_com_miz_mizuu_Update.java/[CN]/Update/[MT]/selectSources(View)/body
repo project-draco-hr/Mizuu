@@ -1,0 +1,10 @@
+{
+  Bundle bundle=new Bundle();
+  bundle.putBoolean("fromUpdate",true);
+  bundle.putBoolean("isMovie",isMovie);
+  bundle.putBoolean("completeScan",checkBox.isChecked());
+  Intent intent=new Intent();
+  intent.setClass(this,FileSources.class);
+  intent.putExtras(bundle);
+  startActivity(intent);
+}

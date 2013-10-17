@@ -1,0 +1,29 @@
+{
+  if (mAdapter != null)   mAdapter.notifyDataSetChanged();
+  if (spinnerAdapter != null)   spinnerAdapter.notifyDataSetChanged();
+  try {
+    if (movies.size() == 0) {
+      overviewMessage.setVisibility(View.VISIBLE);
+      if (type == MAIN) {
+        if (MizLib.isMovieLibraryBeingUpdated(getActivity())) {
+          overviewMessage.setText(getString(R.string.updatingLibraryDescription));
+          updateMovieLibrary.setVisibility(View.GONE);
+        }
+ else {
+          overviewMessage.setText(getString(R.string.noMoviesInLibrary));
+          updateMovieLibrary.setVisibility(View.VISIBLE);
+        }
+      }
+ else {
+        overviewMessage.setText(getString(R.string.noMoviesOnWatchlist));
+        updateMovieLibrary.setVisibility(View.GONE);
+      }
+    }
+ else {
+      overviewMessage.setVisibility(View.GONE);
+      updateMovieLibrary.setVisibility(View.GONE);
+    }
+  }
+ catch (  Exception e) {
+  }
+}

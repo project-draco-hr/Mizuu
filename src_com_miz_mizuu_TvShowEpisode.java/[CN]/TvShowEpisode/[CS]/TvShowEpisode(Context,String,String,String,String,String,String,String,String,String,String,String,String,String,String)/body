@@ -1,0 +1,17 @@
+{
+  CONTEXT=context;
+  ROW_ID=rowId;
+  FILEPATH=filepath;
+  SHOW_ID=showId;
+  TITLE=title;
+  DESCRIPTION=description;
+  SEASON=season;
+  EPISODE=episode;
+  RELEASEDATE=releasedate;
+  DIRECTOR=director;
+  WRITER=writer;
+  GUESTSTARS=gueststars;
+  RATING=rating;
+  HAS_WATCHED=hasWatched;
+  FAVORITE=favorite;
+}

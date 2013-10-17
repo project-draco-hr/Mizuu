@@ -1,0 +1,25 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  pbar=(ProgressBar)v.findViewById(R.id.pbar);
+  useSystemLanguage=(CheckBox)v.findViewById(R.id.searchLanguage);
+  useSystemLanguage.setText(getString(R.string.searchIn) + " " + locale.getDisplayLanguage(Locale.ENGLISH));
+  if (localizedInfo)   useSystemLanguage.setChecked(true);
+  lv=(ListView)v.findViewById(android.R.id.list);
+  lv.setAdapter(mAdapter);
+  lv.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      showMovie(arg2);
+    }
+  }
+);
+  lv.setOnScrollListener(new PauseOnScrollListener(imageLoader,true,true));
+  searchText=(EditText)v.findViewById(R.id.search);
+  searchText.setSelection(searchText.length());
+  searchText.setOnEditorActionListener(new OnEditorActionListener(){
+    @Override public boolean onEditorAction(    TextView v,    int actionId,    KeyEvent event){
+      if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN || actionId == EditorInfo.IME_ACTION_SEARCH)       searchForMovies();
+      return true;
+    }
+  }
+);
+}

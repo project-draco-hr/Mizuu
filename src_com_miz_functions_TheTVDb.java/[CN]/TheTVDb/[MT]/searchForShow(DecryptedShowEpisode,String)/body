@@ -1,0 +1,71 @@
+{
+  Tvshow show=new Tvshow();
+  checkSearchQuery(show,episode.getDecryptedFileName() + " " + episode.getFileNameYear());
+  if (show.getId().equals("invalid")) {
+    checkSearchQuery(show,episode.getDecryptedFileName());
+  }
+  if (show.getId().equals("invalid")) {
+    checkSearchQuery(show,episode.getDecryptedParentName() + " " + episode.getParentNameYear());
+  }
+  if (show.getId().equals("invalid")) {
+    checkSearchQuery(show,episode.getDecryptedParentName());
+  }
+  if (show.getId().equals("invalid")) {
+    try {
+      DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+      DocumentBuilder db=dbf.newDocumentBuilder();
+      URL url=new URL("http://services.tvrage.com/feeds/search.php?show=" + URLEncoder.encode(episode.getDecryptedFileName(),"utf-8"));
+      URLConnection con=url.openConnection();
+      con.setReadTimeout(60000);
+      con.setConnectTimeout(60000);
+      Document doc=db.parse(con.getInputStream());
+      doc.getDocumentElement().normalize();
+      NodeList nodeList=doc.getElementsByTagName("name");
+      if (nodeList.getLength() > 0) {
+        if (nodeList.item(0).getNodeType() == Node.ELEMENT_NODE) {
+          show.setTitle(nodeList.item(0).getTextContent());
+        }
+      }
+ else {
+        show.setTitle("");
+      }
+    }
+ catch (    Exception e) {
+    }
+    if (show.getTitle().isEmpty()) {
+      try {
+        JSONObject j=MizLib.getJSONObject("http://en.wikipedia.org/w/api.php?format=json&action=query&titles=" + URLEncoder.encode(episode.getDecryptedFileName(),"utf-8") + "&redirects");
+        JSONObject jObject=j.getJSONObject("query").getJSONObject("pages");
+        show.setTitle(jObject.getJSONObject(jObject.names().get(0).toString()).getString("title"));
+      }
+ catch (      Exception e) {
+        show.setTitle("");
+      }
+    }
+    try {
+      DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+      DocumentBuilder db=dbf.newDocumentBuilder();
+      URL url=new URL("http://thetvdb.com/api/GetSeries.php?seriesname=" + URLEncoder.encode(show.getTitle().replace(" ","+"),"utf-8"));
+      URLConnection con=url.openConnection();
+      con.setReadTimeout(60000);
+      con.setConnectTimeout(60000);
+      Document doc=db.parse(con.getInputStream());
+      doc.getDocumentElement().normalize();
+      NodeList nodeList=doc.getElementsByTagName("id");
+      if (nodeList.getLength() > 0) {
+        if (nodeList.item(0).getNodeType() == Node.ELEMENT_NODE) {
+          show.setId(nodeList.item(0).getTextContent());
+        }
+      }
+ else {
+        show.setId("invalid");
+      }
+    }
+ catch (    Exception e) {
+    }
+    if (show.getId().equals("invalid"))     return show;
+  }
+  String id=show.getId();
+  show=getShow(id,language);
+  return show;
+}

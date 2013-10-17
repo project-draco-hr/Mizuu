@@ -1,0 +1,17 @@
+{
+  if (TITLE == null || TITLE.isEmpty()) {
+    File fileName=new File(FILEPATH);
+    return fileName.getName().substring(0,fileName.getName().lastIndexOf("."));
+  }
+ else {
+    if (ignorePrefixes) {
+      String temp=TITLE.toLowerCase(Locale.ENGLISH);
+      String[] prefixes=MizLib.getPrefixes(CONTEXT);
+      int count=prefixes.length;
+      for (int i=0; i < count; i++) {
+        if (temp.startsWith(prefixes[i]))         return TITLE.substring(prefixes[i].length());
+      }
+    }
+    return TITLE;
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super();
+  mContext=context;
+  mImageViewLayoutParams=new GridView.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+}

@@ -1,0 +1,24 @@
+{
+  String result=input;
+  Pattern searchPattern=Pattern.compile("(?i)s(\\d){1,2}");
+  Matcher searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      result=input.substring(0,searchMatcher.start());
+      return result;
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  searchPattern=Pattern.compile("(?i)season((\\s)+)(\\d){1,2}");
+  searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      result=input.substring(0,searchMatcher.start());
+      return result;
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  return result;
+}

@@ -1,0 +1,5 @@
+{
+  Intent intent=new Intent(Intent.ACTION_VIEW);
+  intent.setData(Uri.parse("http://www.themoviedb.org/movie/" + movieId));
+  startActivity(Intent.createChooser(intent,getString(R.string.shareWith)));
+}

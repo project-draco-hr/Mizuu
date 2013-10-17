@@ -1,0 +1,11 @@
+{
+  if (spinnerAdapter != null)   spinnerAdapter.notifyDataSetChanged();
+switch (itemPosition) {
+case 0:
+    showAllShows();
+  break;
+case 1:
+showFavorites();
+break;
+}
+}

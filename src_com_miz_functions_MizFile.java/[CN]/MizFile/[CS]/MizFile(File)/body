@@ -1,0 +1,10 @@
+{
+  file=f;
+  isSmb=false;
+  length=file.length();
+  absolutePath=file.getAbsolutePath();
+  name=file.getName();
+  exists=file.exists();
+  list=file.list();
+  parent=f.getParent();
+}

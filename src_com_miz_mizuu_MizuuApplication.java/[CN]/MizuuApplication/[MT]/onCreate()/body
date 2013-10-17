@@ -1,0 +1,10 @@
+{
+  super.onCreate();
+  jcifs.Config.setProperty("jcifs.smb.client.disablePlainTextPasswords","false");
+  if (!(0 != (getApplicationInfo().flags&=ApplicationInfo.FLAG_DEBUGGABLE)))   Crashlytics.start(this);
+  initImageLoader(getApplicationContext());
+  dbTvShow=new DbAdapterTvShow(this);
+  dbTvShowEpisode=new DbAdapterTvShowEpisode(this);
+  dbSources=new DbAdapterSources(this);
+  db=new DbAdapter(this);
+}

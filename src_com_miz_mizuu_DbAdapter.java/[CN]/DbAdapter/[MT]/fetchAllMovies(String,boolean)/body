@@ -1,0 +1,4 @@
+{
+  if (includeRemoved)   return database.query(DATABASE_TABLE,SELECT_ALL,null,null,null,null,sort);
+ else   return database.query(DATABASE_TABLE,SELECT_ALL,"NOT(" + KEY_TITLE + " = 'MIZ_REMOVED_MOVIE')",null,null,null,sort);
+}

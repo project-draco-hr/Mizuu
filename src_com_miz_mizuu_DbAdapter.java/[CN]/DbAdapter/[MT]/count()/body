@@ -1,0 +1,6 @@
+{
+  Cursor c=database.query(DATABASE_TABLE,new String[]{KEY_TITLE},"NOT(" + KEY_TITLE + " = 'MIZ_REMOVED_MOVIE')",null,null,null,null);
+  int count=c.getCount();
+  c.close();
+  return count;
+}

@@ -1,0 +1,28 @@
+{
+switch (awesomePager.getCurrentItem()) {
+case 0:
+    getMenuInflater().inflate(R.menu.detailstv,menu);
+  try {
+    if (thisShow.isFavorite()) {
+      menu.findItem(R.id.show_fav).setIcon(R.drawable.fav);
+      menu.findItem(R.id.show_fav).setTitle(R.string.menuFavouriteTitleRemove);
+    }
+ else {
+      menu.findItem(R.id.show_fav).setIcon(R.drawable.reviews);
+      menu.findItem(R.id.show_fav).setTitle(R.string.menuFavouriteTitle);
+    }
+  }
+ catch (  Exception e) {
+  }
+break;
+case 1:
+if (!MizLib.runsInPortraitMode(this) && MizLib.runsOnTablet(this)) {
+getMenuInflater().inflate(R.menu.seasons_tab_landscape,menu);
+}
+ else {
+getMenuInflater().inflate(R.menu.seasons_tab,menu);
+}
+break;
+}
+return true;
+}

@@ -1,0 +1,16 @@
+{
+  ImageView imageView;
+  if (convertView == null) {
+    imageView=new ImageView(mContext);
+    imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    imageView.setLayoutParams(mImageViewLayoutParams);
+  }
+ else {
+    imageView=(ImageView)convertView;
+  }
+  if (imageView.getLayoutParams().height != mItemHeight) {
+    imageView.setLayoutParams(mImageViewLayoutParams);
+  }
+  imageLoader.displayImage(pics_sources.get(position),imageView,options);
+  return imageView;
+}

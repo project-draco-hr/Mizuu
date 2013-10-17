@@ -1,0 +1,13 @@
+{
+  if (thisMovie.getTmdbId() != null && !thisMovie.getTmdbId().isEmpty() && MizLib.isOnline(getApplicationContext())) {
+    Intent intent=new Intent();
+    intent.putExtra("tmdbId",thisMovie.getTmdbId());
+    intent.putExtra("collectionId",thisMovie.getCollectionId());
+    intent.putExtra("startPosition",2);
+    intent.setClass(this,MovieCoverFanartBrowser.class);
+    startActivity(intent);
+  }
+ else {
+    Toast.makeText(this,getString(R.string.coverSearchFailed),Toast.LENGTH_LONG).show();
+  }
+}

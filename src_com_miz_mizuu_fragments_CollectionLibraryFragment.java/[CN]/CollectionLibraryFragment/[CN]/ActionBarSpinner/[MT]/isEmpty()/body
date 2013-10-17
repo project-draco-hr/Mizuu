@@ -1,0 +1,3 @@
+{
+  return spinnerItems.size() == 0;
+}

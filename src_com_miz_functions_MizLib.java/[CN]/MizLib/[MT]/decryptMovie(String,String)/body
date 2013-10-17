@@ -1,0 +1,11 @@
+{
+  DecryptedMovie mMovie=new DecryptedMovie();
+  mMovie.setFilepath(filepath);
+  mMovie.setFileNameYear(decryptYear(mMovie.getFileName()));
+  mMovie.setDecryptedFileName(decryptName(mMovie.getFileName(),customTags));
+  if (mMovie.hasParentName()) {
+    mMovie.setParentNameYear(decryptYear(mMovie.getParentName()));
+    mMovie.setDecryptedParentName(decryptName(mMovie.getParentName(),customTags));
+  }
+  return mMovie;
+}

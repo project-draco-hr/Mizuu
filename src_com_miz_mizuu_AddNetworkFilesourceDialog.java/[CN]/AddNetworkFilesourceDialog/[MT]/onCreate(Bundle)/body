@@ -1,0 +1,16 @@
+{
+  super.onCreate(savedInstanceState);
+  getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+  setContentView(R.layout.addnetwork);
+  prefsDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsDisableEthernetWiFiCheck",false);
+  server=(EditText)findViewById(R.id.server);
+  domain=(EditText)findViewById(R.id.domain);
+  username=(EditText)findViewById(R.id.username);
+  password=(EditText)findViewById(R.id.password);
+  anonymous=(CheckBox)findViewById(R.id.checkBox);
+  guest=(CheckBox)findViewById(R.id.checkBox2);
+  guest.setOnCheckedChangeListener(changeListener);
+  anonymous.setOnCheckedChangeListener(changeListener);
+  isMovie=getIntent().getExtras().getString("type").equals("movie");
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-network-search"));
+}

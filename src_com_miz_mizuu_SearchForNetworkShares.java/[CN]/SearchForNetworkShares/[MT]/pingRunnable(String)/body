@@ -1,0 +1,15 @@
+{
+  return new Runnable(){
+    public void run(){
+      if (isReachableByPing(host)) {
+        runOnUiThread(new Runnable(){
+          @Override public void run(){
+            ((NetworkAdapter)list.getAdapter()).addHost(host);
+          }
+        }
+);
+      }
+    }
+  }
+;
+}

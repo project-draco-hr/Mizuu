@@ -1,0 +1,26 @@
+{
+  ViewHolder holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.filesource_list,null);
+    holder=new ViewHolder();
+    holder.folderName=(TextView)convertView.findViewById(R.id.txtListTitle);
+    holder.folderName.setTextAppearance(c,android.R.style.TextAppearance_Medium);
+    holder.fullPath=(TextView)convertView.findViewById(R.id.txtListPlot);
+    holder.remove=(ImageView)convertView.findViewById(R.id.imageView2);
+    holder.icon=(ImageView)convertView.findViewById(R.id.traktIcon);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(ViewHolder)convertView.getTag();
+  }
+  holder.folderName.setText(items.get(position));
+  holder.fullPath.setVisibility(View.GONE);
+  holder.icon.setVisibility(View.GONE);
+  holder.remove.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      removeSelectedTag(position);
+    }
+  }
+);
+  return convertView;
+}

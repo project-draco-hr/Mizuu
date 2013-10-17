@@ -1,0 +1,9 @@
+{
+  WindowManager window=(WindowManager)c.getSystemService(Context.WINDOW_SERVICE);
+  Display d=window.getDefaultDisplay();
+  Point size=new Point();
+  d.getSize(size);
+  final int width=getLowestNumber(size.x,size.y);
+  if (width >= 1200)   return "w780";
+ else   return "w300";
+}

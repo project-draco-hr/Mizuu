@@ -1,0 +1,29 @@
+{
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
+  String username=settings.getString("traktUsername","").trim();
+  String password=settings.getString("traktPassword","");
+  if (username.isEmpty() || password.isEmpty())   return new JSONArray();
+  HttpClient httpclient=new DefaultHttpClient();
+  HttpPost httppost=null;
+  if (type == WATCHED) {
+    httppost=new HttpPost("http://api.trakt.tv/user/library/movies/watched.json/" + MizLib.TRAKT_API + "/"+ username);
+  }
+ else   if (type == RATINGS) {
+    httppost=new HttpPost("http://api.trakt.tv/user/ratings/movies.json/" + MizLib.TRAKT_API + "/"+ username+ "/love");
+  }
+ else   if (type == WATCHLIST) {
+    httppost=new HttpPost("http://api.trakt.tv/user/watchlist/movies.json/" + MizLib.TRAKT_API + "/"+ username);
+  }
+  try {
+    JSONObject json=new JSONObject();
+    json.put("username",username);
+    json.put("password",password);
+    httppost.setEntity(new StringEntity(json.toString()));
+    ResponseHandler<String> responseHandler=new BasicResponseHandler();
+    String result=httpclient.execute(httppost,responseHandler);
+    return new JSONArray(result);
+  }
+ catch (  Exception e) {
+  }
+  return new JSONArray();
+}

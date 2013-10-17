@@ -1,0 +1,7 @@
+{
+  try {
+    MizLib.copyFile(backdrop,new File(MizLib.getTvShowBackdropFolder(this),backdrop.getName()));
+  }
+ catch (  IOException e) {
+  }
+}

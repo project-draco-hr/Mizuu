@@ -1,0 +1,7 @@
+{
+  int i=0;
+  for (i=offset; i < b.length; i++) {
+    if (b[i] == '\r' && b[++i] == '\n' && b[++i] == '\r' && b[++i] == '\n')     break;
+  }
+  return i + 1;
+}

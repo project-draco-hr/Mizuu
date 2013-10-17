@@ -1,0 +1,5 @@
+String showId
+String season
+String episode
+String table
+String value

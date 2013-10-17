@@ -1,0 +1,10 @@
+{
+  mFilepath=filepath;
+  if (mFilepath.contains("/")) {
+    setFileName(mFilepath.substring(mFilepath.lastIndexOf('/') + 1,mFilepath.lastIndexOf('.')).trim());
+  }
+  if (MizLib.countOccurrences(mFilepath,'/') > 1) {
+    mParentName=mFilepath.substring(0,mFilepath.lastIndexOf('/'));
+    setParentName(mParentName.substring(mParentName.lastIndexOf('/') + 1,mParentName.length()).trim());
+  }
+}

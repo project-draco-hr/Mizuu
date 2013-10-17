@@ -1,0 +1,6 @@
+{
+  if (currentFolder.getParentFile() != null) {
+    currentFolder=currentFolder.getParentFile();
+    browseFolder(currentFolder);
+  }
+}

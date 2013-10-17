@@ -1,0 +1,9 @@
+{
+  this.rowId=rowId;
+  this.filepath=filepath;
+  this.isSmb=isSmb;
+  this.user=user;
+  this.password=password;
+  this.domain=domain;
+  this.type=type;
+}

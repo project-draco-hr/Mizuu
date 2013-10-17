@@ -1,0 +1,37 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  pbar=(ProgressBar)v.findViewById(R.id.progress);
+  if (videos.size() > 0)   pbar.setVisibility(View.GONE);
+  mAdapter=new ImageAdapter(getActivity());
+  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView.setAdapter(mAdapter);
+  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      if (mAdapter.getNumColumns() == 0) {
+        final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+        mGridView.setColumnWidth(mImageThumbSize);
+        if (numColumns > 0) {
+          final int columnWidth=(mGridView.getWidth() / numColumns) - mImageThumbSpacing;
+          mAdapter.setNumColumns(numColumns);
+          mAdapter.setItemHeight(columnWidth);
+        }
+      }
+    }
+  }
+);
+  mGridView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      if (YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(getActivity()).equals(YouTubeInitializationResult.SUCCESS)) {
+        Intent intent=YouTubeStandalonePlayer.createVideoIntent(getActivity(),MizLib.YOUTUBE_API,videos.get(arg2).getId(),0,false,true);
+        startActivity(intent);
+      }
+ else {
+        Intent intent=new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("http://www.youtube.com/watch?v=" + videos.get(arg2).getId()));
+        startActivity(intent);
+      }
+    }
+  }
+);
+  mGridView.setOnScrollListener(new PauseOnScrollListener(imageLoader,true,true));
+}

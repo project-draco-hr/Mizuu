@@ -1,0 +1,12 @@
+{
+  super.onActivityResult(requestCode,resultCode,data);
+  if (resultCode == 1)   updateWidgets();
+  if (resultCode == 2 || resultCode == 4) {
+    if (resultCode == 4)     Toast.makeText(this,getString(R.string.updatedMovie),Toast.LENGTH_SHORT).show();
+    Intent intent=new Intent();
+    intent.setClass(getApplicationContext(),MovieDetails.class);
+    intent.putExtra("rowId",movieId);
+    startActivity(intent);
+    finish();
+  }
+}

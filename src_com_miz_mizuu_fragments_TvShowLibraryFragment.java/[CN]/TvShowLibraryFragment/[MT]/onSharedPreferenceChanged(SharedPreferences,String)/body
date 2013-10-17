@@ -1,0 +1,9 @@
+{
+  if (key.equals("prefsIgnorePrefixesInTitles")) {
+    ignorePrefixes=settings.getBoolean("prefsIgnorePrefixesInTitles",false);
+    forceLoaderLoad();
+  }
+  showGridTitles=settings.getBoolean("prefsShowGridTitles",false);
+  sortShows();
+  notifyDataSetChanged();
+}

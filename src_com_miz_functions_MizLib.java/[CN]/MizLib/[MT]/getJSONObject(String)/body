@@ -1,0 +1,16 @@
+{
+  try {
+    HttpParams httpParameters=new BasicHttpParams();
+    HttpConnectionParams.setConnectionTimeout(httpParameters,5000);
+    HttpConnectionParams.setSoTimeout(httpParameters,30000);
+    HttpClient httpclient=new DefaultHttpClient(httpParameters);
+    HttpGet httppost=new HttpGet(url);
+    httppost.setHeader("Accept","application/json");
+    ResponseHandler<String> responseHandler=new BasicResponseHandler();
+    String html=httpclient.execute(httppost,responseHandler);
+    return new JSONObject(html);
+  }
+ catch (  Exception e) {
+    return new JSONObject();
+  }
+}

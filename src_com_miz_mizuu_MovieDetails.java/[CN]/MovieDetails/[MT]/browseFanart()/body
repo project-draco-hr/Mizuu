@@ -1,0 +1,14 @@
+{
+  if (MizLib.isOnline(getApplicationContext())) {
+    if (thisMovie.getTmdbId() != null && !thisMovie.getTmdbId().isEmpty()) {
+      Intent intent=new Intent();
+      intent.putExtra("tmdbId",thisMovie.getTmdbId());
+      intent.putExtra("startPosition",1);
+      intent.setClass(this,MovieCoverFanartBrowser.class);
+      startActivity(intent);
+    }
+  }
+ else {
+    Toast.makeText(this,getString(R.string.noInternet),Toast.LENGTH_SHORT).show();
+  }
+}

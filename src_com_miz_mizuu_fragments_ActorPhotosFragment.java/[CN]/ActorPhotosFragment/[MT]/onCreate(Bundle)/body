@@ -1,0 +1,9 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  imageLoader=ImageLoader.getInstance();
+  options=MizuuApplication.getDefaultActorLoadingOptions();
+  new GetActorDetails().execute(getArguments().getString("actorId"));
+}

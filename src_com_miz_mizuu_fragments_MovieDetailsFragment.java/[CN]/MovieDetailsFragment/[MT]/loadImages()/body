@@ -1,0 +1,30 @@
+{
+  if (!MizLib.runsInPortraitMode(getActivity())) {
+    if (!ignoreNfo && thisMovie.isNetworkFile()) {
+      ImageLoader.getInstance().displayImage(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail(),cover,MizuuApplication.getDefaultCoverLoadingOptions());
+      ImageLoader.getInstance().displayImage(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop(),background,MizuuApplication.getBackdropLoadingOptions());
+    }
+ else {
+      ImageLoader.getInstance().displayImage("file://" + thisMovie.getThumbnail(),cover,MizuuApplication.getDefaultCoverLoadingOptions());
+      ImageLoader.getInstance().displayImage("file://" + thisMovie.getBackdrop(),background,MizuuApplication.getBackdropLoadingOptions());
+    }
+  }
+ else {
+    if (!ignoreNfo && thisMovie.isNetworkFile()) {
+      ImageLoader.getInstance().displayImage(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop(),background,MizuuApplication.getBackdropLoadingOptions(),new SimpleImageLoadingListener(){
+        @Override public void onLoadingFailed(        String imageUri,        View view,        FailReason failReason){
+          ImageLoader.getInstance().displayImage(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail(),background,MizuuApplication.getDefaultCoverLoadingOptions());
+        }
+      }
+);
+    }
+ else {
+      ImageLoader.getInstance().displayImage("file://" + thisMovie.getBackdrop(),background,MizuuApplication.getBackdropLoadingOptions(),new SimpleImageLoadingListener(){
+        @Override public void onLoadingFailed(        String imageUri,        View view,        FailReason failReason){
+          ImageLoader.getInstance().displayImage(thisMovie.getThumbnail(),background,MizuuApplication.getDefaultCoverLoadingOptions());
+        }
+      }
+);
+    }
+  }
+}

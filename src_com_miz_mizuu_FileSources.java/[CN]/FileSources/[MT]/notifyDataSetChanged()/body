@@ -1,0 +1,7 @@
+{
+  try {
+    list.setAdapter(new ListAdapter());
+  }
+ catch (  Exception e) {
+  }
+}

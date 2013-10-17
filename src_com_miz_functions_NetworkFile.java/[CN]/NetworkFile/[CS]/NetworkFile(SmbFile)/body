@@ -1,0 +1,27 @@
+{
+  path=smb.getCanonicalPath();
+  try {
+    name=smb.getName();
+  }
+ catch (  Exception e) {
+    name="smb://";
+  }
+  try {
+    isDirectory=smb.isDirectory();
+  }
+ catch (  SmbException e) {
+    isDirectory=false;
+  }
+  try {
+    length=smb.length();
+  }
+ catch (  SmbException e) {
+    length=0;
+  }
+  try {
+    parent=smb.getParent();
+  }
+ catch (  Exception e) {
+    parent="smb://";
+  }
+}

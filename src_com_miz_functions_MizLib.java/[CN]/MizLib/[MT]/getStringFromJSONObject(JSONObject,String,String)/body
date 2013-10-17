@@ -1,0 +1,10 @@
+{
+  try {
+    String s=json.getString(name);
+    if (s.equals("null"))     return fallback;
+    return s;
+  }
+ catch (  Exception e) {
+    return fallback;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (PLOT == null || PLOT.isEmpty()) {
+    return CONTEXT.getString(R.string.stringNoPlot);
+  }
+ else {
+    return PLOT;
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return new StackRemoteViewsFactoryTv(this.getApplicationContext(),intent);
+}

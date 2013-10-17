@@ -1,0 +1,12 @@
+{
+  int lastIndex=0;
+  Pattern searchPattern=Pattern.compile(YEAR_PATTERN);
+  Matcher searchMatcher=searchPattern.matcher(input);
+  while (searchMatcher.find())   lastIndex=searchMatcher.end();
+  if (lastIndex > 0)   try {
+    return input.substring(0,lastIndex - 4);
+  }
+ catch (  IndexOutOfBoundsException e) {
+  }
+  return input;
+}

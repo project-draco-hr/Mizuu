@@ -1,0 +1,40 @@
+{
+  CoverItem holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.grid_item_cover,container,false);
+    holder=new CoverItem();
+    holder.layout=(RelativeLayout)convertView.findViewById(R.id.cover_layout);
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    holder.text=(TextView)convertView.findViewById(R.id.text);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(CoverItem)convertView.getTag();
+  }
+  holder.text.setVisibility(TextView.GONE);
+  if (holder.layout.getLayoutParams().height != mItemHeight) {
+    holder.layout.setLayoutParams(mImageViewLayoutParams);
+  }
+  if (showGridTitles) {
+    holder.text.setVisibility(TextView.VISIBLE);
+    if (actionBar.getSelectedNavigationIndex() == 3)     holder.text.setText(shownMovies.get(position).getCollection());
+ else     holder.text.setText(shownMovies.get(position).getTitle());
+  }
+ else {
+    holder.text.setVisibility(TextView.GONE);
+  }
+  if (actionBar.getSelectedNavigationIndex() == 3) {
+    if (showGridTitles)     imageLoader.displayImage("file://" + shownMovies.get(position).getCollectionPoster(),holder.cover,options);
+ else     imageLoader.displayImage("file://" + shownMovies.get(position).getCollectionPoster(),holder.cover,options,new ImageLoadingErrorListener(shownMovies.get(position).getCollection(),null,null));
+  }
+ else {
+    if (!ignoreNfo && shownMovies.get(position).isNetworkFile()) {
+      imageLoader.displayImage(shownMovies.get(position).getFilepath() + "<MiZ>" + shownMovies.get(position).getThumbnail(),holder.cover,options,new ImageLoadingErrorListener(shownMovies.get(position).getTitle(),null,null));
+    }
+ else {
+      if (showGridTitles)       imageLoader.displayImage("file://" + shownMovies.get(position).getThumbnail(),holder.cover,options);
+ else       imageLoader.displayImage("file://" + shownMovies.get(position).getThumbnail(),holder.cover,options,new ImageLoadingErrorListener(shownMovies.get(position).getTitle(),null,null));
+    }
+  }
+  return convertView;
+}

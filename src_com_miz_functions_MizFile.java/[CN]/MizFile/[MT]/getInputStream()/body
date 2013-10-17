@@ -1,0 +1,17 @@
+{
+  if (isSmb) {
+    try {
+      return smb.getInputStream();
+    }
+ catch (    IOException e1) {
+    }
+  }
+ else {
+    try {
+      return new FileInputStream(absolutePath);
+    }
+ catch (    FileNotFoundException e) {
+    }
+  }
+  return null;
+}

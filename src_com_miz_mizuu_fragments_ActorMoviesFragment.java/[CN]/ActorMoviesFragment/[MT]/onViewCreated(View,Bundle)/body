@@ -1,0 +1,40 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  if (!MizLib.runsInPortraitMode(getActivity()))   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
+  pbar=(ProgressBar)v.findViewById(R.id.progress);
+  if (pics_sources.size() > 0)   pbar.setVisibility(View.GONE);
+  mAdapter=new ImageAdapter(getActivity());
+  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView.setAdapter(mAdapter);
+  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      if (mAdapter.getNumColumns() == 0) {
+        final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+        if (numColumns > 0) {
+          final int columnWidth=(mGridView.getWidth() / numColumns) - mImageThumbSpacing;
+          mAdapter.setNumColumns(numColumns);
+          mAdapter.setItemHeight(columnWidth);
+        }
+      }
+    }
+  }
+);
+  mGridView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      if (movieMap.get(Integer.valueOf(pics_sources.get(arg2).getId()))) {
+        Intent intent=new Intent();
+        intent.setClass(getActivity(),MovieDetails.class);
+        intent.putExtra("tmdbId",pics_sources.get(arg2).getId());
+        startActivityForResult(intent,0);
+      }
+ else {
+        Intent i=new Intent(Intent.ACTION_VIEW);
+        i.setClass(getActivity(),TMDbMovieDetails.class);
+        i.putExtra("tmdbid",pics_sources.get(arg2).getId());
+        i.putExtra("title",pics_sources.get(arg2).getTitle());
+        startActivity(i);
+      }
+    }
+  }
+);
+}

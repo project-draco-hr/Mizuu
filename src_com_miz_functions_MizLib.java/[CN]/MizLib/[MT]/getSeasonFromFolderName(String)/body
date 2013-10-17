@@ -1,0 +1,44 @@
+{
+  int season=0;
+  Pattern searchPattern=Pattern.compile("(?i)s(\\d){1,2}");
+  Matcher searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      String result=input.substring(searchMatcher.start(),searchMatcher.end());
+      season=Integer.valueOf(result.replaceAll("(?i)s","").trim());
+      return season;
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  searchPattern=Pattern.compile("(?i)season((\\s)+)(\\d){1,2}");
+  searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      String result=input.substring(searchMatcher.start(),searchMatcher.end());
+      season=Integer.valueOf(result.replaceAll("(?i)season","").trim());
+      return season;
+    }
+ catch (    IndexOutOfBoundsException e) {
+    }
+  }
+  searchPattern=Pattern.compile("(\\d){1,2}");
+  searchMatcher=searchPattern.matcher(input);
+  if (searchMatcher.find()) {
+    try {
+      String result=input.substring(searchMatcher.start(),searchMatcher.end());
+switch (result.length()) {
+case 1:
+        season=Integer.valueOf(result);
+      break;
+case 2:
+    season=Integer.valueOf(result);
+  break;
+}
+return season;
+}
+ catch (IndexOutOfBoundsException e) {
+}
+}
+return season;
+}

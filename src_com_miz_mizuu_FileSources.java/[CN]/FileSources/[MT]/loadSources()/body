@@ -1,0 +1,12 @@
+{
+  DbAdapterSources dbHelper=MizuuApplication.getSourcesAdapter();
+  sources.clear();
+  Cursor cursor=dbHelper.fetchAllSources();
+  while (cursor.moveToNext()) {
+    sources.add(new FileSource(cursor.getLong(cursor.getColumnIndex(DbAdapterSources.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),cursor.getInt(cursor.getColumnIndex(DbAdapterSources.KEY_IS_SMB)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_USER)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_TYPE))));
+  }
+  cursor.close();
+  if (sources.size() == 0)   noFileSources.setVisibility(View.VISIBLE);
+ else   noFileSources.setVisibility(View.GONE);
+  notifyDataSetChanged();
+}

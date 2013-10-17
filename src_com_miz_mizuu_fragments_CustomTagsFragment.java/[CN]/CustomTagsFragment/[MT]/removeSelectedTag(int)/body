@@ -1,0 +1,16 @@
+{
+  items.remove(position);
+  StringBuilder sb=new StringBuilder();
+  for (  String item : items) {
+    sb.append("<MiZ>" + item);
+  }
+  String result=sb.toString();
+  if (result.startsWith("<MiZ>")) {
+    result=result.substring(5);
+  }
+  items_string=result;
+  Editor editor=settings.edit();
+  editor.putString("ignoredTags",items_string);
+  editor.commit();
+  ((BaseAdapter)lv.getAdapter()).notifyDataSetChanged();
+}

@@ -1,0 +1,3 @@
+{
+  return inflater.inflate(R.layout.show_details,container,false);
+}

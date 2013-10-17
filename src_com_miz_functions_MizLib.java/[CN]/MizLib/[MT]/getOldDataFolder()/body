@@ -1,0 +1,4 @@
+{
+  File dataFolder=new File(Environment.getExternalStorageDirectory().toString() + "/data/com.miz.mizuu");
+  return dataFolder;
+}

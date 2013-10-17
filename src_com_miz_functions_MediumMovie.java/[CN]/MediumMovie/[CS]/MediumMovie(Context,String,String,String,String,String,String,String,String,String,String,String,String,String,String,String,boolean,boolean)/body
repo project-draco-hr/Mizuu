@@ -1,0 +1,20 @@
+{
+  CONTEXT=context;
+  ROW_ID=rowId;
+  FILEPATH=filepath;
+  TITLE=title;
+  TMDB_ID=tmdbId;
+  RATING=rating;
+  RELEASEDATE=releasedate;
+  GENRES=genres;
+  FAVOURITE=favourite;
+  CAST=cast;
+  COLLECTION=collection;
+  COLLECTION_ID=collectionId;
+  TO_WATCH=toWatch;
+  HAS_WATCHED=hasWatched;
+  DATE_ADDED=date_added;
+  CERTIFICATION=certification;
+  this.ignorePrefixes=ignorePrefixes;
+  this.ignoreNfo=ignoreNfo;
+}

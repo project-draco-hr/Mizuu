@@ -1,0 +1,3 @@
+{
+  return isFavorite ? "1" : "0";
+}

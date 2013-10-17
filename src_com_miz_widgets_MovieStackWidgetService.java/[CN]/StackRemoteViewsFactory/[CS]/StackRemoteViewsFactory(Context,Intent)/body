@@ -1,0 +1,5 @@
+{
+  mContext=context;
+  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("prefsIgnorePrefixesInTitles",false);
+  ignoreNfo=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("prefsIgnoreNfoFiles",true);
+}

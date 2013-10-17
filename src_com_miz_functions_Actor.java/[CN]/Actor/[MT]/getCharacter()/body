@@ -1,0 +1,5 @@
+{
+  String characters=character.replace("|",", ");
+  if (characters.endsWith(", "))   return characters.substring(0,characters.length() - 2);
+  return characters;
+}

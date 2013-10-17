@@ -1,0 +1,33 @@
+{
+  DbAdapterTvShow dbHelper=MizuuApplication.getTvDbAdapter();
+  boolean deleted=dbHelper.deleteShow(thisShow.getId());
+  DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+  deleted=deleted && db.deleteAllEpisodes(thisShow.getId());
+  if (deleted) {
+    try {
+      File coverArt=new File(thisShow.getCoverPhoto());
+      if (coverArt.exists() && coverArt.getAbsolutePath().contains("com.miz.mizuu")) {
+        MizLib.deleteFile(coverArt);
+      }
+      File thumbnail=new File(thisShow.getThumbnail());
+      if (thumbnail.exists() && thumbnail.getAbsolutePath().contains("com.miz.mizuu")) {
+        MizLib.deleteFile(thumbnail);
+      }
+      File backdrop=new File(thisShow.getBackdrop());
+      if (backdrop.exists() && backdrop.getAbsolutePath().contains("com.miz.mizuu")) {
+        MizLib.deleteFile(backdrop);
+      }
+      File dataFolder=getTvShowEpisodeFolder(c);
+      File[] listFiles=dataFolder.listFiles();
+      if (listFiles != null) {
+        int count=listFiles.length;
+        for (int i=0; i < count; i++)         if (listFiles[i].getName().startsWith(thisShow.getId() + "_S"))         MizLib.deleteFile(listFiles[i]);
+      }
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+ else {
+    if (showToast)     Toast.makeText(c,c.getString(R.string.failedToRemoveShow),Toast.LENGTH_SHORT).show();
+  }
+}

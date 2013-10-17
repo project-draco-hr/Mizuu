@@ -1,0 +1,16 @@
+{
+  final int mImageThumbSize=c.getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+  final int mImageThumbSpacing=c.getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  WindowManager window=(WindowManager)c.getSystemService(Context.WINDOW_SERVICE);
+  Display d=window.getDefaultDisplay();
+  Point size=new Point();
+  d.getSize(size);
+  final int numColumns=(int)Math.floor(getGreatestNumber(size.x,size.y) / (mImageThumbSize + mImageThumbSpacing));
+  if (numColumns > 0) {
+    final int columnWidth=(getGreatestNumber(size.x,size.y) / numColumns) - mImageThumbSpacing;
+    if (columnWidth > 320)     return 440;
+ else     if (columnWidth > 240)     return 320;
+ else     if (columnWidth > 180)     return 240;
+  }
+  return 180;
+}

@@ -1,0 +1,9 @@
+{
+  if (isAdded()) {
+    pbar.setVisibility(View.GONE);
+    mAdapter.notifyDataSetChanged();
+    Intent intent=new Intent("mizuu-cover-search-fragment-tv");
+    intent.putExtra("coverCount",pics_sources.size());
+    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+  }
+}

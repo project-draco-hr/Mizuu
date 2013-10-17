@@ -1,0 +1,8 @@
+{
+  if (DESCRIPTION == null || DESCRIPTION.isEmpty()) {
+    return CONTEXT.getString(R.string.stringNoPlot);
+  }
+ else {
+    return DESCRIPTION.trim();
+  }
+}

@@ -1,0 +1,7 @@
+{
+  if (key.equals("showMediaApps")) {
+    showMediaApps=sharedPreferences.getBoolean("showMediaApps",true);
+    setupMenuItems();
+    ((BaseAdapter)mDrawerList.getAdapter()).notifyDataSetChanged();
+  }
+}

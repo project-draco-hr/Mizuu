@@ -1,0 +1,26 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.update_layout);
+  isMovie=getIntent().getExtras().getBoolean("isMovie");
+  if (!isMovie)   setTitle(getString(R.string.updateTvShowsTitle));
+  settings=PreferenceManager.getDefaultSharedPreferences(this);
+  editor=settings.edit();
+  checkBox=(CheckBox)findViewById(R.id.checkBox);
+  checkBox.setChecked(false);
+  checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
+      editor.putBoolean("prefsClearLibrary",isChecked);
+      editor.commit();
+    }
+  }
+);
+  checkBox2=(CheckBox)findViewById(R.id.checkBox2);
+  checkBox2.setChecked(false);
+  checkBox2.setOnCheckedChangeListener(new OnCheckedChangeListener(){
+    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
+      editor.putBoolean("prefsRemoveUnavailable",isChecked);
+      editor.commit();
+    }
+  }
+);
+}

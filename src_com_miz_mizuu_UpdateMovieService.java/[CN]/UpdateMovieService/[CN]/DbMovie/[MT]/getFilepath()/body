@@ -1,0 +1,4 @@
+{
+  if (filepath.contains("smb") && filepath.contains("@"))   return "smb://" + filepath.substring(filepath.indexOf("@") + 1);
+  return filepath.replace("/smb:/","smb://");
+}

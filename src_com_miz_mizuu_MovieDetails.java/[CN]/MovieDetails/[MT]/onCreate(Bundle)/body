@@ -1,0 +1,50 @@
+{
+  super.onCreate(savedInstanceState);
+  if (!MizLib.runsInPortraitMode(this))   setTheme(R.style.Theme_Example_NoBackGround);
+  if (!MizLib.runsInPortraitMode(this))   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+  setContentView(R.layout.viewpager);
+  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnorePrefixesInTitles",false);
+  ignoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnoreNfoFiles",true);
+  prefsRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsRemoveMoviesFromWatchlist",true);
+  ignoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnoredFilesEnabled",false);
+  movieId=getIntent().getExtras().getInt("rowId");
+  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
+  awesomePager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
+  final ActionBar bar=getActionBar();
+  bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+  bar.addTab(bar.newTab().setText(getString(R.string.overview)).setTabListener(this));
+  bar.addTab(bar.newTab().setText(getString(R.string.detailsActors)).setTabListener(this));
+  awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+    @Override public void onPageSelected(    int position){
+      bar.getTabAt(position).select();
+      ViewParent root=findViewById(android.R.id.content).getParent();
+      MizLib.findAndUpdateSpinner(root,position);
+    }
+  }
+);
+  if (savedInstanceState != null) {
+    bar.setSelectedNavigationItem(savedInstanceState.getInt("tab",0));
+  }
+  db=MizuuApplication.getMovieAdapter();
+  Cursor cursor=null;
+  try {
+    if (movieId > 0)     cursor=db.fetchMovie(movieId);
+ else     cursor=db.fetchMovie(getIntent().getExtras().getString("tmdbId"));
+    thisMovie=new Movie(this,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CAST)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_2)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COVERPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_1)),ignorePrefixes,ignoreNfo);
+  }
+ catch (  Exception e) {
+    finish();
+  }
+ finally {
+    cursor.close();
+  }
+  if (thisMovie == null)   finish();
+  movieId=Integer.parseInt(thisMovie.getRowId());
+  try {
+    setTitle(thisMovie.getTitle());
+    getActionBar().setSubtitle(thisMovie.getReleaseYear().replace("(","").replace(")",""));
+  }
+ catch (  Exception e) {
+    finish();
+  }
+}

@@ -1,0 +1,14 @@
+{
+  movies.clear();
+  DbAdapter dbHelper=MizuuApplication.getMovieAdapter();
+  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
+  while (cursor.moveToNext()) {
+    try {
+      movies.add(new SmallMovie(mContext,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),ignorePrefixes,ignoreNfo));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  cursor.close();
+  Collections.sort(movies);
+}

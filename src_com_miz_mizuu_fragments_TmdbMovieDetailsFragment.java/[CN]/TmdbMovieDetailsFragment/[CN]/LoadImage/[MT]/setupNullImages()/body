@@ -1,0 +1,3 @@
+{
+  mCover=BitmapFactory.decodeResource(getResources(),R.drawable.loading_image);
+}

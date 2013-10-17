@@ -1,0 +1,4 @@
+{
+  if (isFavorite())   return (10 + getRawRating()) / 2;
+  return (getRawRating() + 5) / 2;
+}

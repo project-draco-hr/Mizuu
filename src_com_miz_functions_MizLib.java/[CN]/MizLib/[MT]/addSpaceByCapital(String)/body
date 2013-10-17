@@ -1,0 +1,13 @@
+{
+  if (s == null)   return "";
+ else {
+    String result="";
+    if (!s.isEmpty()) {
+      char[] chars=s.toCharArray();
+      for (int i=0; i < chars.length; i++)       if (chars.length > (i + 1))       if (Character.isUpperCase(chars[i]) && (Character.isLowerCase(chars[i + 1]) && !Character.isSpaceChar(chars[i + 1])))       result+=" " + chars[i];
+ else       result+=chars[i];
+ else       result+=chars[i];
+    }
+    return result.trim();
+  }
+}

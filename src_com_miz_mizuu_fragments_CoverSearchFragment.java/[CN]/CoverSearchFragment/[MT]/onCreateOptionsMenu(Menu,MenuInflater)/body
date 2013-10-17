@@ -1,0 +1,5 @@
+{
+  for (int i=0; i < items.length; i++)   menu.add(0,i,i,items[i]);
+  menu.setGroupCheckable(0,true,true);
+  super.onCreateOptionsMenu(menu,inflater);
+}

@@ -1,0 +1,16 @@
+{
+  videos.clear();
+  try {
+    JSONObject jObject=MizLib.getJSONObject("https://gdata.youtube.com/feeds/api/standardfeeds/most_popular?time=today&alt=json&start-index=1&max-results=50");
+    JSONObject jdata=jObject.getJSONObject("feed");
+    JSONArray aitems=jdata.getJSONArray("entry");
+    for (int i=0; i < aitems.length(); i++) {
+      JSONObject item=aitems.getJSONObject(i);
+      JSONObject id=item.getJSONObject("id");
+      videos.add(new WebVideo(item.getJSONObject("title").getString("$t"),id.getString("$t").substring(id.getString("$t").lastIndexOf("videos/") + 7,id.getString("$t").length()),item.getJSONObject("media$group").getJSONArray("media$thumbnail").getJSONObject(0).getString("url")));
+    }
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

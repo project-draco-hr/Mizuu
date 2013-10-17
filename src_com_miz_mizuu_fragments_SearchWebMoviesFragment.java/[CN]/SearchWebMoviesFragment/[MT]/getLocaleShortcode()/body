@@ -1,0 +1,5 @@
+{
+  String language=locale.toString();
+  if (language.contains("_"))   language=language.substring(0,language.indexOf("_"));
+  return language;
+}

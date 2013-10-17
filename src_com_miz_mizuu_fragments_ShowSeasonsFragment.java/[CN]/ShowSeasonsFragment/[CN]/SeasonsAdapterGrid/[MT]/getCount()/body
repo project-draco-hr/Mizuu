@@ -1,0 +1,5 @@
+{
+  int count=0;
+  for (  String season : seasons)   count+=seasonEpisodeCount.get(Integer.valueOf(season));
+  return count;
+}

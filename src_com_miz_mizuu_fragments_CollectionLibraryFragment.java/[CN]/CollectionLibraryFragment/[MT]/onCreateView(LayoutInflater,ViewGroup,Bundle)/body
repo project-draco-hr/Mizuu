@@ -1,0 +1,32 @@
+{
+  final View v=inflater.inflate(R.layout.image_grid_fragment,container,false);
+  pbar=(ProgressBar)v.findViewById(R.id.progress);
+  mAdapter=new LoaderAdapter(getActivity());
+  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView.setFastScrollEnabled(true);
+  mGridView.setAdapter(mAdapter);
+  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      if (mAdapter.getNumColumns() == 0) {
+        final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+        if (numColumns > 0) {
+          final int columnWidth=(mGridView.getWidth() / numColumns) - mImageThumbSpacing;
+          mAdapter.setNumColumns(numColumns);
+          mAdapter.setItemHeight(columnWidth);
+        }
+      }
+    }
+  }
+);
+  mGridView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      Intent intent=new Intent();
+      intent.putExtra("rowId",Integer.parseInt(shownMovies.get(arg2).getRowId()));
+      intent.setClass(getActivity(),MovieDetails.class);
+      startActivityForResult(intent,0);
+    }
+  }
+);
+  mGridView.setOnScrollListener(new PauseOnScrollListener(imageLoader,true,true));
+  return v;
+}

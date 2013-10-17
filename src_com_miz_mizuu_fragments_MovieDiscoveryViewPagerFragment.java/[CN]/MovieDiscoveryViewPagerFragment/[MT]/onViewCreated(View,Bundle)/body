@@ -1,0 +1,20 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  awesomePager=(ViewPager)v.findViewById(R.id.awesomepager);
+  awesomePager.setOffscreenPageLimit(3);
+  awesomePager.setPageMargin(MizLib.convertDpToPixels(getActivity(),16));
+  awesomePager.setAdapter(new WebVideosAdapter(getChildFragmentManager()));
+  awesomePager.setOnPageChangeListener(new OnPageChangeListener(){
+    @Override public void onPageScrollStateChanged(    int arg0){
+    }
+    @Override public void onPageScrolled(    int arg0,    float arg1,    int arg2){
+    }
+    @Override public void onPageSelected(    int arg0){
+      actionBar.setSelectedNavigationItem(arg0);
+    }
+  }
+);
+  if (savedInstanceState != null) {
+    awesomePager.setCurrentItem(savedInstanceState.getInt("selectedIndex",0));
+  }
+}

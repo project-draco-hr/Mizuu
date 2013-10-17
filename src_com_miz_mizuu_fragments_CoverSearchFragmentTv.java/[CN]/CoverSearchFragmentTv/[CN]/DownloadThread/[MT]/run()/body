@@ -1,0 +1,15 @@
+{
+  if (isAdded()) {
+    getActivity().runOnUiThread(new Runnable(){
+      @Override public void run(){
+        Toast.makeText(getActivity(),getString(R.string.addingCover),Toast.LENGTH_SHORT).show();
+      }
+    }
+);
+    MizLib.downloadFile(url,new File(MizLib.getTvShowThumbFolder(getActivity()),TVDB_ID + ".jpg").getAbsolutePath());
+    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-show-cover-change"));
+    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-shows-update"));
+    updateWidgets();
+  }
+  if (isAdded())   getActivity().finish();
+}

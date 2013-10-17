@@ -1,0 +1,5 @@
+String domain
+String user
+String password
+String server
+boolean isFolder

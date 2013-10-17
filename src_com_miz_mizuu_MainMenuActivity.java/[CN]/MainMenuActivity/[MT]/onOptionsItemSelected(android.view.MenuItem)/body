@@ -1,0 +1,17 @@
+{
+  if (mDrawerToggle.onOptionsItemSelected(item)) {
+    return true;
+  }
+switch (item.getItemId()) {
+case android.R.id.home:
+    if (!mDrawerLayout.isDrawerOpen(mDrawerList)) {
+      mDrawerLayout.openDrawer(mDrawerList);
+    }
+ else {
+      mDrawerLayout.closeDrawer(mDrawerList);
+    }
+  return true;
+default :
+return super.onOptionsItemSelected(item);
+}
+}

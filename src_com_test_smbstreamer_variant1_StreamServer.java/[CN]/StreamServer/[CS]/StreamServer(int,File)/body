@@ -1,0 +1,19 @@
+{
+  myTcpPort=port;
+  myServerSocket=new ServerSocket(myTcpPort);
+  myThread=new Thread(new Runnable(){
+    public void run(){
+      try {
+        while (true) {
+          Socket accept=myServerSocket.accept();
+          new HTTPSession(accept);
+        }
+      }
+ catch (      IOException ioe) {
+      }
+    }
+  }
+);
+  myThread.setDaemon(true);
+  myThread.start();
+}

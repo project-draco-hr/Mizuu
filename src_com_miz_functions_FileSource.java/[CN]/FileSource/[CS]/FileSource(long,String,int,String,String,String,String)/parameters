@@ -1,0 +1,7 @@
+long rowId
+String filepath
+int isSmb
+String user
+String password
+String domain
+String type

@@ -1,0 +1,11 @@
+String title
+String plot
+String rating
+String tagline
+String release
+String certification
+String runtime
+String genres
+String toWatch
+String hasWatched
+String date

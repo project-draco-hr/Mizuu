@@ -1,0 +1,15 @@
+{
+  ArrayList<String> files=new ArrayList<String>();
+  DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+  Cursor cursor=db.getAllEpisodes(thisShow.getId(),DbAdapterTvShowEpisode.OLDEST_FIRST);
+  while (cursor.moveToNext())   files.add(cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_FILEPATH)));
+  cursor.close();
+  Intent i=new Intent();
+  i.setClass(this,IdentifyTvShow.class);
+  i.putExtra("rowId","0");
+  i.putExtra("files",files.toArray(new String[files.size()]));
+  i.putExtra("showName",thisShow.getTitle());
+  i.putExtra("oldShowId",thisShow.getId());
+  i.putExtra("isShow",true);
+  startActivity(i);
+}

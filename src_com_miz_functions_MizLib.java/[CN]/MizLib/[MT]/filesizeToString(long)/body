@@ -1,0 +1,5 @@
+{
+  if ((size / GB) >= 1)   return substring(String.valueOf(((double)size / (double)GB)),4) + " GB";
+ else   if ((size / MB) >= 1)   return (size / MB) + " MB";
+ else   return (size / KB) + " KB";
+}

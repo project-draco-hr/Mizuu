@@ -1,0 +1,82 @@
+{
+  if (!isLoading && path.endsWith("/")) {
+    new Thread(){
+      @Override public void run(){
+        try {
+          getActivity().runOnUiThread(new Runnable(){
+            @Override public void run(){
+              setLoading(true);
+            }
+          }
+);
+          visiblePath=path.substring(path.indexOf("@") + 1);
+          SmbFile currentPath=new SmbFile(path);
+          currentPathName=currentPath.getName();
+          SmbFile[] list=currentPath.listFiles();
+          currentPathContent.clear();
+          final ArrayList<NetworkFile> currentList=new ArrayList<NetworkFile>();
+          for (          SmbFile s : list) {
+            currentList.add(new NetworkFile(s));
+            currentPathContent.add(s.getCanonicalPath());
+          }
+          if (isAdded())           getActivity().runOnUiThread(new Runnable(){
+            @Override public void run(){
+              currentPathAdapter.setFiles(currentList);
+              currentPathAdapter.notifyDataSetChanged();
+            }
+          }
+);
+          if (!currentPath.getParent().equals("smb://")) {
+            parentPath=currentPath.getParent();
+            parentParentPath=new SmbFile(parentPath).getParent();
+            SmbFile[] pList=new SmbFile(parentPath).listFiles();
+            parentPathContent.clear();
+            final ArrayList<NetworkFile> parentList=new ArrayList<NetworkFile>();
+            for (            SmbFile s : pList) {
+              if (s.isDirectory()) {
+                parentList.add(new NetworkFile(s));
+                parentPathContent.add(s.getCanonicalPath());
+              }
+            }
+            if (isAdded())             getActivity().runOnUiThread(new Runnable(){
+              @Override public void run(){
+                parentPathAdapter.setFiles(parentList);
+                parentPathAdapter.notifyDataSetChanged();
+              }
+            }
+);
+          }
+ else {
+            if (isAdded())             getActivity().runOnUiThread(new Runnable(){
+              @Override public void run(){
+                parentPathAdapter.setFiles(new ArrayList<NetworkFile>());
+                parentPathAdapter.notifyDataSetChanged();
+              }
+            }
+);
+          }
+          if (isAdded())           getActivity().runOnUiThread(new Runnable(){
+            @Override public void run(){
+              getActivity().getActionBar().setSubtitle(visiblePath);
+              setLoading(false);
+            }
+          }
+);
+        }
+ catch (        MalformedURLException e) {
+        }
+catch (        final SmbException e) {
+          if (isAdded()) {
+            getActivity().runOnUiThread(new Runnable(){
+              @Override public void run(){
+                Toast.makeText(getActivity(),e.toString(),Toast.LENGTH_LONG).show();
+              }
+            }
+);
+          }
+        }
+      }
+    }
+.start();
+  }
+}

@@ -1,0 +1,95 @@
+{
+  super.onCreate(savedInstanceState);
+  confirmExit=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsConfirmBackPress",false);
+  requestWindowFeature(Window.FEATURE_NO_TITLE);
+  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+  getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+  setContentView(R.layout.welcome);
+  tf=Typeface.createFromAsset(getAssets(),"Roboto-Thin.ttf");
+  dbHelper=MizuuApplication.getMovieAdapter();
+  dbHelperTv=MizuuApplication.getTvDbAdapter();
+  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
+  while (cursor.moveToNext()) {
+    try {
+      backdrops.add(new Backdrop(new File(MizLib.getMovieBackdropFolder(this),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)) + "_bg.jpg").getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),true,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE))));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  cursor=dbHelperTv.getAllShows();
+  while (cursor.moveToNext()) {
+    try {
+      backdrops.add(new Backdrop(new File(MizLib.getTvShowBackdropFolder(this),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ID)) + "_tvbg.jpg").getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ID)),false,cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_TITLE))));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  cursor.close();
+  Collections.shuffle(backdrops,new Random(System.nanoTime()));
+  list=(ListView)findViewById(R.id.list);
+  list.setDivider(null);
+  list.setAdapter(new MenuAdapter());
+  list.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      if (!(arg2 == 0 || arg2 == 4)) {
+        Intent i=new Intent(Intent.ACTION_VIEW);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+switch (arg2) {
+case 1:
+          i.setClass(getApplicationContext(),MainMovies.class);
+        break;
+case 2:
+      i.setClass(getApplicationContext(),MainTvShows.class);
+    break;
+case 3:
+  i.setClass(getApplicationContext(),MainWatchlist.class);
+break;
+case 4:
+i.setClass(getApplicationContext(),MovieDiscovery.class);
+break;
+default :
+i.setClass(getApplicationContext(),MainWeb.class);
+break;
+}
+i.putExtra("section",arg2);
+startActivity(i);
+overridePendingTransition(R.anim.mainfadein,R.anim.splashfadeout);
+}
+}
+}
+);
+list.setSelection(1);
+updateLibraryCounts();
+title=(TextView)findViewById(R.id.title);
+if (MizLib.runsOnTablet(this)) title.setTextSize(26f);
+ else title.setVisibility(View.GONE);
+Animation aniIn=AnimationUtils.loadAnimation(this,android.R.anim.fade_in);
+aniIn.setDuration(800);
+Animation aniOut=AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
+aniOut.setDuration(800);
+imageSwitcher=(ImageSwitcher)findViewById(R.id.imageSwitcher1);
+if (!MizLib.isGoogleTV(this)) imageSwitcher.setOnClickListener(new OnClickListener(){
+@Override public void onClick(View v){
+Intent intent=new Intent();
+if (index == -1) index=0;
+if (backdrops.get(index).isMovie()) {
+intent.putExtra("rowId",Integer.parseInt(backdrops.get(index).getId()));
+intent.setClass(getApplicationContext(),MovieDetails.class);
+}
+ else {
+intent.putExtra("showId",backdrops.get(index).getId());
+intent.setClass(getApplicationContext(),ShowDetails.class);
+}
+startActivity(intent);
+}
+}
+);
+imageSwitcher.setInAnimation(aniIn);
+imageSwitcher.setOutAnimation(aniOut);
+imageSwitcher.setFactory(this);
+handler=new Handler();
+if (backdrops.size() > 0) {
+handler.post(runnable);
+}
+}

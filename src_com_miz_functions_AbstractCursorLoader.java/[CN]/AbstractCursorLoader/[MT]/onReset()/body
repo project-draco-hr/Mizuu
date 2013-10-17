@@ -1,0 +1,8 @@
+{
+  super.onReset();
+  onStopLoading();
+  if (lastCursor != null && !lastCursor.isClosed()) {
+    lastCursor.close();
+  }
+  lastCursor=null;
+}

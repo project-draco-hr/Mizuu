@@ -1,0 +1,12 @@
+{
+  setup();
+  if (clearLibrary) {
+    editor.putBoolean("prefsClearLibrary",false);
+    editor.commit();
+    removeMoviesFromDatabase();
+  }
+ else   if (!clearLibrary && clearUnavailable) {
+    removeUnavailableFiles();
+  }
+  getConfiguration();
+}

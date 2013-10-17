@@ -1,0 +1,21 @@
+{
+  allEpisodes.clear();
+  DbAdapterTvShowEpisode dbHelper=MizuuApplication.getTvEpisodeDbAdapter();
+  Cursor cursor=dbHelper.getAllEpisodes(getArguments().getString("showId"),showOldestEpisodeFirst ? DbAdapterTvShowEpisode.OLDEST_FIRST : DbAdapterTvShowEpisode.NEWEST_FIRST);
+  while (cursor.moveToNext()) {
+    allEpisodes.add(new TvShowEpisode(getActivity(),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SHOW_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SEASON)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_AIRDATE)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_DIRECTOR)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_WRITER)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_GUESTSTARS)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EXTRA_1))));
+  }
+  cursor.close();
+  Collections.sort(allEpisodes,new Comparator<TvShowEpisode>(){
+    @Override public int compare(    TvShowEpisode o1,    TvShowEpisode o2){
+      int first=Integer.valueOf(o1.getSeason() + o1.getEpisode());
+      int second=Integer.valueOf(o2.getSeason() + o2.getEpisode());
+      int res=0;
+      if (first < second)       res=-1;
+ else       res=1;
+      return showOldestEpisodeFirst ? res : res * -1;
+    }
+  }
+);
+  if (allEpisodes.size() == 0)   getActivity().finish();
+}

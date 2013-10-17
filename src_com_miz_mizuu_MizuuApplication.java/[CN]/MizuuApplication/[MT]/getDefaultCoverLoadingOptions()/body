@@ -1,0 +1,4 @@
+{
+  DisplayImageOptions options=new DisplayImageOptions.Builder().showStubImage(R.drawable.loading_image).showImageOnFail(R.drawable.loading_image).cacheInMemory(true).showImageForEmptyUri(R.drawable.loading_image).cacheOnDisc(true).bitmapConfig(Bitmap.Config.RGB_565).build();
+  return options;
+}

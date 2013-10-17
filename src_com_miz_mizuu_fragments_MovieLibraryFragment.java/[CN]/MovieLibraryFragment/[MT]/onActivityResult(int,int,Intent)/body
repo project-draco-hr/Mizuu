@@ -1,0 +1,14 @@
+{
+  super.onActivityResult(requestCode,resultCode,data);
+  if (resultCode == 1) {
+    forceLoaderLoad();
+  }
+ else   if (resultCode == 2) {
+    if (actionBar.getSelectedNavigationIndex() == 1) {
+      showFavorites();
+    }
+  }
+ else   if (resultCode == 3) {
+    notifyDataSetChanged();
+  }
+}

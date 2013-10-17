@@ -1,0 +1,6 @@
+{
+  Editor editor=settings.edit();
+  editor.putString("prefsSorting","sortWeightedRating");
+  editor.apply();
+  sortBy(WEIGHTED_RATING);
+}

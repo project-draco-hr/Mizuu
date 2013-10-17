@@ -1,0 +1,3 @@
+{
+  return new Object[]{id,text1,text2,Uri.parse(icon),rowId,"android.intent.action.VIEW",SearchManager.SUGGEST_NEVER_MAKE_SHORTCUT};
+}

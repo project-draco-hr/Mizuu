@@ -1,0 +1,10 @@
+{
+  GUESTSTARS=GUESTSTARS.replace("|",", ");
+  if (GUESTSTARS.startsWith(", ")) {
+    GUESTSTARS=GUESTSTARS.substring(2,GUESTSTARS.length());
+  }
+  if (GUESTSTARS.endsWith(", ")) {
+    GUESTSTARS=GUESTSTARS.substring(0,GUESTSTARS.length() - 2);
+  }
+  return GUESTSTARS;
+}

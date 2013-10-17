@@ -1,0 +1,7 @@
+{
+  MovieDiscoveryFragment pageFragment=new MovieDiscoveryFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("type",type);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

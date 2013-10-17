@@ -1,0 +1,16 @@
+{
+  thirdPartyApps.clear();
+  final PackageManager pm=getPackageManager();
+  List<ApplicationInfo> packages=pm.getInstalledApplications(PackageManager.GET_META_DATA);
+  for (  ApplicationInfo ai : packages) {
+    if (MizLib.isMediaApp(ai)) {
+      thirdPartyApps.add(new MenuItem(pm.getApplicationLabel(ai).toString(),pm.getApplicationIcon(ai),0,false,ai.packageName));
+    }
+  }
+  Collections.sort(thirdPartyApps,new Comparator<MenuItem>(){
+    @Override public int compare(    MenuItem o1,    MenuItem o2){
+      return o1.getStringTitle().compareToIgnoreCase(o2.getStringTitle());
+    }
+  }
+);
+}

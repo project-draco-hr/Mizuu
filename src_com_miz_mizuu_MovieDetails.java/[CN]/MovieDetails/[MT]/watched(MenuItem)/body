@@ -1,0 +1,23 @@
+{
+  thisMovie.setHasWatched(!thisMovie.hasWatched());
+  if (db.updateMovieSingleItem(Long.valueOf(thisMovie.getRowId()),DbAdapter.KEY_HAS_WATCHED,thisMovie.getHasWatched())) {
+    invalidateOptionsMenu();
+    if (thisMovie.hasWatched()) {
+      Toast.makeText(this,getString(R.string.markedAsWatched),Toast.LENGTH_SHORT).show();
+    }
+ else {
+      Toast.makeText(this,getString(R.string.markedAsUnwatched),Toast.LENGTH_SHORT).show();
+    }
+    LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-library-change"));
+  }
+ else   Toast.makeText(this,getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();
+  if (prefsRemoveMoviesFromWatchlist)   removeFromWatchlist();
+  new Thread(){
+    @Override public void run(){
+      ArrayList<Movie> watchedMovies=new ArrayList<Movie>();
+      watchedMovies.add(thisMovie);
+      MizLib.markMovieAsWatched(watchedMovies,getApplicationContext());
+    }
+  }
+.start();
+}

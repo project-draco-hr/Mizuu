@@ -1,0 +1,9 @@
+{
+  try {
+    input=new SmbFileInputStreamOld(file,bufferSize,1);
+    if (fp > 0)     input.skip(fp);
+  }
+ catch (  Exception e) {
+    throw new IOException(e);
+  }
+}

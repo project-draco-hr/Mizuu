@@ -1,0 +1,4 @@
+{
+  if (s.length() >= maxLength)   return s.substring(0,maxLength);
+ else   return s;
+}

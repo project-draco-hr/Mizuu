@@ -1,0 +1,28 @@
+{
+  Bundle b=new Bundle();
+  String title="";
+  if (videoObject instanceof Movie) {
+    title=((Movie)videoObject).getTitle();
+    b.putString("plot",((Movie)videoObject).getPlot());
+    b.putString("date",((Movie)videoObject).getReleasedate());
+    b.putDouble("rating",((Movie)videoObject).getRawRating());
+    b.putString("cover",((Movie)videoObject).getThumbnail());
+    b.putString("genres",((Movie)videoObject).getGenres());
+  }
+ else   if (videoObject instanceof TvShowEpisode) {
+    title=((TvShowEpisode)videoObject).getTitle();
+    b.putString("plot",((TvShowEpisode)videoObject).getDescription());
+    b.putString("date",((TvShowEpisode)videoObject).getReleasedate());
+    b.putDouble("rating",((TvShowEpisode)videoObject).getRawRating());
+    b.putString("cover",((TvShowEpisode)videoObject).getEpisodePhoto());
+    b.putString("episode",((TvShowEpisode)videoObject).getEpisode());
+    b.putString("season",((TvShowEpisode)videoObject).getSeason());
+  }
+ else {
+    title=(String)videoObject;
+  }
+  b.putString("title",title);
+  b.putString("forcename",title);
+  b.putBoolean("forcedirect",true);
+  return b;
+}

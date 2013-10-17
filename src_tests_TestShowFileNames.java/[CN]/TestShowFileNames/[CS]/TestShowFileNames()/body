@@ -1,0 +1,6 @@
+{
+  d=new DecryptedShowEpisode[TEST.length];
+  for (int i=0; i < TEST.length; i++) {
+    d[i]=MizLib.decryptEpisode(TEST[i],"");
+  }
+}

@@ -1,0 +1,14 @@
+{
+  int itemId=item.getItemId();
+  if (itemId == android.R.id.home) {
+    toggle();
+    return true;
+  }
+ else   if (itemId == R.id.menuSettings) {
+    startActivity(new Intent(this,Preferences.class));
+    return true;
+  }
+ else {
+    return super.onOptionsItemSelected(item);
+  }
+}

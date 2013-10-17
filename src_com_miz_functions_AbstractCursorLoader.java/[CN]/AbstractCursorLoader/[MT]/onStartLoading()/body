@@ -1,0 +1,8 @@
+{
+  if (lastCursor != null) {
+    deliverResult(lastCursor);
+  }
+  if (takeContentChanged() || lastCursor == null) {
+    forceLoad();
+  }
+}

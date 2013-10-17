@@ -1,0 +1,12 @@
+{
+  if (isLoading) {
+    this.isLoading=true;
+    pbar.setVisibility(View.VISIBLE);
+    getCollectionView().setVisibility(View.GONE);
+  }
+ else {
+    this.isLoading=false;
+    pbar.setVisibility(View.GONE);
+    getCollectionView().setVisibility(View.VISIBLE);
+  }
+}

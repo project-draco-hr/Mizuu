@@ -1,0 +1,24 @@
+{
+  try {
+    JSONObject jObject=MizLib.getJSONObject("https://gdata.youtube.com/feeds/api/videos?q=" + params[0] + "&max-results=20&alt=json&v=2");
+    JSONObject jdata=jObject.getJSONObject("feed");
+    JSONArray aitems=jdata.getJSONArray("entry");
+    for (int i=0; i < aitems.length(); i++) {
+      JSONObject item0=aitems.getJSONObject(i);
+      boolean embedding=false, mobile=false;
+      JSONArray access=item0.getJSONArray("yt$accessControl");
+      for (int j=0; j < access.length(); j++) {
+        if (access.getJSONObject(i).getString("action").equals("embed"))         embedding=access.getJSONObject(i).getString("permission").equals("allowed") ? true : false;
+        if (access.getJSONObject(i).getString("action").equals("syndicate"))         mobile=access.getJSONObject(i).getString("permission").equals("allowed") ? true : false;
+      }
+      if (embedding || mobile) {
+        JSONObject id=item0.getJSONObject("id");
+        String fullYTlink=id.getString("$t");
+        return fullYTlink.substring(fullYTlink.lastIndexOf("video:") + 6);
+      }
+    }
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

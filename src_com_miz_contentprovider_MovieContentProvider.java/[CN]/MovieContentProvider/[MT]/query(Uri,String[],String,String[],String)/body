@@ -1,0 +1,19 @@
+{
+  String query=selectionArgs[0];
+  if (query == null || query.length() == 0) {
+    return null;
+  }
+  MatrixCursor cursor=new MatrixCursor(COLUMNS);
+  try {
+    List<MediumMovie> list=getSearchResults(query);
+    int n=0;
+    for (    MediumMovie movie : list) {
+      cursor.addRow(createRow(Integer.valueOf(n),movie.getTitle(),movie.getReleasedate(),movie.getThumbnail(),movie.getRowId()));
+      n++;
+    }
+  }
+ catch (  Exception e) {
+    Log.e(TAG,"Failed to lookup " + query,e);
+  }
+  return cursor;
+}

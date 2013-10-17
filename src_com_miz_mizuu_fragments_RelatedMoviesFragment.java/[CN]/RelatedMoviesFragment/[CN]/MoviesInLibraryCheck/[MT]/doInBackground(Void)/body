@@ -1,0 +1,4 @@
+{
+  for (  WebMovie m : movies)   movieMap.put(Integer.valueOf(m.getId()),db.movieExists(m.getId()));
+  return null;
+}
