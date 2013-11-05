@@ -5,10 +5,10 @@
   }
   MatrixCursor cursor=new MatrixCursor(COLUMNS);
   try {
-    List<MediumMovie> list=getSearchResults(query);
+    List<TvShow> list=getSearchResults(query);
     int n=0;
-    for (    MediumMovie movie : list) {
-      cursor.addRow(createRow(Integer.valueOf(n),movie.getTitle(),movie.getReleaseYear().replace("(","").replace(")",""),movie.getThumbnail(),movie.getRowId()));
+    for (    TvShow show : list) {
+      cursor.addRow(createRow(Integer.valueOf(n),show.getTitle(),show.getFirstAirdateYear(),show.getThumbnail(),show.getId()));
       n++;
     }
   }

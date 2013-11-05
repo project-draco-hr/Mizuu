@@ -1,13 +1,15 @@
 {
   List<MediumMovie> movies=new ArrayList<MediumMovie>();
-  DbAdapter db=MizuuApplication.getMovieAdapter();
-  query=query.toLowerCase(Locale.ENGLISH);
-  Cursor c=db.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
-  String title="";
-  while (c.moveToNext()) {
-    title=c.getString(c.getColumnIndex(DbAdapter.KEY_TITLE));
-    if (title.toLowerCase(Locale.ENGLISH).startsWith(query)) {
-      movies.add(new MediumMovie(getContext(),c.getString(c.getColumnIndex(DbAdapter.KEY_ROWID)),c.getString(c.getColumnIndex(DbAdapter.KEY_FILEPATH)),c.getString(c.getColumnIndex(DbAdapter.KEY_TITLE)),c.getString(c.getColumnIndex(DbAdapter.KEY_TMDBID)),c.getString(c.getColumnIndex(DbAdapter.KEY_RATING)),c.getString(c.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),c.getString(c.getColumnIndex(DbAdapter.KEY_GENRES)),c.getString(c.getColumnIndex(DbAdapter.KEY_FAVOURITE)),c.getString(c.getColumnIndex(DbAdapter.KEY_CAST)),c.getString(c.getColumnIndex(DbAdapter.KEY_COLLECTION)),c.getString(c.getColumnIndex(DbAdapter.KEY_EXTRA_2)),c.getString(c.getColumnIndex(DbAdapter.KEY_TO_WATCH)),c.getString(c.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),c.getString(c.getColumnIndex(DbAdapter.KEY_EXTRA_1)),c.getString(c.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),false,true));
+  if (!MizLib.isEmpty(query)) {
+    DbAdapter db=MizuuApplication.getMovieAdapter();
+    query=query.toLowerCase(Locale.ENGLISH);
+    Cursor c=db.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
+    String title="";
+    while (c.moveToNext()) {
+      title=c.getString(c.getColumnIndex(DbAdapter.KEY_TITLE));
+      if (title.toLowerCase(Locale.ENGLISH).startsWith(query)) {
+        movies.add(new MediumMovie(getContext(),c.getString(c.getColumnIndex(DbAdapter.KEY_ROWID)),c.getString(c.getColumnIndex(DbAdapter.KEY_FILEPATH)),c.getString(c.getColumnIndex(DbAdapter.KEY_TITLE)),c.getString(c.getColumnIndex(DbAdapter.KEY_TMDBID)),c.getString(c.getColumnIndex(DbAdapter.KEY_RATING)),c.getString(c.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),c.getString(c.getColumnIndex(DbAdapter.KEY_GENRES)),c.getString(c.getColumnIndex(DbAdapter.KEY_FAVOURITE)),c.getString(c.getColumnIndex(DbAdapter.KEY_CAST)),c.getString(c.getColumnIndex(DbAdapter.KEY_COLLECTION)),c.getString(c.getColumnIndex(DbAdapter.KEY_EXTRA_2)),c.getString(c.getColumnIndex(DbAdapter.KEY_TO_WATCH)),c.getString(c.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),c.getString(c.getColumnIndex(DbAdapter.KEY_EXTRA_1)),c.getString(c.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),false,true));
+      }
     }
   }
   return movies;

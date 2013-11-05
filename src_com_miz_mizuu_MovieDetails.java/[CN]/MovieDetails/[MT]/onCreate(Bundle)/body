@@ -7,7 +7,12 @@
   ignoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnoreNfoFiles",true);
   prefsRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsRemoveMoviesFromWatchlist",true);
   ignoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnoredFilesEnabled",false);
-  movieId=getIntent().getExtras().getInt("rowId");
+  if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
+    movieId=Integer.valueOf(getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY));
+  }
+ else {
+    movieId=getIntent().getExtras().getInt("rowId");
+  }
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);
   awesomePager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
   final ActionBar bar=getActionBar();
