@@ -71,6 +71,6 @@
     }
   }
 );
-  getCollectionView().setOnScrollListener(new PauseOnScrollListener(imageLoader,true,true));
+  getCollectionView().setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
   loadEpisodes(0,true);
 }

@@ -7,4 +7,6 @@
   dbTvShowEpisode=new DbAdapterTvShowEpisode(this);
   dbSources=new DbAdapterSources(this);
   db=new DbAdapter(this);
+  PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+  mLoadWhileScrolling=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsLoadImagesWhileScrolling",false);
 }

@@ -21,5 +21,5 @@
     }
   }
 );
-  mGridView.setOnScrollListener(new PauseOnScrollListener(imageLoader,true,true));
+  mGridView.setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
 }

@@ -27,7 +27,7 @@
     }
   }
 );
-  lv.setOnScrollListener(new PauseOnScrollListener(imageLoader,true,true));
+  lv.setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
   DecryptedShowEpisode result=MizLib.decryptEpisode(files[0],settings.getString("ignoredTags",""));
   seasonText=(EditText)findViewById(R.id.seasonText);
   seasonText.setText(String.valueOf(result.getSeason()));

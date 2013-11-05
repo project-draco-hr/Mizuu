@@ -1,0 +1,5 @@
+{
+  if (key.equals("prefsLoadImagesWhileScrolling")) {
+    mLoadWhileScrolling=sharedPreferences.getBoolean("prefsLoadImagesWhileScrolling",false);
+  }
+}

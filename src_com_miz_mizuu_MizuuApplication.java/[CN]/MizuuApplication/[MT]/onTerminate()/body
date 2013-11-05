@@ -4,4 +4,5 @@
   dbTvShowEpisode.close();
   dbSources.close();
   db.close();
+  PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
 }
