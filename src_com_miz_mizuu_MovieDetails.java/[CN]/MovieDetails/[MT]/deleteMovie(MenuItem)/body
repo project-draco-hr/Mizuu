@@ -8,26 +8,37 @@
       if (ignoreDeletedFiles)       deleted=db.ignoreMovie(Long.valueOf(thisMovie.getRowId()));
  else       deleted=db.deleteMovie(Long.valueOf(thisMovie.getRowId()));
       if (deleted) {
-        try {
-          File coverArt=new File(thisMovie.getPoster());
-          if (coverArt.exists() && coverArt.getAbsolutePath().contains("com.miz.mizuu")) {
-            MizLib.deleteFile(coverArt);
-          }
-          File thumbnail=new File(thisMovie.getThumbnail());
-          if (thumbnail.exists() && thumbnail.getAbsolutePath().contains("com.miz.mizuu")) {
-            MizLib.deleteFile(thumbnail);
-          }
-          File backdrop=new File(thisMovie.getBackdrop());
-          if (backdrop.exists() && backdrop.getAbsolutePath().contains("com.miz.mizuu")) {
-            MizLib.deleteFile(backdrop);
-          }
-          if (cb.isChecked()) {
-            Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
-            deleteIntent.putExtra("filepath",thisMovie.getFilepath());
-            getApplicationContext().startService(deleteIntent);
-          }
+        if (cb.isChecked()) {
+          Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
+          deleteIntent.putExtra("filepath",thisMovie.getFilepath());
+          getApplicationContext().startService(deleteIntent);
         }
- catch (        NullPointerException e) {
+        boolean movieExists=db.movieExists(thisMovie.getTmdbId());
+        if (!movieExists) {
+          try {
+            File coverArt=new File(thisMovie.getPoster());
+            if (coverArt.exists() && coverArt.getAbsolutePath().contains("com.miz.mizuu")) {
+              MizLib.deleteFile(coverArt);
+            }
+          }
+ catch (          NullPointerException e) {
+          }
+          try {
+            File thumbnail=new File(thisMovie.getThumbnail());
+            if (thumbnail.exists() && thumbnail.getAbsolutePath().contains("com.miz.mizuu")) {
+              MizLib.deleteFile(thumbnail);
+            }
+          }
+ catch (          NullPointerException e) {
+          }
+          try {
+            File backdrop=new File(thisMovie.getBackdrop());
+            if (backdrop.exists() && backdrop.getAbsolutePath().contains("com.miz.mizuu")) {
+              MizLib.deleteFile(backdrop);
+            }
+          }
+ catch (          NullPointerException e) {
+          }
         }
         notifyDatasetChanges();
         finish();
