@@ -1,5 +1,6 @@
 {
   super.onStartCommand(intent,flags,startId);
+  if (MizLib.isMovieLibraryBeingUpdated(this))   stopSelf();
   Intent notificationIntent=new Intent(this,CancelUpdateDialog.class);
   notificationIntent.putExtra("type",CancelUpdateDialog.MOVIE);
   notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -1,5 +1,6 @@
 {
   super.onStartCommand(intent,flags,startId);
+  if (MizLib.isTvShowLibraryBeingUpdated(this))   stopSelf();
   if (!MizLib.isOnline(this))   stopSelf();
   Intent notificationIntent=new Intent(this,CancelUpdateDialog.class);
   notificationIntent.putExtra("type",CancelUpdateDialog.TVSHOWS);
