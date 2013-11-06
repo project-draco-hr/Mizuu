@@ -1,5 +1,4 @@
 {
   super.onStart();
   getActionBar().setDisplayHomeAsUpEnabled(true);
-  EasyTracker.getInstance().activityStart(this);
 }
