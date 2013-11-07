@@ -1,17 +1,30 @@
 {
-  sections=new Object[shownShows.size()];
-  String SORT_TYPE=settings.getString("prefsSorting","sortTitle");
+  ArrayList<TvShow> tempShows=new ArrayList<TvShow>(shownShows);
+  sections=new Object[tempShows.size()];
+  String SORT_TYPE=settings.getString("prefsSortingTv","sortTitle");
   if (SORT_TYPE.equals("sortRating")) {
     DecimalFormat df=new DecimalFormat("#.#");
-    for (int i=0; i < sections.length; i++)     sections[i]=df.format(shownShows.get(i).getRawRating());
+    for (int i=0; i < sections.length; i++)     sections[i]=df.format(tempShows.get(i).getRawRating());
   }
  else   if (SORT_TYPE.equals("sortWeightedRating")) {
     DecimalFormat df=new DecimalFormat("#.#");
-    for (int i=0; i < sections.length; i++)     sections[i]=df.format(shownShows.get(i).getWeightedRating());
+    for (int i=0; i < sections.length; i++)     sections[i]=df.format(tempShows.get(i).getWeightedRating());
+  }
+ else   if (SORT_TYPE.equals("sortDuration")) {
+    String hour=getResources().getQuantityString(R.plurals.hour,1,1).substring(0,1);
+    String minute=getResources().getQuantityString(R.plurals.minute,1,1).substring(0,1);
+    for (int i=0; i < sections.length; i++)     sections[i]=MizLib.getRuntimeInMinutesOrHours(tempShows.get(i).getRuntime(),hour,minute);
   }
  else {
-    for (int i=0; i < sections.length; i++)     if (shownShows.get(i).getTitle().length() > 0)     sections[i]=shownShows.get(i).getTitle().substring(0,1);
+    String temp="";
+    for (int i=0; i < sections.length; i++)     if (!MizLib.isEmpty(tempShows.get(i).getTitle())) {
+      temp=tempShows.get(i).getTitle().substring(0,1);
+      if (Character.isLetter(temp.charAt(0)))       sections[i]=tempShows.get(i).getTitle().substring(0,1);
+ else       sections[i]="#";
+    }
  else     sections[i]="";
   }
+  tempShows.clear();
+  tempShows=null;
   super.notifyDataSetChanged();
 }

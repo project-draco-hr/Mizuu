@@ -1,6 +1,6 @@
 {
   Editor editor=settings.edit();
-  editor.putString("prefsSorting","sortNewestEpisode");
+  editor.putString("prefsSortingTv","sortNewestEpisode");
   editor.apply();
   sortBy(NEWEST_EPISODE);
 }

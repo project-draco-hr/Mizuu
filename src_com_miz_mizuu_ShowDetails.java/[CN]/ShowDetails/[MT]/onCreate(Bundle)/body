@@ -26,7 +26,6 @@
   }
   ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnorePrefixesInTitles",false);
   dbHelper=MizuuApplication.getTvDbAdapter();
-  System.out.println("HELLO!!!!!");
   String showId="";
   if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
     showId=getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY);

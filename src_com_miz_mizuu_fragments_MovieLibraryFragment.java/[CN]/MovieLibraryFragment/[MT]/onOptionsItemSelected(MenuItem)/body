@@ -19,6 +19,9 @@ break;
 case R.id.menuSortTitle:
 sortByTitle();
 break;
+case R.id.menuSortDuration:
+sortByDuration();
+break;
 case R.id.menuSettings:
 startActivity(new Intent(getActivity(),Preferences.class));
 break;

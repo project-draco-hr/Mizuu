@@ -15,6 +15,7 @@
   HAS_WATCHED=hasWatched;
   DATE_ADDED=date_added;
   CERTIFICATION=certification;
+  RUNTIME=runtime;
   this.ignorePrefixes=ignorePrefixes;
   this.ignoreNfo=ignoreNfo;
 }

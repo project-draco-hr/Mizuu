@@ -15,4 +15,10 @@
  else   if (SORT_TYPE.equals("sortAdded")) {
     sortByDateAdded();
   }
+ else   if (SORT_TYPE.equals("sortDuration")) {
+    sortByDuration();
+  }
+ else {
+    sortByTitle();
+  }
 }

@@ -1,5 +1,5 @@
 {
-  String SORT_TYPE=settings.getString("prefsSorting","sortTitle");
+  String SORT_TYPE=settings.getString("prefsSortingTv","sortTitle");
   if (SORT_TYPE.equals("sortRelease")) {
     sortByRelease();
   }
@@ -11,6 +11,9 @@
   }
  else   if (SORT_TYPE.equals("sortNewestEpisode")) {
     sortByNewestEpisode();
+  }
+ else   if (SORT_TYPE.equals("sortDuration")) {
+    sortByDuration();
   }
  else {
     sortByTitle();

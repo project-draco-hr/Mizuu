@@ -1,0 +1,6 @@
+{
+  Editor editor=settings.edit();
+  editor.putString("prefsSortingTv","sortDuration");
+  editor.apply();
+  sortBy(DURATION);
+}

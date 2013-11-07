@@ -7,11 +7,17 @@ case R.id.menuSortAdded:
 case R.id.menuSortRating:
 sortByRating();
 break;
+case R.id.menuSortWeightedRating:
+sortByWeightedRating();
+break;
 case R.id.menuSortRelease:
 sortByRelease();
 break;
 case R.id.menuSortTitle:
 sortByTitle();
+break;
+case R.id.menuSortDuration:
+sortByDuration();
 break;
 case R.id.menuSettings:
 startActivity(new Intent(getActivity(),Preferences.class));

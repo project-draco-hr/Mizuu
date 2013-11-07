@@ -9,7 +9,16 @@
  else   if (SORT_TYPE.equals("sortRating")) {
     sortByRating();
   }
+ else   if (SORT_TYPE.equals("sortWeightedRating")) {
+    sortByWeightedRating();
+  }
  else   if (SORT_TYPE.equals("sortAdded")) {
     sortByDateAdded();
+  }
+ else   if (SORT_TYPE.equals("sortDuration")) {
+    sortByDuration();
+  }
+ else {
+    sortByTitle();
   }
 }

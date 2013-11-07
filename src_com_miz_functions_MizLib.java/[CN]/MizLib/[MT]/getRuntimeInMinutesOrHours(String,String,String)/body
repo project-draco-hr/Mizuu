@@ -1,0 +1,7 @@
+{
+  mRuntimeInMinutes=Integer.valueOf(runtime);
+  if (mRuntimeInMinutes >= 60) {
+    return (mRuntimeInMinutes / 60) + hour;
+  }
+  return mRuntimeInMinutes + minute;
+}
