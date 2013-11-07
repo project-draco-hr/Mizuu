@@ -1,0 +1,19 @@
+{
+  ArrayList<DbMovie> dbMovies=new ArrayList<DbMovie>();
+  DbAdapter db=MizuuApplication.getMovieAdapter();
+  Cursor tempCursor=db.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",ignoreRemovedFiles);
+  while (tempCursor.moveToNext()) {
+    try {
+      dbMovies.add(new DbMovie(tempCursor.getString(tempCursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),tempCursor.getLong(tempCursor.getColumnIndex(DbAdapter.KEY_ROWID)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapter.KEY_TMDBID))));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  tempCursor.close();
+  for (int i=0; i < dbMovies.size(); i++) {
+    if (dbMovies.get(i).isUnidentified()) {
+      db.deleteMovie(dbMovies.get(i).getRowId());
+    }
+  }
+  dbMovies.clear();
+}
