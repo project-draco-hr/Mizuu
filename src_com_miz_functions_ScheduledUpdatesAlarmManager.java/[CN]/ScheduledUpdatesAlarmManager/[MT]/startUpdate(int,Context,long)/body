@@ -1,5 +1,11 @@
 {
   AlarmManager alarmMan=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+  if (type == MOVIES) {
+    if (MizLib.isMovieLibraryBeingUpdated(context))     return;
+  }
+ else {
+    if (MizLib.isTvShowLibraryBeingUpdated(context))     return;
+  }
   Intent defineIntent=new Intent(context,(type == MOVIES) ? UpdateMovieService.class : UpdateShowsService.class);
   defineIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
   PendingIntent piWakeUp=PendingIntent.getService(context,0,defineIntent,PendingIntent.FLAG_UPDATE_CURRENT);
