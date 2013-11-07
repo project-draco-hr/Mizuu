@@ -20,7 +20,7 @@
         final PackageManager pm=getPackageManager();
         Intent i=pm.getLaunchIntentForPackage(menu.get(arg2).getPackageName());
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
+        if (i != null)         startActivity(i);
       }
  else {
         Intent i=new Intent();
