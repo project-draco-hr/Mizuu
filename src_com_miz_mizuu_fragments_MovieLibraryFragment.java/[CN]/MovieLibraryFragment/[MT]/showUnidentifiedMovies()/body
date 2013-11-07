@@ -2,7 +2,7 @@
   showProgressBar();
   shownMovies.clear();
   for (int i=0; i < movies.size(); i++) {
-    if (!movies.get(i).isUnidentified())     shownMovies.add(movies.get(i));
+    if (movies.get(i).isUnidentified())     shownMovies.add(movies.get(i));
   }
   sortMovies();
   notifyDataSetChanged();
