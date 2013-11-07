@@ -1,3 +1,4 @@
 {
-  return MizLib.isEmpty(getTmdbId());
+  if (getRuntime().equals("0") && MizLib.isEmpty(getReleaseYear()) && MizLib.isEmpty(getGenres())&& MizLib.isEmpty(getTitle()))   return true;
+  return false;
 }

@@ -49,4 +49,5 @@
   }
   dbMovies.clear();
   deletedMovies.clear();
+  filesources.clear();
 }

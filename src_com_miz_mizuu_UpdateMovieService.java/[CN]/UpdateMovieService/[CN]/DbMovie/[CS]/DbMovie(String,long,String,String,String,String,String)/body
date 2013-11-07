@@ -1,0 +1,9 @@
+{
+  this.filepath=filepath;
+  this.rowId=rowId;
+  this.tmdbId=tmdbId;
+  this.runtime=runtime;
+  this.year=year;
+  this.genres=genres;
+  this.title=title;
+}
