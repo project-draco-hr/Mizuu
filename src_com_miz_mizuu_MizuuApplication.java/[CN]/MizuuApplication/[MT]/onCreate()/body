@@ -1,6 +1,5 @@
 {
   super.onCreate();
-  sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED,Uri.parse("file://" + Environment.getDataDirectory())));
   jcifs.Config.setProperty("jcifs.smb.client.disablePlainTextPasswords","true");
   if (!(0 != (getApplicationInfo().flags&=ApplicationInfo.FLAG_DEBUGGABLE)))   Crashlytics.start(this);
   initImageLoader(getApplicationContext());
