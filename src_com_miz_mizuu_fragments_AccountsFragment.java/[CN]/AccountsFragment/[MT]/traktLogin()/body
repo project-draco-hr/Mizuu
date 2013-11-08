@@ -39,7 +39,7 @@
 );
         }
  else {
-          getActivity().runOnUiThread(new Runnable(){
+          if (isAdded())           getActivity().runOnUiThread(new Runnable(){
             @Override public void run(){
               Toast.makeText(getActivity(),getString(R.string.failedToLogin),Toast.LENGTH_LONG).show();
             }
