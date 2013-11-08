@@ -1,4 +1,4 @@
 {
   ContentValues updateValues=createEditContentValues(title,plot,rating,tagline,release,certification,runtime,genres,toWatch,hasWatched,date);
-  return database.update(DATABASE_TABLE,updateValues,KEY_ROWID + "=" + rowId,null) > 0;
+  return database.update(DATABASE_TABLE,updateValues,KEY_ROWID + "='" + rowId+ "'",null) > 0;
 }
