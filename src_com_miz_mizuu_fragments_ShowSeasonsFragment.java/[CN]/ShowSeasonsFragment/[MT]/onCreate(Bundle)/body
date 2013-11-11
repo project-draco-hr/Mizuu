@@ -20,7 +20,8 @@
     thisShow=new TvShow(getActivity(),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ACTORS)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_FIRST_AIRDATE)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_RUNTIME)),false,cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_EXTRA1)));
   }
   cursor.close();
-  errorListener=new ImageLoadingErrorListener("","file://" + thisShow.getBackdrop(),options);
+  if (thisShow != null)   errorListener=new ImageLoadingErrorListener("","file://" + thisShow.getBackdrop(),options);
+ else   if (isAdded())   getActivity().finish();
   loadEpisodes();
   addAllEpisodes();
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("tvshow-episode-changed"));
