@@ -16,5 +16,4 @@
   imageLoader=ImageLoader.getInstance();
   options=MizuuApplication.getDefaultCoverLoadingOptions();
   mAdapter=new LoaderAdapter(getActivity());
-  getLoaderManager().initLoader(0,null,loaderCallbacks);
 }
