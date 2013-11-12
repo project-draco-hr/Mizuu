@@ -14,9 +14,9 @@ Collections.sort(tempMovies,new Comparator<MediumMovie>(){
   @Override public int compare(  MediumMovie o1,  MediumMovie o2){
     int firstDate=0, secondDate=0;
     String first="", second="";
-    if (o1.getReleasedate() != null)     first=o1.getReleasedate().replace("-","");
+    if (o1.getReleasedate() != null)     first=o1.getReleasedate().replace("-","").replace("/","");
     if (!(first.equals("null") | first.isEmpty()))     firstDate=Integer.valueOf(first);
-    if (o2.getReleasedate() != null)     second=o2.getReleasedate().replace("-","");
+    if (o2.getReleasedate() != null)     second=o2.getReleasedate().replace("-","").replace("/","");
     if (!(second.equals("null") | second.isEmpty()))     secondDate=Integer.valueOf(second);
     if (firstDate < secondDate)     return 1;
  else     if (firstDate > secondDate)     return -1;
