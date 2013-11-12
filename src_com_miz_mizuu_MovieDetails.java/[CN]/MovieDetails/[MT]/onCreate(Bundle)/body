@@ -43,13 +43,19 @@
  finally {
     cursor.close();
   }
-  if (thisMovie == null)   finish();
-  movieId=Integer.parseInt(thisMovie.getRowId());
-  try {
-    setTitle(thisMovie.getTitle());
-    getActionBar().setSubtitle(thisMovie.getReleaseYear().replace("(","").replace(")",""));
+  if (thisMovie != null) {
+    movieId=Integer.parseInt(thisMovie.getRowId());
+    try {
+      setTitle(thisMovie.getTitle());
+      getActionBar().setSubtitle(thisMovie.getReleaseYear().replace("(","").replace(")",""));
+    }
+ catch (    Exception e) {
+      Toast.makeText(this,getString(R.string.errorSomethingWentWrong) + " (movie ID: " + movieId+ ")",Toast.LENGTH_SHORT).show();
+      finish();
+    }
   }
- catch (  Exception e) {
+ else {
+    Toast.makeText(this,getString(R.string.errorSomethingWentWrong) + " (movie ID: " + movieId+ ")",Toast.LENGTH_SHORT).show();
     finish();
   }
 }
