@@ -1,4 +1,6 @@
 {
+  fullShows=new ArrayList<TvShow>();
+  shows=new HashSet<String>();
   NotificationCompat.Builder builder=new NotificationCompat.Builder(getApplicationContext());
   builder.setSmallIcon(R.drawable.ic_action_tv);
   builder.setTicker(getString(R.string.syncTvShows));
