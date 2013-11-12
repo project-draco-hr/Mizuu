@@ -18,7 +18,7 @@
       new Thread(){
         @Override public void run(){
           MizFile nfoFile=null;
-          String filename=file.getAbsolutePath().substring(0,file.getAbsolutePath().lastIndexOf(".")).replace("cd1","").replace("cd2","").replace("part1","").replace("part2","").trim();
+          String filename=file.getAbsolutePath().substring(0,file.getAbsolutePath().lastIndexOf(".")).replaceAll("part[1-9]|cd[1-9]","").trim();
           MizFile parent=null;
           if (file.isSmb()) {
             try {

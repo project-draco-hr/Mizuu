@@ -1,7 +1,7 @@
 {
   String parentPath=filepath.substring(0,filepath.lastIndexOf("/"));
   if (!parentPath.endsWith("/"))   parentPath+="/";
-  String filename=filepath.substring(0,filepath.lastIndexOf(".")).replace("cd1","").replace("cd2","").replace("part1","").replace("part2","").trim();
+  String filename=filepath.substring(0,filepath.lastIndexOf(".")).replaceAll("part[1-9]|cd[1-9]","").trim();
   String[] list=MizuuApplication.getCifsFilesList(parentPath);
   if (list == null) {
     SmbFile s=new SmbFile(createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),parentPath,false));

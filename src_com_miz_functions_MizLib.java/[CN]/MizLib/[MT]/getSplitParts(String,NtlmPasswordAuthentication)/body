@@ -1,0 +1,24 @@
+{
+  ArrayList<String> parts=new ArrayList<String>();
+  String fileType="";
+  if (filepath.contains(".")) {
+    fileType=filepath.substring(filepath.lastIndexOf("."));
+  }
+  if (filepath.matches(".*part[1-9].*"))   filepath=filepath.substring(0,filepath.lastIndexOf("part") + 4);
+ else   if (filepath.matches(".*cd[1-9].*"))   filepath=filepath.substring(0,filepath.lastIndexOf("cd") + 2);
+  if (auth == null) {
+    File temp;
+    for (int i=1; i < 10; i++) {
+      temp=new File(filepath + i + fileType);
+      if (temp.exists())       parts.add(temp.getAbsolutePath());
+    }
+  }
+ else {
+    SmbFile temp;
+    for (int i=1; i < 10; i++) {
+      temp=new SmbFile(createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),filepath + i + fileType,false));
+      if (temp.exists())       parts.add(temp.getPath());
+    }
+  }
+  return parts;
+}

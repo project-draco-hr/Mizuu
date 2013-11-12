@@ -99,30 +99,7 @@
   }
   playbutton.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
-      videoPlaybackStarted=System.currentTimeMillis();
-      if (thisMovie.isSplitFile()) {
-        showSplitFileDialog();
-      }
- else {
-        if (thisMovie.isNetworkFile()) {
-          playNetworkFile(thisMovie.getFilepath());
-        }
- else {
-          try {
-            getActivity().startActivity(MizLib.getVideoIntent(thisMovie.getFilepath(),useWildcard,thisMovie));
-            checkIn();
-          }
- catch (          Exception e) {
-            try {
-              getActivity().startActivity(MizLib.getVideoIntent(thisMovie.getFilepath(),"video/*",thisMovie));
-              checkIn();
-            }
- catch (            Exception e2) {
-              Toast.makeText(getActivity(),getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
-            }
-          }
-        }
-      }
+      playMovie();
     }
   }
 );

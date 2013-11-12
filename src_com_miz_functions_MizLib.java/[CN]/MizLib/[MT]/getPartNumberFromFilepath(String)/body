@@ -1,0 +1,11 @@
+{
+  if (filepath.matches(".*part[1-9].*"))   filepath=filepath.substring(filepath.lastIndexOf("part") + 4,filepath.length());
+ else   if (filepath.matches(".*cd[1-9].*"))   filepath=filepath.substring(filepath.lastIndexOf("cd") + 2,filepath.length());
+  filepath=filepath.substring(0,1);
+  try {
+    return Integer.valueOf(filepath);
+  }
+ catch (  NumberFormatException nfe) {
+    return 0;
+  }
+}
