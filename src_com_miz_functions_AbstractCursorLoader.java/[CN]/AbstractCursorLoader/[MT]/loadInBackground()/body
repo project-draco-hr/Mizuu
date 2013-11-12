@@ -1,4 +1,7 @@
 {
   Cursor cursor=buildCursor();
+  if (cursor != null) {
+    cursor.getCount();
+  }
   return (cursor);
 }

@@ -1,4 +1,5 @@
 {
   super.onResume();
+  if (movies.size() == 0)   forceLoaderLoad();
   if (mAdapter != null)   mAdapter.notifyDataSetChanged();
 }
