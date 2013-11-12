@@ -25,7 +25,7 @@
           editor.putString("traktUsername",username);
           editor.putString("traktPassword",MizLib.SHA1(password));
           editor.commit();
-          getActivity().runOnUiThread(new Runnable(){
+          if (isAdded())           getActivity().runOnUiThread(new Runnable(){
             @Override public void run(){
               Toast.makeText(getActivity(),getString(R.string.loginSucceeded),Toast.LENGTH_LONG).show();
               traktUser.setEnabled(false);
