@@ -1,0 +1,5 @@
+{
+  FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+  params.setMargins(0,0,0,getNavigationBarHeight(c));
+  v.setLayoutParams(params);
+}

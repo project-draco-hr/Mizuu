@@ -1,6 +1,7 @@
 {
   super.onCreate(savedInstanceState);
-  if (!MizLib.runsInPortraitMode(this))   setTheme(R.style.Theme_Example_NoBackGround);
+  if (!MizLib.runsInPortraitMode(this))   if (isFullscreen())   setTheme(R.style.Theme_Example_NoBackGround_FullScreen);
+ else   setTheme(R.style.Theme_Example_NoBackGround);
   if (!MizLib.runsInPortraitMode(this))   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
   actionBar=getActionBar();
