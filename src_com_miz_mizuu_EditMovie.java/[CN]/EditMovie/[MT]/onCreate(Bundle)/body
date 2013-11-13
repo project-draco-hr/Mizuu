@@ -12,6 +12,7 @@
   release=(TextView)findViewById(R.id.releasedateText);
   certification=(Spinner)findViewById(R.id.certificationSpinner);
   rowID=getIntent().getExtras().getInt("rowId");
+  tmdbId=getIntent().getExtras().getString("tmdbId");
   dbHelper=MizuuApplication.getMovieAdapter();
   cursor=dbHelper.fetchMovie(rowID);
   if (cursor.moveToFirst()) {

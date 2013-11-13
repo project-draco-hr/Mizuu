@@ -6,10 +6,9 @@ case android.R.id.home:
       i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
       i.setClass(getApplicationContext(),MainMovies.class);
       startActivity(i);
-      finish();
     }
- else     onBackPressed();
-  return true;
+  finish();
+return true;
 case R.id.share:
 Intent intent=new Intent(Intent.ACTION_SEND);
 intent.setType("text/plain");

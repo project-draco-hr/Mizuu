@@ -18,7 +18,15 @@
   textTitle.setTypeface(tf);
   textTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
   textPlot.setText(thisMovie.getPlot());
-  textSrc.setText(thisMovie.getFilepath());
+  if (thisMovie.hasMultipleVersions()) {
+    String sources="";
+    MovieVersion[] versions=thisMovie.getMultipleVersions();
+    for (    MovieVersion version : versions)     sources=sources + MizLib.transformSmbPath(version.getFilepath()) + "\n\n";
+    textSrc.setText(sources.trim());
+  }
+ else {
+    textSrc.setText(thisMovie.getFilepath());
+  }
   if (thisMovie.getTagline().equals("NOTAGLINE") || thisMovie.getTagline().isEmpty())   textTagline.setVisibility(TextView.GONE);
  else   textTagline.setText(thisMovie.getTagline());
   if (!MizLib.isEmpty(thisMovie.getGenres())) {

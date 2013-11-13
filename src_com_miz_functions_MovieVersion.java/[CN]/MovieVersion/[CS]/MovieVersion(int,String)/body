@@ -1,0 +1,4 @@
+{
+  this.rowId=rowId;
+  this.filepath=filepath;
+}

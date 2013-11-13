@@ -1,6 +1,14 @@
 {
   thisMovie.setToWatch(false);
-  if (db.updateMovieSingleItem(Long.valueOf(thisMovie.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch())) {
+  boolean success=true;
+  if (thisMovie.hasMultipleVersions()) {
+    MovieVersion[] versions=thisMovie.getMultipleVersions();
+    for (    MovieVersion version : versions)     success=success && db.updateMovieSingleItem(Long.valueOf(version.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch());
+  }
+ else {
+    success=db.updateMovieSingleItem(Long.valueOf(thisMovie.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch());
+  }
+  if (success) {
     invalidateOptionsMenu();
     LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-library-change"));
   }

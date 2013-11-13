@@ -4,14 +4,33 @@
   final CheckBox cb=(CheckBox)dialogLayout.findViewById(R.id.deleteFile);
   builder.setTitle(getString(R.string.removeMovie)).setView(dialogLayout).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int id){
-      boolean deleted=false;
-      if (ignoreDeletedFiles)       deleted=db.ignoreMovie(Long.valueOf(thisMovie.getRowId()));
- else       deleted=db.deleteMovie(Long.valueOf(thisMovie.getRowId()));
+      boolean deleted=true;
+      if (thisMovie.hasMultipleVersions()) {
+        MovieVersion[] versions=thisMovie.getMultipleVersions();
+        for (        MovieVersion version : versions) {
+          if (ignoreDeletedFiles)           deleted=deleted && db.ignoreMovie(Long.valueOf(version.getRowId()));
+ else           deleted=deleted && db.deleteMovie(Long.valueOf(version.getRowId()));
+        }
+      }
+ else {
+        if (ignoreDeletedFiles)         deleted=db.ignoreMovie(Long.valueOf(thisMovie.getRowId()));
+ else         deleted=db.deleteMovie(Long.valueOf(thisMovie.getRowId()));
+      }
       if (deleted) {
         if (cb.isChecked()) {
-          Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
-          deleteIntent.putExtra("filepath",thisMovie.getFilepath());
-          getApplicationContext().startService(deleteIntent);
+          if (thisMovie.hasMultipleVersions()) {
+            MovieVersion[] versions=thisMovie.getMultipleVersions();
+            for (            MovieVersion version : versions) {
+              Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
+              deleteIntent.putExtra("filepath",version.getFilepath());
+              getApplicationContext().startService(deleteIntent);
+            }
+          }
+ else {
+            Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
+            deleteIntent.putExtra("filepath",thisMovie.getFilepath());
+            getApplicationContext().startService(deleteIntent);
+          }
         }
         boolean movieExists=db.movieExists(thisMovie.getTmdbId());
         if (!movieExists) {

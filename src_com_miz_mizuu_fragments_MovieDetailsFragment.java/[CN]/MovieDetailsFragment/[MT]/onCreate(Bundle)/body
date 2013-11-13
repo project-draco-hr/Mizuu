@@ -20,6 +20,9 @@
  finally {
     cursor.close();
   }
+  if (db.hasMultipleVersions(thisMovie.getTmdbId())) {
+    thisMovie.setMultipleVersions(db.getRowIdsForMovie(thisMovie.getTmdbId()));
+  }
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movie-cover-change"));
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movie-backdrop-change"));
 }

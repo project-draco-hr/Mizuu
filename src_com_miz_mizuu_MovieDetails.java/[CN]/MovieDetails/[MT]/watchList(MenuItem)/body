@@ -1,6 +1,14 @@
 {
   thisMovie.setToWatch(!thisMovie.toWatch());
-  if (db.updateMovieSingleItem(Long.valueOf(thisMovie.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch())) {
+  boolean success=true;
+  if (thisMovie.hasMultipleVersions()) {
+    MovieVersion[] versions=thisMovie.getMultipleVersions();
+    for (    MovieVersion version : versions)     success=success && db.updateMovieSingleItem(Long.valueOf(version.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch());
+  }
+ else {
+    success=db.updateMovieSingleItem(Long.valueOf(thisMovie.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch());
+  }
+  if (success) {
     invalidateOptionsMenu();
     if (thisMovie.toWatch()) {
       Toast.makeText(this,getString(R.string.addedToWatchList),Toast.LENGTH_SHORT).show();

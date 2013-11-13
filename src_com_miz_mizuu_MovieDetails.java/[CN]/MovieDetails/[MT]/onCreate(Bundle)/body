@@ -45,6 +45,9 @@
   }
   if (thisMovie != null) {
     movieId=Integer.parseInt(thisMovie.getRowId());
+    if (db.hasMultipleVersions(thisMovie.getTmdbId())) {
+      thisMovie.setMultipleVersions(db.getRowIdsForMovie(thisMovie.getTmdbId()));
+    }
     try {
       setTitle(thisMovie.getTitle());
       getActionBar().setSubtitle(thisMovie.getReleaseYear().replace("(","").replace(")",""));
