@@ -1,5 +1,4 @@
-int title
-int icon
+String title
 int count
 boolean isHeader
 Class<?> className

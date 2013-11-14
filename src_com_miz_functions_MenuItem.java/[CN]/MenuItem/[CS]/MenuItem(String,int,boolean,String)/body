@@ -1,6 +1,5 @@
 {
-  this.stringTitle=title;
-  this.iconDrawable=icon;
+  this.title=title;
   this.count=count;
   this.isHeader=isHeader;
   this.packageName=packageName;

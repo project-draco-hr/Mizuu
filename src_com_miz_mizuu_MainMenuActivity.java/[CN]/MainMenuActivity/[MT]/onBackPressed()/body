@@ -6,7 +6,7 @@
     startActivity(i);
     finish();
   }
-  if (!mDrawerLayout.isDrawerOpen(mDrawerList) && confirmExit) {
+  if (!mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && confirmExit) {
     if (hasTriedOnce) {
       super.onBackPressed();
     }

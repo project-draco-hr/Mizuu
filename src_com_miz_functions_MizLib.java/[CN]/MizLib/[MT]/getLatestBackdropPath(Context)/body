@@ -1,0 +1,9 @@
+{
+  File latestMovie=lastFileModified(getMovieBackdropFolder(c));
+  File latestShow=lastFileModified(getTvShowBackdropFolder(c));
+  if (latestMovie != null && latestShow != null) {
+    if (latestMovie.lastModified() > latestShow.lastModified())     return latestMovie.getAbsolutePath();
+    return latestShow.getAbsolutePath();
+  }
+  return "";
+}

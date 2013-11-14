@@ -1,3 +1,3 @@
 {
-  return menu.get(position).isHeader() ? false : true;
+  return true;
 }

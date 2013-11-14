@@ -1,5 +1,4 @@
 {
   LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
-  PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
   super.onDestroy();
 }

@@ -5,7 +5,7 @@
   traktLogIn=(Button)v.findViewById(R.id.traktLogIn);
   traktLogIn.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
-      traktLogin();
+      new TraktLogin().execute();
     }
   }
 );

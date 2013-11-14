@@ -1,5 +1,4 @@
 String title
-Drawable icon
 int count
 boolean isHeader
 String packageName

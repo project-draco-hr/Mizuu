@@ -1,35 +1,41 @@
 {
   super.onCreate(savedInstanceState);
-  setContentView(R.layout.drawer_test);
+  setContentView(R.layout.menu_drawer);
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
   confirmExit=settings.getBoolean("prefsConfirmBackPress",false);
   startup=settings.getString("prefsStartup","1");
-  showMediaApps=settings.getBoolean("showMediaApps",true);
-  settings.registerOnSharedPreferenceChangeListener(this);
   dbHelper=MizuuApplication.getMovieAdapter();
   dbHelperTv=MizuuApplication.getTvDbAdapter();
   tf=Typeface.createFromAsset(getAssets(),"Roboto-Thin.ttf");
+  tfLight=Typeface.createFromAsset(getAssets(),"Roboto-Light.ttf");
   setupMenuItems();
   mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
   mDrawerLayout.setDrawerShadow(R.drawable.drawer_list_shadow,GravityCompat.START);
-  mDrawerList=(ListView)findViewById(R.id.left_drawer);
+  setupUserDetails();
+  ((TextView)findViewById(R.id.username)).setTextSize(26f);
+  ((TextView)findViewById(R.id.username)).setTypeface(tf);
+  tab1=(TextView)findViewById(R.id.tab1);
+  tab2=(TextView)findViewById(R.id.tab2);
+  tab1.setSelected(true);
+  mDrawerList=(ListView)findViewById(R.id.listView1);
   mDrawerList.setAdapter(new MenuAdapter());
   mDrawerList.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      if (menu.get(arg2).isThirdPartyApp()) {
-        final PackageManager pm=getPackageManager();
-        Intent i=pm.getLaunchIntentForPackage(menu.get(arg2).getPackageName());
-        if (i != null) {
-          i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-          startActivity(i);
-        }
-      }
- else {
+      if (tab1.isSelected()) {
         Intent i=new Intent();
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         i.setClass(getApplicationContext(),menu.get(arg2).getClassName());
         startActivity(i);
         overridePendingTransition(R.anim.mainfadein,R.anim.splashfadeout);
+      }
+ else {
+        final PackageManager pm=getPackageManager();
+        Intent i=pm.getLaunchIntentForPackage(thirdPartyApps.get(arg2).getPackageName());
+        if (i != null) {
+          i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+          startActivity(i);
+        }
+        mDrawerList.setItemChecked(arg2,false);
       }
     }
   }

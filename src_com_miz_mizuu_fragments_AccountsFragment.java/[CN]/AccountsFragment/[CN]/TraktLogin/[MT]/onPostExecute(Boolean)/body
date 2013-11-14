@@ -1,0 +1,16 @@
+{
+  if (success) {
+    if (isAdded()) {
+      Toast.makeText(getActivity(),getString(R.string.loginSucceeded),Toast.LENGTH_LONG).show();
+      traktUser.setEnabled(false);
+      traktPass.setEnabled(false);
+      syncTrakt.setEnabled(true);
+      traktLogIn.setEnabled(false);
+      traktRemoveAccount.setEnabled(true);
+      startServices();
+    }
+  }
+ else {
+    if (isAdded())     Toast.makeText(getActivity(),getString(R.string.failedToLogin),Toast.LENGTH_LONG).show();
+  }
+}

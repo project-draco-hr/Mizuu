@@ -1,0 +1,7 @@
+{
+  tab1.setSelected(false);
+  tab2.setSelected(true);
+  ((BaseAdapter)mDrawerList.getAdapter()).notifyDataSetChanged();
+  selectedIndex=mDrawerList.getCheckedItemPosition();
+  mDrawerList.setItemChecked(mDrawerList.getCheckedItemPosition(),false);
+}
