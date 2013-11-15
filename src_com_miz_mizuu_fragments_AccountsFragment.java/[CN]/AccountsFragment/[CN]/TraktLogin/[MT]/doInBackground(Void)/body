@@ -37,7 +37,7 @@
       String avatar=jObject.getString("avatar");
       editor.putString("traktFullName",name);
       editor.commit();
-      if (isAdded() && !avatar.contains("avatar-large.jpg"))       MizLib.downloadFile(avatar,new File(MizLib.getCacheFolder(getActivity()),"avatar.jpg").getAbsolutePath());
+      if (isAdded() && (avatar.contains("gravatar") || (avatar.contains("trakt") && !avatar.contains("avatar-large.jpg"))))       MizLib.downloadFile(avatar,new File(MizLib.getCacheFolder(getActivity()),"avatar.jpg").getAbsolutePath());
     }
  catch (    Exception e) {
       success=false;
