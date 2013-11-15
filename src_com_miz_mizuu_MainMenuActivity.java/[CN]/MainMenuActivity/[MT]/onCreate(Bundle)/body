@@ -11,12 +11,14 @@
   setupMenuItems();
   mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
   mDrawerLayout.setDrawerShadow(R.drawable.drawer_list_shadow,GravityCompat.START);
-  setupUserDetails();
+  if (!MizLib.runsOnTablet(this) && !MizLib.runsInPortraitMode(this)) {
+    findViewById(R.id.personalizedArea).setVisibility(View.GONE);
+  }
+ else   setupUserDetails();
   ((TextView)findViewById(R.id.username)).setTextSize(26f);
   ((TextView)findViewById(R.id.username)).setTypeface(tf);
   tab1=(TextView)findViewById(R.id.tab1);
   tab2=(TextView)findViewById(R.id.tab2);
-  tab1.setSelected(true);
   mDrawerList=(ListView)findViewById(R.id.listView1);
   mDrawerList.setAdapter(new MenuAdapter());
   mDrawerList.setOnItemClickListener(new OnItemClickListener(){
@@ -40,6 +42,13 @@
     }
   }
 );
+  if (savedInstanceState != null && savedInstanceState.containsKey("tabIndex")) {
+    selectedIndex=savedInstanceState.getInt("selectedIndex");
+    changeTabSelection(savedInstanceState.getInt("tabIndex"));
+  }
+ else {
+    tab1.setSelected(true);
+  }
   getActionBar().setDisplayHomeAsUpEnabled(true);
   if (MizLib.hasICS())   getActionBar().setHomeButtonEnabled(true);
   mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){

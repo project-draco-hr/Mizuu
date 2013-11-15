@@ -1,0 +1,5 @@
+{
+  super.onSaveInstanceState(outState);
+  outState.putInt("tabIndex",tab1.isSelected() ? 0 : 1);
+  outState.putInt("selectedIndex",selectedIndex);
+}
