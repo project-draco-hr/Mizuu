@@ -6,7 +6,7 @@
     int rlen=is.read(buf,0,bufsize);
     if (rlen <= 0)     return;
     ByteArrayInputStream hbis=new ByteArrayInputStream(buf,0,rlen);
-    BufferedReader hin=new BufferedReader(new InputStreamReader(hbis,"utf-8"));
+    BufferedReader hin=new BufferedReader(new InputStreamReader(hbis,"utf-8"),bufsize);
     Properties pre=new Properties();
     Properties parms=new Properties();
     Properties header=new Properties();

@@ -1,0 +1,3 @@
+HttpHost host
+HttpRequest request
+HttpContext context

@@ -3,7 +3,7 @@
   String username=settings.getString("traktUsername","").trim();
   String password=settings.getString("traktPassword","");
   if (username.isEmpty() || password.isEmpty())   return new JSONArray();
-  HttpClient httpclient=new DefaultHttpClient();
+  OkApacheClient httpclient=new OkApacheClient();
   HttpPost httppost=null;
   if (type == WATCHED) {
     httppost=new HttpPost("http://api.trakt.tv/user/library/shows/watched.json/" + MizLib.TRAKT_API + "/"+ username);

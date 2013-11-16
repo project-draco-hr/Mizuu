@@ -3,7 +3,7 @@
   String username=settings.getString("traktUsername","").trim();
   String password=settings.getString("traktPassword","");
   if (username.isEmpty() || password.isEmpty())   return false;
-  HttpClient httpclient=new DefaultHttpClient();
+  OkApacheClient httpclient=new OkApacheClient();
   HttpPost httppost=new HttpPost("http://api.trakt.tv/show/cancelcheckin/" + MizLib.TRAKT_API);
   httppost.setHeader("Content-type","application/json");
   try {
@@ -18,7 +18,7 @@
   }
  catch (  Exception e) {
   }
-  httpclient=new DefaultHttpClient();
+  httpclient=new OkApacheClient();
   httppost=new HttpPost("http://api.trakt.tv/show/checkin/" + MizLib.TRAKT_API);
   try {
     List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(2);

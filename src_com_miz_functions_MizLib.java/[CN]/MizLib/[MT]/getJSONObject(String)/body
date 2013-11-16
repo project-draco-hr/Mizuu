@@ -1,9 +1,6 @@
 {
   try {
-    HttpParams httpParameters=new BasicHttpParams();
-    HttpConnectionParams.setConnectionTimeout(httpParameters,5000);
-    HttpConnectionParams.setSoTimeout(httpParameters,30000);
-    HttpClient httpclient=new DefaultHttpClient(httpParameters);
+    OkApacheClient httpclient=new OkApacheClient();
     HttpGet httppost=new HttpGet(url);
     httppost.setHeader("Accept","application/json");
     ResponseHandler<String> responseHandler=new BasicResponseHandler();

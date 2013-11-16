@@ -3,9 +3,9 @@ switch (index) {
 case 0:
     return ActorBiographyFragment.newInstance(actorId);
 case 1:
-  return ActorMoviesFragment.newInstance(actorId);
+  return ActorMoviesFragment.newInstance(actorId,true);
 case 2:
-return ActorPhotosFragment.newInstance(actorId,actorName);
+return ActorPhotosFragment.newInstance(actorId,actorName,true);
 default :
 return null;
 }

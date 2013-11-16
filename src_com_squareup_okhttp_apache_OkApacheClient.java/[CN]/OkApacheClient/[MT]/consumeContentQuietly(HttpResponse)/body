@@ -1,0 +1,7 @@
+{
+  try {
+    response.getEntity().consumeContent();
+  }
+ catch (  Throwable ignored) {
+  }
+}

@@ -2,6 +2,7 @@
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
   db=MizuuApplication.getMovieAdapter();
+  setBackground=getArguments().getBoolean("setBackground");
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
   showGridTitles=settings.getBoolean("prefsShowGridTitles",false);
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);

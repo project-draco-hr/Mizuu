@@ -2,6 +2,7 @@
   ActorMoviesFragment pageFragment=new ActorMoviesFragment();
   Bundle bundle=new Bundle();
   bundle.putString("actorId",actorId);
+  bundle.putBoolean("setBackground",setBackground);
   pageFragment.setArguments(bundle);
   return pageFragment;
 }

@@ -4,7 +4,7 @@
   String password=settings.getString("traktPassword","");
   if (username.isEmpty() || password.isEmpty())   return false;
   if (movies.size() == 0)   return false;
-  HttpClient httpclient=new DefaultHttpClient();
+  OkApacheClient httpclient=new OkApacheClient();
   HttpPost httppost=null;
   if (movies.get(0).hasWatched())   httppost=new HttpPost("http://api.trakt.tv/movie/seen/" + MizLib.TRAKT_API);
  else   httppost=new HttpPost("http://api.trakt.tv/movie/unseen/" + MizLib.TRAKT_API);

@@ -3,9 +3,10 @@
   byte[] retVal=null;
   InputStream in=null;
   OutputStream fileos=null;
+  OkHttpClient client=new OkHttpClient();
   HttpURLConnection urlConnection=null;
   try {
-    urlConnection=(HttpURLConnection)new URL(url).openConnection();
+    urlConnection=client.open(new URL(url));
     fileos=new BufferedOutputStream(new FileOutputStream(savePath));
     in=new BufferedInputStream(urlConnection.getInputStream(),bufferSize);
     retVal=new byte[bufferSize];
