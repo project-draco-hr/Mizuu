@@ -1,8 +1,10 @@
 {
   if (((MainMenuActivity)getActivity()).isDrawerOpen()) {
+    actionBar.setNavigationMode(ActionBar.DISPLAY_SHOW_TITLE);
     ((MainMenuActivity)getActivity()).showDrawerOptionsMenu(menu,inflater);
   }
  else {
+    setupActionBar();
     inflater.inflate(R.menu.menutv,menu);
     SearchView searchView=(SearchView)menu.findItem(R.id.search_textbox).getActionView();
     searchView.setOnQueryTextListener(new OnQueryTextListener(){

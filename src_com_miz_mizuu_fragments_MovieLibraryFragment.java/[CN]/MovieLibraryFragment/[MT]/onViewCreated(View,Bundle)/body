@@ -1,6 +1,7 @@
 {
   super.onViewCreated(v,savedInstanceState);
   pbar=(ProgressBar)v.findViewById(R.id.progress);
+  if (shownMovies.size() > 0)   pbar.setVisibility(View.GONE);
   overviewMessage=(TextView)v.findViewById(R.id.overviewMessage);
   updateMovieLibrary=(Button)v.findViewById(R.id.addMoviesButton);
   updateMovieLibrary.setOnClickListener(new OnClickListener(){

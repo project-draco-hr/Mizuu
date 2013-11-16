@@ -1,7 +1,11 @@
 {
   if (((MainMenuActivity)getActivity()).isDrawerOpen()) {
+    actionBar.setNavigationMode(ActionBar.DISPLAY_SHOW_TITLE);
     ((MainMenuActivity)getActivity()).showDrawerOptionsMenu(menu,inflater);
   }
- else   inflater.inflate(R.menu.menuweb,menu);
+ else {
+    setupActionBar();
+    inflater.inflate(R.menu.menuweb,menu);
+  }
   super.onCreateOptionsMenu(menu,inflater);
 }

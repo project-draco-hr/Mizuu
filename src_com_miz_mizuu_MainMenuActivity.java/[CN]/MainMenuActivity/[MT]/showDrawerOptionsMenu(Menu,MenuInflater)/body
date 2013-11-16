@@ -1,3 +1,4 @@
 {
+  getActionBar().setTitle(R.string.app_name);
   inflater.inflate(R.menu.drawer,menu);
 }

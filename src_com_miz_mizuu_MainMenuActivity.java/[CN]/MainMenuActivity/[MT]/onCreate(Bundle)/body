@@ -18,7 +18,9 @@
   ((TextView)findViewById(R.id.username)).setTextSize(26f);
   ((TextView)findViewById(R.id.username)).setTypeface(tf);
   tab1=(TextView)findViewById(R.id.tab1);
+  tab1.setTextSize(12f);
   tab2=(TextView)findViewById(R.id.tab2);
+  tab2.setTextSize(12f);
   mDrawerList=(ListView)findViewById(R.id.listView1);
   mDrawerList.setAdapter(new MenuAdapter());
   mDrawerList.setOnItemClickListener(new OnItemClickListener(){
@@ -53,6 +55,7 @@
   if (MizLib.hasICS())   getActionBar().setHomeButtonEnabled(true);
   mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){
     public void onDrawerClosed(    View view){
+      getActionBar().setTitle(null);
       invalidateOptionsMenu();
     }
     public void onDrawerOpened(    View drawerView){
