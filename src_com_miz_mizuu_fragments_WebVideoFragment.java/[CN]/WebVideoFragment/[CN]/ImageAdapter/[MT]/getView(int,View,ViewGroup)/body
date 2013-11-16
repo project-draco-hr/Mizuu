@@ -10,6 +10,7 @@
   }
  else {
     holder=(CoverItem)convertView.getTag();
+    holder.cover.setImageBitmap(null);
   }
   if (holder.layout.getLayoutParams().height != mItemHeight) {
     holder.layout.setLayoutParams(mImageViewLayoutParams);

@@ -1,3 +1,7 @@
 {
-  inflater.inflate(R.menu.menuweb,menu);
+  if (((MainMenuActivity)getActivity()).isDrawerOpen()) {
+    ((MainMenuActivity)getActivity()).showDrawerOptionsMenu(menu,inflater);
+  }
+ else   inflater.inflate(R.menu.menuweb,menu);
+  super.onCreateOptionsMenu(menu,inflater);
 }

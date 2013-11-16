@@ -1,0 +1,5 @@
+{
+  View v=findViewById(R.id.left_drawer);
+  if (v == null)   return false;
+  return mDrawerLayout.isDrawerOpen(v);
+}

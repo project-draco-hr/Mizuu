@@ -1,3 +1,7 @@
 {
-  inflater.inflate(R.menu.menu_web_movies,menu);
+  if (((MainMenuActivity)getActivity()).isDrawerOpen()) {
+    ((MainMenuActivity)getActivity()).showDrawerOptionsMenu(menu,inflater);
+  }
+ else   inflater.inflate(R.menu.menu_web_movies,menu);
+  super.onCreateOptionsMenu(menu,inflater);
 }
