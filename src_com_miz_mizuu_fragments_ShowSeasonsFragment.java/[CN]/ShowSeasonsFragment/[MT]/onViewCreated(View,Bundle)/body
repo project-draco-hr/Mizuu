@@ -1,6 +1,5 @@
 {
   super.onViewCreated(view,savedInstanceState);
-  if (!MizLib.runsOnTablet(getActivity()) && !MizLib.runsInPortraitMode(getActivity()))   MizLib.addActionBarPadding(getActivity(),view.findViewById(R.id.container));
   if (setBackground && !MizLib.runsInPortraitMode(getActivity()))   view.findViewById(R.id.container).setBackgroundColor(Color.parseColor("#101010"));
   pbar=(ProgressBar)view.findViewById(R.id.progressbar);
   if (useGridView)   mGridView=(StickyGridHeadersGridView)view.findViewById(R.id.gridView);
