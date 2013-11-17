@@ -2,8 +2,12 @@
   super.onCreate(savedInstanceState);
   if (!MizLib.runsInPortraitMode(this))   if (isFullscreen())   setTheme(R.style.Theme_Example_NoBackGround_FullScreen);
  else   setTheme(R.style.Theme_Example_NoBackGround);
-  if (!MizLib.runsInPortraitMode(this))   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+  getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
+  actionBar=getActionBar();
+  actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+  if (spinnerAdapter == null)   spinnerAdapter=new ActionBarSpinner(this,spinnerItems);
+  setTitle(null);
   ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnorePrefixesInTitles",false);
   ignoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnoreNfoFiles",true);
   prefsRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsRemoveMoviesFromWatchlist",true);
@@ -16,20 +20,14 @@
   }
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);
   awesomePager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
-  final ActionBar bar=getActionBar();
-  bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-  bar.addTab(bar.newTab().setText(getString(R.string.overview)).setTabListener(this));
-  bar.addTab(bar.newTab().setText(getString(R.string.detailsActors)).setTabListener(this));
   awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
-      bar.getTabAt(position).select();
-      ViewParent root=findViewById(android.R.id.content).getParent();
-      MizLib.findAndUpdateSpinner(root,position);
+      actionBar.setSelectedNavigationItem(position);
     }
   }
 );
   if (savedInstanceState != null) {
-    bar.setSelectedNavigationItem(savedInstanceState.getInt("tab",0));
+    awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
   db=MizuuApplication.getMovieAdapter();
   Cursor cursor=null;
@@ -49,14 +47,7 @@
     if (db.hasMultipleVersions(thisMovie.getTmdbId())) {
       thisMovie.setMultipleVersions(db.getRowIdsForMovie(thisMovie.getTmdbId()));
     }
-    try {
-      setTitle(thisMovie.getTitle());
-      getActionBar().setSubtitle(thisMovie.getReleaseYear().replace("(","").replace(")",""));
-    }
- catch (    Exception e) {
-      Toast.makeText(this,getString(R.string.errorSomethingWentWrong) + " (movie ID: " + movieId+ ")",Toast.LENGTH_SHORT).show();
-      finish();
-    }
+    setupSpinnerItems();
   }
  else {
     Toast.makeText(this,getString(R.string.errorSomethingWentWrong) + " (movie ID: " + movieId+ ")",Toast.LENGTH_SHORT).show();

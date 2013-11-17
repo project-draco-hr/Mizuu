@@ -1,14 +1,5 @@
 {
   if (isAdded() && thisMovie != null) {
-    getActivity().setTitle(thisMovie.getTitle());
-    if (thisMovie.getReleasedate().contains("-")) {
-      try {
-        getActivity().getActionBar().setSubtitle(thisMovie.getReleasedate().substring(0,4));
-      }
- catch (      Exception e) {
-        getActivity().getActionBar().setSubtitle(getString(R.string.stringNA));
-      }
-    }
     textTitle.setVisibility(View.VISIBLE);
     textTitle.setText(thisMovie.getTitle());
     textTitle.setTypeface(tf);

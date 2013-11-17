@@ -1,0 +1,7 @@
+{
+  spinnerItems.clear();
+  spinnerItems.add(new SpinnerItem(actorName,getString(R.string.actorBiography)));
+  spinnerItems.add(new SpinnerItem(actorName,getString(R.string.chooserMovies)));
+  spinnerItems.add(new SpinnerItem(actorName,getString(R.string.actorsShowAllPhotos)));
+  actionBar.setListNavigationCallbacks(spinnerAdapter,this);
+}

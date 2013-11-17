@@ -1,5 +1,0 @@
-{
-  convertView=inflater.inflate(android.R.layout.simple_spinner_dropdown_item,parent,false);
-  ((TextView)convertView.findViewById(android.R.id.text1)).setText(spinnerItems.get(position).getSubtitle());
-  return convertView;
-}

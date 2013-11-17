@@ -2,29 +2,22 @@
   super.onCreate(savedInstanceState);
   if (!MizLib.runsInPortraitMode(this))   if (isFullscreen())   setTheme(R.style.Theme_Example_NoBackGround_FullScreen);
  else   setTheme(R.style.Theme_Example_NoBackGround);
-  if (!MizLib.runsInPortraitMode(this))   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+  getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
   actionBar=getActionBar();
+  actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+  if (spinnerAdapter == null)   spinnerAdapter=new ActionBarSpinner(this,spinnerItems);
+  setTitle(null);
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);
   awesomePager.setOffscreenPageLimit(3);
   awesomePager.setAdapter(new ShowDetailsAdapter(getSupportFragmentManager()));
-  final ActionBar bar=getActionBar();
-  bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-  bar.addTab(bar.newTab().setText(getString(R.string.overview)).setTabListener(this));
-  bar.addTab(bar.newTab().setText(getString(R.string.episodes)).setTabListener(this));
-  bar.addTab(bar.newTab().setText(getString(R.string.detailsActors)).setTabListener(this));
   awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
-      bar.getTabAt(position).select();
-      ViewParent root=findViewById(android.R.id.content).getParent();
-      MizLib.findAndUpdateSpinner(root,position);
+      actionBar.setSelectedNavigationItem(position);
       invalidateOptionsMenu();
     }
   }
 );
-  if (savedInstanceState != null) {
-    bar.setSelectedNavigationItem(savedInstanceState.getInt("tab",0));
-  }
   ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnorePrefixesInTitles",false);
   dbHelper=MizuuApplication.getTvDbAdapter();
   String showId="";
@@ -40,12 +33,9 @@
   }
   cursor.close();
   if (thisShow == null)   finish();
-  try {
-    setTitle(thisShow.getTitle());
-    actionBar.setSubtitle(thisShow.getFirstAirdateYear());
-  }
- catch (  Exception e) {
-    finish();
+  setupSpinnerItems();
+  if (savedInstanceState != null) {
+    awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
   if (!PreferenceManager.getDefaultSharedPreferences(this).getString("prefsTvShowsStartPage",getString(R.string.showDetails)).equals(getString(R.string.showDetails)))   awesomePager.setCurrentItem(1);
 }

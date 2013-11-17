@@ -1,0 +1,8 @@
+{
+  String movieName=getIntent().getExtras().getString("title");
+  spinnerItems.clear();
+  spinnerItems.add(new SpinnerItem(movieName,getString(R.string.overview)));
+  spinnerItems.add(new SpinnerItem(movieName,getString(R.string.detailsActors)));
+  spinnerItems.add(new SpinnerItem(movieName,getString(R.string.relatedMovies)));
+  actionBar.setListNavigationCallbacks(spinnerAdapter,this);
+}

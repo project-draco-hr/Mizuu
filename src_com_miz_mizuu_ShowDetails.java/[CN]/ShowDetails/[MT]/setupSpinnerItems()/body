@@ -1,0 +1,7 @@
+{
+  spinnerItems.clear();
+  spinnerItems.add(new SpinnerItem(thisShow.getTitle(),getString(R.string.overview)));
+  spinnerItems.add(new SpinnerItem(thisShow.getTitle(),getString(R.string.episodes)));
+  spinnerItems.add(new SpinnerItem(thisShow.getTitle(),getString(R.string.detailsActors)));
+  actionBar.setListNavigationCallbacks(spinnerAdapter,this);
+}
