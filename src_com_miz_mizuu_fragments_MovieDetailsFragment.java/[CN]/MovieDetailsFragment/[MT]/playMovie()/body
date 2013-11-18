@@ -1,26 +1,19 @@
 {
-  videoPlaybackStarted=System.currentTimeMillis();
-  if (thisMovie.isSplitFile()) {
-    new GetSplitFiles().execute();
+  if (thisMovie.hasMultipleVersions()) {
+    final MovieVersion[] versions=thisMovie.getMultipleVersions();
+    CharSequence[] items=new CharSequence[versions.length];
+    for (int i=0; i < versions.length; i++)     items[i]=MizLib.transformSmbPath(versions[i].getFilepath());
+    AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+    builder.setTitle(getString(R.string.fileToPlay));
+    builder.setItems(items,new AlertDialog.OnClickListener(){
+      @Override public void onClick(      DialogInterface dialog,      int which){
+        playMovie(versions[which].getFilepath(),versions[which].getFilepath().contains("smb:/"));
+      }
+    }
+);
+    builder.show();
   }
  else {
-    if (thisMovie.isNetworkFile()) {
-      playNetworkFile(thisMovie.getFilepath());
-    }
- else {
-      try {
-        getActivity().startActivity(MizLib.getVideoIntent(thisMovie.getFilepath(),useWildcard,thisMovie));
-        checkIn();
-      }
- catch (      Exception e) {
-        try {
-          getActivity().startActivity(MizLib.getVideoIntent(thisMovie.getFilepath(),"video/*",thisMovie));
-          checkIn();
-        }
- catch (        Exception e2) {
-          Toast.makeText(getActivity(),getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
-        }
-      }
-    }
+    playMovie(thisMovie.getFilepath(),thisMovie.isNetworkFile());
   }
 }

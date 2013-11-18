@@ -1,0 +1,26 @@
+{
+  videoPlaybackStarted=System.currentTimeMillis();
+  if (filepath.matches(".*(cd1|part1).*")) {
+    new GetSplitFiles(filepath,isNetworkFile).execute();
+  }
+ else {
+    if (isNetworkFile) {
+      playNetworkFile(filepath);
+    }
+ else {
+      try {
+        getActivity().startActivity(MizLib.getVideoIntent(filepath,useWildcard,thisMovie));
+        checkIn();
+      }
+ catch (      Exception e) {
+        try {
+          getActivity().startActivity(MizLib.getVideoIntent(filepath,"video/*",thisMovie));
+          checkIn();
+        }
+ catch (        Exception e2) {
+          Toast.makeText(getActivity(),getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
+        }
+      }
+    }
+  }
+}
