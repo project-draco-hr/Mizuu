@@ -1,0 +1,3 @@
+{
+  return database.query(DATABASE_TABLE,SELECT_ALL,includeRemoved ? null : "NOT(" + KEY_TITLE + " = 'MIZ_REMOVED_MOVIE')",null,includeDuplicates ? null : KEY_TMDBID,null,sort);
+}

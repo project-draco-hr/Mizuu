@@ -14,7 +14,7 @@
   mNotificationManager.notify(9,updateNotification);
   startForeground(9,updateNotification);
   DbAdapter movieDb=MizuuApplication.getMovieAdapter();
-  Cursor cursor=movieDb.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
+  Cursor cursor=movieDb.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false,false);
   try {
     while (cursor.moveToNext()) {
       movies.put(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)));

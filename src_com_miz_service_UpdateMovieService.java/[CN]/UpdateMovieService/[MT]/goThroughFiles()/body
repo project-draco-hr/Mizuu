@@ -1,6 +1,6 @@
 {
   DbAdapter dbHelper=MizuuApplication.getMovieAdapter();
-  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",ignoreRemovedFiles);
+  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",ignoreRemovedFiles,true);
   while (cursor.moveToNext()) {
     existingMovies.put(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),"");
   }

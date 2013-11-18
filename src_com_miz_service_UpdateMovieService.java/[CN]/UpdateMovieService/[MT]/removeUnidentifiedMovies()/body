@@ -1,7 +1,7 @@
 {
   ArrayList<DbMovie> dbMovies=new ArrayList<DbMovie>();
   DbAdapter db=MizuuApplication.getMovieAdapter();
-  Cursor tempCursor=db.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",ignoreRemovedFiles);
+  Cursor tempCursor=db.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",ignoreRemovedFiles,true);
   while (tempCursor.moveToNext()) {
     try {
       dbMovies.add(new DbMovie(tempCursor.getString(tempCursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),tempCursor.getLong(tempCursor.getColumnIndex(DbAdapter.KEY_ROWID)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapter.KEY_TMDBID)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapter.KEY_GENRES)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapter.KEY_TITLE))));
