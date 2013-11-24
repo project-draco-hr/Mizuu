@@ -16,6 +16,7 @@
   }
  catch (  Exception e) {
     getActivity().finish();
+    return;
   }
  finally {
     cursor.close();

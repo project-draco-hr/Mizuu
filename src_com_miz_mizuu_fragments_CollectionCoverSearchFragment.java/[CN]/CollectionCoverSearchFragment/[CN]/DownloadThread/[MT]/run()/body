@@ -8,4 +8,5 @@
   MizLib.downloadFile(url,new File(MizLib.getMovieThumbFolder(getActivity()),COLLECTION_ID + ".jpg").getAbsolutePath());
   LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-movie-cover-change"));
   getActivity().finish();
+  return;
 }

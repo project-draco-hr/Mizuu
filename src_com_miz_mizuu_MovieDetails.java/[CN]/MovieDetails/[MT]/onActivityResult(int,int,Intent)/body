@@ -8,5 +8,6 @@
     intent.putExtra("rowId",movieId);
     startActivity(intent);
     finish();
+    return;
   }
 }

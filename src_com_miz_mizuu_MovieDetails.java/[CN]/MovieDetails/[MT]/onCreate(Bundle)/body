@@ -38,6 +38,7 @@
   }
  catch (  Exception e) {
     finish();
+    return;
   }
  finally {
     cursor.close();
@@ -52,5 +53,6 @@
  else {
     Toast.makeText(this,getString(R.string.errorSomethingWentWrong) + " (movie ID: " + movieId+ ")",Toast.LENGTH_SHORT).show();
     finish();
+    return;
   }
 }

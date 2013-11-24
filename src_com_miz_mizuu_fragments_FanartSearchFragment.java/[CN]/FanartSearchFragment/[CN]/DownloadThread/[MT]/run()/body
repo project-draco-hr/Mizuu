@@ -10,5 +10,8 @@
     updateWidgets();
     LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-movie-backdrop-change"));
   }
-  if (isAdded())   getActivity().finish();
+  if (isAdded()) {
+    getActivity().finish();
+    return;
+  }
 }

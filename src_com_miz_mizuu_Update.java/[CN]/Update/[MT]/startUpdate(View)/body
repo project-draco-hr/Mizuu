@@ -3,4 +3,5 @@
  else   if (!isMovie && !MizLib.isTvShowLibraryBeingUpdated(this))   getApplicationContext().startService(new Intent(getApplicationContext(),UpdateShowsService.class));
   setResult(1);
   finish();
+  return;
 }

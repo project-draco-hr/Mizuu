@@ -10,5 +10,8 @@
     LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-movie-cover-change"));
     updateWidgets();
   }
-  if (isAdded())   getActivity().finish();
+  if (isAdded()) {
+    getActivity().finish();
+    return;
+  }
 }

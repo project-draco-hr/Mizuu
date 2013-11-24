@@ -4,4 +4,5 @@
   LocalBroadcastManager.getInstance(this).sendBroadcast(i);
   running=false;
   finish();
+  return;
 }

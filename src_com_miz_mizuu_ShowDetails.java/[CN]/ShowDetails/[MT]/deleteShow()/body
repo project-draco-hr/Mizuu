@@ -5,6 +5,7 @@
       MizLib.deleteShow(getApplicationContext(),thisShow,true);
       LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent("mizuu-shows-update"));
       finish();
+      return;
     }
   }
 ).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){

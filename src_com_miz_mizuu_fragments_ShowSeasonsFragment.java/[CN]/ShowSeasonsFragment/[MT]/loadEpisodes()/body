@@ -17,5 +17,8 @@
     }
   }
 );
-  if (allEpisodes.size() == 0)   getActivity().finish();
+  if (allEpisodes.size() == 0) {
+    getActivity().finish();
+    return;
+  }
 }

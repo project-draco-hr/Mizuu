@@ -15,6 +15,7 @@
         getActivity().setResult(1);
       }
       getActivity().finish();
+      return;
     }
   }
 );

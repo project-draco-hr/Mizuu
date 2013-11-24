@@ -10,6 +10,7 @@
   customActionBarView.findViewById(R.id.actionbar_discard).setOnClickListener(new View.OnClickListener(){
     @Override public void onClick(    View v){
       finish();
+      return;
     }
   }
 );

@@ -31,5 +31,6 @@
   }
   if (!MizLib.runsInPortraitMode(this) && MizLib.runsOnTablet(this)) {
     finish();
+    return;
   }
 }

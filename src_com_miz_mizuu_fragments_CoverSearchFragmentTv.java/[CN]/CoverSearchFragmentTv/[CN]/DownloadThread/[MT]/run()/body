@@ -11,5 +11,8 @@
     LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-shows-update"));
     updateWidgets();
   }
-  if (isAdded())   getActivity().finish();
+  if (isAdded()) {
+    getActivity().finish();
+    return;
+  }
 }

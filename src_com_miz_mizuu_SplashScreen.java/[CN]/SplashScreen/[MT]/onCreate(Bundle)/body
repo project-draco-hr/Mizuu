@@ -3,10 +3,12 @@
   if (!isDeviceCompatible()) {
     Toast.makeText(this,getString(R.string.deviceNotSupported),Toast.LENGTH_LONG).show();
     finish();
+    return;
   }
   if (MizLib.oldDataFolderExists()) {
     Intent moveFiles=new Intent(this,MoveFilesService.class);
     startService(moveFiles);
+    finish();
     return;
   }
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
@@ -50,4 +52,5 @@
   }
   startActivity(i);
   finish();
+  return;
 }

@@ -21,7 +21,10 @@
   }
   cursor.close();
   if (thisShow != null)   errorListener=new ImageLoadingErrorListener("","file://" + thisShow.getBackdrop(),options);
- else   if (isAdded())   getActivity().finish();
+ else   if (isAdded()) {
+    getActivity().finish();
+    return;
+  }
   loadEpisodes();
   addAllEpisodes();
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("tvshow-episode-changed"));
