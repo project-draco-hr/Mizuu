@@ -14,9 +14,9 @@
           if (shows.get(i).getTitle().toLowerCase(Locale.ENGLISH).contains(searchQuery))           shownShows.add(shows.get(i));
         }
       }
-      sortShows();
       getActivity().runOnUiThread(new Runnable(){
         @Override public void run(){
+          sortShows();
           notifyDataSetChanged();
           hideProgressBar();
         }
