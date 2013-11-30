@@ -7,9 +7,9 @@
       boolean deleted=true;
       if (thisMovie.hasMultipleVersions()) {
         MovieVersion[] versions=thisMovie.getMultipleVersions();
-        for (        MovieVersion version : versions) {
-          if (ignoreDeletedFiles)           deleted=deleted && db.ignoreMovie(Long.valueOf(version.getRowId()));
- else           deleted=deleted && db.deleteMovie(Long.valueOf(version.getRowId()));
+        for (int i=0; i < versions.length; i++) {
+          if (ignoreDeletedFiles)           deleted=deleted && db.ignoreMovie(Long.valueOf(versions[i].getRowId()));
+ else           deleted=deleted && db.deleteMovie(Long.valueOf(versions[i].getRowId()));
         }
       }
  else {
@@ -20,9 +20,9 @@
         if (cb.isChecked()) {
           if (thisMovie.hasMultipleVersions()) {
             MovieVersion[] versions=thisMovie.getMultipleVersions();
-            for (            MovieVersion version : versions) {
+            for (int i=0; i < versions.length; i++) {
               Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
-              deleteIntent.putExtra("filepath",version.getFilepath());
+              deleteIntent.putExtra("filepath",versions[i].getFilepath());
               getApplicationContext().startService(deleteIntent);
             }
           }

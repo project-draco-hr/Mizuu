@@ -1,13 +1,15 @@
 {
   showCollectionBasedOnNavigationIndex(actionBar.getSelectedNavigationIndex());
   final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
+  String[] splitGenres;
   for (int i=0; i < shownMovies.size(); i++) {
-    for (    String genre : shownMovies.get(i).getGenres().split(",")) {
-      if (map.containsKey(genre.trim())) {
-        map.put(genre.trim(),map.get(genre.trim()) + 1);
+    splitGenres=shownMovies.get(i).getGenres().split(",");
+    for (int j=0; j < splitGenres.length; j++) {
+      if (map.containsKey(splitGenres[j].trim())) {
+        map.put(splitGenres[j].trim(),map.get(splitGenres[j].trim()) + 1);
       }
  else {
-        map.put(genre.trim(),1);
+        map.put(splitGenres[j].trim(),1);
       }
     }
   }

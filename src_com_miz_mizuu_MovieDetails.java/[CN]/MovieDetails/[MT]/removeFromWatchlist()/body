@@ -3,7 +3,7 @@
   boolean success=true;
   if (thisMovie.hasMultipleVersions()) {
     MovieVersion[] versions=thisMovie.getMultipleVersions();
-    for (    MovieVersion version : versions)     success=success && db.updateMovieSingleItem(Long.valueOf(version.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch());
+    for (int i=0; i < versions.length; i++)     success=success && db.updateMovieSingleItem(Long.valueOf(versions[i].getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch());
   }
  else {
     success=db.updateMovieSingleItem(Long.valueOf(thisMovie.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch());

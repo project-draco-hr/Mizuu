@@ -2,11 +2,11 @@
   showProgressBar();
   shownMovies.clear();
   HashMap<String,MediumMovie> map=new HashMap<String,MediumMovie>();
-  for (  MediumMovie m : movies) {
-    if (!MizLib.isEmpty(m.getCollection()) && !m.getCollection().equals("null")) {
-      if (!map.containsKey(m.getCollection())) {
-        map.put(m.getCollection(),m);
-        shownMovies.add(m);
+  for (int i=0; i < movies.size(); i++) {
+    if (!MizLib.isEmpty(movies.get(i).getCollection()) && !movies.get(i).getCollection().equals("null")) {
+      if (!map.containsKey(movies.get(i).getCollection())) {
+        map.put(movies.get(i).getCollection(),movies.get(i));
+        shownMovies.add(movies.get(i));
       }
     }
   }

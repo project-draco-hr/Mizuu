@@ -3,5 +3,8 @@
   setRetainInstance(true);
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
   items_string=settings.getString("ignoredTags","");
-  if (!items_string.isEmpty())   for (  String s : items_string.split("<MiZ>"))   items.add(s);
+  if (!items_string.isEmpty()) {
+    String[] split=items_string.split("<MiZ>");
+    for (int i=0; i < split.length; i++)     items.add(split[i]);
+  }
 }

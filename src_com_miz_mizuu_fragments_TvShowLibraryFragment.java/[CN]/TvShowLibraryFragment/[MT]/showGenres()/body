@@ -1,13 +1,17 @@
 {
   showCollectionBasedOnNavigationIndex(actionBar.getSelectedNavigationIndex());
   final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
+  String[] split;
   for (int i=0; i < shownShows.size(); i++) {
-    if (!shownShows.get(i).getGenres().isEmpty())     for (    String genre : shownShows.get(i).getGenres().split(",")) {
-      if (map.containsKey(genre.trim())) {
-        map.put(genre.trim(),map.get(genre.trim()) + 1);
-      }
+    if (!shownShows.get(i).getGenres().isEmpty()) {
+      split=shownShows.get(i).getGenres().split(",");
+      for (int j=0; j < split.length; j++) {
+        if (map.containsKey(split[j].trim())) {
+          map.put(split[j].trim(),map.get(split[j].trim()) + 1);
+        }
  else {
-        map.put(genre.trim(),1);
+          map.put(split[j].trim(),1);
+        }
       }
     }
   }

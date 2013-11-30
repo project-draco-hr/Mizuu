@@ -1,0 +1,20 @@
+{
+  shownShows.clear();
+  if (searchQuery.startsWith("actor:")) {
+    for (int i=0; i < shows.size(); i++) {
+      if (isCancelled())       return null;
+      if (shows.get(i).getActors().toLowerCase(Locale.ENGLISH).contains(searchQuery.replace("actor:","").trim()))       shownShows.add(shows.get(i));
+    }
+  }
+ else {
+    String lowerCase="";
+    Pattern p=Pattern.compile(MizLib.CHARACTER_REGEX);
+    for (int i=0; i < shows.size(); i++) {
+      if (isCancelled())       return null;
+      lowerCase=shows.get(i).getTitle().toLowerCase(Locale.ENGLISH);
+      if (lowerCase.indexOf(searchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(searchQuery) != -1)       shownShows.add(shows.get(i));
+    }
+  }
+  sortShows();
+  return null;
+}

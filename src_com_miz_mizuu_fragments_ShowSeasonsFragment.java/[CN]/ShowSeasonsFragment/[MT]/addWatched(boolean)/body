@@ -1,17 +1,17 @@
 {
   int tempCount=0;
   ArrayList<TvShowEpisode> tempEpisodes=new ArrayList<TvShowEpisode>(allEpisodes);
-  for (  TvShowEpisode episode : tempEpisodes) {
-    if (episode.hasWatched() == hasWatched) {
-      if (seasonEpisodeCount.get(Integer.valueOf(episode.getSeason())) == 0) {
-        seasonEpisodeCount.append(Integer.valueOf(episode.getSeason()),1);
-        seasons.add(episode.getSeason());
+  for (int i=0; i < tempEpisodes.size(); i++) {
+    if (tempEpisodes.get(i).hasWatched() == hasWatched) {
+      if (seasonEpisodeCount.get(Integer.valueOf(tempEpisodes.get(i).getSeason())) == 0) {
+        seasonEpisodeCount.append(Integer.valueOf(tempEpisodes.get(i).getSeason()),1);
+        seasons.add(tempEpisodes.get(i).getSeason());
       }
  else {
-        tempCount=seasonEpisodeCount.get(Integer.valueOf(episode.getSeason()));
-        seasonEpisodeCount.append(Integer.valueOf(episode.getSeason()),tempCount + 1);
+        tempCount=seasonEpisodeCount.get(Integer.valueOf(tempEpisodes.get(i).getSeason()));
+        seasonEpisodeCount.append(Integer.valueOf(tempEpisodes.get(i).getSeason()),tempCount + 1);
       }
-      shownEpisodes.add(episode);
+      shownEpisodes.add(tempEpisodes.get(i));
     }
   }
   tempEpisodes.clear();

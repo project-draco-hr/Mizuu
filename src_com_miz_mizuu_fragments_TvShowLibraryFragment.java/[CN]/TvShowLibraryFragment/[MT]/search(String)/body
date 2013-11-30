@@ -1,28 +1,6 @@
 {
   showProgressBar();
-  final String searchQuery=query.toLowerCase(Locale.ENGLISH);
-  shownShows.clear();
-  new Thread(){
-    @Override public void run(){
-      if (searchQuery.startsWith("actor:")) {
-        for (int i=0; i < shows.size(); i++) {
-          if (shows.get(i).getActors().toLowerCase(Locale.ENGLISH).contains(searchQuery.replace("actor:","").trim()))           shownShows.add(shows.get(i));
-        }
-      }
- else {
-        for (int i=0; i < shows.size(); i++) {
-          if (shows.get(i).getTitle().toLowerCase(Locale.ENGLISH).contains(searchQuery))           shownShows.add(shows.get(i));
-        }
-      }
-      getActivity().runOnUiThread(new Runnable(){
-        @Override public void run(){
-          sortShows();
-          notifyDataSetChanged();
-          hideProgressBar();
-        }
-      }
-);
-    }
-  }
-.start();
+  if (mSearch != null)   mSearch.cancel(true);
+  mSearch=new SearchTask(query);
+  mSearch.execute();
 }
