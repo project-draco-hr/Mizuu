@@ -34,6 +34,7 @@
       String html=httpclient.execute(httppost,responseHandler);
       JSONObject jObject=new JSONObject(html);
       String name=jObject.getString("full_name");
+      if (name.equals("null") || name.isEmpty())       name=jObject.getString("username");
       String avatar=jObject.getString("avatar");
       editor.putString("traktFullName",name);
       editor.commit();
