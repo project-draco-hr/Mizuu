@@ -4,4 +4,5 @@
   if (actionBar.getNavigationMode() == ActionBar.NAVIGATION_MODE_LIST)   actionBar.setListNavigationCallbacks(spinnerAdapter,this);
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-shows-update"));
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-show-cover-change"));
+  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-shows-actor-search"));
 }

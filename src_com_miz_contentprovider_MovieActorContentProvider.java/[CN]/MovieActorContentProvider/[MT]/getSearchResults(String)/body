@@ -1,0 +1,20 @@
+{
+  query=query.replace("actor:","").trim();
+  HashMap<String,String> actorMap=new HashMap<String,String>();
+  List<String> actorList=new ArrayList<String>();
+  if (!MizLib.isEmpty(query)) {
+    DbAdapter db=MizuuApplication.getMovieAdapter();
+    query=query.toLowerCase(Locale.ENGLISH);
+    Cursor c=db.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false,false);
+    String actors="";
+    while (c.moveToNext()) {
+      actors=c.getString(c.getColumnIndex(DbAdapter.KEY_CAST)).toLowerCase(Locale.ENGLISH);
+      if (actors.indexOf(query) != -1) {
+        for (        String actor : c.getString(c.getColumnIndex(DbAdapter.KEY_CAST)).split("\\|"))         if (actor.toLowerCase(Locale.ENGLISH).startsWith(query))         actorMap.put(actor,actor);
+      }
+    }
+    actorList=new ArrayList<String>(actorMap.values());
+    Collections.sort(actorList);
+  }
+  return actorList;
+}

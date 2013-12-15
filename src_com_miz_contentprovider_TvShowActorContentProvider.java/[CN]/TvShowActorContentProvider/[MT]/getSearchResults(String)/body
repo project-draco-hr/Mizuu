@@ -1,0 +1,20 @@
+{
+  query=query.replace("actor:","").trim();
+  HashMap<String,String> actorMap=new HashMap<String,String>();
+  List<String> actorList=new ArrayList<String>();
+  if (!MizLib.isEmpty(query)) {
+    DbAdapterTvShow db=MizuuApplication.getTvDbAdapter();
+    query=query.toLowerCase(Locale.ENGLISH);
+    Cursor c=db.getAllShows();
+    String actors="";
+    while (c.moveToNext()) {
+      actors=c.getString(c.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ACTORS)).toLowerCase(Locale.ENGLISH);
+      if (actors.indexOf(query) != -1) {
+        for (        String actor : c.getString(c.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ACTORS)).split("\\|"))         if (actor.toLowerCase(Locale.ENGLISH).startsWith(query))         actorMap.put(actor,actor);
+      }
+    }
+    actorList=new ArrayList<String>(actorMap.values());
+    Collections.sort(actorList);
+  }
+  return actorList;
+}

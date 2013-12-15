@@ -6,7 +6,9 @@
  else {
     setupActionBar();
     inflater.inflate(R.menu.menutv,menu);
+    SearchManager searchManager=(SearchManager)getActivity().getSystemService(Context.SEARCH_SERVICE);
     SearchView searchView=(SearchView)menu.findItem(R.id.search_textbox).getActionView();
+    searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
     searchView.setOnQueryTextListener(new OnQueryTextListener(){
       @Override public boolean onQueryTextChange(      String newText){
         if (newText.length() > 0) {

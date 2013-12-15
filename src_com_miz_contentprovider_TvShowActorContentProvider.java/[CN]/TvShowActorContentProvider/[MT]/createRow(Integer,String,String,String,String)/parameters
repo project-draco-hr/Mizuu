@@ -1,0 +1,5 @@
+Integer id
+String text1
+String text2
+String icon
+String rowId

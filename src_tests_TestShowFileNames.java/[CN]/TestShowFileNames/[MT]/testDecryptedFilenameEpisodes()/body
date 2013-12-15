@@ -49,4 +49,5 @@
   Assert.assertEquals(16,d[47].getEpisode());
   Assert.assertEquals(6,d[48].getEpisode());
   Assert.assertEquals(1,d[49].getEpisode());
+  Assert.assertEquals(1,d[50].getEpisode());
 }

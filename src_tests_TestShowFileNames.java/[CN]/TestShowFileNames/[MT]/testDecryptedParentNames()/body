@@ -49,4 +49,5 @@
   Assert.assertEquals("Talespin V12 panos",d[47].getDecryptedParentName());
   Assert.assertEquals("Secret Files of the Spy dogs",d[48].getDecryptedParentName());
   Assert.assertEquals("The Fresh Prince of BelAir",d[49].getDecryptedParentName());
+  Assert.assertEquals("Its Always Sunny in Philadelphia",d[50].getDecryptedParentName());
 }
