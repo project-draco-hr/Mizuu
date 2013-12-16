@@ -18,7 +18,7 @@
   textTitle.setTypeface(tf);
   textTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
   textPlot.setText(thisMovie.getPlot());
-  if (thisMovie.hasMultipleVersions()) {
+  if (thisMovie.hasMultipleVersions() && !thisMovie.isUnidentified()) {
     String sources="";
     MovieVersion[] versions=thisMovie.getMultipleVersions();
     for (int i=0; i < versions.length; i++)     sources=sources + MizLib.transformSmbPath(versions[i].getFilepath()) + "\n\n";

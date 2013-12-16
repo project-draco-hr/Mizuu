@@ -1,5 +1,5 @@
 {
-  if (thisMovie.hasMultipleVersions()) {
+  if (thisMovie.hasMultipleVersions() && !thisMovie.isUnidentified()) {
     final MovieVersion[] versions=thisMovie.getMultipleVersions();
     CharSequence[] items=new CharSequence[versions.length];
     for (int i=0; i < versions.length; i++)     items[i]=MizLib.transformSmbPath(versions[i].getFilepath());
