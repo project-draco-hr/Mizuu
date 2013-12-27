@@ -3,10 +3,11 @@
   myServerSocket=new ServerSocket(myTcpPort);
   myThread=new Thread(new Runnable(){
     public void run(){
+      HTTPSession ss;
       try {
         while (true) {
           Socket accept=myServerSocket.accept();
-          new HTTPSession(accept);
+          ss=new HTTPSession(accept);
         }
       }
  catch (      IOException ioe) {
@@ -15,5 +16,6 @@
   }
 );
   myThread.setDaemon(true);
+  myThread.setPriority(Thread.MAX_PRIORITY);
   myThread.start();
 }
