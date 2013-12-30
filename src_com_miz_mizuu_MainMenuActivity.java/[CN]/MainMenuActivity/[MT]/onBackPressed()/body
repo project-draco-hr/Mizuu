@@ -17,6 +17,7 @@
     }
   }
  else {
-    super.onBackPressed();
+    if (MizLib.isGoogleTV(this))     mDrawerLayout.closeDrawers();
+ else     super.onBackPressed();
   }
 }
