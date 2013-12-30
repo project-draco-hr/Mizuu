@@ -1,4 +1,4 @@
 {
   mItemHeight=height;
-  mImageViewLayoutParams=new GridView.LayoutParams(LayoutParams.MATCH_PARENT,(int)(mItemHeight * 1.5));
+  mImageViewLayoutParams=new GridView.LayoutParams(mItemHeight,(int)(mItemHeight * 1.5));
 }

@@ -7,7 +7,10 @@
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
   showGridTitles=settings.getBoolean("prefsShowGridTitles",false);
   ignorePrefixes=settings.getBoolean("prefsIgnorePrefixesInTitles",false);
-  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+  String thumbnailSize=settings.getString("prefsGridItemSize",getString(R.string.normal));
+  if (thumbnailSize.equals(getString(R.string.large)))   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1.25);
+ else   if (thumbnailSize.equals(getString(R.string.normal)))   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1);
+ else   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 0.75);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   imageLoader=ImageLoader.getInstance();
   options=MizuuApplication.getDefaultCoverLoadingOptions();
