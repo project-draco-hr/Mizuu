@@ -1,6 +1,6 @@
 {
   Editor editor=settings.edit();
-  editor.putString("prefsSorting","sortAdded");
+  editor.putString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? "prefsSortingCollectionsOverview" : "prefsSorting","sortAdded");
   editor.apply();
   sortBy(DATE);
 }

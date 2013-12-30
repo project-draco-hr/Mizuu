@@ -1,6 +1,6 @@
 {
   Editor editor=settings.edit();
-  editor.putString("prefsSorting","sortRelease");
+  editor.putString("prefsSortingCollections","sortRelease");
   editor.apply();
   sortBy(RELEASE);
 }

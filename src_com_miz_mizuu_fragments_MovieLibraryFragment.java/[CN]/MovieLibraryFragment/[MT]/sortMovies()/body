@@ -1,5 +1,5 @@
 {
-  String SORT_TYPE=settings.getString("prefsSorting","sortTitle");
+  String SORT_TYPE=settings.getString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? "prefsSortingCollectionsOverview" : "prefsSorting","sortTitle");
   if (SORT_TYPE.equals("sortTitle")) {
     sortByTitle();
   }
