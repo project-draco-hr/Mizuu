@@ -50,4 +50,5 @@
   Assert.assertEquals("Secret Files of the Spy dogs",d[48].getDecryptedParentName());
   Assert.assertEquals("The Fresh Prince of BelAir",d[49].getDecryptedParentName());
   Assert.assertEquals("Its Always Sunny in Philadelphia",d[50].getDecryptedParentName());
+  Assert.assertEquals("Doctor Who",d[51].getDecryptedParentName());
 }

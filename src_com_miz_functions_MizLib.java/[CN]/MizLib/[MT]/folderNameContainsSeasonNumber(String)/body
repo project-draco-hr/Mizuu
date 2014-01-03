@@ -5,7 +5,7 @@
   searchPattern=Pattern.compile("(?i)season((\\s)+)(\\d){1,2}");
   searchMatcher=searchPattern.matcher(folderName);
   if (searchMatcher.find())   return true;
-  searchPattern=Pattern.compile("(\\d){1,2}");
+  searchPattern=Pattern.compile("(\\d){1,2}(?!\\S)");
   searchMatcher=searchPattern.matcher(folderName);
   if (searchMatcher.find())   return true;
   return false;

@@ -1,0 +1,33 @@
+{
+  reset();
+  mContext=getApplicationContext();
+  file=intent.getExtras().getString(FILEPATH);
+  type=intent.getExtras().getInt(TYPE);
+  mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+  Intent notificationIntent=new Intent(this,CancelUpdateDialog.class);
+  notificationIntent.putExtra("type",CancelUpdateDialog.MOVIE);
+  notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+  contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
+  builder=new NotificationCompat.Builder(mContext);
+  builder.setOngoing(true);
+  builder.setOnlyAlertOnce(true);
+  builder.setSmallIcon(R.drawable.refresh);
+  builder.setContentIntent(contentIntent);
+  builder.setTicker("Downloading movie");
+  builder.setContentTitle("Downloading movie");
+  builder.setContentText(getContentText());
+  builder.setLargeIcon(MizLib.getNotificationImageThumbnail(mContext,intent.getExtras().getString("thumb")));
+  boolean exists=checkIfFileExists();
+  if (!exists) {
+    stopSelf();
+  }
+  boolean sizeOK=checkFilesize();
+  if (!sizeOK) {
+    stopSelf();
+  }
+  long time=System.currentTimeMillis();
+  updateNotification();
+  startForeground(NOTIFICATION_ID,mNotification);
+  boolean success=beginTransfer();
+  System.out.println("SUCCESS: " + success + ". Time: "+ (System.currentTimeMillis() - time));
+}

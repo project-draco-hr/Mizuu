@@ -1,0 +1,12 @@
+{
+  try {
+    long elapsed=(currentTime - lastTime);
+    long data_sent=(currentLength - lastLength);
+    double percentage=(100.0 / (double)totalLength) * (double)currentLength;
+    long data_per_sec=(data_sent / elapsed) * 1000;
+    return Double.valueOf(oneDecimal.format(percentage)) + "% - " + (currentLength / 1024 / 1024)+ " of "+ (totalLength / 1024 / 1024)+ " MB ("+ (data_per_sec / 1000)+ " KB/s)";
+  }
+ catch (  Exception e) {
+    return "Starting...";
+  }
+}

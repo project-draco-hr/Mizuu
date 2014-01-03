@@ -1,0 +1,5 @@
+{
+  builder.setContentText(getContentText());
+  mNotification=builder.build();
+  mNotificationManager.notify(NOTIFICATION_ID,mNotification);
+}

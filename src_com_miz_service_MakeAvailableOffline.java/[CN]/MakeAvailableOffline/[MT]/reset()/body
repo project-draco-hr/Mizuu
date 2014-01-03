@@ -1,0 +1,12 @@
+{
+  file="";
+  type=-1;
+  auth=null;
+  smb=null;
+  mContext=null;
+  smbSize=-1;
+  builder=null;
+  mNotificationManager=null;
+  mNotification=null;
+  contentIntent=null;
+}

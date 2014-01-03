@@ -1,5 +1,5 @@
 {
-  StatFs statFs=new StatFs(Environment.getRootDirectory().getAbsolutePath());
-  if (hasJellyBeanMR2())   return (int)(statFs.getAvailableBlocksLong() * statFs.getBlockSizeLong());
- else   return statFs.getAvailableBlocks() * statFs.getBlockSize();
+  StatFs stat=new StatFs(Environment.getDataDirectory().getPath());
+  if (hasJellyBeanMR2())   return stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+ else   return stat.getAvailableBlocks() * stat.getBlockSize();
 }

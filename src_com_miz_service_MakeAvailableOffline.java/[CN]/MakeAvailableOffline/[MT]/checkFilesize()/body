@@ -1,0 +1,10 @@
+{
+  try {
+    long freeMemory=(long)(MizLib.getFreeMemory() * 0.975);
+    smbSize=smb.length();
+    return freeMemory > smbSize;
+  }
+ catch (  SmbException e) {
+    return false;
+  }
+}

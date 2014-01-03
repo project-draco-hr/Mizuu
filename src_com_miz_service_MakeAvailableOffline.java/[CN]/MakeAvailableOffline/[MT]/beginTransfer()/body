@@ -1,0 +1,22 @@
+{
+  try {
+    File offline=new File(MizLib.getAvailableOfflineFolder(mContext),smb.getName());
+    offline.createNewFile();
+    totalLength=smb.length();
+    OutputStream os=new BufferedOutputStream(new FileOutputStream(offline),16384);
+    BufferedInputStream in=new BufferedInputStream(new SmbFileInputStream(smb),16384);
+    byte[] b=new byte[16384];
+    int n;
+    while ((n=in.read(b)) != -1) {
+      os.write(b,0,n);
+      currentLength+=n;
+      update();
+    }
+    os.close();
+    in.close();
+    return offline.length() == smbSize;
+  }
+ catch (  Exception ignored) {
+    return false;
+  }
+}
