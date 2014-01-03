@@ -1,3 +1,4 @@
 {
+  if (mDecryptedFileName.isEmpty())   return getDecryptedParentName();
   return mDecryptedFileName;
 }

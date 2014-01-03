@@ -50,4 +50,5 @@
   Assert.assertEquals("Secret Files of the Spy Dogs",d[48].getDecryptedFileName());
   Assert.assertEquals("The Fresh Prince of BelAir",d[49].getDecryptedFileName());
   Assert.assertEquals("Doctor Who",d[51].getDecryptedFileName());
+  Assert.assertEquals("",d[52].getDecryptedFileName());
 }

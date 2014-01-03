@@ -2,6 +2,7 @@
   try {
     long freeMemory=(long)(MizLib.getFreeMemory() * 0.975);
     smbSize=smb.length();
+    System.out.println("FREE: " + freeMemory + ". SMB: "+ smbSize);
     return freeMemory > smbSize;
   }
  catch (  SmbException e) {

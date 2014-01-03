@@ -20,10 +20,12 @@
   boolean exists=checkIfFileExists();
   if (!exists) {
     stopSelf();
+    return;
   }
   boolean sizeOK=checkFilesize();
   if (!sizeOK) {
     stopSelf();
+    return;
   }
   long time=System.currentTimeMillis();
   updateNotification();
