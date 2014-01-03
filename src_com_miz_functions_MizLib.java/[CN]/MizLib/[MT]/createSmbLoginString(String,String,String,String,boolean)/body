@@ -1,6 +1,10 @@
 {
   StringBuilder sb=new StringBuilder();
   sb.append("smb://");
+  user=user.replace("+","%20");
+  password=password.replace("+","%20");
+  domain=domain.replace("+","%20");
+  server=server.replace("+","%20");
   if (!user.isEmpty()) {
     if (!domain.isEmpty())     sb.append(domain + ";");
     sb.append(user);
