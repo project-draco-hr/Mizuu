@@ -1,0 +1,8 @@
+{
+  TmdbMovieDetailsFragment pageFragment=new TmdbMovieDetailsFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("movieId",movieId);
+  bundle.putString("json",json);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

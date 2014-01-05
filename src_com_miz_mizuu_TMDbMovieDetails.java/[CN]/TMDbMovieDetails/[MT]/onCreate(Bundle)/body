@@ -4,13 +4,12 @@
  else   setTheme(R.style.Theme_Example_NoBackGround);
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
-  actionBar=getActionBar();
-  actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-  if (spinnerAdapter == null)   spinnerAdapter=new ActionBarSpinner(this,spinnerItems);
-  setTitle(null);
+  setTitle(getIntent().getExtras().getString("title"));
   movieId=getIntent().getExtras().getString("tmdbid");
+  if (!MizLib.runsInPortraitMode(getApplicationContext()))   findViewById(R.id.layout).setBackgroundResource(R.drawable.bg);
+  pbar=(ProgressBar)findViewById(R.id.progressbar);
+  pbar.setVisibility(View.VISIBLE);
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);
-  awesomePager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
   awesomePager.setOffscreenPageLimit(2);
   awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
@@ -18,8 +17,13 @@
     }
   }
 );
-  setupSpinnerItems();
   if (savedInstanceState != null) {
+    json=savedInstanceState.getString("json","");
+    baseUrl=savedInstanceState.getString("baseUrl");
+    setupActionBarStuff();
     awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
+  }
+ else {
+    new MovieLoader().execute(movieId);
   }
 }

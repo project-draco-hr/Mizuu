@@ -39,4 +39,11 @@
   }
 );
   mGridView.setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
+  if (getArguments().containsKey("json")) {
+    json=getArguments().getString("json");
+    loadJson(getArguments().getString("baseUrl"));
+  }
+ else {
+    new GetMovies().execute(getArguments().getString("tmdbId"));
+  }
 }

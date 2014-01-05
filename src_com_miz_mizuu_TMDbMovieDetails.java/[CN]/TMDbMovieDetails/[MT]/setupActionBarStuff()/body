@@ -1,0 +1,10 @@
+{
+  actionBar=getActionBar();
+  actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+  if (spinnerAdapter == null)   spinnerAdapter=new ActionBarSpinner(getApplicationContext(),spinnerItems);
+  setTitle(null);
+  if (!MizLib.runsInPortraitMode(getApplicationContext()))   findViewById(R.id.layout).setBackgroundResource(0);
+  pbar.setVisibility(View.GONE);
+  awesomePager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager(),json));
+  setupSpinnerItems();
+}

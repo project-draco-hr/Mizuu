@@ -29,7 +29,7 @@
   v.findViewById(R.id.imageView2).setVisibility(View.GONE);
   if (!isRetained) {
     setLoading(true);
-    new MovieLoader().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR,"");
+    new MovieLoader().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR,getArguments().getString("json"));
     isRetained=true;
   }
  else {

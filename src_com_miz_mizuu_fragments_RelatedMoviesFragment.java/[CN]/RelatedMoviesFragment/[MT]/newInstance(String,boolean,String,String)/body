@@ -1,0 +1,10 @@
+{
+  RelatedMoviesFragment pageFragment=new RelatedMoviesFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("tmdbId",tmdbId);
+  bundle.putBoolean("setBackground",setBackground);
+  bundle.putString("json",json);
+  bundle.putString("baseUrl",baseUrl);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

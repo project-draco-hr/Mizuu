@@ -10,7 +10,7 @@
       baseUrl=jObject.getJSONObject("images").getString("base_url");
     }
  catch (    Exception e) {
-      baseUrl="http://cf2.imgobject.com/t/p/";
+      baseUrl=MizLib.TMDB_BASE_URL;
     }
     httpclient=new DefaultHttpClient();
     httppost=new HttpGet("https://api.themoviedb.org/3/movie/" + params[0] + "/casts?api_key="+ MizLib.TMDB_API);
@@ -19,6 +19,7 @@
     String html=httpclient.execute(httppost,responseHandler);
     jObject=new JSONObject(html);
     JSONArray jArray=jObject.getJSONArray("cast");
+    actors.clear();
     for (int i=0; i < jArray.length(); i++) {
       actors.add(new Actor(jArray.getJSONObject(i).getString("name"),jArray.getJSONObject(i).getString("character"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getActorUrlSize(getActivity()) + jArray.getJSONObject(i).getString("profile_path")));
     }

@@ -1,1 +1,1 @@
-AsyncTask<Object,Object,Object>
+AsyncTask<String,Object,Object>

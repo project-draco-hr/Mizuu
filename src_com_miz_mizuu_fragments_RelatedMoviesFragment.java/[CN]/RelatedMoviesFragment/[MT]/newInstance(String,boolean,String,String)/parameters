@@ -1,0 +1,4 @@
+String tmdbId
+boolean setBackground
+String json
+String baseUrl

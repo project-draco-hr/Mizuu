@@ -1,0 +1,16 @@
+{
+  try {
+    JSONObject jObject=new JSONObject(json);
+    JSONArray jArray=jObject.getJSONObject("casts").getJSONArray("cast");
+    actors.clear();
+    for (int i=0; i < jArray.length(); i++) {
+      actors.add(new Actor(jArray.getJSONObject(i).getString("name"),jArray.getJSONObject(i).getString("character"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getActorUrlSize(getActivity()) + jArray.getJSONObject(i).getString("profile_path")));
+    }
+  }
+ catch (  Exception e) {
+  }
+  if (isAdded()) {
+    pbar.setVisibility(View.GONE);
+    mAdapter.notifyDataSetChanged();
+  }
+}

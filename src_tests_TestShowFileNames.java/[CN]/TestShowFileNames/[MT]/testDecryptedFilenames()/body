@@ -18,9 +18,9 @@
   Assert.assertEquals("2 Broke Girls",d[16].getDecryptedFileName());
   Assert.assertEquals("Breaking Bad",d[17].getDecryptedFileName());
   Assert.assertEquals("Californication",d[18].getDecryptedFileName());
-  Assert.assertEquals("",d[19].getDecryptedFileName());
-  Assert.assertEquals("",d[20].getDecryptedFileName());
-  Assert.assertEquals("",d[21].getDecryptedFileName());
+  Assert.assertEquals("Game of Thrones",d[19].getDecryptedFileName());
+  Assert.assertEquals("The IT Crowd",d[20].getDecryptedFileName());
+  Assert.assertEquals("Battlestar Galactica",d[21].getDecryptedFileName());
   Assert.assertEquals("Andromeda",d[22].getDecryptedFileName());
   Assert.assertEquals("Falling Skies",d[23].getDecryptedFileName());
   Assert.assertEquals("The Big Bang Theory",d[24].getDecryptedFileName());
@@ -35,7 +35,7 @@
   Assert.assertEquals("the bletchley circle",d[33].getDecryptedFileName());
   Assert.assertEquals("louie",d[34].getDecryptedFileName());
   Assert.assertEquals("I Claudius",d[35].getDecryptedFileName());
-  Assert.assertEquals("",d[36].getDecryptedFileName());
+  Assert.assertEquals("The Inspector Montalbano",d[36].getDecryptedFileName());
   Assert.assertEquals("Hatfields and McCoys",d[37].getDecryptedFileName());
   Assert.assertEquals("Boss",d[38].getDecryptedFileName());
   Assert.assertEquals("appropriate adult",d[39].getDecryptedFileName());
@@ -46,9 +46,9 @@
   Assert.assertEquals("tripsdoctor who",d[44].getDecryptedFileName());
   Assert.assertEquals("doctor who",d[45].getDecryptedFileName());
   Assert.assertEquals("skins",d[46].getDecryptedFileName());
-  Assert.assertEquals("",d[47].getDecryptedFileName());
+  Assert.assertEquals("Talespin V12 panos",d[47].getDecryptedFileName());
   Assert.assertEquals("Secret Files of the Spy Dogs",d[48].getDecryptedFileName());
   Assert.assertEquals("The Fresh Prince of BelAir",d[49].getDecryptedFileName());
   Assert.assertEquals("Doctor Who",d[51].getDecryptedFileName());
-  Assert.assertEquals("",d[52].getDecryptedFileName());
+  Assert.assertEquals("Breaking Bad",d[52].getDecryptedFileName());
 }

@@ -1,4 +1,0 @@
-{
-  thisMovie=tmdb.getMovie(movieId,"en");
-  return null;
-}
