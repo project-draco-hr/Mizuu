@@ -16,7 +16,7 @@
  else {
       Toast.makeText(this,getString(R.string.markedAsUnwatched),Toast.LENGTH_SHORT).show();
     }
-    LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-library-change"));
+    notifyDatasetChanges();
   }
  else   Toast.makeText(this,getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();
   if (prefsRemoveMoviesFromWatchlist)   removeFromWatchlist();

@@ -79,11 +79,12 @@
       }
     }
     setLoading(false);
-    try {
-      new LoadImage().execute(thisMovie.getCover(),LoadImage.COVER);
-      new LoadImage().execute(thisMovie.getBackdrop(),LoadImage.BACKDROP);
+    ImageLoader.getInstance().displayImage(thisMovie.getCover(),cover,MizuuApplication.getDefaultCoverLoadingOptions());
+    ImageLoader.getInstance().displayImage(thisMovie.getBackdrop(),background,MizuuApplication.getBackdropLoadingOptions(),new SimpleImageLoadingListener(){
+      @Override public void onLoadingFailed(      String imageUri,      View view,      FailReason failReason){
+        ImageLoader.getInstance().displayImage(thisMovie.getCover(),background,MizuuApplication.getDefaultCoverLoadingOptions());
+      }
     }
- catch (    Exception e) {
-    }
+);
   }
 }

@@ -10,7 +10,7 @@
   }
   if (success) {
     invalidateOptionsMenu();
-    LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-library-change"));
+    notifyDatasetChanges();
   }
   new Thread(){
     @Override public void run(){

@@ -17,7 +17,7 @@
       Toast.makeText(this,getString(R.string.removedFromFavs),Toast.LENGTH_SHORT).show();
       setResult(2);
     }
-    LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-library-change"));
+    notifyDatasetChanges();
   }
  else   Toast.makeText(this,getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();
   new Thread(){
