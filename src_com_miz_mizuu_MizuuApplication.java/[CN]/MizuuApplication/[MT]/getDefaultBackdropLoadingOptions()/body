@@ -1,4 +1,4 @@
 {
-  DisplayImageOptions options=new DisplayImageOptions.Builder().showImageOnLoading(R.drawable.gray).showImageOnFail(R.drawable.nobackdrop).showImageForEmptyUri(R.drawable.nobackdrop).cacheInMemory(true).cacheOnDisc(false).bitmapConfig(Bitmap.Config.RGB_565).build();
+  DisplayImageOptions options=new DisplayImageOptions.Builder().showImageOnLoading(R.drawable.gray).showImageOnFail(R.drawable.nobackdrop).showImageForEmptyUri(R.drawable.nobackdrop).cacheInMemory(true).cacheOnDisc(true).bitmapConfig(Bitmap.Config.RGB_565).build();
   return options;
 }

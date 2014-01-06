@@ -1,7 +1,7 @@
 {
   super.onViewCreated(v,savedInstanceState);
   pbar=(ProgressBar)v.findViewById(R.id.progress);
-  if (pics_sources.size() > 0)   pbar.setVisibility(View.GONE);
+  pbar.setVisibility(View.GONE);
   mAdapter=new ImageAdapter(getActivity());
   mGridView=(GridView)v.findViewById(R.id.gridView);
   mGridView.setAdapter(mAdapter);
@@ -37,4 +37,9 @@
   }
 );
   mGridView.setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
+  if (getArguments().containsKey("json")) {
+    json=getArguments().getString("json");
+    baseUrl=getArguments().getString("baseUrl");
+    loadJson();
+  }
 }

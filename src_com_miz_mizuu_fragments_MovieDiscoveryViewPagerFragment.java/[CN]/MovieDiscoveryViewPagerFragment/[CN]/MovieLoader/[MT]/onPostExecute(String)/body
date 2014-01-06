@@ -1,0 +1,9 @@
+{
+  if (result != null) {
+    awesomePager.setAdapter(new WebVideosAdapter(getChildFragmentManager()));
+    pbar.setVisibility(View.GONE);
+  }
+ else {
+    Toast.makeText(getActivity(),R.string.errorSomethingWentWrong,Toast.LENGTH_SHORT).show();
+  }
+}

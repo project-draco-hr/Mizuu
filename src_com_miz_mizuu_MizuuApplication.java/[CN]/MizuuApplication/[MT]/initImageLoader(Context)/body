@@ -1,5 +1,5 @@
 {
   if (!(0 != (context.getApplicationInfo().flags&=ApplicationInfo.FLAG_DEBUGGABLE)))   L.disableLogging();
-  ImageLoaderConfiguration config=new ImageLoaderConfiguration.Builder(context).threadPoolSize(4).threadPriority(Thread.NORM_PRIORITY).denyCacheImageMultipleSizesInMemory().memoryCacheSizePercentage(20).imageDownloader(new CifsImageDownloader(context)).discCacheFileNameGenerator(new Md5FileNameGenerator()).tasksProcessingOrder(QueueProcessingType.FIFO).build();
+  ImageLoaderConfiguration config=new ImageLoaderConfiguration.Builder(context).threadPoolSize(4).threadPriority(Thread.NORM_PRIORITY).denyCacheImageMultipleSizesInMemory().memoryCacheSizePercentage(20).discCacheSize(1024 * 1024 * 100).imageDownloader(new CifsImageDownloader(context)).discCacheFileNameGenerator(new Md5FileNameGenerator()).tasksProcessingOrder(QueueProcessingType.FIFO).build();
   ImageLoader.getInstance().init(config);
 }

@@ -4,7 +4,7 @@
     HttpGet httppost=new HttpGet("https://api.themoviedb.org/3/configuration?api_key=" + MizLib.TMDB_API);
     httppost.setHeader("Accept","application/json");
     ResponseHandler<String> responseHandler=new BasicResponseHandler();
-    String baseUrl=httpclient.execute(httppost,responseHandler);
+    baseUrl=httpclient.execute(httppost,responseHandler);
     JSONObject jObject=new JSONObject(baseUrl);
     try {
       baseUrl=jObject.getJSONObject("images").getString("base_url");
@@ -13,18 +13,13 @@
       baseUrl=MizLib.TMDB_BASE_URL;
     }
     httpclient=new DefaultHttpClient();
-    httppost=new HttpGet("https://api.themoviedb.org/3/person/" + params[0] + "/images?api_key="+ MizLib.TMDB_API);
+    httppost=new HttpGet("https://api.themoviedb.org/3/movie?api_key=" + MizLib.TMDB_API + "&append_to_response=upcoming,now_playing,popular,top_rated");
     httppost.setHeader("Accept","application/json");
     responseHandler=new BasicResponseHandler();
-    String html=httpclient.execute(httppost,responseHandler);
-    jObject=new JSONObject(html);
-    JSONArray jArray=jObject.getJSONArray("profiles");
-    for (int i=0; i < jArray.length(); i++) {
-      pics_sources.add(baseUrl + MizLib.getActorUrlSize(getActivity()) + jArray.getJSONObject(i).getString("file_path"));
-    }
+    json=EntityUtils.toString(httpclient.execute(httppost).getEntity());
+    return json;
   }
  catch (  Exception e) {
-    e.printStackTrace();
   }
   return null;
 }

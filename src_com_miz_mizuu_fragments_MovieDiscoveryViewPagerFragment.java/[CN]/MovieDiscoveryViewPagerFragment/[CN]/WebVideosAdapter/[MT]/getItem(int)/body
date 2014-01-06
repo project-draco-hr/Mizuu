@@ -1,12 +1,10 @@
 {
 switch (index) {
 case 0:
-    return MovieDiscoveryFragment.newInstance("upcoming");
+    return MovieDiscoveryFragment.newInstance("upcoming",json,baseUrl);
 case 1:
-  return MovieDiscoveryFragment.newInstance("now_playing");
-case 2:
-return MovieDiscoveryFragment.newInstance("popular");
+  return MovieDiscoveryFragment.newInstance("now_playing",json,baseUrl);
 default :
-return MovieDiscoveryFragment.newInstance("top_rated");
+return MovieDiscoveryFragment.newInstance("popular",json,baseUrl);
 }
 }

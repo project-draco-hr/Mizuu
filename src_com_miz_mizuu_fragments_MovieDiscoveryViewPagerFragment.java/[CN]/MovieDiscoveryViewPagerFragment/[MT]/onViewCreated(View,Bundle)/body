@@ -1,9 +1,10 @@
 {
   super.onViewCreated(v,savedInstanceState);
+  pbar=(ProgressBar)v.findViewById(R.id.progressbar);
+  pbar.setVisibility(View.VISIBLE);
   awesomePager=(ViewPager)v.findViewById(R.id.awesomepager);
   awesomePager.setOffscreenPageLimit(3);
   awesomePager.setPageMargin(MizLib.convertDpToPixels(getActivity(),16));
-  awesomePager.setAdapter(new WebVideosAdapter(getChildFragmentManager()));
   awesomePager.setOnPageChangeListener(new OnPageChangeListener(){
     @Override public void onPageScrollStateChanged(    int arg0){
     }
@@ -16,5 +17,12 @@
 );
   if (savedInstanceState != null) {
     awesomePager.setCurrentItem(savedInstanceState.getInt("selectedIndex",0));
+  }
+  if (json.isEmpty()) {
+    new MovieLoader().execute();
+  }
+ else {
+    awesomePager.setAdapter(new WebVideosAdapter(getChildFragmentManager()));
+    pbar.setVisibility(View.GONE);
   }
 }

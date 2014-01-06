@@ -7,7 +7,7 @@
       baseUrl=jObject.getJSONObject("images").getString("base_url");
     }
  catch (    Exception e) {
-      baseUrl="http://cf2.imgobject.com/t/p/";
+      baseUrl=MizLib.TMDB_BASE_URL;
     }
     jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/movie/" + TMDBID + "/images?api_key="+ MizLib.TMDB_API);
     JSONArray array=jObject.getJSONArray("backdrops");
