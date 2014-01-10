@@ -1,4 +1,0 @@
-{
-  super.onResume();
-  if (MizLib.hasICS() && getActionBar() != null)   getActionBar().setIcon(R.drawable.white_app_icon);
-}
