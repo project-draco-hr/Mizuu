@@ -1,0 +1,5 @@
+{
+  this.trimLength=trimLength;
+  trimmedText=getTrimmedText(originalText);
+  setText();
+}

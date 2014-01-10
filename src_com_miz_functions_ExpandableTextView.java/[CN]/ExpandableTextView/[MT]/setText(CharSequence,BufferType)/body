@@ -1,0 +1,6 @@
+{
+  originalText=text;
+  trimmedText=getTrimmedText(text);
+  bufferType=type;
+  setText();
+}
