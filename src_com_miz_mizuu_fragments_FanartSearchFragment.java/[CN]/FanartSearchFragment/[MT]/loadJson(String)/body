@@ -1,0 +1,17 @@
+{
+  try {
+    pics_sources.clear();
+    JSONObject jObject=new JSONObject(json);
+    JSONArray array=jObject.getJSONArray("backdrops");
+    for (int i=0; i < array.length(); i++) {
+      JSONObject o=array.getJSONObject(i);
+      covers.add(new Cover(baseUrl + MizLib.getBackdropThumbUrlSize(getActivity()) + o.getString("file_path"),o.getString("iso_639_1")));
+      pics_sources.add(baseUrl + MizLib.getBackdropThumbUrlSize(getActivity()) + o.getString("file_path"));
+    }
+  }
+ catch (  Exception e) {
+  }
+  if (isAdded()) {
+    showContent();
+  }
+}

@@ -1,0 +1,9 @@
+{
+  CoverSearchFragment pageFragment=new CoverSearchFragment();
+  Bundle b=new Bundle();
+  b.putString("tmdbId",tmdbId);
+  b.putString("json",json);
+  b.putString("baseUrl",baseUrl);
+  pageFragment.setArguments(b);
+  return pageFragment;
+}

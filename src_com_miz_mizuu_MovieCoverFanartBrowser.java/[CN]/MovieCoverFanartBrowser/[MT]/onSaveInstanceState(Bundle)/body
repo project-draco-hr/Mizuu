@@ -1,7 +1,7 @@
 {
   super.onSaveInstanceState(outState);
-  outState.putInt("tab",getActionBar().getSelectedNavigationIndex());
-  outState.putInt("coverCount",coverCount);
-  outState.putInt("backdropCount",backdropCount);
-  outState.putInt("collectionCount",collectionCount);
+  outState.putInt("tab",awesomePager.getCurrentItem());
+  outState.putString("json",json);
+  outState.putString("baseUrl",baseUrl);
+  outState.putString("collection",collection);
 }

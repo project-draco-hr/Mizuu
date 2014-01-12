@@ -2,32 +2,25 @@
   super.onCreate(savedInstanceState);
   setContentView(R.layout.viewpager);
   tmdbId=getIntent().getExtras().getString("tmdbId");
-  startPosition=getIntent().getExtras().getInt("startPosition");
-  if (startPosition == 2)   collectionId=getIntent().getExtras().getString("collectionId");
+  collectionId=getIntent().getExtras().getString("collectionId");
+  pbar=(ProgressBar)findViewById(R.id.progressbar);
+  pbar.setVisibility(View.VISIBLE);
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);
-  awesomePager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
-  bar=getActionBar();
-  bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-  bar.addTab(bar.newTab().setText(getString(R.string.coverart)).setTabListener(this));
-  bar.addTab(bar.newTab().setText(getString(R.string.backdrop)).setTabListener(this));
-  if (startPosition == 2) {
-    bar.addTab(bar.newTab().setText(getString(R.string.collectionart)).setTabListener(this));
-  }
+  awesomePager.setOffscreenPageLimit(2);
   awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
-      bar.getTabAt(position).select();
-      ViewParent root=findViewById(android.R.id.content).getParent();
-      MizLib.findAndUpdateSpinner(root,position);
+      actionBar.setSelectedNavigationItem(position);
     }
   }
 );
-  bar.setSelectedNavigationItem(startPosition);
   if (savedInstanceState != null) {
-    bar.setSelectedNavigationItem(savedInstanceState.getInt("tab",0));
-    coverCount=savedInstanceState.getInt("coverCount");
-    backdropCount=savedInstanceState.getInt("backdropCount");
-    collectionCount=savedInstanceState.getInt("collectionCount");
-    displayCount();
+    json=savedInstanceState.getString("json","");
+    baseUrl=savedInstanceState.getString("baseUrl");
+    collection=savedInstanceState.getString("collection");
+    setupActionBarStuff();
+    awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
-  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-cover-search-fragment"));
+ else {
+    new MovieLoader().execute(tmdbId,collectionId);
+  }
 }

@@ -7,5 +7,4 @@
   imageLoader=ImageLoader.getInstance();
   options=MizuuApplication.getDefaultCoverLoadingOptions();
   COLLECTION_ID=getArguments().getString("collectionId");
-  new GetCoverImages().execute(COLLECTION_ID);
 }

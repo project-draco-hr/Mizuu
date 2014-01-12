@@ -2,27 +2,22 @@
   super.onCreate(savedInstanceState);
   setContentView(R.layout.viewpager);
   tvdbId=getIntent().getExtras().getString("id");
-  startPosition=getIntent().getExtras().getInt("startPosition");
+  actionBar=getActionBar();
+  setupSpinnerItems();
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);
-  awesomePager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
-  bar=getActionBar();
-  bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-  bar.addTab(bar.newTab().setText(getString(R.string.coverart)).setTabListener(this));
-  bar.addTab(bar.newTab().setText(getString(R.string.backdrop)).setTabListener(this));
+  awesomePager.setOffscreenPageLimit(2);
   awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
-      bar.getTabAt(position).select();
-      ViewParent root=findViewById(android.R.id.content).getParent();
-      MizLib.findAndUpdateSpinner(root,position);
+      actionBar.setSelectedNavigationItem(position);
     }
   }
 );
-  bar.setSelectedNavigationItem(startPosition);
+  awesomePager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
+  actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+  if (spinnerAdapter == null)   spinnerAdapter=new ActionBarSpinner(getApplicationContext(),spinnerItems);
+  setTitle(null);
+  setupSpinnerItems();
   if (savedInstanceState != null) {
-    bar.setSelectedNavigationItem(savedInstanceState.getInt("tab",0));
-    coverCount=savedInstanceState.getInt("coverCount");
-    backdropCount=savedInstanceState.getInt("backdropCount");
-    displayCount();
+    getActionBar().setSelectedNavigationItem(savedInstanceState.getInt("tab",0));
   }
-  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-cover-search-fragment-tv"));
 }

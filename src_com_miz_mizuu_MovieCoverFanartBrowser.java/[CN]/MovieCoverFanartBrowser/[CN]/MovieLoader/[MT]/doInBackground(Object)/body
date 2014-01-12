@@ -12,10 +12,16 @@
  catch (    Exception e) {
       baseUrl=MizLib.TMDB_BASE_URL;
     }
-    httppost=new HttpGet("https://api.themoviedb.org/3/movie?api_key=" + MizLib.TMDB_API + "&append_to_response=upcoming,now_playing,popular,top_rated");
+    httppost=new HttpGet("https://api.themoviedb.org/3/movie/" + params[0] + "/images?api_key="+ MizLib.TMDB_API);
     httppost.setHeader("Accept","application/json");
     responseHandler=new BasicResponseHandler();
-    json=EntityUtils.toString(httpclient.execute(httppost).getEntity());
+    json=httpclient.execute(httppost,responseHandler);
+    if (!collectionId.equals("null") && !collectionId.isEmpty()) {
+      httppost=new HttpGet("https://api.themoviedb.org/3/collection/" + params[1] + "/images?api_key="+ MizLib.TMDB_API);
+      httppost.setHeader("Accept","application/json");
+      responseHandler=new BasicResponseHandler();
+      collection=httpclient.execute(httppost,responseHandler);
+    }
     return json;
   }
  catch (  Exception e) {

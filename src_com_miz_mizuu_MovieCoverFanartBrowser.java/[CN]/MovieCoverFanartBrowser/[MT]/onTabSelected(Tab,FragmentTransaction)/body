@@ -1,3 +1,0 @@
-{
-  awesomePager.setCurrentItem(getActionBar().getSelectedTab().getPosition(),true);
-}

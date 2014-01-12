@@ -24,9 +24,6 @@
  else {
       menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsWatched);
     }
-    if (!thisMovie.isPartOfCollection()) {
-      menu.findItem(R.id.change_collection_cover).setVisible(false);
-    }
     if (!MizLib.isImdbInstalled(this)) {
       menu.findItem(R.id.imdb).setVisible(false);
     }

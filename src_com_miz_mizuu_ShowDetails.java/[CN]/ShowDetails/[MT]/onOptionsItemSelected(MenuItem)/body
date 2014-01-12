@@ -12,9 +12,6 @@ return true;
 case R.id.menuDeleteShow:
 deleteShow();
 break;
-case R.id.change_backdrop:
-searchBackdrops();
-break;
 case R.id.change_cover:
 searchCover();
 break;

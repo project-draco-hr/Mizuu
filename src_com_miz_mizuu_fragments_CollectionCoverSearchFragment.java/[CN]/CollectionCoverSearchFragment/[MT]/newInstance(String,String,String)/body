@@ -1,0 +1,9 @@
+{
+  CollectionCoverSearchFragment pageFragment=new CollectionCoverSearchFragment();
+  Bundle b=new Bundle();
+  b.putString("collectionId",collectionId);
+  b.putString("json",json);
+  b.putString("baseUrl",baseUrl);
+  pageFragment.setArguments(b);
+  return pageFragment;
+}

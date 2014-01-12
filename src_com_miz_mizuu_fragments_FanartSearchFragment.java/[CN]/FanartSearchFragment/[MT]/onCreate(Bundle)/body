@@ -7,5 +7,4 @@
   imageLoader=ImageLoader.getInstance();
   options=MizuuApplication.getDefaultBackdropLoadingOptions();
   TMDB_ID=getArguments().getString("tmdbId");
-  new GetCoverImages().execute(TMDB_ID);
 }

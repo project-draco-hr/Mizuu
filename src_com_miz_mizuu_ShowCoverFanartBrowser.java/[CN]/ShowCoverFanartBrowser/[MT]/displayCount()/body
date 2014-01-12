@@ -1,8 +1,0 @@
-{
-  if (awesomePager.getCurrentItem() == 0) {
-    bar.setSubtitle(coverCount + " " + getString(R.string.numberOfCovers));
-  }
- else {
-    bar.setSubtitle(backdropCount + " " + getString(R.string.numberOfBackdrops));
-  }
-}

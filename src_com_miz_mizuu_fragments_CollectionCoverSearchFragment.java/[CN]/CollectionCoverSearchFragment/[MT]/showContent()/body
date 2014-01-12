@@ -1,0 +1,17 @@
+{
+  pbar.setVisibility(View.GONE);
+  mAdapter.notifyDataSetChanged();
+  TreeSet<String> languages=new TreeSet<String>();
+  for (int i=0; i < covers.size(); i++) {
+    if (!covers.get(i).getLanguage().equals("Null"))     languages.add(covers.get(i).getLanguage());
+  }
+  items=new String[languages.size() + 1];
+  items[0]=getString(R.string.stringShowAllLanguages);
+  Iterator<String> itr=languages.iterator();
+  int i=1;
+  while (itr.hasNext()) {
+    items[i]=itr.next();
+    i++;
+  }
+  getActivity().invalidateOptionsMenu();
+}
