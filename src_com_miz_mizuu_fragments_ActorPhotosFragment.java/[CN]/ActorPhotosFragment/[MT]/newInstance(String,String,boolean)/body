@@ -1,9 +1,0 @@
-{
-  ActorPhotosFragment pageFragment=new ActorPhotosFragment();
-  Bundle bundle=new Bundle();
-  bundle.putString("actorId",actorId);
-  bundle.putString("actorName",actorName);
-  bundle.putBoolean("setBackground",setBackground);
-  pageFragment.setArguments(bundle);
-  return pageFragment;
-}

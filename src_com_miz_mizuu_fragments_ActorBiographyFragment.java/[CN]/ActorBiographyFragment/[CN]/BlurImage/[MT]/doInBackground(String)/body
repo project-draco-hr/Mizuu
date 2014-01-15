@@ -1,4 +1,5 @@
 {
+  Bitmap image=drawableToBitmap(mActorImage.getDrawable());
   if (image != null)   return MizLib.fastblur(getActivity(),Bitmap.createScaledBitmap(image,image.getWidth() / 3,image.getHeight() / 3,false),4);
   return null;
 }

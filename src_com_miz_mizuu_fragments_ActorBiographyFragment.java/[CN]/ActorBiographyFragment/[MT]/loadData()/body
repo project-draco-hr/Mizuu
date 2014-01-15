@@ -1,0 +1,61 @@
+{
+  try {
+    JSONObject jObject=new JSONObject(json);
+    try {
+      mName=jObject.getString("name").trim();
+    }
+ catch (    Exception e) {
+    }
+    try {
+      mBio=jObject.getString("biography").trim();
+    }
+ catch (    Exception e) {
+      mBio="";
+    }
+    if (mBio.equals("null"))     mBio="";
+    mBio=MizLib.removeWikipediaNotes(mBio);
+    try {
+      mBirth=jObject.getString("place_of_birth").trim();
+    }
+ catch (    Exception e) {
+      mBirth="";
+    }
+    if (mBirth.equals("null"))     mBirth="";
+    try {
+      mBirthday=jObject.getString("birthday").trim();
+    }
+ catch (    Exception e) {
+      mBirthday="";
+    }
+    if (mBirthday.equals("null"))     mBirthday="";
+    try {
+      mImage=baseUrl + "h632" + jObject.getString("profile_path");
+    }
+ catch (    Exception e) {
+      mImage="";
+    }
+    mActorName.setText(mName);
+    if (!MizLib.isEmpty(mBio))     mActorBio.setText(mBio);
+ else     mActorBio.setVisibility(View.GONE);
+    if (!MizLib.isEmpty(mBirth))     mActorBirth.setText(mBirth);
+ else     mActorBirth.setVisibility(View.GONE);
+    if (!MizLib.isEmpty(mBirthday))     mActorBirthday.setText(mBirthday);
+ else     mActorBirthday.setVisibility(View.GONE);
+    ImageLoader.getInstance().displayImage(mImage,mActorImage,MizuuApplication.getDefaultActorLoadingOptions(),new ImageLoadingListener(){
+      @Override public void onLoadingStarted(      String imageUri,      View view){
+      }
+      @Override public void onLoadingFailed(      String imageUri,      View view,      FailReason failReason){
+        mActorImage.setVisibility(View.VISIBLE);
+      }
+      @Override public void onLoadingComplete(      String imageUri,      View view,      Bitmap loadedImage){
+        mActorImage.setVisibility(View.VISIBLE);
+        new BlurImage().execute();
+      }
+      @Override public void onLoadingCancelled(      String imageUri,      View view){
+      }
+    }
+);
+  }
+ catch (  Exception ignored) {
+  }
+}

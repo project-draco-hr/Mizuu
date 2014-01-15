@@ -1,0 +1,4 @@
+String json
+String actorName
+boolean setBackground
+String baseUrl

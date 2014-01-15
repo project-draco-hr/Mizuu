@@ -1,11 +1,11 @@
 {
 switch (index) {
 case 0:
-    return ActorBiographyFragment.newInstance(actorId);
+    return ActorBiographyFragment.newInstance(json,baseUrl);
 case 1:
-  return ActorMoviesFragment.newInstance(actorId,true);
+  return ActorMoviesFragment.newInstance(json,true,baseUrl);
 case 2:
-return ActorPhotosFragment.newInstance(actorId,actorName,true);
+return ActorPhotosFragment.newInstance(json,actorName,true,baseUrl);
 default :
 return null;
 }

@@ -1,6 +1,5 @@
 {
   if (isAdded()) {
-    pbar.setVisibility(View.GONE);
     mAdapter.notifyDataSetChanged();
   }
 }

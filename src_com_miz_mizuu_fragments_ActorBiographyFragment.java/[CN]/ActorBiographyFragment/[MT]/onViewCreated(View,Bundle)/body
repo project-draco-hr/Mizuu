@@ -2,7 +2,6 @@
   super.onViewCreated(v,savedInstanceState);
   if (MizLib.runsInPortraitMode(getActivity()))   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.linearLayout1));
  else   MizLib.addActionBarMargin(getActivity(),v.findViewById(R.id.linearLayout1));
-  pbar=(ProgressBar)v.findViewById(R.id.progress);
   mActorBirthday=(TextView)v.findViewById(R.id.overviewMessage);
   mActorBirth=(TextView)v.findViewById(R.id.textView2);
   mActorName=(TextView)v.findViewById(R.id.textView3);
@@ -15,15 +14,5 @@
   if (!MizLib.runsInPortraitMode(getActivity())) {
     mActorImageBackground.setImageResource(R.drawable.bg);
   }
-  if (image == null)   new GetActorDetails().execute(getArguments().getString("actorId"));
- else {
-    mActorName.setText(mName);
-    mActorBio.setText(mBio);
-    mActorBirth.setText(mBirth);
-    mActorBirthday.setText(mBirthday);
-    mActorImage.setImageBitmap(image);
-    mActorImage.setVisibility(View.VISIBLE);
-    new BlurImage().execute();
-    pbar.setVisibility(View.GONE);
-  }
+  loadData();
 }

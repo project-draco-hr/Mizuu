@@ -1,0 +1,13 @@
+{
+  try {
+    JSONObject jObject=new JSONObject(json);
+    JSONArray jArray=jObject.getJSONObject("credits").getJSONArray("cast");
+    for (int i=0; i < jArray.length(); i++) {
+      if (!isInArray(jArray.getJSONObject(i).getString("id")))       pics_sources.add(new WebMovie(jArray.getJSONObject(i).getString("original_title"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getImageUrlSize(getActivity()) + jArray.getJSONObject(i).getString("poster_path"),jArray.getJSONObject(i).getString("release_date")));
+    }
+    Collections.sort(pics_sources,getMovieComparator());
+    new MoviesInLibraryCheck(pics_sources).execute();
+  }
+ catch (  Exception ignored) {
+  }
+}

@@ -1,0 +1,10 @@
+{
+  ActorPhotosFragment pageFragment=new ActorPhotosFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("json",json);
+  bundle.putString("actorName",actorName);
+  bundle.putBoolean("setBackground",setBackground);
+  bundle.putString("baseUrl",baseUrl);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

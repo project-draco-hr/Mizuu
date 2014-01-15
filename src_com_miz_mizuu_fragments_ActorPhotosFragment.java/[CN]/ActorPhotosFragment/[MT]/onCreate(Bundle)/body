@@ -6,5 +6,6 @@
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   imageLoader=ImageLoader.getInstance();
   options=MizuuApplication.getDefaultActorLoadingOptions();
-  new GetActorDetails().execute(getArguments().getString("actorId"));
+  json=getArguments().getString("json");
+  baseUrl=getArguments().getString("baseUrl");
 }
