@@ -11,11 +11,7 @@
       textGenre.setText(thisMovie.getGenres());
     }
  else {
-      if (t3 != null)       t3.setVisibility(View.GONE);
- else {
-        tv3.setVisibility(View.GONE);
-        textGenre.setVisibility(View.GONE);
-      }
+      textGenre.setText(R.string.stringNA);
     }
     try {
       int hours=Integer.parseInt(thisMovie.getRuntime()) / 60;
@@ -35,11 +31,7 @@
         textRuntime.setText(thisMovie.getRuntime());
       }
  else {
-        if (t1 != null)         t1.setVisibility(View.GONE);
- else {
-          tv1.setVisibility(View.GONE);
-          textRuntime.setVisibility(View.GONE);
-        }
+        textRuntime.setText(R.string.stringNA);
       }
     }
     if (!MizLib.isEmpty(thisMovie.getReleasedate())) {
@@ -54,29 +46,20 @@
       }
     }
  else {
-      if (t4 != null)       t4.setVisibility(View.GONE);
- else {
-        tv5.setVisibility(View.GONE);
-        textReleaseDate.setVisibility(View.GONE);
-      }
+      textReleaseDate.setText(R.string.stringNA);
     }
-    if (!thisMovie.getRating().equals("0.0/10"))     textRating.setText(thisMovie.getRating());
+    if (!thisMovie.getRating().equals("0.0")) {
+      thisMovie.setRating(thisMovie.getRating() + "/10");
+      textRating.setText(Html.fromHtml("<b>" + thisMovie.getRating().replace("/","</b><small> / ") + "</small>"));
+    }
  else {
-      if (t5 != null)       t5.setVisibility(View.GONE);
- else {
-        tv4.setVisibility(View.GONE);
-        textRating.setVisibility(View.GONE);
-      }
+      textRating.setText(R.string.stringNA);
     }
     if (!MizLib.isEmpty(thisMovie.getCertification())) {
       textCertification.setText(thisMovie.getCertification());
     }
  else {
-      if (t2 != null)       t2.setVisibility(View.GONE);
- else {
-        tv2.setVisibility(View.GONE);
-        textCertification.setVisibility(View.GONE);
-      }
+      textCertification.setText(R.string.stringNA);
     }
     setLoading(false);
     ImageLoader.getInstance().displayImage(thisMovie.getCover(),cover,MizuuApplication.getDefaultCoverLoadingOptions());
