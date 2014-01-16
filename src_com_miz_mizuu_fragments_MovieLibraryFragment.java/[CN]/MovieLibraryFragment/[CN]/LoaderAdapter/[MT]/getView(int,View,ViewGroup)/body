@@ -11,33 +11,23 @@
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  holder.text.setVisibility(TextView.GONE);
+  holder.text.setText(shownMovies.get(position).getTitle());
+  if (showGridTitles)   holder.text.setVisibility(TextView.VISIBLE);
+ else   holder.text.setVisibility(TextView.GONE);
   if (holder.layout.getLayoutParams().height != mItemHeight) {
     holder.layout.setLayoutParams(mImageViewLayoutParams);
   }
-  if (actionBar.getSelectedNavigationIndex() == 3) {
-    if (showGridTitles) {
-      holder.text.setVisibility(TextView.VISIBLE);
-      holder.text.setText(shownMovies.get(position).getCollection());
-      imageLoader.displayImage("file://" + shownMovies.get(position).getCollectionPoster(),holder.cover,options);
-    }
- else     imageLoader.displayImage("file://" + shownMovies.get(position).getCollectionPoster(),holder.cover,options,new ImageLoadingErrorListener(shownMovies.get(position).getCollection(),null,null));
+  holder.cover.setImageDrawable(gray);
+  if (isCollections) {
+    mPicasso.load(shownMovies.get(position).getCollectionPoster()).into(holder);
+    holder.text.setText(shownMovies.get(position).getCollection());
   }
  else {
     if (!ignoreNfo && shownMovies.get(position).isNetworkFile()) {
-      if (showGridTitles) {
-        holder.text.setVisibility(TextView.VISIBLE);
-        holder.text.setText(shownMovies.get(position).getTitle());
-      }
-      imageLoader.displayImage(shownMovies.get(position).getFilepath() + "<MiZ>" + shownMovies.get(position).getThumbnail(),holder.cover,options,new ImageLoadingErrorListener(shownMovies.get(position).getTitle(),null,null));
+      mPicasso.load(shownMovies.get(position).getFilepath() + "<MiZ>file://" + shownMovies.get(position).getThumbnail()).into(holder);
     }
  else {
-      if (showGridTitles) {
-        holder.text.setVisibility(TextView.VISIBLE);
-        holder.text.setText(shownMovies.get(position).getTitle());
-        imageLoader.displayImage("file://" + shownMovies.get(position).getThumbnail(),holder.cover,options);
-      }
- else       imageLoader.displayImage("file://" + shownMovies.get(position).getThumbnail(),holder.cover,options,new ImageLoadingErrorListener(shownMovies.get(position).getTitle(),null,null));
+      mPicasso.load(shownMovies.get(position).getThumbnail()).into(holder);
     }
   }
   return convertView;

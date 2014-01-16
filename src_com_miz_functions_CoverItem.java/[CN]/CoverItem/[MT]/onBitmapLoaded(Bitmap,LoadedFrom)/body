@@ -1,0 +1,5 @@
+{
+  cover.setAlpha(0f);
+  cover.setImageBitmap(arg0);
+  cover.animate().alpha(1f).setDuration(250);
+}

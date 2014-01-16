@@ -20,12 +20,7 @@
     textGenre.setText(thisShow.getGenres());
   }
  else {
-    View tableRow=v.findViewById(R.id.tableRow3);
-    if (tableRow != null)     tableRow.setVisibility(View.GONE);
- else {
-      v.findViewById(R.id.TextView03).setVisibility(View.GONE);
-      textGenre.setVisibility(View.GONE);
-    }
+    textGenre.setText(R.string.stringNA);
   }
   try {
     int hours=Integer.parseInt(thisShow.getRuntime()) / 60;
@@ -45,12 +40,7 @@
       textRuntime.setText(thisShow.getRuntime() + " " + getString(R.string.minutes));
     }
  else {
-      View tableRow=v.findViewById(R.id.tableRow1);
-      if (tableRow != null)       tableRow.setVisibility(View.GONE);
- else {
-        v.findViewById(R.id.TextView01).setVisibility(View.GONE);
-        textRuntime.setVisibility(View.GONE);
-      }
+      textRuntime.setText(R.string.stringNA);
     }
   }
   try {
@@ -64,33 +54,25 @@
       textReleaseDate.setText(thisShow.getFirstAirdate());
     }
  else {
-      View tableRow=v.findViewById(R.id.TableRow01);
-      if (tableRow != null)       tableRow.setVisibility(View.GONE);
- else {
-        v.findViewById(R.id.TextView05).setVisibility(View.GONE);
-        textReleaseDate.setVisibility(View.GONE);
-      }
+      textReleaseDate.setText(R.string.stringNA);
     }
   }
-  if (!thisShow.getRating().equals("0/10"))   textRating.setText(thisShow.getRating());
- else {
-    View tableRow=v.findViewById(R.id.tableRow5);
-    if (tableRow != null)     tableRow.setVisibility(View.GONE);
- else {
-      v.findViewById(R.id.TextView04).setVisibility(View.GONE);
-      textRating.setVisibility(View.GONE);
+  if (!thisShow.getRating().equals("0.0/10")) {
+    if (thisShow.getRating().contains("/")) {
+      textRating.setText(Html.fromHtml(thisShow.getRating().replace("/","<small> / ") + "</small>"));
     }
+ else {
+      textRating.setText(thisShow.getRating());
+    }
+  }
+ else {
+    textRating.setText(R.string.stringNA);
   }
   if (!MizLib.isEmpty(thisShow.getCertification())) {
     textCertification.setText(thisShow.getCertification());
   }
  else {
-    View tableRow=v.findViewById(R.id.tableRow2);
-    if (tableRow != null)     tableRow.setVisibility(View.GONE);
- else {
-      v.findViewById(R.id.row_title_movies_online).setVisibility(View.GONE);
-      textCertification.setVisibility(View.GONE);
-    }
+    textCertification.setText(R.string.stringNA);
   }
   loadImages();
 }

@@ -1,4 +1,5 @@
 {
+  isCollections=(actionBar.getSelectedNavigationIndex() == 3);
   ArrayList<MediumMovie> tempMovies=new ArrayList<MediumMovie>(shownMovies);
   sections=new Object[tempMovies.size()];
   String SORT_TYPE=settings.getString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? "prefsSortingCollectionsOverview" : "prefsSorting","sortTitle");

@@ -1,0 +1,4 @@
+{
+  mPicasso=new Picasso.Builder(context).downloader(new PicassoDownloader(context)).memoryCache(getLruCache()).build();
+  return mPicasso;
+}
