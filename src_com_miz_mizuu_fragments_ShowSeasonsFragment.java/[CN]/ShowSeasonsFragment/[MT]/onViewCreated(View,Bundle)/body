@@ -1,6 +1,6 @@
 {
   super.onViewCreated(view,savedInstanceState);
-  if (setBackground && !MizLib.runsInPortraitMode(getActivity()))   view.findViewById(R.id.container).setBackgroundColor(Color.parseColor("#101010"));
+  if (setBackground && !MizLib.runsInPortraitMode(getActivity()) && MizLib.runsOnTablet(getActivity()))   view.findViewById(R.id.container).setBackgroundColor(Color.parseColor("#101010"));
   pbar=(ProgressBar)view.findViewById(R.id.progressbar);
   if (useGridView)   mGridView=(StickyGridHeadersGridView)view.findViewById(R.id.gridView);
  else   mListView=(ExpandableListView)view.findViewById(R.id.listView);
