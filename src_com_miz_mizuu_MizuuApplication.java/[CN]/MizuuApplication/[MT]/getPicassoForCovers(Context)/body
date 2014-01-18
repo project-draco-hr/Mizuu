@@ -1,4 +1,4 @@
 {
-  mPicasso=new Picasso.Builder(context).downloader(new PicassoDownloader(context)).memoryCache(getLruCache()).build();
+  mPicasso=new Picasso.Builder(context).downloader(new PicassoDownloader(context)).executor(getThreadPoolExecutor()).build();
   return mPicasso;
 }

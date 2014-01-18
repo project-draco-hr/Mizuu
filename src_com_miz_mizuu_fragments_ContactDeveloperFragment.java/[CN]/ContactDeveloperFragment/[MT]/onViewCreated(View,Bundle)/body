@@ -1,0 +1,25 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  subject=(Spinner)v.findViewById(R.id.subjectSpinner);
+  message=(EditText)v.findViewById(R.id.traktUsername);
+  deviceDetails=(TextView)v.findViewById(R.id.textView2);
+  send=(Button)v.findViewById(R.id.send);
+  send.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      send();
+    }
+  }
+);
+  try {
+    String versionType="";
+    if (getActivity().getPackageName().equals("com.miz.mizuulite")) {
+      versionType=" (lite)";
+    }
+    PackageManager manager=getActivity().getPackageManager();
+    PackageInfo packageInfo=manager.getPackageInfo(getActivity().getPackageName(),0);
+    deviceDetails.setText(getString(R.string.contactDeviceModel) + ": " + Build.MODEL+ " ("+ Build.PRODUCT+ ")\n"+ getString(R.string.contactDeviceManufacturer)+ ": "+ Build.MANUFACTURER+ "\n"+ getString(R.string.contactDeviceCustomization)+ ": "+ Build.BRAND+ "\n"+ getString(R.string.contactDeviceOS)+ ": v"+ Build.VERSION.RELEASE+ " ("+ Build.VERSION.INCREMENTAL+ ")\n"+ "Mizuu version: "+ packageInfo.versionName+ versionType);
+  }
+ catch (  Exception e) {
+    Toast.makeText(getActivity(),getString(R.string.errorSomethingWentWrong),Toast.LENGTH_SHORT).show();
+  }
+}

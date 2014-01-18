@@ -24,6 +24,12 @@
           mAdapter.setNumColumns(numColumns);
           mAdapter.setItemHeight(columnWidth);
         }
+        if (MizLib.hasJellyBean()) {
+          mGridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        }
+ else {
+          mGridView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        }
       }
     }
   }
