@@ -1,0 +1,4 @@
+{
+  File f=new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(smb.getCanonicalPath()) + "." + MizLib.getFileExtension(smb.getName()));
+  return f.exists() && smbSize == f.length();
+}

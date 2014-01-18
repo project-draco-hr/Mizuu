@@ -1,12 +1,13 @@
 {
   reset();
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-stop-offline-download"));
   mContext=getApplicationContext();
   file=intent.getExtras().getString(FILEPATH);
   type=intent.getExtras().getInt(TYPE);
   mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-  Intent notificationIntent=new Intent(this,CancelUpdateDialog.class);
-  notificationIntent.putExtra("type",CancelUpdateDialog.MOVIE);
-  notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+  Intent notificationIntent=new Intent(this,CancelOfflineDownload.class);
+  notificationIntent.setAction(Intent.ACTION_MAIN);
+  notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
   contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
   builder=new NotificationCompat.Builder(mContext);
   builder.setOngoing(true);
@@ -17,19 +18,42 @@
   builder.setContentTitle("Downloading movie");
   builder.setContentText(getContentText());
   builder.setLargeIcon(MizLib.getNotificationImageThumbnail(mContext,intent.getExtras().getString("thumb")));
-  boolean exists=checkIfFileExists();
+  builder.addAction(R.drawable.remove,getString(android.R.string.cancel),contentIntent);
+  boolean exists=checkIfNetworkFileExists();
   if (!exists) {
+    mHandler.post(new Runnable(){
+      @Override public void run(){
+        Toast.makeText(mContext,R.string.unavailable_file,Toast.LENGTH_LONG).show();
+      }
+    }
+);
     stopSelf();
     return;
   }
   boolean sizeOK=checkFilesize();
   if (!sizeOK) {
+    mHandler.post(new Runnable(){
+      @Override public void run(){
+        Toast.makeText(mContext,R.string.not_enough_space,Toast.LENGTH_LONG).show();
+      }
+    }
+);
     stopSelf();
     return;
   }
-  long time=System.currentTimeMillis();
+  exists=checkIfLocalCopyExists();
+  if (exists) {
+    stopSelf();
+    return;
+  }
+  mHandler.post(new Runnable(){
+    @Override public void run(){
+      Toast.makeText(mContext,R.string.starting_download,Toast.LENGTH_SHORT).show();
+    }
+  }
+);
   updateNotification();
   startForeground(NOTIFICATION_ID,mNotification);
   boolean success=beginTransfer();
-  System.out.println("SUCCESS: " + success + ". Time: "+ (System.currentTimeMillis() - time));
+  if (!success)   new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(smb.getCanonicalPath()) + "." + MizLib.getFileExtension(smb.getName())).delete();
 }

@@ -1,5 +1,5 @@
 {
-  cover.setAlpha(0f);
+  if (arg1 == LoadedFrom.DISK || arg1 == LoadedFrom.NETWORK)   cover.setAlpha(0f);
   cover.setImageBitmap(arg0);
-  cover.animate().alpha(1f).setDuration(250);
+  if (arg1 == LoadedFrom.DISK || arg1 == LoadedFrom.NETWORK)   cover.animate().alpha(1f).setDuration(250);
 }

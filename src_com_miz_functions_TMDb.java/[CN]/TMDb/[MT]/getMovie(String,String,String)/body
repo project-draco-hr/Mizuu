@@ -88,7 +88,6 @@
       }
     }
  catch (    Exception e) {
-      System.out.println(e);
     }
     if (ratingsProvider.equals(c.getString(R.string.ratings_option_2)) && json == null) {
       try {

@@ -9,4 +9,10 @@
   mNotificationManager=null;
   mNotification=null;
   contentIntent=null;
+  mStopDownload=false;
+  lastTime=0;
+  currentTime=0;
+  lastLength=0;
+  totalLength=0;
+  currentLength=0;
 }

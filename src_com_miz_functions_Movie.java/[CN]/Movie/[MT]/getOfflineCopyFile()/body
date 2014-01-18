@@ -1,0 +1,3 @@
+{
+  return new File(MizLib.getAvailableOfflineFolder(CONTEXT),MizLib.md5(getFullFilepath()) + "." + MizLib.getFileExtension(getFullFilepath()));
+}

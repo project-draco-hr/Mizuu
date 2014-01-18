@@ -1,6 +1,6 @@
 {
   try {
-    File offline=new File(MizLib.getAvailableOfflineFolder(mContext),smb.getName());
+    File offline=new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(smb.getCanonicalPath()) + "." + MizLib.getFileExtension(smb.getName()));
     offline.createNewFile();
     totalLength=smb.length();
     OutputStream os=new BufferedOutputStream(new FileOutputStream(offline),16384);
@@ -8,6 +8,11 @@
     byte[] b=new byte[16384];
     int n;
     while ((n=in.read(b)) != -1) {
+      if (mStopDownload) {
+        os.close();
+        in.close();
+        return false;
+      }
       os.write(b,0,n);
       currentLength+=n;
       update();
