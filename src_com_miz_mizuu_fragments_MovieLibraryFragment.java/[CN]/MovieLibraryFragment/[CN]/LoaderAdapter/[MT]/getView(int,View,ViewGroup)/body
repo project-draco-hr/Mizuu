@@ -6,6 +6,9 @@
     holder.layout=(RelativeLayout)convertView.findViewById(R.id.cover_layout);
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
+    if (holder.layout.getLayoutParams().height != mItemHeight) {
+      holder.layout.setLayoutParams(mImageViewLayoutParams);
+    }
     convertView.setTag(holder);
   }
  else {
@@ -14,9 +17,6 @@
   holder.text.setText(shownMovies.get(position).getTitle());
   if (showGridTitles)   holder.text.setVisibility(TextView.VISIBLE);
  else   holder.text.setVisibility(TextView.GONE);
-  if (holder.layout.getLayoutParams().height != mItemHeight) {
-    holder.layout.setLayoutParams(mImageViewLayoutParams);
-  }
   holder.cover.setImageDrawable(gray);
   if (isCollections) {
     mPicasso.load(shownMovies.get(position).getCollectionPoster()).into(holder);
