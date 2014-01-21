@@ -3,8 +3,7 @@
   setRetainInstance(true);
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
   localizedInfo=settings.getBoolean("prefsUseLocalData",false);
-  imageLoader=ImageLoader.getInstance();
-  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
   mAdapter=new ListAdapter(getActivity());
   locale=Locale.getDefault();
   startSearch=new StartSearch();

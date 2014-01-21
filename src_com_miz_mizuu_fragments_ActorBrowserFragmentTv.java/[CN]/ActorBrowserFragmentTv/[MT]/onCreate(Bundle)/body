@@ -4,7 +4,7 @@
   setBackground=getArguments().getBoolean("setBackground");
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  options=MizuuApplication.getDefaultActorLoadingOptions();
   TVDB_ID=getArguments().getString("tvdbId");
+  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
   new GetCoverImages().execute(TVDB_ID);
 }

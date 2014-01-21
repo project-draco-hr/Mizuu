@@ -1,0 +1,3 @@
+{
+  Picasso.with(getActivity()).load("file://" + thisShow.getBackdrop()).placeholder(R.drawable.gray).error(R.drawable.nobackdrop).into(cover);
+}

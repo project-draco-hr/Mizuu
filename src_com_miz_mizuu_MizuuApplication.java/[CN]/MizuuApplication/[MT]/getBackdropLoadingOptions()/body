@@ -1,4 +1,0 @@
-{
-  DisplayImageOptions options=new DisplayImageOptions.Builder().showImageOnFail(R.drawable.bg).cacheInMemory(true).showImageForEmptyUri(R.drawable.bg).cacheOnDisc(true).bitmapConfig(Bitmap.Config.RGB_565).build();
-  return options;
-}

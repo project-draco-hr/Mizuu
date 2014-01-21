@@ -1,9 +1,3 @@
 {
   MizuuApplication.getLruCache().clear();
-  try {
-    ImageLoader.getInstance().clearMemoryCache();
-    ImageLoader.getInstance().clearDiscCache();
-  }
- catch (  Exception e) {
-  }
 }

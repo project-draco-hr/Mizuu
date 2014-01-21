@@ -2,12 +2,9 @@
   super.onCreate();
   jcifs.Config.setProperty("jcifs.smb.client.disablePlainTextPasswords","false");
   if (!(0 != (getApplicationInfo().flags&=ApplicationInfo.FLAG_DEBUGGABLE)))   Crashlytics.start(this);
-  initImageLoader(getApplicationContext());
   dbTvShow=new DbAdapterTvShow(this);
   dbTvShowEpisode=new DbAdapterTvShowEpisode(this);
   dbSources=new DbAdapterSources(this);
   db=new DbAdapter(this);
-  mLruCache=new LruCache(this);
-  PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
-  mLoadWhileScrolling=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsLoadImagesWhileScrolling",false);
+  mLruCache=new LruCache(calculateMemoryCacheSize(this));
 }

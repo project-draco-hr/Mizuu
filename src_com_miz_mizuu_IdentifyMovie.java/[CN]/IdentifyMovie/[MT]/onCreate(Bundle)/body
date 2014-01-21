@@ -4,8 +4,7 @@
   setContentView(R.layout.identify_movie);
   settings=PreferenceManager.getDefaultSharedPreferences(this);
   localizedInfo=settings.getBoolean("prefsUseLocalData",false);
-  imageLoader=ImageLoader.getInstance();
-  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  mPicasso=MizuuApplication.getPicassoForWeb(this);
   rowId=Long.valueOf(getIntent().getExtras().getString("rowId"));
   filename=getIntent().getExtras().getString("fileName");
   mMovie=MizLib.decryptMovie(filename,settings.getString("ignoredTags",""));
@@ -23,7 +22,6 @@
     }
   }
 );
-  lv.setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
   searchText=(EditText)findViewById(R.id.search);
   searchText.setText(mMovie.getDecryptedFileName());
   searchText.setSelection(searchText.length());

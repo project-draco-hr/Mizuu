@@ -12,7 +12,6 @@
     }
   }
 );
-  lv.setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
   searchText=(EditText)v.findViewById(R.id.search);
   searchText.setSelection(searchText.length());
   searchText.setOnEditorActionListener(new OnEditorActionListener(){

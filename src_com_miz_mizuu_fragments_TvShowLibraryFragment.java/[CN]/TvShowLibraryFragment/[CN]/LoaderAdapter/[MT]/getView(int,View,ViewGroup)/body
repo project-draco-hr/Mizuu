@@ -14,14 +14,13 @@
   if (holder.layout.getLayoutParams().height != mItemHeight) {
     holder.layout.setLayoutParams(mImageViewLayoutParams);
   }
+  holder.text.setText(shownShows.get(position).getTitle());
   if (showGridTitles) {
     holder.text.setVisibility(TextView.VISIBLE);
-    holder.text.setText(shownShows.get(position).getTitle());
   }
  else {
-    holder.text.setVisibility(TextView.INVISIBLE);
+    holder.text.setVisibility(TextView.GONE);
   }
-  if (showGridTitles)   imageLoader.displayImage("file://" + shownShows.get(position).getThumbnail(),holder.cover,options);
- else   imageLoader.displayImage("file://" + shownShows.get(position).getThumbnail(),holder.cover,options,new ImageLoadingErrorListener(shownShows.get(position).getTitle(),null,null));
+  mPicasso.load(shownShows.get(position).getThumbnail()).into(holder);
   return convertView;
 }

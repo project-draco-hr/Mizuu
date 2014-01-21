@@ -4,8 +4,7 @@
   setBackground=getArguments().getBoolean("setBackground");
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  imageLoader=ImageLoader.getInstance();
-  options=MizuuApplication.getDefaultActorLoadingOptions();
   json=getArguments().getString("json");
   baseUrl=getArguments().getString("baseUrl");
+  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
 }

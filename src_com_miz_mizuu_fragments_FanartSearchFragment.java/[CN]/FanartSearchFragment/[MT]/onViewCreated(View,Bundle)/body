@@ -21,7 +21,6 @@
     }
   }
 );
-  mGridView.setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
   json=getArguments().getString("json");
   loadJson(getArguments().getString("baseUrl"));
 }

@@ -1,5 +1,0 @@
-{
-  if (mLoadWhileScrolling)   mPauseOnScrollListener=new PauseOnScrollListener(imageLoader,false,false);
- else   mPauseOnScrollListener=new PauseOnScrollListener(imageLoader,true,true);
-  return mPauseOnScrollListener;
-}

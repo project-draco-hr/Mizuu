@@ -4,8 +4,7 @@
   PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.backdrop_thumbnail_width) * 1.4);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  imageLoader=ImageLoader.getInstance();
-  options=MizuuApplication.getDefaultBackdropLoadingOptions();
+  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
   type=getArguments().getString("type");
   if (type.equals(getString(R.string.choiceYouTube))) {
     new GetYouTubeVideos().execute();

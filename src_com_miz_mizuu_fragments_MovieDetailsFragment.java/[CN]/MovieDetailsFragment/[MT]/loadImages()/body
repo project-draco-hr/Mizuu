@@ -1,27 +1,31 @@
 {
   if (!MizLib.runsInPortraitMode(getActivity())) {
     if (!ignoreNfo && thisMovie.isNetworkFile()) {
-      ImageLoader.getInstance().displayImage(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail(),cover,MizuuApplication.getDefaultCoverLoadingOptions());
-      ImageLoader.getInstance().displayImage(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop(),background,MizuuApplication.getBackdropLoadingOptions());
+      mPicasso.load(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail()).placeholder(R.drawable.loading_image).error(R.drawable.loading_image).into(cover);
+      mPicasso.load(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop()).placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
     }
  else {
-      ImageLoader.getInstance().displayImage("file://" + thisMovie.getThumbnail(),cover,MizuuApplication.getDefaultCoverLoadingOptions());
-      ImageLoader.getInstance().displayImage("file://" + thisMovie.getBackdrop(),background,MizuuApplication.getBackdropLoadingOptions());
+      mPicasso.load(thisMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(cover);
+      mPicasso.load(thisMovie.getBackdrop()).error(R.drawable.bg).placeholder(R.drawable.bg).into(background);
     }
   }
  else {
     if (!ignoreNfo && thisMovie.isNetworkFile()) {
-      ImageLoader.getInstance().displayImage(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop(),background,MizuuApplication.getBackdropLoadingOptions(),new SimpleImageLoadingListener(){
-        @Override public void onLoadingFailed(        String imageUri,        View view,        FailReason failReason){
-          ImageLoader.getInstance().displayImage(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail(),background,MizuuApplication.getDefaultCoverLoadingOptions());
+      mPicasso.load(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop()).placeholder(R.drawable.bg).into(background,new Callback(){
+        @Override public void onError(){
+          mPicasso.load(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail()).placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
+        }
+        @Override public void onSuccess(){
         }
       }
 );
     }
  else {
-      ImageLoader.getInstance().displayImage("file://" + thisMovie.getBackdrop(),background,MizuuApplication.getBackdropLoadingOptions(),new SimpleImageLoadingListener(){
-        @Override public void onLoadingFailed(        String imageUri,        View view,        FailReason failReason){
-          ImageLoader.getInstance().displayImage(thisMovie.getThumbnail(),background,MizuuApplication.getDefaultCoverLoadingOptions());
+      mPicasso.load(thisMovie.getBackdrop()).placeholder(R.drawable.bg).into(background,new Callback(){
+        @Override public void onError(){
+          mPicasso.load(thisMovie.getThumbnail()).placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
+        }
+        @Override public void onSuccess(){
         }
       }
 );

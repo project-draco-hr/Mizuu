@@ -4,8 +4,7 @@
   setRetainInstance(true);
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.backdrop_thumbnail_width);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  imageLoader=ImageLoader.getInstance();
-  options=MizuuApplication.getDefaultBackdropLoadingOptions();
   TVDB_ID=getArguments().getString("tvdbId");
+  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
   new GetCoverImages().execute(TVDB_ID);
 }

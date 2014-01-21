@@ -27,6 +27,6 @@
     holder.selectedOverlay.setVisibility(View.VISIBLE);
   }
  else   holder.selectedOverlay.setVisibility(View.GONE);
-  imageLoader.displayImage("file://" + shownEpisodes.get(position).getEpisodePhoto(),holder.cover,options,errorListener);
+  mPicasso.load("file://" + shownEpisodes.get(position).getEpisodePhoto()).placeholder(R.drawable.gray).error(R.drawable.nobackdrop).into(holder);
   return convertView;
 }

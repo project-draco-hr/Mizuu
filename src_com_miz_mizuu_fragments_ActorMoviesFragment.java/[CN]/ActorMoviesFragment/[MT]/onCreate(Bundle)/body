@@ -7,7 +7,7 @@
   showGridTitles=settings.getBoolean("prefsShowGridTitles",false);
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
   json=getArguments().getString("json");
   baseUrl=getArguments().getString("baseUrl");
 }

@@ -20,6 +20,7 @@
   holder.text.setText(actors.get(position).getName());
   holder.subtext.setText(actors.get(position).getCharacter().equals("null") ? "" : actors.get(position).getCharacter());
   holder.subtext.setVisibility(View.VISIBLE);
-  ImageLoader.getInstance().displayImage(actors.get(position).getUrl().contains("null") ? "" : actors.get(position).getUrl(),holder.cover,options);
+  if (!actors.get(position).getUrl().contains("null"))   mPicasso.load(actors.get(position).getUrl()).placeholder(R.drawable.gray).error(R.drawable.noactor).into(holder.cover);
+ else   holder.cover.setImageResource(R.drawable.noactor);
   return convertView;
 }

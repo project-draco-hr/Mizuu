@@ -1,4 +1,0 @@
-{
-  if (!text.isEmpty())   MizLib.setTextOfCoverView(text,view);
-  if (!MizLib.isEmpty(fileUrl))   ImageLoader.getInstance().displayImage(fileUrl,(ImageView)view,options);
-}

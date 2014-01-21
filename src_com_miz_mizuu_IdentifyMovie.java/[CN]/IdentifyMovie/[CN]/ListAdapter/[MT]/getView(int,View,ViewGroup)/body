@@ -19,6 +19,6 @@
   holder.title.setText(results.get(position).getName());
   holder.orig_title.setText(results.get(position).getOriginalTitle());
   holder.release.setText(results.get(position).getRelease());
-  imageLoader.displayImage(results.get(position).getPic(),holder.cover,options);
+  mPicasso.load(results.get(position).getPic()).placeholder(R.drawable.gray).error(R.drawable.loading_image).into(holder.cover);
   return convertView;
 }

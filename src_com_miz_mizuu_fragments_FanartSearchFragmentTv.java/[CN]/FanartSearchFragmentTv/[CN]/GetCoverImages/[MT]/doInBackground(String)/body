@@ -2,7 +2,7 @@
   try {
     DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
     DocumentBuilder db=dbf.newDocumentBuilder();
-    Document doc=db.parse("http://thetvdb.com/api/" + TVDBAPI + "/series/"+ params[0]+ "/banners.xml");
+    Document doc=db.parse("http://thetvdb.com/api/" + MizLib.TVDBAPI + "/series/"+ params[0]+ "/banners.xml");
     doc.getDocumentElement().normalize();
     NodeList nodeList=doc.getElementsByTagName("Banners");
     if (nodeList.getLength() > 0) {

@@ -4,7 +4,6 @@
   setRetainInstance(true);
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  imageLoader=ImageLoader.getInstance();
-  options=MizuuApplication.getDefaultCoverLoadingOptions();
+  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
   TMDB_ID=getArguments().getString("tmdbId");
 }

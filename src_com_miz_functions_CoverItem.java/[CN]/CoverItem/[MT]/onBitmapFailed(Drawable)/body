@@ -1,6 +1,5 @@
 {
   text.setVisibility(View.VISIBLE);
-  cover.setAlpha(0f);
   cover.setImageResource(R.drawable.loading_image);
-  cover.animate().alpha(1f).setDuration(200);
+  ObjectAnimator.ofFloat(cover,"alpha",0f,1f).setDuration(200).start();
 }

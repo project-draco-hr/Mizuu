@@ -4,8 +4,6 @@
   setContentView(R.layout.identify_episode_layout);
   settings=PreferenceManager.getDefaultSharedPreferences(this);
   localizedInfo=settings.getBoolean("prefsUseLocalData",false);
-  imageLoader=ImageLoader.getInstance();
-  options=MizuuApplication.getDefaultCoverLoadingOptions();
   isShow=getIntent().getExtras().getBoolean("isShow");
   includeShowData=getIntent().getExtras().getBoolean("includeShowData");
   rowId=Long.valueOf(getIntent().getExtras().getString("rowId"));
@@ -14,6 +12,7 @@
     oldShowId=getIntent().getExtras().getString("oldShowId");
   }
   mAdapter=new ListAdapter(this);
+  mPicasso=MizuuApplication.getPicassoForWeb(this);
   locale=Locale.getDefault();
   pbar=(ProgressBar)findViewById(R.id.pbar);
   useSystemLanguage=(CheckBox)findViewById(R.id.searchLanguage);
@@ -27,7 +26,6 @@
     }
   }
 );
-  lv.setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
   DecryptedShowEpisode result=MizLib.decryptEpisode(files[0],settings.getString("ignoredTags",""));
   seasonText=(EditText)findViewById(R.id.seasonText);
   seasonText.setText(String.valueOf(result.getSeason()));

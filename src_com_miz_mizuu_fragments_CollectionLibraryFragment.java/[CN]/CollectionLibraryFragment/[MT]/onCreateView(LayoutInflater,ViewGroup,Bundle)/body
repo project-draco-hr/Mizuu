@@ -28,6 +28,5 @@
     }
   }
 );
-  mGridView.setOnScrollListener(MizuuApplication.getPauseOnScrollListener(imageLoader));
   return v;
 }

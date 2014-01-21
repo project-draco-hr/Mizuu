@@ -2,6 +2,5 @@
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
   photoUrl=getArguments().getString("photo");
-  imageLoader=ImageLoader.getInstance();
-  options=new DisplayImageOptions.Builder().showImageOnFail(R.drawable.noactor).cacheInMemory(true).cacheOnDisc(true).bitmapConfig(Bitmap.Config.RGB_565).build();
+  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
 }
