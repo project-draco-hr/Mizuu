@@ -1,0 +1,4 @@
+{
+  if (mDownloader == null)   mDownloader=Utils.createDefaultDownloader(context);
+  return mDownloader;
+}

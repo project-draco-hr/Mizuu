@@ -2,5 +2,5 @@
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
   photoUrl=getArguments().getString("photo");
-  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
+  mPicasso=MizuuApplication.getPicasso(getActivity());
 }

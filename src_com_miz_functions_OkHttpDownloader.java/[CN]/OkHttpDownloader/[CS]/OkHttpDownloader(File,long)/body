@@ -1,0 +1,8 @@
+{
+  this(new OkHttpClient());
+  try {
+    client.setResponseCache(new HttpResponseCache(cacheDir,maxSize));
+  }
+ catch (  IOException ignored) {
+  }
+}

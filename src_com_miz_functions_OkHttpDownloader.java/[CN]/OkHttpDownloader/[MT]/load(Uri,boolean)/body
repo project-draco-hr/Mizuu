@@ -1,0 +1,37 @@
+{
+  String imageUri=uri.toString();
+  if (imageUri.startsWith("smb")) {
+    String[] split=imageUri.split("<MiZ>");
+    String smbPath=split[0].replace("MIZ_BG",""), backup=split[1];
+    SmbFile s=null;
+    if (imageUri.contains("MIZ_BG")) {
+      s=MizLib.getCustomCoverArt(smbPath,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.BACKDROP);
+    }
+ else     s=MizLib.getCustomCoverArt(smbPath,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.COVER);
+    if (s != null)     return new Response(s.getInputStream(),localCacheOnly);
+ else {
+      return new Response(new BufferedInputStream(new FileInputStream(new File(backup))),localCacheOnly);
+    }
+  }
+ else   if (imageUri.startsWith("http")) {
+    HttpURLConnection connection=openConnection(uri);
+    connection.setUseCaches(true);
+    if (localCacheOnly) {
+      connection.setRequestProperty("Cache-Control","only-if-cached,max-age=" + Integer.MAX_VALUE);
+    }
+    int responseCode=connection.getResponseCode();
+    if (responseCode >= 300) {
+      connection.disconnect();
+      return null;
+    }
+    String responseSource=connection.getHeaderField(RESPONSE_SOURCE_OKHTTP);
+    if (responseSource == null) {
+      responseSource=connection.getHeaderField(RESPONSE_SOURCE_ANDROID);
+    }
+    boolean fromCache=parseResponseSourceHeader(responseSource);
+    return new Response(connection.getInputStream(),fromCache);
+  }
+ else {
+    return new Response(new FileInputStream(imageUri),localCacheOnly);
+  }
+}

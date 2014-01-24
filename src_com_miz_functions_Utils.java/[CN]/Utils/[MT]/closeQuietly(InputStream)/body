@@ -1,0 +1,8 @@
+{
+  if (is == null)   return;
+  try {
+    is.close();
+  }
+ catch (  IOException ignored) {
+  }
+}

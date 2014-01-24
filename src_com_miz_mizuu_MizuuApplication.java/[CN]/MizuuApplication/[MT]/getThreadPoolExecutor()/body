@@ -1,3 +1,4 @@
 {
-  return new ThreadPoolExecutor(1,1,0,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>(),new PicassoThreadFactory());
+  if (mThreadPoolExecutor == null)   mThreadPoolExecutor=new ThreadPoolExecutor(3,3,0,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>(),new PicassoThreadFactory());
+  return mThreadPoolExecutor;
 }

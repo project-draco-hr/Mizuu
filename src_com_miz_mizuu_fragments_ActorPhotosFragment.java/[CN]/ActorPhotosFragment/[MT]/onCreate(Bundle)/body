@@ -6,5 +6,5 @@
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   json=getArguments().getString("json");
   baseUrl=getArguments().getString("baseUrl");
-  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
+  mPicasso=MizuuApplication.getPicasso(getActivity());
 }

@@ -4,5 +4,5 @@
   tmdb=new TMDb(getActivity());
   movieId=getArguments().getString("movieId");
   tf=Typeface.createFromAsset(getActivity().getAssets(),"Roboto-Thin.ttf");
-  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
+  mPicasso=MizuuApplication.getPicasso(getActivity());
 }

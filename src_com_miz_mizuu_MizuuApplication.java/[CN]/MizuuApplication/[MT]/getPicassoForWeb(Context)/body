@@ -1,4 +1,0 @@
-{
-  mPicasso=new Picasso.Builder(context).executor(getThreadPoolExecutor()).memoryCache(getLruCache()).build();
-  return mPicasso;
-}

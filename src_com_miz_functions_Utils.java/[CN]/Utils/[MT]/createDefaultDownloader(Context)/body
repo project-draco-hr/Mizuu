@@ -1,0 +1,9 @@
+{
+  try {
+    Class.forName("com.squareup.okhttp.OkHttpClient");
+    return OkHttpLoaderCreator.create(context);
+  }
+ catch (  ClassNotFoundException e) {
+    return new UrlConnectionDownloader(context);
+  }
+}

@@ -12,7 +12,7 @@
     oldShowId=getIntent().getExtras().getString("oldShowId");
   }
   mAdapter=new ListAdapter(this);
-  mPicasso=MizuuApplication.getPicassoForWeb(this);
+  mPicasso=MizuuApplication.getPicasso(this);
   locale=Locale.getDefault();
   pbar=(ProgressBar)findViewById(R.id.pbar);
   useSystemLanguage=(CheckBox)findViewById(R.id.searchLanguage);

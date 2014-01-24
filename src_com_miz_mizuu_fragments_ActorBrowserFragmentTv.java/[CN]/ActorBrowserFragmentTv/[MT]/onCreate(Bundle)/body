@@ -5,6 +5,6 @@
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   TVDB_ID=getArguments().getString("tvdbId");
-  mPicasso=MizuuApplication.getPicassoForWeb(getActivity());
+  mPicasso=MizuuApplication.getPicasso(getActivity());
   new GetCoverImages().execute(TVDB_ID);
 }

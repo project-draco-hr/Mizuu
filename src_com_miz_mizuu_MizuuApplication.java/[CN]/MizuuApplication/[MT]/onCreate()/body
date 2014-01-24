@@ -6,5 +6,4 @@
   dbTvShowEpisode=new DbAdapterTvShowEpisode(this);
   dbSources=new DbAdapterSources(this);
   db=new DbAdapter(this);
-  mLruCache=new LruCache(calculateMemoryCacheSize(this));
 }
