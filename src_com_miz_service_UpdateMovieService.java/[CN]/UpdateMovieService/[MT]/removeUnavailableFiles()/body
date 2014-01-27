@@ -13,7 +13,7 @@
   ArrayList<FileSource> filesources=MizLib.getFileSources(MizLib.TYPE_MOVIE,true);
   for (int i=0; i < dbMovies.size(); i++) {
     if (dbMovies.get(i).isNetworkFile()) {
-      if (MizLib.isWifiConnected(getApplicationContext(),prefsDisableEthernetWiFiCheck)) {
+      if (MizLib.isWifiConnected(getApplicationContext(),prefsDisableEthernetWiFiCheck) && !dbMovies.get(i).hasOfflineCopy(getApplicationContext())) {
         FileSource source=null;
         for (int j=0; j < filesources.size(); j++)         if (dbMovies.get(i).getFilepath().contains(filesources.get(j).getFilepath())) {
           source=filesources.get(j);
