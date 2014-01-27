@@ -1,4 +1,5 @@
 {
+  if (null == filepath)   return;
   mFilepath=filepath;
   if (mFilepath.contains("/")) {
     setFileName(mFilepath.substring(mFilepath.lastIndexOf('/') + 1,mFilepath.lastIndexOf('.')).trim());
