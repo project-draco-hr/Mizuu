@@ -30,16 +30,19 @@
     stopSelf();
     return;
   }
-  boolean sizeOK=checkFilesize();
-  if (!sizeOK) {
-    mHandler.post(new Runnable(){
-      @Override public void run(){
-        Toast.makeText(mContext,R.string.not_enough_space,Toast.LENGTH_LONG).show();
+  boolean ignoreSizeCheck=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("prefsIgnoreFilesizeCheck",false);
+  if (!ignoreSizeCheck) {
+    boolean sizeOK=checkFilesize();
+    if (!sizeOK) {
+      mHandler.post(new Runnable(){
+        @Override public void run(){
+          Toast.makeText(mContext,R.string.not_enough_space,Toast.LENGTH_LONG).show();
+        }
       }
-    }
 );
-    stopSelf();
-    return;
+      stopSelf();
+      return;
+    }
   }
   exists=checkIfLocalCopyExists();
   if (exists) {
