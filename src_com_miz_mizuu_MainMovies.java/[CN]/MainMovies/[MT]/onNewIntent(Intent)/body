@@ -1,6 +1,0 @@
-{
-  super.onNewIntent(newIntent);
-  Intent i=new Intent("mizuu-movie-actor-search");
-  i.putExtras(newIntent.getExtras());
-  LocalBroadcastManager.getInstance(this).sendBroadcast(i);
-}

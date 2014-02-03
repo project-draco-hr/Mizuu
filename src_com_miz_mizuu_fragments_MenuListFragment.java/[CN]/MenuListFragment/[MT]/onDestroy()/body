@@ -1,4 +1,0 @@
-{
-  LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
-  super.onDestroy();
-}

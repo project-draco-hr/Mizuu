@@ -1,6 +1,0 @@
-{
-  this.title=title;
-  this.count=count;
-  this.isHeader=isHeader;
-  this.className=className;
-}

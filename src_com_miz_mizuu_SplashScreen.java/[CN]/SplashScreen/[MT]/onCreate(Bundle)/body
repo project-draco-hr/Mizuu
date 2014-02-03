@@ -35,20 +35,8 @@
   if (startup.equals("0")) {
     i.setClass(getApplicationContext(),Welcome.class);
   }
- else   if (startup.equals("1")) {
-    i.setClass(getApplicationContext(),MainMovies.class);
-  }
- else   if (startup.equals("2")) {
-    i.setClass(getApplicationContext(),MainTvShows.class);
-  }
- else   if (startup.equals("3")) {
-    i.setClass(getApplicationContext(),MainWatchlist.class);
-  }
- else   if (startup.equals("4")) {
-    i.setClass(getApplicationContext(),MovieDiscovery.class);
-  }
  else {
-    i.setClass(getApplicationContext(),MainWeb.class);
+    i.setClass(getApplicationContext(),Main.class);
   }
   startActivity(i);
   finish();

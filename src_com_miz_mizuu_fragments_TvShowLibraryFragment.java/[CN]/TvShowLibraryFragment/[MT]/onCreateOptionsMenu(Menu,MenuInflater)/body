@@ -1,7 +1,7 @@
 {
-  if (((MainMenuActivity)getActivity()).isDrawerOpen()) {
+  if (((Main)getActivity()).isDrawerOpen()) {
     actionBar.setNavigationMode(ActionBar.DISPLAY_SHOW_TITLE);
-    ((MainMenuActivity)getActivity()).showDrawerOptionsMenu(menu,inflater);
+    ((Main)getActivity()).showDrawerOptionsMenu(menu,inflater);
   }
  else {
     setupActionBar();

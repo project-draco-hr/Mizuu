@@ -1,9 +1,0 @@
-{
-  menu.clear();
-  menu.add(new MenuItem(getString(R.string.drawerMyMovies),mNumMovies,false,MainMovies.class));
-  menu.add(new MenuItem(getString(R.string.drawerMyTvShows),mNumShows,false,MainTvShows.class));
-  menu.add(new MenuItem(getString(R.string.chooserWatchList),mNumWatchlist,false,MainWatchlist.class));
-  menu.add(new MenuItem(getString(R.string.drawerOnlineMovies),0,false,MovieDiscovery.class));
-  menu.add(new MenuItem(getString(R.string.drawerWebVideos),0,false,MainWeb.class));
-  setupThirdPartyApps();
-}
