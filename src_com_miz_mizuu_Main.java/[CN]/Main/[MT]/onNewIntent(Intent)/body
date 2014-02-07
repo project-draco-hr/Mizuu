@@ -1,8 +1,10 @@
 {
   super.onNewIntent(newIntent);
-  Intent i=null;
-  if (selectedIndex == MOVIES)   i=new Intent("mizuu-movie-actor-search");
- else   i=new Intent("mizuu-shows-actor-search");
-  i.putExtras(newIntent.getExtras());
-  LocalBroadcastManager.getInstance(this).sendBroadcast(i);
+  if (!newIntent.hasExtra("fromUpdate")) {
+    Intent i=null;
+    if (selectedIndex == MOVIES)     i=new Intent("mizuu-movie-actor-search");
+ else     i=new Intent("mizuu-shows-actor-search");
+    i.putExtras(newIntent.getExtras());
+    LocalBroadcastManager.getInstance(this).sendBroadcast(i);
+  }
 }

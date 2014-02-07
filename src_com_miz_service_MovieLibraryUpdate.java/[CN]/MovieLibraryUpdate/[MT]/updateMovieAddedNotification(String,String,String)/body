@@ -1,0 +1,7 @@
+{
+  mBuilder.setLargeIcon(MizLib.getNotificationImageThumbnail(this,cover));
+  mBuilder.setContentTitle(getString(R.string.updatingMovies) + " (" + (int)((100.0 / (double)mTotalFiles) * (double)mCount)+ "%)");
+  mBuilder.setContentText(getString(R.string.stringJustAdded) + ": " + title);
+  mBuilder.setStyle(new NotificationCompat.BigPictureStyle().setSummaryText(getString(R.string.stringJustAdded) + ": " + title).bigPicture(MizLib.decodeSampledBitmapFromFile(backdrop,getNotificationImageWidth(),getNotificationImageHeight())));
+  mNotificationManager.notify(NOTIFICATION_ID,mBuilder.build());
+}

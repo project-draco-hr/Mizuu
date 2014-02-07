@@ -1,0 +1,4 @@
+{
+  if (mDbMovies.size() == 0)   setupDbMovies();
+  return mDbMovies;
+}

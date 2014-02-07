@@ -1,0 +1,16 @@
+{
+  if (MizLib.isNfoFile(file.getAbsolutePath())) {
+    try {
+      addNfoFile(MizLib.removeExtension(file.getAbsolutePath()),new FileInputStream(file));
+    }
+ catch (    FileNotFoundException ignored) {
+    }
+  }
+ else   if (MizLib.checkFileTypes(file.getAbsolutePath())) {
+    if (file.length() < getFileSizeLimit() && !file.getName().equalsIgnoreCase("video_ts.ifo"))     return;
+    if (!clearLibrary())     if (existingMovies.get(file.getAbsolutePath()) != null)     return;
+    String tempFileName=file.getName().substring(0,file.getName().lastIndexOf("."));
+    if (tempFileName.toLowerCase(Locale.ENGLISH).matches(".*part[2-9]|cd[2-9]"))     return;
+    results.add(file.getAbsolutePath());
+  }
+}

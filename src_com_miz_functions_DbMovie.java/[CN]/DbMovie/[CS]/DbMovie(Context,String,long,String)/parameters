@@ -1,0 +1,4 @@
+Context context
+String filepath
+long rowId
+String tmdbId

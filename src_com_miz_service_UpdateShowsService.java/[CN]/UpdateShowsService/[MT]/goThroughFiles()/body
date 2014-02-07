@@ -5,7 +5,7 @@
   cursor.close();
   int count=storageDirectories.size();
   for (int i=0; i < count; i++) {
-    if (storageDirectories.get(i).isSmb()) {
+    if (storageDirectories.get(i).getFileSourceType() == FileSource.SMB) {
       if (MizLib.isOnline(getApplicationContext())) {
         try {
           MizFile storageDirectory=new MizFile(new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(storageDirectories.get(i).getDomain(),"utf-8"),URLEncoder.encode(storageDirectories.get(i).getUser(),"utf-8"),URLEncoder.encode(storageDirectories.get(i).getPassword(),"utf-8"),storageDirectories.get(i).getFilepath(),true)));

@@ -1,3 +1,0 @@
-{
-  return isSmb == 1 ? true : false;
-}

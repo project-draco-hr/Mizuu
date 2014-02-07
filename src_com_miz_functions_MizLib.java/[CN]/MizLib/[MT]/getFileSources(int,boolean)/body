@@ -6,12 +6,12 @@
  else   c=dbHelperSources.fetchAllShowSources();
   while (c.moveToNext()) {
     if (onlyNetworkSources) {
-      if (c.getInt(c.getColumnIndex(DbAdapterSources.KEY_IS_SMB)) == 1) {
-        filesources.add(new FileSource(c.getLong(c.getColumnIndex(DbAdapterSources.KEY_ROWID)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),c.getInt(c.getColumnIndex(DbAdapterSources.KEY_IS_SMB)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_USER)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_TYPE))));
+      if (c.getInt(c.getColumnIndex(DbAdapterSources.KEY_FILESOURCE_TYPE)) == FileSource.SMB) {
+        filesources.add(new FileSource(c.getLong(c.getColumnIndex(DbAdapterSources.KEY_ROWID)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),c.getInt(c.getColumnIndex(DbAdapterSources.KEY_FILESOURCE_TYPE)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_USER)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_TYPE))));
       }
     }
  else {
-      filesources.add(new FileSource(c.getLong(c.getColumnIndex(DbAdapterSources.KEY_ROWID)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),c.getInt(c.getColumnIndex(DbAdapterSources.KEY_IS_SMB)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_USER)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_TYPE))));
+      filesources.add(new FileSource(c.getLong(c.getColumnIndex(DbAdapterSources.KEY_ROWID)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),c.getInt(c.getColumnIndex(DbAdapterSources.KEY_FILESOURCE_TYPE)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_USER)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_TYPE))));
     }
   }
   c.close();

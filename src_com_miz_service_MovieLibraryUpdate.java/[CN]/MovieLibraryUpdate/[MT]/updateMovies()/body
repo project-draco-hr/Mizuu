@@ -1,0 +1,27 @@
+{
+  StringBuilder sb1=new StringBuilder(), sb2=new StringBuilder();
+  Collections.sort(mMovieQueue);
+  while (mMovieQueue.peek() != null) {
+    if (mStopDownload)     return;
+    String file=mMovieQueue.pop();
+    mCount++;
+    if (mIgnoreNfoFiles) {
+      newMovieDbObject(file);
+    }
+ else {
+      sb1.delete(0,sb1.length());
+      sb1.append(MizLib.removeExtension(file.replaceAll("part[1-9]|cd[1-9]","").trim()));
+      sb2.delete(0,sb2.length());
+      sb2.append(MizLib.convertToGenericNfo(file));
+      if (mNfoFiles.containsKey(sb1)) {
+        new NfoMovie(file,mNfoFiles.get(sb1),getApplicationContext(),this);
+      }
+ else       if (mNfoFiles.containsKey(sb2)) {
+        new NfoMovie(file,mNfoFiles.get(sb2),getApplicationContext(),this);
+      }
+ else {
+        newMovieDbObject(file);
+      }
+    }
+  }
+}

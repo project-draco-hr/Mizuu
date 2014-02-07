@@ -1,0 +1,22 @@
+{
+  String mBaseUrl="";
+  try {
+    if (MizLib.isOnline(getApplicationContext())) {
+      JSONObject jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/configuration?api_key=" + MizLib.TMDB_API);
+      try {
+        mBaseUrl=jObject.getJSONObject("images").getString("base_url");
+      }
+ catch (      Exception e) {
+        mBaseUrl=MizLib.TMDB_BASE_URL;
+      }
+    }
+  }
+ catch (  Exception e) {
+    mBaseUrl=MizLib.TMDB_BASE_URL;
+  }
+ finally {
+    mEditor=mSettings.edit();
+    mEditor.putString("tmdbBaseUrl",mBaseUrl);
+    mEditor.commit();
+  }
+}

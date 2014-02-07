@@ -1,0 +1,15 @@
+{
+  this.context=context;
+  this.filepath=filepath;
+  this.isFromManualIdentify=isFromManualIdentify;
+  this.rowId=rowId;
+  this.language=language;
+  setup();
+  TMDb tmdb=new TMDb(context);
+  if (isFromManualIdentify)   movie=tmdb.getMovie(tmdbId,LOCALE);
+ else {
+    DecryptedMovie mMovie=MizLib.decryptMovie(filepath,settings.getString("ignoredTags",""));
+    movie=tmdb.searchForMovie(mMovie.getDecryptedFileName(),mMovie.getFileNameYear(),filepath,LOCALE);
+  }
+  download();
+}

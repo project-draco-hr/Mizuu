@@ -1,0 +1,12 @@
+{
+  this.context=context;
+  this.filepath=filepath;
+  this.rowId=0;
+  this.language="";
+  this.callback=callback;
+  setup();
+  TMDb tmdb=new TMDb(context);
+  DecryptedMovie mMovie=MizLib.decryptMovie(filepath,settings.getString("ignoredTags",""));
+  movie=tmdb.searchForMovie(mMovie.getDecryptedFileName(),mMovie.getFileNameYear(),filepath,LOCALE);
+  download();
+}

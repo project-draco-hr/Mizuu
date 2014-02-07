@@ -1,6 +1,6 @@
 String filepath
 String type
-int isSmb
+int fileSourceType
 String user
 String password
 String domain

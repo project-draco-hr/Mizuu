@@ -1,0 +1,21 @@
+{
+  if (MizLib.isNfoFile(file.getCanonicalPath())) {
+    try {
+      addNfoFile(MizLib.removeExtension(file.getCanonicalPath()),file.getInputStream());
+    }
+ catch (    IOException ignored) {
+    }
+  }
+ else   if (MizLib.checkFileTypes(file.getCanonicalPath())) {
+    try {
+      if (file.length() < getFileSizeLimit() && !file.getName().equalsIgnoreCase("video_ts.ifo"))       return;
+    }
+ catch (    SmbException e) {
+      return;
+    }
+    if (!clearLibrary())     if (existingMovies.get(file.getCanonicalPath()) != null)     return;
+    String tempFileName=file.getName().substring(0,file.getName().lastIndexOf("."));
+    if (tempFileName.toLowerCase(Locale.ENGLISH).matches(".*part[2-9]|cd[2-9]"))     return;
+    results.add(file.getCanonicalPath());
+  }
+}

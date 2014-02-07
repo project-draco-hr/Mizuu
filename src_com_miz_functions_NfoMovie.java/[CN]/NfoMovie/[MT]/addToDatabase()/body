@@ -1,7 +1,8 @@
 {
   DbAdapter dbHelper=MizuuApplication.getMovieAdapter();
-  long rowId=dbHelper.createMovie(file.getAbsolutePath(),movie.getCover(),movie.getTitle(),movie.getPlot(),movie.getId(),movie.getImdbId(),movie.getRating(),movie.getTagline(),movie.getReleasedate(),movie.getCertification(),movie.getRuntime(),movie.getTrailer(),movie.getGenres(),"0",movie.getCast(),movie.getCollectionTitle(),movie.getCollectionId(),"0","0",String.valueOf(System.currentTimeMillis()));
-  Movie temp=new Movie(c,String.valueOf(rowId),file.getAbsolutePath(),movie.getTitle(),movie.getPlot(),movie.getTagline(),movie.getId(),movie.getImdbId(),movie.getRating(),movie.getReleasedate(),movie.getCertification(),movie.getRuntime(),movie.getTrailer(),movie.getGenres(),"0",movie.getCast(),movie.getCollectionTitle(),movie.getCollectionId(),"0","0",movie.getCover(),String.valueOf(System.currentTimeMillis()),false,false);
+  long rowId=dbHelper.createMovie(getFilepath(),movie.getCover(),movie.getTitle(),movie.getPlot(),movie.getId(),movie.getImdbId(),movie.getRating(),movie.getTagline(),movie.getReleasedate(),movie.getCertification(),movie.getRuntime(),movie.getTrailer(),movie.getGenres(),"0",movie.getCast(),movie.getCollectionTitle(),movie.getCollectionId(),"0","0",String.valueOf(System.currentTimeMillis()));
+  Movie temp=new Movie(c,String.valueOf(rowId),getFilepath(),movie.getTitle(),movie.getPlot(),movie.getTagline(),movie.getId(),movie.getImdbId(),movie.getRating(),movie.getReleasedate(),movie.getCertification(),movie.getRuntime(),movie.getTrailer(),movie.getGenres(),"0",movie.getCast(),movie.getCollectionTitle(),movie.getCollectionId(),"0","0",movie.getCover(),String.valueOf(System.currentTimeMillis()),false,false);
+  if (callback != null)   callback.onMovieAdded(movie.getTitle(),temp.getThumbnail(),temp.getBackdrop());
   Intent intent=new Intent("mizuu-movies-object");
   intent.putExtra("movieName",movie.getTitle());
   intent.putExtra("cover",temp.getPoster());

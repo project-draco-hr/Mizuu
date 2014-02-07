@@ -7,10 +7,10 @@
     @Override public void onClick(    View v){
       DbAdapterSources dbHelper=MizuuApplication.getSourcesAdapter();
       if (isMovie) {
-        dbHelper.createSource("smb://" + visiblePath.replace("smb://",""),DbAdapterSources.KEY_TYPE_MOVIE,1,user,pass,domain);
+        dbHelper.createSource("smb://" + visiblePath.replace("smb://",""),DbAdapterSources.KEY_TYPE_MOVIE,FileSource.SMB,user,pass,domain);
       }
  else {
-        dbHelper.createSource("smb://" + visiblePath.replace("smb://",""),DbAdapterSources.KEY_TYPE_SHOW,1,user,pass,domain);
+        dbHelper.createSource("smb://" + visiblePath.replace("smb://",""),DbAdapterSources.KEY_TYPE_SHOW,FileSource.SMB,user,pass,domain);
       }
       LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-filesource-change"));
       getActivity().finish();

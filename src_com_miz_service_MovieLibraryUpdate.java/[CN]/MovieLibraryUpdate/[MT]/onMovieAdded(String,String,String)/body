@@ -1,0 +1,3 @@
+{
+  updateMovieAddedNotification(title,cover,backdrop);
+}

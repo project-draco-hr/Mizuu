@@ -7,12 +7,12 @@
         baseUrl=jObject.getJSONObject("images").getString("base_url");
       }
  catch (      Exception e) {
-        baseUrl="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/";
+        baseUrl=MizLib.TMDB_BASE_URL;
       }
     }
   }
  catch (  Exception e) {
-    baseUrl="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/";
+    baseUrl=MizLib.TMDB_BASE_URL;
   }
  finally {
     editor=settings.edit();

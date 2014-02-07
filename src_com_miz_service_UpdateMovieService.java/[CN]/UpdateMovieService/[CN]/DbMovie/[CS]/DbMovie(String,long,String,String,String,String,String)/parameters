@@ -1,7 +1,0 @@
-String filepath
-long rowId
-String tmdbId
-String runtime
-String year
-String genres
-String title

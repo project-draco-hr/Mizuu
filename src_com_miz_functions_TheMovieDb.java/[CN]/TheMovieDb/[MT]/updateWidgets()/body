@@ -1,0 +1,6 @@
+{
+  AppWidgetManager awm=AppWidgetManager.getInstance(context);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(context,MovieStackWidgetProvider.class)),R.id.stack_view);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(context,MovieCoverWidgetProvider.class)),R.id.widget_grid);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(context,MovieBackdropWidgetProvider.class)),R.id.widget_grid);
+}

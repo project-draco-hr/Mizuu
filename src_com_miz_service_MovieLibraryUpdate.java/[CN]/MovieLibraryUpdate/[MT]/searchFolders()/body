@@ -1,0 +1,16 @@
+{
+  List<String> tempList=null;
+  HashMap<String,InputStream> tempNfoMap=null;
+  for (int j=0; j < mMovieFileSources.size(); j++) {
+    updateMovieAddedNotification(mMovieFileSources.get(j).toString());
+    tempList=mMovieFileSources.get(j).searchFolder();
+    for (int i=0; i < tempList.size(); i++)     mMovieQueue.add(tempList.get(i));
+    if (!mIgnoreNfoFiles) {
+      tempNfoMap=mMovieFileSources.get(j).getNfoFiles();
+      mNfoFiles.putAll(tempNfoMap);
+    }
+  }
+  if (tempList != null)   tempList.clear();
+  if (tempNfoMap != null)   tempNfoMap.clear();
+  mTotalFiles=mMovieQueue.size();
+}

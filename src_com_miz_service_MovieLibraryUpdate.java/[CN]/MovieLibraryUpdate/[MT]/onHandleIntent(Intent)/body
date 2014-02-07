@@ -1,0 +1,38 @@
+{
+  log("clear()");
+  clear();
+  log("setup()");
+  setup();
+  log("loadFileSources()");
+  loadFileSources();
+  log("setupMovieFileSources()");
+  setupMovieFileSources(mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck);
+  log("removeUnidentifiedMovies()");
+  if (mStopDownload)   return;
+  removeUnidentifiedMovies();
+  if (mStopDownload)   return;
+  if (mClearLibrary) {
+    mEditor=mSettings.edit();
+    mEditor.putBoolean("prefsClearLibrary",false);
+    mEditor.commit();
+    log("removeMoviesFromDatabase()");
+    removeMoviesFromDatabase();
+  }
+  if (mStopDownload)   return;
+  if (!mClearLibrary && mClearUnavailable) {
+    log("removeUnavailableFiles()");
+    removeUnavailableFiles();
+  }
+  log("searchFolders()");
+  if (mStopDownload)   return;
+  searchFolders();
+  if (mStopDownload)   return;
+  log("getTMDbConfiguration()");
+  getTMDbConfiguration();
+  if (mStopDownload)   return;
+  log("mTotalFiles > 0 check");
+  if (mTotalFiles > 0) {
+    log("updateMovies()");
+    updateMovies();
+  }
+}

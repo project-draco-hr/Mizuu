@@ -1,0 +1,29 @@
+{
+  DbAdapter db=MizuuApplication.getMovieAdapter();
+  List<DbMovie> dbMovies=getDbMovies();
+  ArrayList<FileSource> filesources=MizLib.getFileSources(MizLib.TYPE_MOVIE,true);
+  FileSource source;
+  SmbFile temp;
+  int count=dbMovies.size();
+  if (MizLib.isWifiConnected(getContext(),disableEthernetWiFiCheck())) {
+    for (int i=0; i < count; i++) {
+      if (dbMovies.get(i).isNetworkFile()) {
+        try {
+          source=null;
+          for (int j=0; j < filesources.size(); j++)           if (dbMovies.get(i).getFilepath().contains(filesources.get(j).getFilepath())) {
+            source=filesources.get(j);
+            continue;
+          }
+          if (source == null) {
+            if (dbMovies.get(i).isUnidentified())             db.deleteMovie(dbMovies.get(i).getRowId());
+            continue;
+          }
+          temp=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(source.getDomain(),"utf-8"),URLEncoder.encode(source.getUser(),"utf-8"),URLEncoder.encode(source.getPassword(),"utf-8"),dbMovies.get(i).getFilepath(),false));
+          if (temp.exists() && dbMovies.get(i).isUnidentified())           db.deleteMovie(dbMovies.get(i).getRowId());
+        }
+ catch (        Exception e) {
+        }
+      }
+    }
+  }
+}

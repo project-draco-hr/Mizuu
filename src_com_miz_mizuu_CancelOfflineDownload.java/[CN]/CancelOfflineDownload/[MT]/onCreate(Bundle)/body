@@ -2,7 +2,7 @@
   super.onCreate(savedInstanceState);
   setContentView(R.layout.empty_layout);
   AlertDialog.Builder builder=new AlertDialog.Builder(this);
-  builder.setMessage(getString(R.string.areYouSure)).setTitle(getString(R.string.removeOfflineCopy)).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
+  builder.setMessage(getString(R.string.areYouSure)).setTitle(getString(R.string.stopFileDownload)).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int id){
       LocalBroadcastManager.getInstance(CancelOfflineDownload.this).sendBroadcast(new Intent("mizuu-stop-offline-download"));
       Toast.makeText(CancelOfflineDownload.this,getString(R.string.stringDownloadCancelled),Toast.LENGTH_LONG).show();

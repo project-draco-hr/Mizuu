@@ -1,0 +1,20 @@
+{
+  mFileSources=new ArrayList<FileSource>();
+  mMovieFileSources=new ArrayList<MovieFileSource<?>>();
+  mMovieQueue=new LinkedList<String>();
+  mNfoFiles=new HashMap<String,InputStream>();
+  mIgnoreRemovedFiles=false;
+  mClearLibrary=false;
+  mSearchSubfolders=true;
+  mClearUnavailable=false;
+  mIgnoreNfoFiles=true;
+  mDisableEthernetWiFiCheck=false;
+  mSyncLibraries=true;
+  mStopDownload=false;
+  mEditor=null;
+  mSettings=null;
+  mTotalFiles=0;
+  mCount=0;
+  mNotificationManager=null;
+  mBuilder=null;
+}

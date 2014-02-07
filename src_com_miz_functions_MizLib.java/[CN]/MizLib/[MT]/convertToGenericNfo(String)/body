@@ -1,0 +1,9 @@
+{
+  final int lastPeriodPos=filepath.lastIndexOf('/');
+  if (lastPeriodPos <= 0) {
+    return filepath;
+  }
+ else {
+    return filepath.substring(0,lastPeriodPos) + "/movie.nfo";
+  }
+}

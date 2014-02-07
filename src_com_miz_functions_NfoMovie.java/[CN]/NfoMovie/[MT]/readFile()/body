@@ -3,7 +3,8 @@
   try {
     DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
     DocumentBuilder db=dbf.newDocumentBuilder();
-    Document doc=db.parse(nfoFile.getInputStream());
+    Document doc;
+    doc=db.parse(is);
     doc.getDocumentElement().normalize();
     NodeList nodeList=doc.getElementsByTagName("movie");
     if (nodeList.getLength() > 0) {
@@ -43,7 +44,7 @@
           list=firstElement.getElementsByTagName("rating");
           element=(Element)list.item(0);
           tag=element.getChildNodes();
-          movie.setRating(((Node)tag.item(0)).getNodeValue().trim());
+          movie.setRating(((Node)tag.item(0)).getNodeValue().trim().replace(",","."));
         }
  catch (        Exception e) {
           movie.setRating("0.0");
@@ -192,7 +193,19 @@
           list=firstElement.getElementsByTagName("genre");
           element=(Element)list.item(0);
           tag=element.getChildNodes();
-          movie.setGenres(((Node)tag.item(0)).getNodeValue().trim());
+          try {
+            String genres=((Node)tag.item(0)).getNodeValue().trim();
+            String[] genresArray=genres.split(",");
+            StringBuilder sb=new StringBuilder();
+            for (int k=0; k < genresArray.length; k++) {
+              sb.append(MizLib.toCapitalWords(genresArray[k].toLowerCase(Locale.getDefault())) + ", ");
+            }
+            genres=sb.substring(0,sb.length() - 2).toString();
+            movie.setGenres(genres);
+          }
+ catch (          Exception e) {
+            movie.setGenres(((Node)tag.item(0)).getNodeValue().trim());
+          }
         }
  catch (        Exception e) {
           movie.setGenres("");
@@ -222,7 +235,14 @@
       }
     }
   }
- catch (  Exception e) {
+ catch (  Exception ignored) {
+  }
+ finally {
+    try {
+      if (is != null)       is.close();
+    }
+ catch (    IOException ignored) {
+    }
   }
   addToDatabase();
 }

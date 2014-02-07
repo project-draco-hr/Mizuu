@@ -1,3 +1,0 @@
-{
-  return new File(MizLib.getMovieBackdropFolder(getApplicationContext()),tmdbId + "_bg.jpg").getAbsolutePath();
-}
