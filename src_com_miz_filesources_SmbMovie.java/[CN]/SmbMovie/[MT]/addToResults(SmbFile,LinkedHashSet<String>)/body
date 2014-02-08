@@ -1,5 +1,5 @@
 {
-  if (MizLib.isNfoFile(file.getCanonicalPath())) {
+  if (supportsNfo() && MizLib.isNfoFile(file.getCanonicalPath())) {
     try {
       addNfoFile(MizLib.removeExtension(file.getCanonicalPath()),file.getInputStream());
     }

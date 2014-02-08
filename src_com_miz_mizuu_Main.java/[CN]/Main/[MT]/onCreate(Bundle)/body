@@ -4,6 +4,7 @@
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
   confirmExit=settings.getBoolean("prefsConfirmBackPress",false);
   startup=settings.getString("prefsStartup","1");
+  if (startup.equals("0"))   startup="1";
   dbHelper=MizuuApplication.getMovieAdapter();
   dbHelperTv=MizuuApplication.getTvDbAdapter();
   tf=Typeface.createFromAsset(getAssets(),"Roboto-Thin.ttf");
@@ -58,6 +59,10 @@
     selectedIndex=savedInstanceState.getInt("selectedIndex");
     changeTabSelection(savedInstanceState.getInt("tabIndex"));
     loadFragment(selectedIndex + 1);
+  }
+ else   if (getIntent().getExtras().containsKey("startup")) {
+    tab1.setSelected(true);
+    loadFragment(Integer.parseInt(getIntent().getExtras().getString("startup")));
   }
  else {
     tab1.setSelected(true);

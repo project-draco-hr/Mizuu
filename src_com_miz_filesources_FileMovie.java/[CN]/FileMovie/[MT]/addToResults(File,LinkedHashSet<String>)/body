@@ -1,5 +1,5 @@
 {
-  if (MizLib.isNfoFile(file.getAbsolutePath())) {
+  if (supportsNfo() && MizLib.isNfoFile(file.getAbsolutePath())) {
     try {
       addNfoFile(MizLib.removeExtension(file.getAbsolutePath()),new FileInputStream(file));
     }

@@ -1,4 +1,5 @@
 {
+  if (index == -1)   index=0;
   if (!menu.get(index).isThirdPartyApp()) {
     selectedIndex=index;
     mDrawerList.setItemChecked(index,true);

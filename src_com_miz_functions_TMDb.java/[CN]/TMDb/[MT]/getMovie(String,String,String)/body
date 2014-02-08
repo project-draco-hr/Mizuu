@@ -77,7 +77,6 @@
       }
  else {
         if (json == null)         try {
-          System.out.println("YOYOYOYO");
           jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/movie/" + id + "/images?api_key="+ MizLib.TMDB_API);
           JSONArray array2=jObject.getJSONArray("backdrops");
           if (array2.length() > 0) {

@@ -178,7 +178,7 @@
           movie.setId(((Node)tag.item(0)).getNodeValue().trim());
         }
  catch (        Exception e) {
-          movie.setId("");
+          movie.setId("invalid");
         }
         try {
           list=firstElement.getElementsByTagName("trailer");
