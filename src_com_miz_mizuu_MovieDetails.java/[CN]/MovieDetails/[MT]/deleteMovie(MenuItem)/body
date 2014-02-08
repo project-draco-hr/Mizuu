@@ -2,6 +2,7 @@
   AlertDialog.Builder builder=new AlertDialog.Builder(this);
   View dialogLayout=getLayoutInflater().inflate(R.layout.delete_file_dialog_layout,null);
   final CheckBox cb=(CheckBox)dialogLayout.findViewById(R.id.deleteFile);
+  cb.setChecked(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsAlwaysDeleteFile",true));
   builder.setTitle(getString(R.string.removeMovie)).setView(dialogLayout).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int id){
       boolean deleted=true;
