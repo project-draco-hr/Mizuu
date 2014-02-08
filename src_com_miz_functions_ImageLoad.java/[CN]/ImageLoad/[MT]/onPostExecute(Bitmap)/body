@@ -1,8 +1,0 @@
-{
-  if (result != null)   img.setImageBitmap(result);
- else   img.setImageResource(onFail);
-  if (duration > 0) {
-    img.setAlpha(startAlpha);
-    ObjectAnimator.ofFloat(img,"alpha",startAlpha,endAlpha).setDuration(duration).start();
-  }
-}

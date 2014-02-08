@@ -76,24 +76,13 @@
       }
     }
 );
-    if (new File(thisEpisode.getEpisodePhoto()).exists()) {
-      ImageLoad loader=new ImageLoad();
-      loader.setFileUrl(thisEpisode.getEpisodePhoto());
-      loader.setImageView(cover);
-      loader.setDuration(250);
-      loader.execute();
-    }
- else {
-      if (new File(MizLib.getTvShowThumbFolder(getActivity()) + "/" + thisEpisode.getShowId()+ ".jpg").exists()) {
-        ImageLoad loader=new ImageLoad();
-        loader.setFileUrl(MizLib.getTvShowBackdropFolder(getActivity()) + "/" + thisEpisode.getShowId()+ "_tvbg.jpg");
-        loader.setImageView(cover);
-        loader.setDuration(250);
-        loader.execute();
+    mPicasso.load(thisEpisode.getEpisodePhoto()).skipMemoryCache().placeholder(R.drawable.bg).into(cover,new Callback(){
+      @Override public void onError(){
+        mPicasso.load(MizLib.getTvShowThumbFolder(getActivity()) + "/" + thisEpisode.getShowId()+ ".jpg").skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.nobackdrop).into(cover);
       }
- else {
-        cover.setImageResource(R.drawable.nobackdrop);
+      @Override public void onSuccess(){
       }
     }
+);
   }
 }
