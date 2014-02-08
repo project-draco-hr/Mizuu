@@ -1,0 +1,9 @@
+{
+  Handler mHandler=new Handler();
+  mHandler.post(new Runnable(){
+    @Override public void run(){
+      Toast.makeText(getApplicationContext(),R.string.failedDeleting,Toast.LENGTH_LONG).show();
+    }
+  }
+);
+}

@@ -28,11 +28,15 @@
       }
  catch (      Exception e) {
       }
+      showErrorMessage();
     }
   }
  else {
+    boolean deleted;
     File f=new File(file);
-    if (!f.delete())     f.delete();
+    deleted=f.delete();
+    if (!deleted)     deleted=f.delete();
+    if (!deleted)     showErrorMessage();
     ArrayList<File> subs=new ArrayList<File>();
     String fileType="";
     if (file.contains(".")) {
