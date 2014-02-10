@@ -1,0 +1,15 @@
+{
+  mDbEpisode.clear();
+  DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+  Cursor tempCursor=db.getAllEpisodesInDatabase(ignoreRemovedFiles());
+  try {
+    while (tempCursor.moveToNext()) {
+      mDbEpisode.add(new DbEpisode(getContext(),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_FILEPATH)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_ROWID)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SHOW_ID)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SHOW_ID)) + "_S" + tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SEASON))+ "E"+ tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE))+ ".jpg"));
+    }
+  }
+ catch (  NullPointerException e) {
+  }
+ finally {
+    tempCursor.close();
+  }
+}

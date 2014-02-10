@@ -1,0 +1,28 @@
+{
+  mShowCount=mUniqueShowIds.size();
+  Intent notificationIntent=new Intent(this,Main.class);
+  notificationIntent.putExtra("fromUpdate",true);
+  notificationIntent.putExtra("startup","2");
+  notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+  PendingIntent contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
+  mBuilder=new NotificationCompat.Builder(getApplicationContext());
+  if (!mStopUpdate) {
+    mBuilder.setSmallIcon(R.drawable.done);
+    mBuilder.setTicker(getString(R.string.finishedTvShowsLibraryUpdate));
+    mBuilder.setContentTitle(getString(R.string.finishedTvShowsLibraryUpdate));
+    mBuilder.setContentText(getString(R.string.stringJustAdded) + " " + mShowCount+ " "+ getResources().getQuantityString(R.plurals.showsInLibrary,mShowCount,mShowCount)+ " ("+ mEpisodeCount+ " "+ getResources().getQuantityString(R.plurals.episodes,mEpisodeCount,mEpisodeCount)+ ")");
+    mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.done));
+  }
+ else {
+    mBuilder.setSmallIcon(R.drawable.ignoresmallfiles);
+    mBuilder.setTicker(getString(R.string.stringUpdateCancelled));
+    mBuilder.setContentTitle(getString(R.string.stringUpdateCancelled));
+    mBuilder.setContentText(getString(R.string.stringJustAdded) + " " + mShowCount+ " "+ getResources().getQuantityString(R.plurals.showsInLibrary,mShowCount,mShowCount)+ " ("+ mEpisodeCount+ " "+ getResources().getQuantityString(R.plurals.episodes,mEpisodeCount,mEpisodeCount)+ ")");
+    mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ignoresmallfiles));
+  }
+  mBuilder.setContentIntent(contentIntent);
+  mBuilder.setAutoCancel(true);
+  Notification updateNotification=mBuilder.build();
+  mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+  mNotificationManager.notify(POST_UPDATE_NOTIFICATION,updateNotification);
+}

@@ -10,7 +10,7 @@
   mIgnoreNfoFiles=true;
   mDisableEthernetWiFiCheck=false;
   mSyncLibraries=true;
-  mStopDownload=false;
+  mStopUpdate=false;
   mEditor=null;
   mSettings=null;
   mTotalFiles=0;

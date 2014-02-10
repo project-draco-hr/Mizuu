@@ -1,0 +1,13 @@
+{
+  for (  FileSource fileSource : mFileSources) {
+    if (mStopUpdate)     return;
+switch (fileSource.getFileSourceType()) {
+case FileSource.FILE:
+      mTvShowFileSources.add(new FileTvShow(getApplicationContext(),fileSource,mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck));
+    break;
+case FileSource.SMB:
+  mTvShowFileSources.add(new SmbTvShow(getApplicationContext(),fileSource,mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck));
+break;
+}
+}
+}

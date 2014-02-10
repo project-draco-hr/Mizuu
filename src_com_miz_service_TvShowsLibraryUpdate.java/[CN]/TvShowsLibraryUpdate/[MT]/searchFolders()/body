@@ -1,0 +1,13 @@
+{
+  List<String> tempList=null;
+  String ignoredTags=mSettings.getString("ignoredTags","");
+  for (int j=0; j < mTvShowFileSources.size(); j++) {
+    updateTvShowScanningNotification(mTvShowFileSources.get(j).toString());
+    tempList=mTvShowFileSources.get(j).searchFolder();
+    for (int i=0; i < tempList.size(); i++) {
+      mMap.put(MizLib.decryptEpisode(tempList.get(i),ignoredTags).getDecryptedFileName().toLowerCase(Locale.getDefault()),tempList.get(i));
+    }
+  }
+  if (tempList != null)   tempList.clear();
+  mTotalFiles=mMap.size();
+}

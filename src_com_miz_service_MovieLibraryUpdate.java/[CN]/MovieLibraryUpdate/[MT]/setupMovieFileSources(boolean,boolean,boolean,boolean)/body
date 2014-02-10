@@ -1,6 +1,6 @@
 {
   for (  FileSource fileSource : mFileSources) {
-    if (mStopDownload)     return;
+    if (mStopUpdate)     return;
 switch (fileSource.getFileSourceType()) {
 case FileSource.FILE:
       mMovieFileSources.add(new FileMovie(getApplicationContext(),fileSource,mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck));

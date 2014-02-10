@@ -1,0 +1,7 @@
+{
+  this.context=context;
+  this.filepath=filepath;
+  this.rowId=rowId;
+  this.showId=showId;
+  this.episodeCoverPath=episodeCoverPath;
+}

@@ -9,7 +9,7 @@
   checkBox.setChecked(false);
   checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
     @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
-      editor.putBoolean("prefsClearLibrary",isChecked);
+      editor.putBoolean(isMovie ? "prefsClearLibrary" : "prefsClearLibraryTv",isChecked);
       editor.commit();
     }
   }
@@ -18,7 +18,7 @@
   checkBox2.setChecked(false);
   checkBox2.setOnCheckedChangeListener(new OnCheckedChangeListener(){
     @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
-      editor.putBoolean("prefsRemoveUnavailable",isChecked);
+      editor.putBoolean(isMovie ? "prefsRemoveUnavailable" : "prefsRemoveUnavailableTv",isChecked);
       editor.commit();
     }
   }

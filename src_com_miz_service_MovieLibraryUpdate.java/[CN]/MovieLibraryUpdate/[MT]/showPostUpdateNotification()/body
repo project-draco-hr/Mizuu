@@ -1,10 +1,11 @@
 {
   Intent notificationIntent=new Intent(this,Main.class);
   notificationIntent.putExtra("fromUpdate",true);
+  notificationIntent.putExtra("startup","1");
   notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
   PendingIntent contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
   mBuilder=new NotificationCompat.Builder(getApplicationContext());
-  if (!mStopDownload) {
+  if (!mStopUpdate) {
     mBuilder.setSmallIcon(R.drawable.done);
     mBuilder.setTicker(getString(R.string.finishedMovieLibraryUpdate));
     mBuilder.setContentTitle(getString(R.string.finishedMovieLibraryUpdate));

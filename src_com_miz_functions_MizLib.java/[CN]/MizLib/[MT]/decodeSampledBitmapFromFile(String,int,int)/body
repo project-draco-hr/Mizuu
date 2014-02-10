@@ -3,6 +3,8 @@
   options.inJustDecodeBounds=true;
   BitmapFactory.decodeFile(filename,options);
   options.inSampleSize=calculateInSampleSize(options,reqWidth,reqHeight);
+  options.inMutable=true;
+  options.inPreferredConfig=Config.RGB_565;
   options.inJustDecodeBounds=false;
   return BitmapFactory.decodeFile(filename,options);
 }

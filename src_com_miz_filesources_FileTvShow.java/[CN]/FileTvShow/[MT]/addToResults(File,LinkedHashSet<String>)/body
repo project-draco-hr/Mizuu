@@ -1,0 +1,7 @@
+{
+  if (MizLib.checkFileTypes(file.getAbsolutePath())) {
+    if (file.length() < getFileSizeLimit())     return;
+    if (!clearLibrary())     if (existingEpisodes.get(file.getAbsolutePath()) != null)     return;
+    results.add(file.getAbsolutePath());
+  }
+}

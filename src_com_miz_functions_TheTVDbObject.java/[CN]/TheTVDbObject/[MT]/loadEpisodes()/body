@@ -1,0 +1,16 @@
+{
+  int count=0;
+  for (  String file : queue) {
+    if (file == null)     continue;
+    DecryptedShowEpisode decrypted=MizLib.decryptEpisode(file,ignoredTags);
+    downloadEpisode(MizLib.addIndexZero(decrypted.getSeason()),MizLib.addIndexZero(decrypted.getEpisode()),file);
+    count++;
+  }
+  updateWidgets();
+  File coverFile=new File(thumbsFolder,thisShow.getId() + ".jpg");
+  File backdropFile=new File(MizLib.getTvShowBackdropFolder(context),thisShow.getId() + "_tvbg.jpg");
+  if (!backdropFile.exists())   backdropFile=coverFile;
+  cover=MizLib.getNotificationImageThumbnail(context,coverFile.getAbsolutePath());
+  backdrop=MizLib.decodeSampledBitmapFromFile(backdropFile.getAbsolutePath(),getNotificationImageWidth(),getNotificationImageHeight());
+  callback.onTvShowAdded(thisShow.getId(),thisShow.getTitle(),cover,backdrop,count);
+}

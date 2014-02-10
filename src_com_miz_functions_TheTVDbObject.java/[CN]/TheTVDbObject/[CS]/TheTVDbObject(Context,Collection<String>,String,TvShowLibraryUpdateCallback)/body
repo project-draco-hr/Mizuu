@@ -1,0 +1,11 @@
+{
+  this.context=context;
+  this.language=language;
+  this.callback=callback;
+  this.ignoredTags=PreferenceManager.getDefaultSharedPreferences(context).getString("ignoredTags","");
+  for (  String file : files)   queue.add(file);
+  setup();
+  tvdb=new TheTVDb(context);
+  thisShow=tvdb.searchForShow(MizLib.decryptEpisode(queue.peek(),ignoredTags),LOCALE);
+  createShow();
+}

@@ -1,14 +1,15 @@
 {
   LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter(STOP_MOVIE_LIBRARY_UPDATE));
-  Intent notificationIntent=new Intent(this,CancelMovieUpdate.class);
+  Intent notificationIntent=new Intent(this,CancelLibraryUpdate.class);
+  notificationIntent.putExtra("isMovie",false);
   notificationIntent.setAction(Intent.ACTION_MAIN);
   notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
   PendingIntent contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
   mBuilder=new NotificationCompat.Builder(getApplicationContext());
   mBuilder.setSmallIcon(R.drawable.refresh);
-  mBuilder.setTicker(getString(R.string.updateLookingForFiles));
+  mBuilder.setTicker(getString(R.string.updatingMovies));
   mBuilder.setContentTitle(getString(R.string.updatingMovies));
-  mBuilder.setContentText(getString(R.string.updateLookingForFiles));
+  mBuilder.setContentText(getString(R.string.gettingReady));
   mBuilder.setContentIntent(contentIntent);
   mBuilder.setOngoing(true);
   mBuilder.setOnlyAlertOnce(true);

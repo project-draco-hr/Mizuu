@@ -1,0 +1,12 @@
+{
+  if (MizLib.checkFileTypes(file.getCanonicalPath())) {
+    try {
+      if (file.length() < getFileSizeLimit())       return;
+    }
+ catch (    SmbException e) {
+      return;
+    }
+    if (!clearLibrary())     if (existingEpisodes.get(file.getCanonicalPath()) != null)     return;
+    results.add(file.getCanonicalPath());
+  }
+}

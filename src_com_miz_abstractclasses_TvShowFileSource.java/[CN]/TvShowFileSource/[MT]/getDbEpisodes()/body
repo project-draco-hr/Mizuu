@@ -1,0 +1,4 @@
+{
+  if (mDbEpisode.size() == 0)   setupDbEpisodes();
+  return mDbEpisode;
+}

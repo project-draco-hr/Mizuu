@@ -1,0 +1,34 @@
+{
+  ArrayList<DbEpisode> dbEpisodes=new ArrayList<DbEpisode>(), removedEpisodes=new ArrayList<DbEpisode>();
+  DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+  Cursor tempCursor=db.getAllEpisodesInDatabase(ignoreRemovedFiles());
+  while (tempCursor.moveToNext()) {
+    try {
+      dbEpisodes.add(new DbEpisode(getContext(),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_FILEPATH)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_ROWID)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SHOW_ID)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SHOW_ID)) + "_S" + tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SEASON))+ "E"+ tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE))+ ".jpg"));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  tempCursor.close();
+  int count=dbEpisodes.size();
+  for (int i=0; i < dbEpisodes.size(); i++) {
+    if (!new File(dbEpisodes.get(i).getFilepath()).exists()) {
+      boolean deleted=db.deleteEpisode(dbEpisodes.get(i).getRowId());
+      if (deleted)       removedEpisodes.add(dbEpisodes.get(i));
+    }
+  }
+  count=removedEpisodes.size();
+  for (int i=0; i < count; i++) {
+    if (db.getEpisodeCount(removedEpisodes.get(i).getShowId()) == 0) {
+      DbAdapterTvShow dbShow=MizuuApplication.getTvDbAdapter();
+      boolean deleted=dbShow.deleteShow(removedEpisodes.get(i).getShowId());
+      if (deleted) {
+        MizLib.deleteFile(new File(removedEpisodes.get(i).getThumbnail()));
+        MizLib.deleteFile(new File(removedEpisodes.get(i).getBackdrop()));
+      }
+    }
+    MizLib.deleteFile(new File(removedEpisodes.get(i).getEpisodeCoverPath()));
+  }
+  dbEpisodes.clear();
+  removedEpisodes.clear();
+}

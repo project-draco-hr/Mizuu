@@ -7,10 +7,10 @@
   loadFileSources();
   log("setupMovieFileSources()");
   setupMovieFileSources(mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck);
-  log("removeUnidentifiedMovies()");
-  if (mStopDownload)   return;
-  removeUnidentifiedMovies();
-  if (mStopDownload)   return;
+  if (mStopUpdate)   return;
+  log("removeUnidentifiedFiles()");
+  removeUnidentifiedFiles();
+  if (mStopUpdate)   return;
   if (mClearLibrary) {
     mEditor=mSettings.edit();
     mEditor.putBoolean("prefsClearLibrary",false);
@@ -18,18 +18,18 @@
     log("removeMoviesFromDatabase()");
     removeMoviesFromDatabase();
   }
-  if (mStopDownload)   return;
+  if (mStopUpdate)   return;
   if (!mClearLibrary && mClearUnavailable) {
     log("removeUnavailableFiles()");
     removeUnavailableFiles();
   }
   log("searchFolders()");
-  if (mStopDownload)   return;
+  if (mStopUpdate)   return;
   searchFolders();
-  if (mStopDownload)   return;
+  if (mStopUpdate)   return;
   log("getTMDbConfiguration()");
   getTMDbConfiguration();
-  if (mStopDownload)   return;
+  if (mStopUpdate)   return;
   log("mTotalFiles > 0 check");
   if (mTotalFiles > 0) {
     log("updateMovies()");

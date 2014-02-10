@@ -1,26 +1,27 @@
 {
-  StringBuilder sb1=new StringBuilder(), sb2=new StringBuilder();
+  StringBuilder sb=new StringBuilder(), sb1=new StringBuilder(), sb2=new StringBuilder();
   Collections.sort(mMovieQueue);
   while (mMovieQueue.peek() != null) {
-    if (mStopDownload)     return;
-    String file=mMovieQueue.pop();
+    if (mStopUpdate)     return;
+    sb.delete(0,sb.length());
+    sb.append(mMovieQueue.pop());
     mCount++;
     if (mIgnoreNfoFiles) {
-      newMovieDbObject(file);
+      newMovieDbObject(sb.toString());
     }
  else {
       sb1.delete(0,sb1.length());
-      sb1.append(MizLib.removeExtension(file.replaceAll("part[1-9]|cd[1-9]","").trim()));
+      sb1.append(MizLib.removeExtension(sb.toString().replaceAll("part[1-9]|cd[1-9]","").trim()));
       sb2.delete(0,sb2.length());
-      sb2.append(MizLib.convertToGenericNfo(file));
+      sb2.append(MizLib.convertToGenericNfo(sb.toString()));
       if (mNfoFiles.containsKey(sb1.toString())) {
-        new NfoMovie(file,mNfoFiles.get(sb1.toString()),getApplicationContext(),this);
+        new NfoMovie(sb.toString(),mNfoFiles.get(sb1.toString()),getApplicationContext(),this);
       }
  else       if (mNfoFiles.containsKey(sb2.toString())) {
-        new NfoMovie(file,mNfoFiles.get(sb2.toString()),getApplicationContext(),this);
+        new NfoMovie(sb.toString(),mNfoFiles.get(sb2.toString()),getApplicationContext(),this);
       }
  else {
-        newMovieDbObject(file);
+        newMovieDbObject(sb.toString());
       }
     }
   }

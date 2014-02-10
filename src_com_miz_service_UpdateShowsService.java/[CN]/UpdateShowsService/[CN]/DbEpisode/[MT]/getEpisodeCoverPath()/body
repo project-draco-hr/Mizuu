@@ -1,3 +1,0 @@
-{
-  return new File(MizLib.getTvShowEpisodeFolder(getApplicationContext()),episodeCoverPath).getAbsolutePath();
-}

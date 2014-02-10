@@ -1,0 +1,11 @@
+{
+  localizedInfo=PreferenceManager.getDefaultSharedPreferences(context).getBoolean("prefsUseLocalData",false);
+  if (language == null || language.isEmpty())   if (localizedInfo) {
+    LOCALE=Locale.getDefault().toString();
+    if (LOCALE.contains("_"))     LOCALE=LOCALE.substring(0,LOCALE.indexOf("_"));
+    if (!MizLib.tvdbLanguages.contains(LOCALE))     LOCALE="en";
+  }
+ else   LOCALE="en";
+ else   LOCALE=language;
+  thumbsFolder=MizLib.getTvShowThumbFolder(context);
+}

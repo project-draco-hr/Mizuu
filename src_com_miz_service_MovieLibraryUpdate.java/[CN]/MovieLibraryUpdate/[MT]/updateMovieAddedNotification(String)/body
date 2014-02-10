@@ -1,7 +1,0 @@
-{
-  mBuilder.setSmallIcon(R.drawable.refresh);
-  mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.refresh));
-  mBuilder.setContentTitle(getString(R.string.updateLookingForFiles));
-  mBuilder.setContentText(getString(R.string.scanning) + ": " + filesource);
-  mNotificationManager.notify(NOTIFICATION_ID,mBuilder.build());
-}
