@@ -7,6 +7,8 @@
   domain=(EditText)findViewById(R.id.domain);
   username=(EditText)findViewById(R.id.username);
   password=(EditText)findViewById(R.id.password);
+  password.setTypeface(Typeface.DEFAULT);
+  password.setTransformationMethod(new PasswordTransformationMethod());
   anonymous=(CheckBox)findViewById(R.id.checkBox);
   guest=(CheckBox)findViewById(R.id.checkBox2);
   guest.setOnCheckedChangeListener(changeListener);

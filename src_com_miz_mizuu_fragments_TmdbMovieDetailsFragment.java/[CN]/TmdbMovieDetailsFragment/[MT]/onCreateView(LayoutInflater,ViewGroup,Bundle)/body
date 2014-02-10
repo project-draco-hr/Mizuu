@@ -14,7 +14,6 @@
   textCertification=(TextView)v.findViewById(R.id.textView11);
   cover=(AspectRatioImageViewCover)v.findViewById(R.id.traktIcon);
   cover.setImageResource(R.drawable.loading_image);
-  v.findViewById(R.id.imageView7).setVisibility(View.GONE);
   v.findViewById(R.id.textView3).setVisibility(View.GONE);
   v.findViewById(R.id.imageView2).setVisibility(View.GONE);
   if (!isRetained) {

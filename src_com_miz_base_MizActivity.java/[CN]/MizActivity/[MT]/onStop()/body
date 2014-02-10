@@ -1,4 +1,0 @@
-{
-  super.onStop();
-  EasyTracker.getInstance(this).activityStop(this);
-}

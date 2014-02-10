@@ -1,4 +1,0 @@
-{
-  super.onStart();
-  EasyTracker.getInstance(this).activityStart(this);
-}
