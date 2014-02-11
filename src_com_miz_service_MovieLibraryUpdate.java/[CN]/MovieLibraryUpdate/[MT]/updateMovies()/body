@@ -2,7 +2,7 @@
   StringBuilder sb=new StringBuilder(), sb1=new StringBuilder(), sb2=new StringBuilder();
   Collections.sort(mMovieQueue);
   while (mMovieQueue.peek() != null) {
-    if (mStopUpdate)     return;
+    if (mStopUpdate)     break;
     sb.delete(0,sb.length());
     sb.append(mMovieQueue.pop());
     mCount++;

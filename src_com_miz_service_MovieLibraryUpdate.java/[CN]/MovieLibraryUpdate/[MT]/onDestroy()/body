@@ -10,7 +10,6 @@
   LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
   MizLib.scheduleMovieUpdate(this);
   if (MizLib.hasTraktAccount(this) && mSyncLibraries && ((mTotalFiles - mMovieQueue.size()) > 0)) {
-    Intent movies=new Intent(getApplicationContext(),TraktMoviesSyncService.class);
-    getApplicationContext().startService(movies);
+    getApplicationContext().startService(new Intent(getApplicationContext(),TraktMoviesSyncService.class));
   }
 }
