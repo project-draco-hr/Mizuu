@@ -1,0 +1,8 @@
+{
+  ArrayList<TvShow> favs=new ArrayList<TvShow>();
+  int count=mShows.size();
+  for (int i=0; i < count; i++)   if (mShows.get(i).isFavorite() && !mTraktFavorites.contains(mShows.get(i).getId()))   favs.add(mShows.get(i));
+  MizLib.tvShowFavorite(favs,this);
+  favs.clear();
+  favs=null;
+}

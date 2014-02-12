@@ -1,0 +1,19 @@
+{
+  JSONArray jsonArray=MizLib.getTraktMovieLibrary(this,MizLib.WATCHLIST);
+  if (jsonArray.length() > 0) {
+    for (int i=0; i < jsonArray.length(); i++) {
+      try {
+        String tmdbId=String.valueOf(jsonArray.getJSONObject(i).get("tmdb_id"));
+        mWatchlist.add(tmdbId);
+        Collection<String> rowIds=mTmdbIdRowIdMap.get(tmdbId);
+        for (        String id : rowIds) {
+          rowId.delete(0,rowId.length());
+          rowId.append(id);
+          if (rowId.toString() != null)           mMovieDatabase.updateMovieSingleItem(Long.valueOf(rowId.toString()),DbAdapter.KEY_TO_WATCH,"1");
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+}

@@ -1,7 +1,10 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  traktUser=(TextView)v.findViewById(R.id.traktUsername);
-  traktPass=(TextView)v.findViewById(R.id.traktPassword);
+  traktUser=(EditText)v.findViewById(R.id.traktUsername);
+  traktUser.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+  traktPass=(EditText)v.findViewById(R.id.traktPassword);
+  traktPass.setTypeface(Typeface.DEFAULT);
+  traktPass.setTransformationMethod(new PasswordTransformationMethod());
   traktLogIn=(Button)v.findViewById(R.id.traktLogIn);
   traktLogIn.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
@@ -13,6 +16,14 @@
   traktRemoveAccount.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
       traktRemove();
+    }
+  }
+);
+  traktSyncNow=(Button)v.findViewById(R.id.traktSyncNow);
+  traktSyncNow.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      getActivity().startService(new Intent(getActivity(),TraktMoviesSyncService.class));
+      getActivity().startService(new Intent(getActivity(),TraktTvShowsSyncService.class));
     }
   }
 );
@@ -31,17 +42,20 @@
     traktPass.setText("");
     traktUser.setEnabled(true);
     traktPass.setEnabled(true);
-    traktLogIn.setEnabled(true);
-    traktRemoveAccount.setEnabled(false);
-    syncTrakt.setEnabled(false);
+    traktLogIn.setVisibility(View.VISIBLE);
+    traktSyncNow.setVisibility(View.GONE);
+    traktRemoveAccount.setVisibility(View.GONE);
+    syncTrakt.setVisibility(View.GONE);
     syncTrakt.setChecked(false);
   }
  else {
     traktPass.setText("password");
     traktUser.setEnabled(false);
     traktPass.setEnabled(false);
-    traktLogIn.setEnabled(false);
-    traktRemoveAccount.setEnabled(true);
-    syncTrakt.setEnabled(true);
+    traktLogIn.setVisibility(View.GONE);
+    traktSyncNow.setVisibility(View.VISIBLE);
+    traktRemoveAccount.setVisibility(View.VISIBLE);
+    syncTrakt.setVisibility(View.VISIBLE);
+    ;
   }
 }

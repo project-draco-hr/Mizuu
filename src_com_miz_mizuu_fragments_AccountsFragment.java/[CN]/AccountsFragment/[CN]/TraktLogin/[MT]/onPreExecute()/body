@@ -1,0 +1,4 @@
+{
+  traktLogIn.setText(R.string.authenticating);
+  traktLogIn.setEnabled(false);
+}

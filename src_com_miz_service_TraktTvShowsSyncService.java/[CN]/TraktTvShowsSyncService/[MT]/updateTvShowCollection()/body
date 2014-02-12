@@ -1,0 +1,34 @@
+{
+  int count=mLocalCollection.size();
+  if (count > 0) {
+    ArrayList<TraktTvShow> collection=new ArrayList<TraktTvShow>();
+    for (int i=0; i < count; i++) {
+      if (!mTraktCollection.containsKey(mLocalCollection.get(i).getId())) {
+        collection.add(mLocalCollection.get(i));
+      }
+ else {
+        TraktTvShow traktTemp=mTraktCollection.get(mLocalCollection.get(i).getId());
+        TraktTvShow temp=new TraktTvShow(mLocalCollection.get(i).getId(),mLocalCollection.get(i).getTitle());
+        Multimap<String,String> seasonsMap=mLocalCollection.get(i).getSeasons();
+        Set<String> seasons=seasonsMap.keySet();
+        for (        String season : seasons) {
+          Collection<String> episodes=seasonsMap.get(season);
+          for (          String episode : episodes) {
+            if (!traktTemp.contains(MizLib.removeIndexZero(season),MizLib.removeIndexZero(episode))) {
+              temp.addEpisode(season,episode);
+            }
+          }
+        }
+        if (temp.getSeasons().size() > 0)         collection.add(temp);
+      }
+    }
+    count=collection.size();
+    for (int i=0; i < count; i++) {
+      MizLib.addTvShowToLibrary(collection.get(i),getApplicationContext());
+    }
+    collection.clear();
+    collection=null;
+    mTraktCollection.clear();
+    mTraktCollection=null;
+  }
+}

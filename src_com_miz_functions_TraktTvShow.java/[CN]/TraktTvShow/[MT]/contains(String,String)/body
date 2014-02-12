@@ -1,0 +1,3 @@
+{
+  return getSeasons().get(season).contains(episode);
+}

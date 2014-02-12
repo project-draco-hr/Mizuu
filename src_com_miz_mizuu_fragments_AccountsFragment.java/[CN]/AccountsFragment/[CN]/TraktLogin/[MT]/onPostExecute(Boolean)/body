@@ -4,13 +4,19 @@
       Toast.makeText(getActivity(),getString(R.string.loginSucceeded),Toast.LENGTH_LONG).show();
       traktUser.setEnabled(false);
       traktPass.setEnabled(false);
-      syncTrakt.setEnabled(true);
-      traktLogIn.setEnabled(false);
-      traktRemoveAccount.setEnabled(true);
+      syncTrakt.setVisibility(View.VISIBLE);
+      ;
+      traktLogIn.setVisibility(View.GONE);
+      traktSyncNow.setVisibility(View.VISIBLE);
+      traktRemoveAccount.setVisibility(View.VISIBLE);
       startServices();
     }
   }
  else {
-    if (isAdded())     Toast.makeText(getActivity(),getString(R.string.failedToLogin),Toast.LENGTH_LONG).show();
+    if (isAdded()) {
+      Toast.makeText(getActivity(),getString(R.string.failedToLogin),Toast.LENGTH_LONG).show();
+      traktLogIn.setText(R.string.logIn);
+      traktLogIn.setEnabled(true);
+    }
   }
 }

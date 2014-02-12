@@ -1,0 +1,10 @@
+{
+  mShows=new ArrayList<TvShow>();
+  mLocalCollection=new ArrayList<TraktTvShow>();
+  mLocalWatched=new ArrayList<TraktTvShow>();
+  mTraktCollection=new LinkedHashMap<String,TraktTvShow>();
+  mTraktWatched=new LinkedHashMap<String,TraktTvShow>();
+  mShowIds=new HashSet<String>();
+  mTraktFavorites=new HashSet<String>();
+  mLocalFavorites=new HashSet<String>();
+}

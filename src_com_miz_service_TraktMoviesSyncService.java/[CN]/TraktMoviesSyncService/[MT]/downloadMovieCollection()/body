@@ -1,0 +1,13 @@
+{
+  JSONArray jsonArray=MizLib.getTraktMovieLibrary(this,MizLib.COLLECTION);
+  if (jsonArray.length() > 0) {
+    for (int i=0; i < jsonArray.length(); i++) {
+      try {
+        mMovieCollection.add(String.valueOf(jsonArray.getJSONObject(i).get("tmdb_id")));
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+  jsonArray=null;
+}

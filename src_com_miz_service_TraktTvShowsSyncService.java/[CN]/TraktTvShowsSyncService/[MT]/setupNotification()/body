@@ -1,0 +1,14 @@
+{
+  mBuilder=new NotificationCompat.Builder(getApplicationContext());
+  mBuilder.setSmallIcon(R.drawable.ic_action_tv);
+  mBuilder.setTicker(getString(R.string.syncTvShows));
+  mBuilder.setContentTitle(getString(R.string.syncTvShows));
+  mBuilder.setContentText(getString(R.string.updatingShowInfo));
+  mBuilder.setOngoing(true);
+  mBuilder.setOnlyAlertOnce(true);
+  mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_action_tv));
+  Notification updateNotification=mBuilder.build();
+  mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+  mNotificationManager.notify(NOTIFICATION_ID,updateNotification);
+  startForeground(NOTIFICATION_ID,updateNotification);
+}

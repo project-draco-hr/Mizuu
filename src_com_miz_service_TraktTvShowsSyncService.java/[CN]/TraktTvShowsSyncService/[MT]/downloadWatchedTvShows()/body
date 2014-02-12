@@ -1,0 +1,32 @@
+{
+  JSONArray jsonArray=MizLib.getTraktTvShowLibrary(this,MizLib.WATCHED);
+  if (jsonArray.length() > 0) {
+    for (int i=0; i < jsonArray.length(); i++) {
+      try {
+        String showId=String.valueOf(jsonArray.getJSONObject(i).getString("tvdb_id"));
+        TraktTvShow show=new TraktTvShow(showId,jsonArray.getJSONObject(i).getString("title"));
+        JSONArray seasons=jsonArray.getJSONObject(i).getJSONArray("seasons");
+        for (int j=0; j < seasons.length(); j++) {
+          String season=seasons.getJSONObject(j).getString("season");
+          JSONArray episodes=seasons.getJSONObject(j).getJSONArray("episodes");
+          for (int k=0; k < episodes.length(); k++) {
+            show.addEpisode(season,episodes.getString(k));
+          }
+        }
+        mTraktWatched.put(showId,show);
+        if (mShowIds.contains(String.valueOf(jsonArray.getJSONObject(i).get("tvdb_id")))) {
+          for (int j=0; j < seasons.length(); j++) {
+            JSONObject season=seasons.getJSONObject(j);
+            String seasonNumber=MizLib.addIndexZero(String.valueOf(season.get("season")));
+            JSONArray seasonEpisodes=season.getJSONArray("episodes");
+            for (int k=0; k < seasonEpisodes.length(); k++) {
+              mEpisodeDatabase.updateEpisode(showId,seasonNumber,MizLib.addIndexZero(String.valueOf(seasonEpisodes.get(k))),DbAdapterTvShowEpisode.KEY_HAS_WATCHED,"1");
+            }
+          }
+        }
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+}

@@ -14,6 +14,9 @@
  else   if (type == WATCHLIST) {
     httppost=new HttpPost("http://api.trakt.tv/user/watchlist/movies.json/" + MizLib.TRAKT_API + "/"+ username);
   }
+ else   if (type == COLLECTION) {
+    httppost=new HttpPost("http://api.trakt.tv/user/library/movies/collection.json/" + MizLib.TRAKT_API + "/"+ username);
+  }
   try {
     JSONObject json=new JSONObject();
     json.put("username",username);

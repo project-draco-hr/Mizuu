@@ -1,0 +1,17 @@
+{
+  int count=mMovies.size();
+  if (count > 0) {
+    ArrayList<Movie> collection=new ArrayList<Movie>();
+    for (int i=0; i < count; i++) {
+      if (!mMovieCollection.contains(mMovies.get(i).getTmdbId())) {
+        collection.add(mMovies.get(i));
+      }
+    }
+    count=collection.size();
+    if (count > 0) {
+      MizLib.addMoviesToTraktLibrary(collection,getApplicationContext());
+    }
+    collection.clear();
+    collection=null;
+  }
+}

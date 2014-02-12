@@ -1,0 +1,10 @@
+{
+  ArrayList<Movie> watchedMovies=new ArrayList<Movie>();
+  int count=mMovies.size();
+  for (int i=0; i < count; i++)   if (!mWatchedMovies.contains(mMovies.get(i).getTmdbId()) && mMovies.get(i).hasWatched())   watchedMovies.add(mMovies.get(i));
+  if (watchedMovies.size() > 0)   MizLib.markMovieAsWatched(watchedMovies,this);
+  watchedMovies.clear();
+  watchedMovies=null;
+  mWatchedMovies.clear();
+  mWatchedMovies=null;
+}

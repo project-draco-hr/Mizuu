@@ -16,7 +16,6 @@
       JSONObject jsonShow=new JSONObject();
       jsonShow.put("tvdb_id",shows.get(i).getId());
       jsonShow.put("title",shows.get(i).getTitle());
-      jsonShow.put("year","");
       jsonShow.put("rating",shows.get(i).isFavorite() ? "love" : "unrate");
       array.put(jsonShow);
     }

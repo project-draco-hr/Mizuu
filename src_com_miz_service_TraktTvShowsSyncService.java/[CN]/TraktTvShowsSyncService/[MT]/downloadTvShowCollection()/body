@@ -1,0 +1,22 @@
+{
+  JSONArray jsonArray=MizLib.getTraktTvShowLibrary(this,MizLib.COLLECTION);
+  if (jsonArray.length() > 0) {
+    for (int i=0; i < jsonArray.length(); i++) {
+      try {
+        String id=String.valueOf(jsonArray.getJSONObject(i).getString("tvdb_id"));
+        TraktTvShow show=new TraktTvShow(id,jsonArray.getJSONObject(i).getString("title"));
+        JSONArray seasons=jsonArray.getJSONObject(i).getJSONArray("seasons");
+        for (int j=0; j < seasons.length(); j++) {
+          String season=seasons.getJSONObject(j).getString("season");
+          JSONArray episodes=seasons.getJSONObject(j).getJSONArray("episodes");
+          for (int k=0; k < episodes.length(); k++) {
+            show.addEpisode(season,episodes.getString(k));
+          }
+        }
+        mTraktCollection.put(id,show);
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+}

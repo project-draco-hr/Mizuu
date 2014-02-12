@@ -20,10 +20,6 @@
       jsonMovie.put("tmdb_id",movies.get(i).getTmdbId());
       jsonMovie.put("year",movies.get(i).getReleaseYear());
       jsonMovie.put("title",movies.get(i).getTitle());
-      if (movies.get(i).hasWatched()) {
-        jsonMovie.put("plays","1");
-        jsonMovie.put("last_played",String.valueOf(System.currentTimeMillis() / 1000L));
-      }
       array.put(jsonMovie);
     }
     json.put("movies",array);

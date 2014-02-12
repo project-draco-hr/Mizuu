@@ -1,0 +1,14 @@
+{
+  JSONArray jsonArray=MizLib.getTraktTvShowLibrary(this,MizLib.RATINGS);
+  if (jsonArray.length() > 0) {
+    for (int i=0; i < jsonArray.length(); i++) {
+      try {
+        String showId=String.valueOf(jsonArray.getJSONObject(i).getString("tvdb_id"));
+        mTraktFavorites.add(showId);
+        if (!mLocalFavorites.contains(showId))         mShowDatabase.updateShowSingleItem(showId,DbAdapterTvShow.KEY_SHOW_EXTRA1,"1");
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+}

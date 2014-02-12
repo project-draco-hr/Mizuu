@@ -7,9 +7,10 @@
   traktUser.setEnabled(true);
   traktPass.setText("");
   traktPass.setEnabled(true);
-  syncTrakt.setEnabled(false);
+  syncTrakt.setVisibility(View.GONE);
   syncTrakt.setChecked(false);
-  traktLogIn.setEnabled(true);
-  traktRemoveAccount.setEnabled(false);
+  traktLogIn.setVisibility(View.VISIBLE);
+  traktSyncNow.setVisibility(View.GONE);
+  traktRemoveAccount.setVisibility(View.GONE);
   Toast.makeText(getActivity(),getString(R.string.removedAccount),Toast.LENGTH_LONG).show();
 }

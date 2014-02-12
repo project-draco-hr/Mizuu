@@ -11,6 +11,9 @@
  else   if (type == RATINGS) {
     httppost=new HttpPost("http://api.trakt.tv/user/ratings/shows.json/" + MizLib.TRAKT_API + "/"+ username+ "/love");
   }
+ else   if (type == COLLECTION) {
+    httppost=new HttpPost("http://api.trakt.tv/user/library/shows/collection.json/" + MizLib.TRAKT_API + "/"+ username);
+  }
   try {
     JSONObject json=new JSONObject();
     json.put("username",username);

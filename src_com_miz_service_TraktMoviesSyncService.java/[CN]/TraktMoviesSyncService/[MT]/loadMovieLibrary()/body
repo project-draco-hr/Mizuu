@@ -1,0 +1,15 @@
+{
+  mMovieDatabase=MizuuApplication.getMovieAdapter();
+  Cursor cursor=mMovieDatabase.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false,false);
+  try {
+    while (cursor.moveToNext()) {
+      mTmdbIdRowIdMap.put(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)));
+      mMovies.add(new Movie(this,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CAST)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_2)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COVERPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_1)),false,true));
+    }
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    cursor.close();
+  }
+}
