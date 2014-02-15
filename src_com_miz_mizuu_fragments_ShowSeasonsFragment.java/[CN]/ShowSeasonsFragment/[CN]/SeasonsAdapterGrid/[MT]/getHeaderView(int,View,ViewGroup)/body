@@ -6,6 +6,7 @@
     holder.title=(TextView)convertView.findViewById(R.id.seasonTitle);
     holder.title.setVisibility(View.VISIBLE);
     holder.episodeCount=(TextView)convertView.findViewById(R.id.episodeCount);
+    holder.watched=(ImageView)convertView.findViewById(R.id.watchSeason);
     convertView.setTag(holder);
   }
  else {
@@ -17,6 +18,12 @@
  else {
     holder.title.setText(getString(R.string.showSeason) + " " + seasons.get(position));
   }
+  holder.watched.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View v){
+      markSeasonAsWatched(seasons.get(position));
+    }
+  }
+);
   int size=seasonEpisodeCount.get(Integer.valueOf(seasons.get(position)));
   holder.episodeCount.setText(size + " " + getResources().getQuantityString(R.plurals.episodes,size,size));
   convertView.setClickable(false);

@@ -2,7 +2,7 @@
   auth=MizLib.getAuthFromFilepath(type,file);
   try {
     smb=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),file,false));
-    return smb.exists();
+    return smb.exists() && smb.length() > 1000;
   }
  catch (  Exception e) {
     return false;

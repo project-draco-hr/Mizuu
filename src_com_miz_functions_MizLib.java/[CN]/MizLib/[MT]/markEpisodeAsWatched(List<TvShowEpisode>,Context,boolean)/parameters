@@ -1,2 +1,3 @@
 List<TvShowEpisode> episodes
 Context c
+boolean overrideWatched

@@ -54,25 +54,7 @@
     file.setText(thisEpisode.getFilepath());
     playbutton.setOnClickListener(new OnClickListener(){
       @Override public void onClick(      View v){
-        videoPlaybackStarted=System.currentTimeMillis();
-        if (thisEpisode.isNetworkFile()) {
-          playNetworkFile();
-        }
- else {
-          try {
-            startActivity(MizLib.getVideoIntent(thisEpisode.getFilepath(),useWildcard,thisEpisode));
-            checkIn();
-          }
- catch (          Exception e) {
-            try {
-              startActivity(MizLib.getVideoIntent(thisEpisode.getFilepath(),"video/*",thisEpisode));
-              checkIn();
-            }
- catch (            Exception e2) {
-              Toast.makeText(getActivity(),getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
-            }
-          }
-        }
+        play();
       }
     }
 );

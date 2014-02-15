@@ -7,6 +7,11 @@
  else {
       menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsWatched);
     }
+    if (thisEpisode.isNetworkFile()) {
+      menu.findItem(R.id.watchOffline).setVisible(true);
+      if (thisEpisode.hasOfflineCopy())       menu.findItem(R.id.watchOffline).setTitle(R.string.removeOfflineCopy);
+ else       menu.findItem(R.id.watchOffline).setTitle(R.string.watchOffline);
+    }
   }
  catch (  Exception e) {
   }

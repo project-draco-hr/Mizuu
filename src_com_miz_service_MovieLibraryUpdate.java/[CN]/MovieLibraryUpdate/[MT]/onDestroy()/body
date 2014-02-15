@@ -1,6 +1,7 @@
 {
   super.onDestroy();
   log("onDestroy()");
+  if (mNotificationManager == null)   mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
   mNotificationManager.cancel(NOTIFICATION_ID);
   showPostUpdateNotification();
   AppWidgetManager awm=AppWidgetManager.getInstance(this);

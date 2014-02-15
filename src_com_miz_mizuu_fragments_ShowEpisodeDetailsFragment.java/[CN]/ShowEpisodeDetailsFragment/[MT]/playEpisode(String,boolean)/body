@@ -1,0 +1,21 @@
+{
+  videoPlaybackStarted=System.currentTimeMillis();
+  if (isNetworkFile) {
+    playNetworkFile();
+  }
+ else {
+    try {
+      getActivity().startActivity(MizLib.getVideoIntent(filepath,useWildcard,thisEpisode));
+      checkIn();
+    }
+ catch (    Exception e) {
+      try {
+        getActivity().startActivity(MizLib.getVideoIntent(filepath,"video/*",thisEpisode));
+        checkIn();
+      }
+ catch (      Exception e2) {
+        Toast.makeText(getActivity(),getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
+      }
+    }
+  }
+}

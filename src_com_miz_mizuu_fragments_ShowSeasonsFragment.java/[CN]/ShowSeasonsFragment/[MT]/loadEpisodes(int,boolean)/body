@@ -4,5 +4,5 @@
   seasons.clear();
   EpisodeLoader loader=new EpisodeLoader();
   loader.setResetSelection(resetSelection);
-  loader.execute(type);
+  loader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,type);
 }

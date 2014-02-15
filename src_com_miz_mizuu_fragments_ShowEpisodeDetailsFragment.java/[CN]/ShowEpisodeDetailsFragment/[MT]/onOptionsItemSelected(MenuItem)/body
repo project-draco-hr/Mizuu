@@ -8,6 +8,8 @@ watched(true);
 break;
 case R.id.identify:
 identifyEpisode();
+case R.id.watchOffline:
+watchOffline(item);
 }
 return false;
 }

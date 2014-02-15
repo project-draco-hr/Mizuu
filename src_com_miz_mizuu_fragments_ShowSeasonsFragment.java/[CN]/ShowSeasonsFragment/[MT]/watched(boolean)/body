@@ -17,7 +17,7 @@
     @Override public void run(){
       ArrayList<TvShowEpisode> episode=new ArrayList<TvShowEpisode>();
       episode.add(shownEpisodes.get(selectedEpisodeIndex));
-      MizLib.markEpisodeAsWatched(episode,getActivity());
+      MizLib.markEpisodeAsWatched(episode,getActivity(),false);
     }
   }
 .start();

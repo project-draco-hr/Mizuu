@@ -1,0 +1,40 @@
+{
+  if (thisEpisode.hasOfflineCopy()) {
+    AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+    builder.setMessage(getString(R.string.areYouSure)).setTitle(getString(R.string.removeOfflineCopy)).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
+      public void onClick(      DialogInterface dialog,      int id){
+        boolean success=thisEpisode.getOfflineCopyFile().delete();
+        if (!success)         thisEpisode.getOfflineCopyFile().delete();
+        getActivity().invalidateOptionsMenu();
+        return;
+      }
+    }
+).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){
+      public void onClick(      DialogInterface dialog,      int id){
+        dialog.cancel();
+      }
+    }
+).create().show();
+  }
+ else {
+    AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+    builder.setMessage(getString(R.string.downloadOfflineCopy)).setTitle(getString(R.string.watchOffline)).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
+      public void onClick(      DialogInterface dialog,      int id){
+        if (MizLib.isLocalCopyBeingDownloaded(getActivity()))         Toast.makeText(getActivity(),R.string.addedToDownloadQueue,Toast.LENGTH_SHORT).show();
+        Intent i=new Intent(getActivity(),MakeAvailableOffline.class);
+        i.putExtra(MakeAvailableOffline.FILEPATH,thisEpisode.getFilepath());
+        i.putExtra(MakeAvailableOffline.TYPE,MizLib.TYPE_SHOWS);
+        i.putExtra("thumb",thisEpisode.getThumbnail());
+        i.putExtra("backdrop",thisEpisode.getEpisodePhoto());
+        getActivity().startService(i);
+        return;
+      }
+    }
+).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){
+      public void onClick(      DialogInterface dialog,      int id){
+        dialog.cancel();
+      }
+    }
+).create().show();
+  }
+}

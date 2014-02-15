@@ -5,6 +5,7 @@
     holder=new RowItem();
     holder.title=(TextView)convertView.findViewById(R.id.seasonTitle);
     holder.episodeCount=(TextView)convertView.findViewById(R.id.episodeCount);
+    holder.watched=(ImageView)convertView.findViewById(R.id.watchSeason);
     convertView.setTag(holder);
   }
  else {
@@ -16,6 +17,12 @@
  else {
     holder.title.setText(getString(R.string.showSeason) + " " + seasons.get(groupPosition));
   }
+  holder.watched.setOnClickListener(new View.OnClickListener(){
+    @Override public void onClick(    View v){
+      markSeasonAsWatched(seasons.get(groupPosition));
+    }
+  }
+);
   int size=seasonEpisodeCount.get(Integer.valueOf(seasons.get(groupPosition)));
   holder.episodeCount.setText(size + " " + getResources().getQuantityString(R.plurals.episodes,size,size));
   return convertView;

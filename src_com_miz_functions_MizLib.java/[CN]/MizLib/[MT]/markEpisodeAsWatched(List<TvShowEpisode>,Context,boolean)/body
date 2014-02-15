@@ -6,7 +6,7 @@
   if (episodes.size() == 0)   return false;
   OkApacheClient httpclient=new OkApacheClient();
   HttpPost httppost=null;
-  if (episodes.get(0).hasWatched())   httppost=new HttpPost("http://api.trakt.tv/show/episode/seen/" + MizLib.TRAKT_API);
+  if (overrideWatched || episodes.get(0).hasWatched())   httppost=new HttpPost("http://api.trakt.tv/show/episode/seen/" + MizLib.TRAKT_API);
  else   httppost=new HttpPost("http://api.trakt.tv/show/episode/unseen/" + MizLib.TRAKT_API);
   try {
     JSONObject json=new JSONObject();

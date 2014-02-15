@@ -14,8 +14,10 @@
   builder.setOnlyAlertOnce(true);
   builder.setSmallIcon(android.R.drawable.stat_sys_download);
   builder.setContentIntent(contentIntent);
-  builder.setTicker("Downloading movie");
-  builder.setContentTitle("Downloading movie");
+  String message=getString(R.string.downloadingMovie);
+  if (type == MizLib.TYPE_SHOWS)   message=getString(R.string.downloadingEpisode);
+  builder.setTicker(message);
+  builder.setContentTitle(message);
   builder.setContentText(getContentText());
   builder.setLargeIcon(MizLib.getNotificationImageThumbnail(mContext,intent.getExtras().getString("thumb")));
   builder.addAction(R.drawable.remove,getString(android.R.string.cancel),contentIntent);
