@@ -23,5 +23,5 @@
   mBuilder.setAutoCancel(true);
   Notification updateNotification=mBuilder.build();
   mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-  mNotificationManager.notify(POST_UPDATE_NOTIFICATION,updateNotification);
+  if ((mTotalFiles - mMovieQueue.size()) > 0)   mNotificationManager.notify(POST_UPDATE_NOTIFICATION,updateNotification);
 }

@@ -1,0 +1,16 @@
+{
+  if (mIndex == INITIALIZE) {
+    try {
+      loadFilesource();
+    }
+ catch (    Exception e) {
+    }
+  }
+ else   if (mIndex == GO_BACK) {
+    mBrowser.goUp();
+  }
+ else {
+    mBrowser.browse(mIndex);
+  }
+  return null;
+}

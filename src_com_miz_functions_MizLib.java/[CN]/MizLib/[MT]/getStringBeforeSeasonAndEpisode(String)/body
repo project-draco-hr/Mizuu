@@ -1,6 +1,6 @@
 {
   String result=input;
-  Pattern searchPattern=Pattern.compile("(?i)s(\\d){1,2}e(\\d){1,3}");
+  Pattern searchPattern=Pattern.compile("(?i)s(\\d){1,4}e(\\d){1,3}");
   Matcher searchMatcher=searchPattern.matcher(input);
   if (searchMatcher.find()) {
     try {
@@ -10,7 +10,7 @@
  catch (    IndexOutOfBoundsException e) {
     }
   }
-  searchPattern=Pattern.compile("(?i)(\\d){1,2}e(\\d){1,3}");
+  searchPattern=Pattern.compile("(?i)(\\d){1,4}e(\\d){1,3}");
   searchMatcher=searchPattern.matcher(input);
   if (searchMatcher.find()) {
     try {
@@ -20,7 +20,7 @@
  catch (    IndexOutOfBoundsException e) {
     }
   }
-  searchPattern=Pattern.compile("(?i)s(\\d){1,2}x(\\d){1,3}");
+  searchPattern=Pattern.compile("(?i)s(\\d){1,4}x(\\d){1,3}");
   searchMatcher=searchPattern.matcher(input);
   if (searchMatcher.find()) {
     try {
@@ -30,7 +30,7 @@
  catch (    IndexOutOfBoundsException e) {
     }
   }
-  searchPattern=Pattern.compile("(?i)(\\d){1,2}x(\\d){1,3}");
+  searchPattern=Pattern.compile("(?i)(\\d){1,4}x(\\d){1,3}");
   searchMatcher=searchPattern.matcher(input);
   if (searchMatcher.find()) {
     try {
@@ -40,7 +40,7 @@
  catch (    IndexOutOfBoundsException e) {
     }
   }
-  searchPattern=Pattern.compile("(?i)season((\\s)+)(\\d){1,2}((\\s)+)episode((\\s)+)(\\d){1,3}");
+  searchPattern=Pattern.compile("(?i)season((\\s)+)(\\d){1,4}((\\s)+)episode((\\s)+)(\\d){1,3}");
   searchMatcher=searchPattern.matcher(input);
   if (searchMatcher.find()) {
     try {

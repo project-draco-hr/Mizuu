@@ -1,0 +1,4 @@
+{
+  mCurrentFolder=folder;
+  browse(getCurrentFolder());
+}

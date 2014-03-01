@@ -1,9 +1,0 @@
-{
-  if (MizLib.checkFileTypes(f.getAbsolutePath())) {
-    if (f.length() < MizLib.getFileSizeLimit(getApplicationContext()))     return;
-    if (!clearLibrary)     if (existingEpisodes.get(f.getAbsolutePath()) != null)     return;
-synchronized (uniqueVideos) {
-      uniqueVideos.add(f);
-    }
-  }
-}

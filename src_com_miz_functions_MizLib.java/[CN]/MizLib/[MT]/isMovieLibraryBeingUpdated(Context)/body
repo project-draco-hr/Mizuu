@@ -3,7 +3,7 @@
   List<RunningServiceInfo> services=manager.getRunningServices(Integer.MAX_VALUE);
   int count=services.size();
   for (int i=0; i < count; i++) {
-    if (UpdateMovieService.class.getName().equals(services.get(i).service.getClassName()) || MovieLibraryUpdate.class.getName().equals(services.get(i).service.getClassName())) {
+    if (MovieLibraryUpdate.class.getName().equals(services.get(i).service.getClassName())) {
       return true;
     }
   }

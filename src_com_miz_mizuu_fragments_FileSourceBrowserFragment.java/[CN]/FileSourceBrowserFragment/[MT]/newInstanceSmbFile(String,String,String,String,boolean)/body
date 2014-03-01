@@ -1,0 +1,12 @@
+{
+  FileSourceBrowserFragment frag=new FileSourceBrowserFragment();
+  Bundle args=new Bundle();
+  args.putInt(TYPE,FileSource.SMB);
+  args.putString(SERVER,server.replace("smb://",""));
+  args.putString(USER,user);
+  args.putString(PASS,pass);
+  args.putString(DOMAIN,domain);
+  args.putBoolean(IS_MOVIE,isMovie);
+  frag.setArguments(args);
+  return frag;
+}

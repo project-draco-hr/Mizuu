@@ -1,0 +1,5 @@
+{
+  mName=name;
+  mIsDirectory=isDirectory;
+  mSize=size;
+}

@@ -1,0 +1,15 @@
+{
+  List<BrowserFileObject> list=new ArrayList<BrowserFileObject>();
+  try {
+    SmbFile[] listFiles=folder.listFiles();
+    if (listFiles == null)     return null;
+    setParentFolder(new SmbFile(folder.getParent()));
+    setCurrentFolder(folder);
+    setCurrentFiles(listFiles);
+    for (    SmbFile f : listFiles)     list.add(new BrowserFileObject(f.getName(),f.isDirectory(),f.isDirectory() ? 0 : f.length()));
+    setBrowserFiles(list);
+  }
+ catch (  Exception e) {
+  }
+  return list;
+}

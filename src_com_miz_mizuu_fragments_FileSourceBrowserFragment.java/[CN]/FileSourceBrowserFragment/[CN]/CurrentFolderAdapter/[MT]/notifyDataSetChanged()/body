@@ -1,0 +1,4 @@
+{
+  mItems=mBrowser.getBrowserFiles();
+  super.notifyDataSetChanged();
+}

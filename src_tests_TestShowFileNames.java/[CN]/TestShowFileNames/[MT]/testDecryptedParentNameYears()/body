@@ -52,4 +52,5 @@
   Assert.assertEquals("",d[50].getParentNameYear());
   Assert.assertEquals("2005",d[51].getParentNameYear());
   Assert.assertEquals("",d[52].getParentNameYear());
+  Assert.assertEquals("",d[54].getParentNameYear());
 }

@@ -1,0 +1,7 @@
+{
+  mIsLoading=loading;
+  if (loading) {
+  }
+ else {
+  }
+}

@@ -1,0 +1,4 @@
+{
+  setLoading(false);
+  mCurrentFolderAdapter.notifyDataSetChanged();
+}

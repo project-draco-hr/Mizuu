@@ -1,0 +1,26 @@
+{
+  ViewHolder holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.file_list_item,null);
+    holder=new ViewHolder();
+    holder.name=(TextView)convertView.findViewById(R.id.text1);
+    holder.size=(TextView)convertView.findViewById(R.id.size);
+    holder.icon=(ImageView)convertView.findViewById(R.id.icon);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(ViewHolder)convertView.getTag();
+  }
+  holder.name.setText(mItems.get(position).getName());
+  if (mItems.get(position).isDirectory()) {
+    holder.icon.setImageResource(R.drawable.folder);
+    holder.size.setText("");
+    holder.size.setVisibility(View.GONE);
+  }
+ else {
+    holder.icon.setImageResource(R.drawable.file);
+    holder.size.setText(MizLib.filesizeToString(mItems.get(position).getSize()));
+    holder.size.setVisibility(View.VISIBLE);
+  }
+  return convertView;
+}

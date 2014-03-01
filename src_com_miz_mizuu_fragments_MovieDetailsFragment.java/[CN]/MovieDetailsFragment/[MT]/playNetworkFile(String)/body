@@ -20,7 +20,7 @@
         final SmbFile file=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),networkFilepath,false));
         if (networkFilepath.endsWith("VIDEO_TS.IFO"))         s.setStreamSrc(file,MizLib.getDVDFiles(networkFilepath,auth));
  else         s.setStreamSrc(file,MizLib.getSubtitleFiles(networkFilepath,auth));
-        getActivity().runOnUiThread(new Runnable(){
+        if (isAdded())         getActivity().runOnUiThread(new Runnable(){
           public void run(){
             try {
               Uri uri=Uri.parse(Streamer.URL + Uri.fromFile(new File(Uri.parse(networkFilepath).getPath())).getEncodedPath());

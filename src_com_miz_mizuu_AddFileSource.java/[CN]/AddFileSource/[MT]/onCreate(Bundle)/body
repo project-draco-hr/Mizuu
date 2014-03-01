@@ -1,0 +1,20 @@
+{
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.add_file_source);
+  setTitle(R.string.addFileSourceTitle);
+  mTypeface=Typeface.createFromAsset(getAssets(),"RobotoCondensed-Regular.ttf");
+  mContentType=(TextView)findViewById(R.id.contentType);
+  mContentType.setTypeface(mTypeface);
+  mContentLocation=(TextView)findViewById(R.id.contentLocation);
+  mContentLocation.setTypeface(mTypeface);
+  mContinue=(Button)findViewById(R.id.continue_button);
+  mContinue.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+      ft.setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
+      ft.replace(android.R.id.content,FileSourceBrowserFragment.newInstanceSmbFile("192.168.1.50","admin","Mizzle1","",true),"test");
+      ft.commit();
+    }
+  }
+);
+}

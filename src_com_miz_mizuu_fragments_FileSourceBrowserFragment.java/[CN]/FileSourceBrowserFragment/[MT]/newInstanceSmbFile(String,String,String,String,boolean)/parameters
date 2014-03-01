@@ -1,0 +1,5 @@
+String server
+String user
+String pass
+String domain
+boolean isMovie

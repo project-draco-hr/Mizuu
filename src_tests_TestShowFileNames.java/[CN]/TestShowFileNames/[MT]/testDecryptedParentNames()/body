@@ -52,4 +52,5 @@
   Assert.assertEquals("Its Always Sunny In Philadelphia",d[50].getDecryptedParentName());
   Assert.assertEquals("Doctor Who",d[51].getDecryptedParentName());
   Assert.assertEquals("Breaking Bad",d[52].getDecryptedParentName());
+  Assert.assertEquals("Looney Tunes",d[54].getDecryptedParentName());
 }

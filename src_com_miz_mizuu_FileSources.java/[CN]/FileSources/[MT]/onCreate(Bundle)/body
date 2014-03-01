@@ -5,5 +5,7 @@
   list=(ListView)findViewById(R.id.listView1);
   list.setAdapter(new ListAdapter());
   loadSources();
+  Intent i=new Intent(this,AddFileSource.class);
+  startActivity(i);
   LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-filesource-change"));
 }

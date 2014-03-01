@@ -52,4 +52,5 @@
   Assert.assertEquals("",d[50].getFileNameYear());
   Assert.assertEquals("2005",d[51].getFileNameYear());
   Assert.assertEquals("",d[52].getFileNameYear());
+  Assert.assertEquals("1940",d[54].getFileNameYear());
 }

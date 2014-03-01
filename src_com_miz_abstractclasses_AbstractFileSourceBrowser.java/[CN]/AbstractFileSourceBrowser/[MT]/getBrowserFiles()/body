@@ -1,0 +1,4 @@
+{
+  if (mBrowserFiles == null)   mBrowserFiles=new ArrayList<BrowserFileObject>();
+  return mBrowserFiles;
+}

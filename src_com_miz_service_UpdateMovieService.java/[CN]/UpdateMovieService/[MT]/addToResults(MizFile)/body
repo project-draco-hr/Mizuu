@@ -1,9 +1,0 @@
-{
-  if (MizLib.checkFileTypes(f.getAbsolutePath())) {
-    if (f.length() < MizLib.getFileSizeLimit(getApplicationContext()) && !f.getName().equalsIgnoreCase("video_ts.ifo"))     return;
-    if (!clearLibrary)     if (existingMovies.get(f.getAbsolutePath()) != null)     return;
-    String tempFileName=f.getName().substring(0,f.getName().lastIndexOf("."));
-    if (tempFileName.toLowerCase(Locale.ENGLISH).matches(".*part[2-9]|cd[2-9]"))     return;
-    unique.put(f.getName(),f);
-  }
-}
