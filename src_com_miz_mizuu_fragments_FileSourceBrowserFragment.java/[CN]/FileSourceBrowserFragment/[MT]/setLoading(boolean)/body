@@ -1,7 +1,11 @@
 {
   mIsLoading=loading;
   if (loading) {
+    mProgress.setVisibility(View.VISIBLE);
+    mContent.setVisibility(View.GONE);
   }
  else {
+    mProgress.setVisibility(View.GONE);
+    mContent.setVisibility(View.VISIBLE);
   }
 }
