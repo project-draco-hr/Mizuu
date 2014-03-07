@@ -1,10 +1,11 @@
 {
+  if (folder.getName().equals("smb://"))   return false;
   List<BrowserFileObject> list=new ArrayList<BrowserFileObject>();
   List<SmbFile> orderedArray=new ArrayList<SmbFile>();
   List<SmbFile> temp=new ArrayList<SmbFile>();
   try {
     SmbFile[] listFiles=folder.listFiles();
-    if (listFiles == null)     return null;
+    if (listFiles == null)     return false;
     for (    SmbFile f : listFiles)     orderedArray.add(f);
     Collections.sort(orderedArray,new Comparator<SmbFile>(){
       @Override public int compare(      SmbFile f1,      SmbFile f2){
@@ -18,11 +19,11 @@
         }
  catch (        Exception ignored) {
         }
-        return f1.getName().compareTo(f2.getName());
+        return f1.getName().toLowerCase(Locale.getDefault()).compareTo(f2.getName().toLowerCase(Locale.getDefault()));
       }
     }
 );
-    for (    SmbFile f : orderedArray)     if (!(f.getName().startsWith(".") && MizLib.getCharacterCountInString(f.getName(),'.') == 1) && !f.getName().startsWith("._")) {
+    for (    SmbFile f : orderedArray)     if (MizLib.isValidFilename(f.getName())) {
       list.add(new BrowserFileObject(f.getName(),f.isDirectory(),f.isDirectory() ? 0 : f.length()));
       temp.add(f);
     }
@@ -35,6 +36,7 @@
     setBrowserFiles(list);
   }
  catch (  Exception e) {
+    return false;
   }
-  return list;
+  return true;
 }

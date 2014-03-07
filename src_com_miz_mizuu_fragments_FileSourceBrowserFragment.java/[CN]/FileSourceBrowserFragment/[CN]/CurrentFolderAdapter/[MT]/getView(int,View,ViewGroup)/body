@@ -18,7 +18,9 @@
     holder.size.setVisibility(View.GONE);
   }
  else {
-    holder.icon.setImageResource(R.drawable.file);
+    if (MizLib.isVideoFile(mItems.get(position).getName()))     holder.icon.setImageResource(R.drawable.ic_action_movie);
+ else     if (MizLib.isSubtitleFile(mItems.get(position).getName()))     holder.icon.setImageResource(R.drawable.ic_action_font_smaller);
+ else     holder.icon.setImageResource(R.drawable.file);
     holder.size.setText(MizLib.filesizeToString(mItems.get(position).getSize()));
     holder.size.setVisibility(View.VISIBLE);
   }

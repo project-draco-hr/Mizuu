@@ -1,3 +1,4 @@
 {
-  if (mParentFolder != null)   browse(mParentFolder);
+  if (mParentFolder != null)   return browse(mParentFolder);
+  return false;
 }

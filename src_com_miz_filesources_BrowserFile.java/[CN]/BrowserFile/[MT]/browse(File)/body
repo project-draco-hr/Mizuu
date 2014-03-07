@@ -1,11 +1,11 @@
 {
   List<BrowserFileObject> list=new ArrayList<BrowserFileObject>();
   File[] listFiles=folder.listFiles();
-  if (listFiles == null)   return null;
+  if (listFiles == null)   return false;
   setParentFolder(folder.getParentFile());
   setCurrentFolder(folder);
   setCurrentFiles(listFiles);
   for (  File f : listFiles)   list.add(new BrowserFileObject(f.getName(),f.isDirectory(),f.isDirectory() ? 0 : f.length()));
   setBrowserFiles(list);
-  return list;
+  return true;
 }

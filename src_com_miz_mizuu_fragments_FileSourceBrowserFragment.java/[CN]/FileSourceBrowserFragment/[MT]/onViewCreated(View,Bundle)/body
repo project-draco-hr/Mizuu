@@ -1,14 +1,13 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  mContent=v.findViewById(R.id.content);
   mProgress=v.findViewById(R.id.progress);
+  mEmpty=v.findViewById(R.id.no_content);
   mParent=(ListView)v.findViewById(R.id.parentList);
   mCurrent=(ListView)v.findViewById(R.id.currentList);
   mCurrentFolderAdapter=new CurrentFolderAdapter();
-  mCurrent.setAdapter(mCurrentFolderAdapter);
   mCurrent.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      browse(arg2);
+      if (mBrowser.getBrowserFiles().get(arg2).isDirectory())       browse(arg2);
     }
   }
 );

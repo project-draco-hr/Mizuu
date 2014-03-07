@@ -1,0 +1,3 @@
+{
+  return !(name.startsWith(".") && MizLib.getCharacterCountInString(name,'.') == 1) && !name.startsWith("._");
+}

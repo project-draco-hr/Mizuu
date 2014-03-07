@@ -1,4 +1,5 @@
 {
+  boolean result=false;
   if (mIndex == INITIALIZE) {
     try {
       loadFilesource();
@@ -7,10 +8,10 @@
     }
   }
  else   if (mIndex == GO_BACK) {
-    mBrowser.goUp();
+    result=mBrowser.goUp();
   }
  else {
-    mBrowser.browse(mIndex);
+    result=mBrowser.browse(mIndex);
   }
-  return null;
+  return result;
 }
