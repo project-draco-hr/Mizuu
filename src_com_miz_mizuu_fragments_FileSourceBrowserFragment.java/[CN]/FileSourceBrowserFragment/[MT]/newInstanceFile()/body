@@ -1,7 +1,0 @@
-{
-  FileSourceBrowserFragment frag=new FileSourceBrowserFragment();
-  Bundle args=new Bundle();
-  args.putInt(TYPE,FileSource.FILE);
-  frag.setArguments(args);
-  return frag;
-}

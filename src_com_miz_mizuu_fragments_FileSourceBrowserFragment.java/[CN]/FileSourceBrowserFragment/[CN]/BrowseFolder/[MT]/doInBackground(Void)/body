@@ -11,7 +11,7 @@
     result=mBrowser.goUp();
   }
  else {
-    result=mBrowser.browse(mIndex);
+    result=mBrowser.browse(mIndex,mFromParent);
   }
   return result;
 }

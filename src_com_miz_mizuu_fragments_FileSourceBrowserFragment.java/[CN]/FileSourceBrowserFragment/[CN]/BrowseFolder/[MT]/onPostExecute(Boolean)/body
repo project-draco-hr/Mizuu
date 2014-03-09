@@ -1,10 +1,16 @@
 {
+  if (!isAdded())   return;
   if (mIndex >= GO_BACK && !result)   Toast.makeText(getActivity(),R.string.couldnt_load_folder,Toast.LENGTH_SHORT).show();
   setLoading(false);
   if (mCurrent.getAdapter() == null) {
     mCurrent.setAdapter(mCurrentFolderAdapter);
     mCurrent.setEmptyView(mEmpty);
   }
-  mCurrentFolderAdapter.notifyDataSetChanged();
+  if (hasParentView())   if (mParent.getAdapter() == null) {
+    mParent.setAdapter(mParentFolderAdapter);
+    mParent.setEmptyView(mEmptyParent);
+  }
+  notifyDataSetChanged();
+  getActivity().getActionBar().setSubtitle(mBrowser.getSubtitle());
   mCurrent.setSelectionAfterHeaderView();
 }

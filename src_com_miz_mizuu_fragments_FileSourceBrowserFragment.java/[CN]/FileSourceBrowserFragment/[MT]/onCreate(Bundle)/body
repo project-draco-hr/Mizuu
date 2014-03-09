@@ -1,5 +1,6 @@
 {
   super.onCreate(savedInstanceState);
+  setRetainInstance(true);
   mType=getArguments().getInt(TYPE,FileSource.FILE);
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("onBackPressed"));
 }

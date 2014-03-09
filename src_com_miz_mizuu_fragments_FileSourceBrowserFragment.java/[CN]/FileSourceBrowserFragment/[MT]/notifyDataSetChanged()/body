@@ -1,0 +1,4 @@
+{
+  mCurrentFolderAdapter.notifyDataSetChanged();
+  if (hasParentView())   mParentFolderAdapter.notifyDataSetChanged();
+}

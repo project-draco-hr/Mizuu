@@ -2,14 +2,24 @@
   super.onViewCreated(v,savedInstanceState);
   mProgress=v.findViewById(R.id.progress);
   mEmpty=v.findViewById(R.id.no_content);
+  mEmptyParent=v.findViewById(R.id.no_content_parent);
   mParent=(ListView)v.findViewById(R.id.parentList);
   mCurrent=(ListView)v.findViewById(R.id.currentList);
   mCurrentFolderAdapter=new CurrentFolderAdapter();
   mCurrent.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      if (mBrowser.getBrowserFiles().get(arg2).isDirectory())       browse(arg2);
+      if (mBrowser.getBrowserFiles().get(arg2).isDirectory())       browse(arg2,false);
     }
   }
 );
-  browse(INITIALIZE);
+  if (hasParentView()) {
+    mParentFolderAdapter=new ParentFolderAdapter();
+    mParent.setOnItemClickListener(new OnItemClickListener(){
+      @Override public void onItemClick(      AdapterView<?> arg0,      View arg1,      int arg2,      long arg3){
+        browse(arg2,true);
+      }
+    }
+);
+  }
+  browse(INITIALIZE,false);
 }

@@ -1,11 +1,12 @@
 {
   Intent intent=new Intent();
-  intent.setClass(getApplicationContext(),AddNetworkFileSource.class);
-  intent.putExtra("user",USER);
-  intent.putExtra("pass",PASS);
-  intent.putExtra("domain",DOMAIN);
-  intent.putExtra("server",SERVER);
-  intent.putExtra("isMovie",isMovie);
+  intent.setClass(getApplicationContext(),NewFileSourceBrowser.class);
+  intent.putExtra(USER,mUser);
+  intent.putExtra(PASSWORD,mPass);
+  intent.putExtra(DOMAIN,mDomain);
+  intent.putExtra(SERVER,mServer);
+  intent.putExtra(TYPE,isMovie ? MOVIE : TV_SHOW);
+  intent.putExtra(FILESOURCE,FileSource.SMB);
   startActivity(intent);
   finish();
 }

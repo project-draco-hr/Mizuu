@@ -1,6 +1,0 @@
-{
-  if (mIsLoading)   return;
-  if (mBrowseFolder != null)   mBrowseFolder.cancel(true);
-  mBrowseFolder=new BrowseFolder(index);
-  mBrowseFolder.execute();
-}

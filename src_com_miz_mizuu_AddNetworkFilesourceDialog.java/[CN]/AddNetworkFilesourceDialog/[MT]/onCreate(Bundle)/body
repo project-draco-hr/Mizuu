@@ -1,5 +1,9 @@
 {
   super.onCreate(savedInstanceState);
+  if (!MizLib.runsOnTablet(this)) {
+    if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsFullscreen",false))     setTheme(R.style.Theme_Example_FullScreen);
+ else     setTheme(R.style.Theme_Example);
+  }
   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
   setContentView(R.layout.addnetwork);
   prefsDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsDisableEthernetWiFiCheck",false);

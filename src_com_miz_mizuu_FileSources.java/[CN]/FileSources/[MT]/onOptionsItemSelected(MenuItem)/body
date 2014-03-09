@@ -2,7 +2,10 @@
 switch (item.getItemId()) {
 case android.R.id.home:
     onBackPressed();
-default :
-  return super.onOptionsItemSelected(item);
+  break;
+case R.id.add_source:
+addFileSource();
+break;
 }
+return super.onOptionsItemSelected(item);
 }

@@ -36,7 +36,8 @@
     setBrowserFiles(list);
   }
  catch (  Exception e) {
+    Log.d("Mizuu",e.toString());
     return false;
   }
-  return true;
+  return browseParent();
 }

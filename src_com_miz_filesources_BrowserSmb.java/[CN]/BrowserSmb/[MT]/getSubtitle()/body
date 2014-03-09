@@ -1,0 +1,3 @@
+{
+  return MizLib.transformSmbPath(getCurrentFolder().getCanonicalPath());
+}
