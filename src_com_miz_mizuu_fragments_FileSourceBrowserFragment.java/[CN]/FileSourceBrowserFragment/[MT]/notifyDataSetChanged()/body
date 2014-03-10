@@ -1,4 +1,10 @@
 {
-  mCurrentFolderAdapter.notifyDataSetChanged();
-  if (hasParentView())   mParentFolderAdapter.notifyDataSetChanged();
+  if (mType != FileSource.UPNP) {
+    mCurrentFolderAdapter.notifyDataSetChanged();
+    if (hasParentView())     mParentFolderAdapter.notifyDataSetChanged();
+  }
+ else {
+    contentListAdapter.notifyDataSetChanged();
+    if (hasParentView())     deviceListAdapter.notifyDataSetChanged();
+  }
 }

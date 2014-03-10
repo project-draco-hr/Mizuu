@@ -1,3 +1,6 @@
 {
   setLoading(true);
+  if (mType == FileSource.UPNP) {
+    getActivity().getApplicationContext().bindService(new Intent(getActivity(),WireUpnpService.class),serviceConnection,Context.BIND_AUTO_CREATE);
+  }
 }

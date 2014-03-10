@@ -1,0 +1,6 @@
+{
+  if (isContainer)   return (Container)content;
+ else {
+    return null;
+  }
+}

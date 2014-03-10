@@ -1,0 +1,4 @@
+{
+  final DeviceItem display=new DeviceItem(device,device.getDetails().getFriendlyName(),device.getDisplayString(),"(REMOTE) " + device.getType().getDisplayString());
+  deviceAdded(display);
+}

@@ -1,0 +1,4 @@
+{
+  if (getCurrentFolder() != null)   return getCurrentFolder().toString();
+  return "";
+}

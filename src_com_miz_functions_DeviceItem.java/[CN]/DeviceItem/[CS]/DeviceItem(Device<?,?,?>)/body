@@ -1,0 +1,4 @@
+{
+  this.udn=device.getIdentity().getUdn();
+  this.device=device;
+}

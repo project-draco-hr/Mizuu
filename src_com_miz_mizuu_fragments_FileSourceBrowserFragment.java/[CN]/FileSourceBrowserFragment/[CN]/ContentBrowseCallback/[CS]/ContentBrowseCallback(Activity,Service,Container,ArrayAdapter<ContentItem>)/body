@@ -1,0 +1,9 @@
+{
+  super(service,container.getId(),BrowseFlag.DIRECT_CHILDREN,"*",0,null,new SortCriterion(true,"dc:title"));
+  this.activity=activity;
+  this.service=service;
+  mService=service;
+  this.listAdapter=listadapter;
+  mContainer=container;
+  if (!mParentIds.containsKey(container.getId()))   mParentIds.put(container.getId(),container.getParentID());
+}

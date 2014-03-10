@@ -1,4 +1,8 @@
 {
   super.onDestroy();
   LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(mMessageReceiver);
+  if (mType == FileSource.UPNP) {
+    if (upnpService != null)     upnpService.getRegistry().removeListener(deviceListRegistryListener);
+    getActivity().getApplicationContext().unbindService(serviceConnection);
+  }
 }

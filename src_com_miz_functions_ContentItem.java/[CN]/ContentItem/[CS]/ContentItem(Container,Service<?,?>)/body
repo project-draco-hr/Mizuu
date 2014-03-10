@@ -1,0 +1,6 @@
+{
+  this.service=service;
+  this.content=container;
+  this.id=container.getId();
+  this.isContainer=true;
+}

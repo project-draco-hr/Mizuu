@@ -1,3 +1,8 @@
 {
-  browse(GO_BACK,false);
+  if (mType != FileSource.UPNP)   browse(GO_BACK,false);
+ else {
+    Container parentContainer=new Container();
+    parentContainer.setId(mParentIds.get(mContainer.getId()));
+    upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),mService,parentContainer,contentListAdapter));
+  }
 }

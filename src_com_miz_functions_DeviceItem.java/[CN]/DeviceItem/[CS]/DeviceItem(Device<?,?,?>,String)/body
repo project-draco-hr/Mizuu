@@ -1,0 +1,5 @@
+{
+  this.udn=device.getIdentity().getUdn();
+  this.device=device;
+  this.label=label;
+}

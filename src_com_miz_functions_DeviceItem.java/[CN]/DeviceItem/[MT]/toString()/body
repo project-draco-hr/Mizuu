@@ -1,0 +1,6 @@
+{
+  String display;
+  if (device.getDetails().getFriendlyName() != null)   display=device.getDetails().getFriendlyName();
+ else   display=device.getDisplayString();
+  return device.isFullyHydrated() ? display : display + " *";
+}
