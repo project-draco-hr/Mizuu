@@ -6,6 +6,6 @@
   for (  String file : files)   queue.add(file);
   setup();
   tvdb=new TheTVDb(context);
-  thisShow=tvdb.searchForShow(MizLib.decryptEpisode(queue.peek(),ignoredTags),LOCALE);
+  thisShow=tvdb.searchForShow(MizLib.decryptEpisode(queue.peek().contains("<MiZ>") ? queue.peek().split("<MiZ>")[0] : queue.peek(),ignoredTags),LOCALE);
   createShow();
 }

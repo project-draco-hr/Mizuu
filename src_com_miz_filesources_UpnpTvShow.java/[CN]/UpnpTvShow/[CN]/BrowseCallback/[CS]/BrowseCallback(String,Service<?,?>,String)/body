@@ -1,0 +1,5 @@
+{
+  super(service,containerId,BrowseFlag.DIRECT_CHILDREN,"*",0,null,new SortCriterion(true,"dc:title"));
+  mService=service;
+  mPrefix=prefix;
+}

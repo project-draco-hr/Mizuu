@@ -1,0 +1,17 @@
+{
+  DbAdapterTvShowEpisode dbHelper=MizuuApplication.getTvEpisodeDbAdapter();
+  Cursor cursor=dbHelper.getAllEpisodesInDatabase(ignoreRemovedFiles());
+  try {
+    while (cursor.moveToNext())     existingEpisodes.put(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),"");
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    cursor.close();
+  }
+  recursiveSearch(getFolder(),results);
+  List<String> list=new ArrayList<String>();
+  Iterator<String> it=results.iterator();
+  while (it.hasNext())   list.add(it.next());
+  return list;
+}

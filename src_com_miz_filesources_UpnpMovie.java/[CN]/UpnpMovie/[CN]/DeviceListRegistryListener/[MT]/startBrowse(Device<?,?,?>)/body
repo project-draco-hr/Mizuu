@@ -1,0 +1,5 @@
+{
+  mFolderCount++;
+  Service<?,?> service=device.findService(new UDAServiceType("ContentDirectory"));
+  browse(service,getRootFolder(),mFileSource.getFilepath().substring(mFileSource.getFilepath().lastIndexOf("/") + 1,mFileSource.getFilepath().length()));
+}

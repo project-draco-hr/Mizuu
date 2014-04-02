@@ -1,0 +1,10 @@
+{
+  DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+  List<DbEpisode> dbEpisodes=getDbEpisodes();
+  int count=dbEpisodes.size();
+  for (int i=0; i < count; i++) {
+    if (dbEpisodes.get(i).isUpnpFile() && dbEpisodes.get(i).isUnidentified() && MizLib.exists(dbEpisodes.get(i).getFilepath())) {
+      db.deleteEpisode(dbEpisodes.get(i).getRowId());
+    }
+  }
+}

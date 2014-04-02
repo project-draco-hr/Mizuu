@@ -1,4 +1,5 @@
 {
+  if (fileUrl.startsWith("http"))   return getVideoIntent(Uri.parse(fileUrl),mimeType,videoObject);
   Intent videoIntent=new Intent(Intent.ACTION_VIEW);
   videoIntent.setDataAndType(Uri.fromFile(new File(fileUrl)),mimeType);
   videoIntent.putExtras(getVideoIntentBundle(videoObject));

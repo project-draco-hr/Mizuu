@@ -8,6 +8,9 @@ case FileSource.FILE:
 case FileSource.SMB:
   mMovieFileSources.add(new SmbMovie(getApplicationContext(),fileSource,mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck));
 break;
+case FileSource.UPNP:
+mMovieFileSources.add(new UpnpMovie(getApplicationContext(),fileSource,mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck));
+break;
 }
 }
 }

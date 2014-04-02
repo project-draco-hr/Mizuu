@@ -1,0 +1,19 @@
+{
+  DbAdapter dbHelper=MizuuApplication.getMovieAdapter();
+  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",ignoreRemovedFiles(),true);
+  try {
+    while (cursor.moveToNext()) {
+      existingMovies.put(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),"");
+    }
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    cursor.close();
+  }
+  recursiveSearch(getFolder(),results);
+  List<String> list=new ArrayList<String>();
+  Iterator<String> it=results.iterator();
+  while (it.hasNext())   list.add(it.next());
+  return list;
+}

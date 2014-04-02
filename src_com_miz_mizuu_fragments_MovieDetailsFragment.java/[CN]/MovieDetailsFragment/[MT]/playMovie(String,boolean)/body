@@ -9,6 +9,7 @@
     }
  else {
       try {
+        System.out.println(filepath);
         getActivity().startActivity(MizLib.getVideoIntent(filepath,useWildcard,thisMovie));
         checkIn();
       }

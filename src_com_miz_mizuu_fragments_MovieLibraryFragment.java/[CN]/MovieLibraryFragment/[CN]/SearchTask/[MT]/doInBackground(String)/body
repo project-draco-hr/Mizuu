@@ -1,15 +1,15 @@
 {
-  shownMovies.clear();
+  List<MediumMovie> tempMovies=new ArrayList<MediumMovie>();
   if (searchQuery.startsWith("actor:")) {
     for (int i=0; i < movies.size(); i++) {
       if (isCancelled())       return null;
-      if (movies.get(i).getCast().toLowerCase(Locale.ENGLISH).contains(searchQuery.replace("actor:","").trim()))       shownMovies.add(movies.get(i));
+      if (movies.get(i).getCast().toLowerCase(Locale.ENGLISH).contains(searchQuery.replace("actor:","").trim()))       tempMovies.add(movies.get(i));
     }
   }
  else   if (searchQuery.equalsIgnoreCase("missing_genres")) {
     for (int i=0; i < movies.size(); i++) {
       if (isCancelled())       return null;
-      if (MizLib.isEmpty(movies.get(i).getGenres()))       shownMovies.add(movies.get(i));
+      if (MizLib.isEmpty(movies.get(i).getGenres()))       tempMovies.add(movies.get(i));
     }
   }
  else {
@@ -19,9 +19,10 @@
       if (isCancelled())       return null;
       lowerCase=movies.get(i).getTitle().toLowerCase(Locale.ENGLISH);
       filepath=movies.get(i).getFilepath().toLowerCase(Locale.ENGLISH);
-      if (lowerCase.indexOf(searchQuery) != -1 || filepath.indexOf(searchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(searchQuery) != -1)       shownMovies.add(movies.get(i));
+      if (lowerCase.indexOf(searchQuery) != -1 || filepath.indexOf(searchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(searchQuery) != -1)       tempMovies.add(movies.get(i));
     }
   }
+  shownMovies=new ArrayList<MediumMovie>(tempMovies);
   sortMovies();
   return null;
 }

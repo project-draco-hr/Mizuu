@@ -27,6 +27,9 @@
             }
           }
         }
+ else         if (movies.get(i).isUpnpFile()) {
+          if (MizLib.exists(movies.get(i).getFilepath()))           tempMovies.add(movies.get(i));
+        }
  else {
           if (new File(movies.get(i).getFilepath()).exists())           tempMovies.add(movies.get(i));
         }

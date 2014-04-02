@@ -1,0 +1,6 @@
+{
+  if (!found && device.getDetails().getSerialNumber().equals(mFileSource.getUpnpSerialNumber())) {
+    found=true;
+    startBrowse(device);
+  }
+}

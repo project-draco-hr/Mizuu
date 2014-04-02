@@ -9,7 +9,7 @@
   setupTvShowsFileSources(mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck);
   if (mStopUpdate)   return;
   log("removeUnidentifiedFiles()");
-  removeUnidentifiedFiles();
+  if (!mClearLibrary)   removeUnidentifiedFiles();
   if (mStopUpdate)   return;
   if (mClearLibrary) {
     mEditor=mSettings.edit();

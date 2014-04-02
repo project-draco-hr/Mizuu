@@ -8,6 +8,9 @@ case FileSource.FILE:
 case FileSource.SMB:
   mTvShowFileSources.add(new SmbTvShow(getApplicationContext(),fileSource,mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck));
 break;
+case FileSource.UPNP:
+mTvShowFileSources.add(new UpnpTvShow(getApplicationContext(),fileSource,mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck));
+break;
 }
 }
 }

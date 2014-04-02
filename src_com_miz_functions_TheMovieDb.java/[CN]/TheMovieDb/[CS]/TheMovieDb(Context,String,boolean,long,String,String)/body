@@ -8,8 +8,8 @@
   TMDb tmdb=new TMDb(context);
   if (isFromManualIdentify)   movie=tmdb.getMovie(tmdbId,LOCALE);
  else {
-    DecryptedMovie mMovie=MizLib.decryptMovie(filepath,settings.getString("ignoredTags",""));
-    movie=tmdb.searchForMovie(mMovie.getDecryptedFileName(),mMovie.getFileNameYear(),filepath,LOCALE);
+    DecryptedMovie mMovie=MizLib.decryptMovie(filepath.contains("<MiZ>") ? filepath.split("<MiZ>")[0] : filepath,settings.getString("ignoredTags",""));
+    movie=tmdb.searchForMovie(mMovie.getDecryptedFileName(),mMovie.getFileNameYear(),filepath.contains("<MiZ>") ? filepath.split("<Miz>")[0] : filepath,LOCALE);
   }
   download();
 }

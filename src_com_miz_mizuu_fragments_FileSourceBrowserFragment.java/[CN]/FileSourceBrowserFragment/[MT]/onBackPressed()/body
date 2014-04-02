@@ -7,7 +7,6 @@
       id=((BrowserUpnp)mBrowser).getParentId(((BrowserUpnp)mBrowser).getContainer().getId());
     }
     parentContainer.setId(id);
-    System.out.println("SERVICE IS NULL: " + (((BrowserUpnp)mBrowser).getService() == null));
     upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),((BrowserUpnp)mBrowser).getService(),parentContainer,contentListAdapter,false));
   }
 }

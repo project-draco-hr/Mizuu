@@ -1,0 +1,20 @@
+{
+  DbAdapter db=MizuuApplication.getMovieAdapter();
+  List<DbMovie> dbMovies=getDbMovies(), deletedMovies=new ArrayList<DbMovie>();
+  boolean deleted;
+  int count=dbMovies.size();
+  for (int i=0; i < count; i++) {
+    if (dbMovies.get(i).isUpnpFile() && !MizLib.exists(dbMovies.get(i).getFilepath())) {
+      deleted=db.deleteMovie(dbMovies.get(i).getRowId());
+      if (deleted)       deletedMovies.add(dbMovies.get(i));
+    }
+  }
+  count=deletedMovies.size();
+  for (int i=0; i < count; i++) {
+    if (!db.movieExists(deletedMovies.get(i).getTmdbId())) {
+      MizLib.deleteFile(new File(deletedMovies.get(i).getThumbnail()));
+      MizLib.deleteFile(new File(deletedMovies.get(i).getBackdrop()));
+    }
+  }
+  deletedMovies.clear();
+}
