@@ -1,0 +1,5 @@
+{
+  super(folder);
+  mServer=server;
+  mSerial=serial;
+}

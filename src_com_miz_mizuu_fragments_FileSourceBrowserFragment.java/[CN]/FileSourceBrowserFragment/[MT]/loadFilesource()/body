@@ -4,10 +4,11 @@ case FileSource.FILE:
     mBrowser=new BrowserFile(Environment.getExternalStorageDirectory());
   break;
 case FileSource.SMB:
-mBrowser=new BrowserSmb(new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(getArguments().getString(DOMAIN),"utf-8"),URLEncoder.encode(getArguments().getString(USER),"utf-8"),URLEncoder.encode(getArguments().getString(PASS),"utf-8"),getArguments().getString(SERVER),true)));
+mBrowser=new BrowserSmb(new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(getArguments().getString(DOMAIN),"utf-8"),URLEncoder.encode(getArguments().getString(USER),"utf-8"),URLEncoder.encode(getArguments().getString(PASSWORD),"utf-8"),getArguments().getString(SERVER),true)));
 break;
 case FileSource.UPNP:
-mBrowser=new BrowserUpnp(null);
+if (mBrowser == null) mBrowser=new BrowserUpnp(null,getArguments().getString(SERVER),getArguments().getString(SERIAL_NUMBER));
+updateSubtitle();
 break;
 }
 }

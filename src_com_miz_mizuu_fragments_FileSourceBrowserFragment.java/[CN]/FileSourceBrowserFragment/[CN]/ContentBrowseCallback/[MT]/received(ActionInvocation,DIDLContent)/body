@@ -1,22 +1,21 @@
 {
-  System.out.println("Received browse action DIDL descriptor, creating tree nodes");
   activity.runOnUiThread(new Runnable(){
     public void run(){
       try {
         listAdapter.clear();
         for (        Container childContainer : didl.getContainers()) {
-          System.out.println("add child container " + childContainer.getTitle());
           listAdapter.add(new ContentItem(childContainer,service));
         }
         for (        Item childItem : didl.getItems()) {
-          System.out.println("add child item" + childItem.getTitle());
           listAdapter.add(new ContentItem(childItem,service));
         }
+        ((BrowserUpnp)mBrowser).setContainer(mContainer);
+        ((BrowserUpnp)mBrowser).addParentId(mContainer.getId(),mContainer.getParentID());
+        mIsLoading=false;
       }
  catch (      Exception ex) {
+        mIsLoading=false;
         System.out.println("Creating DIDL tree nodes failed: " + ex);
-        actionInvocation.setFailure(new ActionException(ErrorCode.ACTION_FAILED,"Can't create list childs: " + ex,ex));
-        failure(actionInvocation,null);
       }
     }
   }

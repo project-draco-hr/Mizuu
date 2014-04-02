@@ -1,0 +1,16 @@
+{
+  String contentType=mIsMovie ? DbAdapterSources.KEY_TYPE_MOVIE : DbAdapterSources.KEY_TYPE_SHOW;
+  DbAdapterSources dbHelper=MizuuApplication.getSourcesAdapter();
+switch (mType) {
+case FileSource.FILE:
+    dbHelper.createSource(mBrowser.getSubtitle(),contentType,FileSource.FILE,"","","");
+  break;
+case FileSource.SMB:
+dbHelper.createSource("smb://" + mBrowser.getSubtitle().replace("smb://",""),contentType,FileSource.SMB,getArguments().getString(USER),getArguments().getString(PASSWORD),getArguments().getString(DOMAIN));
+break;
+case FileSource.UPNP:
+break;
+}
+LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-filesource-change"));
+getActivity().finish();
+}

@@ -2,7 +2,12 @@
   if (mType != FileSource.UPNP)   browse(GO_BACK,false);
  else {
     Container parentContainer=new Container();
-    parentContainer.setId(mParentIds.get(mContainer.getId()));
-    upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),mService,parentContainer,contentListAdapter));
+    String id="0";
+    if (((BrowserUpnp)mBrowser).getContainer() != null) {
+      id=((BrowserUpnp)mBrowser).getParentId(((BrowserUpnp)mBrowser).getContainer().getId());
+    }
+    parentContainer.setId(id);
+    System.out.println("SERVICE IS NULL: " + (((BrowserUpnp)mBrowser).getService() == null));
+    upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),((BrowserUpnp)mBrowser).getService(),parentContainer,contentListAdapter,false));
   }
 }

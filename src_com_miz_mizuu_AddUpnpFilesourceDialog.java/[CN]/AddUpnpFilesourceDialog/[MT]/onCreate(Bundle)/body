@@ -1,0 +1,25 @@
+{
+  super.onCreate(savedInstanceState);
+  getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+  setContentView(R.layout.upnp_list);
+  mListView=(ListView)findViewById(android.R.id.list);
+  mListView.setEmptyView(findViewById(R.id.progressBar1));
+  isMovie=getIntent().getExtras().getString("type").equals("movie");
+  deviceListRegistryListener=new DeviceListRegistryListener();
+  deviceListAdapter=new ArrayAdapter<UpnpDevice>(this,android.R.layout.simple_list_item_1);
+  mListView.setAdapter(deviceListAdapter);
+  mListView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      Intent intent=new Intent();
+      intent.setClass(getApplicationContext(),NewFileSourceBrowser.class);
+      intent.putExtra(SERIAL_NUMBER,deviceListAdapter.getItem(arg2).getSerialNumber());
+      intent.putExtra(SERVER,deviceListAdapter.getItem(arg2).getName());
+      intent.putExtra(TYPE,isMovie ? MOVIE : TV_SHOW);
+      intent.putExtra(FILESOURCE,FileSource.UPNP);
+      startActivity(intent);
+      finish();
+    }
+  }
+);
+  getApplicationContext().bindService(new Intent(this,WireUpnpService.class),serviceConnection,Context.BIND_AUTO_CREATE);
+}

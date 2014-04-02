@@ -1,0 +1,5 @@
+{
+  if (device.getType().getNamespace().equals("schemas-upnp-org") && device.getType().getType().equals("MediaServer")) {
+    deviceAdded(new UpnpDevice(device));
+  }
+}

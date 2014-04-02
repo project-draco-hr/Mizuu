@@ -1,0 +1,15 @@
+{
+  runOnUiThread(new Runnable(){
+    public void run(){
+      int position=deviceListAdapter.getPosition(di);
+      if (position >= 0) {
+        deviceListAdapter.remove(di);
+        deviceListAdapter.insert(di,position);
+      }
+ else {
+        deviceListAdapter.add(di);
+      }
+    }
+  }
+);
+}

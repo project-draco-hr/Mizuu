@@ -1,0 +1,8 @@
+{
+  runOnUiThread(new Runnable(){
+    public void run(){
+      deviceListAdapter.remove(di);
+    }
+  }
+);
+}

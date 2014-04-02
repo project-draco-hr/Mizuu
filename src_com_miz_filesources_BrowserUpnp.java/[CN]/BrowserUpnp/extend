@@ -1,1 +1,1 @@
-AbstractFileSourceBrowser<DeviceItem>
+AbstractFileSourceBrowser<Device<?,?,?>>

@@ -5,6 +5,5 @@
   }
  else {
     contentListAdapter.notifyDataSetChanged();
-    if (hasParentView())     deviceListAdapter.notifyDataSetChanged();
   }
 }

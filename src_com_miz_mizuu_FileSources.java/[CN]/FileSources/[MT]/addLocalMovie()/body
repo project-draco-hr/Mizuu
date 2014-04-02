@@ -1,6 +1,0 @@
-{
-  Intent intent=new Intent();
-  intent.setClass(this,AddLocalFileSource.class);
-  intent.putExtra("type","movie");
-  startActivityForResult(intent,0);
-}

@@ -1,0 +1,3 @@
+{
+  deviceAdded(new UpnpDevice(device));
+}

@@ -12,11 +12,12 @@
         if (mBrowser.getBrowserFiles().get(arg2).isDirectory())         browse(arg2,false);
       }
  else {
-        ContentItem content=contentListAdapter.getItem(arg2);
-        if (content.isContainer()) {
-          mUpnpId=content.getContainer().getParentID();
-          mContentItem=content;
-          upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),content.getService(),content.getContainer(),contentListAdapter));
+        if (!mIsLoading) {
+          mIsLoading=true;
+          ContentItem content=contentListAdapter.getItem(arg2);
+          if (content.isContainer()) {
+            upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),content.getService(),content.getContainer(),contentListAdapter,true));
+          }
         }
       }
     }
@@ -25,20 +26,8 @@
   if (hasParentView()) {
     mParentFolderAdapter=new ParentFolderAdapter();
     mParent.setOnItemClickListener(new OnItemClickListener(){
-      protected Container createRootContainer(      Service<?,?> service){
-        Container rootContainer=new Container();
-        rootContainer.setId("0");
-        rootContainer.setTitle("Content Directory on " + service.getDevice().getDisplayString());
-        return rootContainer;
-      }
       @Override public void onItemClick(      AdapterView<?> arg0,      View arg1,      int arg2,      long arg3){
-        if (mType != FileSource.UPNP)         browse(arg2,true);
- else {
-          Device<?,?,?> device=deviceListAdapter.getItem(arg2).getDevice();
-          mSelectedDevice=device;
-          Service<?,?> service=device.findService(new UDAServiceType("ContentDirectory"));
-          upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),service,createRootContainer(service),contentListAdapter));
-        }
+        browse(arg2,true);
       }
     }
 );

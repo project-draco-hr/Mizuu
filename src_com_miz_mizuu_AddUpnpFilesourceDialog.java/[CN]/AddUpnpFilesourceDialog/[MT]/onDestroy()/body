@@ -1,0 +1,5 @@
+{
+  super.onDestroy();
+  if (upnpService != null)   upnpService.getRegistry().removeListener(deviceListRegistryListener);
+  getApplicationContext().unbindService(serviceConnection);
+}

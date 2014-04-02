@@ -1,0 +1,15 @@
+{
+  try {
+    for (    Container childContainer : didl.getContainers()) {
+      mFolderCount++;
+      upnpService.getControlPoint().execute(new TestCallback(mService,childContainer.getId(),null));
+    }
+    for (    Item childItem : didl.getItems()) {
+    }
+    mScannedCount++;
+    System.out.println("mFolder: " + mFolderCount + ". "+ mScannedCount);
+    if (mFolderCount == mScannedCount)     latch.countDown();
+  }
+ catch (  Exception e) {
+  }
+}

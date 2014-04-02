@@ -9,10 +9,9 @@
   }
   if (hasParentView())   if (mParent.getAdapter() == null) {
     if (mType != FileSource.UPNP)     mParent.setAdapter(mParentFolderAdapter);
- else     mParent.setAdapter(deviceListAdapter);
     mParent.setEmptyView(mEmptyParent);
   }
   notifyDataSetChanged();
-  getActivity().getActionBar().setSubtitle(mBrowser.getSubtitle());
+  updateSubtitle();
   mCurrent.setSelectionAfterHeaderView();
 }

@@ -1,0 +1,10 @@
+{
+  FileSourceBrowserFragment frag=new FileSourceBrowserFragment();
+  Bundle args=new Bundle();
+  args.putInt(TYPE,FileSource.UPNP);
+  args.putString(SERIAL_NUMBER,serialNumber);
+  args.putString(SERVER,server);
+  args.putBoolean(MOVIE,isMovie);
+  frag.setArguments(args);
+  return frag;
+}

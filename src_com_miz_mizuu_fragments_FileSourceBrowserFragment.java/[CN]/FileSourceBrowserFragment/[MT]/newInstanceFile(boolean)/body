@@ -2,7 +2,7 @@
   FileSourceBrowserFragment frag=new FileSourceBrowserFragment();
   Bundle args=new Bundle();
   args.putInt(TYPE,FileSource.FILE);
-  args.putBoolean(IS_MOVIE,isMovie);
+  args.putBoolean(MOVIE,isMovie);
   frag.setArguments(args);
   return frag;
 }
