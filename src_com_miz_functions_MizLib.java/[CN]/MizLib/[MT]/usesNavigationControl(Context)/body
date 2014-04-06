@@ -1,0 +1,25 @@
+{
+  Configuration configuration=context.getResources().getConfiguration();
+  if (configuration.navigation == Configuration.NAVIGATION_NONAV) {
+    return false;
+  }
+ else   if (configuration.touchscreen == Configuration.TOUCHSCREEN_FINGER) {
+    return false;
+  }
+ else   if (configuration.navigation == Configuration.NAVIGATION_DPAD) {
+    return true;
+  }
+ else   if (configuration.touchscreen == Configuration.TOUCHSCREEN_NOTOUCH) {
+    return true;
+  }
+ else   if (configuration.touchscreen == Configuration.TOUCHSCREEN_UNDEFINED) {
+    return true;
+  }
+ else   if (configuration.navigationHidden == Configuration.NAVIGATIONHIDDEN_YES) {
+    return true;
+  }
+ else   if (configuration.uiMode == Configuration.UI_MODE_TYPE_TELEVISION) {
+    return true;
+  }
+  return false;
+}

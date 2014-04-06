@@ -6,7 +6,7 @@
   setContentView(R.layout.welcome);
   findViewById(R.id.list).setVisibility(View.GONE);
   title=(TextView)findViewById(R.id.title);
-  if (MizLib.runsOnTablet(this))   title.setTextSize(26f);
+  if (MizLib.isTablet(this))   title.setTextSize(26f);
   dbHelper=MizuuApplication.getMovieAdapter();
   dbHelperTv=MizuuApplication.getTvDbAdapter();
   Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false,false);

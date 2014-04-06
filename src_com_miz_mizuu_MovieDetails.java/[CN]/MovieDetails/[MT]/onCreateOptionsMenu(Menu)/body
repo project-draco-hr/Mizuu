@@ -9,7 +9,6 @@
       menu.findItem(R.id.movie_fav).setIcon(R.drawable.reviews);
       menu.findItem(R.id.movie_fav).setTitle(R.string.menuFavouriteTitle);
     }
-    if (!MizLib.runsOnTablet(this) && MizLib.runsInPortraitMode(this))     menu.findItem(R.id.watch_list).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
     if (thisMovie.toWatch()) {
       menu.findItem(R.id.watch_list).setIcon(R.drawable.watchlist_remove);
       menu.findItem(R.id.watch_list).setTitle(R.string.removeFromWatchlist);

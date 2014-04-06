@@ -8,7 +8,7 @@
         if (seasons.size() > 1)         expandedGroup=seasons.get(0).equals("00") ? 1 : 0;
         mListView.expandGroup(expandedGroup);
       }
-      if (MizLib.runsOnTablet(getActivity()) && !MizLib.runsInPortraitMode(getActivity())) {
+      if (MizLib.isTablet(getActivity()) && !MizLib.isPortrait(getActivity())) {
         if (shownEpisodes.size() > 0) {
           selectEpisode(shownEpisodes.get(0));
           if (!useGridView) {

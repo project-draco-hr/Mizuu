@@ -10,9 +10,10 @@
   tf=Typeface.createFromAsset(getAssets(),"Roboto-Thin.ttf");
   tfLight=Typeface.createFromAsset(getAssets(),"Roboto-Light.ttf");
   setupMenuItems();
+  mDrawerUserInfo=findViewById(R.id.drawer_user_info);
   mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
   mDrawerLayout.setDrawerShadow(R.drawable.drawer_list_shadow,GravityCompat.START);
-  if ((!MizLib.runsOnTablet(this) && !MizLib.runsInPortraitMode(this)) || MizLib.isGoogleTV(this)) {
+  if ((!MizLib.isTablet(this) && !MizLib.isPortrait(this)) || MizLib.isGoogleTV(this)) {
     findViewById(R.id.personalizedArea).setVisibility(View.GONE);
   }
  else   setupUserDetails();

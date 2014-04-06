@@ -7,5 +7,6 @@
     results[count]=new MovieVersion(Integer.valueOf(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_ROWID))),mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_FILEPATH)));
     count++;
   }
+  mCursor.close();
   return results;
 }

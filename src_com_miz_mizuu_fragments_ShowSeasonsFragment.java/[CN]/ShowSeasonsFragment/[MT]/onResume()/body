@@ -1,4 +1,4 @@
 {
   super.onResume();
-  isPortrait=MizLib.runsInPortraitMode(getActivity());
+  isPortrait=MizLib.isPortrait(getActivity());
 }

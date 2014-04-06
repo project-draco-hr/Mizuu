@@ -1,0 +1,4 @@
+{
+  if (!mTypefaces.containsKey(key))   mTypefaces.put(key,Typeface.createFromAsset(context.getAssets(),key));
+  return mTypefaces.get(key);
+}

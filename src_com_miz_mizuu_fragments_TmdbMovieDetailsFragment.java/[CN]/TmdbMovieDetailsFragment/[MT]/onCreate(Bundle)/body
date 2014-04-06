@@ -1,8 +1,8 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
+  mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
   tmdb=new TMDb(getActivity());
   movieId=getArguments().getString("movieId");
-  tf=Typeface.createFromAsset(getActivity().getAssets(),"Roboto-Thin.ttf");
   mPicasso=MizuuApplication.getPicasso(getActivity());
 }

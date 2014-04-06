@@ -1,7 +1,7 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
-  tf=Typeface.createFromAsset(getActivity().getAssets(),"Roboto-Thin.ttf");
+  mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
   ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsIgnorePrefixesInTitles",false);
   dbHelper=MizuuApplication.getTvDbAdapter();
   Cursor cursor=dbHelper.getShow(getArguments().getString("showId"));

@@ -1,7 +1,21 @@
 {
   super.onViewCreated(view,savedInstanceState);
-  playbutton=(ImageView)view.findViewById(R.id.imageView2);
-  playbutton.requestFocus();
+  if (MizLib.isPortrait(getActivity())) {
+    if (!MizLib.isTablet(getActivity()))     MizLib.addActionBarPaddingBottom(getActivity(),view.findViewById(R.id.scrollView1));
+    mActionBarBackgroundDrawable=new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,new int[]{0x00000000,0xaa000000});
+    getActivity().getActionBar().setBackgroundDrawable(mActionBarBackgroundDrawable);
+    ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.scrollView1);
+    sv.setOnScrollChangedListener(new OnScrollChangedListener(){
+      @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
+        final int headerHeight=view.findViewById(R.id.imageBackground).getHeight() - getActivity().getActionBar().getHeight();
+        final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
+        final int newAlpha=(int)(ratio * 255);
+        mActionBarBackgroundDrawable=new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,new int[]{Color.parseColor("#" + ((Integer.toHexString(newAlpha).length() == 1) ? ("0" + Integer.toHexString(newAlpha)) : Integer.toHexString(newAlpha)) + "080808"),(newAlpha >= 170) ? Color.parseColor("#" + Integer.toHexString(newAlpha) + "080808") : 0xaa080808});
+        getActivity().getActionBar().setBackgroundDrawable(mActionBarBackgroundDrawable);
+      }
+    }
+);
+  }
   background=(ImageView)view.findViewById(R.id.imageBackground);
   textTitle=(TextView)view.findViewById(R.id.movieTitle);
   textPlot=(TextView)view.findViewById(R.id.textView2);
@@ -12,11 +26,18 @@
   textRating=(TextView)view.findViewById(R.id.textView12);
   textTagline=(TextView)view.findViewById(R.id.textView6);
   textCertification=(TextView)view.findViewById(R.id.textView11);
-  cover=(AspectRatioImageViewCover)view.findViewById(R.id.traktIcon);
+  cover=(ImageView)view.findViewById(R.id.traktIcon);
   textTitle.setVisibility(View.VISIBLE);
   textTitle.setText(thisMovie.getTitle());
-  textTitle.setTypeface(tf);
+  textTitle.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf"));
   textTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+  textPlot.setTypeface(mLight);
+  textSrc.setTypeface(mLight);
+  textGenre.setTypeface(mLight);
+  textRuntime.setTypeface(mLight);
+  textReleaseDate.setTypeface(mLight);
+  textRating.setTypeface(mLight);
+  textCertification.setTypeface(mLight);
   textPlot.setText(thisMovie.getPlot());
   if (thisMovie.hasMultipleVersions() && !thisMovie.isUnidentified()) {
     String sources="";
@@ -72,7 +93,13 @@
   }
   if (!thisMovie.getRating().equals("0.0/10")) {
     if (thisMovie.getRating().contains("/")) {
-      textRating.setText(Html.fromHtml(thisMovie.getRating().replace("/","<small> / ") + "</small>"));
+      try {
+        int rating=(int)(Double.parseDouble(thisMovie.getRating().substring(0,thisMovie.getRating().indexOf("/"))) * 10);
+        textRating.setText(Html.fromHtml(rating + "<small> %</small>"));
+      }
+ catch (      NumberFormatException e) {
+        textRating.setText(Html.fromHtml(thisMovie.getRating().replace("/","<small> / ") + "</small>"));
+      }
     }
  else {
       textRating.setText(thisMovie.getRating());
@@ -87,11 +114,5 @@
  else {
     textCertification.setText(R.string.stringNA);
   }
-  playbutton.setOnClickListener(new OnClickListener(){
-    @Override public void onClick(    View v){
-      playMovie();
-    }
-  }
-);
   loadImages();
 }

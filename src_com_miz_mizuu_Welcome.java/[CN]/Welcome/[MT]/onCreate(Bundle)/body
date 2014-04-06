@@ -62,7 +62,7 @@ overridePendingTransition(R.anim.mainfadein,R.anim.splashfadeout);
 list.setSelection(1);
 updateLibraryCounts();
 title=(TextView)findViewById(R.id.title);
-if (MizLib.runsOnTablet(this)) title.setTextSize(26f);
+if (MizLib.isTablet(this)) title.setTextSize(26f);
  else title.setVisibility(View.GONE);
 Animation aniIn=AnimationUtils.loadAnimation(this,android.R.anim.fade_in);
 aniIn.setDuration(800);

@@ -29,7 +29,7 @@
       continue;
     }
   }
-  if (!MizLib.runsInPortraitMode(this) && MizLib.runsOnTablet(this)) {
+  if (!MizLib.isPortrait(this) && MizLib.isTablet(this)) {
     finish();
     return;
   }

@@ -1,13 +1,14 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
+  setHasOptionsMenu(true);
   ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsIgnorePrefixesInTitles",false);
   ignoreNfo=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsIgnoreNfoFiles",true);
   useWildcard=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsIgnoreFileType",false);
   prefsDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsDisableEthernetWiFiCheck",false);
   prefsRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsRemoveMoviesFromWatchlist",true);
   movieId=getArguments().getInt("movieId");
-  tf=Typeface.createFromAsset(getActivity().getAssets(),"Roboto-Thin.ttf");
+  mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
   db=MizuuApplication.getMovieAdapter();
   Cursor cursor=null;
   try {

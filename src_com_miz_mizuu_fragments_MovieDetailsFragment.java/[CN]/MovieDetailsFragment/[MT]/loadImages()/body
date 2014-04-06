@@ -1,5 +1,5 @@
 {
-  if (!MizLib.runsInPortraitMode(getActivity())) {
+  if (!MizLib.isPortrait(getActivity())) {
     if (!ignoreNfo && thisMovie.isNetworkFile()) {
       int height=(int)(MizLib.getDisplaySize(getActivity(),MizLib.HEIGHT) * 0.6);
       int width=(int)(height * 0.67);
@@ -13,6 +13,9 @@
   }
  else {
     if (!ignoreNfo && thisMovie.isNetworkFile()) {
+      int height=(int)(MizLib.getDisplaySize(getActivity(),MizLib.HEIGHT) * 0.6);
+      int width=(int)(height * 0.67);
+      mPicasso.load(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail()).placeholder(R.drawable.loading_image).error(R.drawable.loading_image).resize(width,height).into(cover);
       mPicasso.load(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(background,new Callback(){
         @Override public void onError(){
           mPicasso.load(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
@@ -23,6 +26,7 @@
 );
     }
  else {
+      mPicasso.load(thisMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(cover);
       mPicasso.load(thisMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(background,new Callback(){
         @Override public void onError(){
           mPicasso.load(thisMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(background);

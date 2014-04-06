@@ -1,12 +1,12 @@
 {
-  ImageView imageView;
+  AspectRatioImageViewBackdrop imageView;
   if (convertView == null) {
-    imageView=new ImageView(mContext);
+    imageView=new AspectRatioImageViewBackdrop(mContext);
     imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
     imageView.setLayoutParams(mImageViewLayoutParams);
   }
  else {
-    imageView=(ImageView)convertView;
+    imageView=(AspectRatioImageViewBackdrop)convertView;
   }
   if (imageView.getLayoutParams().height != mItemHeight) {
     imageView.setLayoutParams(mImageViewLayoutParams);

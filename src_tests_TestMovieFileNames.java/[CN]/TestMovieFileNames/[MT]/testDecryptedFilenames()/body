@@ -110,4 +110,9 @@
   Assert.assertEquals("Funny People",d[108].getDecryptedFileName());
   Assert.assertEquals("Frequently Asked Questions About Time Travel",d[109].getDecryptedFileName());
   Assert.assertEquals("Enter The Void",d[110].getDecryptedFileName());
+  Assert.assertEquals("Test This Shit",d[111].getDecryptedFileName());
+  Assert.assertEquals("Test",d[112].getDecryptedFileName());
+  Assert.assertEquals("Hello",d[113].getDecryptedFileName());
+  Assert.assertEquals("Hello Friend",d[114].getDecryptedFileName());
+  Assert.assertEquals("Hello Friend",d[115].getDecryptedFileName());
 }

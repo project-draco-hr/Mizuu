@@ -1,9 +1,10 @@
 {
-  if (!MizLib.runsInPortraitMode(getActivity())) {
+  if (!MizLib.isPortrait(getActivity())) {
     mPicasso.load(thisShow.getCoverPhoto()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(cover);
     mPicasso.load(thisShow.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).into(background);
   }
  else {
+    mPicasso.load(thisShow.getCoverPhoto()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(cover);
     mPicasso.load(thisShow.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(background,new Callback(){
       @Override public void onError(){
         mPicasso.load(thisShow.getCoverPhoto()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(background);

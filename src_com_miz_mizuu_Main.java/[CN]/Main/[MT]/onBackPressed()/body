@@ -1,5 +1,5 @@
 {
-  if (startup.equals("0") && !mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && MizLib.runsOnTablet(this)) {
+  if (startup.equals("0") && !mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && MizLib.isTablet(this)) {
     Intent i=new Intent(Intent.ACTION_VIEW);
     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     i.setClass(getApplicationContext(),Welcome.class);

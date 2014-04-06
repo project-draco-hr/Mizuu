@@ -1,7 +1,7 @@
 {
   convertView=LayoutInflater.from(getApplicationContext()).inflate(R.layout.menu_drawer_item,null);
   TextView title=(TextView)convertView.findViewById(R.id.title);
-  if (MizLib.runsOnTablet(getApplicationContext()))   title.setTextSize(22f);
+  if (MizLib.isTablet(getApplicationContext()))   title.setTextSize(22f);
   TextView description=(TextView)convertView.findViewById(R.id.count);
   description.setTypeface(tfLight);
   description.setLayerType(View.LAYER_TYPE_SOFTWARE,null);

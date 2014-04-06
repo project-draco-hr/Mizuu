@@ -2,8 +2,14 @@
   if (isAdded() && thisMovie != null) {
     textTitle.setVisibility(View.VISIBLE);
     textTitle.setText(thisMovie.getTitle());
-    textTitle.setTypeface(tf);
+    textTitle.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf"));
     textTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+    textPlot.setTypeface(mLight);
+    textGenre.setTypeface(mLight);
+    textRuntime.setTypeface(mLight);
+    textReleaseDate.setTypeface(mLight);
+    textRating.setTypeface(mLight);
+    textCertification.setTypeface(mLight);
     textPlot.setText(thisMovie.getPlot());
     if (thisMovie.getTagline().equals("NOTAGLINE") || thisMovie.getTagline().isEmpty())     textTagline.setVisibility(TextView.GONE);
  else     textTagline.setText(thisMovie.getTagline());
@@ -49,8 +55,14 @@
       textReleaseDate.setText(R.string.stringNA);
     }
     if (!thisMovie.getRating().equals("0.0")) {
-      thisMovie.setRating(thisMovie.getRating() + "/10");
-      textRating.setText(Html.fromHtml(thisMovie.getRating().replace("/","<small> / ") + "</small>"));
+      try {
+        int rating=(int)(Double.parseDouble(thisMovie.getRating()) * 10);
+        textRating.setText(Html.fromHtml(rating + "<small> %</small>"));
+      }
+ catch (      NumberFormatException e) {
+        thisMovie.setRating(thisMovie.getRating() + "/10");
+        textRating.setText(Html.fromHtml(thisMovie.getRating().replace("/","<small> / ") + "</small>"));
+      }
     }
  else {
       textRating.setText(R.string.stringNA);
