@@ -14,6 +14,8 @@
   }
   cursor2.close();
   if (awesomePager != null) {
-    awesomePager.setAdapter(new IgnoredFilesAdapter());
+    if (mAdapter == null)     mAdapter=new IgnoredFilesAdapter();
+    if (awesomePager.getAdapter() == null)     awesomePager.setAdapter(mAdapter);
+    mAdapter.notifyDataSetChanged();
   }
 }
