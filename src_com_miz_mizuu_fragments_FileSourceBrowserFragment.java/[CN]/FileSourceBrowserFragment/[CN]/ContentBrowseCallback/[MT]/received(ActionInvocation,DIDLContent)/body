@@ -15,7 +15,6 @@
       }
  catch (      Exception ex) {
         mIsLoading=false;
-        System.out.println("Creating DIDL tree nodes failed: " + ex);
       }
     }
   }
