@@ -1,5 +1,5 @@
 {
-  activity.runOnUiThread(new Runnable(){
+  if (activity != null)   activity.runOnUiThread(new Runnable(){
     public void run(){
       try {
         listAdapter.clear();
@@ -11,10 +11,10 @@
         }
         ((BrowserUpnp)mBrowser).setContainer(mContainer);
         ((BrowserUpnp)mBrowser).addParentId(mContainer.getId(),mContainer.getParentID());
-        mIsLoading=false;
+        mLoading=false;
       }
  catch (      Exception ex) {
-        mIsLoading=false;
+        mLoading=false;
       }
     }
   }

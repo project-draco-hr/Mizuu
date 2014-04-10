@@ -12,8 +12,8 @@
         if (mBrowser.getBrowserFiles().get(arg2).isDirectory())         browse(arg2,false);
       }
  else {
-        if (!mIsLoading) {
-          mIsLoading=true;
+        if (!mLoading) {
+          mLoading=true;
           ContentItem content=contentListAdapter.getItem(arg2);
           if (content.isContainer()) {
             upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),content.getService(),content.getContainer(),contentListAdapter,true));

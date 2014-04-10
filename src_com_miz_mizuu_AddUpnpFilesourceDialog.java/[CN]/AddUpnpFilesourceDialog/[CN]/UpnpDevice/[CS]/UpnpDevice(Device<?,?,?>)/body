@@ -1,3 +1,5 @@
 {
-  this.device=device;
+  mFriendlyName=device.getDetails().getFriendlyName();
+  mSerial=device.getDetails().getSerialNumber();
+  mUdn=device.getIdentity().getUdn().toString();
 }

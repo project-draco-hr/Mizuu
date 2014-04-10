@@ -1,3 +1,4 @@
 {
-  return device.getDetails().getSerialNumber();
+  if (mSerial == null)   return "";
+  return mSerial;
 }

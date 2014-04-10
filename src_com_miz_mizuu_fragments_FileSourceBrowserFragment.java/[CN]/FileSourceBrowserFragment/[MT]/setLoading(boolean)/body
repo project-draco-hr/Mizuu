@@ -1,5 +1,5 @@
 {
-  mIsLoading=loading;
+  mLoading=loading;
   if (loading) {
     mProgress.setVisibility(View.VISIBLE);
     mCurrent.setVisibility(View.GONE);
