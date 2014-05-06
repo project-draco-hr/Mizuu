@@ -1,6 +1,5 @@
 {
   super.onCreate(savedInstanceState);
-  getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
   setContentView(R.layout.upnp_list);
   mListView=(ListView)findViewById(android.R.id.list);
   mListView.setEmptyView(findViewById(R.id.progressBar1));

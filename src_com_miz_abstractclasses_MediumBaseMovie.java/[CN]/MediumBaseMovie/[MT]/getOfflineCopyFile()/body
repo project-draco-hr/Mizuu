@@ -1,3 +1,4 @@
 {
+  if (FILEPATH.contains("<MiZ>"))   return new File(MizLib.getAvailableOfflineFolder(CONTEXT),MizLib.md5(getFilepath()) + "." + MizLib.getFileExtension(getFilepath()));
   return new File(MizLib.getAvailableOfflineFolder(CONTEXT),MizLib.md5(getFullFilepath()) + "." + MizLib.getFileExtension(getFullFilepath()));
 }

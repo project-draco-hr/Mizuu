@@ -28,4 +28,5 @@
   mPicasso=MizuuApplication.getPicasso(getActivity());
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movie-cover-change"));
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movie-backdrop-change"));
+  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("movie-play-button"));
 }

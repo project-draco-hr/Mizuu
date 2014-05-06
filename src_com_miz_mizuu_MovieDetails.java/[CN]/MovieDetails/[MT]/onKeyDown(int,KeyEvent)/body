@@ -1,0 +1,8 @@
+{
+switch (keyCode) {
+case KeyEvent.KEYCODE_MEDIA_PLAY:
+case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
+    LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("movie-play-button"));
+}
+return super.onKeyDown(keyCode,event);
+}

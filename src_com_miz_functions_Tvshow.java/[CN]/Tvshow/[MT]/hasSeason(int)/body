@@ -1,0 +1,4 @@
+{
+  for (  Season s : mSeasons)   if (s.getSeason() == season)   return true;
+  return false;
+}

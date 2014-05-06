@@ -1,4 +1,6 @@
 {
-  File f=new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(smb.getCanonicalPath()) + "." + MizLib.getFileExtension(smb.getName()));
-  return f.exists() && smbSize == f.length();
+  File f=null;
+  if (file.startsWith("http"))   f=new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(file) + "." + MizLib.getFileExtension(file));
+ else   f=new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(smb.getCanonicalPath()) + "." + MizLib.getFileExtension(smb.getName()));
+  return f.exists() && mSize == f.length();
 }

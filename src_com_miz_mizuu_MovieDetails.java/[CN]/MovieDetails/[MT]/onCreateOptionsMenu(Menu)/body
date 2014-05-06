@@ -26,7 +26,7 @@
     if (!MizLib.isImdbInstalled(this)) {
       menu.findItem(R.id.imdb).setVisible(false);
     }
-    if (thisMovie.isNetworkFile()) {
+    if (thisMovie.isNetworkFile() || thisMovie.isUpnpFile()) {
       menu.findItem(R.id.watchOffline).setVisible(true);
       if (thisMovie.hasOfflineCopy())       menu.findItem(R.id.watchOffline).setTitle(R.string.removeOfflineCopy);
  else       menu.findItem(R.id.watchOffline).setTitle(R.string.watchOffline);

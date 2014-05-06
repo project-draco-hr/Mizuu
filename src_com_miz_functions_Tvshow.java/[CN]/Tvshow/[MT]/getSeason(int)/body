@@ -1,0 +1,4 @@
+{
+  for (  Season s : mSeasons)   if (s.getSeason() == season)   return s;
+  return new Season();
+}

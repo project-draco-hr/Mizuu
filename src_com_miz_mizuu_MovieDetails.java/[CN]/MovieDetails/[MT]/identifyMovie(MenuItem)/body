@@ -8,7 +8,9 @@
     builder.setItems(items,new OnClickListener(){
       @Override public void onClick(      DialogInterface dialog,      int which){
         Intent intent=new Intent();
-        intent.putExtra("fileName",versions[which].getFilepath());
+        String temp2=versions[which].getFilepath();
+        String temp=temp2.contains("<MiZ>") ? temp2.split("<MiZ>")[0] : temp2;
+        intent.putExtra("fileName",temp);
         intent.putExtra("rowId",String.valueOf(versions[which].getRowId()));
         intent.setClass(MovieDetails.this,IdentifyMovie.class);
         startActivityForResult(intent,0);
@@ -19,7 +21,7 @@
   }
  else {
     Intent intent=new Intent();
-    intent.putExtra("fileName",thisMovie.getFullFilepath());
+    intent.putExtra("fileName",thisMovie.getManualIdentificationQuery());
     intent.putExtra("rowId",thisMovie.getRowId());
     intent.setClass(this,IdentifyMovie.class);
     startActivityForResult(intent,0);

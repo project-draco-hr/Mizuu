@@ -1,10 +1,14 @@
 {
   try {
     long freeMemory=(long)(MizLib.getFreeMemory() * 0.975);
-    smbSize=smb.length();
-    return freeMemory > smbSize;
+    if (file.startsWith("http"))     mSize=MizLib.getFileSize(new URL(file));
+ else     mSize=smb.length();
+    return freeMemory > mSize;
   }
  catch (  SmbException e) {
+    return false;
+  }
+catch (  MalformedURLException e) {
     return false;
   }
 }
