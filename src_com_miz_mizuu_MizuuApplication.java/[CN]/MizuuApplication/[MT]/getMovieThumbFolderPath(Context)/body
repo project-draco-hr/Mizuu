@@ -1,0 +1,4 @@
+{
+  if (mMovieThumbFolderPath == null)   mMovieThumbFolderPath=getMovieThumbFolder(context).getAbsolutePath();
+  return mMovieThumbFolderPath;
+}

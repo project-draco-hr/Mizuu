@@ -1,8 +1,3 @@
 {
-  if (TAGLINE == null) {
-    return "";
-  }
- else {
-    return TAGLINE;
-  }
+  return mGetTagline;
 }

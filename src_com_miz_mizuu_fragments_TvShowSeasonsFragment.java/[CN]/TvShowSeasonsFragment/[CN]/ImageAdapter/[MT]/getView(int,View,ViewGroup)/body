@@ -1,0 +1,21 @@
+{
+  CoverItem holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.grid_item,container,false);
+    holder=new CoverItem();
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    holder.text=(TextView)convertView.findViewById(R.id.text);
+    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(CoverItem)convertView.getTag();
+    holder.cover.setImageBitmap(null);
+  }
+  if (mItems.get(position).getSeason() == 0)   holder.text.setText(R.string.stringSpecials);
+ else   holder.text.setText(getString(R.string.showSeason) + " " + mItems.get(position).getSeasonZeroIndex());
+  int episodeCount=mItems.get(position).getEpisodeCount();
+  holder.subtext.setText(episodeCount + " " + getResources().getQuantityString(R.plurals.episodes,episodeCount,episodeCount));
+  mPicasso.load(mItems.get(position).getPoster()).config(mConfig).into(holder);
+  return convertView;
+}

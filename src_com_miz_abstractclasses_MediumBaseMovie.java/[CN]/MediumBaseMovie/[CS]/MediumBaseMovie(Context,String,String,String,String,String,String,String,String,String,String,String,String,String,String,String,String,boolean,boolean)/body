@@ -1,0 +1,40 @@
+{
+  super(context,rowId,filepath,title,tmdbId,ignorePrefixes,ignoreNfo);
+  RATING=rating;
+  RELEASEDATE=releasedate;
+  GENRES=genres;
+  FAVOURITE=favourite;
+  CAST=cast;
+  COLLECTION=collection;
+  COLLECTION_ID=collectionId;
+  TO_WATCH=toWatch;
+  HAS_WATCHED=hasWatched;
+  DATE_ADDED=date_added;
+  CERTIFICATION=certification;
+  RUNTIME=runtime.replace("min","").trim();
+  if (!MizLib.isEmpty(RELEASEDATE)) {
+    String YEAR=RELEASEDATE.trim();
+    try {
+      if (YEAR.substring(4,5).equals("-") && YEAR.substring(7,8).equals("-")) {
+        mGetReleaseYear=YEAR.substring(0,4);
+      }
+ else {
+        mGetReleaseYear=CONTEXT.getString(R.string.unknownYear);
+      }
+    }
+ catch (    Exception e) {
+      if (YEAR.length() == 4)       mGetReleaseYear=YEAR;
+ else       mGetReleaseYear=CONTEXT.getString(R.string.unknownYear);
+    }
+  }
+ else {
+    mGetReleaseYear=CONTEXT.getString(R.string.unknownYear);
+  }
+  String temp=FILEPATH.contains("<MiZ>") ? FILEPATH.split("<MiZ>")[1] : FILEPATH;
+  mGetFilePath=MizLib.transformSmbPath(temp);
+  mIsNetworkFile=getFilepath().contains("smb:/");
+  mWeightedCompatibility=(int)(getWeightedRating() * 10) + "% " + CONTEXT.getString(R.string.compatibility);
+  mDateAdded=MizLib.getPrettyDate(CONTEXT,Long.valueOf(getDateAdded()));
+  mRuntime=MizLib.getPrettyTime(CONTEXT,Integer.parseInt(getRuntime()));
+  mReleaseDate=MizLib.getPrettyDate(CONTEXT,getReleasedate());
+}

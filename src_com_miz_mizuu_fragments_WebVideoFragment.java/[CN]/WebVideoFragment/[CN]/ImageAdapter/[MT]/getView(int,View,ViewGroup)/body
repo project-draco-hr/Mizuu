@@ -16,6 +16,6 @@
     holder.cover.setImageBitmap(null);
   }
   holder.text.setText(videos.get(position).getTitle());
-  mPicasso.load(videos.get(position).getUrl()).placeholder(R.drawable.gray).error(R.drawable.nobackdrop).config(MizuuApplication.getBitmapConfig()).into(holder.cover);
+  mPicasso.load(videos.get(position).getUrl()).placeholder(R.drawable.gray).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
   return convertView;
 }

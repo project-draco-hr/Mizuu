@@ -1,4 +1,3 @@
 {
-  String temp=FILEPATH.contains("<MiZ>") ? FILEPATH.split("<MiZ>")[1] : FILEPATH;
-  return MizLib.transformSmbPath(temp);
+  return mGetFilePath;
 }

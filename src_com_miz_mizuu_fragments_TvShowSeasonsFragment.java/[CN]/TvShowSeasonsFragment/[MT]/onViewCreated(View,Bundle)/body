@@ -1,0 +1,23 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  mAdapter=new ImageAdapter(getActivity());
+  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView.setEmptyView(v.findViewById(R.id.progress));
+  mGridView.setAdapter(mAdapter);
+  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      if (mAdapter.getNumColumns() == 0) {
+        final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+        if (numColumns > 0) {
+          mAdapter.setNumColumns(numColumns);
+        }
+      }
+    }
+  }
+);
+  mGridView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+    }
+  }
+);
+}

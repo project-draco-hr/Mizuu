@@ -1,0 +1,5 @@
+{
+  if (getSeason() < another.getSeason())   return -1;
+  if (getSeason() > another.getSeason())   return 1;
+  return 0;
+}

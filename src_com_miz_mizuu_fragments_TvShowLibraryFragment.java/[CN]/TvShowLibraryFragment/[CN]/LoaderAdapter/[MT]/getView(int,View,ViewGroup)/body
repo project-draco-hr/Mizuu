@@ -1,27 +1,19 @@
 {
   CoverItem holder;
   if (convertView == null) {
-    convertView=inflater.inflate(R.layout.grid_item_cover,container,false);
+    convertView=inflater.inflate(R.layout.grid_item,container,false);
     holder=new CoverItem();
-    holder.layout=(RelativeLayout)convertView.findViewById(R.id.cover_layout);
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
-    if (holder.layout.getLayoutParams().height != mItemHeight) {
-      holder.layout.setLayoutParams(mImageViewLayoutParams);
-    }
+    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
     convertView.setTag(holder);
   }
  else {
     holder=(CoverItem)convertView.getTag();
   }
+  holder.cover.setImageBitmap(null);
   holder.text.setText(shownShows.get(position).getTitle());
-  if (showGridTitles) {
-    holder.text.setVisibility(TextView.VISIBLE);
-  }
- else {
-    holder.text.setVisibility(TextView.GONE);
-  }
-  holder.cover.setImageDrawable(gray);
-  mPicasso.load(shownShows.get(position).getThumbnail()).config(MizuuApplication.getBitmapConfig()).into(holder);
+  holder.subtext.setText(shownShows.get(position).getFirstAirdateYear());
+  mPicasso.load(shownShows.get(position).getThumbnail()).config(mConfig).into(holder);
   return convertView;
 }

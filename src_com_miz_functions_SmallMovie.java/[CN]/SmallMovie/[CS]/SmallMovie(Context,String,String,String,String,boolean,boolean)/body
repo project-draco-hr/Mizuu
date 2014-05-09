@@ -1,4 +1,5 @@
 {
+  super(context,tmdbId,tmdbId,tmdbId,tmdbId,ignoreNfo,ignoreNfo);
   CONTEXT=context;
   ROW_ID=rowId;
   FILEPATH=filepath;

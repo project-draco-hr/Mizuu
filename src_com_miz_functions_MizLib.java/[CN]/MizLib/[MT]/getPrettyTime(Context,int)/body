@@ -1,0 +1,23 @@
+{
+  try {
+    int hours=(minutes / 60);
+    minutes=(minutes % 60);
+    String hours_string=hours + " " + context.getResources().getQuantityString(R.plurals.hour,hours,hours);
+    String minutes_string=minutes + " " + context.getResources().getQuantityString(R.plurals.minute,minutes,minutes);
+    if (hours > 0) {
+      if (minutes == 0)       return hours_string;
+ else       return hours_string + " " + minutes_string;
+    }
+ else {
+      return minutes_string;
+    }
+  }
+ catch (  Exception e) {
+    if (minutes >= 0) {
+      return String.valueOf(minutes);
+    }
+ else {
+      return context.getString(R.string.stringNA);
+    }
+  }
+}

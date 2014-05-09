@@ -1,0 +1,27 @@
+{
+  CONTEXT=context;
+  ROW_ID=rowId;
+  FILEPATH=filepath;
+  TITLE=title;
+  TMDB_ID=tmdbId;
+  this.ignorePrefixes=ignorePrefixes;
+  this.ignoreNfo=ignoreNfo;
+  if (TITLE == null || TITLE.isEmpty()) {
+    File fileName=new File(FILEPATH);
+    TITLE=fileName.getName().substring(0,fileName.getName().lastIndexOf("."));
+  }
+ else {
+    if (ignorePrefixes) {
+      String temp=TITLE.toLowerCase(Locale.ENGLISH);
+      String[] prefixes=MizLib.getPrefixes(CONTEXT);
+      int count=prefixes.length;
+      for (int i=0; i < count; i++) {
+        if (temp.startsWith(prefixes[i])) {
+          TITLE=TITLE.substring(prefixes[i].length());
+          break;
+        }
+      }
+    }
+  }
+  mGetThumbnail=MizuuApplication.getMovieThumbFolderPath(CONTEXT) + "/" + TMDB_ID+ ".jpg";
+}

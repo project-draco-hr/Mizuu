@@ -1,26 +1,21 @@
 {
-  CONTEXT=context;
-  ROW_ID=rowId;
-  FILEPATH=filepath;
-  TITLE=title;
+  super(context,rowId,filepath,title,tmdbId,rating,releasedate,genres,favourite,cast,collection,collectionId,toWatch,hasWatched,date_added,certification,runtime,ignorePrefixes,ignoreNfo);
   PLOT=plot;
   TAGLINE=tagline;
   TMDB_ID=tmdbId;
   IMDB_ID=imdbId;
-  RATING=rating;
-  RELEASEDATE=releasedate;
-  CERTIFICATION=certification;
-  RUNTIME=runtime;
   TRAILER=trailer;
-  GENRES=genres;
-  FAVOURITE=favourite;
-  CAST=cast;
-  COLLECTION=collection;
-  COLLECTION_ID=collectionId;
-  TO_WATCH=toWatch;
-  HAS_WATCHED=hasWatched;
   COVER=cover;
-  DATE_ADDED=date_added;
-  this.ignorePrefixes=ignorePrefixes;
-  this.ignoreNfo=ignoreNfo;
+  if (PLOT == null || PLOT.isEmpty()) {
+    mGetPlot=CONTEXT.getString(R.string.stringNoPlot);
+  }
+ else {
+    mGetPlot=PLOT;
+  }
+  if (TAGLINE == null) {
+    mGetTagline="";
+  }
+ else {
+    mGetTagline=TAGLINE;
+  }
 }

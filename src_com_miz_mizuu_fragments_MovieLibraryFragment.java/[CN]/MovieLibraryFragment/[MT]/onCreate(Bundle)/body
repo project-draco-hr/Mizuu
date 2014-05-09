@@ -6,7 +6,6 @@
   setupSpinnerItems();
   PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
-  showGridTitles=settings.getBoolean("prefsShowGridTitles",false);
   ignorePrefixes=settings.getBoolean("prefsIgnorePrefixesInTitles",false);
   ignoreNfo=settings.getBoolean("prefsIgnoreNfoFiles",true);
   prefsDisableEthernetWiFiCheck=settings.getBoolean("prefsDisableEthernetWiFiCheck",false);
@@ -15,5 +14,6 @@
  else   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 0.75);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   mPicasso=MizuuApplication.getPicasso(getActivity());
+  mConfig=MizuuApplication.getBitmapConfig();
   mAdapter=new LoaderAdapter(getActivity());
 }

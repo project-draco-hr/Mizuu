@@ -1,4 +1,5 @@
 {
+  mCurrentSort=sort;
   ArrayList<MediumMovie> tempMovies=new ArrayList<MediumMovie>(shownMovies);
 switch (sort) {
 case TITLE:

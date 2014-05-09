@@ -21,5 +21,5 @@
  catch (    Exception e) {
     }
   }
-  return new File(MizuuApplication.getMovieThumbFolder(CONTEXT),TMDB_ID + ".jpg").getAbsolutePath();
+  return mGetThumbnail;
 }

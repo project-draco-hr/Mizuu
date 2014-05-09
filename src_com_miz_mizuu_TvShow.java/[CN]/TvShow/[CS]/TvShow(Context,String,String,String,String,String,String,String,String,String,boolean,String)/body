@@ -9,6 +9,25 @@
   CERTIFICATION=certification;
   FIRST_AIR_DATE=firstAirdate;
   RUNTIME=runtime;
-  this.ignorePrefixes=ignorePrefixes;
   this.isFavorite=!(isFavorite.equals("0") || isFavorite.isEmpty());
+  mThumbnail=MizuuApplication.getTvShowThumbFolderPath(CONTEXT) + "/" + ID+ ".jpg";
+  if (MizLib.isEmpty(TITLE)) {
+    mTitle="";
+  }
+ else {
+    if (ignorePrefixes) {
+      String temp=TITLE.toLowerCase(Locale.ENGLISH);
+      String[] prefixes=MizLib.getPrefixes(CONTEXT);
+      int count=prefixes.length;
+      for (int i=0; i < count; i++) {
+        if (temp.startsWith(prefixes[i])) {
+          mTitle=TITLE.substring(prefixes[i].length());
+          break;
+        }
+      }
+    }
+ else {
+      mTitle=TITLE;
+    }
+  }
 }

@@ -1,8 +1,0 @@
-{
-  try {
-    return getTitle().substring(0,1);
-  }
- catch (  Exception e) {
-    return "";
-  }
-}

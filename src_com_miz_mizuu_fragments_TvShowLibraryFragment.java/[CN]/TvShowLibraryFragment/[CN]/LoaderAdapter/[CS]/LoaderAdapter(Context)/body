@@ -2,6 +2,4 @@
   super();
   mContext=context;
   inflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-  mImageViewLayoutParams=new GridView.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
-  gray=getResources().getDrawable(R.drawable.gray);
 }

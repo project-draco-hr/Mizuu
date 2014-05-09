@@ -1,0 +1,15 @@
+{
+  if (millis > 0) {
+    try {
+      Calendar cal=Calendar.getInstance();
+      cal.setTimeInMillis(millis);
+      return DateFormat.getDateInstance(DateFormat.MEDIUM,Locale.getDefault()).format(cal.getTime());
+    }
+ catch (    Exception e) {
+      return String.valueOf(millis);
+    }
+  }
+ else {
+    return context.getString(R.string.stringNA);
+  }
+}
