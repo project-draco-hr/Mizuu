@@ -12,7 +12,10 @@
     if (numColumns > 0) {
       mAdapter.setNumColumns(numColumns);
     }
+    notifyDataSetChanged();
   }
-  sortShows();
-  notifyDataSetChanged();
+ else   if (key.equals("prefsShowGridTitles")) {
+    mShowTitles=sharedPreferences.getBoolean("prefsShowGridTitles",true);
+    notifyDataSetChanged();
+  }
 }

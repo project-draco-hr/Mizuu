@@ -2,4 +2,6 @@
   super();
   mContext=context;
   inflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+  mSidePadding=MizLib.convertDpToPixels(mContext,1);
+  mBottomPadding=MizLib.convertDpToPixels(mContext,2);
 }

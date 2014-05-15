@@ -21,6 +21,8 @@
         final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
         if (numColumns > 0) {
           mAdapter.setNumColumns(numColumns);
+          mResizedWidth=(int)(((mGridView.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns) * 1.1);
+          mResizedHeight=(int)(mResizedWidth * 1.5);
         }
         if (MizLib.hasJellyBean()) {
           mGridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);

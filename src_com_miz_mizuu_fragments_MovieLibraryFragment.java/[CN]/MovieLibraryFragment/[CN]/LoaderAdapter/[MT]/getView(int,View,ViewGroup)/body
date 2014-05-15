@@ -11,13 +11,22 @@
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  holder.cover.setImageResource(android.R.color.transparent);
+  if (!mShowTitles) {
+    holder.text.setVisibility(View.GONE);
+    holder.subtext.setVisibility(View.GONE);
+    holder.cover.setPadding(mSidePadding,0,mSidePadding,mBottomPadding);
+  }
+ else {
+    holder.text.setVisibility(View.VISIBLE);
+    holder.subtext.setVisibility(View.VISIBLE);
+  }
+  if (mShowTitles) {
 switch (mCurrentSort) {
 case DURATION:
-    holder.subtext.setText(shownMovies.get(position).getPrettyRuntime());
-  break;
+      holder.subtext.setText(shownMovies.get(position).getPrettyRuntime());
+    break;
 case RATING:
-holder.subtext.setText((int)(shownMovies.get(position).getRawRating() * 10) + "%");
+  holder.subtext.setText((int)(shownMovies.get(position).getRawRating() * 10) + "%");
 break;
 case WEIGHTED_RATING:
 holder.subtext.setText(shownMovies.get(position).getWeightedCompatibility());
@@ -32,17 +41,19 @@ default :
 holder.subtext.setText(shownMovies.get(position).getReleaseYear());
 break;
 }
+}
+holder.cover.setImageResource(android.R.color.white);
 if (isCollections) {
-mPicasso.load(shownMovies.get(position).getCollectionPoster()).config(mConfig).into(holder);
-holder.text.setText(shownMovies.get(position).getCollection());
+mPicasso.load(shownMovies.get(position).getCollectionPoster()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+if (mShowTitles) holder.text.setText(shownMovies.get(position).getCollection());
 }
  else {
-holder.text.setText(shownMovies.get(position).getTitle());
+if (mShowTitles) holder.text.setText(shownMovies.get(position).getTitle());
 if (!ignoreNfo && shownMovies.get(position).isNetworkFile()) {
-mPicasso.load(shownMovies.get(position).getFilepath() + "<MiZ>" + shownMovies.get(position).getThumbnail()).config(mConfig).into(holder);
+mPicasso.load(shownMovies.get(position).getFilepath() + "<MiZ>" + shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
 }
  else {
-mPicasso.load(shownMovies.get(position).getThumbnail()).config(mConfig).into(holder);
+mPicasso.load(shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
 }
 }
 return convertView;

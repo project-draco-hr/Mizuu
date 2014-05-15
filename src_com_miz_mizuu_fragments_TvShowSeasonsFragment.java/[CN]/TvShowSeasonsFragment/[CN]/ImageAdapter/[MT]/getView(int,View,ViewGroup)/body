@@ -10,8 +10,8 @@
   }
  else {
     holder=(CoverItem)convertView.getTag();
-    holder.cover.setImageResource(android.R.color.transparent);
   }
+  holder.cover.setImageResource(android.R.color.white);
   if (mItems.get(position).getSeason() == 0)   holder.text.setText(R.string.stringSpecials);
  else   holder.text.setText(getString(R.string.showSeason) + " " + mItems.get(position).getSeasonZeroIndex());
   int episodeCount=mItems.get(position).getEpisodeCount();
