@@ -1,7 +1,6 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
-  setBackground=getArguments().getBoolean("setBackground");
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   json=getArguments().getString("json");

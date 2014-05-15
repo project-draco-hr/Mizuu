@@ -1,9 +1,5 @@
 {
-  if (key.equals("prefsShowGridTitles")) {
-    showGridTitles=settings.getBoolean("prefsShowGridTitles",false);
-    mAdapter.notifyDataSetChanged();
-  }
- else   if (key.equals("prefsRootAccess")) {
+  if (key.equals("prefsRootAccess")) {
     if (settings.getBoolean("prefsRootAccess",false)) {
       try {
         Runtime.getRuntime().exec("su");

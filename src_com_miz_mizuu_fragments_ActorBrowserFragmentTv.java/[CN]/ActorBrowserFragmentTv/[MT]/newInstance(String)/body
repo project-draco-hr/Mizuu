@@ -2,7 +2,6 @@
   ActorBrowserFragmentTv pageFragment=new ActorBrowserFragmentTv();
   Bundle b=new Bundle();
   b.putString("tvdbId",tvdbId);
-  b.putBoolean("setBackground",setBackground);
   pageFragment.setArguments(b);
   return pageFragment;
 }

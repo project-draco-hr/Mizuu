@@ -1,5 +1,0 @@
-{
-  mItemHeight=height;
-  mImageViewLayoutParams=new GridView.LayoutParams(LayoutParams.MATCH_PARENT,(int)(mItemHeight * 0.45));
-  notifyDataSetChanged();
-}

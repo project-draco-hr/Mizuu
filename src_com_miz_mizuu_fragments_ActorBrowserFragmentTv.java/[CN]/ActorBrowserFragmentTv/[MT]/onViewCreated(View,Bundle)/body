@@ -1,6 +1,6 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  if (setBackground && !MizLib.isPortrait(getActivity()))   v.findViewById(R.id.container).setBackgroundResource(R.drawable.bg);
+  v.findViewById(R.id.container).setBackgroundResource(R.color.light_background);
   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
   pbar=(ProgressBar)v.findViewById(R.id.progress);
   if (actors.size() > 0)   pbar.setVisibility(View.GONE);
@@ -11,8 +11,7 @@
     @Override public void onGlobalLayout(){
       final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
       if (numColumns > 0) {
-        final int columnWidth=(mGridView.getWidth() / numColumns) - mImageThumbSpacing;
-        mAdapter.setItemHeight(columnWidth);
+        mGridView.setNumColumns(numColumns);
       }
     }
   }
