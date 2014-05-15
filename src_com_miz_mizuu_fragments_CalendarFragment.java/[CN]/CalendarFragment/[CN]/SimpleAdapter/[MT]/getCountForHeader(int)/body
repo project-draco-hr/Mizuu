@@ -1,3 +1,0 @@
-{
-  return dayEpisodeCount.get(Integer.valueOf(days.get(header)));
-}

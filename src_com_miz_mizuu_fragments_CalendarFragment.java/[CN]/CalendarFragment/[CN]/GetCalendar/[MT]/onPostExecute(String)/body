@@ -1,7 +1,0 @@
-{
-  if (isAdded()) {
-    pbar.setVisibility(View.GONE);
-    mAdapter.notifyDataSetChanged();
-    System.out.println("Size: " + allEpisodes.size());
-  }
-}
