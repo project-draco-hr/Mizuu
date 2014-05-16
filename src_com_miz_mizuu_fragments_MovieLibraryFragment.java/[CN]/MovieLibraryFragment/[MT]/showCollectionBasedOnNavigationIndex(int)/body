@@ -23,5 +23,8 @@ break;
 case 6:
 showUnidentifiedMovies();
 break;
+case 7:
+showOfflineCopies();
+break;
 }
 }

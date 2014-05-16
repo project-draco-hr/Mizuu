@@ -8,4 +8,5 @@
   spinnerItems.add(new SpinnerItem(getString(R.string.choiceWatchedMovies),getString(R.string.choiceWatchedMovies)));
   spinnerItems.add(new SpinnerItem(getString(R.string.choiceUnwatchedMovies),getString(R.string.choiceUnwatchedMovies)));
   spinnerItems.add(new SpinnerItem(getString(R.string.choiceUnidentifiedMovies),getString(R.string.choiceUnidentifiedMovies)));
+  spinnerItems.add(new SpinnerItem(getString(R.string.choiceOffline),getString(R.string.choiceOffline)));
 }
