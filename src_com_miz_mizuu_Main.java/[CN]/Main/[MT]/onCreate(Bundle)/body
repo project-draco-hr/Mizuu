@@ -9,8 +9,9 @@
   if (startup.equals("0"))   startup="1";
   dbHelper=MizuuApplication.getMovieAdapter();
   dbHelperTv=MizuuApplication.getTvDbAdapter();
-  tf=Typeface.createFromAsset(getAssets(),"Roboto-Thin.ttf");
-  tfLight=Typeface.createFromAsset(getAssets(),"Roboto-Light.ttf");
+  tfCondensed=MizuuApplication.getOrCreateTypeface(getApplicationContext(),"RobotoCondensed-Regular.ttf");
+  tf=MizuuApplication.getOrCreateTypeface(getApplicationContext(),"Roboto-Medium.ttf");
+  tfLight=MizuuApplication.getOrCreateTypeface(getApplicationContext(),"Roboto-Light.ttf");
   setupMenuItems();
   mDrawerUserInfo=findViewById(R.id.drawer_user_info);
   mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
@@ -20,7 +21,7 @@
   }
  else   setupUserDetails();
   ((TextView)findViewById(R.id.username)).setTextSize(26f);
-  ((TextView)findViewById(R.id.username)).setTypeface(tf);
+  ((TextView)findViewById(R.id.username)).setTypeface(tfCondensed);
   tab1=(TextView)findViewById(R.id.tab1);
   tab1.setTextSize(12f);
   tab2=(TextView)findViewById(R.id.tab2);
@@ -41,6 +42,13 @@
         }
         mDrawerList.setItemChecked(arg2,false);
       }
+    }
+  }
+);
+  mDrawerList.setOnItemSelectedListener(new OnItemSelectedListener(){
+    @Override public void onItemSelected(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+    }
+    @Override public void onNothingSelected(    AdapterView<?> arg0){
     }
   }
 );

@@ -1,4 +1,6 @@
 {
+  if (minutes == 0)   return context.getString(R.string.stringNA);
+  ;
   try {
     int hours=(minutes / 60);
     minutes=(minutes % 60);
@@ -13,11 +15,7 @@
     }
   }
  catch (  Exception e) {
-    if (minutes >= 0) {
-      return String.valueOf(minutes);
-    }
- else {
-      return context.getString(R.string.stringNA);
-    }
+    if (minutes > 0)     return String.valueOf(minutes);
+    return context.getString(R.string.stringNA);
   }
 }
