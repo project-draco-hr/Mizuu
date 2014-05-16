@@ -6,7 +6,7 @@
   setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
   getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
   setContentView(R.layout.welcome);
-  tf=Typeface.createFromAsset(getAssets(),"Roboto-Thin.ttf");
+  tf=MizuuApplication.getOrCreateTypeface(this,"Roboto-Thin.ttf");
   dbHelper=MizuuApplication.getMovieAdapter();
   dbHelperTv=MizuuApplication.getTvDbAdapter();
   Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false,false);
