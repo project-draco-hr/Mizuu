@@ -5,14 +5,14 @@
   TextView description=(TextView)convertView.findViewById(R.id.count);
   description.setTypeface(tfLight);
   description.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
-  title.setTypeface(tfLight);
-  title.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
-  if (getMenuItem(position).isThirdPartyApp()) {
-    title.setText(getMenuItem(position).getTitle());
+  if (position == mDrawerList.getCheckedItemPosition()) {
+    title.setTypeface(tf,Typeface.BOLD);
   }
  else {
-    title.setText(getMenuItem(position).getTitle());
+    title.setTypeface(tfLight);
   }
+  title.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+  title.setText(getMenuItem(position).getTitle());
   if (getMenuItem(position).getCount() > 0)   description.setText(String.valueOf(getMenuItem(position).getCount()));
  else   description.setVisibility(View.GONE);
   return convertView;

@@ -11,9 +11,18 @@
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  holder.cover.setImageBitmap(null);
-  holder.text.setText(shownShows.get(position).getTitle());
-  holder.subtext.setText(shownShows.get(position).getFirstAirdateYear());
-  mPicasso.load(shownShows.get(position).getThumbnail()).config(mConfig).into(holder);
+  if (!mShowTitles) {
+    holder.text.setVisibility(View.GONE);
+    holder.subtext.setVisibility(View.GONE);
+    holder.cover.setPadding(mSidePadding,0,mSidePadding,mBottomPadding);
+  }
+ else {
+    holder.text.setVisibility(View.VISIBLE);
+    holder.subtext.setVisibility(View.VISIBLE);
+    holder.text.setText(shownShows.get(position).getTitle());
+    holder.subtext.setText(shownShows.get(position).getFirstAirdateYear());
+  }
+  holder.cover.setImageResource(android.R.color.white);
+  mPicasso.load(shownShows.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
   return convertView;
 }

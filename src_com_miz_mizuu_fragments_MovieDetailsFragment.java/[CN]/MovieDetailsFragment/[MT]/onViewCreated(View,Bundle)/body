@@ -48,7 +48,7 @@
  else {
     textSrc.setText(thisMovie.getFilepath());
   }
-  if (thisMovie.getTagline().equals("NOTAGLINE") || thisMovie.getTagline().isEmpty())   textTagline.setVisibility(TextView.GONE);
+  if (thisMovie.getTagline().isEmpty())   textTagline.setVisibility(TextView.GONE);
  else   textTagline.setText(thisMovie.getTagline());
   if (!MizLib.isEmpty(thisMovie.getGenres())) {
     textGenre.setText(thisMovie.getGenres());

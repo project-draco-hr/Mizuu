@@ -1,7 +1,0 @@
-{
-  this.file=file;
-  this.nfoFile=nfoFile;
-  this.c=c;
-  is=this.nfoFile.getInputStream();
-  readFile();
-}

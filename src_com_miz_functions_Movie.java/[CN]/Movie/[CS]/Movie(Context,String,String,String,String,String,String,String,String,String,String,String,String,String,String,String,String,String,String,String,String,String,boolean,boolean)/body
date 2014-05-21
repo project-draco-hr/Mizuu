@@ -12,7 +12,7 @@
  else {
     mGetPlot=PLOT;
   }
-  if (TAGLINE == null) {
+  if (TAGLINE == null || TAGLINE.equals("NOTAGLINE")) {
     mGetTagline="";
   }
  else {

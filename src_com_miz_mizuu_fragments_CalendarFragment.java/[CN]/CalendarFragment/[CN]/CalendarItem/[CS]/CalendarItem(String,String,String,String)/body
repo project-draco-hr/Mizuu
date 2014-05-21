@@ -1,6 +1,0 @@
-{
-  this.photo=photo;
-  this.title=title;
-  this.season=season;
-  this.episode=episode;
-}

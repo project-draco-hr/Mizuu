@@ -1,0 +1,20 @@
+{
+  new AsyncTask<Void,Void,Void>(){
+    @Override protected void onPreExecute(){
+      showProgressBar();
+      shownMovies.clear();
+    }
+    @Override protected Void doInBackground(    Void... params){
+      for (int i=0; i < movies.size(); i++) {
+        if (movies.get(i).hasOfflineCopy())         shownMovies.add(movies.get(i));
+      }
+      sortMovies();
+      return null;
+    }
+    @Override protected void onPostExecute(    Void result){
+      notifyDataSetChanged();
+      hideProgressBar();
+    }
+  }
+.execute();
+}

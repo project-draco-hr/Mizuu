@@ -9,7 +9,7 @@
  finally {
     cursor.close();
   }
-  LinkedHashSet<String> results=new LinkedHashSet<String>();
+  TreeSet<String> results=new TreeSet<String>();
   recursiveSearch(getFolder(),results);
   List<String> list=new ArrayList<String>();
   Iterator<String> it=results.iterator();

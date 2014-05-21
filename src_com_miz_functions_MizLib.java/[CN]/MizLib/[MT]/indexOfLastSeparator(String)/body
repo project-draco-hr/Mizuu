@@ -1,0 +1,8 @@
+{
+  if (filename == null) {
+    return NOT_FOUND;
+  }
+  final int lastUnixPos=filename.lastIndexOf(UNIX_SEPARATOR);
+  final int lastWindowsPos=filename.lastIndexOf(WINDOWS_SEPARATOR);
+  return Math.max(lastUnixPos,lastWindowsPos);
+}

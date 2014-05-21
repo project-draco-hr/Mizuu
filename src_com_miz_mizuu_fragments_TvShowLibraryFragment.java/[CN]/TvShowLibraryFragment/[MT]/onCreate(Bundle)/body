@@ -6,6 +6,7 @@
   PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
   ignorePrefixes=settings.getBoolean("prefsIgnorePrefixesInTitles",false);
+  mShowTitles=settings.getBoolean("prefsShowGridTitles",true);
   String thumbnailSize=settings.getString("prefsGridItemSize",getString(R.string.normal));
   if (thumbnailSize.equals(getString(R.string.normal)))   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1);
  else   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 0.75);

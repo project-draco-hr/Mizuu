@@ -2,7 +2,7 @@
   super.onCreate(savedInstanceState);
   setContentView(R.layout.add_file_source);
   setTitle(R.string.addFileSourceTitle);
-  mTypeface=Typeface.createFromAsset(getAssets(),"RobotoCondensed-Regular.ttf");
+  mTypeface=MizuuApplication.getOrCreateTypeface(this,"RobotoCondensed-Regular.ttf");
   mContentType=(TextView)findViewById(R.id.contentType);
   mContentType.setTypeface(mTypeface);
   mContent=(RadioGroup)findViewById(R.id.content_type);

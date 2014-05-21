@@ -1,0 +1,7 @@
+{
+  if (MizLib.checkFileTypes(file)) {
+    if (size < getFileSizeLimit())     return;
+    if (!clearLibrary())     if (existingEpisodes.get(file.split("<MiZ>")[1]) != null || existingEpisodes.get(file) != null)     return;
+    results.add(file);
+  }
+}

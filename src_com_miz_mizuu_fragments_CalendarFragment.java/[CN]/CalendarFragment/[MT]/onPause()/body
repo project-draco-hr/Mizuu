@@ -1,5 +1,0 @@
-{
-  super.onPause();
-  mImageFetcher.setExitTasksEarly(true);
-  mImageFetcher.flushCache();
-}

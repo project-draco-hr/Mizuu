@@ -14,4 +14,6 @@
   RATING=rating;
   HAS_WATCHED=hasWatched;
   FAVORITE=favorite;
+  String temp=FILEPATH.contains("<MiZ>") ? FILEPATH.split("<MiZ>")[1] : FILEPATH;
+  mGetFilepath=MizLib.transformSmbPath(temp);
 }

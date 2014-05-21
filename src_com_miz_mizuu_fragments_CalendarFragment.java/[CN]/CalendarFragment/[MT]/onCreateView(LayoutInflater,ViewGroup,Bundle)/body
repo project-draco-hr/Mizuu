@@ -1,3 +1,0 @@
-{
-  return inflater.inflate(R.layout.calendar_grid_upcoming,container,false);
-}

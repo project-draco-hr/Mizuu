@@ -1,10 +1,14 @@
 {
-  showProgressBar();
-  shownMovies.clear();
-  new Thread(){
-    @Override public void run(){
-      ArrayList<MediumMovie> tempMovies=new ArrayList<MediumMovie>();
-      ArrayList<FileSource> filesources=MizLib.getFileSources(MizLib.TYPE_MOVIE,true);
+  new AsyncTask<Void,Void,Void>(){
+    ArrayList<MediumMovie> tempMovies;
+    ArrayList<FileSource> filesources;
+    @Override protected void onPreExecute(){
+      showProgressBar();
+      shownMovies.clear();
+    }
+    @Override protected Void doInBackground(    Void... params){
+      tempMovies=new ArrayList<MediumMovie>();
+      filesources=MizLib.getFileSources(MizLib.TYPE_MOVIE,true);
       for (int i=0; i < movies.size(); i++) {
         if (movies.get(i).isNetworkFile()) {
           if (movies.get(i).hasOfflineCopy()) {
@@ -34,20 +38,18 @@
           if (new File(movies.get(i).getFilepath()).exists())           tempMovies.add(movies.get(i));
         }
       }
-      if (isAdded())       if (getActivity().getActionBar().getSelectedNavigationIndex() == 2) {
+      return null;
+    }
+    @Override protected void onPostExecute(    Void result){
+      if (isAdded() && getActivity().getActionBar().getSelectedNavigationIndex() == 2) {
         shownMovies.addAll(tempMovies);
         tempMovies.clear();
         tempMovies=null;
         sortMovies();
-        getActivity().runOnUiThread(new Runnable(){
-          @Override public void run(){
-            notifyDataSetChanged();
-            hideProgressBar();
-          }
-        }
-);
+        notifyDataSetChanged();
+        hideProgressBar();
       }
     }
   }
-.start();
+.execute();
 }

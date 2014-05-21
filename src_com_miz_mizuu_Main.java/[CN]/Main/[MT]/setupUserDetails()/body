@@ -13,13 +13,8 @@
   if (!MizLib.isEmpty(full_name))   ((TextView)findViewById(R.id.username)).setText(full_name);
  else   mDrawerUserInfo.setVisibility(View.GONE);
   if (!MizLib.isEmpty(full_name)) {
-    Picasso.with(getApplicationContext()).load("file://" + new File(MizLib.getCacheFolder(getApplicationContext()),"avatar.jpg").getAbsolutePath()).resize(MizLib.convertDpToPixels(getApplicationContext(),50),MizLib.convertDpToPixels(getApplicationContext(),50)).into(((ImageView)findViewById(R.id.userPhoto)),new Callback(){
-      @Override public void onError(){
-        ((ImageView)findViewById(R.id.userPhoto)).setImageResource(R.drawable.unknown_user);
-      }
-      @Override public void onSuccess(){
-      }
-    }
-);
+    CoverItem c=new CoverItem();
+    c.cover=((ImageView)findViewById(R.id.userPhoto));
+    Picasso.with(getApplicationContext()).load("file://" + new File(MizLib.getCacheFolder(getApplicationContext()),"avatar.jpg").getAbsolutePath()).resize(MizLib.convertDpToPixels(getApplicationContext(),80),MizLib.convertDpToPixels(getApplicationContext(),80)).error(R.drawable.unknown_user).into(c);
   }
 }

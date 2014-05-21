@@ -1,4 +1,0 @@
-{
-  mWeakBitmap=null;
-  super.invalidate();
-}

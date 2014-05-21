@@ -78,4 +78,6 @@ return 0;
 shownMovies=new ArrayList<MediumMovie>(tempMovies);
 tempMovies.clear();
 tempMovies=null;
+hideProgressBar();
+notifyDataSetChanged();
 }
