@@ -3,9 +3,14 @@
   if (convertView == null) {
     convertView=inflater.inflate(R.layout.grid_item,container,false);
     holder=new CoverItem();
+    holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.mLinearLayout.setBackgroundResource(mCard);
+    holder.text.setBackgroundResource(mCardBackground);
+    holder.text.setTextColor(mCardTitleColor);
+    holder.subtext.setBackgroundResource(mCardBackground);
     convertView.setTag(holder);
   }
  else {
@@ -22,7 +27,7 @@
     holder.text.setText(shownShows.get(position).getTitle());
     holder.subtext.setText(shownShows.get(position).getFirstAirdateYear());
   }
-  holder.cover.setImageResource(android.R.color.white);
+  holder.cover.setImageResource(mCardBackground);
   mPicasso.load(shownShows.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
   return convertView;
 }

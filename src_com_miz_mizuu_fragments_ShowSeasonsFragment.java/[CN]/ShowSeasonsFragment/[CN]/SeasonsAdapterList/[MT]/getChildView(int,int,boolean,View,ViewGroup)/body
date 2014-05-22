@@ -21,6 +21,6 @@
   holder.number.setVisibility(TextView.VISIBLE);
   if (shownEpisodes.get(position).hasWatched())   holder.watched.setVisibility(View.VISIBLE);
  else   holder.watched.setVisibility(View.GONE);
-  mPicasso.load("file://" + shownEpisodes.get(position).getEpisodePhoto()).placeholder(R.drawable.gray).error(R.drawable.nobackdrop).config(MizuuApplication.getBitmapConfig()).into(holder.cover);
+  mPicasso.load("file://" + shownEpisodes.get(position).getEpisodePhoto()).placeholder(R.drawable.gray).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
   return convertView;
 }

@@ -30,6 +30,5 @@
     }
   }
   shownMovies=new ArrayList<MediumMovie>(tempMovies);
-  sortMovies();
   return null;
 }

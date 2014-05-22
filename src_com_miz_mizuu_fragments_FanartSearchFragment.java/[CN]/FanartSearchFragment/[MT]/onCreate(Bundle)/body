@@ -4,4 +4,5 @@
   setRetainInstance(true);
   TMDB_ID=getArguments().getString("tmdbId");
   mPicasso=MizuuApplication.getPicasso(getActivity());
+  mConfig=MizuuApplication.getBitmapConfig();
 }

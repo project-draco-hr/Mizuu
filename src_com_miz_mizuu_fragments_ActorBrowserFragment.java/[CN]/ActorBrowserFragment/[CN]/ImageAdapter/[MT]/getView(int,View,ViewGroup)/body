@@ -3,18 +3,23 @@
   if (convertView == null) {
     convertView=inflater.inflate(R.layout.grid_item,container,false);
     holder=new CoverItem();
+    holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.mLinearLayout.setBackgroundResource(mCard);
+    holder.text.setBackgroundResource(mCardBackground);
+    holder.text.setTextColor(mCardTitleColor);
+    holder.subtext.setBackgroundResource(mCardBackground);
     convertView.setTag(holder);
   }
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  holder.cover.setImageBitmap(null);
+  holder.cover.setImageResource(mCardBackground);
   holder.text.setText(actors.get(position).getName());
   holder.subtext.setText(actors.get(position).getCharacter().equals("null") ? "" : actors.get(position).getCharacter());
-  if (!actors.get(position).getUrl().endsWith("null"))   mPicasso.load(actors.get(position).getUrl()).placeholder(R.drawable.gray).error(R.drawable.noactor).config(MizuuApplication.getBitmapConfig()).into(holder);
+  if (!actors.get(position).getUrl().endsWith("null"))   mPicasso.load(actors.get(position).getUrl()).error(R.drawable.noactor).config(mConfig).into(holder);
  else   holder.cover.setImageResource(R.drawable.noactor);
   return convertView;
 }

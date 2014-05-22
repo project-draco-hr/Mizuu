@@ -6,4 +6,5 @@
   json=getArguments().getString("json");
   baseUrl=getArguments().getString("baseUrl");
   mPicasso=MizuuApplication.getPicasso(getActivity());
+  mConfig=MizuuApplication.getBitmapConfig();
 }

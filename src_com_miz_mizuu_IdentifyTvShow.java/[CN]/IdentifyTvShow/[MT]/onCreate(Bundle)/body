@@ -11,21 +11,22 @@
   if (getIntent().getExtras().getString("showName") != null) {
     oldShowId=getIntent().getExtras().getString("oldShowId");
   }
-  mAdapter=new ListAdapter(this);
   mPicasso=MizuuApplication.getPicasso(this);
+  mConfig=MizuuApplication.getBitmapConfig();
   locale=Locale.getDefault();
   pbar=(ProgressBar)findViewById(R.id.pbar);
   useSystemLanguage=(CheckBox)findViewById(R.id.searchLanguage);
   useSystemLanguage.setText(getString(R.string.searchIn) + " " + locale.getDisplayLanguage(Locale.ENGLISH));
   if (localizedInfo)   useSystemLanguage.setChecked(true);
   lv=(ListView)findViewById(android.R.id.list);
-  lv.setAdapter(mAdapter);
   lv.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
       update(arg2);
     }
   }
 );
+  lv.setEmptyView(findViewById(R.id.no_results));
+  findViewById(R.id.no_results).setVisibility(View.GONE);
   String firstFilename=files[0].contains("<MiZ>") ? files[0].split("<MiZ>")[0] : files[0];
   DecryptedShowEpisode result=MizLib.decryptEpisode(firstFilename,settings.getString("ignoredTags",""));
   seasonText=(EditText)findViewById(R.id.seasonText);

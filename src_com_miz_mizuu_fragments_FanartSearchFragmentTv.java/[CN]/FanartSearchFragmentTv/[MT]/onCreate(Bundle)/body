@@ -4,5 +4,6 @@
   setRetainInstance(true);
   TVDB_ID=getArguments().getString("tvdbId");
   mPicasso=MizuuApplication.getPicasso(getActivity());
+  mConfig=MizuuApplication.getBitmapConfig();
   new GetCoverImages().execute(TVDB_ID);
 }

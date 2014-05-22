@@ -1,6 +1,6 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  v.findViewById(R.id.container).setBackgroundResource(R.color.light_background);
+  v.findViewById(R.id.container).setBackgroundResource(MizuuApplication.getBackgroundColorResource(getActivity()));
   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
   pbar=(ProgressBar)v.findViewById(R.id.progress);
   if (pics_sources.size() > 0)   pbar.setVisibility(View.GONE);
@@ -9,11 +9,9 @@
   mGridView.setAdapter(mAdapter);
   mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
     @Override public void onGlobalLayout(){
-      if (mAdapter.getNumColumns() == 0) {
-        final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
-        if (numColumns > 0) {
-          mAdapter.setNumColumns(numColumns);
-        }
+      final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+      if (numColumns > 0) {
+        mGridView.setNumColumns(numColumns);
       }
     }
   }

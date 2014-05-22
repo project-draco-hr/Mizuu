@@ -1,6 +1,6 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  v.findViewById(R.id.container).setBackgroundResource(R.color.light_background);
+  v.findViewById(R.id.container).setBackgroundResource(MizuuApplication.getBackgroundColorResource(getActivity()));
   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
   pbar=(ProgressBar)v.findViewById(R.id.progress);
   if (actors.size() > 0)   pbar.setVisibility(View.GONE);

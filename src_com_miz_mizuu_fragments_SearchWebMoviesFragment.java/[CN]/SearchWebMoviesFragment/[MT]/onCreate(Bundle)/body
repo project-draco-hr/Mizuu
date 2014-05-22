@@ -4,7 +4,7 @@
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
   localizedInfo=settings.getBoolean("prefsUseLocalData",false);
   mPicasso=MizuuApplication.getPicasso(getActivity());
-  mAdapter=new ListAdapter(getActivity());
+  mConfig=MizuuApplication.getBitmapConfig();
   locale=Locale.getDefault();
   startSearch=new StartSearch();
 }

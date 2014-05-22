@@ -1,27 +1,32 @@
 {
   CoverItem holder;
   if (convertView == null) {
-    convertView=inflater.inflate(R.layout.grid_item_cover,container,false);
+    convertView=inflater.inflate(R.layout.grid_item,container,false);
     holder=new CoverItem();
-    holder.layout=(RelativeLayout)convertView.findViewById(R.id.cover_layout);
+    holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
-    if (holder.layout.getLayoutParams().height != mItemHeight) {
-      holder.layout.setLayoutParams(mImageViewLayoutParams);
-    }
+    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.mLinearLayout.setBackgroundResource(mCard);
+    holder.text.setBackgroundResource(mCardBackground);
+    holder.text.setTextColor(mCardTitleColor);
+    holder.subtext.setBackgroundResource(mCardBackground);
     convertView.setTag(holder);
   }
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  holder.text.setText(shownMovies.get(position).getTitle());
-  if (showGridTitles) {
-    holder.text.setVisibility(TextView.VISIBLE);
+  if (!mShowTitles) {
+    holder.text.setVisibility(View.GONE);
+    holder.subtext.setVisibility(View.GONE);
+    holder.cover.setPadding(mSidePadding,0,mSidePadding,mBottomPadding);
   }
  else {
-    holder.text.setVisibility(TextView.GONE);
+    holder.text.setVisibility(View.VISIBLE);
+    holder.subtext.setVisibility(View.VISIBLE);
   }
-  holder.cover.setImageDrawable(gray);
-  mPicasso.load(shownMovies.get(position).getThumbnail()).resize(mItemHeight,(int)(mItemHeight * 1.5)).config(MizuuApplication.getBitmapConfig()).into(holder);
+  holder.text.setText(shownMovies.get(position).getTitle());
+  holder.cover.setImageResource(mCardBackground);
+  mPicasso.load(shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
   return convertView;
 }

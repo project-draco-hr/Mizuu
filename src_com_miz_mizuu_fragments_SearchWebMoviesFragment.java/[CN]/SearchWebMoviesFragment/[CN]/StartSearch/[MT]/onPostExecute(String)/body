@@ -1,6 +1,11 @@
 {
+  if (!isAdded())   return;
   hideProgressBar();
   if (searchText.getText().toString().length() > 0) {
+    if (lv.getAdapter() == null) {
+      mAdapter=new ListAdapter(getActivity());
+      lv.setAdapter(mAdapter);
+    }
     mAdapter.notifyDataSetChanged();
   }
 }

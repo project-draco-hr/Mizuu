@@ -1,0 +1,4 @@
+{
+  if (usesDarkTheme(context))   return Color.WHITE;
+  return Color.BLACK;
+}

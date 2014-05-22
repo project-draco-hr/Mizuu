@@ -1,4 +1,5 @@
 {
+  sortMovies();
   notifyDataSetChanged();
   hideProgressBar();
 }

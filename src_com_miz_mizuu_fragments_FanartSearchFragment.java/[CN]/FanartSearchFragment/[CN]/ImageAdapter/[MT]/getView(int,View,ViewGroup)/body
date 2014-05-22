@@ -9,6 +9,6 @@
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  mPicasso.load(pics_sources.get(position)).error(R.drawable.nobackdrop).config(MizuuApplication.getBitmapConfig()).into(holder.cover);
+  mPicasso.load(pics_sources.get(position)).placeholder(mCardBackground).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
   return convertView;
 }

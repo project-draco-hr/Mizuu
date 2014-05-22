@@ -1,0 +1,4 @@
+{
+  if (usesDarkTheme(context))   return Color.parseColor("#d0d0d0");
+  return Color.parseColor("#101010");
+}

@@ -1,4 +1,5 @@
 {
+  sortShows();
   notifyDataSetChanged();
   hideProgressBar();
 }

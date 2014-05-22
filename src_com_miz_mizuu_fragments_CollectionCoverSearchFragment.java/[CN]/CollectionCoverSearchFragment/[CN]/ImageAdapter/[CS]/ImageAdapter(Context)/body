@@ -1,5 +1,6 @@
 {
   super();
   mContext=context;
-  mImageViewLayoutParams=new GridView.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+  inflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+  mCardBackground=MizuuApplication.getCardColor(mContext);
 }

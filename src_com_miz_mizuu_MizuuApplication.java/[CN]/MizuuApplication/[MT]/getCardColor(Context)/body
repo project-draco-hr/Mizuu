@@ -1,0 +1,4 @@
+{
+  if (usesDarkTheme(context))   return R.color.card_background_dark;
+  return R.color.card_background_light;
+}

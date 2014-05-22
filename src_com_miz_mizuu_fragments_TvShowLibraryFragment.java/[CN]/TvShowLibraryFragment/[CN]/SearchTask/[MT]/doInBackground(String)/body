@@ -15,6 +15,5 @@
       if (lowerCase.indexOf(searchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(searchQuery) != -1)       shownShows.add(shows.get(i));
     }
   }
-  sortShows();
   return null;
 }

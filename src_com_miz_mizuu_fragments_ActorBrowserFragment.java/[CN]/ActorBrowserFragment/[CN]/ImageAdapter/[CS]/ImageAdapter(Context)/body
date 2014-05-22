@@ -2,4 +2,7 @@
   super();
   mContext=context;
   inflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+  mCard=MizuuApplication.getCardDrawable(mContext);
+  mCardBackground=MizuuApplication.getCardColor(mContext);
+  mCardTitleColor=MizuuApplication.getCardTitleColor(mContext);
 }
