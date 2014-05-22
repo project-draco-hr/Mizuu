@@ -2,7 +2,7 @@
   Intent i=new Intent();
   i.setClass(getActivity(),IdentifyTvShow.class);
   i.putExtra("rowId",shownEpisodes.get(selectedEpisodeIndex).getRowId());
-  i.putExtra("files",new String[]{shownEpisodes.get(selectedEpisodeIndex).getFilepath()});
+  i.putExtra("files",new String[]{shownEpisodes.get(selectedEpisodeIndex).getFullFilepath()});
   i.putExtra("isShow",false);
   startActivity(i);
 }
