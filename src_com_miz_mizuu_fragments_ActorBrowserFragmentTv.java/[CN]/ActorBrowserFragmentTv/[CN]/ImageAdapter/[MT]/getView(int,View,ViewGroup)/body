@@ -16,9 +16,8 @@
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  holder.cover.setImageResource(mCardBackground);
   holder.text.setText(actors.get(position).getName());
   holder.subtext.setText(actors.get(position).getCharacter());
-  mPicasso.load(actors.get(position).getUrl()).error(R.drawable.noactor).config(mConfig).into(holder.cover);
+  mPicasso.load(actors.get(position).getUrl()).placeholder(mCardBackground).error(R.drawable.noactor).config(mConfig).into(holder.cover);
   return convertView;
 }

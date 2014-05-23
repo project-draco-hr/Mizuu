@@ -27,6 +27,7 @@
   }
   holder.text.setText(shownMovies.get(position).getTitle());
   holder.cover.setImageResource(mCardBackground);
-  mPicasso.load(shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+  if (mResizedWidth > 0)   mPicasso.load(shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else   mPicasso.load(shownMovies.get(position).getThumbnail()).config(mConfig).into(holder);
   return convertView;
 }

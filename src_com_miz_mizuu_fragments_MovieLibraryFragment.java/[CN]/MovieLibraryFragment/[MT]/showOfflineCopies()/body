@@ -8,10 +8,10 @@
       for (int i=0; i < movies.size(); i++) {
         if (movies.get(i).hasOfflineCopy())         shownMovies.add(movies.get(i));
       }
-      sortMovies();
       return null;
     }
     @Override protected void onPostExecute(    Void result){
+      sortMovies();
       notifyDataSetChanged();
       hideProgressBar();
     }

@@ -2,5 +2,4 @@
   if (mAdapter != null)   mAdapter.notifyDataSetChanged();
   if (spinnerAdapter != null)   spinnerAdapter.notifyDataSetChanged();
   updateTextAndUpdateButton();
-  mGridView.requestFocus();
 }

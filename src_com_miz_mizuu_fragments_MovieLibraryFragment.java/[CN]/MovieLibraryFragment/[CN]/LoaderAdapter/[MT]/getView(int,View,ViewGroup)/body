@@ -55,10 +55,12 @@ if (mShowTitles) holder.text.setText(shownMovies.get(position).getCollection());
  else {
 if (mShowTitles) holder.text.setText(shownMovies.get(position).getTitle());
 if (!ignoreNfo && shownMovies.get(position).isNetworkFile()) {
-mPicasso.load(shownMovies.get(position).getFilepath() + "<MiZ>" + shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+if (mResizedWidth > 0) mPicasso.load(shownMovies.get(position).getFilepath() + "<MiZ>" + shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else mPicasso.load(shownMovies.get(position).getFilepath() + "<MiZ>" + shownMovies.get(position).getThumbnail()).config(mConfig).into(holder);
 }
  else {
-mPicasso.load(shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+if (mResizedWidth > 0) mPicasso.load(shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else mPicasso.load(shownMovies.get(position).getThumbnail()).config(mConfig).into(holder);
 }
 }
 return convertView;

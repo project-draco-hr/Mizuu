@@ -15,6 +15,7 @@
     mTitle="";
   }
  else {
+    mTitle=TITLE;
     if (ignorePrefixes) {
       String temp=TITLE.toLowerCase(Locale.ENGLISH);
       String[] prefixes=MizLib.getPrefixes(CONTEXT);
@@ -25,9 +26,6 @@
           break;
         }
       }
-    }
- else {
-      mTitle=TITLE;
     }
   }
 }

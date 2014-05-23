@@ -1,7 +1,7 @@
 {
   if (defaultMsg != null && activity != null)   activity.runOnUiThread(new Runnable(){
     public void run(){
-      Toast.makeText(getActivity(),defaultMsg,Toast.LENGTH_LONG).show();
+      Toast.makeText(activity,defaultMsg,Toast.LENGTH_LONG).show();
     }
   }
 );
