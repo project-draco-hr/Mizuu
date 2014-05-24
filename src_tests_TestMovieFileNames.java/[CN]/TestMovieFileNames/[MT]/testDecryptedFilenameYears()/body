@@ -110,4 +110,11 @@
   Assert.assertEquals("2009",d[108].getFileNameYear());
   Assert.assertEquals("2009",d[109].getFileNameYear());
   Assert.assertEquals("",d[110].getFileNameYear());
+  Assert.assertEquals("",d[111].getFileNameYear());
+  Assert.assertEquals("",d[112].getFileNameYear());
+  Assert.assertEquals("",d[113].getFileNameYear());
+  Assert.assertEquals("",d[114].getFileNameYear());
+  Assert.assertEquals("",d[115].getFileNameYear());
+  Assert.assertEquals("2009",d[116].getFileNameYear());
+  Assert.assertEquals("",d[117].getFileNameYear());
 }

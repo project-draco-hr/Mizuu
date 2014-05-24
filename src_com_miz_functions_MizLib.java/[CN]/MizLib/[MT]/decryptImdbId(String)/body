@@ -1,0 +1,6 @@
+{
+  Pattern p=Pattern.compile("(tt\\d{7})");
+  Matcher m=p.matcher(filename);
+  if (m.find())   return m.group(1);
+  return null;
+}

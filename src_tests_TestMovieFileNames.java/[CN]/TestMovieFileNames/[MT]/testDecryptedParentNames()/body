@@ -110,4 +110,11 @@
   Assert.assertEquals("",d[108].getDecryptedParentName());
   Assert.assertEquals("",d[109].getDecryptedParentName());
   Assert.assertEquals("",d[110].getDecryptedParentName());
+  Assert.assertEquals("",d[111].getDecryptedParentName());
+  Assert.assertEquals("",d[112].getDecryptedParentName());
+  Assert.assertEquals("Hello Friend",d[113].getDecryptedParentName());
+  Assert.assertEquals("Hello Friend",d[114].getDecryptedParentName());
+  Assert.assertEquals("Hello Friend",d[115].getDecryptedParentName());
+  Assert.assertEquals("Movies",d[116].getDecryptedParentName());
+  Assert.assertEquals("",d[117].getDecryptedParentName());
 }

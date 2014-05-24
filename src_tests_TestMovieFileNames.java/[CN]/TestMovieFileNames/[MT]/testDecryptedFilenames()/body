@@ -115,4 +115,6 @@
   Assert.assertEquals("Hello",d[113].getDecryptedFileName());
   Assert.assertEquals("Hello Friend",d[114].getDecryptedFileName());
   Assert.assertEquals("Hello Friend",d[115].getDecryptedFileName());
+  Assert.assertEquals("Avatar",d[116].getDecryptedFileName());
+  Assert.assertEquals("Test",d[117].getDecryptedFileName());
 }
