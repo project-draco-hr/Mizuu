@@ -1,9 +1,22 @@
 {
-  menu.clear();
-  menu.add(new MenuItem(getString(R.string.drawerMyMovies),mNumMovies,false));
-  menu.add(new MenuItem(getString(R.string.drawerMyTvShows),mNumShows,false));
-  menu.add(new MenuItem(getString(R.string.chooserWatchList),mNumWatchlist,false));
-  menu.add(new MenuItem(getString(R.string.drawerOnlineMovies),0,false));
-  menu.add(new MenuItem(getString(R.string.drawerWebVideos),0,false));
-  setupThirdPartyApps();
+  mMenuItems.clear();
+  mMenuItems.add(new MenuItem(getString(R.string.drawerMyMovies),mNumMovies,MenuItem.SECTION,null));
+  mMenuItems.add(new MenuItem(getString(R.string.drawerMyTvShows),mNumShows,MenuItem.SECTION,null));
+  mMenuItems.add(new MenuItem(getString(R.string.chooserWatchList),mNumWatchlist,MenuItem.SECTION,null));
+  mMenuItems.add(new MenuItem(getString(R.string.drawerOnlineMovies),-1,MenuItem.SECTION,null));
+  mMenuItems.add(new MenuItem(getString(R.string.drawerWebVideos),-1,MenuItem.SECTION,null));
+  mMenuItems.add(new MenuItem(getString(R.string.installed_media_apps),-1,MenuItem.HEADER,null));
+  final PackageManager pm=getPackageManager();
+  List<ApplicationInfo> packages=pm.getInstalledApplications(PackageManager.GET_META_DATA);
+  Collections.sort(packages,new Comparator<ApplicationInfo>(){
+    @Override public int compare(    ApplicationInfo o1,    ApplicationInfo o2){
+      return pm.getApplicationLabel(o1).toString().compareToIgnoreCase(pm.getApplicationLabel(o2).toString());
+    }
+  }
+);
+  for (int i=0; i < packages.size(); i++) {
+    if (MizLib.isMediaApp(packages.get(i))) {
+      mMenuItems.add(new MenuItem(pm.getApplicationLabel(packages.get(i)).toString(),-1,MenuItem.THIRD_PARTY_APP,packages.get(i).packageName));
+    }
+  }
 }

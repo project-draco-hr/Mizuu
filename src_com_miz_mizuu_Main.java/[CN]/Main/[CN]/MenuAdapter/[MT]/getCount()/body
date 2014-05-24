@@ -1,3 +1,3 @@
 {
-  return tab1.isSelected() ? menu.size() : thirdPartyApps.size();
+  return mMenuItems.size();
 }

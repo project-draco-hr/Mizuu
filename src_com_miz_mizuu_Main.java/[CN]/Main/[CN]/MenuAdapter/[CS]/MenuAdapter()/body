@@ -1,0 +1,4 @@
+{
+  mInflater=LayoutInflater.from(getApplicationContext());
+  mTablet=MizLib.isTablet(getApplicationContext());
+}

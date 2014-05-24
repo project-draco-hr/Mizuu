@@ -1,4 +1,4 @@
 String title
 int count
-boolean isHeader
+int type
 String packageName

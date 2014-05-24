@@ -3,14 +3,14 @@
   MizuuApplication.setupTheme(this);
   setContentView(R.layout.menu_drawer);
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
-  confirmExit=settings.getBoolean("prefsConfirmBackPress",false);
-  startup=settings.getString("prefsStartup","1");
-  if (startup.equals("0"))   startup="1";
-  dbHelper=MizuuApplication.getMovieAdapter();
-  dbHelperTv=MizuuApplication.getTvDbAdapter();
-  tfCondensed=MizuuApplication.getOrCreateTypeface(getApplicationContext(),"RobotoCondensed-Regular.ttf");
-  tf=MizuuApplication.getOrCreateTypeface(getApplicationContext(),"Roboto-Medium.ttf");
-  tfLight=MizuuApplication.getOrCreateTypeface(getApplicationContext(),"Roboto-Light.ttf");
+  mConfirmExit=settings.getBoolean("prefsConfirmBackPress",false);
+  mStartup=settings.getString("prefsStartup","1");
+  if (mStartup.equals("0"))   mStartup="1";
+  mDbHelper=MizuuApplication.getMovieAdapter();
+  mDbHelperTv=MizuuApplication.getTvDbAdapter();
+  mTfCondensed=MizuuApplication.getOrCreateTypeface(getApplicationContext(),"RobotoCondensed-Regular.ttf");
+  mTfMedium=MizuuApplication.getOrCreateTypeface(getApplicationContext(),"Roboto-Medium.ttf");
+  mTfLight=MizuuApplication.getOrCreateTypeface(getApplicationContext(),"Roboto-Light.ttf");
   setupMenuItems();
   mDrawerUserInfo=findViewById(R.id.drawer_user_info);
   mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
@@ -20,65 +20,52 @@
   }
  else   setupUserDetails();
   ((TextView)findViewById(R.id.username)).setTextSize(26f);
-  ((TextView)findViewById(R.id.username)).setTypeface(tfCondensed);
-  tab1=(TextView)findViewById(R.id.tab1);
-  tab1.setTextSize(12f);
-  tab2=(TextView)findViewById(R.id.tab2);
-  tab2.setTextSize(12f);
+  ((TextView)findViewById(R.id.username)).setTypeface(mTfCondensed);
   mDrawerList=(ListView)findViewById(R.id.listView1);
   mDrawerList.setAdapter(new MenuAdapter());
   mDrawerList.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      if (tab1.isSelected()) {
+switch (mMenuItems.get(arg2).getType()) {
+case MenuItem.SECTION:
         loadFragment(arg2 + 1);
-      }
- else {
-        final PackageManager pm=getPackageManager();
-        Intent i=pm.getLaunchIntentForPackage(thirdPartyApps.get(arg2).getPackageName());
-        if (i != null) {
-          i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-          startActivity(i);
-        }
-        mDrawerList.setItemChecked(arg2,false);
-      }
-    }
-  }
+      break;
+case MenuItem.THIRD_PARTY_APP:
+    final PackageManager pm=getPackageManager();
+  Intent i=pm.getLaunchIntentForPackage(mMenuItems.get(arg2).getPackageName());
+if (i != null) {
+  i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+  startActivity(i);
+}
+break;
+}
+}
+}
 );
-  mDrawerList.setOnItemSelectedListener(new OnItemSelectedListener(){
-    @Override public void onItemSelected(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-    }
-    @Override public void onNothingSelected(    AdapterView<?> arg0){
-    }
-  }
-);
-  getActionBar().setDisplayHomeAsUpEnabled(true);
-  if (MizLib.hasICS())   getActionBar().setHomeButtonEnabled(true);
-  mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){
-    public void onDrawerClosed(    View view){
-      getActionBar().setTitle(null);
-      invalidateOptionsMenu();
-    }
-    public void onDrawerOpened(    View drawerView){
-      invalidateOptionsMenu();
-      if (MizLib.isGoogleTV(getApplicationContext()))       mDrawerList.requestFocus();
-    }
-  }
+getActionBar().setDisplayHomeAsUpEnabled(true);
+if (MizLib.hasICS()) getActionBar().setHomeButtonEnabled(true);
+mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){
+public void onDrawerClosed(View view){
+getActionBar().setTitle(null);
+invalidateOptionsMenu();
+}
+public void onDrawerOpened(View drawerView){
+invalidateOptionsMenu();
+if (MizLib.isGoogleTV(getApplicationContext())) mDrawerList.requestFocus();
+}
+}
 ;
-  mDrawerLayout.setDrawerListener(mDrawerToggle);
-  if (savedInstanceState != null && savedInstanceState.containsKey("tabIndex")) {
-    selectedIndex=savedInstanceState.getInt("selectedIndex");
-    changeTabSelection(savedInstanceState.getInt("tabIndex"));
-    loadFragment(selectedIndex + 1);
-  }
- else   if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("startup")) {
-    tab1.setSelected(true);
-    loadFragment(Integer.parseInt(getIntent().getExtras().getString("startup")));
-  }
+mDrawerLayout.setDrawerListener(mDrawerToggle);
+if (savedInstanceState != null && savedInstanceState.containsKey("selectedIndex")) {
+selectedIndex=savedInstanceState.getInt("selectedIndex");
+loadFragment(selectedIndex + 1);
+}
+ else if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("startup")) {
+loadFragment(Integer.parseInt(getIntent().getExtras().getString("startup")));
+}
  else {
-    tab1.setSelected(true);
-    loadFragment(Integer.parseInt(startup));
-  }
-  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movies-update"));
-  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-library-change"));
-  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-shows-update"));
+loadFragment(Integer.parseInt(mStartup));
+}
+LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movies-update"));
+LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-library-change"));
+LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-shows-update"));
 }

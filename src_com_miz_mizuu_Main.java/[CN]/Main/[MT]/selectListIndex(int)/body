@@ -1,6 +1,6 @@
 {
   if (index == -1)   index=0;
-  if (!menu.get(index).isThirdPartyApp()) {
+  if (mMenuItems.get(index).getType() == MenuItem.SECTION) {
     selectedIndex=index;
     mDrawerList.setItemChecked(index,true);
   }

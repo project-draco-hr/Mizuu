@@ -1,3 +1,4 @@
 {
-  return 0;
+  if (mMenuItems.get(position).getType() == MenuItem.HEADER)   return 0;
+  return 1;
 }

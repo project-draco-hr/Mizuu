@@ -1,5 +1,4 @@
 {
-  if (movies.size() == 0)   return;
   if (spinnerAdapter != null)   spinnerAdapter.notifyDataSetChanged();
 switch (itemPosition) {
 case 0:

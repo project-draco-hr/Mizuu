@@ -1,7 +1,0 @@
-{
-  this.title=title;
-  this.count=count;
-  this.isHeader=isHeader;
-  this.packageName=packageName;
-  isThirdPartyApp=true;
-}

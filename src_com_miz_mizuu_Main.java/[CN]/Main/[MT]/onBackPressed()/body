@@ -1,5 +1,5 @@
 {
-  if (startup.equals("0") && !mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && MizLib.isTablet(this)) {
+  if (mStartup.equals("0") && !mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && MizLib.isTablet(this)) {
     Intent i=new Intent(Intent.ACTION_VIEW);
     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     i.setClass(getApplicationContext(),Welcome.class);
@@ -7,13 +7,13 @@
     finish();
     return;
   }
-  if (!mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && confirmExit) {
-    if (hasTriedOnce) {
+  if (!mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && mConfirmExit) {
+    if (mTriedOnce) {
       super.onBackPressed();
     }
  else {
       Toast.makeText(this,getString(R.string.pressBackToExit),Toast.LENGTH_SHORT).show();
-      hasTriedOnce=true;
+      mTriedOnce=true;
     }
   }
  else {

@@ -1,4 +1,0 @@
-{
-  if (tab1.isSelected())   return menu.get(position);
-  return thirdPartyApps.get(position);
-}
