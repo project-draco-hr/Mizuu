@@ -17,5 +17,5 @@
     }
   }
 );
- else   ((ImageView)findViewById(R.id.userCover)).setImageResource(R.drawable.gray);
+ else   findViewById(R.id.personalizedArea).setVisibility(View.GONE);
 }

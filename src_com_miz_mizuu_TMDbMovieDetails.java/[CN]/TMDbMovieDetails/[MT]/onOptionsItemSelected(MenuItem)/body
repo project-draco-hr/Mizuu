@@ -2,12 +2,16 @@
 switch (item.getItemId()) {
 case android.R.id.home:
     onBackPressed();
-  return true;
+  break;
 case R.id.share:
 shareMovie(item);
+break;
 case R.id.openInBrowser:
 openInBrowser(item);
-default :
-return super.onOptionsItemSelected(item);
+break;
+case R.id.checkIn:
+checkIn(item);
+break;
 }
+return super.onOptionsItemSelected(item);
 }
