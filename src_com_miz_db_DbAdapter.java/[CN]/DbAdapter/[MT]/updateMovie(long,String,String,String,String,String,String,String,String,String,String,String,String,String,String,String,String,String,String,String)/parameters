@@ -1,5 +1,4 @@
 long rowId
-String filepath
 String coverpath
 String title
 String plot
