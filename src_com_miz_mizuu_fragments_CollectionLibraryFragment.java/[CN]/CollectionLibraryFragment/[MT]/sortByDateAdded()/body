@@ -1,6 +1,6 @@
 {
   Editor editor=settings.edit();
-  editor.putString("prefsSortingCollections","sortAdded");
+  editor.putString(SORTING_COLLECTIONS,"sortAdded");
   editor.apply();
   sortBy(DATE);
 }

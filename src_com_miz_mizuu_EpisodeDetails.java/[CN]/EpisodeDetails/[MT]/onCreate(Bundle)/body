@@ -1,7 +1,7 @@
 {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.viewpager);
-  showOldestEpisodeFirst=PreferenceManager.getDefaultSharedPreferences(this).getString("prefsEpisodesOrder",getString(R.string.oldestFirst)).equals(getString(R.string.oldestFirst)) ? true : false;
+  showOldestEpisodeFirst=PreferenceManager.getDefaultSharedPreferences(this).getString(TVSHOWS_EPISODE_ORDER,getString(R.string.oldestFirst)).equals(getString(R.string.oldestFirst)) ? true : false;
   db=MizuuApplication.getTvEpisodeDbAdapter();
   Cursor cursor=db.getAllEpisodes(getIntent().getExtras().getString("showId"),showOldestEpisodeFirst ? DbAdapterTvShowEpisode.OLDEST_FIRST : DbAdapterTvShowEpisode.NEWEST_FIRST);
   while (cursor.moveToNext()) {

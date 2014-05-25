@@ -1,9 +1,9 @@
 {
   super.onCreate(savedInstanceState);
   setHasOptionsMenu(true);
-  useWildcard=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsIgnoreFileType",false);
-  prefsDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsDisableEthernetWiFiCheck",false);
-  ignoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsIgnoredFilesEnabled",false);
+  useWildcard=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORE_VIDEO_FILE_TYPE,false);
+  prefsDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
+  ignoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_FILES_ENABLED,false);
   tf=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Thin.ttf");
   rowId=getArguments().getString("rowId");
   if (!rowId.isEmpty()) {

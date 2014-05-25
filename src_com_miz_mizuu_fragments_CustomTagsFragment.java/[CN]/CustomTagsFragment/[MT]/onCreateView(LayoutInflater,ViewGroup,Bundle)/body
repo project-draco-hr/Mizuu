@@ -9,7 +9,7 @@
       items_string+="<MiZ>" + tagText.getText();
       if (items_string.startsWith("<MiZ>"))       items_string=items_string.substring(5);
       Editor editor=settings.edit();
-      editor.putString("ignoredTags",items_string);
+      editor.putString(IGNORED_FILENAME_TAGS,items_string);
       editor.commit();
       items.clear();
       String[] split=items_string.split("<MiZ>");

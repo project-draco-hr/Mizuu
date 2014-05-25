@@ -1,6 +1,6 @@
 {
   editor=settings.edit();
-  editor.putInt(SHOWS_UPDATE_PREF,isDisabled ? NOT_ENABLED : showsSpinner.getSelectedItemPosition() + 1);
+  editor.putInt(SCHEDULED_UPDATES_TVSHOWS,isDisabled ? NOT_ENABLED : showsSpinner.getSelectedItemPosition() + 1);
   editor.commit();
   if (isAdded()) {
     if ((showsSpinner.getSelectedItemPosition() + 1) > AT_LAUNCH) {

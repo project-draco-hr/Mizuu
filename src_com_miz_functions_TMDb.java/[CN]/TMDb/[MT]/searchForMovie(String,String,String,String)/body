@@ -1,6 +1,6 @@
 {
   TMDbMovie movie=new TMDbMovie();
-  DecryptedMovie dm=MizLib.decryptMovie(filepath,PreferenceManager.getDefaultSharedPreferences(c).getString("ignoredTags",""));
+  DecryptedMovie dm=MizLib.decryptMovie(filepath,PreferenceManager.getDefaultSharedPreferences(c).getString(IGNORED_FILENAME_TAGS,""));
   if (dm.hasImdbId()) {
     try {
       JSONObject jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/find/" + URLEncoder.encode(dm.getImdbId(),"utf-8") + "?api_key="+ MizLib.TMDB_API+ "&external_source=imdb_id"+ (includeAdult ? "&include_adult=true" : ""));

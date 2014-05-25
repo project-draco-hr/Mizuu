@@ -12,15 +12,15 @@
     return;
   }
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
-  String startup=settings.getString("prefsStartup","1");
-  if (settings.getBoolean("prefsUseEnglishLanguage",false)) {
+  String startup=settings.getString(STARTUP_SELECTION,"1");
+  if (settings.getBoolean(USE_ENGLISH_LANGUAGE,false)) {
     Locale locale=new Locale("en");
     Locale.setDefault(locale);
     Configuration config=new Configuration();
     config.locale=locale;
     getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
   }
-  boolean rootPref=settings.getBoolean("prefsRootAccess",false);
+  boolean rootPref=settings.getBoolean(ROOT_ACCESS,false);
   if (rootPref) {
     try {
       Runtime.getRuntime().exec("su");
@@ -28,8 +28,8 @@
  catch (    IOException e) {
     }
   }
-  if (settings.getInt(ScheduledUpdatesFragment.MOVIE_UPDATE_PREF,ScheduledUpdatesFragment.NOT_ENABLED) == ScheduledUpdatesFragment.AT_LAUNCH)   getApplicationContext().startService(new Intent(getApplicationContext(),MovieLibraryUpdate.class));
-  if (settings.getInt(ScheduledUpdatesFragment.SHOWS_UPDATE_PREF,ScheduledUpdatesFragment.NOT_ENABLED) == ScheduledUpdatesFragment.AT_LAUNCH)   getApplicationContext().startService(new Intent(getApplicationContext(),TvShowsLibraryUpdate.class));
+  if (settings.getInt(SCHEDULED_UPDATES_MOVIE,ScheduledUpdatesFragment.NOT_ENABLED) == ScheduledUpdatesFragment.AT_LAUNCH)   getApplicationContext().startService(new Intent(getApplicationContext(),MovieLibraryUpdate.class));
+  if (settings.getInt(SCHEDULED_UPDATES_TVSHOWS,ScheduledUpdatesFragment.NOT_ENABLED) == ScheduledUpdatesFragment.AT_LAUNCH)   getApplicationContext().startService(new Intent(getApplicationContext(),TvShowsLibraryUpdate.class));
   Intent i=new Intent(Intent.ACTION_VIEW);
   i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
   if (startup.equals("0")) {

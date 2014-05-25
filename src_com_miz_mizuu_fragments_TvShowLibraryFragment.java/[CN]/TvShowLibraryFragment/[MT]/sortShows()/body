@@ -1,5 +1,5 @@
 {
-  String SORT_TYPE=settings.getString("prefsSortingTv","sortTitle");
+  String SORT_TYPE=settings.getString(SORTING_TVSHOWS,"sortTitle");
   if (SORT_TYPE.equals("sortRelease")) {
     sortByRelease();
   }

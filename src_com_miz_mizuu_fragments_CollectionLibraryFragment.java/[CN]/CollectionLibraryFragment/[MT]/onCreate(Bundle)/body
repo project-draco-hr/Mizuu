@@ -10,11 +10,11 @@
   setupSpinnerItems();
   PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
-  mShowTitles=settings.getBoolean("prefsShowGridTitles",false);
-  ignorePrefixes=settings.getBoolean("prefsIgnorePrefixesInTitles",false);
-  ignoreNfo=settings.getBoolean("prefsIgnoreNfoFiles",true);
-  prefsDisableEthernetWiFiCheck=settings.getBoolean("prefsDisableEthernetWiFiCheck",false);
-  String thumbnailSize=settings.getString("prefsGridItemSize",getString(R.string.normal));
+  mShowTitles=settings.getBoolean(SHOW_TITLES_IN_GRID,false);
+  ignorePrefixes=settings.getBoolean(IGNORED_TITLE_PREFIXES,false);
+  ignoreNfo=settings.getBoolean(IGNORED_NFO_FILES,true);
+  prefsDisableEthernetWiFiCheck=settings.getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
+  String thumbnailSize=settings.getString(GRID_ITEM_SIZE,getString(R.string.normal));
   if (thumbnailSize.equals(getString(R.string.normal)))   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1);
  else   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 0.75);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);

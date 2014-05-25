@@ -32,7 +32,7 @@
     stopSelf();
     return;
   }
-  boolean ignoreSizeCheck=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("prefsIgnoreFilesizeCheck",false);
+  boolean ignoreSizeCheck=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORE_FILESIZE_CHECK,false);
   if (!ignoreSizeCheck) {
     boolean sizeOK=checkFilesize();
     if (!sizeOK) {

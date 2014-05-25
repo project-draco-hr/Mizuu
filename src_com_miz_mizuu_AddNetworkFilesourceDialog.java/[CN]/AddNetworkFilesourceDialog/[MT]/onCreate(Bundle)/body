@@ -1,12 +1,12 @@
 {
   super.onCreate(savedInstanceState);
   if (!MizLib.isTablet(this)) {
-    if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsFullscreen",false))     setTheme(R.style.Theme_Example_FullScreen);
+    if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean(FULLSCREEN_TAG,false))     setTheme(R.style.Theme_Example_FullScreen);
  else     setTheme(R.style.Theme_Example);
   }
   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
   setContentView(R.layout.addnetwork);
-  prefsDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsDisableEthernetWiFiCheck",false);
+  prefsDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
   server=(EditText)findViewById(R.id.server);
   domain=(EditText)findViewById(R.id.domain);
   username=(EditText)findViewById(R.id.username);

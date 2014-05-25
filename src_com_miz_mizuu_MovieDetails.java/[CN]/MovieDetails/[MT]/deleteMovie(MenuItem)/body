@@ -3,7 +3,7 @@
   View dialogLayout=getLayoutInflater().inflate(R.layout.delete_file_dialog_layout,null);
   final CheckBox cb=(CheckBox)dialogLayout.findViewById(R.id.deleteFile);
   if (thisMovie.isUpnpFile())   cb.setEnabled(false);
- else   cb.setChecked(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsAlwaysDeleteFile",false));
+ else   cb.setChecked(PreferenceManager.getDefaultSharedPreferences(this).getBoolean(ALWAYS_DELETE_FILE,false));
   builder.setTitle(getString(R.string.removeMovie)).setView(dialogLayout).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int id){
       boolean deleted=true;

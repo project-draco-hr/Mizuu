@@ -2,7 +2,7 @@
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
-  items_string=settings.getString("ignoredTags","");
+  items_string=settings.getString(IGNORED_FILENAME_TAGS,"");
   if (!items_string.isEmpty()) {
     String[] split=items_string.split("<MiZ>");
     for (int i=0; i < split.length; i++)     items.add(split[i]);

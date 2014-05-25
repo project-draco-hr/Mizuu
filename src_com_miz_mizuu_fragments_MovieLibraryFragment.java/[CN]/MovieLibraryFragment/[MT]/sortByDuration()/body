@@ -1,6 +1,6 @@
 {
   Editor editor=settings.edit();
-  editor.putString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? "prefsSortingCollectionsOverview" : "prefsSorting","sortDuration");
+  editor.putString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES,"sortDuration");
   editor.apply();
   sortBy(DURATION);
 }

@@ -28,17 +28,17 @@
   }
 );
   syncTrakt=(CheckBox)v.findViewById(R.id.syncTrakt);
-  syncTrakt.setChecked(settings.getBoolean("syncLibrariesWithTrakt",true));
+  syncTrakt.setChecked(settings.getBoolean(SYNC_WITH_TRAKT,true));
   syncTrakt.setOnCheckedChangeListener(new OnCheckedChangeListener(){
     @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
       Editor editor=settings.edit();
-      editor.putBoolean("syncLibrariesWithTrakt",isChecked);
+      editor.putBoolean(SYNC_WITH_TRAKT,isChecked);
       editor.commit();
     }
   }
 );
-  traktUser.setText(settings.getString("traktUsername",""));
-  if (settings.getString("traktPassword","").isEmpty()) {
+  traktUser.setText(settings.getString(TRAKT_USERNAME,""));
+  if (settings.getString(TRAKT_PASSWORD,"").isEmpty()) {
     traktPass.setText("");
     traktUser.setEnabled(true);
     traktPass.setEnabled(true);

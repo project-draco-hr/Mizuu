@@ -4,7 +4,7 @@
     return;
   }
   int bufferSize;
-  String buff=PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("prefsBufferSize",getString(R.string._16kb));
+  String buff=PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(BUFFER_SIZE,getString(R.string._16kb));
   if (buff.equals(getString(R.string._16kb)))   bufferSize=8192 * 2;
  else   bufferSize=8192;
   final Streamer s=Streamer.getInstance();

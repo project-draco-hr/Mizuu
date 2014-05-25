@@ -1,7 +1,7 @@
 {
   if (movies.isChecked() && moviesSpinner.getSelectedItemPosition() > 0) {
     nextMovieUpdate.setVisibility(View.VISIBLE);
-    long nextUpdate=settings.getLong(ScheduledUpdatesAlarmManager.prefNextMovies,0);
+    long nextUpdate=settings.getLong(NEXT_SCHEDULED_MOVIE_UPDATE,0);
     if (nextUpdate > 0) {
       long timeUntilNext=(nextUpdate - System.currentTimeMillis()) / 1000 / 60;
       long minutes=timeUntilNext % 60;

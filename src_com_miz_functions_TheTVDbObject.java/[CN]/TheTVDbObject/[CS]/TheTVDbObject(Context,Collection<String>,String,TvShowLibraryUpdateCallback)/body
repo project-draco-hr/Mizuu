@@ -2,7 +2,7 @@
   this.context=context;
   this.language=language;
   this.callback=callback;
-  this.ignoredTags=PreferenceManager.getDefaultSharedPreferences(context).getString("ignoredTags","");
+  this.ignoredTags=PreferenceManager.getDefaultSharedPreferences(context).getString(IGNORED_FILENAME_TAGS,"");
   for (  String file : files)   queue.add(file);
   setup();
   tvdb=new TheTVDb(context);

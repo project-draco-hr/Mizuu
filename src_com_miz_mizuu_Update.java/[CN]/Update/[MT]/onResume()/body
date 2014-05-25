@@ -1,5 +1,5 @@
 {
   super.onResume();
-  checkBox.setChecked(settings.getBoolean(isMovie ? "prefsClearLibrary" : "prefsClearLibraryTv",false));
-  checkBox2.setChecked(settings.getBoolean(isMovie ? "prefsRemoveUnavailable" : "prefsRemoveUnavailableTv",false));
+  checkBox.setChecked(settings.getBoolean(isMovie ? CLEAR_LIBRARY_MOVIES : CLEAR_LIBRARY_TVSHOWS,false));
+  checkBox2.setChecked(settings.getBoolean(isMovie ? REMOVE_UNAVAILABLE_FILES_MOVIES : REMOVE_UNAVAILABLE_FILES_TVSHOWS,false));
 }

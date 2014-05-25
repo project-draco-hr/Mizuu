@@ -1,8 +1,7 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
-  settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
-  localizedInfo=settings.getBoolean("prefsUseLocalData",false);
+  localizedInfo=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(USE_LOCALIZED_DATA,false);
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
   locale=Locale.getDefault();

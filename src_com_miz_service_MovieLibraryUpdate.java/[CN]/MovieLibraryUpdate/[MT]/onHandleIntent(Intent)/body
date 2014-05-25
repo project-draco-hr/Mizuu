@@ -13,7 +13,7 @@
   if (mStopUpdate)   return;
   if (mClearLibrary) {
     mEditor=mSettings.edit();
-    mEditor.putBoolean("prefsClearLibrary",false);
+    mEditor.putBoolean(CLEAR_LIBRARY_MOVIES,false);
     mEditor.commit();
     log("removeMoviesFromDatabase()");
     removeMoviesFromDatabase();

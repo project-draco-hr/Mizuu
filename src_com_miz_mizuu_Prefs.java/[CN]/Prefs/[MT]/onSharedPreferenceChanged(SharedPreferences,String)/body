@@ -1,5 +1,5 @@
 {
-  if (key.equals("prefsIgnoredFilesEnabled")) {
-    if (pref != null)     pref.setEnabled(sharedPreferences.getBoolean("prefsIgnoredFilesEnabled",false));
+  if (key.equals(IGNORED_FILES_ENABLED)) {
+    if (pref != null)     pref.setEnabled(sharedPreferences.getBoolean(IGNORED_FILES_ENABLED,false));
   }
 }

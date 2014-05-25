@@ -1,6 +1,6 @@
 {
   Editor editor=settings.edit();
-  editor.putString("prefsSortingTv","sortWeightedRating");
+  editor.putString(SORTING_TVSHOWS,"sortWeightedRating");
   editor.apply();
   sortBy(WEIGHTED_RATING);
 }

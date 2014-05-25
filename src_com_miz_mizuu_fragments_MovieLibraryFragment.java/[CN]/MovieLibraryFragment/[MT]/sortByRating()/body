@@ -1,6 +1,6 @@
 {
   Editor editor=settings.edit();
-  editor.putString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? "prefsSortingCollectionsOverview" : "prefsSorting","sortRating");
+  editor.putString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES,"sortRating");
   editor.apply();
   sortBy(RATING);
 }

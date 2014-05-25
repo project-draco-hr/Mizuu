@@ -1,6 +1,6 @@
 {
   shows.clear();
-  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean("prefsIgnorePrefixesInTitles",false);
+  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORED_TITLE_PREFIXES,false);
   dbHelper=MizuuApplication.getTvDbAdapter();
   cursor=dbHelper.getAllShows();
   while (cursor.moveToNext()) {

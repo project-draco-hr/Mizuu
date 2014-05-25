@@ -6,7 +6,7 @@
   this.callback=callback;
   setup();
   TMDb tmdb=new TMDb(context);
-  DecryptedMovie mMovie=MizLib.decryptMovie(filepath.contains("<MiZ>") ? filepath.split("<MiZ>")[0] : filepath,settings.getString("ignoredTags",""));
+  DecryptedMovie mMovie=MizLib.decryptMovie(filepath.contains("<MiZ>") ? filepath.split("<MiZ>")[0] : filepath,settings.getString(IGNORED_FILENAME_TAGS,""));
   movie=tmdb.searchForMovie(mMovie.getDecryptedFileName(),mMovie.getFileNameYear(),filepath.contains("<MiZ>") ? filepath.split("<MiZ>")[0] : filepath,LOCALE);
   download();
 }

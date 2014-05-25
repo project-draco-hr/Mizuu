@@ -1,7 +1,7 @@
 {
   ArrayList<TMDbMovie> results=new ArrayList<TMDbMovie>();
   try {
-    String baseImgUrl=PreferenceManager.getDefaultSharedPreferences(c).getString("tmdbBaseUrl",MizLib.TMDB_BASE_URL);
+    String baseImgUrl=PreferenceManager.getDefaultSharedPreferences(c).getString(TMDB_BASE_URL,MizLib.TMDB_BASE_URL);
     JSONObject jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/search/movie?query=" + URLEncoder.encode(query,"utf-8") + "&api_key="+ MizLib.TMDB_API+ (!MizLib.isEmpty(year) ? "&year=" + year : "")+ (includeAdult ? "&include_adult=true" : ""));
     for (int i=0; i < jObject.getJSONArray("results").length(); i++) {
       if (!MizLib.isAdultContent(c,jObject.getJSONArray("results").getJSONObject(0).getString("title")) && !MizLib.isAdultContent(c,jObject.getJSONArray("results").getJSONObject(0).getString("original_title"))) {

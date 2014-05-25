@@ -1,5 +1,5 @@
 {
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
-  String username=settings.getString("traktUsername","").trim();
+  String username=settings.getString(TRAKT_USERNAME,"").trim();
   return username;
 }

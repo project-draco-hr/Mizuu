@@ -1,6 +1,6 @@
 {
   List<String> tempList=null;
-  String ignoredTags=mSettings.getString("ignoredTags","");
+  String ignoredTags=mSettings.getString(IGNORED_FILENAME_TAGS,"");
   for (int j=0; j < mTvShowFileSources.size(); j++) {
     updateTvShowScanningNotification(mTvShowFileSources.get(j).toString());
     tempList=mTvShowFileSources.get(j).searchFolder();

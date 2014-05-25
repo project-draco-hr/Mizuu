@@ -1,7 +1,7 @@
 {
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
-  String username=settings.getString("traktUsername","").trim();
-  String password=settings.getString("traktPassword","");
+  String username=settings.getString(TRAKT_USERNAME,"").trim();
+  String password=settings.getString(TRAKT_PASSWORD,"");
   if (username.isEmpty() || password.isEmpty())   return false;
   OkApacheClient httpclient=new OkApacheClient();
   HttpPost httppost=new HttpPost("http://api.trakt.tv/show/cancelcheckin/" + MizLib.TRAKT_API);

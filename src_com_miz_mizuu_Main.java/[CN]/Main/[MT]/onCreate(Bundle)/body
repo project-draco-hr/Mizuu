@@ -3,8 +3,8 @@
   MizuuApplication.setupTheme(this);
   setContentView(R.layout.menu_drawer);
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
-  mConfirmExit=settings.getBoolean("prefsConfirmBackPress",false);
-  mStartup=settings.getString("prefsStartup","1");
+  mConfirmExit=settings.getBoolean(CONFIRM_BACK_PRESS,false);
+  mStartup=settings.getString(STARTUP_SELECTION,"1");
   if (mStartup.equals("0"))   mStartup="1";
   mDbHelper=MizuuApplication.getMovieAdapter();
   mDbHelperTv=MizuuApplication.getTvDbAdapter();

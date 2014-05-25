@@ -1,10 +1,10 @@
 {
-  if (key.equals("prefsIgnorePrefixesInTitles")) {
-    ignorePrefixes=settings.getBoolean("prefsIgnorePrefixesInTitles",false);
+  if (key.equals(IGNORED_TITLE_PREFIXES)) {
+    ignorePrefixes=settings.getBoolean(IGNORED_TITLE_PREFIXES,false);
     forceLoaderLoad();
   }
- else   if (key.equals("prefsGridItemSize")) {
-    String thumbnailSize=settings.getString("prefsGridItemSize",getString(R.string.normal));
+ else   if (key.equals(GRID_ITEM_SIZE)) {
+    String thumbnailSize=settings.getString(GRID_ITEM_SIZE,getString(R.string.normal));
     if (thumbnailSize.equals(getString(R.string.normal)))     mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1);
  else     mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 0.75);
     mGridView.setColumnWidth(mImageThumbSize);
@@ -14,8 +14,8 @@
     }
     notifyDataSetChanged();
   }
- else   if (key.equals("prefsShowGridTitles")) {
-    mShowTitles=sharedPreferences.getBoolean("prefsShowGridTitles",true);
+ else   if (key.equals(SHOW_TITLES_IN_GRID)) {
+    mShowTitles=sharedPreferences.getBoolean(SHOW_TITLES_IN_GRID,true);
     notifyDataSetChanged();
   }
 }

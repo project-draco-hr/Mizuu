@@ -1,6 +1,6 @@
 {
   Editor editor=settings.edit();
-  editor.putString("prefsSortingCollections","sortRating");
+  editor.putString(SORTING_COLLECTIONS,"sortRating");
   editor.apply();
   sortBy(RATING);
 }

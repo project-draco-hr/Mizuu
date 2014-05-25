@@ -24,11 +24,11 @@
   mNotificationManager.notify(NOTIFICATION_ID,updateNotification);
   startForeground(NOTIFICATION_ID,updateNotification);
   mSettings=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-  mClearLibrary=mSettings.getBoolean("prefsClearLibraryTv",false);
-  mSearchSubfolders=mSettings.getBoolean("prefsEnableSubFolderSearch",true);
-  mClearUnavailable=mSettings.getBoolean("prefsRemoveUnavailableTv",false);
-  mDisableEthernetWiFiCheck=mSettings.getBoolean("prefsDisableEthernetWiFiCheck",false);
-  mIgnoreRemovedFiles=mSettings.getBoolean("prefsIgnoredFilesEnabled",false);
-  mSyncLibraries=mSettings.getBoolean("syncLibrariesWithTrakt",true);
+  mClearLibrary=mSettings.getBoolean(CLEAR_LIBRARY_TVSHOWS,false);
+  mSearchSubfolders=mSettings.getBoolean(ENABLE_SUBFOLDER_SEARCH,true);
+  mClearUnavailable=mSettings.getBoolean(REMOVE_UNAVAILABLE_FILES_TVSHOWS,false);
+  mDisableEthernetWiFiCheck=mSettings.getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
+  mIgnoreRemovedFiles=mSettings.getBoolean(IGNORED_FILES_ENABLED,false);
+  mSyncLibraries=mSettings.getBoolean(SYNC_WITH_TRAKT,true);
   mEditor=mSettings.edit();
 }

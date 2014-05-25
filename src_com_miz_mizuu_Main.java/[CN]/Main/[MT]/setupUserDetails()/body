@@ -1,5 +1,5 @@
 {
-  final String full_name=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("traktFullName","");
+  final String full_name=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString(TRAKT_FULL_NAME,"");
   if (!MizLib.isEmpty(full_name))   ((TextView)findViewById(R.id.username)).setText(full_name);
  else   mDrawerUserInfo.setVisibility(View.GONE);
   if (!MizLib.isEmpty(full_name)) {

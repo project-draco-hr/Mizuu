@@ -10,10 +10,10 @@
   actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
   if (spinnerAdapter == null)   spinnerAdapter=new ActionBarSpinner(this,spinnerItems);
   setTitle(null);
-  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnorePrefixesInTitles",false);
-  ignoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnoreNfoFiles",true);
-  prefsRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsRemoveMoviesFromWatchlist",true);
-  ignoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnoredFilesEnabled",false);
+  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_TITLE_PREFIXES,false);
+  ignoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_NFO_FILES,true);
+  prefsRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(REMOVE_MOVIES_FROM_WATCHLIST,true);
+  ignoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_FILES_ENABLED,false);
   if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
     movieId=Integer.valueOf(getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY));
   }

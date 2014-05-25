@@ -4,5 +4,5 @@
   addPreferencesFromResource(res);
   PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
   pref=getPreferenceScreen().findPreference("prefsIgnoredFiles");
-  if (pref != null)   pref.setEnabled(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsIgnoredFilesEnabled",false));
+  if (pref != null)   pref.setEnabled(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_FILES_ENABLED,false));
 }

@@ -8,7 +8,7 @@
   }
   items_string=result;
   Editor editor=settings.edit();
-  editor.putString("ignoredTags",items_string);
+  editor.putString(IGNORED_FILENAME_TAGS,items_string);
   editor.commit();
   ((BaseAdapter)lv.getAdapter()).notifyDataSetChanged();
 }

@@ -1,6 +1,6 @@
 {
   settings=PreferenceManager.getDefaultSharedPreferences(context);
-  localizedInfo=settings.getBoolean("prefsUseLocalData",false);
+  localizedInfo=settings.getBoolean(USE_LOCALIZED_DATA,false);
   if (language.isEmpty()) {
     if (localizedInfo) {
       LOCALE=Locale.getDefault().toString();

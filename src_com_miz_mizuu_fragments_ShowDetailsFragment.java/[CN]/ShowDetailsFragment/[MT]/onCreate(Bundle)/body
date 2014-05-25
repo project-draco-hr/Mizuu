@@ -2,7 +2,7 @@
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
   mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
-  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("prefsIgnorePrefixesInTitles",false);
+  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_TITLE_PREFIXES,false);
   dbHelper=MizuuApplication.getTvDbAdapter();
   Cursor cursor=dbHelper.getShow(getArguments().getString("showId"));
   while (cursor.moveToNext()) {

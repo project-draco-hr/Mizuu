@@ -1,6 +1,6 @@
 {
   Editor editor=settings.edit();
-  editor.putString("prefsSortingCollections","sortTitle");
+  editor.putString(SORTING_COLLECTIONS,"sortTitle");
   editor.apply();
   sortBy(TITLE);
 }

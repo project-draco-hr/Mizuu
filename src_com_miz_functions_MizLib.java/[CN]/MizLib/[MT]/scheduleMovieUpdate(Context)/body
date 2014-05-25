@@ -1,9 +1,9 @@
 {
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(context);
-  if (settings.getInt(ScheduledUpdatesFragment.MOVIE_UPDATE_PREF,ScheduledUpdatesFragment.NOT_ENABLED) > ScheduledUpdatesFragment.AT_LAUNCH) {
+  if (settings.getInt(SCHEDULED_UPDATES_MOVIE,ScheduledUpdatesFragment.NOT_ENABLED) > ScheduledUpdatesFragment.AT_LAUNCH) {
     ScheduledUpdatesAlarmManager.cancelUpdate(ScheduledUpdatesAlarmManager.MOVIES,context);
     long duration=MizLib.HOUR;
-switch (settings.getInt(ScheduledUpdatesFragment.MOVIE_UPDATE_PREF,ScheduledUpdatesFragment.NOT_ENABLED)) {
+switch (settings.getInt(SCHEDULED_UPDATES_MOVIE,ScheduledUpdatesFragment.NOT_ENABLED)) {
 case ScheduledUpdatesFragment.EVERY_2_HOURS:
       duration=MizLib.HOUR * 2;
     break;

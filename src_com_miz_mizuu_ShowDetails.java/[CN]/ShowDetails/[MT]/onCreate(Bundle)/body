@@ -20,7 +20,7 @@
     }
   }
 );
-  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("prefsIgnorePrefixesInTitles",false);
+  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_TITLE_PREFIXES,false);
   dbHelper=MizuuApplication.getTvDbAdapter();
   String showId="";
   if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
@@ -50,5 +50,5 @@
   if (savedInstanceState != null) {
     awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
-  if (!PreferenceManager.getDefaultSharedPreferences(this).getString("prefsTvShowsStartPage",getString(R.string.showDetails)).equals(getString(R.string.showDetails)))   awesomePager.setCurrentItem(1);
+  if (!PreferenceManager.getDefaultSharedPreferences(this).getString(TVSHOWS_START_PAGE,getString(R.string.showDetails)).equals(getString(R.string.showDetails)))   awesomePager.setCurrentItem(1);
 }

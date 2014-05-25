@@ -16,7 +16,7 @@
   }
  finally {
     mEditor=mSettings.edit();
-    mEditor.putString("tmdbBaseUrl",mBaseUrl);
+    mEditor.putString(TMDB_BASE_URL,mBaseUrl);
     mEditor.commit();
   }
 }

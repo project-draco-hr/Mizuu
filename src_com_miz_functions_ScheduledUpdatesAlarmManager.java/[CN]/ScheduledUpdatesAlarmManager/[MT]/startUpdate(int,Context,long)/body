@@ -13,7 +13,7 @@
     alarmMan.set(AlarmManager.RTC_WAKEUP,System.currentTimeMillis() + when,piWakeUp);
     SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(context);
     Editor editor=settings.edit();
-    editor.putLong((type == MOVIES) ? prefNextMovies : prefNextShows,System.currentTimeMillis() + when);
+    editor.putLong((type == MOVIES) ? NEXT_SCHEDULED_MOVIE_UPDATE : NEXT_SCHEDULED_TVSHOWS_UPDATE,System.currentTimeMillis() + when);
     editor.commit();
   }
 }

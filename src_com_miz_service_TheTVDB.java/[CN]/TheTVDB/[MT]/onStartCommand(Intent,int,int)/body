@@ -15,7 +15,7 @@
     @Override public void run(){
       tvdb=new TheTVDb(getApplicationContext());
       if (isUpdate) {
-        thisShow=tvdb.searchForShow(MizLib.decryptEpisode(files[0],PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("ignoredTags","")),LOCALE);
+        thisShow=tvdb.searchForShow(MizLib.decryptEpisode(files[0],PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString(IGNORED_FILENAME_TAGS,"")),LOCALE);
         createShow("","");
       }
  else       if (isUnidentifiedIdentify) {

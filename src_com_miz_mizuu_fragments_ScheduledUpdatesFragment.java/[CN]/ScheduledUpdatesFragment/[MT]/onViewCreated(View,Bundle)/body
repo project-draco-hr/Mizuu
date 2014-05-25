@@ -6,8 +6,8 @@
   showsSpinner=(Spinner)v.findViewById(R.id.showsSpinner);
   nextMovieUpdate=(TextView)v.findViewById(R.id.nextMovieUpdate);
   nextShowsUpdate=(TextView)v.findViewById(R.id.nextShowsUpdate);
-  movieUpdateType=settings.getInt(MOVIE_UPDATE_PREF,NOT_ENABLED);
-  showsUpdateType=settings.getInt(SHOWS_UPDATE_PREF,NOT_ENABLED);
+  movieUpdateType=settings.getInt(SCHEDULED_UPDATES_MOVIE,NOT_ENABLED);
+  showsUpdateType=settings.getInt(SCHEDULED_UPDATES_TVSHOWS,NOT_ENABLED);
   if (movieUpdateType == NOT_ENABLED) {
     movies.setChecked(false);
     moviesSpinner.setEnabled(false);

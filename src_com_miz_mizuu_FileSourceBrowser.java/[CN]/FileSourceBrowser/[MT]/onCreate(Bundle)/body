@@ -21,11 +21,11 @@ break;
 }
 ft.commit();
 }
-boolean hasShown=PreferenceManager.getDefaultSharedPreferences(this).getBoolean("hasShownBrowserHelpMessage",false);
+boolean hasShown=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(HAS_SHOWN_FILEBROWSER_MESSAGE,false);
 if (!hasShown) {
 Toast.makeText(this,R.string.browser_help_message,Toast.LENGTH_LONG).show();
 Editor editor=PreferenceManager.getDefaultSharedPreferences(this).edit();
-editor.putBoolean("hasShownBrowserHelpMessage",true);
+editor.putBoolean(HAS_SHOWN_FILEBROWSER_MESSAGE,true);
 editor.commit();
 }
 }
