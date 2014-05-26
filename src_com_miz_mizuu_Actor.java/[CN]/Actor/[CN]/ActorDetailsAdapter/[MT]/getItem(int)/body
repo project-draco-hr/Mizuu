@@ -1,7 +1,7 @@
 {
 switch (index) {
 case 0:
-    return ActorBiographyFragment.newInstance(json,baseUrl,mActorThumb);
+    return ActorBiographyFragment.newInstance(json,mActorThumb);
 case 1:
   return ActorMoviesFragment.newInstance(json,baseUrl);
 case 2:

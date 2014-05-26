@@ -28,12 +28,7 @@
       mBirthday="";
     }
     if (mBirthday.equals("null"))     mBirthday="";
-    try {
-      mImage=baseUrl + "h632" + jObject.getString("profile_path");
-    }
- catch (    Exception e) {
-      mImage="";
-    }
+    mImage=mThumb.replace("/w185","/h632");
     mActorName.setText(mName);
     if (!MizLib.isEmpty(mBio))     mActorBio.setText(mBio);
  else     mActorBio.setVisibility(View.GONE);
