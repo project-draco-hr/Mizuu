@@ -1,5 +1,9 @@
 {
-  Bitmap image=drawableToBitmap(mActorImage.getDrawable());
-  if (image != null)   return MizLib.fastblur(getActivity(),Bitmap.createScaledBitmap(image,image.getWidth() / 3,image.getHeight() / 3,false),4);
+  try {
+    mBitmap=mPicasso.load(mThumb).config(MizuuApplication.getBitmapConfig()).get();
+    if (mBitmap != null)     return MizLib.fastblur(getActivity(),Bitmap.createScaledBitmap(mBitmap,mBitmap.getWidth(),mBitmap.getHeight(),false),4);
+  }
+ catch (  IOException e) {
+  }
   return null;
 }

@@ -3,4 +3,5 @@
   outState.putInt("tab",awesomePager.getCurrentItem());
   outState.putString("json",json);
   outState.putString("baseUrl",baseUrl);
+  outState.putString("mActorThumb",mActorThumb);
 }

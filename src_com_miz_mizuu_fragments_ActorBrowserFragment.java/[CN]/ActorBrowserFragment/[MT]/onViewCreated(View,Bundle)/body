@@ -23,6 +23,7 @@
       Bundle bundle=new Bundle();
       bundle.putString("actorName",actors.get(arg2).getName());
       bundle.putString("actorID",actors.get(arg2).getId());
+      bundle.putString("thumb",actors.get(arg2).getUrl());
       intent.putExtras(bundle);
       startActivity(intent);
     }

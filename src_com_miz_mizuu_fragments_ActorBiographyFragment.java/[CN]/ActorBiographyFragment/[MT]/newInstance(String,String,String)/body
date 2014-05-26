@@ -3,6 +3,7 @@
   Bundle bundle=new Bundle();
   bundle.putString("json",json);
   bundle.putString("baseUrl",baseUrl);
+  bundle.putString("thumbUrl",thumbUrl);
   pageFragment.setArguments(bundle);
   return pageFragment;
 }

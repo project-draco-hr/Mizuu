@@ -4,5 +4,5 @@
   mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
   tmdb=new TMDb(getActivity());
   movieId=getArguments().getString("movieId");
-  mPicasso=MizuuApplication.getPicasso(getActivity());
+  mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
 }

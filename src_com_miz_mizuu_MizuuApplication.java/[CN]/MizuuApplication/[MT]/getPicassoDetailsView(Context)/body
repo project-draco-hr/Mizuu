@@ -1,0 +1,4 @@
+{
+  if (mPicassoDetailsView == null)   mPicassoDetailsView=new Picasso.Builder(context).downloader(getDownloader(context)).build();
+  return mPicassoDetailsView;
+}

@@ -4,5 +4,6 @@
   tf=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Thin.ttf");
   json=getArguments().getString("json");
   baseUrl=getArguments().getString("baseUrl");
-  mPicasso=MizuuApplication.getPicasso(getActivity());
+  mThumb=getArguments().getString("thumbUrl");
+  mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
 }

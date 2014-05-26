@@ -1,0 +1,3 @@
+{
+  if (result != null)   mActorImage.setImageBitmap(result);
+}
