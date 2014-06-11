@@ -1,0 +1,8 @@
+{
+  if (mEpisode.hasOfflineCopy()) {
+    playEpisode(mEpisode.getOfflineCopyUri(),false);
+  }
+ else {
+    playEpisode(mEpisode.getFilepath(),mEpisode.isNetworkFile());
+  }
+}

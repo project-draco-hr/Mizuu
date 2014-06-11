@@ -1,0 +1,4 @@
+{
+  super.onDestroy();
+  mBus.unregister(this);
+}

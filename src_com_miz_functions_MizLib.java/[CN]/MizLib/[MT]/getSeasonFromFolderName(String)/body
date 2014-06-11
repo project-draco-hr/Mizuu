@@ -8,7 +8,7 @@
       season=Integer.valueOf(result.replaceAll("(?i)s","").trim());
       return season;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(?i)season((\\s)+)(\\d){1,4}");
@@ -19,7 +19,7 @@
       season=Integer.valueOf(result.replaceAll("(?i)season","").trim());
       return season;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(\\d){1,4}");
@@ -52,7 +52,7 @@ break;
 }
 return season;
 }
- catch (IndexOutOfBoundsException e) {
+ catch (Exception e) {
 }
 }
 return season;

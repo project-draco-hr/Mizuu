@@ -1,0 +1,4 @@
+String showId
+int season
+Context c
+boolean watched

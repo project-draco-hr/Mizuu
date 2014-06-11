@@ -1,8 +1,10 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  mAdapter=new ImageAdapter(getActivity());
+  mAdapter=new ImageAdapter(mContext);
+  mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
   mGridView=(GridView)v.findViewById(R.id.gridView);
   mGridView.setEmptyView(v.findViewById(R.id.progress));
+  mGridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
   mGridView.setAdapter(mAdapter);
   mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
     @Override public void onGlobalLayout(){
@@ -17,7 +19,65 @@
 );
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      mSelectedIndex=arg2;
+      if (!mDualPane) {
+        Intent i=new Intent(getActivity(),TvShowEpisodes.class);
+        i.putExtra(SHOW_ID,mShowId);
+        i.putExtra(SEASON,mItems.get(arg2).getSeason());
+        i.putExtra(EPISODE_COUNT,mItems.get(arg2).getEpisodeCount());
+        startActivity(i);
+      }
+ else {
+        mBus.post(mItems.get(arg2));
+        mAdapter.notifyDataSetChanged();
+      }
     }
   }
 );
+  mGridView.setOnItemLongClickListener(new OnItemLongClickListener(){
+    @Override public boolean onItemLongClick(    AdapterView<?> parent,    View view,    int position,    long id){
+      mGridView.setItemChecked(position,true);
+      return true;
+    }
+  }
+);
+  mGridView.setMultiChoiceModeListener(new MultiChoiceModeListener(){
+    @Override public boolean onCreateActionMode(    ActionMode mode,    Menu menu){
+      MenuInflater inflater=mode.getMenuInflater();
+      inflater.inflate(R.menu.seasons_contextual,menu);
+      mContextualActionBarEnabled=true;
+      return true;
+    }
+    @Override public boolean onPrepareActionMode(    ActionMode mode,    Menu menu){
+      return true;
+    }
+    @Override public boolean onActionItemClicked(    ActionMode mode,    MenuItem item){
+switch (item.getItemId()) {
+case R.id.watched:
+        changeWatchedStatus(true);
+      break;
+case R.id.unwatched:
+    changeWatchedStatus(false);
+  break;
+case R.id.remove:
+removeSelectedSeasons();
+break;
+}
+mode.finish();
+return true;
+}
+@Override public void onDestroyActionMode(ActionMode mode){
+mContextualActionBarEnabled=false;
+mCheckedSeasons.clear();
+}
+@Override public void onItemCheckedStateChanged(ActionMode mode,int position,long id,boolean checked){
+if (checked) mCheckedSeasons.add(position);
+ else mCheckedSeasons.remove(position);
+int count=mCheckedSeasons.size();
+mode.setTitle(count + " " + getResources().getQuantityString(R.plurals.seasons_selected,count,count));
+mAdapter.notifyDataSetChanged();
+}
+}
+);
+loadSeasons(true);
 }

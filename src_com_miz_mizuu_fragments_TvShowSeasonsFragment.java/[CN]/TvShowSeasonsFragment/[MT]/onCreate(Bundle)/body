@@ -1,14 +1,12 @@
 {
   super.onCreate(savedInstanceState);
-  setHasOptionsMenu(true);
+  mContext=getActivity().getApplicationContext();
+  mBus=MizuuApplication.getBus();
+  mBus.register(this);
+  mPicasso=MizuuApplication.getPicasso(mContext);
+  mConfig=MizuuApplication.getBitmapConfig();
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  mShowId=getArguments().getString("showId");
-  HashMap<String,Integer> seasons=MizuuApplication.getTvEpisodeDbAdapter().getSeasons(mShowId);
-  for (  String key : seasons.keySet()) {
-    mItems.add(new GridSeason(Integer.valueOf(key),seasons.get(key),MizLib.getTvShowSeasonFolder(getActivity()).getAbsolutePath() + "/" + mShowId+ "_S"+ key+ ".jpg"));
-  }
-  Collections.sort(mItems);
-  mPicasso=MizuuApplication.getPicasso(getActivity());
-  mConfig=MizuuApplication.getBitmapConfig();
+  mShowId=getArguments().getString(SHOW_ID);
+  mDualPane=getArguments().getBoolean(DUAL_PANE);
 }

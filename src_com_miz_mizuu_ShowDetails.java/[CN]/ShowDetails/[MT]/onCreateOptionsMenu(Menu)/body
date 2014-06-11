@@ -16,12 +16,7 @@ case 0:
   }
 break;
 case 1:
-if (!MizLib.isPortrait(this) && MizLib.isTablet(this)) {
-getMenuInflater().inflate(R.menu.seasons_tab_landscape,menu);
-}
- else {
 getMenuInflater().inflate(R.menu.seasons_tab,menu);
-}
 break;
 }
 return true;

@@ -10,6 +10,7 @@
     holder.mLinearLayout.setBackgroundResource(mCard);
     holder.text.setBackgroundResource(mCardBackground);
     holder.text.setTextColor(mCardTitleColor);
+    holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
     holder.subtext.setBackgroundResource(mCardBackground);
     convertView.setTag(holder);
   }

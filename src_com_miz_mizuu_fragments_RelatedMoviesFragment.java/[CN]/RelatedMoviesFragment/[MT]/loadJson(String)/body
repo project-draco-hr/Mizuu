@@ -4,7 +4,7 @@
     JSONArray jArray=jObject.getJSONObject("similar_movies").getJSONArray("results");
     pics_sources.clear();
     for (int i=0; i < jArray.length(); i++) {
-      pics_sources.add(new WebMovie(jArray.getJSONObject(i).getString("original_title"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getImageUrlSize(getActivity()) + jArray.getJSONObject(i).getString("poster_path"),jArray.getJSONObject(i).getString("release_date")));
+      pics_sources.add(new WebMovie(getActivity().getApplicationContext(),jArray.getJSONObject(i).getString("original_title"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getImageUrlSize(getActivity()) + jArray.getJSONObject(i).getString("poster_path"),jArray.getJSONObject(i).getString("release_date")));
     }
   }
  catch (  Exception e) {

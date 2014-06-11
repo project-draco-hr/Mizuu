@@ -8,7 +8,7 @@
     Picasso.with(getApplicationContext()).load("file://" + new File(MizLib.getCacheFolder(getApplicationContext()),"avatar.jpg").getAbsolutePath()).resize(MizLib.convertDpToPixels(getApplicationContext(),80),MizLib.convertDpToPixels(getApplicationContext(),80)).error(R.drawable.unknown_user).into(c);
   }
   String filepath=MizLib.getLatestBackdropPath(getApplicationContext());
-  if (!filepath.isEmpty())   Picasso.with(getApplicationContext()).load("file://" + filepath).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),160)).into(((ImageView)findViewById(R.id.userCover)),new Callback(){
+  if (!filepath.isEmpty())   Picasso.with(getApplicationContext()).load("file://" + filepath).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(((ImageView)findViewById(R.id.userCover)),new Callback(){
     @Override public void onError(){
       if (MizLib.isEmpty(full_name))       findViewById(R.id.personalizedArea).setVisibility(View.GONE);
  else       ((ImageView)findViewById(R.id.userCover)).setImageResource(R.drawable.gray);

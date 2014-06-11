@@ -1,0 +1,3 @@
+{
+  getActionBar().setSubtitle("S" + mEpisodes.get(position).getSeason() + "E"+ mEpisodes.get(position).getEpisode());
+}

@@ -1,0 +1,7 @@
+Context context
+String title
+String filepath
+int season
+int episode
+boolean watched
+File cover

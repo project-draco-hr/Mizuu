@@ -1,0 +1,7 @@
+{
+  mContext=context;
+  mTitle=title;
+  mId=id;
+  mUrl=url;
+  mDate=date;
+}

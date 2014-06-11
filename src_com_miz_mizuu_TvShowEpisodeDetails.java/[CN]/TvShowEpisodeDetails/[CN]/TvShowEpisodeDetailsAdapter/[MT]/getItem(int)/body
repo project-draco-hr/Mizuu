@@ -1,0 +1,3 @@
+{
+  return TvShowEpisodeDetailsFragment.newInstance(mShowId,Integer.parseInt(mEpisodes.get(index).getSeason()),Integer.parseInt(mEpisodes.get(index).getEpisode()));
+}

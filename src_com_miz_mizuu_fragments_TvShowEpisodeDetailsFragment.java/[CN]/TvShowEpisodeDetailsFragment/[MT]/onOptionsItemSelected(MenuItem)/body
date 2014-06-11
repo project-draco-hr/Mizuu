@@ -1,0 +1,20 @@
+{
+switch (item.getItemId()) {
+case R.id.play_video:
+    play();
+  break;
+case R.id.menuDeleteEpisode:
+deleteEpisode();
+break;
+case R.id.watched:
+watched(true);
+break;
+case R.id.identify:
+identifyEpisode();
+break;
+case R.id.watchOffline:
+watchOffline(item);
+break;
+}
+return false;
+}

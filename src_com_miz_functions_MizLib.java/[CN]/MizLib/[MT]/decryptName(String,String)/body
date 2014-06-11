@@ -7,7 +7,7 @@
       try {
         after=output.substring(output.indexOf("]") + 1,output.length());
       }
- catch (      IndexOutOfBoundsException e) {
+ catch (      Exception e) {
       }
     }
     if (!after.isEmpty())     output=after;

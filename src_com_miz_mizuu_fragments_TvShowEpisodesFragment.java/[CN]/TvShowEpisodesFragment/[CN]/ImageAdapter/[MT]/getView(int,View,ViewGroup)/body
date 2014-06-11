@@ -1,0 +1,27 @@
+{
+  final CoverItem holder;
+  if (convertView == null) {
+    if (mUseGridView)     convertView=inflater.inflate(R.layout.grid_episode,container,false);
+ else     convertView=inflater.inflate(R.layout.list_episode,container,false);
+    holder=new CoverItem();
+    holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    holder.text=(TextView)convertView.findViewById(R.id.text);
+    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.mLinearLayout.setBackgroundResource(mCard);
+    holder.text.setBackgroundResource(mCardBackground);
+    holder.text.setTextColor(mCardTitleColor);
+    holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
+    holder.subtext.setBackgroundResource(mCardBackground);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(CoverItem)convertView.getTag();
+  }
+  if (!mUseGridView)   convertView.findViewById(R.id.list_season_text_area).setBackgroundResource(mCardBackground);
+  holder.text.setText(mItems.get(position).getTitle());
+  holder.subtext.setText(mItems.get(position).getSubtitleText());
+  if (mResizedWidth > 0)   mPicasso.load(mItems.get(position).getCover()).placeholder(mCardBackground).error(R.drawable.nobackdrop).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder.cover);
+ else   mPicasso.load(mItems.get(position).getCover()).placeholder(mCardBackground).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
+  return convertView;
+}

@@ -25,5 +25,5 @@
       }
     }
   }
-  mGetThumbnail=MizuuApplication.getMovieThumbFolderPath(CONTEXT) + "/" + TMDB_ID+ ".jpg";
+  mGetThumbnail=new File(MizuuApplication.getMovieThumbFolderPath(CONTEXT),TMDB_ID + ".jpg");
 }

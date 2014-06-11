@@ -1,0 +1,3 @@
+{
+  return database.query(DATABASE_TABLE,allRows,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ MizLib.addIndexZero(season)+ "' AND "+ KEY_EPISODE+ "='"+ MizLib.addIndexZero(episode)+ "'",null,null,null,null);
+}

@@ -7,7 +7,7 @@
       int lastIndex=searchMatcher.end();
       result=input.substring(lastIndex - 4,lastIndex);
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   return result;

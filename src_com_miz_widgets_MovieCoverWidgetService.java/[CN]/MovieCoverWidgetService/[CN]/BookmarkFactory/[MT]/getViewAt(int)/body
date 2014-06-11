@@ -3,7 +3,7 @@
   BitmapFactory.Options options=new BitmapFactory.Options();
   options.inPreferredConfig=Config.RGB_565;
   options.inPreferQualityOverSpeed=true;
-  Bitmap cover=BitmapFactory.decodeFile(movies.get(position).getThumbnail(),options);
+  Bitmap cover=BitmapFactory.decodeFile(movies.get(position).getThumbnail().getAbsolutePath(),options);
   if (cover != null)   view.setImageViewBitmap(R.id.thumb,cover);
  else {
     view.setImageViewResource(R.id.thumb,R.drawable.loading_image);

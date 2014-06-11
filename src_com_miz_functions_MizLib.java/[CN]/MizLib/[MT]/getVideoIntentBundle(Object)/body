@@ -6,7 +6,7 @@
     b.putString("plot",((Movie)videoObject).getPlot());
     b.putString("date",((Movie)videoObject).getReleasedate());
     b.putDouble("rating",((Movie)videoObject).getRawRating());
-    b.putString("cover",((Movie)videoObject).getThumbnail());
+    b.putString("cover",((Movie)videoObject).getThumbnail().getAbsolutePath());
     b.putString("genres",((Movie)videoObject).getGenres());
   }
  else   if (videoObject instanceof TvShowEpisode) {
@@ -14,7 +14,7 @@
     b.putString("plot",((TvShowEpisode)videoObject).getDescription());
     b.putString("date",((TvShowEpisode)videoObject).getReleasedate());
     b.putDouble("rating",((TvShowEpisode)videoObject).getRawRating());
-    b.putString("cover",((TvShowEpisode)videoObject).getEpisodePhoto());
+    b.putString("cover",((TvShowEpisode)videoObject).getEpisodePhoto().getAbsolutePath());
     b.putString("episode",((TvShowEpisode)videoObject).getEpisode());
     b.putString("season",((TvShowEpisode)videoObject).getSeason());
   }

@@ -7,7 +7,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(?i)(\\d){1,4}e(\\d){1,3}");
@@ -17,7 +17,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(?i)s(\\d){1,4}x(\\d){1,3}");
@@ -27,7 +27,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(?i)(\\d){1,4}x(\\d){1,3}");
@@ -37,7 +37,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(?i)season((\\s)+)(\\d){1,4}((\\s)+)episode((\\s)+)(\\d){1,3}");
@@ -47,7 +47,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(?i)episode((\\s)+)(\\d){1,3}");
@@ -57,7 +57,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(?i)e(\\d){1,5}");
@@ -67,7 +67,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(\\d){1,5}");
@@ -77,7 +77,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   return result;

@@ -1,0 +1,4 @@
+String showId
+List<com.miz.functions.TvShowEpisode> episodes
+Context c
+boolean watched

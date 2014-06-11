@@ -1,0 +1,7 @@
+{
+  super.onCreate(savedInstanceState);
+  mShowId=getArguments().getString(SHOW_ID);
+  mBus=MizuuApplication.getBus();
+  mBus.register(this);
+  mFragmentManager=getChildFragmentManager();
+}

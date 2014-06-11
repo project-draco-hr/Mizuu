@@ -1,0 +1,17 @@
+{
+  super.onCreate(savedInstanceState);
+  if (MizLib.isTablet(this) && !MizLib.isPortrait(this))   finish();
+  MizuuApplication.setupTheme(this);
+  mShowId=getIntent().getExtras().getString(SHOW_ID);
+  mTitle=MizuuApplication.getTvDbAdapter().getShowTitle(mShowId);
+  mSeason=getIntent().getExtras().getInt(SEASON);
+  mEpisodeCount=getIntent().getExtras().getInt(EPISODE_COUNT);
+  setTitle(mTitle);
+  getActionBar().setSubtitle(getString(R.string.showSeason) + " " + mSeason+ " ("+ mEpisodeCount+ " "+ getResources().getQuantityString(R.plurals.episodes,mEpisodeCount,mEpisodeCount)+ ")");
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TvShowEpisodesFragment.class.toString());
+  if (frag == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.replace(android.R.id.content,TvShowEpisodesFragment.newInstance(mShowId,mSeason),TvShowEpisodesFragment.class.toString());
+    ft.commit();
+  }
+}

@@ -5,7 +5,7 @@
     pics_sources.clear();
     for (int i=0; i < jArray.length(); i++) {
       if (!MizLib.isAdultContent(getActivity(),jArray.getJSONObject(i).getString("title")) && !MizLib.isAdultContent(getActivity(),jArray.getJSONObject(i).getString("original_title"))) {
-        pics_sources.add(new WebMovie(jArray.getJSONObject(i).getString("original_title"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getImageUrlSize(getActivity()) + jArray.getJSONObject(i).getString("poster_path"),MizLib.getPrettyDate(getActivity(),jArray.getJSONObject(i).getString("release_date"))));
+        pics_sources.add(new WebMovie(getActivity().getApplicationContext(),jArray.getJSONObject(i).getString("original_title"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getImageUrlSize(getActivity()) + jArray.getJSONObject(i).getString("poster_path"),MizLib.getPrettyDate(getActivity(),jArray.getJSONObject(i).getString("release_date"))));
       }
     }
     new MoviesInLibraryCheck(pics_sources).execute();

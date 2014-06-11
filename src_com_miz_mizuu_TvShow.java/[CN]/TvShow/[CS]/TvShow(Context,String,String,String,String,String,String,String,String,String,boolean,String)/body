@@ -10,7 +10,7 @@
   FIRST_AIR_DATE=firstAirdate;
   RUNTIME=runtime;
   this.isFavorite=!(isFavorite.equals("0") || isFavorite.isEmpty());
-  mThumbnail=MizuuApplication.getTvShowThumbFolderPath(CONTEXT) + "/" + ID+ ".jpg";
+  mThumbnail=new File(MizuuApplication.getTvShowThumbFolderPath(CONTEXT),ID + ".jpg");
   if (MizLib.isEmpty(TITLE)) {
     mTitle="";
   }

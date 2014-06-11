@@ -1,0 +1,5 @@
+{
+  mWidth=MeasureSpec.getSize(widthMeasureSpec);
+  mHeight=(int)(mWidth * 1.445);
+  setMeasuredDimension(mWidth,mHeight);
+}

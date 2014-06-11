@@ -16,4 +16,10 @@
   FAVORITE=favorite;
   String temp=FILEPATH.contains("<MiZ>") ? FILEPATH.split("<MiZ>")[1] : FILEPATH;
   mGetFilepath=MizLib.transformSmbPath(temp);
+  StringBuilder sb=new StringBuilder();
+  sb.append(CONTEXT.getString(R.string.showEpisode));
+  sb.append(" ");
+  sb.append(getEpisode());
+  if (!hasWatched())   sb.append(" " + CONTEXT.getString(R.string.unwatched));
+  mSubtitleText=sb.toString();
 }

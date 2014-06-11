@@ -7,7 +7,7 @@
   try {
     List<MediumMovie> list=getSearchResults(query);
     for (int i=0; i < list.size(); i++) {
-      cursor.addRow(createRow(Integer.valueOf(i),list.get(i).getTitle(),list.get(i).getReleaseYear().replace("(","").replace(")",""),Uri.fromFile(new File(list.get(i).getThumbnail())).toString(),list.get(i).getRowId()));
+      cursor.addRow(createRow(Integer.valueOf(i),list.get(i).getTitle(),list.get(i).getReleaseYear().replace("(","").replace(")",""),Uri.fromFile(list.get(i).getThumbnail()).toString(),list.get(i).getRowId()));
     }
   }
  catch (  Exception e) {

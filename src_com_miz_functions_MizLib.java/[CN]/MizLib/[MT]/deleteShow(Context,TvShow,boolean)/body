@@ -5,11 +5,11 @@
   deleted=deleted && db.deleteAllEpisodes(thisShow.getId());
   if (deleted) {
     try {
-      File coverArt=new File(thisShow.getCoverPhoto());
+      File coverArt=thisShow.getCoverPhoto();
       if (coverArt.exists() && coverArt.getAbsolutePath().contains("com.miz.mizuu")) {
         MizLib.deleteFile(coverArt);
       }
-      File thumbnail=new File(thisShow.getThumbnail());
+      File thumbnail=thisShow.getThumbnail();
       if (thumbnail.exists() && thumbnail.getAbsolutePath().contains("com.miz.mizuu")) {
         MizLib.deleteFile(thumbnail);
       }

@@ -1,0 +1,18 @@
+{
+  inflater.inflate(R.menu.episode_details,menu);
+  try {
+    if (mEpisode.hasWatched()) {
+      menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsUnwatched);
+    }
+ else {
+      menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsWatched);
+    }
+    if (mEpisode.isNetworkFile() || mEpisode.isUpnpFile()) {
+      menu.findItem(R.id.watchOffline).setVisible(true);
+      if (mEpisode.hasOfflineCopy())       menu.findItem(R.id.watchOffline).setTitle(R.string.removeOfflineCopy);
+ else       menu.findItem(R.id.watchOffline).setTitle(R.string.watchOffline);
+    }
+  }
+ catch (  Exception e) {
+  }
+}

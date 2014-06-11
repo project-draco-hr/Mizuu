@@ -1,4 +1,0 @@
-HttpHost host
-HttpRequest request
-ResponseHandler<? extends T> handler
-HttpContext context

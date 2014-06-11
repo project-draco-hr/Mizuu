@@ -37,7 +37,7 @@
         boolean movieExists=db.movieExists(thisMovie.getTmdbId());
         if (!movieExists) {
           try {
-            File coverArt=new File(thisMovie.getPoster());
+            File coverArt=thisMovie.getPoster();
             if (coverArt.exists() && coverArt.getAbsolutePath().contains("com.miz.mizuu")) {
               MizLib.deleteFile(coverArt);
             }
@@ -45,7 +45,7 @@
  catch (          NullPointerException e) {
           }
           try {
-            File thumbnail=new File(thisMovie.getThumbnail());
+            File thumbnail=thisMovie.getThumbnail();
             if (thumbnail.exists() && thumbnail.getAbsolutePath().contains("com.miz.mizuu")) {
               MizLib.deleteFile(thumbnail);
             }

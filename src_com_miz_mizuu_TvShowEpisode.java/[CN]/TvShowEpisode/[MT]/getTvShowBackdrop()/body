@@ -1,0 +1,3 @@
+{
+  return new File(MizLib.getTvShowBackdropFolder(CONTEXT),SHOW_ID + "_tvbg.jpg");
+}

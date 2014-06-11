@@ -1,0 +1,4 @@
+{
+  if (mBus == null)   mBus=new Bus();
+  return mBus;
+}

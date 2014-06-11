@@ -1,0 +1,8 @@
+{
+  Intent i=new Intent();
+  i.setClass(getActivity(),IdentifyTvShow.class);
+  i.putExtra("rowId",mEpisode.getRowId());
+  i.putExtra("files",new String[]{mEpisode.getFullFilepath()});
+  i.putExtra("isShow",false);
+  startActivity(i);
+}

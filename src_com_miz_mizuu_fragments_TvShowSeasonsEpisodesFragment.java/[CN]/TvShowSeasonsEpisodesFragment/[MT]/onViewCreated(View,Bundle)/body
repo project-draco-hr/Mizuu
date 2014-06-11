@@ -1,0 +1,9 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  mDualPane=v.findViewById(R.id.episode) == null ? false : true;
+  v.findViewById(R.id.container).setBackgroundResource(MizuuApplication.getBackgroundColorResource(getActivity()));
+  MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
+  FragmentTransaction ft=mFragmentManager.beginTransaction();
+  ft.replace(R.id.seasons,TvShowSeasonsFragment.newInstance(mShowId,mDualPane));
+  ft.commit();
+}

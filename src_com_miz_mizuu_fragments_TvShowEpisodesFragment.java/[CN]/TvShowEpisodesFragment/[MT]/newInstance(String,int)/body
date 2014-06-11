@@ -1,0 +1,8 @@
+{
+  TvShowEpisodesFragment frag=new TvShowEpisodesFragment();
+  Bundle b=new Bundle();
+  b.putString(SHOW_ID,showId);
+  b.putInt(SEASON,season);
+  frag.setArguments(b);
+  return frag;
+}

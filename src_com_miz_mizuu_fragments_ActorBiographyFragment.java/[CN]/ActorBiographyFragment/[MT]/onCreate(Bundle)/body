@@ -1,7 +1,8 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
-  tf=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Thin.ttf");
+  mCondensedTypeface=MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf");
+  mLightTypeface=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
   json=getArguments().getString("json");
   mThumb=getArguments().getString("thumbUrl");
   mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());

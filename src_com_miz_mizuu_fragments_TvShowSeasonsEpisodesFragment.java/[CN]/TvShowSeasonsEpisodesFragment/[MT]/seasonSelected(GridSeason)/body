@@ -1,0 +1,7 @@
+{
+  if (mDualPane) {
+    FragmentTransaction ft=mFragmentManager.beginTransaction();
+    ft.replace(R.id.episode,TvShowEpisodesFragment.newInstance(mShowId,season.getSeason()));
+    ft.commitAllowingStateLoss();
+  }
+}

@@ -1,3 +1,3 @@
 {
-  return new File(MizLib.getTvShowEpisodeFolder(CONTEXT),SHOW_ID + "_S" + SEASON+ "E"+ EPISODE+ ".jpg").getAbsolutePath();
+  return new File(MizLib.getTvShowEpisodeFolder(CONTEXT),SHOW_ID + "_S" + SEASON+ "E"+ EPISODE+ ".jpg");
 }

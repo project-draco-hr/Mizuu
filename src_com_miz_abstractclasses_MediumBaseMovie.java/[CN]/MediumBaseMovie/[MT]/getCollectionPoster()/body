@@ -1,5 +1,5 @@
 {
   File collectionImage=new File(MizLib.getMovieThumbFolder(CONTEXT),COLLECTION_ID + ".jpg");
-  if (collectionImage.exists() && collectionImage.length() > 0)   return collectionImage.getAbsolutePath();
+  if (collectionImage.exists() && collectionImage.length() > 0)   return collectionImage;
   return getThumbnail();
 }

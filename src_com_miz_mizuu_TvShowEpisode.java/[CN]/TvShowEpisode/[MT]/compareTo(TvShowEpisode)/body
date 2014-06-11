@@ -1,0 +1,6 @@
+{
+  String defaultOrder=CONTEXT.getString(R.string.oldestFirst);
+  boolean oldestFirst=PreferenceManager.getDefaultSharedPreferences(CONTEXT).getString(TVSHOWS_EPISODE_ORDER,defaultOrder).equals(defaultOrder);
+  int multiplier=oldestFirst ? 1 : -1;
+  return getEpisode().compareToIgnoreCase(another.getEpisode()) * multiplier;
+}

@@ -1,0 +1,5 @@
+{
+  mShowId=showId;
+  mEpisode=episode;
+  mSeason=season;
+}

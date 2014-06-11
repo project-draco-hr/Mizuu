@@ -1,0 +1,39 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  mAdapter=new ImageAdapter(mContext);
+  mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
+  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView.setColumnWidth(mImageThumbSize);
+  mGridView.setEmptyView(v.findViewById(R.id.progress));
+  mGridView.setAdapter(mAdapter);
+  if (mUseGridView) {
+    mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+      @Override public void onGlobalLayout(){
+        if (mAdapter.getNumColumns() == 0) {
+          final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+          if (numColumns > 0) {
+            mAdapter.setNumColumns(numColumns);
+            mResizedWidth=(int)(((mGridView.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns) * 1.1);
+            mResizedHeight=(int)(mResizedWidth / 1.778);
+          }
+        }
+      }
+    }
+);
+  }
+ else {
+    mGridView.setNumColumns(1);
+    mAdapter.setNumColumns(1);
+  }
+  mGridView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      Intent i=new Intent(mContext,TvShowEpisodeDetails.class);
+      i.putExtra(SHOW_ID,mShowId);
+      i.putExtra("episode",mItems.get(arg2).getEpisode());
+      i.putExtra("season",mSeason);
+      startActivity(i);
+    }
+  }
+);
+  loadEpisodes();
+}

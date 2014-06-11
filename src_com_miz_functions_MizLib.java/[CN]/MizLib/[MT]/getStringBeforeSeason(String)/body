@@ -7,7 +7,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   searchPattern=Pattern.compile("(?i)season((\\s)+)(\\d){1,4}");
@@ -17,7 +17,7 @@
       result=input.substring(0,searchMatcher.start());
       return result;
     }
- catch (    IndexOutOfBoundsException e) {
+ catch (    Exception e) {
     }
   }
   return result;

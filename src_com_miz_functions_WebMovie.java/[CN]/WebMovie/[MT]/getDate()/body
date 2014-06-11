@@ -1,3 +1,4 @@
 {
-  return date;
+  if (mDate.equals("null"))   return mContext.getString(R.string.stringNA);
+  return mDate;
 }

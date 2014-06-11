@@ -5,10 +5,12 @@
   mActorBirthday=(TextView)v.findViewById(R.id.overviewMessage);
   mActorBirth=(TextView)v.findViewById(R.id.textView2);
   mActorName=(TextView)v.findViewById(R.id.textView3);
-  mActorName.setTypeface(tf);
+  mActorName.setTypeface(mCondensedTypeface);
   mActorName.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
   if (MizLib.isTablet(getActivity()))   mActorName.setTextSize(48f);
   mActorBio=(TextView)v.findViewById(R.id.textView4);
+  mActorBio.setTypeface(mLightTypeface);
+  mActorBio.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
   mActorImage=(ImageView)v.findViewById(R.id.traktIcon);
   mActorImageBackground=(ImageView)v.findViewById(R.id.imageView2);
   if (!MizLib.isPortrait(getActivity())) {

@@ -1,9 +1,0 @@
-{
-  HttpResponse response=execute(host,request,context);
-  try {
-    return handler.handleResponse(response);
-  }
-  finally {
-    consumeContentQuietly(response);
-  }
-}

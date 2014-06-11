@@ -6,7 +6,7 @@
   if (lastIndex > 0)   try {
     return input.substring(0,lastIndex - 4);
   }
- catch (  IndexOutOfBoundsException e) {
+ catch (  Exception e) {
   }
   return input;
 }
