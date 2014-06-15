@@ -1,4 +1,0 @@
-{
-  if (mTvShowThumbFolder == null)   mTvShowThumbFolder=MizLib.getTvShowThumbFolder(context);
-  return mTvShowThumbFolder;
-}

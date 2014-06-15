@@ -7,8 +7,8 @@
     count++;
   }
   updateWidgets();
-  File coverFile=new File(thumbsFolder,thisShow.getId() + ".jpg");
-  File backdropFile=new File(MizLib.getTvShowBackdropFolder(context),thisShow.getId() + "_tvbg.jpg");
+  File coverFile=MizLib.getTvShowThumb(context,thisShow.getId());
+  File backdropFile=MizLib.getTvShowBackdrop(context,thisShow.getId());
   if (!backdropFile.exists())   backdropFile=coverFile;
   cover=MizLib.getNotificationImageThumbnail(context,coverFile.getAbsolutePath());
   backdrop=MizLib.decodeSampledBitmapFromFile(backdropFile.getAbsolutePath(),getNotificationImageWidth(),getNotificationImageHeight());

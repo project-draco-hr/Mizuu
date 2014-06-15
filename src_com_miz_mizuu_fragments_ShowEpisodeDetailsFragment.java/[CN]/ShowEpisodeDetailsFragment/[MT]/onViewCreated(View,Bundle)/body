@@ -60,7 +60,7 @@
 );
     mPicasso.load(thisEpisode.getEpisodePhoto()).skipMemoryCache().placeholder(R.drawable.bg).into(cover,new Callback(){
       @Override public void onError(){
-        if (isAdded())         mPicasso.load(MizLib.getTvShowThumbFolder(getActivity()) + "/" + thisEpisode.getShowId()+ ".jpg").skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.nobackdrop).into(cover);
+        if (isAdded())         mPicasso.load(MizLib.getTvShowThumb(getActivity(),thisEpisode.getShowId())).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.nobackdrop).into(cover);
       }
       @Override public void onSuccess(){
       }

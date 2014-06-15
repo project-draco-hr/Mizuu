@@ -3,6 +3,7 @@
   setRetainInstance(true);
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  mTmdbApiKey=MizLib.getTmdbApiKey(getActivity());
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
   if (!getArguments().containsKey("json")) {

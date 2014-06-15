@@ -1,11 +1,13 @@
 {
   if (result != null) {
-    mBackdrop.setImageBitmap(result);
-    if (!MizLib.isTablet(getActivity()) && !MizLib.isPortrait(getActivity()))     mBackdrop.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
- else     mBackdrop.setColorFilter(Color.parseColor("#66181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+    if (!MizLib.isPortrait(getActivity())) {
+      mBackdrop.setImageBitmap(result);
+      if (!MizLib.isPortrait(getActivity()))       mBackdrop.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+ else       mBackdrop.setColorFilter(Color.parseColor("#66181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+    }
     mEpisodePhoto.setImageBitmap(mBitmap);
   }
  else {
-    mBackdrop.setImageResource(R.drawable.bg);
+    if (!MizLib.isPortrait(getActivity()))     mBackdrop.setImageResource(R.drawable.bg);
   }
 }

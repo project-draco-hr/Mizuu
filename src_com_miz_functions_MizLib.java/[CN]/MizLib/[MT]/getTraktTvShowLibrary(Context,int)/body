@@ -6,13 +6,13 @@
   OkApacheClient httpclient=new OkApacheClient();
   HttpPost httppost=null;
   if (type == WATCHED) {
-    httppost=new HttpPost("http://api.trakt.tv/user/library/shows/watched.json/" + MizLib.TRAKT_API + "/"+ username);
+    httppost=new HttpPost("http://api.trakt.tv/user/library/shows/watched.json/" + getTraktApiKey(c) + "/"+ username);
   }
  else   if (type == RATINGS) {
-    httppost=new HttpPost("http://api.trakt.tv/user/ratings/shows.json/" + MizLib.TRAKT_API + "/"+ username+ "/love");
+    httppost=new HttpPost("http://api.trakt.tv/user/ratings/shows.json/" + getTraktApiKey(c) + "/"+ username+ "/love");
   }
  else   if (type == COLLECTION) {
-    httppost=new HttpPost("http://api.trakt.tv/user/library/shows/collection.json/" + MizLib.TRAKT_API + "/"+ username);
+    httppost=new HttpPost("http://api.trakt.tv/user/library/shows/collection.json/" + getTraktApiKey(c) + "/"+ username);
   }
   try {
     JSONObject json=new JSONObject();

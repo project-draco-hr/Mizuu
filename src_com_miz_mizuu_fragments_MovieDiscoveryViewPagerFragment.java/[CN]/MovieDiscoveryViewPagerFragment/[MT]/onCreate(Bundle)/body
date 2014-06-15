@@ -2,5 +2,6 @@
   super.onCreate(savedInstanceState);
   setHasOptionsMenu(true);
   setRetainInstance(true);
+  mTmdbApiKey=MizLib.getTmdbApiKey(getActivity());
   setupSpinnerItems();
 }

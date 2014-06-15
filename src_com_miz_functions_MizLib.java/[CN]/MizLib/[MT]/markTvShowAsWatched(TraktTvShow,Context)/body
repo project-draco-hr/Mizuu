@@ -4,7 +4,7 @@
   String password=settings.getString(TRAKT_PASSWORD,"");
   if (username.isEmpty() || password.isEmpty())   return false;
   OkApacheClient httpclient=new OkApacheClient();
-  HttpPost httppost=new HttpPost("http://api.trakt.tv/show/episode/seen/" + MizLib.TRAKT_API);
+  HttpPost httppost=new HttpPost("http://api.trakt.tv/show/episode/seen/" + getTraktApiKey(c));
   try {
     JSONObject json=new JSONObject();
     json.put("username",username);

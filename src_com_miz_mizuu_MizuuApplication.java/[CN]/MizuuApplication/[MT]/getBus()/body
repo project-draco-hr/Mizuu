@@ -1,4 +1,4 @@
 {
-  if (mBus == null)   mBus=new Bus();
-  return mBus;
+  if (sBus == null)   sBus=new Bus();
+  return sBus;
 }

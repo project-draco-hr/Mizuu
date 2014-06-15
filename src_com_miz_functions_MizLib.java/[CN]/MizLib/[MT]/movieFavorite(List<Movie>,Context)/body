@@ -5,7 +5,7 @@
   if (username.isEmpty() || password.isEmpty())   return false;
   if (movies.size() == 0)   return false;
   OkApacheClient httpclient=new OkApacheClient();
-  HttpPost httppost=new HttpPost("http://api.trakt.tv/rate/movies/" + MizLib.TRAKT_API);
+  HttpPost httppost=new HttpPost("http://api.trakt.tv/rate/movies/" + getTraktApiKey(c));
   try {
     JSONObject json=new JSONObject();
     json.put("username",username);

@@ -1,3 +1,3 @@
 {
-  return TMDB_ID;
+  return mTmdbId;
 }

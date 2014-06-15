@@ -1,13 +1,12 @@
 {
   super.onViewCreated(view,savedInstanceState);
   if (MizLib.isPortrait(getActivity())) {
-    if (!MizLib.isTablet(getActivity()))     MizLib.addActionBarPaddingBottom(getActivity(),view.findViewById(R.id.scrollView1));
     mActionBarBackgroundDrawable=new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,new int[]{0x00000000,0xaa000000});
     getActivity().getActionBar().setBackgroundDrawable(mActionBarBackgroundDrawable);
     ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.scrollView1);
     sv.setOnScrollChangedListener(new OnScrollChangedListener(){
       @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
-        final int headerHeight=view.findViewById(R.id.imageBackground).getHeight() - getActivity().getActionBar().getHeight();
+        final int headerHeight=view.findViewById(R.id.episodePhoto).getHeight() - getActivity().getActionBar().getHeight();
         final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
         final int newAlpha=(int)(ratio * 255);
         mActionBarBackgroundDrawable=new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,new int[]{Color.parseColor("#" + ((Integer.toHexString(newAlpha).length() == 1) ? ("0" + Integer.toHexString(newAlpha)) : Integer.toHexString(newAlpha)) + "080808"),(newAlpha >= 170) ? Color.parseColor("#" + Integer.toHexString(newAlpha) + "080808") : 0xaa080808});
@@ -16,7 +15,7 @@
     }
 );
   }
-  if (!MizLib.isTablet(getActivity()) && !MizLib.isPortrait(getActivity()))   MizLib.addActionBarMargin(getActivity(),view.findViewById(R.id.episode_relative_layout));
+  if (!MizLib.isPortrait(getActivity()))   MizLib.addActionBarMargin(getActivity(),view.findViewById(R.id.episode_relative_layout));
   mBackdrop=(ImageView)view.findViewById(R.id.imageBackground);
   mEpisodePhoto=(ImageView)view.findViewById(R.id.episodePhoto);
   mTitle=(TextView)view.findViewById(R.id.movieTitle);
@@ -38,6 +37,24 @@
   mDirector.setTypeface(mLight);
   mWriter.setTypeface(mLight);
   mGuestStars.setTypeface(mLight);
+  mDescription.setBackgroundResource(R.drawable.selectable_background_example);
+  mDescription.setMaxLines(getActivity().getResources().getInteger(R.integer.episode_details_max_lines));
+  mDescription.setTag(true);
+  mDescription.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      if (((boolean)mDescription.getTag())) {
+        mDescription.setMaxLines(1000);
+        mDescription.setTag(false);
+      }
+ else {
+        mDescription.setMaxLines(getActivity().getResources().getInteger(R.integer.episode_details_max_lines));
+        mDescription.setTag(true);
+      }
+    }
+  }
+);
+  mDescription.setEllipsize(TextUtils.TruncateAt.END);
+  mDescription.setFocusable(true);
   mDescription.setText(mEpisode.getDescription());
   mFileSource.setText(mEpisode.getFilepath());
   mAirDate.setText(MizLib.getPrettyDate(getActivity(),mEpisode.getReleasedate()));

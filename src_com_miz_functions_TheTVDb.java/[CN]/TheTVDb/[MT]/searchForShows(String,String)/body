@@ -24,7 +24,7 @@
           show.setTitle(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setTitle(c.getString(R.string.stringNA));
+          show.setTitle(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("Overview");
@@ -33,7 +33,7 @@
           show.setDescription(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setDescription(c.getString(R.string.stringNA));
+          show.setDescription(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("id");
@@ -60,7 +60,7 @@
           show.setFirst_aired(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setFirst_aired(c.getString(R.string.stringNA));
+          show.setFirst_aired(mContext.getString(R.string.stringNA));
         }
         results.add(show);
       }

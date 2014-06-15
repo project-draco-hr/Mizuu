@@ -9,8 +9,8 @@
   }
   if (downloadCovers) {
     if (!thisShow.getId().equals("invalid") && !thisShow.getId().isEmpty()) {
-      String thumb_filepath=new File(thumbsFolder,thisShow.getId() + ".jpg").getAbsolutePath();
-      String backdrop_filepath=new File(MizLib.getTvShowBackdropFolder(context),thisShow.getId() + "_tvbg.jpg").getAbsolutePath();
+      String thumb_filepath=MizLib.getTvShowThumb(context,thisShow.getId()).getAbsolutePath();
+      String backdrop_filepath=MizLib.getTvShowBackdrop(context,thisShow.getId()).getAbsolutePath();
       if (!thisShow.getCover_url().isEmpty())       if (!MizLib.downloadFile(thisShow.getCover_url(),thumb_filepath))       MizLib.downloadFile(thisShow.getCover_url(),thumb_filepath);
       MizLib.resizeBitmapFileToCoverSize(context,thumb_filepath);
       if (!thisShow.getBackdrop_url().isEmpty())       if (!MizLib.downloadFile(thisShow.getBackdrop_url(),backdrop_filepath))       MizLib.downloadFile(thisShow.getBackdrop_url(),backdrop_filepath);

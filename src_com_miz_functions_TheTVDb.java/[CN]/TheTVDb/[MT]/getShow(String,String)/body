@@ -4,7 +4,7 @@
   try {
     DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
     DocumentBuilder db=dbf.newDocumentBuilder();
-    URL url=new URL("http://thetvdb.com/api/" + MizLib.TVDBAPI + "/series/"+ show.getId()+ "/"+ language+ ".xml");
+    URL url=new URL("http://thetvdb.com/api/" + mTvdbApiKey + "/series/"+ show.getId()+ "/"+ language+ ".xml");
     URLConnection con=url.openConnection();
     con.setReadTimeout(60000);
     con.setConnectTimeout(60000);
@@ -25,7 +25,7 @@
           show.setTitle(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setTitle(c.getString(R.string.stringNA));
+          show.setTitle(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("Overview");
@@ -34,7 +34,7 @@
           show.setDescription(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setDescription(c.getString(R.string.stringNA));
+          show.setDescription(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("Actors");
@@ -43,7 +43,7 @@
           show.setActors(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setActors(c.getString(R.string.stringNA));
+          show.setActors(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("Genre");
@@ -52,7 +52,7 @@
           show.setGenre(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setGenre(c.getString(R.string.stringNA));
+          show.setGenre(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("Rating");
@@ -88,7 +88,7 @@
           show.setCertification(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setCertification(c.getString(R.string.stringNA));
+          show.setCertification(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("Runtime");
@@ -97,7 +97,7 @@
           show.setRuntime(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setRuntime(c.getString(R.string.stringNA));
+          show.setRuntime(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("FirstAired");
@@ -106,7 +106,7 @@
           show.setFirst_aired(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          show.setFirst_aired(c.getString(R.string.stringNA));
+          show.setFirst_aired(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("IMDB_ID");
@@ -119,16 +119,16 @@
         }
       }
     }
-    if (ratingsProvider.equals(c.getString(R.string.ratings_option_2))) {
+    if (mRatingsProvider.equals(mContext.getString(R.string.ratings_option_2))) {
       try {
-        JSONObject jObject=MizLib.getJSONObject("http://api.trakt.tv/show/summary.json/" + MizLib.TRAKT_API + "/"+ showId);
+        JSONObject jObject=MizLib.getJSONObject("http://api.trakt.tv/show/summary.json/" + MizLib.getTraktApiKey(mContext) + "/"+ showId);
         double rating=Double.valueOf(MizLib.getStringFromJSONObject(jObject.getJSONObject("ratings"),"percentage","0")) / 10;
         if (rating > 0 || show.getRating().equals("0.0"))         show.setRating(String.valueOf(rating));
       }
  catch (      Exception e) {
       }
     }
-    if (ratingsProvider.equals(c.getString(R.string.ratings_option_3))) {
+    if (mRatingsProvider.equals(mContext.getString(R.string.ratings_option_3))) {
       try {
         JSONObject jObject=MizLib.getJSONObject("http://www.omdbapi.com/?i=" + show.getImdbId());
         double rating=Double.valueOf(MizLib.getStringFromJSONObject(jObject,"imdbRating","0"));
@@ -143,7 +143,7 @@
   try {
     DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
     DocumentBuilder db=dbf.newDocumentBuilder();
-    URL url=new URL("http://thetvdb.com/api/" + MizLib.TVDBAPI + "/series/"+ show.getId()+ "/all/"+ language+ ".xml");
+    URL url=new URL("http://thetvdb.com/api/" + mTvdbApiKey + "/series/"+ show.getId()+ "/all/"+ language+ ".xml");
     URLConnection con=url.openConnection();
     con.setReadTimeout(60000);
     con.setConnectTimeout(60000);
@@ -183,7 +183,7 @@
           episode.setTitle(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          episode.setTitle(c.getString(R.string.stringNA));
+          episode.setTitle(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("FirstAired");
@@ -192,7 +192,7 @@
           episode.setAirdate(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          episode.setAirdate(c.getString(R.string.stringNA));
+          episode.setAirdate(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("Overview");
@@ -201,7 +201,7 @@
           episode.setDescription(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          episode.setDescription(c.getString(R.string.stringNA));
+          episode.setDescription(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("filename");
@@ -228,7 +228,7 @@
           episode.setDirector(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          episode.setDirector(c.getString(R.string.stringNA));
+          episode.setDirector(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("Writer");
@@ -237,7 +237,7 @@
           episode.setWriter(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          episode.setWriter(c.getString(R.string.stringNA));
+          episode.setWriter(mContext.getString(R.string.stringNA));
         }
         try {
           list=firstElement.getElementsByTagName("GuestStars");
@@ -246,7 +246,7 @@
           episode.setGueststars(((Node)tag.item(0)).getNodeValue());
         }
  catch (        Exception e) {
-          episode.setGueststars(c.getString(R.string.stringNA));
+          episode.setGueststars(mContext.getString(R.string.stringNA));
         }
         show.addEpisode(episode);
       }
@@ -257,7 +257,7 @@
   try {
     DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
     DocumentBuilder db=dbf.newDocumentBuilder();
-    URL url=new URL("http://thetvdb.com/api/" + MizLib.TVDBAPI + "/series/"+ show.getId()+ "/banners.xml");
+    URL url=new URL("http://thetvdb.com/api/" + mTvdbApiKey + "/series/"+ show.getId()+ "/banners.xml");
     URLConnection con=url.openConnection();
     con.setReadTimeout(60000);
     con.setConnectTimeout(60000);

@@ -1,4 +1,0 @@
-{
-  if (mMovieThumbFolder == null)   mMovieThumbFolder=MizLib.getMovieThumbFolder(context);
-  return mMovieThumbFolder;
-}

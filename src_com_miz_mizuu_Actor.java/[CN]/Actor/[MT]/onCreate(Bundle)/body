@@ -10,6 +10,7 @@
   actorId=getIntent().getExtras().getString("actorID");
   actorName=getIntent().getExtras().getString("actorName");
   mActorThumb=getIntent().getExtras().getString("thumb");
+  mTmdbApiKey=MizLib.getTmdbApiKey(this);
   setTitle(actorName);
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);
   awesomePager.setOffscreenPageLimit(3);

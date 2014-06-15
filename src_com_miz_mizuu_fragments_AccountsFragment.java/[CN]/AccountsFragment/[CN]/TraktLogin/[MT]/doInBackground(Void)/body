@@ -3,7 +3,7 @@
   password=traktPass.getText().toString().trim();
   boolean success=false;
   HttpClient httpclient=new DefaultHttpClient();
-  HttpPost httppost=new HttpPost("http://api.trakt.tv/account/test/" + MizLib.TRAKT_API);
+  HttpPost httppost=new HttpPost("http://api.trakt.tv/account/test/" + mTraktApiKey);
   try {
     List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(2);
     nameValuePairs.add(new BasicNameValuePair("username",username));
@@ -24,7 +24,7 @@
     editor.putString(TRAKT_PASSWORD,MizLib.SHA1(password));
     editor.commit();
     httpclient=new DefaultHttpClient();
-    httppost=new HttpPost("http://api.trakt.tv/user/profile.json/" + MizLib.TRAKT_API + "/"+ username);
+    httppost=new HttpPost("http://api.trakt.tv/user/profile.json/" + mTraktApiKey + "/"+ username);
     try {
       List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(2);
       nameValuePairs.add(new BasicNameValuePair("username",username));

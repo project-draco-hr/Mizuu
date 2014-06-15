@@ -1,8 +1,8 @@
 {
-  if (!ignoreNfo) {
+  if (!mIgnoreNfo) {
     try {
-      String filename=FILEPATH.substring(0,FILEPATH.lastIndexOf(".")).replaceAll("part[1-9]|cd[1-9]","").trim();
-      File parentFolder=new File(FILEPATH).getParentFile();
+      String filename=mFilepath.substring(0,mFilepath.lastIndexOf(".")).replaceAll("part[1-9]|cd[1-9]","").trim();
+      File parentFolder=new File(mFilepath).getParentFile();
       if (parentFolder != null) {
         File[] list=parentFolder.listFiles();
         if (list != null) {
@@ -21,5 +21,5 @@
  catch (    Exception e) {
     }
   }
-  return new File(MizLib.getMovieBackdropFolder(CONTEXT),TMDB_ID + "_bg.jpg").getAbsolutePath();
+  return MizLib.getMovieBackdrop(mContext,mTmdbId).getAbsolutePath();
 }

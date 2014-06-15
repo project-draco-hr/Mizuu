@@ -4,9 +4,9 @@
     intent=new Intent("mizuu-tvshows-object");
     intent.putExtra("id",thisShow.getId());
     intent.putExtra("movieName",thisShow.getTitle() + " S" + MizLib.addIndexZero(ep.getSeason())+ "E"+ MizLib.addIndexZero(ep.getEpisode())+ (!ep.getTitle().isEmpty() ? " (" + ep.getTitle() + ")" : ""));
-    intent.putExtra("thumbFile",new File(thumbsFolder,thisShow.getId() + ".jpg").getAbsolutePath());
-    File backdropFile=new File(MizLib.getTvShowEpisodeFolder(this),thisShow.getId() + "_S" + MizLib.addIndexZero(ep.getSeason())+ "E"+ MizLib.addIndexZero(ep.getEpisode())+ ".jpg");
-    if (!backdropFile.exists())     backdropFile=new File(thumbsFolder,thisShow.getId() + ".jpg");
+    intent.putExtra("thumbFile",MizLib.getTvShowThumb(this,thisShow.getId()).getAbsolutePath());
+    File backdropFile=MizLib.getTvShowEpisode(this,thisShow.getId(),MizLib.addIndexZero(ep.getSeason()),MizLib.addIndexZero(ep.getEpisode()));
+    if (!backdropFile.exists())     backdropFile=MizLib.getTvShowThumb(this,thisShow.getId());
     intent.putExtra("backdrop",backdropFile.getAbsolutePath());
     sendUpdateBroadcast(intent);
   }

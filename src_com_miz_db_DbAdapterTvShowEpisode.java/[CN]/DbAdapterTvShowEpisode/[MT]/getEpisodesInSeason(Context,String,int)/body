@@ -5,8 +5,8 @@
     cursor=database.query(DATABASE_TABLE,allRows,KEY_SHOW_ID + "='" + showId+ "' and "+ KEY_SEASON+ "='"+ MizLib.addIndexZero(season)+ "'",null,KEY_EPISODE,null,KEY_EPISODE + " asc");
     File temp;
     while (cursor.moveToNext()) {
-      temp=new File(MizLib.getTvShowEpisodeFolder(context),showId + "_S" + cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SEASON))+ "E"+ cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE))+ ".jpg");
-      if (!temp.exists())       temp=new File(MizLib.getTvShowBackdropFolder(context).getAbsolutePath(),showId + "_tvbg.jpg");
+      temp=MizLib.getTvShowEpisode(context,showId,cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SEASON)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE)));
+      if (!temp.exists())       temp=MizLib.getTvShowBackdrop(context,showId);
       episodes.add(new GridEpisode(context,cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_FILEPATH)),season,Integer.valueOf(cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE))),cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_HAS_WATCHED)).equals("1"),temp));
     }
   }

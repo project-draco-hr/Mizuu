@@ -14,6 +14,7 @@
   ignoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_NFO_FILES,true);
   prefsRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(REMOVE_MOVIES_FROM_WATCHLIST,true);
   ignoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_FILES_ENABLED,false);
+  mYouTubeApiKey=MizLib.getYouTubeApiKey(this);
   if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
     movieId=Integer.valueOf(getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY));
   }

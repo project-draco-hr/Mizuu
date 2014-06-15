@@ -1,3 +1,3 @@
 {
-  return new File(MizLib.getTvShowEpisodeFolder(CONTEXT),SHOW_ID + "_S" + SEASON+ "E"+ EPISODE+ ".jpg");
+  return MizLib.getTvShowEpisode(CONTEXT,SHOW_ID,SEASON,EPISODE);
 }

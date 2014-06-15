@@ -1,4 +1,0 @@
-{
-  if (mTvShowThumbFolderPath == null)   mTvShowThumbFolderPath=getTvShowThumbFolder(context).getAbsolutePath();
-  return mTvShowThumbFolderPath;
-}

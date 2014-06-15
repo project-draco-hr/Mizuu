@@ -1,8 +1,8 @@
 {
   if (!isFromManualIdentify) {
-    File backdropFile=new File(MizLib.getMovieBackdropFolder(context),movie.getId() + "_bg.jpg");
-    if (!backdropFile.exists())     backdropFile=new File(thumbsFolder,movie.getId() + ".jpg");
-    if (callback != null)     callback.onMovieAdded(movie.getTitle(),new File(thumbsFolder,movie.getId() + ".jpg").getAbsolutePath(),backdropFile.getAbsolutePath());
+    File backdropFile=MizLib.getMovieBackdrop(context,movie.getId());
+    if (!backdropFile.exists())     backdropFile=MizLib.getMovieThumb(context,movie.getId());
+    if (callback != null)     callback.onMovieAdded(movie.getTitle(),MizLib.getMovieThumb(context,movie.getId()).getAbsolutePath(),backdropFile.getAbsolutePath());
   }
  else {
     sendUpdateBroadcast(new Intent("mizuu-movies-identification"));

@@ -12,5 +12,4 @@
  else {
     LOCALE=language;
   }
-  thumbsFolder=MizLib.getMovieThumbFolder(context);
 }

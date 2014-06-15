@@ -6,8 +6,8 @@
   if (movies.size() == 0)   return false;
   OkApacheClient httpclient=new OkApacheClient();
   HttpPost httppost=null;
-  if (movies.get(0).hasWatched())   httppost=new HttpPost("http://api.trakt.tv/movie/seen/" + MizLib.TRAKT_API);
- else   httppost=new HttpPost("http://api.trakt.tv/movie/unseen/" + MizLib.TRAKT_API);
+  if (movies.get(0).hasWatched())   httppost=new HttpPost("http://api.trakt.tv/movie/seen/" + getTraktApiKey(c));
+ else   httppost=new HttpPost("http://api.trakt.tv/movie/unseen/" + getTraktApiKey(c));
   try {
     JSONObject json=new JSONObject();
     json.put("username",username);

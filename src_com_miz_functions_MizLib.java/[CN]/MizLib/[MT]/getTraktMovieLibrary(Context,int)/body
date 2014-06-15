@@ -6,16 +6,16 @@
   OkApacheClient httpclient=new OkApacheClient();
   HttpPost httppost=null;
   if (type == WATCHED) {
-    httppost=new HttpPost("http://api.trakt.tv/user/library/movies/watched.json/" + MizLib.TRAKT_API + "/"+ username);
+    httppost=new HttpPost("http://api.trakt.tv/user/library/movies/watched.json/" + getTraktApiKey(c) + "/"+ username);
   }
  else   if (type == RATINGS) {
-    httppost=new HttpPost("http://api.trakt.tv/user/ratings/movies.json/" + MizLib.TRAKT_API + "/"+ username+ "/love");
+    httppost=new HttpPost("http://api.trakt.tv/user/ratings/movies.json/" + getTraktApiKey(c) + "/"+ username+ "/love");
   }
  else   if (type == WATCHLIST) {
-    httppost=new HttpPost("http://api.trakt.tv/user/watchlist/movies.json/" + MizLib.TRAKT_API + "/"+ username);
+    httppost=new HttpPost("http://api.trakt.tv/user/watchlist/movies.json/" + getTraktApiKey(c) + "/"+ username);
   }
  else   if (type == COLLECTION) {
-    httppost=new HttpPost("http://api.trakt.tv/user/library/movies/collection.json/" + MizLib.TRAKT_API + "/"+ username);
+    httppost=new HttpPost("http://api.trakt.tv/user/library/movies/collection.json/" + getTraktApiKey(c) + "/"+ username);
   }
   try {
     JSONObject json=new JSONObject();

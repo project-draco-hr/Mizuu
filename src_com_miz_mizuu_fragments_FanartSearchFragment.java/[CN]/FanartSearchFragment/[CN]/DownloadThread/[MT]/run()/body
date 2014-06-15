@@ -6,7 +6,7 @@
       }
     }
 );
-    MizLib.downloadFile(url,new File(MizLib.getMovieBackdropFolder(getActivity()),TMDB_ID + "_bg.jpg").getAbsolutePath());
+    MizLib.downloadFile(url,MizLib.getMovieBackdrop(getActivity(),TMDB_ID).getAbsolutePath());
     updateWidgets();
     LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-movie-backdrop-change"));
   }

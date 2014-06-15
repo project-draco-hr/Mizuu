@@ -1,4 +1,4 @@
 {
-  String temp=FILEPATH.contains("<MiZ>") ? FILEPATH.split("<MiZ>")[0] : FILEPATH;
+  String temp=mFilepath.contains("<MiZ>") ? mFilepath.split("<MiZ>")[0] : mFilepath;
   return temp;
 }

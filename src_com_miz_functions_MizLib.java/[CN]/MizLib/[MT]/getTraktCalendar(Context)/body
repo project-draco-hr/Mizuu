@@ -4,7 +4,7 @@
   String password=settings.getString(TRAKT_PASSWORD,"");
   if (username.isEmpty() || password.isEmpty())   return new JSONArray();
   OkApacheClient httpclient=new OkApacheClient();
-  HttpPost httppost=new HttpPost("http://api.trakt.tv/user/calendar/shows.json/" + MizLib.TRAKT_API + "/"+ username);
+  HttpPost httppost=new HttpPost("http://api.trakt.tv/user/calendar/shows.json/" + getTraktApiKey(c) + "/"+ username);
   httppost.setHeader("Content-type","application/json");
   try {
     JSONObject holder=new JSONObject();

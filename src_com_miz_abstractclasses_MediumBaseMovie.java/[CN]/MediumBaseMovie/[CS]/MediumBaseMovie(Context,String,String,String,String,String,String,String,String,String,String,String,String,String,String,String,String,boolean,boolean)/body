@@ -19,22 +19,22 @@
         mGetReleaseYear=YEAR.substring(0,4);
       }
  else {
-        mGetReleaseYear=CONTEXT.getString(R.string.unknownYear);
+        mGetReleaseYear=mContext.getString(R.string.unknownYear);
       }
     }
  catch (    Exception e) {
       if (YEAR.length() == 4)       mGetReleaseYear=YEAR;
- else       mGetReleaseYear=CONTEXT.getString(R.string.unknownYear);
+ else       mGetReleaseYear=mContext.getString(R.string.unknownYear);
     }
   }
  else {
-    mGetReleaseYear=CONTEXT.getString(R.string.unknownYear);
+    mGetReleaseYear=mContext.getString(R.string.unknownYear);
   }
-  String temp=FILEPATH.contains("<MiZ>") ? FILEPATH.split("<MiZ>")[1] : FILEPATH;
+  String temp=mFilepath.contains("<MiZ>") ? mFilepath.split("<MiZ>")[1] : mFilepath;
   mGetFilePath=MizLib.transformSmbPath(temp);
   mIsNetworkFile=getFilepath().contains("smb:/");
-  mWeightedCompatibility=(int)(getWeightedRating() * 10) + "% " + CONTEXT.getString(R.string.compatibility);
-  mDateAdded=MizLib.getPrettyDate(CONTEXT,Long.valueOf(getDateAdded()));
-  mRuntime=MizLib.getPrettyTime(CONTEXT,Integer.parseInt(getRuntime()));
-  mReleaseDate=MizLib.getPrettyDate(CONTEXT,getReleasedate());
+  mWeightedCompatibility=(int)(getWeightedRating() * 10) + "% " + mContext.getString(R.string.compatibility);
+  mDateAdded=MizLib.getPrettyDate(mContext,Long.valueOf(getDateAdded()));
+  mRuntime=MizLib.getPrettyTime(mContext,Integer.parseInt(getRuntime()));
+  mReleaseDate=MizLib.getPrettyDate(mContext,getReleasedate());
 }

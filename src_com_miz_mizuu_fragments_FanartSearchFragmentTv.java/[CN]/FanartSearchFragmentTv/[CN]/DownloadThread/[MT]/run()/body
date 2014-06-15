@@ -6,7 +6,7 @@
       }
     }
 );
-    MizLib.downloadFile(url,new File(MizLib.getTvShowBackdropFolder(getActivity()),TVDB_ID + "_tvbg.jpg").getAbsolutePath());
+    MizLib.downloadFile(url,MizLib.getTvShowBackdrop(getActivity(),TVDB_ID).getAbsolutePath());
     updateWidgets();
     LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-show-backdrop-change"));
   }

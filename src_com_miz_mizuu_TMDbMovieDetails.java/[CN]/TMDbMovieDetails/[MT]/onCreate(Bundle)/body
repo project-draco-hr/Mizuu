@@ -8,6 +8,8 @@
   setContentView(R.layout.viewpager);
   setTitle(getIntent().getExtras().getString("title"));
   movieId=getIntent().getExtras().getString("tmdbid");
+  mTmdbApiKey=MizLib.getTmdbApiKey(this);
+  mYouTubeApiKey=MizLib.getYouTubeApiKey(this);
   if (!MizLib.isPortrait(getApplicationContext()))   findViewById(R.id.layout).setBackgroundResource(R.drawable.bg);
   pbar=(ProgressBar)findViewById(R.id.progressbar);
   pbar.setVisibility(View.VISIBLE);

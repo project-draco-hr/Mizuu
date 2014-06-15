@@ -3,6 +3,7 @@
   setHasOptionsMenu(true);
   setRetainInstance(true);
   TVDB_ID=getArguments().getString("tvdbId");
+  mTvdbApiKey=MizLib.getTvdbApiKey(getActivity());
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
   new GetCoverImages().execute(TVDB_ID);

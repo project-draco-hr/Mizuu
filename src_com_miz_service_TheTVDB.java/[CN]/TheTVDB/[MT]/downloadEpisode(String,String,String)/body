@@ -13,7 +13,7 @@
     thisEpisode.setSeason(season);
   }
   if (!thisEpisode.getScreenshot_url().isEmpty()) {
-    String screenshotFile=new File(MizLib.getTvShowEpisodeFolder(this),thisShow.getId() + "_S" + season+ "E"+ episode+ ".jpg").getAbsolutePath();
+    String screenshotFile=MizLib.getTvShowEpisode(this,thisShow.getId(),season,episode).getAbsolutePath();
     if (!MizLib.downloadFile(thisEpisode.getScreenshot_url(),screenshotFile))     MizLib.downloadFile(thisEpisode.getScreenshot_url(),screenshotFile);
   }
   addToDatabase(thisEpisode,filepath);

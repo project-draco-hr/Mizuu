@@ -1,14 +1,14 @@
 {
   ArrayList<TMDbMovie> results=new ArrayList<TMDbMovie>();
   try {
-    String baseImgUrl=PreferenceManager.getDefaultSharedPreferences(c).getString(TMDB_BASE_URL,MizLib.TMDB_BASE_URL);
-    JSONObject jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/search/movie?query=" + URLEncoder.encode(query,"utf-8") + "&api_key="+ MizLib.TMDB_API+ (!MizLib.isEmpty(year) ? "&year=" + year : "")+ (includeAdult ? "&include_adult=true" : ""));
+    String baseImgUrl=PreferenceManager.getDefaultSharedPreferences(mContext).getString(TMDB_BASE_URL,MizLib.TMDB_BASE_URL);
+    JSONObject jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/search/movie?query=" + URLEncoder.encode(query,"utf-8") + "&api_key="+ mTmdbApiKey+ (!MizLib.isEmpty(year) ? "&year=" + year : "")+ (includeAdult ? "&include_adult=true" : ""));
     for (int i=0; i < jObject.getJSONArray("results").length(); i++) {
-      if (!MizLib.isAdultContent(c,jObject.getJSONArray("results").getJSONObject(0).getString("title")) && !MizLib.isAdultContent(c,jObject.getJSONArray("results").getJSONObject(0).getString("original_title"))) {
+      if (!MizLib.isAdultContent(mContext,jObject.getJSONArray("results").getJSONObject(0).getString("title")) && !MizLib.isAdultContent(mContext,jObject.getJSONArray("results").getJSONObject(0).getString("original_title"))) {
         TMDbMovie movie=new TMDbMovie();
         movie.setId(jObject.getJSONArray("results").getJSONObject(i).getString("id"));
-        movie.setCover(baseImgUrl + MizLib.getImageUrlSize(c) + jObject.getJSONArray("results").getJSONObject(i).getString("poster_path"));
-        movie.setBackdrop(baseImgUrl + MizLib.getBackdropUrlSize(c) + jObject.getJSONArray("results").getJSONObject(i).getString("backdrop_path"));
+        movie.setCover(baseImgUrl + MizLib.getImageUrlSize(mContext) + jObject.getJSONArray("results").getJSONObject(i).getString("poster_path"));
+        movie.setBackdrop(baseImgUrl + MizLib.getBackdropUrlSize(mContext) + jObject.getJSONArray("results").getJSONObject(i).getString("backdrop_path"));
         movie.setTitle(jObject.getJSONArray("results").getJSONObject(i).getString("title"));
         movie.setOriginalTitle(jObject.getJSONArray("results").getJSONObject(i).getString("original_title"));
         movie.setReleasedate(jObject.getJSONArray("results").getJSONObject(i).getString("release_date"));

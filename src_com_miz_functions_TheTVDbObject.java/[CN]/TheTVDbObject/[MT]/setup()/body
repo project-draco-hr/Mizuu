@@ -7,5 +7,4 @@
   }
  else   LOCALE="en";
  else   LOCALE=language;
-  thumbsFolder=MizLib.getTvShowThumbFolder(context);
 }

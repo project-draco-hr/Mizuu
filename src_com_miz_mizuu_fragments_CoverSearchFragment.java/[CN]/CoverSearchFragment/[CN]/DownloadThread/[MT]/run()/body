@@ -6,7 +6,7 @@
       }
     }
 );
-    MizLib.downloadFile(url,new File(MizLib.getMovieThumbFolder(getActivity()),TMDB_ID + ".jpg").getAbsolutePath());
+    MizLib.downloadFile(url,MizLib.getMovieThumb(getActivity(),TMDB_ID).getAbsolutePath());
     LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-movie-cover-change"));
     updateWidgets();
   }

@@ -1,7 +1,7 @@
 {
   try {
     HttpClient httpclient=new DefaultHttpClient();
-    HttpGet httppost=new HttpGet("https://api.themoviedb.org/3/configuration?api_key=" + MizLib.TMDB_API);
+    HttpGet httppost=new HttpGet("https://api.themoviedb.org/3/configuration?api_key=" + mTmdbApiKey);
     httppost.setHeader("Accept","application/json");
     ResponseHandler<String> responseHandler=new BasicResponseHandler();
     baseUrl=httpclient.execute(httppost,responseHandler);
@@ -12,7 +12,7 @@
  catch (    Exception e) {
       baseUrl=MizLib.TMDB_BASE_URL;
     }
-    httppost=new HttpGet("https://api.themoviedb.org/3/movie?api_key=" + MizLib.TMDB_API + "&append_to_response=upcoming,now_playing,popular,top_rated");
+    httppost=new HttpGet("https://api.themoviedb.org/3/movie?api_key=" + mTmdbApiKey + "&append_to_response=upcoming,now_playing,popular,top_rated");
     httppost.setHeader("Accept","application/json");
     responseHandler=new BasicResponseHandler();
     json=EntityUtils.toString(httpclient.execute(httppost).getEntity());

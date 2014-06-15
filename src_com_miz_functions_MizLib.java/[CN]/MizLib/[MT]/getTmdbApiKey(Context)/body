@@ -1,0 +1,3 @@
+{
+  return context.getString(R.string.tmdb_api_key);
+}

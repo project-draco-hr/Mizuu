@@ -15,7 +15,7 @@
  else {
     if (!MizLib.isEmpty(thisMovie.getTrailer())) {
       if (YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(getApplicationContext()).equals(YouTubeInitializationResult.SUCCESS)) {
-        Intent intent=YouTubeStandalonePlayer.createVideoIntent(this,MizLib.YOUTUBE_API,MizLib.getYouTubeId(thisMovie.getTrailer()),0,false,true);
+        Intent intent=YouTubeStandalonePlayer.createVideoIntent(this,mYouTubeApiKey,MizLib.getYouTubeId(thisMovie.getTrailer()),0,false,true);
         startActivity(intent);
       }
  else {

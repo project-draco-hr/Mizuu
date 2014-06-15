@@ -4,6 +4,7 @@
   setContentView(R.layout.viewpager);
   tmdbId=getIntent().getExtras().getString("tmdbId");
   collectionId=getIntent().getExtras().getString("collectionId");
+  mTmdbApiKey=MizLib.getTmdbApiKey(this);
   pbar=(ProgressBar)findViewById(R.id.progressbar);
   pbar.setVisibility(View.VISIBLE);
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);

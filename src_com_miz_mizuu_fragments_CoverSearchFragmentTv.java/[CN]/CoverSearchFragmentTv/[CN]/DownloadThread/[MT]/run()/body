@@ -6,7 +6,7 @@
       }
     }
 );
-    String path=new File(MizLib.getTvShowThumbFolder(getActivity()),TVDB_ID + ".jpg").getAbsolutePath();
+    String path=MizLib.getTvShowThumb(getActivity(),TVDB_ID).getAbsolutePath();
     MizLib.downloadFile(url,path);
     MizLib.resizeBitmapFileToCoverSize(getActivity(),path);
     LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(new Intent("mizuu-show-cover-change"));

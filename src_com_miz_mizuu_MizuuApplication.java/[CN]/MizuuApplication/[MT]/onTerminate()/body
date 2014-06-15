@@ -1,7 +1,7 @@
 {
   super.onTerminate();
-  dbTvShow.close();
-  dbTvShowEpisode.close();
-  dbSources.close();
-  db.close();
+  sDbTvShow.close();
+  sDbTvShowEpisode.close();
+  sDbSources.close();
+  sDb.close();
 }
