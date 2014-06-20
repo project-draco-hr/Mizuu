@@ -1,9 +1,9 @@
 {
-  this.rowId=rowId;
-  this.filepath=filepath;
-  this.fileSourceType=fileSourceType;
-  this.user=user;
-  this.password=password;
-  this.domain=domain;
-  this.type=type;
+  mRowId=rowId;
+  mFilepath=filepath;
+  mFileSourceType=fileSourceType;
+  mUser=user;
+  mPassword=password;
+  mDomain=domain;
+  mType=type;
 }

@@ -53,4 +53,5 @@
   Assert.assertEquals("Breaking Bad",d[52].getDecryptedFileName());
   Assert.assertEquals("Looney Tunes",d[54].getDecryptedFileName());
   Assert.assertEquals("Looney Tunes",d[55].getDecryptedFileName());
+  Assert.assertEquals("Once Upon A Time",d[56].getDecryptedFileName());
 }

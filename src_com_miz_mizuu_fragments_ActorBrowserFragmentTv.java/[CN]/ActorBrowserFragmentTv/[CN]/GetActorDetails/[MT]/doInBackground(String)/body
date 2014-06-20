@@ -1,0 +1,41 @@
+{
+  try {
+    HttpClient httpclient=new DefaultHttpClient();
+    HttpGet httppost=new HttpGet("https://api.themoviedb.org/3/configuration?api_key=" + mTmdbApiKey);
+    httppost.setHeader("Accept","application/json");
+    ResponseHandler<String> responseHandler=new BasicResponseHandler();
+    String baseUrl=httpclient.execute(httppost,responseHandler);
+    JSONObject jObject=new JSONObject(baseUrl);
+    try {
+      baseUrl=jObject.getJSONObject("images").getString("base_url");
+    }
+ catch (    Exception e) {
+      baseUrl=MizLib.TMDB_BASE_URL;
+    }
+    httppost=new HttpGet("https://api.themoviedb.org/3/find/" + params[0] + "?api_key="+ mTmdbApiKey+ "&external_source=tvdb_id");
+    httppost.setHeader("Accept","application/json");
+    responseHandler=new BasicResponseHandler();
+    String credits=httpclient.execute(httppost,responseHandler);
+    jObject=new JSONObject(credits);
+    String newId=jObject.getJSONArray("tv_results").getJSONObject(0).getString("id");
+    httppost=new HttpGet("https://api.themoviedb.org/3/tv/" + newId + "/credits?api_key="+ mTmdbApiKey);
+    httppost.setHeader("Accept","application/json");
+    responseHandler=new BasicResponseHandler();
+    String html=httpclient.execute(httppost,responseHandler);
+    jObject=new JSONObject(html);
+    JSONArray jArray=jObject.getJSONArray("cast");
+    actors.clear();
+    Set<String> actorIds=new HashSet<String>();
+    for (int i=0; i < jArray.length(); i++) {
+      if (!actorIds.contains(jArray.getJSONObject(i).getString("id"))) {
+        actorIds.add(jArray.getJSONObject(i).getString("id"));
+        actors.add(new Actor(jArray.getJSONObject(i).getString("name"),jArray.getJSONObject(i).getString("character"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getActorUrlSize(getActivity()) + jArray.getJSONObject(i).getString("profile_path")));
+      }
+    }
+    actorIds.clear();
+    actorIds=null;
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

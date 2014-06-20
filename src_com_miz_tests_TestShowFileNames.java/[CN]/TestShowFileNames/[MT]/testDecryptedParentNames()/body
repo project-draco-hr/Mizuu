@@ -54,4 +54,5 @@
   Assert.assertEquals("Breaking Bad",d[52].getDecryptedParentName());
   Assert.assertEquals("Looney Tunes",d[54].getDecryptedParentName());
   Assert.assertEquals("Looney Tunes",d[55].getDecryptedParentName());
+  Assert.assertEquals("Once Upon A Time",d[56].getDecryptedParentName());
 }

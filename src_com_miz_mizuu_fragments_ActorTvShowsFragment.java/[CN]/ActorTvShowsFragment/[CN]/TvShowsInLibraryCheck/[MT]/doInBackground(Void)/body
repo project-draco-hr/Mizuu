@@ -1,0 +1,4 @@
+{
+  for (int i=0; i < mTvShows.size(); i++)   mShowsMap.put(Integer.valueOf(mTvShows.get(i).getId()),mDatabase.showExists(mTvShows.get(i).getTitle()));
+  return null;
+}

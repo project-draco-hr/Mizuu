@@ -1,5 +1,0 @@
-{
-  File f=new File(c.getExternalFilesDir(null) + "/movie-thumbs");
-  f.mkdirs();
-  return f;
-}

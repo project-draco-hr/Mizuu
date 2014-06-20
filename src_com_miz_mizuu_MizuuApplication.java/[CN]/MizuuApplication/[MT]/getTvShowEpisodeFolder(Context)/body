@@ -1,0 +1,7 @@
+{
+  if (sTvShowEpisodeFolder == null) {
+    sTvShowEpisodeFolder=new File(c.getExternalFilesDir(null) + "/tvshows-episodes");
+    sTvShowEpisodeFolder.mkdirs();
+  }
+  return sTvShowEpisodeFolder;
+}

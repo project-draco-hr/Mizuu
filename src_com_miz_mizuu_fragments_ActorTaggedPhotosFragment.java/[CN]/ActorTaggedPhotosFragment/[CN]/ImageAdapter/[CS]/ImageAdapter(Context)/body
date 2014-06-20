@@ -1,0 +1,5 @@
+{
+  mContext=context;
+  inflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+  mCardBackground=MizuuApplication.getCardColor(mContext);
+}

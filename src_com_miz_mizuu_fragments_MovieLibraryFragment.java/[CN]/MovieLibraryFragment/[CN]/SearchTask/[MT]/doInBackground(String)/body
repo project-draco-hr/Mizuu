@@ -1,34 +1,33 @@
 {
-  List<MediumMovie> tempMovies=new ArrayList<MediumMovie>();
-  if (searchQuery.startsWith("actor:")) {
-    for (int i=0; i < movies.size(); i++) {
+  mTempKeys=new ArrayList<Integer>();
+  if (mSearchQuery.startsWith("actor:")) {
+    for (int i=0; i < mMovies.size(); i++) {
       if (isCancelled())       return null;
-      if (movies.get(i).getCast().toLowerCase(Locale.ENGLISH).contains(searchQuery.replace("actor:","").trim()))       tempMovies.add(movies.get(i));
+      if (mMovies.get(i).getCast().toLowerCase(Locale.ENGLISH).contains(mSearchQuery.replace("actor:","").trim()))       mTempKeys.add(i);
     }
   }
- else   if (searchQuery.equalsIgnoreCase("missing_genres")) {
-    for (int i=0; i < movies.size(); i++) {
+ else   if (mSearchQuery.equalsIgnoreCase("missing_genres")) {
+    for (int i=0; i < mMovies.size(); i++) {
       if (isCancelled())       return null;
-      if (MizLib.isEmpty(movies.get(i).getGenres()))       tempMovies.add(movies.get(i));
+      if (MizLib.isEmpty(mMovies.get(i).getGenres()))       mTempKeys.add(i);
     }
   }
- else   if (searchQuery.equalsIgnoreCase("multiple_versions")) {
+ else   if (mSearchQuery.equalsIgnoreCase("multiple_versions")) {
     DbAdapter db=MizuuApplication.getMovieAdapter();
-    for (int i=0; i < movies.size(); i++) {
+    for (int i=0; i < mMovies.size(); i++) {
       if (isCancelled())       return null;
-      if (db.hasMultipleVersions(movies.get(i).getTmdbId()))       tempMovies.add(movies.get(i));
+      if (db.hasMultipleVersions(mMovies.get(i).getTmdbId()))       mTempKeys.add(i);
     }
   }
  else {
     String lowerCase="", filepath;
     Pattern p=Pattern.compile(MizLib.CHARACTER_REGEX);
-    for (int i=0; i < movies.size(); i++) {
+    for (int i=0; i < mMovies.size(); i++) {
       if (isCancelled())       return null;
-      lowerCase=movies.get(i).getTitle().toLowerCase(Locale.ENGLISH);
-      filepath=movies.get(i).getFilepath().toLowerCase(Locale.ENGLISH);
-      if (lowerCase.indexOf(searchQuery) != -1 || filepath.indexOf(searchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(searchQuery) != -1)       tempMovies.add(movies.get(i));
+      lowerCase=mMovies.get(i).getTitle().toLowerCase(Locale.ENGLISH);
+      filepath=mMovies.get(i).getFilepath().toLowerCase(Locale.ENGLISH);
+      if (lowerCase.indexOf(mSearchQuery) != -1 || filepath.indexOf(mSearchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(mSearchQuery) != -1)       mTempKeys.add(i);
     }
   }
-  shownMovies=new ArrayList<MediumMovie>(tempMovies);
   return null;
 }

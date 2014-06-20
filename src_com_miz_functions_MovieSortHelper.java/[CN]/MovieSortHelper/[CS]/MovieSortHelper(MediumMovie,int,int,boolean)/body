@@ -1,0 +1,6 @@
+{
+  mMovie=movie;
+  mIndex=index;
+  mSortType=sortType;
+  mCollectionsView=collectionsView;
+}

@@ -1,6 +1,6 @@
 {
-  if (isMovie && !MizLib.isMovieLibraryBeingUpdated(this))   getApplicationContext().startService(new Intent(getApplicationContext(),MovieLibraryUpdate.class));
- else   if (!isMovie && !MizLib.isTvShowLibraryBeingUpdated(this))   getApplicationContext().startService(new Intent(getApplicationContext(),TvShowsLibraryUpdate.class));
+  if (mIsMovie && !MizLib.isMovieLibraryBeingUpdated(this))   getApplicationContext().startService(new Intent(getApplicationContext(),MovieLibraryUpdate.class));
+ else   if (!mIsMovie && !MizLib.isTvShowLibraryBeingUpdated(this))   getApplicationContext().startService(new Intent(getApplicationContext(),TvShowsLibraryUpdate.class));
   setResult(1);
   finish();
   return;

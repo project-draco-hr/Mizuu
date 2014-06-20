@@ -1,7 +1,26 @@
 {
   spinnerItems.clear();
-  spinnerItems.add(new SpinnerItem(actorName,getString(R.string.actorBiography)));
-  spinnerItems.add(new SpinnerItem(actorName,getString(R.string.chooserMovies)));
-  spinnerItems.add(new SpinnerItem(actorName,getString(R.string.actorsShowAllPhotos)));
+  spinnerItems.add(new SpinnerItem(actorName,getString(R.string.actorBiography),ActorBiographyFragment.newInstance(json,mActorThumb)));
+  spinnerItems.add(new SpinnerItem(actorName,getString(R.string.chooserMovies),ActorMoviesFragment.newInstance(json,baseUrl)));
+  try {
+    JSONObject j=new JSONObject(json);
+    if (j.getJSONObject("tv_credits").getJSONArray("cast").length() > 0) {
+      spinnerItems.add(new SpinnerItem(actorName,getString(R.string.chooserTVShows),ActorTvShowsFragment.newInstance(json,baseUrl)));
+    }
+  }
+ catch (  JSONException e) {
+  }
+  try {
+    JSONObject j=new JSONObject(json);
+    if (j.getJSONObject("images").getJSONArray("profiles").length() > 0)     spinnerItems.add(new SpinnerItem(actorName,getString(R.string.actorsShowAllPhotos),ActorPhotosFragment.newInstance(json,actorName,baseUrl)));
+  }
+ catch (  JSONException e) {
+  }
+  try {
+    JSONObject j=new JSONObject(json);
+    if (j.getJSONObject("tagged_images").getInt("total_results") > 0)     spinnerItems.add(new SpinnerItem(actorName,getString(R.string.actorsTaggedPhotos),ActorTaggedPhotosFragment.newInstance(json,actorName,baseUrl)));
+  }
+ catch (  JSONException e) {
+  }
   actionBar.setListNavigationCallbacks(spinnerAdapter,this);
 }

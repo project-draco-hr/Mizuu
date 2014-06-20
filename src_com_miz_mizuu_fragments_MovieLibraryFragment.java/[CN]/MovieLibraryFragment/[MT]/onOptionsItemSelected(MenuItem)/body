@@ -5,22 +5,22 @@ case R.id.update:
     startActivityForResult(getUpdateIntent(),0);
   break;
 case R.id.menuSortAdded:
-sortByDateAdded();
+sortBy(DATE);
 break;
 case R.id.menuSortRating:
-sortByRating();
+sortBy(RATING);
 break;
 case R.id.menuSortWeightedRating:
-sortByWeightedRating();
+sortBy(WEIGHTED_RATING);
 break;
 case R.id.menuSortRelease:
-sortByRelease();
+sortBy(RELEASE);
 break;
 case R.id.menuSortTitle:
-sortByTitle();
+sortBy(TITLE);
 break;
 case R.id.menuSortDuration:
-sortByDuration();
+sortBy(DURATION);
 break;
 case R.id.menuSettings:
 startActivity(new Intent(getActivity(),Preferences.class));
@@ -36,6 +36,9 @@ showFolders();
 break;
 case R.id.fileSources:
 showFileSources();
+break;
+case R.id.clear_filters:
+showMovieSection(mActionBar.getSelectedNavigationIndex());
 break;
 }
 return true;

@@ -1,3 +1,3 @@
 {
-  return new File(getMovieBackdropFolder(c),movieId + "_bg.jpg");
+  return new File(MizuuApplication.getMovieBackdropFolder(c),movieId + "_bg.jpg");
 }

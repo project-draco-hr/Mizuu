@@ -1,7 +1,8 @@
 {
+  int mKeyPosition=mMovieKeys.get(position);
   CoverItem holder;
   if (convertView == null) {
-    convertView=inflater.inflate(R.layout.grid_item,container,false);
+    convertView=mInflater.inflate(R.layout.grid_item,container,false);
     holder=new CoverItem();
     holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
@@ -25,44 +26,23 @@
  else {
     holder.text.setVisibility(View.VISIBLE);
     holder.subtext.setVisibility(View.VISIBLE);
+    holder.text.setText(mCollectionsView ? mMovies.get(mKeyPosition).getCollection() : mMovies.get(mKeyPosition).getTitle());
+    holder.subtext.setText(mMovies.get(mKeyPosition).getSubText(mCurrentSort));
   }
-  if (mShowTitles) {
-switch (mCurrentSort) {
-case DURATION:
-      holder.subtext.setText(shownMovies.get(position).getPrettyRuntime());
-    break;
-case RATING:
-  holder.subtext.setText((int)(shownMovies.get(position).getRawRating() * 10) + "%");
-break;
-case WEIGHTED_RATING:
-holder.subtext.setText(shownMovies.get(position).getWeightedCompatibility());
-break;
-case DATE:
-holder.subtext.setText(shownMovies.get(position).getPrettyDateAdded());
-break;
-case RELEASE:
-holder.subtext.setText(shownMovies.get(position).getPrettyReleaseDate());
-break;
-default :
-holder.subtext.setText(shownMovies.get(position).getReleaseYear());
-break;
-}
-}
-holder.cover.setImageResource(mCardBackground);
-if (isCollections) {
-mPicasso.load(shownMovies.get(position).getCollectionPoster()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
-if (mShowTitles) holder.text.setText(shownMovies.get(position).getCollection());
-}
+  holder.cover.setImageResource(mCardBackground);
+  if (!mCollectionsView) {
+    if (!mIgnoreNfo && mMovies.get(mKeyPosition).isNetworkFile()) {
+      if (mResizedWidth > 0)       mPicasso.load(mMovies.get(mKeyPosition).getFilepath() + "<MiZ>" + mMovies.get(mKeyPosition).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else       mPicasso.load(mMovies.get(mKeyPosition).getFilepath() + "<MiZ>" + mMovies.get(mKeyPosition).getThumbnail()).config(mConfig).into(holder);
+    }
  else {
-if (mShowTitles) holder.text.setText(shownMovies.get(position).getTitle());
-if (!ignoreNfo && shownMovies.get(position).isNetworkFile()) {
-if (mResizedWidth > 0) mPicasso.load(shownMovies.get(position).getFilepath() + "<MiZ>" + shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
- else mPicasso.load(shownMovies.get(position).getFilepath() + "<MiZ>" + shownMovies.get(position).getThumbnail()).config(mConfig).into(holder);
-}
+      if (mResizedWidth > 0)       mPicasso.load(mMovies.get(mKeyPosition).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else       mPicasso.load(mMovies.get(mKeyPosition).getThumbnail()).config(mConfig).into(holder);
+    }
+  }
  else {
-if (mResizedWidth > 0) mPicasso.load(shownMovies.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
- else mPicasso.load(shownMovies.get(position).getThumbnail()).config(mConfig).into(holder);
-}
-}
-return convertView;
+    if (mResizedWidth > 0)     mPicasso.load(mMovies.get(mKeyPosition).getCollectionPoster()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else     mPicasso.load(mMovies.get(mKeyPosition).getCollectionPoster()).config(mConfig).into(holder);
+  }
+  return convertView;
 }

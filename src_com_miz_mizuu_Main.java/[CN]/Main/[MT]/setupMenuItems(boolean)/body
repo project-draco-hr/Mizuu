@@ -5,7 +5,6 @@
   mMenuItems.add(new MenuItem(getString(R.string.chooserWatchList),mNumWatchlist,MenuItem.SECTION,null));
   mMenuItems.add(new MenuItem(getString(R.string.drawerOnlineMovies),-1,MenuItem.SECTION,null));
   mMenuItems.add(new MenuItem(getString(R.string.drawerWebVideos),-1,MenuItem.SECTION,null));
-  mMenuItems.add(new MenuItem(getString(R.string.installed_media_apps),-1,MenuItem.HEADER,null));
   final PackageManager pm=getPackageManager();
   if (refreshThirdPartyApps) {
     mApplicationList=pm.getInstalledApplications(PackageManager.GET_META_DATA);
@@ -16,6 +15,7 @@
       temp.add(new MenuItem(pm.getApplicationLabel(mApplicationList.get(i)).toString(),-1,MenuItem.THIRD_PARTY_APP,mApplicationList.get(i).packageName));
     }
   }
+  if (temp.size() > 0)   mMenuItems.add(new MenuItem(getString(R.string.installed_media_apps),-1,MenuItem.HEADER,null));
   Collections.sort(temp,new Comparator<MenuItem>(){
     @Override public int compare(    MenuItem lhs,    MenuItem rhs){
       return lhs.getTitle().compareToIgnoreCase(rhs.getTitle());

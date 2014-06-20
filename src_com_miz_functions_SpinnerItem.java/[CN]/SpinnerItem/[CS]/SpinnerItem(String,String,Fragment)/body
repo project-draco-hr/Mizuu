@@ -1,0 +1,5 @@
+{
+  mTitle=title;
+  mSubtitle=subtitle;
+  mFragment=fragment;
+}

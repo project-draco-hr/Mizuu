@@ -1,8 +1,0 @@
-{
-  super.onCreate(savedInstanceState);
-  int res=getActivity().getResources().getIdentifier(getArguments().getString("resource"),"xml",getActivity().getPackageName());
-  addPreferencesFromResource(res);
-  PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
-  pref=getPreferenceScreen().findPreference("prefsIgnoredFiles");
-  if (pref != null)   pref.setEnabled(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_FILES_ENABLED,false));
-}

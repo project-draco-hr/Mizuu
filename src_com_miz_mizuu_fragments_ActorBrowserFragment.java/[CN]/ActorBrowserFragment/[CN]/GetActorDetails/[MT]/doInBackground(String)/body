@@ -18,12 +18,12 @@
     String html=httpclient.execute(httppost,responseHandler);
     jObject=new JSONObject(html);
     JSONArray jArray=jObject.getJSONArray("cast");
-    actors.clear();
+    mActors.clear();
     Set<String> actorIds=new HashSet<String>();
     for (int i=0; i < jArray.length(); i++) {
       if (!actorIds.contains(jArray.getJSONObject(i).getString("id"))) {
         actorIds.add(jArray.getJSONObject(i).getString("id"));
-        actors.add(new Actor(jArray.getJSONObject(i).getString("name"),jArray.getJSONObject(i).getString("character"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getActorUrlSize(getActivity()) + jArray.getJSONObject(i).getString("profile_path")));
+        mActors.add(new Actor(jArray.getJSONObject(i).getString("name"),jArray.getJSONObject(i).getString("character"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getActorUrlSize(getActivity()) + jArray.getJSONObject(i).getString("profile_path")));
       }
     }
     actorIds.clear();

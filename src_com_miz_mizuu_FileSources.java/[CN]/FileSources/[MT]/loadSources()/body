@@ -1,12 +1,32 @@
 {
-  DbAdapterSources dbHelper=MizuuApplication.getSourcesAdapter();
-  sources.clear();
-  Cursor cursor=dbHelper.fetchAllSources();
-  while (cursor.moveToNext()) {
-    sources.add(new FileSource(cursor.getLong(cursor.getColumnIndex(DbAdapterSources.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),cursor.getInt(cursor.getColumnIndex(DbAdapterSources.KEY_FILESOURCE_TYPE)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_USER)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_TYPE))));
+  ArrayList<FileSource> sources=new ArrayList<FileSource>();
+  boolean hasMovies=false, hasShows=false;
+  Cursor cursor=mDatabase.fetchAllSources();
+  try {
+    while (cursor.moveToNext()) {
+      FileSource fs=new FileSource(cursor.getLong(cursor.getColumnIndex(DbAdapterSources.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),cursor.getInt(cursor.getColumnIndex(DbAdapterSources.KEY_FILESOURCE_TYPE)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_USER)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),cursor.getString(cursor.getColumnIndex(DbAdapterSources.KEY_TYPE)));
+      sources.add(fs);
+      if (fs.isMovie())       hasMovies=true;
+      if (!fs.isMovie())       hasShows=true;
+    }
   }
-  cursor.close();
-  if (sources.size() == 0)   noFileSources.setVisibility(View.VISIBLE);
- else   noFileSources.setVisibility(View.GONE);
-  notifyDataSetChanged();
+ catch (  Exception ignored) {
+  }
+ finally {
+    cursor.close();
+  }
+  mItems.clear();
+  if (hasMovies) {
+    mItems.add(new FileSourceListItem(null,getString(R.string.chooserMovies),true));
+    for (int i=0; i < sources.size(); i++) {
+      if (sources.get(i).isMovie())       mItems.add(new FileSourceListItem(sources.get(i),sources.get(i).getTitle(),false));
+    }
+  }
+  if (hasShows) {
+    mItems.add(new FileSourceListItem(null,getString(R.string.chooserTVShows),true));
+    for (int i=0; i < sources.size(); i++) {
+      if (!sources.get(i).isMovie())       mItems.add(new FileSourceListItem(sources.get(i),sources.get(i).getTitle(),false));
+    }
+  }
+  mAdapter.notifyDataSetChanged();
 }

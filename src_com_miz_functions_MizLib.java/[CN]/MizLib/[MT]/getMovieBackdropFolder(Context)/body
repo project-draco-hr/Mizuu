@@ -1,5 +1,0 @@
-{
-  File f=new File(c.getExternalFilesDir(null) + "/movie-backdrops");
-  f.mkdirs();
-  return f;
-}

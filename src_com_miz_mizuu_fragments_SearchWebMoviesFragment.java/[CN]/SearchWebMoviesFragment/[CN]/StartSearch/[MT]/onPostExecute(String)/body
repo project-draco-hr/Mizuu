@@ -6,6 +6,8 @@
       mAdapter=new ListAdapter(getActivity());
       lv.setAdapter(mAdapter);
     }
-    mAdapter.notifyDataSetChanged();
+ else {
+      mAdapter.notifyDataSetChanged();
+    }
   }
 }

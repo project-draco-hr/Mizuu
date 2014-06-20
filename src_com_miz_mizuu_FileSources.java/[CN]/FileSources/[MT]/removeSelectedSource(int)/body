@@ -1,5 +1,4 @@
 {
-  DbAdapterSources dbHelper=MizuuApplication.getSourcesAdapter();
-  dbHelper.deleteSource(sources.get(id).getRowId());
+  mDatabase.deleteSource(mItems.get(id).getFileSource().getRowId());
   loadSources();
 }

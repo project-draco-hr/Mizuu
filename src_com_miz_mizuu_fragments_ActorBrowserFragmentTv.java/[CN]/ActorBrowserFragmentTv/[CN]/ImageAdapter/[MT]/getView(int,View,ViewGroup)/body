@@ -17,8 +17,10 @@
  else {
     holder=(CoverItem)convertView.getTag();
   }
+  holder.cover.setImageResource(mCardBackground);
   holder.text.setText(actors.get(position).getName());
-  holder.subtext.setText(actors.get(position).getCharacter());
-  mPicasso.load(actors.get(position).getUrl()).placeholder(mCardBackground).error(R.drawable.noactor).config(mConfig).into(holder.cover);
+  holder.subtext.setText(actors.get(position).getCharacter().equals("null") ? "" : actors.get(position).getCharacter());
+  if (!actors.get(position).getUrl().endsWith("null"))   mPicasso.load(actors.get(position).getUrl()).error(R.drawable.noactor).config(mConfig).into(holder);
+ else   holder.cover.setImageResource(R.drawable.noactor);
   return convertView;
 }

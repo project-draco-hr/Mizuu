@@ -9,7 +9,7 @@
   }
   if (!mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && mConfirmExit) {
     if (mTriedOnce) {
-      super.onBackPressed();
+      finish();
     }
  else {
       Toast.makeText(this,getString(R.string.pressBackToExit),Toast.LENGTH_SHORT).show();
@@ -18,6 +18,6 @@
   }
  else {
     if (MizLib.isGoogleTV(this))     mDrawerLayout.closeDrawers();
- else     super.onBackPressed();
+ else     finish();
   }
 }

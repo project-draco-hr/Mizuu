@@ -1,0 +1,8 @@
+{
+  if (MizLib.hasJellyBean()) {
+    vto.removeOnGlobalLayoutListener(victim);
+  }
+ else {
+    vto.removeGlobalOnLayoutListener(victim);
+  }
+}

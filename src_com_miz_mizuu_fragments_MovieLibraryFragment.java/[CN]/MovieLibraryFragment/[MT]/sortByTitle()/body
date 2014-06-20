@@ -1,6 +1,0 @@
-{
-  Editor editor=settings.edit();
-  editor.putString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES,"sortTitle");
-  editor.apply();
-  sortBy(TITLE);
-}

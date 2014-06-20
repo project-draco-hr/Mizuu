@@ -1,0 +1,16 @@
+{
+  Cursor mCursor=database.query(true,DATABASE_TABLE,SELECT_ALL,KEY_SHOW_TITLE + "='" + showTitle.replace("'","''")+ "'",null,KEY_SHOW_TITLE,null,null,null);
+  if (mCursor == null)   return false;
+  try {
+    if (mCursor.getCount() == 0) {
+      mCursor.close();
+      return false;
+    }
+  }
+ catch (  Exception e) {
+    mCursor.close();
+    return false;
+  }
+  mCursor.close();
+  return true;
+}

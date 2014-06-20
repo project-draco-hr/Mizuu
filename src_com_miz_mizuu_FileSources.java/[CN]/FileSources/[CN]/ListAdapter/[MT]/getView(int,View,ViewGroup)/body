@@ -1,27 +1,21 @@
 {
-  ViewHolder holder;
-  if (convertView == null) {
-    convertView=inflater.inflate(R.layout.filesource_list,null);
-    holder=new ViewHolder();
-    holder.folderName=(TextView)convertView.findViewById(R.id.txtListTitle);
-    holder.folderName.setTextAppearance(FileSources.this,android.R.style.TextAppearance_Medium);
-    holder.fullPath=(TextView)convertView.findViewById(R.id.txtListPlot);
-    holder.remove=(ImageView)convertView.findViewById(R.id.imageView2);
-    holder.icon=(ImageView)convertView.findViewById(R.id.traktIcon);
-    convertView.setTag(holder);
+  if (mItems.get(position).isHeader()) {
+    convertView=mInflater.inflate(R.layout.file_source_list_header,parent,false);
+    TextView title=(TextView)convertView.findViewById(R.id.title);
+    title.setText(mItems.get(position).getTitle());
+    title.setTypeface(MizuuApplication.getOrCreateTypeface(getApplicationContext(),"Roboto-Light.ttf"));
   }
  else {
-    holder=(ViewHolder)convertView.getTag();
-  }
-  holder.folderName.setText(sources.get(position).getTitle());
-  holder.fullPath.setText(sources.get(position).getFilepath());
-  if (sources.get(position).isMovie())   holder.icon.setImageResource(R.drawable.ic_action_movie);
- else   holder.icon.setImageResource(R.drawable.ic_action_tv);
-  holder.remove.setOnClickListener(new OnClickListener(){
-    @Override public void onClick(    View v){
-      removeSelectedSource(position);
+    convertView=mInflater.inflate(R.layout.filesource_list,parent,false);
+    ((TextView)convertView.findViewById(R.id.txtListTitle)).setText(mItems.get(position).getTitle());
+    ((TextView)convertView.findViewById(R.id.txtListPlot)).setText(mItems.get(position).getFileSource().getFilepath());
+    ((ImageView)convertView.findViewById(R.id.traktIcon)).setImageResource(mItems.get(position).getFileSource().isMovie() ? R.drawable.ic_action_movie : R.drawable.ic_action_tv);
+    ((ImageView)convertView.findViewById(R.id.imageView2)).setOnClickListener(new OnClickListener(){
+      @Override public void onClick(      View v){
+        removeSelectedSource(position);
+      }
     }
-  }
 );
+  }
   return convertView;
 }

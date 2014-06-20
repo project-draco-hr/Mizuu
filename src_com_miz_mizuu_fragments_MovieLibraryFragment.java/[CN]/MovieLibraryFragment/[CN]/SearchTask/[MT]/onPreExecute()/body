@@ -1,0 +1,4 @@
+{
+  setProgressBarVisible(true);
+  mMovieKeys.clear();
+}

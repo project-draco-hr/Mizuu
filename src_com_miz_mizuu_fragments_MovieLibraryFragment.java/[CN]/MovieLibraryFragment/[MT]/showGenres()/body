@@ -1,10 +1,9 @@
 {
-  showCollectionBasedOnNavigationIndex(actionBar.getSelectedNavigationIndex());
   final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
   String[] splitGenres;
-  for (int i=0; i < shownMovies.size(); i++) {
-    if (!shownMovies.get(i).getGenres().isEmpty()) {
-      splitGenres=shownMovies.get(i).getGenres().split(",");
+  for (int i=0; i < mMovieKeys.size(); i++) {
+    if (!mMovies.get(mMovieKeys.get(i)).getGenres().isEmpty()) {
+      splitGenres=mMovies.get(mMovieKeys.get(i)).getGenres().split(",");
       for (int j=0; j < splitGenres.length; j++) {
         if (map.containsKey(splitGenres[j].trim())) {
           map.put(splitGenres[j].trim(),map.get(splitGenres[j].trim()) + 1);
@@ -15,25 +14,11 @@
       }
     }
   }
-  final CharSequence[] tempArray=map.keySet().toArray(new CharSequence[map.keySet().size()]);
-  for (int i=0; i < tempArray.length; i++)   tempArray[i]=tempArray[i] + " (" + map.get(tempArray[i])+ ")";
-  final CharSequence[] temp=new CharSequence[tempArray.length + 1];
-  temp[0]=getString(R.string.allGenres);
-  for (int i=1; i < temp.length; i++)   temp[i]=tempArray[i - 1];
+  final CharSequence[] temp=setupItemArray(map,R.string.allGenres);
   AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
   builder.setTitle(R.string.selectGenre).setItems(temp,new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int which){
-      if (which > 0) {
-        ArrayList<MediumMovie> currentlyShown=new ArrayList<MediumMovie>();
-        currentlyShown.addAll(shownMovies);
-        shownMovies.clear();
-        String selectedGenre=temp[which].toString();
-        selectedGenre=selectedGenre.substring(0,selectedGenre.lastIndexOf("(")).trim();
-        for (int i=0; i < currentlyShown.size(); i++)         if (currentlyShown.get(i).getGenres().contains(selectedGenre))         shownMovies.add(currentlyShown.get(i));
-        sortMovies();
-        notifyDataSetChanged();
-      }
-      dialog.dismiss();
+      handleDialogOnClick(dialog,which,GENRES,temp);
     }
   }
 );

@@ -1,0 +1,5 @@
+{
+  mFileSource=fileSource;
+  mTitle=title;
+  mHeader=header;
+}

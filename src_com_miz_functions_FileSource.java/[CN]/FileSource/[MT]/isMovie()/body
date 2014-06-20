@@ -1,4 +1,4 @@
 {
-  if (type.equals(DbAdapterSources.KEY_TYPE_MOVIE))   return true;
+  if (mType.equals(DbAdapterSources.KEY_TYPE_MOVIE))   return true;
   return false;
 }

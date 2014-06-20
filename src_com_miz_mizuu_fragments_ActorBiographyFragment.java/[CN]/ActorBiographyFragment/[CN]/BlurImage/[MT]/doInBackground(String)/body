@@ -1,6 +1,11 @@
 {
   try {
-    mBitmap=mPicasso.load(mThumb).config(MizuuApplication.getBitmapConfig()).get();
+    if (!mThumb.contains("null"))     mBitmap=mPicasso.load(mThumb).config(MizuuApplication.getBitmapConfig()).get();
+    publishProgress(0);
+    if (!mBackgroundImage.isEmpty()) {
+      Bitmap temp=mPicasso.load(mBackgroundImage).config(MizuuApplication.getBitmapConfig()).get();
+      if (temp != null)       return MizLib.fastblur(getActivity(),Bitmap.createScaledBitmap(temp,temp.getWidth(),temp.getHeight(),false),4);
+    }
     if (mBitmap != null)     return MizLib.fastblur(getActivity(),Bitmap.createScaledBitmap(mBitmap,mBitmap.getWidth(),mBitmap.getHeight(),false),4);
   }
  catch (  IOException e) {

@@ -1,12 +1,12 @@
 {
-  spinnerItems.clear();
-  if (type == MAIN)   spinnerItems.add(new SpinnerItem(getString(R.string.chooserMovies),getString(R.string.choiceAllMovies)));
- else   spinnerItems.add(new SpinnerItem(getString(R.string.chooserWatchList),getString(R.string.choiceAllMovies)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.choiceFavorites),getString(R.string.choiceFavorites)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.choiceAvailableFiles),getString(R.string.choiceAvailableFiles)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.choiceCollections),getString(R.string.choiceCollections)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.choiceWatchedMovies),getString(R.string.choiceWatchedMovies)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.choiceUnwatchedMovies),getString(R.string.choiceUnwatchedMovies)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.choiceUnidentifiedMovies),getString(R.string.choiceUnidentifiedMovies)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.choiceOffline),getString(R.string.choiceOffline)));
+  mSpinnerItems.clear();
+  if (mType == MAIN)   mSpinnerItems.add(new SpinnerItem(getString(R.string.chooserMovies),getString(R.string.choiceAllMovies)));
+ else   mSpinnerItems.add(new SpinnerItem(getString(R.string.chooserWatchList),getString(R.string.choiceAllMovies)));
+  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceFavorites),getString(R.string.choiceFavorites)));
+  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceAvailableFiles),getString(R.string.choiceAvailableFiles)));
+  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceCollections),getString(R.string.choiceCollections)));
+  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceWatchedMovies),getString(R.string.choiceWatchedMovies)));
+  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceUnwatchedMovies),getString(R.string.choiceUnwatchedMovies)));
+  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceUnidentifiedMovies),getString(R.string.choiceUnidentifiedMovies)));
+  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceOffline),getString(R.string.choiceOffline)));
 }

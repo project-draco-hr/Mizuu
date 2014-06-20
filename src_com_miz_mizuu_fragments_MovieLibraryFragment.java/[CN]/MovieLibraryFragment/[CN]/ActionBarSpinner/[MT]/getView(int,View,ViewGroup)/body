@@ -1,8 +1,7 @@
 {
-  convertView=inflater.inflate(R.layout.spinner_header,parent,false);
-  ((TextView)convertView.findViewById(R.id.title)).setText(spinnerItems.get(position).getTitle());
-  int size=shownMovies.size();
-  if (actionBar.getSelectedNavigationIndex() == 3)   ((TextView)convertView.findViewById(R.id.subtitle)).setText(size + " " + getResources().getQuantityString(R.plurals.collectionsInLibrary,size,size));
- else   ((TextView)convertView.findViewById(R.id.subtitle)).setText(size + " " + getResources().getQuantityString(R.plurals.moviesInLibrary,size,size));
+  convertView=mInflater.inflate(R.layout.spinner_header,parent,false);
+  ((TextView)convertView.findViewById(R.id.title)).setText(mSpinnerItems.get(position).getTitle());
+  int size=mMovieKeys.size();
+  ((TextView)convertView.findViewById(R.id.subtitle)).setText(size + " " + getResources().getQuantityString((mActionBar.getSelectedNavigationIndex() == 3) ? R.plurals.collectionsInLibrary : R.plurals.moviesInLibrary,size,size));
   return convertView;
 }

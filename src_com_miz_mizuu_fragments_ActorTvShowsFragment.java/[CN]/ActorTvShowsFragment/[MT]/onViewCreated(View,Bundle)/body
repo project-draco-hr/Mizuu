@@ -1,0 +1,35 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  v.findViewById(R.id.container).setBackgroundResource(MizuuApplication.getBackgroundColorResource(getActivity()));
+  MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
+  v.findViewById(R.id.progress).setVisibility(View.GONE);
+  mAdapter=new ImageAdapter(getActivity());
+  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView.setAdapter(mAdapter);
+  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+      if (numColumns > 0) {
+        mGridView.setNumColumns(numColumns);
+      }
+    }
+  }
+);
+  mGridView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      if (mShowsMap.get(Integer.valueOf(pics_sources.get(arg2).getId()))) {
+        Intent intent=new Intent();
+        intent.putExtra("showId",mDatabase.getShowId(pics_sources.get(arg2).getTitle()));
+        intent.setClass(getActivity(),TvShowDetails.class);
+        startActivityForResult(intent,0);
+      }
+ else {
+        Intent i=new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse("http://www.themoviedb.org/tv/" + pics_sources.get(arg2).getId()));
+        startActivity(i);
+      }
+    }
+  }
+);
+  loadData();
+}

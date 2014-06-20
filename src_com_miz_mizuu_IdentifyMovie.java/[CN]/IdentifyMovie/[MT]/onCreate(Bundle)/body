@@ -23,9 +23,25 @@
 );
   lv.setEmptyView(findViewById(R.id.no_results));
   findViewById(R.id.no_results).setVisibility(View.GONE);
+  startSearch=new StartSearch();
   searchText=(EditText)findViewById(R.id.search);
   searchText.setText(mMovie.getDecryptedFileName());
   searchText.setSelection(searchText.length());
+  searchText.addTextChangedListener(new TextWatcher(){
+    @Override public void beforeTextChanged(    CharSequence s,    int start,    int count,    int after){
+    }
+    @Override public void onTextChanged(    CharSequence s,    int start,    int before,    int count){
+    }
+    @Override public void afterTextChanged(    Editable s){
+      if (s.toString().length() > 0)       searchForMovies();
+ else {
+        startSearch.cancel(true);
+        results.clear();
+        mAdapter.notifyDataSetChanged();
+      }
+    }
+  }
+);
   searchText.setOnEditorActionListener(new OnEditorActionListener(){
     @Override public boolean onEditorAction(    TextView v,    int actionId,    KeyEvent event){
       if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN || actionId == EditorInfo.IME_ACTION_SEARCH)       searchForMovies();
@@ -34,7 +50,6 @@
   }
 );
   LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movies-identification"));
-  startSearch=new StartSearch();
   if (MizLib.isOnline(this)) {
     startSearch.execute(searchText.getText().toString());
   }

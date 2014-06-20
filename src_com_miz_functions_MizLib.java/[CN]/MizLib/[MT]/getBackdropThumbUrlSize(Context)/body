@@ -4,6 +4,7 @@
   Point size=new Point();
   d.getSize(size);
   final int width=getLowestNumber(size.x,size.y);
-  if (width >= 1200)   return "w780";
- else   return "w300";
+  if (width >= 780)   return "w780";
+  if (width >= 400)   return "w500";
+  return "w300";
 }

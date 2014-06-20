@@ -3,9 +3,15 @@
   setRetainInstance(true);
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  TVDB_ID=getArguments().getString("tvdbId");
-  mTvdbApiKey=MizLib.getTvdbApiKey(getActivity());
+  mTmdbApiKey=MizLib.getTmdbApiKey(getActivity());
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
-  new GetCoverImages().execute(TVDB_ID);
+  if (!getArguments().containsKey("json")) {
+    if (getArguments().getString("showId") == null) {
+      new GetActorDetails().execute(getActivity().getIntent().getExtras().getString("showId"));
+    }
+ else {
+      new GetActorDetails().execute(getArguments().getString("showId"));
+    }
+  }
 }

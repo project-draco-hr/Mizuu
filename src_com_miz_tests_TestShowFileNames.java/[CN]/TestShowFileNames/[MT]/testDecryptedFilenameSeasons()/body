@@ -54,4 +54,5 @@
   Assert.assertEquals(5,d[52].getSeason());
   Assert.assertEquals(1940,d[54].getSeason());
   Assert.assertEquals(1960,d[55].getSeason());
+  Assert.assertEquals(0,d[56].getSeason());
 }

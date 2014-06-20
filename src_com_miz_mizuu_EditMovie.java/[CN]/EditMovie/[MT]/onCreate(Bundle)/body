@@ -1,6 +1,5 @@
 {
   super.onCreate(savedInstanceState);
-  setupDoneDiscard();
   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
   setContentView(R.layout.editmovie);
   title=(EditText)findViewById(R.id.titleText);

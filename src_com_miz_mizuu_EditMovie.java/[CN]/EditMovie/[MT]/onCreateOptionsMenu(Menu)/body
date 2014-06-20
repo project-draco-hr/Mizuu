@@ -1,0 +1,4 @@
+{
+  getMenuInflater().inflate(R.menu.editmovie,menu);
+  return true;
+}

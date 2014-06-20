@@ -1,1 +1,1 @@
-AsyncTask<String,String,Bitmap>
+AsyncTask<String,Integer,Bitmap>

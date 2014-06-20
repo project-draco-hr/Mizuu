@@ -1,6 +1,6 @@
 {
   try {
-    MizLib.copyFile(thumb,new File(MizLib.getTvShowThumbFolder(this),thumb.getName()));
+    MizLib.copyFile(thumb,new File(MizuuApplication.getTvShowThumbFolder(this),thumb.getName()));
   }
  catch (  IOException e) {
   }

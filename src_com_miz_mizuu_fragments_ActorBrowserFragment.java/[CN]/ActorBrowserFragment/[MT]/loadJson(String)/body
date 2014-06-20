@@ -1,13 +1,13 @@
 {
   try {
-    JSONObject jObject=new JSONObject(json);
+    JSONObject jObject=new JSONObject(mJson);
     JSONArray jArray=jObject.getJSONObject("casts").getJSONArray("cast");
-    actors.clear();
+    mActors.clear();
     Set<String> actorIds=new HashSet<String>();
     for (int i=0; i < jArray.length(); i++) {
       if (!actorIds.contains(jArray.getJSONObject(i).getString("id"))) {
         actorIds.add(jArray.getJSONObject(i).getString("id"));
-        actors.add(new Actor(jArray.getJSONObject(i).getString("name"),jArray.getJSONObject(i).getString("character"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getActorUrlSize(getActivity()) + jArray.getJSONObject(i).getString("profile_path")));
+        mActors.add(new Actor(jArray.getJSONObject(i).getString("name"),jArray.getJSONObject(i).getString("character"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getActorUrlSize(getActivity()) + jArray.getJSONObject(i).getString("profile_path")));
       }
     }
     actorIds.clear();
@@ -16,7 +16,7 @@
  catch (  Exception e) {
   }
   if (isAdded()) {
-    pbar.setVisibility(View.GONE);
+    mProgressBar.setVisibility(View.GONE);
     mAdapter.notifyDataSetChanged();
   }
 }

@@ -1,0 +1,8 @@
+{
+  if (success && isAdded() && mActionBar.getSelectedNavigationIndex() == mPosition) {
+    mMovieKeys.addAll(mTempKeys);
+    sortMovies();
+    notifyDataSetChanged();
+    setProgressBarVisible(false);
+  }
+}

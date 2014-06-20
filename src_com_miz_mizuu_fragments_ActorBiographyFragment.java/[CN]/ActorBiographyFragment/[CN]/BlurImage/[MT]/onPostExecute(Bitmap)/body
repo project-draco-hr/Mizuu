@@ -2,7 +2,5 @@
   if (result != null) {
     mActorImageBackground.setImageBitmap(result);
     mActorImageBackground.setColorFilter(Color.parseColor("#AA181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
-    mActorImage.setImageBitmap(mBitmap);
-    new HighQualityImageLoader().execute();
   }
 }

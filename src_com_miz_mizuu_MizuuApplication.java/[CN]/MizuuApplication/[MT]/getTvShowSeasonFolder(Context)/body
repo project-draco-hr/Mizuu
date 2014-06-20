@@ -1,0 +1,7 @@
+{
+  if (sTvShowSeasonFolder == null) {
+    sTvShowSeasonFolder=new File(c.getExternalFilesDir(null) + "/tvshows-seasons");
+    sTvShowSeasonFolder.mkdirs();
+  }
+  return sTvShowSeasonFolder;
+}

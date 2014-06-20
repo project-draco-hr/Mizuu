@@ -1,26 +1,25 @@
 {
   super.onCreate(savedInstanceState);
   setContentView(R.layout.update_layout);
-  isMovie=getIntent().getExtras().getBoolean("isMovie");
-  if (!isMovie)   setTitle(getString(R.string.updateTvShowsTitle));
-  settings=PreferenceManager.getDefaultSharedPreferences(this);
-  editor=settings.edit();
-  checkBox=(CheckBox)findViewById(R.id.checkBox);
-  checkBox.setChecked(false);
-  checkBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
-      editor.putBoolean(isMovie ? CLEAR_LIBRARY_MOVIES : CLEAR_LIBRARY_TVSHOWS,isChecked);
-      editor.commit();
-    }
-  }
-);
-  checkBox2=(CheckBox)findViewById(R.id.checkBox2);
-  checkBox2.setChecked(false);
-  checkBox2.setOnCheckedChangeListener(new OnCheckedChangeListener(){
-    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
-      editor.putBoolean(isMovie ? REMOVE_UNAVAILABLE_FILES_MOVIES : REMOVE_UNAVAILABLE_FILES_TVSHOWS,isChecked);
-      editor.commit();
-    }
-  }
-);
+  mIsMovie=getIntent().getExtras().getBoolean("isMovie");
+  mTypeface=MizuuApplication.getOrCreateTypeface(this,"Roboto-Light.ttf");
+  if (!mIsMovie)   setTitle(getString(R.string.updateTvShowsTitle));
+  mSharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
+  mEditor=mSharedPreferences.edit();
+  mClearLibrary=(CheckBox)findViewById(R.id.checkBox);
+  mClearLibrary.setTypeface(mTypeface);
+  mClearLibrary.setChecked(false);
+  mClearLibrary.setOnCheckedChangeListener(getOnCheckedChangeListener(true));
+  mRemoveUnavailableFiles=(CheckBox)findViewById(R.id.checkBox2);
+  mRemoveUnavailableFiles.setTypeface(mTypeface);
+  mRemoveUnavailableFiles.setChecked(false);
+  mRemoveUnavailableFiles.setOnCheckedChangeListener(getOnCheckedChangeListener(false));
+  mFileSourcesDescription=(TextView)findViewById(R.id.file_sources_description);
+  mFileSourcesDescription.setTypeface(mTypeface);
+  mUpdateLibraryDescription=(TextView)findViewById(R.id.update_library_description);
+  mUpdateLibraryDescription.setTypeface(mTypeface);
+  mFileSourcesButton=(Button)findViewById(R.id.select_file_sources_button);
+  mFileSourcesButton.setTypeface(mTypeface);
+  mUpdateLibraryButton=(Button)findViewById(R.id.start_update_button);
+  mUpdateLibraryButton.setTypeface(mTypeface);
 }

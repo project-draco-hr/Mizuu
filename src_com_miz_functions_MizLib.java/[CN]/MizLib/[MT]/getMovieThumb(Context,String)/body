@@ -1,3 +1,3 @@
 {
-  return new File(getMovieThumbFolder(c),movieId + ".jpg");
+  return new File(MizuuApplication.getMovieThumbFolder(c),movieId + ".jpg");
 }

@@ -1,8 +1,7 @@
 {
-  showCollectionBasedOnNavigationIndex(actionBar.getSelectedNavigationIndex());
   final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
-  for (int i=0; i < shownMovies.size(); i++) {
-    String folder=MizLib.getParentFolder(shownMovies.get(i).getFilepath());
+  for (int i=0; i < mMovieKeys.size(); i++) {
+    String folder=MizLib.getParentFolder(mMovies.get(mMovieKeys.get(i)).getFilepath());
     if (!MizLib.isEmpty(folder)) {
       if (map.containsKey(folder.trim())) {
         map.put(folder.trim(),map.get(folder.trim()) + 1);
@@ -12,25 +11,11 @@
       }
     }
   }
-  final CharSequence[] tempArray=map.keySet().toArray(new CharSequence[map.keySet().size()]);
-  for (int i=0; i < tempArray.length; i++)   tempArray[i]=tempArray[i] + " (" + map.get(tempArray[i])+ ")";
-  final CharSequence[] temp=new CharSequence[tempArray.length + 1];
-  temp[0]=getString(R.string.allFolders);
-  for (int i=1; i < temp.length; i++)   temp[i]=tempArray[i - 1];
+  final CharSequence[] temp=setupItemArray(map,R.string.allFolders);
   AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
   builder.setTitle(R.string.selectFolder).setItems(temp,new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int which){
-      if (which > 0) {
-        ArrayList<MediumMovie> currentlyShown=new ArrayList<MediumMovie>();
-        currentlyShown.addAll(shownMovies);
-        shownMovies.clear();
-        String selectedFolder=temp[which].toString();
-        selectedFolder=selectedFolder.substring(0,selectedFolder.lastIndexOf("(")).trim();
-        for (int i=0; i < currentlyShown.size(); i++)         if (currentlyShown.get(i).getFilepath().trim().startsWith(selectedFolder))         shownMovies.add(currentlyShown.get(i));
-        sortMovies();
-        notifyDataSetChanged();
-      }
-      dialog.dismiss();
+      handleDialogOnClick(dialog,which,FOLDERS,temp);
     }
   }
 );

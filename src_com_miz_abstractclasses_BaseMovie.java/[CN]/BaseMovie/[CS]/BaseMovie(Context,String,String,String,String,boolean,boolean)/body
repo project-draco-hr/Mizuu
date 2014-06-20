@@ -25,5 +25,4 @@
       }
     }
   }
-  mGetThumbnail=MizLib.getMovieThumb(mContext,mTmdbId);
 }

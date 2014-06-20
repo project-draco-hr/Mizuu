@@ -1,0 +1,21 @@
+{
+  try {
+    JSONObject jObject=new JSONObject(json);
+    JSONArray jArray=jObject.getJSONObject("tv_credits").getJSONArray("cast");
+    Set<String> showIds=new HashSet<String>();
+    for (int i=0; i < jArray.length(); i++) {
+      if (!showIds.contains(jArray.getJSONObject(i).getString("id"))) {
+        showIds.add(jArray.getJSONObject(i).getString("id"));
+        if (!isInArray(jArray.getJSONObject(i).getString("id")))         if (!MizLib.isAdultContent(getActivity(),jArray.getJSONObject(i).getString("name")) && !MizLib.isAdultContent(getActivity(),jArray.getJSONObject(i).getString("original_name"))) {
+          pics_sources.add(new WebMovie(getActivity().getApplicationContext(),jArray.getJSONObject(i).getString("original_name"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getImageUrlSize(getActivity()) + jArray.getJSONObject(i).getString("poster_path"),jArray.getJSONObject(i).getString("first_air_date")));
+        }
+      }
+    }
+    showIds.clear();
+    showIds=null;
+    Collections.sort(pics_sources,MizLib.getWebMovieDateComparator());
+    new TvShowsInLibraryCheck(pics_sources).execute();
+  }
+ catch (  Exception ignored) {
+  }
+}

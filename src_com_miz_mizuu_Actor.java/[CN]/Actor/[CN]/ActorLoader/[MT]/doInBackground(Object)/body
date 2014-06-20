@@ -12,7 +12,7 @@
  catch (    Exception e) {
       baseUrl=MizLib.TMDB_BASE_URL;
     }
-    httppost=new HttpGet("https://api.themoviedb.org/3/person/" + params[0] + "?api_key="+ mTmdbApiKey+ "&append_to_response=credits,images");
+    httppost=new HttpGet("https://api.themoviedb.org/3/person/" + params[0] + "?api_key="+ mTmdbApiKey+ "&append_to_response=movie_credits,tv_credits,images,tagged_images");
     httppost.setHeader("Accept","application/json");
     responseHandler=new BasicResponseHandler();
     json=httpclient.execute(httppost,responseHandler);

@@ -27,16 +27,24 @@
  catch (    Exception e) {
       mBirthday="";
     }
+    try {
+      JSONArray resultArray=jObject.getJSONObject("tagged_images").getJSONArray("results");
+      if (mRandomInt == -1)       mRandomInt=new Random().nextInt(resultArray.length());
+      mBackgroundImage=MizLib.TMDB_BASE_URL + "w300" + resultArray.getJSONObject(mRandomInt).getString("file_path");
+    }
+ catch (    Exception ignored) {
+      mBackgroundImage="";
+    }
     if (mBirthday.equals("null"))     mBirthday="";
-    mImage=mThumb.replace("/w185","/h632");
+    mImage=mThumb.replace("/" + MizLib.getActorUrlSize(getActivity()),"/h632");
     mActorName.setText(mName);
     if (!MizLib.isEmpty(mBio))     mActorBio.setText(mBio);
- else     mActorBio.setVisibility(View.GONE);
+ else     mActorBio.setText(R.string.no_biography);
     if (!MizLib.isEmpty(mBirth))     mActorBirth.setText(mBirth);
  else     mActorBirth.setVisibility(View.GONE);
-    if (!MizLib.isEmpty(mBirthday))     mActorBirthday.setText(mBirthday);
+    if (!MizLib.isEmpty(mBirthday))     mActorBirthday.setText(MizLib.getPrettyDate(getActivity(),mBirthday));
  else     mActorBirthday.setVisibility(View.GONE);
-    if (!mThumb.isEmpty() || !mThumb.contains("null")) {
+    if (!mThumb.isEmpty() || !mThumb.contains("null") || !mBackgroundImage.isEmpty()) {
       new BlurImage().execute();
     }
   }

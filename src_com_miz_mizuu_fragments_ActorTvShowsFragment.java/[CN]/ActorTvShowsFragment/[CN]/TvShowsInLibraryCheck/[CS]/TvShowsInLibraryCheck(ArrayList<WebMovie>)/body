@@ -1,0 +1,4 @@
+{
+  mTvShows=tvShows;
+  mShowsMap.clear();
+}

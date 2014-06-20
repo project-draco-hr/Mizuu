@@ -1,5 +1,5 @@
 {
   super.onResume();
-  checkBox.setChecked(settings.getBoolean(isMovie ? CLEAR_LIBRARY_MOVIES : CLEAR_LIBRARY_TVSHOWS,false));
-  checkBox2.setChecked(settings.getBoolean(isMovie ? REMOVE_UNAVAILABLE_FILES_MOVIES : REMOVE_UNAVAILABLE_FILES_TVSHOWS,false));
+  mClearLibrary.setChecked(mSharedPreferences.getBoolean(mIsMovie ? CLEAR_LIBRARY_MOVIES : CLEAR_LIBRARY_TVSHOWS,false));
+  mRemoveUnavailableFiles.setChecked(mSharedPreferences.getBoolean(mIsMovie ? REMOVE_UNAVAILABLE_FILES_MOVIES : REMOVE_UNAVAILABLE_FILES_TVSHOWS,false));
 }

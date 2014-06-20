@@ -1,25 +1,25 @@
 {
   if (!isAdded())   return;
-  String SORT_TYPE=settings.getString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES,"sortTitle");
-  if (SORT_TYPE.equals("sortTitle")) {
-    sortByTitle();
-  }
- else   if (SORT_TYPE.equals("sortRelease")) {
-    sortByRelease();
+  String SORT_TYPE=mSharedPreferences.getString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES,"sortTitle");
+  Editor editor=mSharedPreferences.edit();
+  editor.putString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES,SORT_TYPE);
+  editor.apply();
+  if (SORT_TYPE.equals("sortRelease")) {
+    sortBy(RELEASE);
   }
  else   if (SORT_TYPE.equals("sortRating")) {
-    sortByRating();
+    sortBy(RATING);
   }
  else   if (SORT_TYPE.equals("sortWeightedRating")) {
-    sortByWeightedRating();
+    sortBy(WEIGHTED_RATING);
   }
  else   if (SORT_TYPE.equals("sortAdded")) {
-    sortByDateAdded();
+    sortBy(DATE);
   }
  else   if (SORT_TYPE.equals("sortDuration")) {
-    sortByDuration();
+    sortBy(DURATION);
   }
  else {
-    sortByTitle();
+    sortBy(TITLE);
   }
 }

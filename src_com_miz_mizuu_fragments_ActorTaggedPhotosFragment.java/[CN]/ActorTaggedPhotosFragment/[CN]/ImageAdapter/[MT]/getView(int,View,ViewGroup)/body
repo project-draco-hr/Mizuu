@@ -1,0 +1,14 @@
+{
+  CoverItem holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.grid_landscape_photo,container,false);
+    holder=new CoverItem();
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(CoverItem)convertView.getTag();
+  }
+  mPicasso.load(pics_sources.get(position)).placeholder(mCardBackground).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
+  return convertView;
+}

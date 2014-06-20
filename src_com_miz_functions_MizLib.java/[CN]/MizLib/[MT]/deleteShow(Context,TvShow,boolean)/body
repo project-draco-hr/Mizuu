@@ -17,7 +17,7 @@
       if (backdrop.exists() && backdrop.getAbsolutePath().contains("com.miz.mizuu")) {
         MizLib.deleteFile(backdrop);
       }
-      File dataFolder=getTvShowEpisodeFolder(c);
+      File dataFolder=MizuuApplication.getTvShowEpisodeFolder(c);
       File[] listFiles=dataFolder.listFiles();
       if (listFiles != null) {
         int count=listFiles.length;

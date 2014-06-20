@@ -17,9 +17,14 @@ intent.putExtra(Intent.EXTRA_TEXT,"http://www.imdb.com/title/" + thisMovie.getIm
 startActivity(intent);
 return true;
 case R.id.imdb:
-Intent i=new Intent(Intent.ACTION_VIEW);
-i.setData(Uri.parse("http://www.imdb.com/title/" + thisMovie.getImdbId()));
-startActivity(i);
+Intent imdbIntent=new Intent(Intent.ACTION_VIEW);
+imdbIntent.setData(Uri.parse("http://www.imdb.com/title/" + thisMovie.getImdbId()));
+startActivity(imdbIntent);
+return true;
+case R.id.tmdb:
+Intent tmdbIntent=new Intent(Intent.ACTION_VIEW);
+tmdbIntent.setData(Uri.parse("http://www.themoviedb.org/movie/" + thisMovie.getTmdbId()));
+startActivity(tmdbIntent);
 return true;
 default :
 return super.onOptionsItemSelected(item);

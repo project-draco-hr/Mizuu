@@ -1,0 +1,4 @@
+MediumMovie movie
+int index
+int sortType
+boolean collectionsView

@@ -1,0 +1,3 @@
+{
+  return mItems.get(position).isHeader() ? 0 : 1;
+}

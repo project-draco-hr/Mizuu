@@ -2,13 +2,13 @@
   super.onViewCreated(v,savedInstanceState);
   if (MizLib.isPortrait(getActivity()))   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.linearLayout1));
  else   MizLib.addActionBarMargin(getActivity(),v.findViewById(R.id.linearLayout1));
-  mActorBirthday=(TextView)v.findViewById(R.id.overviewMessage);
-  mActorBirth=(TextView)v.findViewById(R.id.textView2);
-  mActorName=(TextView)v.findViewById(R.id.textView3);
+  mActorBirthday=(TextView)v.findViewById(R.id.birthday);
+  mActorBirth=(TextView)v.findViewById(R.id.birth);
+  mActorName=(TextView)v.findViewById(R.id.actor_name);
   mActorName.setTypeface(mCondensedTypeface);
   mActorName.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
   if (MizLib.isTablet(getActivity()))   mActorName.setTextSize(48f);
-  mActorBio=(TextView)v.findViewById(R.id.textView4);
+  mActorBio=(TextView)v.findViewById(R.id.bio);
   mActorBio.setTypeface(mLightTypeface);
   mActorBio.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
   mActorImage=(ImageView)v.findViewById(R.id.traktIcon);

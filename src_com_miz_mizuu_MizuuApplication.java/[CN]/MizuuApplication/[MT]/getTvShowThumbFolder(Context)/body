@@ -1,0 +1,7 @@
+{
+  if (sTvShowThumbFolder == null) {
+    sTvShowThumbFolder=new File(c.getExternalFilesDir(null) + "/tvshows-thumbs");
+    sTvShowThumbFolder.mkdirs();
+  }
+  return sTvShowThumbFolder;
+}

@@ -1,22 +1,26 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  pbar=(ProgressBar)v.findViewById(R.id.progress);
-  if (shownMovies.size() > 0)   pbar.setVisibility(View.GONE);
-  overviewMessage=(TextView)v.findViewById(R.id.overviewMessage);
-  updateMovieLibrary=(Button)v.findViewById(R.id.addMoviesButton);
-  updateMovieLibrary.setOnClickListener(new OnClickListener(){
-    @Override public void onClick(    View v){
-      startActivityForResult(getUpdateIntent(),0);
-    }
+  mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
+  if (mMovieKeys.size() > 0)   mProgressBar.setVisibility(View.GONE);
+  mEmptyLibraryLayout=v.findViewById(R.id.empty_library_layout);
+  mEmptyLibraryIcon=(ImageView)v.findViewById(R.id.empty_library_icon);
+  mEmptyLibraryTitle=(TextView)v.findViewById(R.id.empty_library_title);
+  mEmptyLibraryTitle.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf"));
+  mEmptyLibraryDescription=(TextView)v.findViewById(R.id.empty_library_description);
+  if (mType == OTHER)   mEmptyLibraryDescription.setText(R.string.empty_watchlist_description);
+  mEmptyLibraryDescription.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf"));
+  if (!MizuuApplication.usesDarkTheme(getActivity())) {
+    mEmptyLibraryIcon.setImageResource(R.drawable.no_content_face_dark);
+    mEmptyLibraryTitle.setTextColor(Color.parseColor("#222222"));
+    mEmptyLibraryDescription.setTextColor(Color.parseColor("#222222"));
   }
-);
   mAdapter=new LoaderAdapter(getActivity());
   mGridView=(GridView)v.findViewById(R.id.gridView);
-  mGridView.setFastScrollEnabled(true);
   mGridView.setAdapter(mAdapter);
+  mGridView.setEmptyView(mEmptyLibraryLayout);
   mGridView.setColumnWidth(mImageThumbSize);
   mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
-    @SuppressWarnings("deprecation") @Override public void onGlobalLayout(){
+    @Override public void onGlobalLayout(){
       if (mAdapter.getNumColumns() == 0) {
         final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
         if (numColumns > 0) {
@@ -24,12 +28,7 @@
           mResizedWidth=(int)(((mGridView.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns) * 1.1);
           mResizedHeight=(int)(mResizedWidth * 1.5);
         }
-        if (MizLib.hasJellyBean()) {
-          mGridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        }
- else {
-          mGridView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-        }
+        MizLib.removeViewTreeObserver(mGridView.getViewTreeObserver(),this);
       }
     }
   }
@@ -37,14 +36,14 @@
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
       Intent intent=new Intent();
-      if (actionBar.getSelectedNavigationIndex() == 3) {
-        intent.putExtra("collectionId",shownMovies.get(arg2).getCollectionId());
-        intent.putExtra("collectionTitle",shownMovies.get(arg2).getCollection());
+      if (mActionBar.getSelectedNavigationIndex() == 3) {
+        intent.putExtra("collectionId",mMovies.get(mMovieKeys.get(arg2)).getCollectionId());
+        intent.putExtra("collectionTitle",mMovies.get(mMovieKeys.get(arg2)).getCollection());
         intent.setClass(getActivity(),MovieCollection.class);
         startActivity(intent);
       }
  else {
-        intent.putExtra("rowId",Integer.parseInt(shownMovies.get(arg2).getRowId()));
+        intent.putExtra("rowId",Integer.parseInt(mMovies.get(mMovieKeys.get(arg2)).getRowId()));
         intent.setClass(getActivity(),MovieDetails.class);
         startActivityForResult(intent,0);
       }
