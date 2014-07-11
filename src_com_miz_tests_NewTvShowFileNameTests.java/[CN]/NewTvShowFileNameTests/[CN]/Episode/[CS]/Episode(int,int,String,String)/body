@@ -1,0 +1,6 @@
+{
+  mSeason=season;
+  mEpisode=episode;
+  mBefore=before;
+  mAfter=after;
+}

@@ -1,21 +1,5 @@
 {
   super.onViewCreated(view,savedInstanceState);
-  if (MizLib.isPortrait(getActivity())) {
-    if (!MizLib.isTablet(getActivity()))     MizLib.addActionBarPaddingBottom(getActivity(),view.findViewById(R.id.scrollView1));
-    mActionBarBackgroundDrawable=new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,new int[]{0x00000000,0xaa000000});
-    getActivity().getActionBar().setBackgroundDrawable(mActionBarBackgroundDrawable);
-    ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.scrollView1);
-    sv.setOnScrollChangedListener(new OnScrollChangedListener(){
-      @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
-        final int headerHeight=view.findViewById(R.id.imageBackground).getHeight() - getActivity().getActionBar().getHeight();
-        final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
-        final int newAlpha=(int)(ratio * 255);
-        mActionBarBackgroundDrawable=new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,new int[]{Color.parseColor("#" + ((Integer.toHexString(newAlpha).length() == 1) ? ("0" + Integer.toHexString(newAlpha)) : Integer.toHexString(newAlpha)) + "080808"),(newAlpha >= 170) ? Color.parseColor("#" + Integer.toHexString(newAlpha) + "080808") : 0xaa080808});
-        getActivity().getActionBar().setBackgroundDrawable(mActionBarBackgroundDrawable);
-      }
-    }
-);
-  }
   background=(ImageView)view.findViewById(R.id.imageBackground);
   textTitle=(TextView)view.findViewById(R.id.movieTitle);
   textPlot=(TextView)view.findViewById(R.id.textView2);
@@ -38,51 +22,64 @@
   textReleaseDate.setTypeface(mLight);
   textRating.setTypeface(mLight);
   textCertification.setTypeface(mLight);
-  textPlot.setBackgroundResource(R.drawable.selectable_background_example);
-  if (!thisMovie.getTagline().isEmpty())   textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
- else   textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
-  textPlot.setTag(true);
-  textPlot.setOnClickListener(new OnClickListener(){
-    @Override public void onClick(    View v){
-      if (((boolean)textPlot.getTag())) {
-        textPlot.setMaxLines(1000);
-        textPlot.setTag(false);
-      }
+  if (!MizLib.isPortrait(getActivity())) {
+    textPlot.setBackgroundResource(R.drawable.selectable_background);
+    if (!thisMovie.getTagline().isEmpty())     textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
+ else     textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
+    textPlot.setTag(true);
+    textPlot.setOnClickListener(new OnClickListener(){
+      @Override public void onClick(      View v){
+        if (((Boolean)textPlot.getTag())) {
+          textPlot.setMaxLines(1000);
+          textPlot.setTag(false);
+        }
  else {
-        if (!thisMovie.getTagline().isEmpty())         textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
- else         textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
-        textPlot.setTag(true);
+          if (!thisMovie.getTagline().isEmpty())           textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
+ else           textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
+          textPlot.setTag(true);
+        }
       }
     }
-  }
 );
-  textPlot.setEllipsize(TextUtils.TruncateAt.END);
-  textPlot.setFocusable(true);
-  textPlot.setText(thisMovie.getPlot());
-  if (thisMovie.hasMultipleVersions() && !thisMovie.isUnidentified()) {
-    String sources="";
-    MovieVersion[] versions=thisMovie.getMultipleVersions();
-    for (int i=0; i < versions.length; i++)     sources=sources + MizLib.transformSmbPath(versions[i].getFilepath()) + "\n\n";
-    textSrc.setText(sources.trim());
+    textPlot.setEllipsize(TextUtils.TruncateAt.END);
+    textPlot.setFocusable(true);
   }
  else {
-    textSrc.setText(thisMovie.getFilepath());
+    if (MizLib.isTablet(getActivity()))     textPlot.setLineSpacing(0,1.15f);
   }
+  textPlot.setText(thisMovie.getPlot());
+  if (mShowFileLocation) {
+    if (thisMovie.hasMultipleVersions() && !thisMovie.isUnidentified()) {
+      StringBuilder sb=new StringBuilder();
+      MovieVersion[] versions=thisMovie.getMultipleVersions();
+      for (int i=0; i < versions.length; i++)       sb.append(MizLib.transformSmbPath(versions[i].getFilepath()) + "\n");
+      textSrc.setText(sb.toString().trim());
+    }
+ else {
+      textSrc.setText(thisMovie.getFilepath());
+    }
+  }
+ else {
+    textSrc.setVisibility(View.GONE);
+  }
+  textTagline.setTypeface(mBoldItalic);
   if (thisMovie.getTagline().isEmpty())   textTagline.setVisibility(TextView.GONE);
  else   textTagline.setText(thisMovie.getTagline());
+  textGenre.setTypeface(mLightItalic);
   if (!MizLib.isEmpty(thisMovie.getGenres())) {
     textGenre.setText(thisMovie.getGenres());
   }
  else {
-    textGenre.setText(R.string.stringNA);
+    textGenre.setVisibility(View.GONE);
   }
-  textRuntime.setText(MizLib.getPrettyTime(getActivity(),Integer.parseInt(thisMovie.getRuntime())));
+  textRuntime.setText(MizLib.getPrettyRuntime(getActivity(),Integer.parseInt(thisMovie.getRuntime())));
+  textReleaseDate.setTypeface(mMedium);
   textReleaseDate.setText(MizLib.getPrettyDate(getActivity(),thisMovie.getReleasedate()));
   if (!thisMovie.getRating().equals("0.0/10")) {
     if (thisMovie.getRating().contains("/")) {
       try {
         int rating=(int)(Double.parseDouble(thisMovie.getRating().substring(0,thisMovie.getRating().indexOf("/"))) * 10);
-        textRating.setText(Html.fromHtml(rating + "<small> %</small>"));
+        textRating.setText(Html.fromHtml("<b>" + rating + "</b><small> %</small>"));
       }
  catch (      NumberFormatException e) {
         textRating.setText(Html.fromHtml(thisMovie.getRating().replace("/","<small> / ") + "</small>"));
@@ -96,10 +93,10 @@
     textRating.setText(R.string.stringNA);
   }
   if (!MizLib.isEmpty(thisMovie.getCertification())) {
-    textCertification.setText(thisMovie.getCertification());
+    textCertification.setText(Html.fromHtml("<b>" + thisMovie.getCertification() + "</b>"));
   }
  else {
-    textCertification.setText(R.string.stringNA);
+    textCertification.setText(Html.fromHtml("<b>" + getString(R.string.stringNA) + "</b>"));
   }
   loadImages();
 }

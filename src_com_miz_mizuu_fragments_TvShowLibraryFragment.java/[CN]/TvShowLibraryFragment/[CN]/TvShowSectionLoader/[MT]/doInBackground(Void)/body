@@ -1,0 +1,18 @@
+{
+  if (isCancelled())   return false;
+switch (mPosition) {
+case ALL_SHOWS:
+    for (int i=0; i < mTvShows.size(); i++)     mTempKeys.add(i);
+  break;
+case FAVORITES:
+for (int i=0; i < mTvShows.size(); i++) {
+  if (mTvShows.get(i).isFavorite())   mTempKeys.add(i);
+}
+break;
+case UNWATCHED_SHOWS:
+DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+for (int i=0; i < mTvShows.size(); i++) if (db.hasUnwatchedEpisodes(mTvShows.get(i).getId())) mTempKeys.add(i);
+break;
+}
+return true;
+}

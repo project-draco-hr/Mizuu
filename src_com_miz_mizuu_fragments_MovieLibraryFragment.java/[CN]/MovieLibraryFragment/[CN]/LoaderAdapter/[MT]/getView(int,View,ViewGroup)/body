@@ -1,5 +1,5 @@
 {
-  int mKeyPosition=mMovieKeys.get(position);
+  final MediumMovie mMovie=mMovies.get(mMovieKeys.get(position));
   CoverItem holder;
   if (convertView == null) {
     convertView=mInflater.inflate(R.layout.grid_item,container,false);
@@ -8,11 +8,7 @@
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
-    holder.mLinearLayout.setBackgroundResource(mCard);
-    holder.text.setBackgroundResource(mCardBackground);
-    holder.text.setTextColor(mCardTitleColor);
     holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
-    holder.subtext.setBackgroundResource(mCardBackground);
     convertView.setTag(holder);
   }
  else {
@@ -21,28 +17,36 @@
   if (!mShowTitles) {
     holder.text.setVisibility(View.GONE);
     holder.subtext.setVisibility(View.GONE);
-    holder.cover.setPadding(mSidePadding,0,mSidePadding,mBottomPadding);
   }
  else {
     holder.text.setVisibility(View.VISIBLE);
-    holder.subtext.setVisibility(View.VISIBLE);
-    holder.text.setText(mCollectionsView ? mMovies.get(mKeyPosition).getCollection() : mMovies.get(mKeyPosition).getTitle());
-    holder.subtext.setText(mMovies.get(mKeyPosition).getSubText(mCurrentSort));
+    holder.text.setText(mCollectionsView ? mMovie.getCollection() : mMovie.getTitle());
+    if (mCollectionsView) {
+      holder.text.setLines(2);
+      holder.text.setMaxLines(2);
+      holder.subtext.setVisibility(View.GONE);
+    }
+ else {
+      holder.text.setLines(1);
+      holder.text.setMaxLines(1);
+      holder.subtext.setVisibility(View.VISIBLE);
+      holder.subtext.setText(mMovie.getSubText(mCurrentSort));
+    }
   }
-  holder.cover.setImageResource(mCardBackground);
+  holder.cover.setImageResource(R.color.card_background_dark);
   if (!mCollectionsView) {
-    if (!mIgnoreNfo && mMovies.get(mKeyPosition).isNetworkFile()) {
-      if (mResizedWidth > 0)       mPicasso.load(mMovies.get(mKeyPosition).getFilepath() + "<MiZ>" + mMovies.get(mKeyPosition).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
- else       mPicasso.load(mMovies.get(mKeyPosition).getFilepath() + "<MiZ>" + mMovies.get(mKeyPosition).getThumbnail()).config(mConfig).into(holder);
+    if (!mIgnoreNfo && mMovie.isNetworkFile()) {
+      if (mResizedWidth > 0)       mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else       mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).config(mConfig).into(holder);
     }
  else {
-      if (mResizedWidth > 0)       mPicasso.load(mMovies.get(mKeyPosition).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
- else       mPicasso.load(mMovies.get(mKeyPosition).getThumbnail()).config(mConfig).into(holder);
+      if (mResizedWidth > 0)       mPicasso.load(mMovie.getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else       mPicasso.load(mMovie.getThumbnail()).config(mConfig).into(holder);
     }
   }
  else {
-    if (mResizedWidth > 0)     mPicasso.load(mMovies.get(mKeyPosition).getCollectionPoster()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
- else     mPicasso.load(mMovies.get(mKeyPosition).getCollectionPoster()).config(mConfig).into(holder);
+    if (mResizedWidth > 0)     mPicasso.load(mMovie.getCollectionPoster()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else     mPicasso.load(mMovie.getCollectionPoster()).config(mConfig).into(holder);
   }
   return convertView;
 }

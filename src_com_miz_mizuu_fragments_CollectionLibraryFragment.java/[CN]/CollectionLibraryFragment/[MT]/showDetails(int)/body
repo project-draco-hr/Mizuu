@@ -1,0 +1,6 @@
+{
+  Intent intent=new Intent();
+  intent.putExtra("rowId",Integer.parseInt(mMovies.get(mMovieKeys.get(arg2)).getRowId()));
+  intent.setClass(getActivity(),MovieDetails.class);
+  startActivityForResult(intent,0);
+}

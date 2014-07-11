@@ -1,0 +1,6 @@
+{
+  if (mSpinnerAdapter != null)   mSpinnerAdapter.notifyDataSetChanged();
+  if (mTvShowSectionLoader != null)   mTvShowSectionLoader.cancel(true);
+  mTvShowSectionLoader=new TvShowSectionLoader(position);
+  mTvShowSectionLoader.execute();
+}

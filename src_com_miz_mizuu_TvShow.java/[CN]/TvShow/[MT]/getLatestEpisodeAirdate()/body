@@ -1,0 +1,3 @@
+{
+  return LATEST_EPISODE_AIR_DATE;
+}

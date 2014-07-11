@@ -9,7 +9,8 @@
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  if (!pics_sources.get(position).contains("null"))   mPicasso.load(pics_sources.get(position)).placeholder(mCardBackground).error(R.drawable.loading_image).config(mConfig).into(holder.cover);
+  holder.cover.setImageResource(R.color.card_background_dark);
+  if (!pics_sources.get(position).contains("null"))   mPicasso.load(pics_sources.get(position)).placeholder(R.color.card_background_dark).error(R.drawable.loading_image).config(mConfig).into(holder.cover);
  else   holder.cover.setImageResource(R.drawable.loading_image);
   return convertView;
 }

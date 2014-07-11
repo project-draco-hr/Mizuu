@@ -1,5 +1,5 @@
 {
   super.onResume();
-  if (shows.size() == 0)   forceLoaderLoad();
+  if (mTvShows.size() == 0)   forceLoaderLoad();
   if (mAdapter != null)   mAdapter.notifyDataSetChanged();
 }

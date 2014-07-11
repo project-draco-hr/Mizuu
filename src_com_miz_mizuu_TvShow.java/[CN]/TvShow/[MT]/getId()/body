@@ -1,8 +1,8 @@
 {
-  if (ID == null || ID.isEmpty()) {
+  if (mId == null || mId.isEmpty()) {
     return "NOSHOW";
   }
  else {
-    return ID;
+    return mId;
   }
 }

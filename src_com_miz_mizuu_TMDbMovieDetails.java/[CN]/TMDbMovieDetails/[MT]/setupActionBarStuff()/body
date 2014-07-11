@@ -5,6 +5,6 @@
   setTitle(null);
   if (!MizLib.isPortrait(getApplicationContext()))   findViewById(R.id.layout).setBackgroundResource(0);
   pbar.setVisibility(View.GONE);
-  awesomePager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager(),json));
   setupSpinnerItems();
+  awesomePager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
 }

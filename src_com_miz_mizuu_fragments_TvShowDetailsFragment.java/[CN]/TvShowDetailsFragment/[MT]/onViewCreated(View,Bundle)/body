@@ -36,12 +36,12 @@
   textRating.setTypeface(mLight);
   textCertification.setTypeface(mLight);
   textPlot.setText(thisShow.getDescription());
-  textPlot.setBackgroundResource(R.drawable.selectable_background_example);
+  textPlot.setBackgroundResource(R.drawable.selectable_background);
   textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
   textPlot.setTag(true);
   textPlot.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
-      if (((boolean)textPlot.getTag())) {
+      if (((Boolean)textPlot.getTag())) {
         textPlot.setMaxLines(1000);
         textPlot.setTag(false);
       }

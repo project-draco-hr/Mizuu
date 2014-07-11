@@ -1,4 +1,3 @@
 {
-  if (usesDarkTheme(context))   return R.color.dark_background;
-  return R.color.light_background;
+  return R.color.dark_background;
 }

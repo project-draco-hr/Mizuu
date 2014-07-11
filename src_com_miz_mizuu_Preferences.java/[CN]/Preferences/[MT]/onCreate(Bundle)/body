@@ -1,6 +1,6 @@
 {
-  if (MizuuApplication.isFullscreen(this))   setTheme(R.style.Theme_Example_FullScreen);
- else   setTheme(R.style.Theme_Example);
+  if (MizuuApplication.isFullscreen(this))   setTheme(R.style.Mizuu_Theme_FullScreen);
+ else   setTheme(R.style.Mizuu_Theme);
   super.onCreate(savedInstanceState);
   getActionBar().setDisplayHomeAsUpEnabled(true);
 }

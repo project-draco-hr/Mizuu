@@ -1,6 +1,6 @@
 {
   super.onCreate(savedInstanceState);
-  mFullscreen=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(FULLSCREEN_TAG,false);
-  if (isFullscreen())   setTheme(R.style.Theme_Example_FullScreen);
+  mFullscreen=MizuuApplication.isFullscreen(this);
+  if (isFullscreen())   setTheme(R.style.Mizuu_Theme_FullScreen);
   PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 }

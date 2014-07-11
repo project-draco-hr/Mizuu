@@ -1,4 +1,4 @@
 {
-  if (!mLoading)   showCollectionBasedOnNavigationIndex(itemPosition);
+  if (!mLoading)   showTvShowSection(itemPosition);
   return true;
 }

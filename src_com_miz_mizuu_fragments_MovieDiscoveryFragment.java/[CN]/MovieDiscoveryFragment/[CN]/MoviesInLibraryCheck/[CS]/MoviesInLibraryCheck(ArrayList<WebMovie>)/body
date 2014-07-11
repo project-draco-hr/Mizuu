@@ -1,4 +1,4 @@
 {
   this.movies=movies;
-  movieMap.clear();
+  mMovieMap.clear();
 }

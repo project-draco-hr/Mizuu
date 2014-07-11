@@ -1,6 +1,6 @@
 {
   if (DESCRIPTION == null || DESCRIPTION.isEmpty()) {
-    return CONTEXT.getString(R.string.stringNoPlot);
+    return mContext.getString(R.string.stringNoPlot);
   }
  else {
     return DESCRIPTION;

@@ -1,5 +1,5 @@
 {
-  videos.clear();
+  mVideos.clear();
   try {
     JSONObject jsonObject=MizLib.getJSONObject("http://www.reddit.com/r/videos/hot.json?sort=hot&limit=100");
     JSONArray jsonArray=jsonObject.getJSONObject("data").getJSONArray("children");
@@ -7,7 +7,7 @@
       if (jsonArray.getJSONObject(i).getJSONObject("data").getString("domain").equals("youtube.com") || jsonArray.getJSONObject(i).getJSONObject("data").getString("domain").equals("youtu.be")) {
         String youtubeId=MizLib.getYouTubeId(jsonArray.getJSONObject(i).getJSONObject("data").getString("url"));
         if (!youtubeId.isEmpty()) {
-          videos.add(new WebVideo(jsonArray.getJSONObject(i).getJSONObject("data").getString("title"),youtubeId,jsonArray.getJSONObject(i).getJSONObject("data").getJSONObject("media").getJSONObject("oembed").getString("thumbnail_url")));
+          mVideos.add(new WebVideo(jsonArray.getJSONObject(i).getJSONObject("data").getString("title"),youtubeId,jsonArray.getJSONObject(i).getJSONObject("data").getJSONObject("media").getJSONObject("oembed").getString("thumbnail_url")));
         }
       }
     }

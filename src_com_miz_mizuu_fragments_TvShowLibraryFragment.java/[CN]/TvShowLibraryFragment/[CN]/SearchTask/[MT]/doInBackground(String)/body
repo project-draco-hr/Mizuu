@@ -1,18 +1,18 @@
 {
-  shownShows.clear();
-  if (searchQuery.startsWith("actor:")) {
-    for (int i=0; i < shows.size(); i++) {
+  mTempKeys=new ArrayList<Integer>();
+  if (mSearchQuery.startsWith("actor:")) {
+    for (int i=0; i < mTvShows.size(); i++) {
       if (isCancelled())       return null;
-      if (shows.get(i).getActors().toLowerCase(Locale.ENGLISH).contains(searchQuery.replace("actor:","").trim()))       shownShows.add(shows.get(i));
+      if (mTvShows.get(i).getActors().toLowerCase(Locale.ENGLISH).contains(mSearchQuery.replace("actor:","").trim()))       mTempKeys.add(i);
     }
   }
  else {
     String lowerCase="";
     Pattern p=Pattern.compile(MizLib.CHARACTER_REGEX);
-    for (int i=0; i < shows.size(); i++) {
+    for (int i=0; i < mTvShows.size(); i++) {
       if (isCancelled())       return null;
-      lowerCase=shows.get(i).getTitle().toLowerCase(Locale.ENGLISH);
-      if (lowerCase.indexOf(searchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(searchQuery) != -1)       shownShows.add(shows.get(i));
+      lowerCase=mTvShows.get(i).getTitle().toLowerCase(Locale.ENGLISH);
+      if (lowerCase.indexOf(mSearchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(mSearchQuery) != -1)       mTempKeys.add(i);
     }
   }
   return null;

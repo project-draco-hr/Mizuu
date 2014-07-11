@@ -1,4 +1,5 @@
 {
+  final WebMovie mMovie=mMovies.get(position);
   CoverItem holder;
   if (convertView == null) {
     convertView=inflater.inflate(R.layout.grid_item,container,false);
@@ -7,25 +8,21 @@
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
-    holder.mLinearLayout.setBackgroundResource(mCard);
-    holder.text.setBackgroundResource(mCardBackground);
-    holder.text.setTextColor(mCardTitleColor);
     holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
-    holder.subtext.setBackgroundResource(mCardBackground);
     convertView.setTag(holder);
   }
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  holder.cover.setImageResource(mCardBackground);
-  holder.text.setText(pics_sources.get(position).getTitle());
-  if (movieMap.get(Integer.valueOf(pics_sources.get(position).getId()))) {
-    holder.subtext.setText(pics_sources.get(position).getDate() + " (" + getString(R.string.inLibrary)+ ")");
+  holder.cover.setImageResource(R.color.card_background_dark);
+  holder.text.setText(mMovie.getTitle());
+  if (mMovieMap.get(Integer.valueOf(mMovie.getId()))) {
+    holder.subtext.setText(mMovie.getDate() + " (" + getString(R.string.inLibrary)+ ")");
   }
  else {
-    holder.subtext.setText(pics_sources.get(position).getDate());
+    holder.subtext.setText(mMovie.getDate());
   }
-  if (!pics_sources.get(position).getUrl().contains("null"))   mPicasso.load(pics_sources.get(position).getUrl()).config(mConfig).into(holder);
+  if (!mMovie.getUrl().contains("null"))   mPicasso.load(mMovie.getUrl()).config(mConfig).into(holder);
  else   holder.cover.setImageResource(R.drawable.loading_image);
   return convertView;
 }

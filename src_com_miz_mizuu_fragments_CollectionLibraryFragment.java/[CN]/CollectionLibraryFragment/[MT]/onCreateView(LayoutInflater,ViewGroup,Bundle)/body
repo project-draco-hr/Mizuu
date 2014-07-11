@@ -1,38 +1,3 @@
 {
-  final View v=inflater.inflate(R.layout.image_grid_fragment,container,false);
-  pbar=(ProgressBar)v.findViewById(R.id.progress);
-  mAdapter=new LoaderAdapter(getActivity());
-  mGridView=(GridView)v.findViewById(R.id.gridView);
-  mGridView.setFastScrollEnabled(true);
-  mGridView.setAdapter(mAdapter);
-  mGridView.setColumnWidth(mImageThumbSize);
-  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
-    @SuppressLint("NewApi") @SuppressWarnings("deprecation") @Override public void onGlobalLayout(){
-      if (mAdapter.getNumColumns() == 0) {
-        final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
-        if (numColumns > 0) {
-          mAdapter.setNumColumns(numColumns);
-          mResizedWidth=(int)(((mGridView.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns) * 1.1);
-          mResizedHeight=(int)(mResizedWidth * 1.5);
-        }
-        if (MizLib.hasJellyBean()) {
-          mGridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        }
- else {
-          mGridView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-        }
-      }
-    }
-  }
-);
-  mGridView.setOnItemClickListener(new OnItemClickListener(){
-    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      Intent intent=new Intent();
-      intent.putExtra("rowId",Integer.parseInt(shownMovies.get(arg2).getRowId()));
-      intent.setClass(getActivity(),MovieDetails.class);
-      startActivityForResult(intent,0);
-    }
-  }
-);
-  return v;
+  return inflater.inflate(R.layout.image_grid_fragment,container,false);
 }

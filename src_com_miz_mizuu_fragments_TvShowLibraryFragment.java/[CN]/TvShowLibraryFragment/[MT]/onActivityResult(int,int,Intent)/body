@@ -1,8 +1,8 @@
 {
   super.onActivityResult(requestCode,resultCode,data);
   if (resultCode == 2) {
-    if (actionBar.getSelectedNavigationIndex() == 1) {
-      showFavorites();
+    if (mActionBar.getSelectedNavigationIndex() == FAVORITES) {
+      showTvShowSection(FAVORITES);
     }
   }
  else   if (resultCode == 3) {

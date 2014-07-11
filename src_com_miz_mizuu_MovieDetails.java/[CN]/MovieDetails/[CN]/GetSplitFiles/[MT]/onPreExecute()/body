@@ -1,0 +1,7 @@
+{
+  progress=new ProgressDialog(getApplicationContext());
+  progress.setIndeterminate(true);
+  progress.setTitle(getString(R.string.loading_movie_parts));
+  progress.setMessage(getString(R.string.few_moments));
+  progress.show();
+}

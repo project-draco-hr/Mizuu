@@ -1,72 +1,38 @@
 {
-  ArrayList<MediumMovie> tempMovies=new ArrayList<MediumMovie>(shownMovies);
-switch (sort) {
+  if (!isAdded())   return;
+  mCurrentSort=sort;
+  Editor editor=mSharedPreferences.edit();
+switch (mCurrentSort) {
 case TITLE:
-    Collections.sort(tempMovies,new Comparator<MediumMovie>(){
-      @Override public int compare(      MediumMovie o1,      MediumMovie o2){
-        return o1.getTitle().compareToIgnoreCase(o2.getTitle());
-      }
-    }
-);
+    editor.putString(SORTING_MOVIES,"sortTitle");
   break;
 case RELEASE:
-Collections.sort(tempMovies,new Comparator<MediumMovie>(){
-  @Override public int compare(  MediumMovie o1,  MediumMovie o2){
-    int firstDate=0, secondDate=0;
-    String first="", second="";
-    if (o1.getReleasedate() != null)     first=o1.getReleasedate().replace("-","");
-    if (!(first.equals("null") | first.isEmpty()))     firstDate=Integer.valueOf(first);
-    if (o2.getReleasedate() != null)     second=o2.getReleasedate().replace("-","");
-    if (!(second.equals("null") | second.isEmpty()))     secondDate=Integer.valueOf(second);
-    if (firstDate < secondDate)     return 1;
- else     if (firstDate > secondDate)     return -1;
-    return 0;
-  }
-}
-);
+editor.putString(SORTING_MOVIES,"sortRelease");
 break;
 case RATING:
-Collections.sort(tempMovies,new Comparator<MediumMovie>(){
-@Override public int compare(MediumMovie o1,MediumMovie o2){
-if (o1.getRawRating() < o2.getRawRating()) {
-  return 1;
-}
- else if (o1.getRawRating() > o2.getRawRating()) return -1;
-return 0;
-}
-}
-);
+editor.putString(SORTING_MOVIES,"sortRating");
 break;
 case WEIGHTED_RATING:
-Collections.sort(tempMovies,new Comparator<MediumMovie>(){
-@Override public int compare(MediumMovie o1,MediumMovie o2){
-if (o1.getWeightedRating() < o2.getWeightedRating()) return 1;
- else if (o1.getWeightedRating() > o2.getWeightedRating()) return -1;
-return 0;
-}
-}
-);
+editor.putString(SORTING_MOVIES,"sortWeightedRating");
 break;
 case DATE:
-Collections.sort(tempMovies,new Comparator<MediumMovie>(){
-@Override public int compare(MediumMovie o1,MediumMovie o2){
-return o1.getDateAdded().compareTo(o2.getDateAdded()) * -1;
-}
-}
-);
+editor.putString(SORTING_MOVIES,"sortAdded");
 break;
 case DURATION:
-Collections.sort(tempMovies,new Comparator<MediumMovie>(){
-@Override public int compare(MediumMovie o1,MediumMovie o2){
-int first=Integer.valueOf(o1.getRuntime());
-int second=Integer.valueOf(o2.getRuntime());
-if (first < second) return 1;
- else if (first > second) return -1;
-return 0;
+editor.putString(SORTING_MOVIES,"sortDuration");
+break;
 }
+editor.apply();
+ArrayList<MovieSortHelper> tempHelper=new ArrayList<MovieSortHelper>();
+for (int i=0; i < mMovieKeys.size(); i++) {
+tempHelper.add(new MovieSortHelper(mMovies.get(mMovieKeys.get(i)),mMovieKeys.get(i),mCurrentSort,false));
 }
-);
+Collections.sort(tempHelper);
+mMovieKeys.clear();
+for (int i=0; i < tempHelper.size(); i++) {
+mMovieKeys.add(tempHelper.get(i).getIndex());
 }
-shownMovies=new ArrayList<MediumMovie>(tempMovies);
-tempMovies.clear();
+tempHelper.clear();
+setProgressBarVisible(false);
+notifyDataSetChanged();
 }

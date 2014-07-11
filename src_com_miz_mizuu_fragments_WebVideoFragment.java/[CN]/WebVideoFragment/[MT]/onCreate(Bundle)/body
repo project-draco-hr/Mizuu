@@ -4,11 +4,11 @@
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
-  type=getArguments().getString("type");
-  if (type.equals(getString(R.string.choiceYouTube))) {
+  mType=getArguments().getString("type");
+  if (mType.equals(getString(R.string.choiceYouTube))) {
     new GetYouTubeVideos().execute();
   }
- else   if (type.equals(getString(R.string.choiceReddit))) {
+ else   if (mType.equals(getString(R.string.choiceReddit))) {
     new RedditSearch().execute();
   }
  else {

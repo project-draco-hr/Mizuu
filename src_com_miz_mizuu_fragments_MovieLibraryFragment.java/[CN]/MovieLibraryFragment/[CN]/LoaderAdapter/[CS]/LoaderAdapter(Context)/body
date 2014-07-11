@@ -1,9 +1,4 @@
 {
   mContext=context;
   mInflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-  mSidePadding=MizLib.convertDpToPixels(mContext,1);
-  mBottomPadding=MizLib.convertDpToPixels(mContext,2);
-  mCard=MizuuApplication.getCardDrawable(mContext);
-  mCardBackground=MizuuApplication.getCardColor(mContext);
-  mCardTitleColor=MizuuApplication.getCardTitleColor(mContext);
 }

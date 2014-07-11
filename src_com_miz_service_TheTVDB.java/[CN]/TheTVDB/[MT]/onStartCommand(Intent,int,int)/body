@@ -34,7 +34,7 @@
         loadNextEpisode(bundle.getString("season"),bundle.getString("episode"));
       }
  else       if (isShowIdentify) {
-        TvShow temp=new TvShow(getApplicationContext(),bundle.getString("oldShowId"),"","","","","","","","",false,"0");
+        TvShow temp=new TvShow(getApplicationContext(),bundle.getString("oldShowId"),"","","","","","","","",false,"0","");
         MizLib.deleteShow(getApplicationContext(),temp,false);
         thisShow=tvdb.getShow(bundle.getString("tvdbId"),LOCALE);
         createShow("","");

@@ -8,20 +8,18 @@
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
-    holder.mLinearLayout.setBackgroundResource(mCard);
-    holder.text.setBackgroundResource(mCardBackground);
-    holder.text.setTextColor(mCardTitleColor);
+    holder.watchedColor=(ImageView)convertView.findViewById(R.id.watched_color);
     holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
-    holder.subtext.setBackgroundResource(mCardBackground);
     convertView.setTag(holder);
   }
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  if (!mUseGridView)   convertView.findViewById(R.id.list_season_text_area).setBackgroundResource(mCardBackground);
+  if (!mUseGridView)   convertView.findViewById(R.id.list_season_text_area).setBackgroundResource(R.color.card_background_dark);
   holder.text.setText(mItems.get(position).getTitle());
   holder.subtext.setText(mItems.get(position).getSubtitleText());
-  if (mResizedWidth > 0)   mPicasso.load(mItems.get(position).getCover()).placeholder(mCardBackground).error(R.drawable.nobackdrop).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder.cover);
- else   mPicasso.load(mItems.get(position).getCover()).placeholder(mCardBackground).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
+  holder.watchedColor.setBackgroundColor(Color.parseColor(mItems.get(position).hasWatched() ? "#669900" : "#CC0000"));
+  if (mResizedWidth > 0)   mPicasso.load(mItems.get(position).getCover()).placeholder(R.color.card_background_dark).error(R.drawable.nobackdrop).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder.cover);
+ else   mPicasso.load(mItems.get(position).getCover()).placeholder(R.color.card_background_dark).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
   return convertView;
 }

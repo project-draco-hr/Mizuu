@@ -1,4 +1,5 @@
 {
+  final WebVideo mWebVideo=mVideos.get(position);
   CoverItem holder;
   if (convertView == null) {
     convertView=inflater.inflate(R.layout.webvideo_item,container,false);
@@ -6,16 +7,13 @@
     holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
-    holder.mLinearLayout.setBackgroundResource(mCard);
-    holder.text.setBackgroundResource(mCardBackground);
-    holder.text.setTextColor(mCardTitleColor);
     holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
     convertView.setTag(holder);
   }
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  holder.text.setText(videos.get(position).getTitle());
-  mPicasso.load(videos.get(position).getUrl()).placeholder(mCardBackground).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
+  holder.text.setText(mWebVideo.getTitle());
+  mPicasso.load(mWebVideo.getUrl()).placeholder(R.color.card_background_dark).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
   return convertView;
 }

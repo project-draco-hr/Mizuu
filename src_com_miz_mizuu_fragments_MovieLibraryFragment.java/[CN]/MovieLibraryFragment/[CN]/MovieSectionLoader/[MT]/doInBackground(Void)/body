@@ -50,6 +50,8 @@ case UNIDENTIFIED_MOVIES:
 for (int i=0; i < mMovies.size(); i++) if (mMovies.get(i).isUnidentified()) mTempKeys.add(i);
 break;
 case OFFLINE_COPIES:
+File offlineFolder=MizuuApplication.getAvailableOfflineFolder(getActivity());
+if (offlineFolder != null && offlineFolder.listFiles().length == 0) return true;
 for (int i=0; i < mMovies.size(); i++) {
 if (isCancelled()) return false;
 if (mMovies.get(i).hasOfflineCopy()) mTempKeys.add(i);

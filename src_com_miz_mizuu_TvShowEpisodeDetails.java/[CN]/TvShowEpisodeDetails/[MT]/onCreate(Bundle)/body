@@ -1,9 +1,9 @@
 {
   super.onCreate(savedInstanceState);
-  if (!MizLib.isPortrait(this))   if (isFullscreen())   setTheme(R.style.Theme_Example_Transparent_NoBackGround_FullScreen);
- else   setTheme(R.style.Theme_Example_Transparent_NoBackGround);
- else   if (isFullscreen())   setTheme(R.style.Theme_Example_Transparent_FullScreen);
- else   setTheme(R.style.Theme_Example_Transparent);
+  if (!MizLib.isPortrait(this))   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
+ else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
+ else   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_FullScreen);
+ else   setTheme(R.style.Mizuu_Theme_Transparent);
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
   mShowId=getIntent().getExtras().getString(SHOW_ID);

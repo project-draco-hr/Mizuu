@@ -1,0 +1,14 @@
+{
+  Intent intent=new Intent();
+  if (mActionBar.getSelectedNavigationIndex() == COLLECTIONS) {
+    intent.putExtra("collectionId",mMovies.get(mMovieKeys.get(arg2)).getCollectionId());
+    intent.putExtra("collectionTitle",mMovies.get(mMovieKeys.get(arg2)).getCollection());
+    intent.setClass(getActivity(),MovieCollection.class);
+    startActivity(intent);
+  }
+ else {
+    intent.putExtra("rowId",Integer.parseInt(mMovies.get(mMovieKeys.get(arg2)).getRowId()));
+    intent.setClass(getActivity(),MovieDetails.class);
+    startActivityForResult(intent,0);
+  }
+}

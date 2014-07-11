@@ -1,5 +1,6 @@
 {
   try {
+    pics_sources.clear();
     JSONObject jObject=new JSONObject(json);
     JSONArray jArray=jObject.getJSONObject("tagged_images").getJSONArray("results");
     for (int i=0; i < jArray.length(); i++) {

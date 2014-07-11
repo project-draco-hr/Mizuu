@@ -1,5 +1,4 @@
 {
-  System.out.println("SHOW ID: " + thisShow.getId());
 switch (index) {
 case 0:
     return TvShowDetailsFragment.newInstance(thisShow.getId());

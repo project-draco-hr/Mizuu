@@ -1,0 +1,34 @@
+{
+  String testFilename="anything.1x01_1x02.ext";
+  ArrayList<Episode> testArray=getEpisodes(testFilename);
+  Assert.assertEquals(2,testArray.size());
+  Assert.assertEquals(1,testArray.get(0).getSeason());
+  Assert.assertEquals(1,testArray.get(0).getEpisode());
+  Assert.assertEquals(1,testArray.get(1).getSeason());
+  Assert.assertEquals(2,testArray.get(1).getEpisode());
+  testFilename="anything.1x01x02.ext";
+  testArray=getEpisodes(testFilename);
+  Assert.assertEquals(2,testArray.size());
+  Assert.assertEquals(1,testArray.get(0).getSeason());
+  Assert.assertEquals(1,testArray.get(0).getEpisode());
+  Assert.assertEquals(1,testArray.get(1).getSeason());
+  Assert.assertEquals(2,testArray.get(1).getEpisode());
+  testFilename="anything.1x01_1x02.ext";
+  testArray=getEpisodes(testFilename);
+  Assert.assertEquals(2,testArray.size());
+  Assert.assertEquals(1,testArray.get(0).getSeason());
+  Assert.assertEquals(1,testArray.get(0).getEpisode());
+  Assert.assertEquals(1,testArray.get(1).getSeason());
+  Assert.assertEquals(2,testArray.get(1).getEpisode());
+  testFilename="name.1x01e02_03-x-04.ext";
+  testArray=getEpisodes(testFilename);
+  Assert.assertEquals(4,testArray.size());
+  Assert.assertEquals(1,testArray.get(0).getSeason());
+  Assert.assertEquals(1,testArray.get(0).getEpisode());
+  Assert.assertEquals(1,testArray.get(1).getSeason());
+  Assert.assertEquals(2,testArray.get(1).getEpisode());
+  Assert.assertEquals(1,testArray.get(2).getSeason());
+  Assert.assertEquals(3,testArray.get(2).getEpisode());
+  Assert.assertEquals(1,testArray.get(3).getSeason());
+  Assert.assertEquals(4,testArray.get(3).getEpisode());
+}

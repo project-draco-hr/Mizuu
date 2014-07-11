@@ -1,8 +1,22 @@
 {
   String movieName=getIntent().getExtras().getString("title");
   spinnerItems.clear();
-  spinnerItems.add(new SpinnerItem(movieName,getString(R.string.overview)));
-  spinnerItems.add(new SpinnerItem(movieName,getString(R.string.detailsActors)));
-  spinnerItems.add(new SpinnerItem(movieName,getString(R.string.relatedMovies)));
+  spinnerItems.add(new SpinnerItem(movieName,getString(R.string.overview),TmdbMovieDetailsFragment.newInstance(movieId,json)));
+  try {
+    JSONObject j=new JSONObject(json);
+    if (j.getJSONObject("casts").getJSONArray("cast").length() > 0) {
+      spinnerItems.add(new SpinnerItem(movieName,getString(R.string.detailsActors),ActorBrowserFragment.newInstance(movieId,json,baseUrl)));
+    }
+  }
+ catch (  JSONException e) {
+  }
+  try {
+    JSONObject j=new JSONObject(json);
+    if (j.getJSONObject("similar_movies").getJSONArray("results").length() > 0) {
+      spinnerItems.add(new SpinnerItem(movieName,getString(R.string.relatedMovies),RelatedMoviesFragment.newInstance(movieId,true,json,baseUrl)));
+    }
+  }
+ catch (  JSONException e) {
+  }
   actionBar.setListNavigationCallbacks(spinnerAdapter,this);
 }

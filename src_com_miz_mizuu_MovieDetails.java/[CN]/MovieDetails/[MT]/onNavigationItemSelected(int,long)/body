@@ -1,6 +1,4 @@
 {
-  if (itemPosition == 1)   actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#aa000000")));
- else   actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.transparent_actionbar));
   awesomePager.setCurrentItem(itemPosition);
   return true;
 }

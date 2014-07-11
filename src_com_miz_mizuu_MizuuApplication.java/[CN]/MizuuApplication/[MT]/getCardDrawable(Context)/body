@@ -1,4 +1,0 @@
-{
-  if (usesDarkTheme(context))   return R.drawable.card;
-  return R.drawable.card_dark;
-}

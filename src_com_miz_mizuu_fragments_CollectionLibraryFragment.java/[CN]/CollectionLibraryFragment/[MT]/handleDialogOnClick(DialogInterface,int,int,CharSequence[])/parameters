@@ -1,0 +1,4 @@
+DialogInterface dialog
+int which
+int type
+CharSequence[] temp

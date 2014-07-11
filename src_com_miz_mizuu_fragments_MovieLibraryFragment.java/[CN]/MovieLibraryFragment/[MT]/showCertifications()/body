@@ -11,13 +11,5 @@
       }
     }
   }
-  final CharSequence[] temp=setupItemArray(map,R.string.allCertifications);
-  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-  builder.setTitle(R.string.selectCertification).setItems(temp,new DialogInterface.OnClickListener(){
-    public void onClick(    DialogInterface dialog,    int which){
-      handleDialogOnClick(dialog,which,CERTIFICATION,temp);
-    }
-  }
-);
-  builder.show();
+  createAndShowAlertDialog(setupItemArray(map,R.string.allCertifications),R.string.selectCertification,CERTIFICATION);
 }

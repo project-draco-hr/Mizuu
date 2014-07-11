@@ -1,9 +1,11 @@
 {
   super.onCreate(savedInstanceState);
-  if (!MizLib.isPortrait(this))   if (isFullscreen())   setTheme(R.style.Theme_Example_Transparent_NoBackGround_FullScreen);
- else   setTheme(R.style.Theme_Example_Transparent_NoBackGround);
- else   if (isFullscreen())   setTheme(R.style.Theme_Example_Transparent_FullScreen);
- else   setTheme(R.style.Theme_Example_Transparent);
+  mContext=this;
+  if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
+ else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
+  if (MizLib.isPortrait(this)) {
+    getWindow().setBackgroundDrawableResource(R.drawable.bg);
+  }
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
   actionBar=getActionBar();
@@ -14,6 +16,8 @@
   ignoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_NFO_FILES,true);
   prefsRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(REMOVE_MOVIES_FROM_WATCHLIST,true);
   ignoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_FILES_ENABLED,false);
+  useWildcard=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORE_VIDEO_FILE_TYPE,false);
+  prefsDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
   mYouTubeApiKey=MizLib.getYouTubeApiKey(this);
   if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
     movieId=Integer.valueOf(getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY));

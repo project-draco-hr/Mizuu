@@ -1,24 +1,22 @@
 {
-  String SORT_TYPE=settings.getString(SORTING_COLLECTIONS,"sortTitle");
-  if (SORT_TYPE.equals("sortTitle")) {
-    sortByTitle();
-  }
- else   if (SORT_TYPE.equals("sortRelease")) {
-    sortByRelease();
+  if (!isAdded())   return;
+  String SORT_TYPE=mSharedPreferences.getString(SORTING_MOVIES,"sortTitle");
+  if (SORT_TYPE.equals("sortRelease")) {
+    sortBy(RELEASE);
   }
  else   if (SORT_TYPE.equals("sortRating")) {
-    sortByRating();
+    sortBy(RATING);
   }
  else   if (SORT_TYPE.equals("sortWeightedRating")) {
-    sortByWeightedRating();
+    sortBy(WEIGHTED_RATING);
   }
  else   if (SORT_TYPE.equals("sortAdded")) {
-    sortByDateAdded();
+    sortBy(DATE);
   }
  else   if (SORT_TYPE.equals("sortDuration")) {
-    sortByDuration();
+    sortBy(DURATION);
   }
  else {
-    sortByTitle();
+    sortBy(TITLE);
   }
 }

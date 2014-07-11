@@ -1,0 +1,3 @@
+{
+  return (!mLoading && mTvShows.size() == 0);
+}

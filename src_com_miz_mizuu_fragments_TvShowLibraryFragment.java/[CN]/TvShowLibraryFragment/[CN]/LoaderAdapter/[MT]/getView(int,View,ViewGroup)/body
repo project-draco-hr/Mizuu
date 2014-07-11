@@ -1,4 +1,5 @@
 {
+  final TvShow mTvShow=mTvShows.get(mTvShowKeys.get(position));
   CoverItem holder;
   if (convertView == null) {
     convertView=inflater.inflate(R.layout.grid_item,container,false);
@@ -7,11 +8,7 @@
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
-    holder.mLinearLayout.setBackgroundResource(mCard);
-    holder.text.setBackgroundResource(mCardBackground);
-    holder.text.setTextColor(mCardTitleColor);
     holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
-    holder.subtext.setBackgroundResource(mCardBackground);
     convertView.setTag(holder);
   }
  else {
@@ -20,16 +17,15 @@
   if (!mShowTitles) {
     holder.text.setVisibility(View.GONE);
     holder.subtext.setVisibility(View.GONE);
-    holder.cover.setPadding(mSidePadding,0,mSidePadding,mBottomPadding);
   }
  else {
     holder.text.setVisibility(View.VISIBLE);
     holder.subtext.setVisibility(View.VISIBLE);
-    holder.text.setText(shownShows.get(position).getTitle());
-    holder.subtext.setText(shownShows.get(position).getFirstAirdateYear());
+    holder.text.setText(mTvShow.getTitle());
+    holder.subtext.setText(mTvShow.getSubText(mCurrentSort));
   }
-  holder.cover.setImageResource(mCardBackground);
-  if (mResizedWidth > 0)   mPicasso.load(shownShows.get(position).getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
- else   mPicasso.load(shownShows.get(position).getThumbnail()).config(mConfig).into(holder);
+  holder.cover.setImageResource(R.color.card_background_dark);
+  if (mResizedWidth > 0)   mPicasso.load(mTvShow.getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else   mPicasso.load(mTvShow.getThumbnail()).config(mConfig).into(holder);
   return convertView;
 }

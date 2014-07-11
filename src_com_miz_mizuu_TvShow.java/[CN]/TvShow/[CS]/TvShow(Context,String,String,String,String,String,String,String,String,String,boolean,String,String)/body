@@ -1,0 +1,55 @@
+{
+  mContext=context;
+  mId=id;
+  TITLE=title;
+  DESCRIPTION=description;
+  RATING=rating;
+  GENRES=genres;
+  ACTORS=actors;
+  CERTIFICATION=certification;
+  FIRST_AIR_DATE=firstAirdate;
+  RUNTIME=runtime;
+  LATEST_EPISODE_AIR_DATE=latestEpisodeAirDate;
+  mFavorite=!(isFavorite.equals("0") || isFavorite.isEmpty());
+  mThumbnail=MizLib.getTvShowThumb(mContext,mId);
+  if (MizLib.isEmpty(TITLE)) {
+    mTitle="";
+  }
+ else {
+    mTitle=TITLE;
+    if (ignorePrefixes) {
+      String temp=TITLE.toLowerCase(Locale.ENGLISH);
+      String[] prefixes=MizLib.getPrefixes(mContext);
+      int count=prefixes.length;
+      for (int i=0; i < count; i++) {
+        if (temp.startsWith(prefixes[i])) {
+          mTitle=TITLE.substring(prefixes[i].length());
+          break;
+        }
+      }
+    }
+  }
+  if (!MizLib.isEmpty(FIRST_AIR_DATE)) {
+    String YEAR=FIRST_AIR_DATE.trim();
+    try {
+      if (YEAR.substring(4,5).equals("-") && YEAR.substring(7,8).equals("-")) {
+        mGetReleaseYear=YEAR.substring(0,4);
+      }
+ else {
+        mGetReleaseYear=mContext.getString(R.string.unknownYear);
+      }
+    }
+ catch (    Exception e) {
+      if (YEAR.length() == 4)       mGetReleaseYear=YEAR;
+ else       mGetReleaseYear=mContext.getString(R.string.unknownYear);
+    }
+  }
+ else {
+    mGetReleaseYear=mContext.getString(R.string.unknownYear);
+  }
+  mWeightedCompatibility=(int)(getWeightedRating() * 10) + "% " + mContext.getString(R.string.compatibility);
+  mRuntime=MizLib.getPrettyTime(mContext,Integer.parseInt(getRuntime()));
+  mReleaseDate=MizLib.getPrettyDate(mContext,getFirstAirdate());
+  mLatestEpisodeAirDate=MizLib.getPrettyDate(mContext,getLatestEpisodeAirdate());
+  ;
+}

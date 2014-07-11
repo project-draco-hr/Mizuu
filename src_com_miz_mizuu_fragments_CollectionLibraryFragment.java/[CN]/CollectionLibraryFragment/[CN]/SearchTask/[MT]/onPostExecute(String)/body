@@ -1,4 +1,6 @@
 {
+  mMovieKeys.addAll(mTempKeys);
+  sortMovies();
   notifyDataSetChanged();
-  hideProgressBar();
+  setProgressBarVisible(false);
 }

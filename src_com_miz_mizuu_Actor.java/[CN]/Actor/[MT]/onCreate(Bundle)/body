@@ -1,7 +1,7 @@
 {
   super.onCreate(savedInstanceState);
-  if (!MizLib.isPortrait(this))   if (isFullscreen())   setTheme(R.style.Theme_Example_NoBackGround_FullScreen);
- else   setTheme(R.style.Theme_Example_NoBackGround);
+  if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
+ else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
   findViewById(R.id.layout).setBackgroundResource(R.drawable.bg);
@@ -12,6 +12,9 @@
   mActorThumb=getIntent().getExtras().getString("thumb");
   mTmdbApiKey=MizLib.getTmdbApiKey(this);
   setTitle(actorName);
+  if (MizLib.isPortrait(this)) {
+    getWindow().setBackgroundDrawableResource(R.drawable.bg);
+  }
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);
   awesomePager.setOffscreenPageLimit(3);
   awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){

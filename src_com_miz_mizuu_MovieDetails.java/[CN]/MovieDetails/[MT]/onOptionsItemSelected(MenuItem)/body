@@ -26,6 +26,9 @@ Intent tmdbIntent=new Intent(Intent.ACTION_VIEW);
 tmdbIntent.setData(Uri.parse("http://www.themoviedb.org/movie/" + thisMovie.getTmdbId()));
 startActivity(tmdbIntent);
 return true;
+case R.id.play_video:
+playMovie();
+return true;
 default :
 return super.onOptionsItemSelected(item);
 }

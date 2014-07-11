@@ -61,7 +61,7 @@
   startForeground(NOTIFICATION_ID,mNotification);
   boolean success=beginTransfer();
   if (!success) {
-    if (file.startsWith("http"))     new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(file) + "." + MizLib.getFileExtension(file)).delete();
- else     new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(smb.getCanonicalPath()) + "." + MizLib.getFileExtension(smb.getName())).delete();
+    if (file.startsWith("http"))     MizLib.getOfflineFile(mContext,file).delete();
+ else     MizLib.getOfflineFile(mContext,smb.getCanonicalPath()).delete();
   }
 }

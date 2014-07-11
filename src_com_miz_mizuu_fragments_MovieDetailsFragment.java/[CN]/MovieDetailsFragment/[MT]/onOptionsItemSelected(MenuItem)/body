@@ -1,7 +1,0 @@
-{
-switch (item.getItemId()) {
-case R.id.play_video:
-    playMovie();
-}
-return false;
-}

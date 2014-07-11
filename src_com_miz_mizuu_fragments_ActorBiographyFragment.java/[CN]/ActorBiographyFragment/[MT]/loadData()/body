@@ -40,6 +40,7 @@
     mActorName.setText(mName);
     if (!MizLib.isEmpty(mBio))     mActorBio.setText(mBio);
  else     mActorBio.setText(R.string.no_biography);
+    if (MizLib.isTablet(getActivity()) && MizLib.isPortrait(getActivity()))     mActorBio.setLineSpacing(0,1.15f);
     if (!MizLib.isEmpty(mBirth))     mActorBirth.setText(mBirth);
  else     mActorBirth.setVisibility(View.GONE);
     if (!MizLib.isEmpty(mBirthday))     mActorBirthday.setText(MizLib.getPrettyDate(getActivity(),mBirthday));

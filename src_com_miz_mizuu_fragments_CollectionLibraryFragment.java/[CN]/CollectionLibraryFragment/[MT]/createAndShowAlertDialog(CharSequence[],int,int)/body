@@ -1,0 +1,10 @@
+{
+  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+  builder.setTitle(title).setItems(temp,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      handleDialogOnClick(dialog,which,type,temp);
+    }
+  }
+);
+  builder.show();
+}

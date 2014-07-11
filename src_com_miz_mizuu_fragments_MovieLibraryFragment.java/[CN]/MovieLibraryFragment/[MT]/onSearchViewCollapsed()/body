@@ -1,0 +1,6 @@
+{
+  if (isAdded() && mActionBar != null) {
+    if (mActionBar.getSelectedNavigationIndex() == ALL_MOVIES)     showMovieSection(ALL_MOVIES);
+ else     mActionBar.setSelectedNavigationItem(ALL_MOVIES);
+  }
+}

@@ -1,14 +1,18 @@
 {
   final View v=inflater.inflate(R.layout.image_grid_fragment,container,false);
-  pbar=(ProgressBar)v.findViewById(R.id.progress);
-  overviewMessage=(TextView)v.findViewById(R.id.overviewMessage);
+  mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
+  mEmptyLibraryLayout=v.findViewById(R.id.empty_library_layout);
+  mEmptyLibraryTitle=(TextView)v.findViewById(R.id.empty_library_title);
+  mEmptyLibraryTitle.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf"));
+  mEmptyLibraryDescription=(TextView)v.findViewById(R.id.empty_library_description);
+  mEmptyLibraryDescription.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf"));
   mAdapter=new LoaderAdapter(getActivity());
   mGridView=(GridView)v.findViewById(R.id.gridView);
-  mGridView.setFastScrollEnabled(true);
   mGridView.setAdapter(mAdapter);
+  mGridView.setEmptyView(mEmptyLibraryLayout);
   mGridView.setColumnWidth(mImageThumbSize);
   mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
-    @SuppressLint("NewApi") @SuppressWarnings("deprecation") @Override public void onGlobalLayout(){
+    @SuppressLint("NewApi") @Override public void onGlobalLayout(){
       if (mAdapter.getNumColumns() == 0) {
         final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
         if (numColumns > 0) {
@@ -16,12 +20,7 @@
           mResizedWidth=(int)(((mGridView.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns) * 1.1);
           mResizedHeight=(int)(mResizedWidth * 1.5);
         }
-        if (MizLib.hasJellyBean()) {
-          mGridView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-        }
- else {
-          mGridView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-        }
+        MizLib.removeViewTreeObserver(mGridView.getViewTreeObserver(),this);
       }
     }
   }
@@ -29,7 +28,7 @@
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
       Intent intent=new Intent();
-      intent.putExtra("showId",shownShows.get(arg2).getId());
+      intent.putExtra("showId",mTvShows.get(mTvShowKeys.get(arg2)).getId());
       intent.setClass(getActivity(),TvShowDetails.class);
       startActivityForResult(intent,0);
     }

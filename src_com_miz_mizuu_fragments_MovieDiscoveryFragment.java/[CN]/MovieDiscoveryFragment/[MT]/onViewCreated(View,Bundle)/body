@@ -1,7 +1,7 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  pbar=(ProgressBar)v.findViewById(R.id.progress);
-  pbar.setVisibility(View.GONE);
+  mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
+  mProgressBar.setVisibility(View.GONE);
   mAdapter=new ImageAdapter(getActivity());
   mGridView=(GridView)v.findViewById(R.id.gridView);
   mGridView.setAdapter(mAdapter);
@@ -18,25 +18,25 @@
 );
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      if (movieMap.get(Integer.valueOf(pics_sources.get(arg2).getId()))) {
+      if (mMovieMap.get(Integer.valueOf(mMovies.get(arg2).getId()))) {
         Intent intent=new Intent();
         intent.setClass(getActivity(),MovieDetails.class);
-        intent.putExtra("tmdbId",pics_sources.get(arg2).getId());
+        intent.putExtra("tmmDatabaseId",mMovies.get(arg2).getId());
         startActivityForResult(intent,0);
       }
  else {
         Intent i=new Intent(Intent.ACTION_VIEW);
         i.setClass(getActivity(),TMDbMovieDetails.class);
-        i.putExtra("tmdbid",pics_sources.get(arg2).getId());
-        i.putExtra("title",pics_sources.get(arg2).getTitle());
+        i.putExtra("tmmDatabaseid",mMovies.get(arg2).getId());
+        i.putExtra("title",mMovies.get(arg2).getTitle());
         startActivity(i);
       }
     }
   }
 );
   if (getArguments().containsKey("json")) {
-    json=getArguments().getString("json");
-    baseUrl=getArguments().getString("baseUrl");
+    mJson=getArguments().getString("json");
+    mBaseUrl=getArguments().getString("baseUrl");
     loadJson();
   }
 }

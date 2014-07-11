@@ -2,6 +2,9 @@
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
   mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
+  mLightItalic=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-LightItalic.ttf");
+  mMedium=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Medium.ttf");
+  mBoldItalic=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-BoldItalic.ttf");
   tmdb=new TMDb(getActivity());
   movieId=getArguments().getString("movieId");
   mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());

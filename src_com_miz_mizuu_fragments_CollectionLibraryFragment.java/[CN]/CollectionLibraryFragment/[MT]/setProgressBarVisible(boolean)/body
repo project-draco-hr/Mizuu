@@ -1,0 +1,4 @@
+{
+  mProgressBar.setVisibility(visible ? View.VISIBLE : View.GONE);
+  mGridView.setVisibility(visible ? View.GONE : View.VISIBLE);
+}

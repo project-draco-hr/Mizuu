@@ -1,0 +1,6 @@
+{
+  if (isAdded() && mActionBar != null) {
+    if (mActionBar.getSelectedNavigationIndex() == ALL_SHOWS)     showTvShowSection(ALL_SHOWS);
+ else     mActionBar.setSelectedNavigationItem(ALL_SHOWS);
+  }
+}

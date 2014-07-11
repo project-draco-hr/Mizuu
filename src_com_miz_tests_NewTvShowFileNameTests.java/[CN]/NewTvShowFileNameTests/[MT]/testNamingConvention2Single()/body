@@ -1,0 +1,17 @@
+{
+  String testFilename="anything_1x02.ext";
+  ArrayList<Episode> testArray=getEpisodes(testFilename);
+  Assert.assertEquals(1,testArray.size());
+  Assert.assertEquals(1,testArray.get(0).getSeason());
+  Assert.assertEquals(2,testArray.get(0).getEpisode());
+  testFilename="foo.1x09";
+  testArray=getEpisodes(testFilename);
+  Assert.assertEquals(1,testArray.size());
+  Assert.assertEquals(1,testArray.get(0).getSeason());
+  Assert.assertEquals(9,testArray.get(0).getEpisode());
+  testFilename="1x09";
+  testArray=getEpisodes(testFilename);
+  Assert.assertEquals(1,testArray.size());
+  Assert.assertEquals(1,testArray.get(0).getSeason());
+  Assert.assertEquals(9,testArray.get(0).getEpisode());
+}

@@ -1,4 +1,0 @@
-{
-  pbar.setVisibility(View.VISIBLE);
-  mGridView.setVisibility(View.GONE);
-}

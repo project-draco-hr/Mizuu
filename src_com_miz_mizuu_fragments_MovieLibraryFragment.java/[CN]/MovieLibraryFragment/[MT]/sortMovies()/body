@@ -1,9 +1,6 @@
 {
   if (!isAdded())   return;
-  String SORT_TYPE=mSharedPreferences.getString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES,"sortTitle");
-  Editor editor=mSharedPreferences.edit();
-  editor.putString((getActivity().getActionBar().getSelectedNavigationIndex() == 3) ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES,SORT_TYPE);
-  editor.apply();
+  String SORT_TYPE=mSharedPreferences.getString((getActivity().getActionBar().getSelectedNavigationIndex() == COLLECTIONS) ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES,"sortTitle");
   if (SORT_TYPE.equals("sortRelease")) {
     sortBy(RELEASE);
   }

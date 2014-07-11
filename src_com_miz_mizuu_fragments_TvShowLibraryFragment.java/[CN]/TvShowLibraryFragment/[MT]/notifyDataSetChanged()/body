@@ -1,23 +1,4 @@
 {
   if (mAdapter != null)   mAdapter.notifyDataSetChanged();
-  if (spinnerAdapter != null)   spinnerAdapter.notifyDataSetChanged();
-  try {
-    if (shows.size() == 0) {
-      overviewMessage.setVisibility(View.VISIBLE);
-      if (MizLib.isTvShowLibraryBeingUpdated(getActivity())) {
-        overviewMessage.setText(getString(R.string.updatingLibraryDescription));
-        updateMovieLibrary.setVisibility(View.GONE);
-      }
- else {
-        overviewMessage.setText(getString(R.string.noShowsInLibrary));
-        updateMovieLibrary.setVisibility(View.VISIBLE);
-      }
-    }
- else {
-      overviewMessage.setVisibility(View.GONE);
-      updateMovieLibrary.setVisibility(View.GONE);
-    }
-  }
- catch (  Exception e) {
-  }
+  if (mSpinnerAdapter != null)   mSpinnerAdapter.notifyDataSetChanged();
 }

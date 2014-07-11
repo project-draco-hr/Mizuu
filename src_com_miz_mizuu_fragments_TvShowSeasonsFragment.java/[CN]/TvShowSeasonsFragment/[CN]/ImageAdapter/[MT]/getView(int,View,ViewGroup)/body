@@ -1,4 +1,5 @@
 {
+  final GridSeason mSeason=mItems.get(position);
   final CoverItem holder;
   if (convertView == null) {
     convertView=inflater.inflate(R.layout.grid_season_cover,container,false);
@@ -8,17 +9,13 @@
     holder.highlight=(ImageView)convertView.findViewById(R.id.highlight);
     holder.text=(TextView)convertView.findViewById(R.id.text);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
-    holder.mLinearLayout.setBackgroundResource(mCard);
-    holder.text.setBackgroundResource(mCardBackground);
-    holder.text.setTextColor(mCardTitleColor);
     holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
-    holder.subtext.setBackgroundResource(mCardBackground);
     convertView.setTag(holder);
   }
  else {
     holder=(CoverItem)convertView.getTag();
   }
-  holder.cover.setImageResource(mCardBackground);
+  holder.cover.setImageResource(R.color.card_background_dark);
   if (!mContextualActionBarEnabled) {
     if (position == mSelectedIndex && mDualPane) {
       holder.highlight.setVisibility(View.VISIBLE);
@@ -35,9 +32,9 @@
       holder.highlight.setVisibility(View.GONE);
     }
   }
-  if (mItems.get(position).getSeason() == 0)   holder.text.setText(R.string.stringSpecials);
- else   holder.text.setText(getString(R.string.showSeason) + " " + mItems.get(position).getSeasonZeroIndex());
-  holder.subtext.setText(mItems.get(position).getSubtitleText());
-  mPicasso.load(mItems.get(position).getCover()).error(R.drawable.loading_image).fit().config(mConfig).into(holder.cover);
+  if (mSeason.getSeason() == 0)   holder.text.setText(R.string.stringSpecials);
+ else   holder.text.setText(getString(R.string.showSeason) + " " + mSeason.getSeasonZeroIndex());
+  holder.subtext.setText(mSeason.getSubtitleText());
+  mPicasso.load(mSeason.getCover()).error(R.drawable.loading_image).fit().config(mConfig).into(holder.cover);
   return convertView;
 }

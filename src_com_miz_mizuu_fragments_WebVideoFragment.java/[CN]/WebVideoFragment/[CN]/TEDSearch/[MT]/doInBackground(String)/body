@@ -1,5 +1,5 @@
 {
-  videos.clear();
+  mVideos.clear();
   try {
     JSONObject jObject=MizLib.getJSONObject("http://gdata.youtube.com/feeds/api/users/TEDtalksDirector/uploads?alt=json&start-index=1&max-results=50");
     JSONObject jdata=jObject.getJSONObject("feed");
@@ -7,7 +7,7 @@
     for (int i=0; i < aitems.length(); i++) {
       JSONObject item=aitems.getJSONObject(i);
       JSONObject id=item.getJSONObject("id");
-      videos.add(new WebVideo(item.getJSONObject("title").getString("$t"),id.getString("$t").substring(id.getString("$t").lastIndexOf("videos/") + 7,id.getString("$t").length()),item.getJSONObject("media$group").getJSONArray("media$thumbnail").getJSONObject(0).getString("url")));
+      mVideos.add(new WebVideo(item.getJSONObject("title").getString("$t"),id.getString("$t").substring(id.getString("$t").lastIndexOf("videos/") + 7,id.getString("$t").length()),item.getJSONObject("media$group").getJSONArray("media$thumbnail").getJSONObject(0).getString("url")));
     }
   }
  catch (  Exception e) {

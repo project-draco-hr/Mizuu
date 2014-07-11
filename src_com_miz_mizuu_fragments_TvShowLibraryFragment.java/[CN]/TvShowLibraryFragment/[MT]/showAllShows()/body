@@ -1,8 +1,0 @@
-{
-  showProgressBar();
-  shownShows.clear();
-  shownShows.addAll(shows);
-  sortShows();
-  notifyDataSetChanged();
-  hideProgressBar();
-}

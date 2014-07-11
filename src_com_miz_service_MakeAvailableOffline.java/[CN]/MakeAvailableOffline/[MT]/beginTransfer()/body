@@ -9,7 +9,7 @@
     try {
       totalLength=MizLib.getFileSize(new URL(file));
       urlConnection=client.open(new URL(file));
-      File offline=new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(file) + "." + MizLib.getFileExtension(file));
+      File offline=MizLib.getOfflineFile(mContext,file);
       offline.createNewFile();
       fileos=new BufferedOutputStream(new FileOutputStream(offline));
       in=new BufferedInputStream(urlConnection.getInputStream(),bufferSize);
@@ -51,7 +51,7 @@
   }
  else {
     try {
-      File offline=new File(MizLib.getAvailableOfflineFolder(mContext),MizLib.md5(smb.getCanonicalPath()) + "." + MizLib.getFileExtension(smb.getName()));
+      File offline=MizLib.getOfflineFile(mContext,smb.getCanonicalPath());
       offline.createNewFile();
       totalLength=smb.length();
       OutputStream os=new BufferedOutputStream(new FileOutputStream(offline),16384);

@@ -51,7 +51,7 @@
  catch (    Exception e) {
     }
   }
-  searchPattern=Pattern.compile("(\\d){1,5}");
+  searchPattern=Pattern.compile("(\\d){1,7}");
   searchMatcher=searchPattern.matcher(input);
   if (searchMatcher.find()) {
     try {

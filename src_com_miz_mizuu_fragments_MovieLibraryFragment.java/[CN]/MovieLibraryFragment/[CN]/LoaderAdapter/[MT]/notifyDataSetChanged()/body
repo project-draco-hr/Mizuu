@@ -1,0 +1,4 @@
+{
+  if (mActionBar != null)   mCollectionsView=mActionBar.getSelectedNavigationIndex() == COLLECTIONS;
+  super.notifyDataSetChanged();
+}

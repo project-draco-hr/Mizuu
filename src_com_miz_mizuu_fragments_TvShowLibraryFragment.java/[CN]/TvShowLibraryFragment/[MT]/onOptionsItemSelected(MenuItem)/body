@@ -5,22 +5,22 @@ case R.id.update:
     startActivityForResult(getUpdateIntent(),0);
   break;
 case R.id.menuSortRating:
-sortByRating();
+sortBy(RATING);
 break;
 case R.id.menuSortWeightedRating:
-sortByWeightedRating();
+sortBy(WEIGHTED_RATING);
 break;
 case R.id.menuSortTitle:
-sortByTitle();
+sortBy(TITLE);
 break;
 case R.id.menuSortRelease:
-sortByRelease();
+sortBy(RELEASE);
 break;
 case R.id.menuSortNewestEpisode:
-sortByNewestEpisode();
+sortBy(NEWEST_EPISODE);
 break;
 case R.id.menuSortDuration:
-sortByDuration();
+sortBy(DURATION);
 break;
 case R.id.genres:
 showGenres();
@@ -33,6 +33,15 @@ startActivity(new Intent(getActivity(),UnidentifiedFiles.class));
 break;
 case R.id.menuSettings:
 startActivity(new Intent(getActivity(),Preferences.class));
+break;
+case R.id.clear_filters:
+showTvShowSection(mActionBar.getSelectedNavigationIndex());
+break;
+case R.id.random:
+if (mTvShowKeys.size() > 0) {
+int random=new Random().nextInt(mTvShowKeys.size());
+showDetails(random);
+}
 break;
 }
 return true;

@@ -10,13 +10,13 @@
     textReleaseDate.setTypeface(mLight);
     textRating.setTypeface(mLight);
     textCertification.setTypeface(mLight);
-    textPlot.setBackgroundResource(R.drawable.selectable_background_example);
+    textPlot.setBackgroundResource(R.drawable.selectable_background);
     if (!thisMovie.getTagline().isEmpty())     textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
  else     textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
     textPlot.setTag(true);
     textPlot.setOnClickListener(new OnClickListener(){
       @Override public void onClick(      View v){
-        if (((boolean)textPlot.getTag())) {
+        if (((Boolean)textPlot.getTag())) {
           textPlot.setMaxLines(1000);
           textPlot.setTag(false);
         }
@@ -31,20 +31,23 @@
     textPlot.setEllipsize(TextUtils.TruncateAt.END);
     textPlot.setFocusable(true);
     textPlot.setText(thisMovie.getPlot());
+    textTagline.setTypeface(mBoldItalic);
     if (thisMovie.getTagline().equals("NOTAGLINE") || thisMovie.getTagline().isEmpty())     textTagline.setVisibility(TextView.GONE);
  else     textTagline.setText(thisMovie.getTagline());
+    textGenre.setTypeface(mLightItalic);
     if (!MizLib.isEmpty(thisMovie.getGenres())) {
       textGenre.setText(thisMovie.getGenres());
     }
  else {
-      textGenre.setText(R.string.stringNA);
+      textGenre.setVisibility(View.GONE);
     }
-    textRuntime.setText(MizLib.getPrettyTime(getActivity(),Integer.parseInt(thisMovie.getRuntime())));
+    textRuntime.setText(MizLib.getPrettyRuntime(getActivity(),Integer.parseInt(thisMovie.getRuntime())));
+    textReleaseDate.setTypeface(mMedium);
     textReleaseDate.setText(MizLib.getPrettyDate(getActivity(),thisMovie.getReleasedate()));
     if (!thisMovie.getRating().equals("0.0")) {
       try {
         int rating=(int)(Double.parseDouble(thisMovie.getRating()) * 10);
-        textRating.setText(Html.fromHtml(rating + "<small> %</small>"));
+        textRating.setText(Html.fromHtml("<b>" + rating + "</b><small> %</small>"));
       }
  catch (      NumberFormatException e) {
         thisMovie.setRating(thisMovie.getRating() + "/10");
@@ -55,10 +58,10 @@
       textRating.setText(R.string.stringNA);
     }
     if (!MizLib.isEmpty(thisMovie.getCertification())) {
-      textCertification.setText(thisMovie.getCertification());
+      textCertification.setText(Html.fromHtml("<b>" + thisMovie.getCertification() + "</b>"));
     }
  else {
-      textCertification.setText(R.string.stringNA);
+      textCertification.setText(Html.fromHtml("<b>" + getString(R.string.stringNA) + "</b>"));
     }
     setLoading(false);
     if (!thisMovie.getCover().isEmpty())     mPicasso.load(thisMovie.getCover()).placeholder(R.drawable.gray).error(R.drawable.loading_image).into(cover);

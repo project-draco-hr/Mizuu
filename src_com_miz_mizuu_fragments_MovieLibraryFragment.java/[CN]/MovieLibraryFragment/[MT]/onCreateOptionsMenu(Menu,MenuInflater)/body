@@ -8,6 +8,18 @@
     setupActionBar();
     inflater.inflate(R.menu.menu,menu);
     if (mType == OTHER)     menu.removeItem(R.id.update);
+    if (mMovies.size() == 0)     menu.findItem(R.id.random).setVisible(false);
+ else     menu.findItem(R.id.random).setVisible(true);
+    MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.search_textbox),new OnActionExpandListener(){
+      @Override public boolean onMenuItemActionExpand(      MenuItem item){
+        return true;
+      }
+      @Override public boolean onMenuItemActionCollapse(      MenuItem item){
+        onSearchViewCollapsed();
+        return true;
+      }
+    }
+);
     SearchManager searchManager=(SearchManager)getActivity().getSystemService(Context.SEARCH_SERVICE);
     SearchView searchView=(SearchView)menu.findItem(R.id.search_textbox).getActionView();
     searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
@@ -17,7 +29,7 @@
           search(newText);
         }
  else {
-          showMovieSection(ALL_MOVIES);
+          onSearchViewCollapsed();
         }
         return true;
       }

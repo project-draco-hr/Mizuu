@@ -1,7 +1,10 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  if (MizLib.isPortrait(getActivity()))   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.linearLayout1));
- else   MizLib.addActionBarMargin(getActivity(),v.findViewById(R.id.linearLayout1));
+  if (!MizuuApplication.isFullscreen(getActivity())) {
+    if (MizLib.isPortrait(getActivity()))     MizLib.addActionBarAndStatusBarMargin(getActivity(),v.findViewById(R.id.traktIcon),(LayoutParams)v.findViewById(R.id.traktIcon).getLayoutParams());
+ else     MizLib.addActionBarAndStatusBarPadding(getActivity(),v.findViewById(R.id.linearLayout1));
+  }
+ else   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.linearLayout1));
   mActorBirthday=(TextView)v.findViewById(R.id.birthday);
   mActorBirth=(TextView)v.findViewById(R.id.birth);
   mActorName=(TextView)v.findViewById(R.id.actor_name);

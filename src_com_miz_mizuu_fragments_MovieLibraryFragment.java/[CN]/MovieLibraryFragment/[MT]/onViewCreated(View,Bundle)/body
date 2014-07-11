@@ -3,17 +3,11 @@
   mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
   if (mMovieKeys.size() > 0)   mProgressBar.setVisibility(View.GONE);
   mEmptyLibraryLayout=v.findViewById(R.id.empty_library_layout);
-  mEmptyLibraryIcon=(ImageView)v.findViewById(R.id.empty_library_icon);
   mEmptyLibraryTitle=(TextView)v.findViewById(R.id.empty_library_title);
   mEmptyLibraryTitle.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf"));
   mEmptyLibraryDescription=(TextView)v.findViewById(R.id.empty_library_description);
   if (mType == OTHER)   mEmptyLibraryDescription.setText(R.string.empty_watchlist_description);
   mEmptyLibraryDescription.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf"));
-  if (!MizuuApplication.usesDarkTheme(getActivity())) {
-    mEmptyLibraryIcon.setImageResource(R.drawable.no_content_face_dark);
-    mEmptyLibraryTitle.setTextColor(Color.parseColor("#222222"));
-    mEmptyLibraryDescription.setTextColor(Color.parseColor("#222222"));
-  }
   mAdapter=new LoaderAdapter(getActivity());
   mGridView=(GridView)v.findViewById(R.id.gridView);
   mGridView.setAdapter(mAdapter);
@@ -35,18 +29,7 @@
 );
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      Intent intent=new Intent();
-      if (mActionBar.getSelectedNavigationIndex() == 3) {
-        intent.putExtra("collectionId",mMovies.get(mMovieKeys.get(arg2)).getCollectionId());
-        intent.putExtra("collectionTitle",mMovies.get(mMovieKeys.get(arg2)).getCollection());
-        intent.setClass(getActivity(),MovieCollection.class);
-        startActivity(intent);
-      }
- else {
-        intent.putExtra("rowId",Integer.parseInt(mMovies.get(mMovieKeys.get(arg2)).getRowId()));
-        intent.setClass(getActivity(),MovieDetails.class);
-        startActivityForResult(intent,0);
-      }
+      showDetails(arg2);
     }
   }
 );

@@ -1,5 +1,6 @@
 {
-  sortShows();
+  mTvShowKeys.addAll(mTempKeys);
+  sortTvShows();
   notifyDataSetChanged();
-  hideProgressBar();
+  setProgressBarVisible(false);
 }

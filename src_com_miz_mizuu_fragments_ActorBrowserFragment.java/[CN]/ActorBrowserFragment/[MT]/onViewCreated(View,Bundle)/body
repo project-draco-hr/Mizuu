@@ -1,8 +1,9 @@
 {
   super.onViewCreated(v,savedInstanceState);
   mGridView=(GridView)v.findViewById(R.id.gridView);
-  v.findViewById(R.id.container).setBackgroundResource(MizuuApplication.getBackgroundColorResource(getActivity()));
-  MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
+  if (!MizLib.isPortrait(getActivity()))   v.findViewById(R.id.container).setBackgroundResource(MizuuApplication.getBackgroundColorResource(getActivity()));
+  if (!MizuuApplication.isFullscreen(getActivity()))   MizLib.addActionBarAndStatusBarPadding(getActivity(),v.findViewById(R.id.container));
+ else   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
   if (!MizLib.isTablet(getActivity()) && MizLib.isPortrait(getActivity()))   MizLib.addActionBarMarginBottom(getActivity(),mGridView);
   mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
   if (mActors.size() > 0)   mProgressBar.setVisibility(View.GONE);

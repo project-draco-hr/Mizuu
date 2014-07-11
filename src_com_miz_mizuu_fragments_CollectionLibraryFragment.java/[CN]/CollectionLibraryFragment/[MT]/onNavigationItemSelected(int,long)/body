@@ -1,4 +1,4 @@
 {
-  showCollectionBasedOnNavigationIndex(itemPosition);
+  if (!mLoading)   showMovieSection(itemPosition);
   return true;
 }

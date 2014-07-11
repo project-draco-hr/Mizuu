@@ -1,4 +1,0 @@
-{
-  super(fm);
-  jsonString=json;
-}

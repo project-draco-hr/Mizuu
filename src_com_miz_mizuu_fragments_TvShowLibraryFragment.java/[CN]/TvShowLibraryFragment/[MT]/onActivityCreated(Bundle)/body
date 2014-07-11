@@ -1,7 +1,7 @@
 {
   super.onActivityCreated(savedInstanceState);
   setupActionBar();
-  if (actionBar.getNavigationMode() == ActionBar.NAVIGATION_MODE_LIST)   actionBar.setListNavigationCallbacks(spinnerAdapter,this);
+  if (mActionBar.getNavigationMode() == ActionBar.NAVIGATION_MODE_LIST)   mActionBar.setListNavigationCallbacks(mSpinnerAdapter,this);
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-shows-update"));
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-show-cover-change"));
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-shows-actor-search"));

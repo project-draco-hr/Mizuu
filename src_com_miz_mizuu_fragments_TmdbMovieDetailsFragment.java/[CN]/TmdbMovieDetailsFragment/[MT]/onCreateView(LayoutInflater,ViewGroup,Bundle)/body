@@ -1,5 +1,5 @@
 {
-  final View v=inflater.inflate(R.layout.movie_details,container,false);
+  final View v=inflater.inflate(R.layout.new_movie_details,container,false);
   movieDetailsLayout=v.findViewById(R.id.movieDetailsLayout);
   progressBar=v.findViewById(R.id.progressBar1);
   this.container=(FrameLayout)v.findViewById(R.id.container);
