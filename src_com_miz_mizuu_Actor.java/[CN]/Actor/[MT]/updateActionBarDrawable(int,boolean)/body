@@ -1,0 +1,12 @@
+{
+  if (mViewPager.getCurrentItem() == 0) {
+    mActionBarOverlay.setVisibility(View.VISIBLE);
+    if (setBackground) {
+      mActionBarBackgroundDrawable=new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,new int[]{Color.parseColor("#" + ((Integer.toHexString(newAlpha).length() == 1) ? ("0" + Integer.toHexString(newAlpha)) : Integer.toHexString(newAlpha)) + "000000"),(newAlpha >= 170) ? Color.parseColor("#" + Integer.toHexString(newAlpha) + "000000") : 0xaa000000});
+      mActionBarOverlay.setImageDrawable(mActionBarBackgroundDrawable);
+    }
+  }
+ else {
+    mActionBarOverlay.setVisibility(View.GONE);
+  }
+}

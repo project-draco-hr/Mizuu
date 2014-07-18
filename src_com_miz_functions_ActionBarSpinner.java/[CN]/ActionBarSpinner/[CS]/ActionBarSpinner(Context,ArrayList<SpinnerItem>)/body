@@ -1,4 +1,4 @@
 {
-  this.spinnerItems=spinnerItems;
-  inflater=LayoutInflater.from(context);
+  mSpinnerItems=spinnerItems;
+  mInflater=LayoutInflater.from(context);
 }

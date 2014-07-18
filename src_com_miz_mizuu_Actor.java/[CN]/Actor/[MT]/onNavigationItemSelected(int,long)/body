@@ -1,4 +1,4 @@
 {
-  awesomePager.setCurrentItem(itemPosition);
+  mViewPager.setCurrentItem(itemPosition);
   return true;
 }

@@ -1,11 +1,11 @@
 {
-  actionBar=getActionBar();
-  actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-  if (spinnerAdapter == null)   spinnerAdapter=new ActionBarSpinner(getApplicationContext(),spinnerItems);
+  mActionBar=getActionBar();
+  mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+  if (mSpinnerAdapter == null)   mSpinnerAdapter=new ActionBarSpinner(getApplicationContext(),mSpinnerItems);
   setTitle(null);
   if (!MizLib.isPortrait(getApplicationContext()))   findViewById(R.id.layout).setBackgroundResource(0);
-  pbar.setVisibility(View.GONE);
+  mProgressBar.setVisibility(View.GONE);
   setupSpinnerItems();
-  awesomePager.setAdapter(new ActorDetailsAdapter(getSupportFragmentManager()));
+  mViewPager.setAdapter(new ActorDetailsAdapter(getSupportFragmentManager()));
   findViewById(R.id.layout).setBackgroundResource(0);
 }

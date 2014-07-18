@@ -1,5 +1,5 @@
 {
-  if (!MizLib.isWifiConnected(getApplicationContext(),prefsDisableEthernetWiFiCheck)) {
+  if (!MizLib.isWifiConnected(getApplicationContext(),mDisableEthernetWiFiCheck)) {
     Toast.makeText(getApplicationContext(),getString(R.string.noConnection),Toast.LENGTH_LONG).show();
     return;
   }
@@ -24,13 +24,13 @@
           public void run(){
             try {
               Uri uri=Uri.parse(Streamer.URL + Uri.fromFile(new File(Uri.parse(networkFilepath).getPath())).getEncodedPath());
-              mContext.startActivity(MizLib.getVideoIntent(uri,useWildcard,thisMovie));
+              mContext.startActivity(MizLib.getVideoIntent(uri,mWildcard,mMovie));
               checkIn();
             }
  catch (            Exception e) {
               try {
                 Uri uri=Uri.parse(Streamer.URL + Uri.fromFile(new File(Uri.parse(networkFilepath).getPath())).getEncodedPath());
-                mContext.startActivity(MizLib.getVideoIntent(uri,"video/*",thisMovie));
+                mContext.startActivity(MizLib.getVideoIntent(uri,"video/*",mMovie));
                 checkIn();
               }
  catch (              Exception e2) {

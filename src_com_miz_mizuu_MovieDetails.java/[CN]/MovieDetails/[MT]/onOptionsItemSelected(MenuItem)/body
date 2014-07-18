@@ -13,17 +13,17 @@ return true;
 case R.id.share:
 Intent intent=new Intent(Intent.ACTION_SEND);
 intent.setType("text/plain");
-intent.putExtra(Intent.EXTRA_TEXT,"http://www.imdb.com/title/" + thisMovie.getImdbId());
+intent.putExtra(Intent.EXTRA_TEXT,"http://www.imdb.com/title/" + mMovie.getImdbId());
 startActivity(intent);
 return true;
 case R.id.imdb:
 Intent imdbIntent=new Intent(Intent.ACTION_VIEW);
-imdbIntent.setData(Uri.parse("http://www.imdb.com/title/" + thisMovie.getImdbId()));
+imdbIntent.setData(Uri.parse("http://www.imdb.com/title/" + mMovie.getImdbId()));
 startActivity(imdbIntent);
 return true;
 case R.id.tmdb:
 Intent tmdbIntent=new Intent(Intent.ACTION_VIEW);
-tmdbIntent.setData(Uri.parse("http://www.themoviedb.org/movie/" + thisMovie.getTmdbId()));
+tmdbIntent.setData(Uri.parse("http://www.themoviedb.org/movie/" + mMovie.getTmdbId()));
 startActivity(tmdbIntent);
 return true;
 case R.id.play_video:

@@ -1,16 +1,16 @@
 {
-  thisMovie.setToWatch(!thisMovie.toWatch());
+  mMovie.setToWatch(!mMovie.toWatch());
   boolean success=true;
-  if (thisMovie.hasMultipleVersions()) {
-    MovieVersion[] versions=thisMovie.getMultipleVersions();
-    for (int i=0; i < versions.length; i++)     success=success && db.updateMovieSingleItem(Long.valueOf(versions[i].getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch());
+  if (mMovie.hasMultipleVersions()) {
+    MovieVersion[] versions=mMovie.getMultipleVersions();
+    for (int i=0; i < versions.length; i++)     success=success && mDatabase.updateMovieSingleItem(Long.valueOf(versions[i].getRowId()),DbAdapter.KEY_TO_WATCH,mMovie.getToWatch());
   }
  else {
-    success=db.updateMovieSingleItem(Long.valueOf(thisMovie.getRowId()),DbAdapter.KEY_TO_WATCH,thisMovie.getToWatch());
+    success=mDatabase.updateMovieSingleItem(Long.valueOf(mMovie.getRowId()),DbAdapter.KEY_TO_WATCH,mMovie.getToWatch());
   }
   if (success) {
     invalidateOptionsMenu();
-    if (thisMovie.toWatch()) {
+    if (mMovie.toWatch()) {
       Toast.makeText(this,getString(R.string.addedToWatchList),Toast.LENGTH_SHORT).show();
     }
  else {
@@ -22,7 +22,7 @@
   new Thread(){
     @Override public void run(){
       ArrayList<Movie> watchlist=new ArrayList<Movie>();
-      watchlist.add(thisMovie);
+      watchlist.add(mMovie);
       MizLib.movieWatchlist(watchlist,getApplicationContext());
     }
   }

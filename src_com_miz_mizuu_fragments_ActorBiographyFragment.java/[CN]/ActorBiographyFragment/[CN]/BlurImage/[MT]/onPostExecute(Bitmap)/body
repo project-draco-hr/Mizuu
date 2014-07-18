@@ -2,5 +2,13 @@
   if (result != null) {
     mActorImageBackground.setImageBitmap(result);
     mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+    if (MizLib.isPortrait(getActivity())) {
+      if (mBackdropImage) {
+        ((PanningView)mActorImageBackground).startPanning();
+      }
+ else {
+        ((PanningView)mActorImageBackground).setScaleType(ScaleType.CENTER_CROP);
+      }
+    }
   }
 }

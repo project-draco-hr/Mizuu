@@ -1,6 +1,6 @@
 {
-  spinnerItems.clear();
-  spinnerItems.add(new SpinnerItem(thisMovie.getTitle(),getString(R.string.overview)));
-  spinnerItems.add(new SpinnerItem(thisMovie.getTitle(),getString(R.string.detailsActors)));
-  actionBar.setListNavigationCallbacks(spinnerAdapter,this);
+  mSpinnerItems.clear();
+  mSpinnerItems.add(new SpinnerItem(mMovie.getTitle(),getString(R.string.overview)));
+  mSpinnerItems.add(new SpinnerItem(mMovie.getTitle(),getString(R.string.detailsActors)));
+  mActionBar.setListNavigationCallbacks(mSpinnerAdater,this);
 }

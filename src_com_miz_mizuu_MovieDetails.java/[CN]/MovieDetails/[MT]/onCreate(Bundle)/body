@@ -1,6 +1,8 @@
 {
   super.onCreate(savedInstanceState);
   mContext=this;
+  mBus=MizuuApplication.getBus();
+  mBus.register(getApplicationContext());
   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
  else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
   if (MizLib.isPortrait(this)) {
@@ -8,40 +10,43 @@
   }
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
-  actionBar=getActionBar();
-  actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-  if (spinnerAdapter == null)   spinnerAdapter=new ActionBarSpinner(this,spinnerItems);
+  mActionBarOverlay=(ImageView)findViewById(R.id.actionbar_overlay);
+  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(this) : MizLib.getActionBarAndStatusBarHeight(this)));
+  mActionBar=getActionBar();
+  mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+  if (mSpinnerAdater == null)   mSpinnerAdater=new ActionBarSpinner(this,mSpinnerItems);
   setTitle(null);
-  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_TITLE_PREFIXES,false);
-  ignoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_NFO_FILES,true);
-  prefsRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(REMOVE_MOVIES_FROM_WATCHLIST,true);
-  ignoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_FILES_ENABLED,false);
-  useWildcard=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORE_VIDEO_FILE_TYPE,false);
-  prefsDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
+  mIgnorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_TITLE_PREFIXES,false);
+  mIgnoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_NFO_FILES,true);
+  mRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(REMOVE_MOVIES_FROM_WATCHLIST,true);
+  mIgnoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_FILES_ENABLED,false);
+  mWildcard=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORE_VIDEO_FILE_TYPE,false);
+  mDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
   mYouTubeApiKey=MizLib.getYouTubeApiKey(this);
   if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
-    movieId=Integer.valueOf(getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY));
+    mMovieId=Integer.valueOf(getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY));
   }
  else {
-    movieId=getIntent().getExtras().getInt("rowId");
+    mMovieId=getIntent().getExtras().getInt("rowId");
   }
-  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
-  awesomePager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
-  awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
+  mViewPager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
+  mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
-      actionBar.setSelectedNavigationItem(position);
+      mActionBar.setSelectedNavigationItem(position);
+      updateActionBarDrawable(1,false);
     }
   }
 );
   if (savedInstanceState != null) {
-    awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
+    mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
-  db=MizuuApplication.getMovieAdapter();
+  mDatabase=MizuuApplication.getMovieAdapter();
   Cursor cursor=null;
   try {
-    if (movieId > 0)     cursor=db.fetchMovie(movieId);
- else     cursor=db.fetchMovie(getIntent().getExtras().getString("tmdbId"));
-    thisMovie=new Movie(this,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CAST)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_2)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COVERPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_1)),ignorePrefixes,ignoreNfo);
+    if (mMovieId > 0)     cursor=mDatabase.fetchMovie(mMovieId);
+ else     cursor=mDatabase.fetchMovie(getIntent().getExtras().getString("tmdbId"));
+    mMovie=new Movie(this,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CAST)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_2)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COVERPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_1)),mIgnorePrefixes,mIgnoreNfo);
   }
  catch (  Exception e) {
     finish();
@@ -50,15 +55,15 @@
  finally {
     cursor.close();
   }
-  if (thisMovie != null) {
-    movieId=Integer.parseInt(thisMovie.getRowId());
-    if (db.hasMultipleVersions(thisMovie.getTmdbId())) {
-      thisMovie.setMultipleVersions(db.getRowIdsForMovie(thisMovie.getTmdbId()));
+  if (mMovie != null) {
+    mMovieId=Integer.parseInt(mMovie.getRowId());
+    if (mDatabase.hasMultipleVersions(mMovie.getTmdbId())) {
+      mMovie.setMultipleVersions(mDatabase.getRowIdsForMovie(mMovie.getTmdbId()));
     }
     setupSpinnerItems();
   }
  else {
-    Toast.makeText(this,getString(R.string.errorSomethingWentWrong) + " (movie ID: " + movieId+ ")",Toast.LENGTH_SHORT).show();
+    Toast.makeText(this,getString(R.string.errorSomethingWentWrong) + " (movie ID: " + mMovieId+ ")",Toast.LENGTH_SHORT).show();
     finish();
     return;
   }

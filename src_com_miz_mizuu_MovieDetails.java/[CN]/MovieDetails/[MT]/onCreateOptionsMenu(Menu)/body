@@ -1,7 +1,12 @@
 {
-  getMenuInflater().inflate(R.menu.details,menu);
+  getMenuInflater().inflate(R.menu.movie_details,menu);
+  if (MizLib.isTablet(mContext)) {
+    menu.findItem(R.id.movie_fav).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    menu.findItem(R.id.share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    menu.findItem(R.id.watch_list).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+  }
   try {
-    if (thisMovie.isFavourite()) {
+    if (mMovie.isFavourite()) {
       menu.findItem(R.id.movie_fav).setIcon(R.drawable.fav);
       menu.findItem(R.id.movie_fav).setTitle(R.string.menuFavouriteTitleRemove);
     }
@@ -9,7 +14,7 @@
       menu.findItem(R.id.movie_fav).setIcon(R.drawable.reviews);
       menu.findItem(R.id.movie_fav).setTitle(R.string.menuFavouriteTitle);
     }
-    if (thisMovie.toWatch()) {
+    if (mMovie.toWatch()) {
       menu.findItem(R.id.watch_list).setIcon(R.drawable.watchlist_remove);
       menu.findItem(R.id.watch_list).setTitle(R.string.removeFromWatchlist);
     }
@@ -17,18 +22,18 @@
       menu.findItem(R.id.watch_list).setIcon(R.drawable.watchlist_add);
       menu.findItem(R.id.watch_list).setTitle(R.string.watchLater);
     }
-    if (thisMovie.hasWatched()) {
+    if (mMovie.hasWatched()) {
       menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsUnwatched);
     }
  else {
       menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsWatched);
     }
-    if (thisMovie.isNetworkFile() || thisMovie.isUpnpFile()) {
+    if (mMovie.isNetworkFile() || mMovie.isUpnpFile()) {
       menu.findItem(R.id.watchOffline).setVisible(true);
-      if (thisMovie.hasOfflineCopy())       menu.findItem(R.id.watchOffline).setTitle(R.string.removeOfflineCopy);
+      if (mMovie.hasOfflineCopy())       menu.findItem(R.id.watchOffline).setTitle(R.string.removeOfflineCopy);
  else       menu.findItem(R.id.watchOffline).setTitle(R.string.watchOffline);
     }
-    if (thisMovie.getTmdbId().isEmpty() || thisMovie.getTmdbId().equals("invalid"))     menu.findItem(R.id.change_cover).setVisible(false);
+    if (mMovie.getTmdbId().isEmpty() || mMovie.getTmdbId().equals("invalid"))     menu.findItem(R.id.change_cover).setVisible(false);
   }
  catch (  Exception e) {
   }

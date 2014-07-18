@@ -1,11 +1,11 @@
 {
   try {
-    getApplicationContext().startActivity(MizLib.getVideoIntent(filepath,useWildcard,thisMovie));
+    getApplicationContext().startActivity(MizLib.getVideoIntent(filepath,mWildcard,mMovie));
     checkIn();
   }
  catch (  Exception e) {
     try {
-      getApplicationContext().startActivity(MizLib.getVideoIntent(filepath,"video/*",thisMovie));
+      getApplicationContext().startActivity(MizLib.getVideoIntent(filepath,"video/*",mMovie));
       checkIn();
     }
  catch (    Exception e2) {

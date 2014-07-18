@@ -1,6 +1,7 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
+  mBus=MizuuApplication.getBus();
   mCondensedTypeface=MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf");
   mLightTypeface=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
   json=getArguments().getString("json");

@@ -1,5 +1,5 @@
 {
-  videoPlaybackStarted=System.currentTimeMillis();
+  mVideoPlaybackStarted=System.currentTimeMillis();
   if (filepath.toLowerCase(Locale.getDefault()).matches(".*(cd1|part1).*")) {
     new GetSplitFiles(filepath,isNetworkFile).execute();
   }
@@ -9,13 +9,13 @@
     }
  else {
       try {
-        startActivity(MizLib.getVideoIntent(filepath,useWildcard,thisMovie));
+        startActivity(MizLib.getVideoIntent(filepath,mWildcard,mMovie));
         checkIn();
       }
  catch (      Exception e) {
         System.out.println(e);
         try {
-          startActivity(MizLib.getVideoIntent(filepath,"video/*",thisMovie));
+          startActivity(MizLib.getVideoIntent(filepath,"video/*",mMovie));
           checkIn();
         }
  catch (        Exception e2) {

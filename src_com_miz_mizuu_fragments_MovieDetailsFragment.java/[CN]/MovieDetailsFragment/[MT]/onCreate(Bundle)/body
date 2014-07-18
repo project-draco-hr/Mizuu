@@ -1,6 +1,7 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
+  mBus=MizuuApplication.getBus();
   ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_TITLE_PREFIXES,false);
   ignoreNfo=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_NFO_FILES,true);
   mShowFileLocation=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(SHOW_FILE_LOCATION,true);

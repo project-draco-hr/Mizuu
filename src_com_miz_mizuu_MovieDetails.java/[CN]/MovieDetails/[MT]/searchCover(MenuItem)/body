@@ -1,8 +1,8 @@
 {
-  if (thisMovie.getTmdbId() != null && !thisMovie.getTmdbId().isEmpty() && MizLib.isOnline(getApplicationContext())) {
+  if (mMovie.getTmdbId() != null && !mMovie.getTmdbId().isEmpty() && MizLib.isOnline(getApplicationContext())) {
     Intent intent=new Intent();
-    intent.putExtra("tmdbId",thisMovie.getTmdbId());
-    intent.putExtra("collectionId",thisMovie.getCollectionId());
+    intent.putExtra("tmdbId",mMovie.getTmdbId());
+    intent.putExtra("collectionId",mMovie.getCollectionId());
     intent.setClass(this,MovieCoverFanartBrowser.class);
     startActivity(intent);
   }

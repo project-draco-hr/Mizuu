@@ -2,26 +2,26 @@
   AlertDialog.Builder builder=new AlertDialog.Builder(this);
   View dialogLayout=getLayoutInflater().inflate(R.layout.delete_file_dialog_layout,null);
   final CheckBox cb=(CheckBox)dialogLayout.findViewById(R.id.deleteFile);
-  if (thisMovie.isUpnpFile())   cb.setEnabled(false);
+  if (mMovie.isUpnpFile())   cb.setEnabled(false);
  else   cb.setChecked(PreferenceManager.getDefaultSharedPreferences(this).getBoolean(ALWAYS_DELETE_FILE,false));
   builder.setTitle(getString(R.string.removeMovie)).setView(dialogLayout).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int id){
       boolean deleted=true;
-      if (thisMovie.hasMultipleVersions()) {
-        MovieVersion[] versions=thisMovie.getMultipleVersions();
+      if (mMovie.hasMultipleVersions()) {
+        MovieVersion[] versions=mMovie.getMultipleVersions();
         for (int i=0; i < versions.length; i++) {
-          if (ignoreDeletedFiles)           deleted=deleted && db.ignoreMovie(Long.valueOf(versions[i].getRowId()));
- else           deleted=deleted && db.deleteMovie(Long.valueOf(versions[i].getRowId()));
+          if (mIgnoreDeletedFiles)           deleted=deleted && mDatabase.ignoreMovie(Long.valueOf(versions[i].getRowId()));
+ else           deleted=deleted && mDatabase.deleteMovie(Long.valueOf(versions[i].getRowId()));
         }
       }
  else {
-        if (ignoreDeletedFiles)         deleted=db.ignoreMovie(Long.valueOf(thisMovie.getRowId()));
- else         deleted=db.deleteMovie(Long.valueOf(thisMovie.getRowId()));
+        if (mIgnoreDeletedFiles)         deleted=mDatabase.ignoreMovie(Long.valueOf(mMovie.getRowId()));
+ else         deleted=mDatabase.deleteMovie(Long.valueOf(mMovie.getRowId()));
       }
       if (deleted) {
         if (cb.isChecked()) {
-          if (thisMovie.hasMultipleVersions()) {
-            MovieVersion[] versions=thisMovie.getMultipleVersions();
+          if (mMovie.hasMultipleVersions()) {
+            MovieVersion[] versions=mMovie.getMultipleVersions();
             for (int i=0; i < versions.length; i++) {
               Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
               deleteIntent.putExtra("filepath",versions[i].getFilepath());
@@ -30,14 +30,14 @@
           }
  else {
             Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
-            deleteIntent.putExtra("filepath",thisMovie.getFilepath());
+            deleteIntent.putExtra("filepath",mMovie.getFilepath());
             getApplicationContext().startService(deleteIntent);
           }
         }
-        boolean movieExists=db.movieExists(thisMovie.getTmdbId());
+        boolean movieExists=mDatabase.movieExists(mMovie.getTmdbId());
         if (!movieExists) {
           try {
-            File coverArt=thisMovie.getPoster();
+            File coverArt=mMovie.getPoster();
             if (coverArt.exists() && coverArt.getAbsolutePath().contains("com.miz.mizuu")) {
               MizLib.deleteFile(coverArt);
             }
@@ -45,7 +45,7 @@
  catch (          NullPointerException e) {
           }
           try {
-            File thumbnail=thisMovie.getThumbnail();
+            File thumbnail=mMovie.getThumbnail();
             if (thumbnail.exists() && thumbnail.getAbsolutePath().contains("com.miz.mizuu")) {
               MizLib.deleteFile(thumbnail);
             }
@@ -53,7 +53,7 @@
  catch (          NullPointerException e) {
           }
           try {
-            File backdrop=new File(thisMovie.getBackdrop());
+            File backdrop=new File(mMovie.getBackdrop());
             if (backdrop.exists() && backdrop.getAbsolutePath().contains("com.miz.mizuu")) {
               MizLib.deleteFile(backdrop);
             }

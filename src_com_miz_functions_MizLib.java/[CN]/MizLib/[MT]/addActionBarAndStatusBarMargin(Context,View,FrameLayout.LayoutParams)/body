@@ -3,7 +3,7 @@
   TypedValue tv=new TypedValue();
   if (c.getTheme().resolveAttribute(android.R.attr.actionBarSize,tv,true))   mActionBarHeight=TypedValue.complexToDimensionPixelSize(tv.data,c.getResources().getDisplayMetrics());
  else   mActionBarHeight=0;
-  mStatusBarHeight=convertDpToPixels(c,25);
+  if (hasKitKat())   mStatusBarHeight=convertDpToPixels(c,25);
   FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
   params.setMargins(0,mActionBarHeight + mStatusBarHeight,0,0);
   params.gravity=layoutParams.gravity;

@@ -4,19 +4,19 @@
     HttpGet httppost=new HttpGet("https://api.themoviedb.org/3/configuration?api_key=" + mTmdbApiKey);
     httppost.setHeader("Accept","application/json");
     ResponseHandler<String> responseHandler=new BasicResponseHandler();
-    baseUrl=httpclient.execute(httppost,responseHandler);
-    JSONObject jObject=new JSONObject(baseUrl);
+    mBaseUrl=httpclient.execute(httppost,responseHandler);
+    JSONObject jObject=new JSONObject(mBaseUrl);
     try {
-      baseUrl=jObject.getJSONObject("images").getString("base_url");
+      mBaseUrl=jObject.getJSONObject("images").getString("base_url");
     }
  catch (    Exception e) {
-      baseUrl=MizLib.TMDB_BASE_URL;
+      mBaseUrl=MizLib.TMDB_BASE_URL;
     }
     httppost=new HttpGet("https://api.themoviedb.org/3/person/" + params[0] + "?api_key="+ mTmdbApiKey+ "&append_to_response=movie_credits,tv_credits,images,tagged_images");
     httppost.setHeader("Accept","application/json");
     responseHandler=new BasicResponseHandler();
-    json=httpclient.execute(httppost,responseHandler);
-    return json;
+    mJson=httpclient.execute(httppost,responseHandler);
+    return mJson;
   }
  catch (  Exception e) {
   }

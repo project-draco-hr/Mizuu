@@ -10,6 +10,6 @@
     }
   }
  else {
-    new YoutubeTrailerSearch().execute(thisMovie.getTitle());
+    new YoutubeTrailerSearch().execute(mMovie.getTitle());
   }
 }

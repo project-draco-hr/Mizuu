@@ -1,5 +1,5 @@
 {
-  getMenuInflater().inflate(R.menu.details_tmdb_movie,menu);
+  getMenuInflater().inflate(R.menu.tmdb_details,menu);
   if (!MizLib.hasTraktAccount(this))   menu.findItem(R.id.checkIn).setVisible(false);
   return true;
 }

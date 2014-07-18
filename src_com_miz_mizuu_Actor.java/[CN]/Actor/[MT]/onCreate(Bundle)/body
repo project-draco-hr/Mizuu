@@ -1,36 +1,41 @@
 {
   super.onCreate(savedInstanceState);
+  mBus=MizuuApplication.getBus();
+  mBus.register(getApplicationContext());
   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
  else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
+  mActionBarOverlay=(ImageView)findViewById(R.id.actionbar_overlay);
+  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(this) : MizLib.getActionBarAndStatusBarHeight(this)));
   findViewById(R.id.layout).setBackgroundResource(R.drawable.bg);
-  pbar=(ProgressBar)findViewById(R.id.progressbar);
-  pbar.setVisibility(View.VISIBLE);
-  actorId=getIntent().getExtras().getString("actorID");
-  actorName=getIntent().getExtras().getString("actorName");
+  mProgressBar=(ProgressBar)findViewById(R.id.progressbar);
+  mProgressBar.setVisibility(View.VISIBLE);
+  mActorId=getIntent().getExtras().getString("actorID");
+  mActorName=getIntent().getExtras().getString("actorName");
   mActorThumb=getIntent().getExtras().getString("thumb");
   mTmdbApiKey=MizLib.getTmdbApiKey(this);
-  setTitle(actorName);
+  setTitle(mActorName);
   if (MizLib.isPortrait(this)) {
     getWindow().setBackgroundDrawableResource(R.drawable.bg);
   }
-  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
-  awesomePager.setOffscreenPageLimit(3);
-  awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
+  mViewPager.setOffscreenPageLimit(3);
+  mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
-      actionBar.setSelectedNavigationItem(position);
+      mActionBar.setSelectedNavigationItem(position);
+      updateActionBarDrawable(1,false);
     }
   }
 );
   if (savedInstanceState != null) {
-    json=savedInstanceState.getString("json","");
-    baseUrl=savedInstanceState.getString("baseUrl");
+    mJson=savedInstanceState.getString("json","");
+    mBaseUrl=savedInstanceState.getString("baseUrl");
     mActorThumb=savedInstanceState.getString("mActorThumb");
     setupActionBarStuff();
-    awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
+    mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
  else {
-    new ActorLoader().execute(actorId);
+    new ActorLoader().execute(mActorId);
   }
 }
