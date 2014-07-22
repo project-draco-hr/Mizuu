@@ -72,6 +72,7 @@
  else     cover.setImageResource(R.drawable.gray);
     if (!thisMovie.getBackdrop().isEmpty())     mPicasso.load(thisMovie.getBackdrop()).placeholder(R.drawable.gray).error(R.drawable.bg).into(background,new Callback(){
       @Override public void onError(){
+        if (!isAdded())         return;
         if (MizLib.isPortrait(getActivity())) {
           ((PanningView)background).setScaleType(ScaleType.CENTER_CROP);
         }
@@ -79,6 +80,8 @@
  else         background.setImageResource(R.drawable.bg);
       }
       @Override public void onSuccess(){
+        System.out.println("onSuccess() ADDED " + isAdded());
+        if (!isAdded())         return;
         if (MizLib.isPortrait(getActivity())) {
           ((PanningView)background).startPanning();
         }

@@ -14,10 +14,12 @@
       mPicasso.load(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail()).placeholder(R.drawable.loading_image).error(R.drawable.loading_image).into(cover);
       mPicasso.load(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(background,new Callback(){
         @Override public void onError(){
+          if (!isAdded())           return;
           ((PanningView)background).setScaleType(ScaleType.CENTER_CROP);
           mPicasso.load(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
         }
         @Override public void onSuccess(){
+          if (!isAdded())           return;
           ((PanningView)background).startPanning();
         }
       }
@@ -27,10 +29,12 @@
       mPicasso.load(thisMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(cover);
       mPicasso.load(thisMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(background,new Callback(){
         @Override public void onError(){
+          if (!isAdded())           return;
           ((PanningView)background).setScaleType(ScaleType.CENTER_CROP);
           mPicasso.load(thisMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
         }
         @Override public void onSuccess(){
+          if (!isAdded())           return;
           ((PanningView)background).startPanning();
         }
       }

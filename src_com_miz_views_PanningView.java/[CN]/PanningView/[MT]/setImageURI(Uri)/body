@@ -1,4 +1,6 @@
 {
-  super.setImageURI(uri);
-  stopUpdateStartIfNecessary();
+  if (!mDetached) {
+    super.setImageURI(uri);
+    stopUpdateStartIfNecessary();
+  }
 }

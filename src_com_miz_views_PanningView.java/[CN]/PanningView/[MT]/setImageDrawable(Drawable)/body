@@ -1,4 +1,6 @@
 {
-  super.setImageDrawable(drawable);
-  stopUpdateStartIfNecessary();
+  if (!mDetached) {
+    super.setImageDrawable(drawable);
+    stopUpdateStartIfNecessary();
+  }
 }
