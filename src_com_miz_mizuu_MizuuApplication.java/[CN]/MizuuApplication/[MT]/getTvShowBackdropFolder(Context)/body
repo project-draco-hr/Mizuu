@@ -1,6 +1,6 @@
 {
   if (sTvShowBackdropFolder == null) {
-    sTvShowBackdropFolder=new File(c.getExternalFilesDir(null) + "/tvshows-backdrops");
+    sTvShowBackdropFolder=new File(c.getExternalFilesDir(null),"tvshows-backdrops");
     sTvShowBackdropFolder.mkdirs();
   }
   return sTvShowBackdropFolder;

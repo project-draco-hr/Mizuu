@@ -1,4 +1,10 @@
 {
-  if (mMenuItems.get(position).getType() == MenuItem.HEADER)   return 0;
+switch (mMenuItems.get(position).getType()) {
+case MenuItem.HEADER:
+    return 0;
+case MenuItem.SEPARATOR:
   return 1;
+default :
+return 2;
+}
 }

@@ -1,19 +1,5 @@
 {
   super.onViewCreated(view,savedInstanceState);
-  if (MizLib.isPortrait(getActivity())) {
-    final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
-    final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());
-    ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.scrollView1);
-    sv.setOnScrollChangedListener(new OnScrollChangedListener(){
-      @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
-        final int headerHeight=view.findViewById(R.id.imageBackground).getHeight() - height;
-        final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
-        final int newAlpha=(int)(ratio * 255);
-        if (t <= headerHeight * 1.2)         mBus.post(Integer.valueOf(newAlpha));
-      }
-    }
-);
-  }
   background=(ImageView)view.findViewById(R.id.imageBackground);
   textTitle=(TextView)view.findViewById(R.id.movieTitle);
   textPlot=(TextView)view.findViewById(R.id.textView2);
@@ -25,17 +11,32 @@
   textTagline=(TextView)view.findViewById(R.id.textView6);
   textCertification=(TextView)view.findViewById(R.id.textView11);
   cover=(ImageView)view.findViewById(R.id.traktIcon);
+  if (MizLib.isPortrait(getActivity())) {
+    final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
+    final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());
+    ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.scrollView1);
+    sv.setOnScrollChangedListener(new OnScrollChangedListener(){
+      @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
+        final int headerHeight=background.getHeight() - height;
+        final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
+        final int newAlpha=(int)(ratio * 255);
+        if (t <= headerHeight * 1.2) {
+          mBus.post(Integer.valueOf(newAlpha));
+          background.setPadding(0,(int)(t / 1.5),0,0);
+        }
+      }
+    }
+);
+  }
   textTitle.setVisibility(View.VISIBLE);
   textTitle.setText(thisMovie.getTitle());
   textTitle.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf"));
   textTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
   textPlot.setTypeface(mLight);
   textSrc.setTypeface(mLight);
-  textGenre.setTypeface(mLight);
-  textRuntime.setTypeface(mLight);
-  textReleaseDate.setTypeface(mLight);
-  textRating.setTypeface(mLight);
-  textCertification.setTypeface(mLight);
+  textRuntime.setTypeface(mMedium);
+  textCertification.setTypeface(mMedium);
+  textRating.setTypeface(mMedium);
   if (!MizLib.isPortrait(getActivity())) {
     textPlot.setBackgroundResource(R.drawable.selectable_background);
     if (!thisMovie.getTagline().isEmpty())     textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
@@ -93,7 +94,7 @@
     if (thisMovie.getRating().contains("/")) {
       try {
         int rating=(int)(Double.parseDouble(thisMovie.getRating().substring(0,thisMovie.getRating().indexOf("/"))) * 10);
-        textRating.setText(Html.fromHtml("<b>" + rating + "</b><small> %</small>"));
+        textRating.setText(Html.fromHtml(+rating + "<small> %</small>"));
       }
  catch (      NumberFormatException e) {
         textRating.setText(Html.fromHtml(thisMovie.getRating().replace("/","<small> / ") + "</small>"));
@@ -107,10 +108,10 @@
     textRating.setText(R.string.stringNA);
   }
   if (!MizLib.isEmpty(thisMovie.getCertification())) {
-    textCertification.setText(Html.fromHtml("<b>" + thisMovie.getCertification() + "</b>"));
+    textCertification.setText(thisMovie.getCertification());
   }
  else {
-    textCertification.setText(Html.fromHtml("<b>" + getString(R.string.stringNA) + "</b>"));
+    textCertification.setText(R.string.stringNA);
   }
   loadImages();
 }

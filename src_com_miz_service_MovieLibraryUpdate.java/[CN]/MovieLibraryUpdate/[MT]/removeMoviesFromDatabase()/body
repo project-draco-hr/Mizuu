@@ -1,6 +1,6 @@
 {
   DbAdapter db=MizuuApplication.getMovieAdapter();
   db.deleteAllMovies();
-  MizLib.deleteRecursive(MizuuApplication.getMovieThumbFolder(this));
-  MizLib.deleteRecursive(MizuuApplication.getMovieBackdropFolder(this));
+  MizLib.deleteRecursive(MizuuApplication.getMovieThumbFolder(this),false);
+  MizLib.deleteRecursive(MizuuApplication.getMovieBackdropFolder(this),false);
 }

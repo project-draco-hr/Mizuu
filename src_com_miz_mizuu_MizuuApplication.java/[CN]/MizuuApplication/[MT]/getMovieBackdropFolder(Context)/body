@@ -1,6 +1,6 @@
 {
   if (sMovieBackdropFolder == null) {
-    sMovieBackdropFolder=new File(c.getExternalFilesDir(null) + "/movie-backdrops");
+    sMovieBackdropFolder=new File(c.getExternalFilesDir(null),"movie-backdrops");
     sMovieBackdropFolder.mkdirs();
   }
   return sMovieBackdropFolder;

@@ -1,0 +1,23 @@
+{
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
+  String username=settings.getString(TRAKT_USERNAME,"").trim();
+  String password=settings.getString(TRAKT_PASSWORD,"");
+  if (username.isEmpty() || password.isEmpty())   return false;
+  OkHttpClient client=new OkHttpClient();
+  try {
+    JSONObject holder=new JSONObject();
+    holder.put("username",username);
+    holder.put("password",password);
+    holder.put("imdb_id","");
+    holder.put("tvdb_id",showId);
+    holder.put("title","");
+    holder.put("year","");
+    holder.put("season",season);
+    Request request=MizLib.getJsonPostRequest("http://api.trakt.tv/show/season/" + (!watched ? "un" : "") + "seen/"+ getApiKey(c),holder);
+    Response response=client.newCall(request).execute();
+    return response.isSuccessful();
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

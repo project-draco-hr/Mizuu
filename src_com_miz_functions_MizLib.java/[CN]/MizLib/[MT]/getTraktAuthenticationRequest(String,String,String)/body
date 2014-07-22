@@ -1,0 +1,6 @@
+{
+  JSONObject holder=new JSONObject();
+  holder.put("username",username);
+  holder.put("password",password);
+  return new Request.Builder().url(url).addHeader("Content-type","application/json").post(RequestBody.create(MediaType.parse("application/json"),holder.toString())).build();
+}

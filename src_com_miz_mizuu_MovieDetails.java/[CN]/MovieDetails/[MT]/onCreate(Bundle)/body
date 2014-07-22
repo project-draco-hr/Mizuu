@@ -2,7 +2,6 @@
   super.onCreate(savedInstanceState);
   mContext=this;
   mBus=MizuuApplication.getBus();
-  mBus.register(getApplicationContext());
   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
  else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
   if (MizLib.isPortrait(this)) {
@@ -34,7 +33,7 @@
   mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
       mActionBar.setSelectedNavigationItem(position);
-      updateActionBarDrawable(1,false);
+      updateActionBarDrawable(1,false,false);
     }
   }
 );

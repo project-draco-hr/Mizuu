@@ -25,10 +25,8 @@
   }
   log("searchFolders()");
   if (mStopUpdate)   return;
+  reloadLibrary();
   searchFolders();
-  if (mStopUpdate)   return;
-  log("getTMDbConfiguration()");
-  getTMDbConfiguration();
   if (mStopUpdate)   return;
   log("mTotalFiles > 0 check");
   if (mTotalFiles > 0) {

@@ -1,5 +1,5 @@
 {
-  JSONArray jsonArray=MizLib.getTraktTvShowLibrary(this,MizLib.WATCHED);
+  JSONArray jsonArray=Trakt.getTvShowLibrary(this,Trakt.WATCHED);
   if (jsonArray.length() > 0) {
     for (int i=0; i < jsonArray.length(); i++) {
       try {

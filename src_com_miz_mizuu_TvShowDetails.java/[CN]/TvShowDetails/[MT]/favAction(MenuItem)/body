@@ -16,7 +16,7 @@
     @Override public void run(){
       ArrayList<TvShow> show=new ArrayList<TvShow>();
       show.add(thisShow);
-      MizLib.tvShowFavorite(show,getApplicationContext());
+      Trakt.tvShowFavorite(show,getApplicationContext());
     }
   }
 .start();

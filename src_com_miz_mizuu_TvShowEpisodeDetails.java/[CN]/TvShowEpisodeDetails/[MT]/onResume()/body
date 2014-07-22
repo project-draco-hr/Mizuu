@@ -1,0 +1,5 @@
+{
+  super.onResume();
+  mBus.register(this);
+  updateActionBarDrawable(0,true,true);
+}

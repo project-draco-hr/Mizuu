@@ -19,7 +19,7 @@
     awesomePager.setCurrentItem(savedInstanceState.getInt("selectedIndex",0));
   }
   if (json.isEmpty()) {
-    new MovieLoader().execute();
+    new MovieLoader(getActivity()).execute();
   }
  else {
     awesomePager.setAdapter(new WebVideosAdapter(getChildFragmentManager()));

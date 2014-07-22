@@ -1,22 +1,22 @@
 {
   String movieName=getIntent().getExtras().getString("title");
-  spinnerItems.clear();
-  spinnerItems.add(new SpinnerItem(movieName,getString(R.string.overview),TmdbMovieDetailsFragment.newInstance(movieId,json)));
+  mSpinnerItems.clear();
+  mSpinnerItems.add(new SpinnerItem(movieName,getString(R.string.overview),TmdbMovieDetailsFragment.newInstance(mMovieId,mJson)));
   try {
-    JSONObject j=new JSONObject(json);
+    JSONObject j=new JSONObject(mJson);
     if (j.getJSONObject("casts").getJSONArray("cast").length() > 0) {
-      spinnerItems.add(new SpinnerItem(movieName,getString(R.string.detailsActors),ActorBrowserFragment.newInstance(movieId,json,baseUrl)));
+      mSpinnerItems.add(new SpinnerItem(movieName,getString(R.string.detailsActors),ActorBrowserFragment.newInstance(mMovieId,mJson,mBaseUrl)));
     }
   }
  catch (  JSONException e) {
   }
   try {
-    JSONObject j=new JSONObject(json);
+    JSONObject j=new JSONObject(mJson);
     if (j.getJSONObject("similar_movies").getJSONArray("results").length() > 0) {
-      spinnerItems.add(new SpinnerItem(movieName,getString(R.string.relatedMovies),RelatedMoviesFragment.newInstance(movieId,true,json,baseUrl)));
+      mSpinnerItems.add(new SpinnerItem(movieName,getString(R.string.relatedMovies),RelatedMoviesFragment.newInstance(mMovieId,true,mJson,mBaseUrl)));
     }
   }
  catch (  JSONException e) {
   }
-  actionBar.setListNavigationCallbacks(spinnerAdapter,this);
+  mActionBar.setListNavigationCallbacks(mSpinnerAdapter,this);
 }

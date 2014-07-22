@@ -1,7 +1,7 @@
 {
   new Thread(){
     @Override public void run(){
-      MizLib.checkInEpisodeTrakt(thisEpisode,getActivity());
+      Trakt.performEpisodeCheckin(thisEpisode,getActivity());
     }
   }
 .start();

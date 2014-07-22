@@ -1,7 +1,7 @@
 {
-  if (index == -1)   index=0;
+  if (!(!MizLib.getLatestBackdropPath(getApplicationContext()).isEmpty() && !((!MizLib.isTablet(this) && !MizLib.isPortrait(this)) || MizLib.isGoogleTV(this))))   index--;
   if (mMenuItems.get(index).getType() == MenuItem.SECTION) {
-    selectedIndex=index;
+    selectedIndex=mMenuItems.get(index).getFragment();
     mDrawerList.setItemChecked(index,true);
   }
 }

@@ -2,7 +2,9 @@
   Editor editor=settings.edit();
   editor.putString(TRAKT_USERNAME,"");
   editor.putString(TRAKT_PASSWORD,"");
+  editor.putString(TRAKT_FULL_NAME,"");
   editor.commit();
+  new File(MizLib.getCacheFolder(getActivity()),"avatar.jpg").delete();
   traktUser.setText("");
   traktUser.setEnabled(true);
   traktPass.setText("");

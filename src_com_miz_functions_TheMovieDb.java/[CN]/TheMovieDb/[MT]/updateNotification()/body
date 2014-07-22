@@ -6,7 +6,7 @@
   }
  else {
     sendUpdateBroadcast(new Intent("mizuu-movies-identification"));
+    sendUpdateBroadcast(new Intent("mizuu-library-change"));
     updateWidgets();
   }
-  sendUpdateBroadcast(new Intent("mizuu-movies-update"));
 }

@@ -1,8 +1,0 @@
-{
-  try {
-    return mPicasso.load(mImage).error(R.drawable.noactor).config(MizuuApplication.getBitmapConfig()).get();
-  }
- catch (  IOException e) {
-  }
-  return null;
-}

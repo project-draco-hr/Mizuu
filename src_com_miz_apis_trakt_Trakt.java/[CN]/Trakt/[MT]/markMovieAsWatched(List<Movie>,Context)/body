@@ -1,0 +1,29 @@
+{
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
+  String username=settings.getString(TRAKT_USERNAME,"").trim();
+  String password=settings.getString(TRAKT_PASSWORD,"");
+  if (username.isEmpty() || password.isEmpty() || movies.size() == 0)   return false;
+  OkHttpClient client=new OkHttpClient();
+  try {
+    JSONObject holder=new JSONObject();
+    holder.put("username",username);
+    holder.put("password",password);
+    JSONArray array=new JSONArray();
+    int count=movies.size();
+    for (int i=0; i < count; i++) {
+      JSONObject jsonMovie=new JSONObject();
+      jsonMovie.put("imdb_id",movies.get(i).getImdbId());
+      jsonMovie.put("tmdb_id",movies.get(i).getTmdbId());
+      jsonMovie.put("year",movies.get(i).getReleaseYear());
+      jsonMovie.put("title",movies.get(i).getTitle());
+      array.put(jsonMovie);
+    }
+    holder.put("movies",array);
+    Request request=MizLib.getJsonPostRequest((movies.get(0).hasWatched() ? "http://api.trakt.tv/movie/seen/" : "http://api.trakt.tv/movie/unseen/") + getApiKey(c),holder);
+    Response response=client.newCall(request).execute();
+    return response.isSuccessful();
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

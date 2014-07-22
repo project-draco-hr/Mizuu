@@ -2,18 +2,15 @@
   username=traktUser.getText().toString().trim();
   password=traktPass.getText().toString().trim();
   boolean success=false;
-  HttpClient httpclient=new DefaultHttpClient();
-  HttpPost httppost=new HttpPost("http://api.trakt.tv/account/test/" + mTraktApiKey);
+  OkHttpClient client=new OkHttpClient();
   try {
-    List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(2);
-    nameValuePairs.add(new BasicNameValuePair("username",username));
-    nameValuePairs.add(new BasicNameValuePair("password",MizLib.SHA1(password)));
-    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-    ResponseHandler<String> responseHandler=new BasicResponseHandler();
-    String html=httpclient.execute(httppost,responseHandler);
-    JSONObject jObject=new JSONObject(html);
-    String status=jObject.getString("status");
-    success=status.equals("success");
+    Request request=MizLib.getTraktAuthenticationRequest("http://api.trakt.tv/account/test/" + mTraktApiKey,username,MizLib.SHA1(password));
+    Response response=client.newCall(request).execute();
+    JSONObject jObject=new JSONObject(response.body().string());
+    if (response.isSuccessful()) {
+      String status=jObject.getString("status");
+      success=status.equals("success");
+    }
   }
  catch (  Exception e) {
     success=false;
@@ -23,22 +20,18 @@
     editor.putString(TRAKT_USERNAME,username);
     editor.putString(TRAKT_PASSWORD,MizLib.SHA1(password));
     editor.commit();
-    httpclient=new DefaultHttpClient();
-    httppost=new HttpPost("http://api.trakt.tv/user/profile.json/" + mTraktApiKey + "/"+ username);
     try {
-      List<NameValuePair> nameValuePairs=new ArrayList<NameValuePair>(2);
-      nameValuePairs.add(new BasicNameValuePair("username",username));
-      nameValuePairs.add(new BasicNameValuePair("password",MizLib.SHA1(password)));
-      httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-      ResponseHandler<String> responseHandler=new BasicResponseHandler();
-      String html=httpclient.execute(httppost,responseHandler);
-      JSONObject jObject=new JSONObject(html);
-      String name=jObject.getString("full_name");
-      if (name.equals("null") || name.isEmpty())       name=jObject.getString("username");
-      String avatar=jObject.getString("avatar");
-      editor.putString(TRAKT_FULL_NAME,name);
-      editor.commit();
-      if (isAdded() && (avatar.contains("gravatar") || (avatar.contains("trakt") && !avatar.contains("avatar-large.jpg"))))       MizLib.downloadFile(avatar,new File(MizLib.getCacheFolder(getActivity()),"avatar.jpg").getAbsolutePath());
+      Request request=MizLib.getTraktAuthenticationRequest("http://api.trakt.tv/user/profile.json/" + mTraktApiKey + "/"+ username,username,MizLib.SHA1(password));
+      Response response=client.newCall(request).execute();
+      JSONObject jObject=new JSONObject(response.body().string());
+      if (response.isSuccessful()) {
+        String name=jObject.getString("full_name");
+        if (name.equals("null") || name.isEmpty())         name=jObject.getString("username");
+        String avatar=jObject.getString("avatar");
+        editor.putString(TRAKT_FULL_NAME,name);
+        editor.commit();
+        if (isAdded() && (avatar.contains("gravatar") || (avatar.contains("trakt") && !avatar.contains("avatar-large.jpg"))))         MizLib.downloadFile(avatar,new File(MizLib.getCacheFolder(getActivity()),"avatar.jpg").getAbsolutePath());
+      }
     }
  catch (    Exception e) {
       success=false;

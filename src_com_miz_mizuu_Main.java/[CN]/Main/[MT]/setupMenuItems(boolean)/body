@@ -1,10 +1,11 @@
 {
   mMenuItems.clear();
-  mMenuItems.add(new MenuItem(getString(R.string.drawerMyMovies),mNumMovies,MenuItem.SECTION,null));
-  mMenuItems.add(new MenuItem(getString(R.string.drawerMyTvShows),mNumShows,MenuItem.SECTION,null));
-  mMenuItems.add(new MenuItem(getString(R.string.chooserWatchList),mNumWatchlist,MenuItem.SECTION,null));
-  mMenuItems.add(new MenuItem(getString(R.string.drawerOnlineMovies),-1,MenuItem.SECTION,null));
-  mMenuItems.add(new MenuItem(getString(R.string.drawerWebVideos),-1,MenuItem.SECTION,null));
+  if (!MizLib.getLatestBackdropPath(getApplicationContext()).isEmpty() && !((!MizLib.isTablet(this) && !MizLib.isPortrait(this)) || MizLib.isGoogleTV(this)))   mMenuItems.add(new MenuItem(null,-1,MenuItem.HEADER,null));
+  mMenuItems.add(new MenuItem(getString(R.string.drawerMyMovies),mNumMovies,MenuItem.SECTION,null,MOVIES));
+  mMenuItems.add(new MenuItem(getString(R.string.drawerMyTvShows),mNumShows,MenuItem.SECTION,null,SHOWS));
+  mMenuItems.add(new MenuItem(getString(R.string.chooserWatchList),mNumWatchlist,MenuItem.SECTION,null,WATCHLIST));
+  mMenuItems.add(new MenuItem(getString(R.string.drawerOnlineMovies),-1,MenuItem.SECTION,null,WEB_MOVIES));
+  mMenuItems.add(new MenuItem(getString(R.string.drawerWebVideos),-1,MenuItem.SECTION,null,WEB_VIDEOS));
   final PackageManager pm=getPackageManager();
   if (refreshThirdPartyApps) {
     mApplicationList=pm.getInstalledApplications(PackageManager.GET_META_DATA);
@@ -15,7 +16,7 @@
       temp.add(new MenuItem(pm.getApplicationLabel(mApplicationList.get(i)).toString(),-1,MenuItem.THIRD_PARTY_APP,mApplicationList.get(i).packageName));
     }
   }
-  if (temp.size() > 0)   mMenuItems.add(new MenuItem(getString(R.string.installed_media_apps),-1,MenuItem.HEADER,null));
+  if (temp.size() > 0)   mMenuItems.add(new MenuItem(getString(R.string.installed_media_apps),-1,MenuItem.SEPARATOR,null));
   Collections.sort(temp,new Comparator<MenuItem>(){
     @Override public int compare(    MenuItem lhs,    MenuItem rhs){
       return lhs.getTitle().compareToIgnoreCase(rhs.getTitle());

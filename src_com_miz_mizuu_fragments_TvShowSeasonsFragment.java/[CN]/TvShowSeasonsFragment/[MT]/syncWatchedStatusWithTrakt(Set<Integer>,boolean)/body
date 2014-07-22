@@ -15,8 +15,8 @@
       }
     }
     @Override protected Boolean doInBackground(    Void... params){
-      boolean result=MizLib.markEpisodeAsWatched(mShowId,mEpisodes,mContext,watched);
-      if (!result)       result=MizLib.markEpisodeAsWatched(mShowId,mEpisodes,mContext,watched);
+      boolean result=Trakt.markEpisodeAsWatched(mShowId,mEpisodes,mContext,watched);
+      if (!result)       result=Trakt.markEpisodeAsWatched(mShowId,mEpisodes,mContext,watched);
       return result;
     }
     @Override protected void onPostExecute(    Boolean result){

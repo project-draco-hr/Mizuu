@@ -1,3 +1,0 @@
-{
-  LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-shows-update"));
-}

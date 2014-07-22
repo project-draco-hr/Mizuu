@@ -24,7 +24,7 @@
     }
     count=collection.size();
     for (int i=0; i < count; i++) {
-      MizLib.addTvShowToLibrary(collection.get(i),getApplicationContext());
+      Trakt.addTvShowToLibrary(collection.get(i),getApplicationContext());
     }
     collection.clear();
     collection=null;

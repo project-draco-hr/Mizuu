@@ -9,7 +9,7 @@
     }
     count=collection.size();
     if (count > 0) {
-      MizLib.addMoviesToTraktLibrary(collection,getApplicationContext());
+      Trakt.addMoviesToLibrary(collection,getApplicationContext());
     }
     collection.clear();
     collection=null;

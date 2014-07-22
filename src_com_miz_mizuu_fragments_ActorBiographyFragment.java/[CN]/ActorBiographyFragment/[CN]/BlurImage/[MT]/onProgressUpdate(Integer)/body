@@ -1,5 +1,0 @@
-{
-  if (!mThumb.contains("null"))   mActorImage.setImageBitmap(mBitmap);
- else   mActorImage.setImageResource(R.drawable.noactor);
-  new HighQualityImageLoader().execute();
-}

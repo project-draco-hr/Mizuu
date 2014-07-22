@@ -8,10 +8,10 @@
   mConfig=MizuuApplication.getBitmapConfig();
   if (!getArguments().containsKey("json")) {
     if (getArguments().getString("movieId") == null) {
-      new GetActorDetails().execute(getActivity().getIntent().getExtras().getString("movieId"));
+      new GetActorDetails(getActivity()).execute(getActivity().getIntent().getExtras().getString("movieId"));
     }
  else {
-      new GetActorDetails().execute(getArguments().getString("movieId"));
+      new GetActorDetails(getActivity()).execute(getArguments().getString("movieId"));
     }
   }
 }

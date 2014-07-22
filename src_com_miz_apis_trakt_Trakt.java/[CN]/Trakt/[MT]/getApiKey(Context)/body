@@ -1,0 +1,5 @@
+{
+  String key=context.getString(R.string.trakt_api_key);
+  if (key.isEmpty() || key.equals("add_your_own"))   throw new RuntimeException("You need to add a Trakt API key!");
+  return key;
+}

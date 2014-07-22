@@ -1,6 +1,6 @@
 {
-  final View v=inflater.inflate(R.layout.new_movie_details,container,false);
-  movieDetailsLayout=v.findViewById(R.id.movieDetailsLayout);
+  final View v=inflater.inflate(R.layout.movie_and_tv_show_details,container,false);
+  movieDetailsLayout=MizLib.isPortrait(getActivity()) ? v.findViewById(R.id.movieDetailsLayout_portrait) : v.findViewById(R.id.movieDetailsLayout);
   progressBar=v.findViewById(R.id.progressBar1);
   this.container=(FrameLayout)v.findViewById(R.id.container);
   background=(ImageView)v.findViewById(R.id.imageBackground);
@@ -15,6 +15,23 @@
   cover=(ImageView)v.findViewById(R.id.traktIcon);
   cover.setImageResource(R.drawable.loading_image);
   v.findViewById(R.id.textView3).setVisibility(View.GONE);
+  if (MizLib.isPortrait(getActivity())) {
+    final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
+    final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());
+    ObservableScrollView sv=(ObservableScrollView)v.findViewById(R.id.scrollView1);
+    sv.setOnScrollChangedListener(new OnScrollChangedListener(){
+      @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
+        final int headerHeight=background.getHeight() - height;
+        final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
+        final int newAlpha=(int)(ratio * 255);
+        if (t <= headerHeight * 1.2) {
+          mBus.post(Integer.valueOf(newAlpha));
+          background.setPadding(0,(int)(t / 1.5),0,0);
+        }
+      }
+    }
+);
+  }
   if (!isRetained) {
     setLoading(true);
     new MovieLoader().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR,getArguments().getString("json"));

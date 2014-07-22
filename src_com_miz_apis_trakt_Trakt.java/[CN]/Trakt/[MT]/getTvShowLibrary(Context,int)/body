@@ -1,0 +1,26 @@
+{
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
+  String username=settings.getString(TRAKT_USERNAME,"").trim();
+  String password=settings.getString(TRAKT_PASSWORD,"");
+  if (username.isEmpty() || password.isEmpty())   return new JSONArray();
+  OkHttpClient client=new OkHttpClient();
+  try {
+    String url="";
+    if (type == WATCHED) {
+      url="http://api.trakt.tv/user/library/shows/watched.json/" + getApiKey(c) + "/"+ username;
+    }
+ else     if (type == RATINGS) {
+      url="http://api.trakt.tv/user/ratings/shows.json/" + getApiKey(c) + "/"+ username+ "/love";
+    }
+ else     if (type == COLLECTION) {
+      url="http://api.trakt.tv/user/library/shows/collection.json/" + getApiKey(c) + "/"+ username;
+    }
+    Request request=MizLib.getTraktAuthenticationRequest(url,username,password);
+    Response response=client.newCall(request).execute();
+    if (response.isSuccessful())     return new JSONArray(response.body().string());
+    return new JSONArray();
+  }
+ catch (  Exception e) {
+    return new JSONArray();
+  }
+}

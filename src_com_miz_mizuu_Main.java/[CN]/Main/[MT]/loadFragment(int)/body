@@ -1,5 +1,5 @@
 {
-  type--;
+  if (type == 0)   type=1;
   setTitle(null);
   Fragment frag=getSupportFragmentManager().findFragmentByTag("frag" + type);
   if (frag == null) {

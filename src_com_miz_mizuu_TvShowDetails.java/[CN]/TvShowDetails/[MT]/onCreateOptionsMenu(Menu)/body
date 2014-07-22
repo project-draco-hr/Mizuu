@@ -1,5 +1,5 @@
 {
-switch (awesomePager.getCurrentItem()) {
+switch (mViewPager.getCurrentItem()) {
 case 0:
     getMenuInflater().inflate(R.menu.tv_show_details,menu);
   try {
@@ -8,7 +8,7 @@ case 0:
       menu.findItem(R.id.show_fav).setTitle(R.string.menuFavouriteTitleRemove);
     }
  else {
-      menu.findItem(R.id.show_fav).setIcon(R.drawable.reviews);
+      menu.findItem(R.id.show_fav).setIcon(R.drawable.ic_action_star_0);
       menu.findItem(R.id.show_fav).setTitle(R.string.menuFavouriteTitle);
     }
   }

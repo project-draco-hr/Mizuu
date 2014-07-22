@@ -24,7 +24,7 @@
     @Override public void run(){
       ArrayList<Movie> watchedMovies=new ArrayList<Movie>();
       watchedMovies.add(mMovie);
-      MizLib.markMovieAsWatched(watchedMovies,getApplicationContext());
+      Trakt.markMovieAsWatched(watchedMovies,getApplicationContext());
     }
   }
 .start();

@@ -1,0 +1,32 @@
+{
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
+  String username=settings.getString(TRAKT_USERNAME,"").trim();
+  String password=settings.getString(TRAKT_PASSWORD,"");
+  if (username.isEmpty() || password.isEmpty())   return false;
+  OkHttpClient client=new OkHttpClient();
+  try {
+    Request request=MizLib.getTraktAuthenticationRequest("http://api.trakt.tv/movie/cancelcheckin/" + getApiKey(c),username,password);
+    Response response=client.newCall(request).execute();
+    if (!response.isSuccessful())     return false;
+  }
+ catch (  Exception e) {
+    return false;
+  }
+  try {
+    JSONObject holder=new JSONObject();
+    holder.put("username",username);
+    holder.put("password",password);
+    holder.put("imdb_id",movie.getImdbId());
+    holder.put("tmdb_id",movie.getImdbId());
+    holder.put("title",movie.getTitle());
+    holder.put("year",movie.getReleaseYear().replace("(","").replace(")",""));
+    holder.put("app_version",c.getPackageManager().getPackageInfo(c.getPackageName(),0).versionName);
+    holder.put("app_date",c.getPackageManager().getPackageInfo(c.getPackageName(),0).versionName);
+    Request request=MizLib.getJsonPostRequest("http://api.trakt.tv/movie/checkin/" + getApiKey(c),holder);
+    Response response=client.newCall(request).execute();
+    return response.isSuccessful();
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

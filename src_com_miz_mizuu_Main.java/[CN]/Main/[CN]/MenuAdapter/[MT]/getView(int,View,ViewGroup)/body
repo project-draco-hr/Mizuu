@@ -1,6 +1,21 @@
 {
   if (mMenuItems.get(position).getType() == MenuItem.HEADER) {
     convertView=mInflater.inflate(R.layout.menu_drawer_header,parent,false);
+    final String fullName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString(TRAKT_FULL_NAME,"");
+    final ImageView backgroundImage=((ImageView)convertView.findViewById(R.id.userCover));
+    final ImageView userImage=((ImageView)convertView.findViewById(R.id.userPhoto));
+    final TextView userName=((TextView)convertView.findViewById(R.id.username));
+    userName.setTextSize(26f);
+    userName.setTypeface(mTfCondensed);
+    if (!MizLib.isEmpty(fullName)) {
+      userName.setText(fullName);
+      mPicasso.load(new File(MizLib.getCacheFolder(getApplicationContext()),"avatar.jpg")).resize(MizLib.convertDpToPixels(getApplicationContext(),72),MizLib.convertDpToPixels(getApplicationContext(),72)).error(R.drawable.unknown_user).into(userImage);
+    }
+ else     convertView.findViewById(R.id.drawer_user_info).setVisibility(View.GONE);
+    mPicasso.load(MizLib.getLatestBackdropPath(getApplicationContext())).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
+  }
+ else   if (mMenuItems.get(position).getType() == MenuItem.SEPARATOR) {
+    convertView=mInflater.inflate(R.layout.menu_drawer_header_item,parent,false);
     TextView title=(TextView)convertView.findViewById(R.id.title);
     title.setText(mMenuItems.get(position).getTitle());
   }
@@ -8,7 +23,7 @@
     convertView=mInflater.inflate(R.layout.menu_drawer_item,parent,false);
     TextView title=(TextView)convertView.findViewById(R.id.title);
     title.setText(mMenuItems.get(position).getTitle());
-    if (position == selectedIndex)     title.setTypeface(mTfMedium,Typeface.BOLD);
+    if (mMenuItems.get(position).getFragment() == selectedIndex)     title.setTypeface(mTfMedium,Typeface.BOLD);
  else     title.setTypeface(mTfLight);
     title.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
     if (mTablet)     title.setTextSize(22f);

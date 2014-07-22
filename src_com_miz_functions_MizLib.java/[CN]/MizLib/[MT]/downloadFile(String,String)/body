@@ -1,21 +1,23 @@
 {
-  int bufferSize=8192;
-  byte[] retVal=null;
+  if (isEmpty(url))   return false;
   InputStream in=null;
   OutputStream fileos=null;
-  OkHttpClient client=new OkHttpClient();
-  HttpURLConnection urlConnection=null;
   try {
-    urlConnection=client.open(new URL(url));
+    int bufferSize=8192;
+    byte[] retVal=null;
+    OkHttpClient client=new OkHttpClient();
+    Request request=new Request.Builder().url(url).build();
+    Response response=client.newCall(request).execute();
+    if (!response.isSuccessful())     return false;
     fileos=new BufferedOutputStream(new FileOutputStream(savePath));
-    in=new BufferedInputStream(urlConnection.getInputStream(),bufferSize);
+    in=new BufferedInputStream(response.body().byteStream(),bufferSize);
     retVal=new byte[bufferSize];
     int length=0;
     while ((length=in.read(retVal)) > -1) {
       fileos.write(retVal,0,length);
     }
   }
- catch (  IOException e) {
+ catch (  Exception e) {
     return false;
   }
  finally {
@@ -34,7 +36,6 @@
  catch (      IOException e) {
       }
     }
-    if (urlConnection != null)     urlConnection.disconnect();
   }
   return true;
 }

@@ -24,7 +24,7 @@
     @Override public void run(){
       ArrayList<Movie> movie=new ArrayList<Movie>();
       movie.add(mMovie);
-      MizLib.movieFavorite(movie,getApplicationContext());
+      Trakt.movieFavorite(movie,getApplicationContext());
     }
   }
 .start();

@@ -3,6 +3,6 @@
   for (  int season : mCheckedSeasons) {
     db.setSeasonWatchStatus(mShowId,mItems.get(season).getSeasonZeroIndex(),watched);
   }
-  if (MizLib.isOnline(mContext) && MizLib.hasTraktAccount(mContext))   syncWatchedStatusWithTrakt(mCheckedSeasons,watched);
+  if (MizLib.isOnline(mContext) && Trakt.hasTraktAccount(mContext))   syncWatchedStatusWithTrakt(mCheckedSeasons,watched);
   loadSeasons(true);
 }

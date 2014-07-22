@@ -36,6 +36,6 @@
     mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
  else {
-    new ActorLoader().execute(mActorId);
+    new ActorLoader(getApplicationContext()).execute(mActorId);
   }
 }

@@ -1,4 +1,4 @@
 {
-  if (mMenuItems.get(position).getType() == MenuItem.HEADER)   return false;
+  if (mMenuItems.get(position).getType() == MenuItem.SEPARATOR || mMenuItems.get(position).getType() == MenuItem.HEADER)   return false;
   return true;
 }

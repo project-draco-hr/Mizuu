@@ -1,33 +1,40 @@
 {
   super.onCreate(savedInstanceState);
-  if (!MizLib.isPortrait(this))   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
+  mBus=MizuuApplication.getBus();
+  mBus.register(getApplicationContext());
+  if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
  else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
- else   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_FullScreen);
- else   setTheme(R.style.Mizuu_Theme_Transparent);
+  if (MizLib.isPortrait(this)) {
+    getWindow().setBackgroundDrawableResource(R.drawable.bg);
+  }
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
+  mActionBarOverlay=(ImageView)findViewById(R.id.actionbar_overlay);
+  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(this) : MizLib.getActionBarAndStatusBarHeight(this)));
+  mActionBar=getActionBar();
   setTitle(getIntent().getExtras().getString("title"));
-  movieId=getIntent().getExtras().getString("tmdbid");
+  mMovieId=getIntent().getExtras().getString("tmdbid");
   mTmdbApiKey=MizLib.getTmdbApiKey(this);
   mYouTubeApiKey=MizLib.getYouTubeApiKey(this);
   if (!MizLib.isPortrait(getApplicationContext()))   findViewById(R.id.layout).setBackgroundResource(R.drawable.bg);
-  pbar=(ProgressBar)findViewById(R.id.progressbar);
-  pbar.setVisibility(View.VISIBLE);
-  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
-  awesomePager.setOffscreenPageLimit(2);
-  awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+  mProgressBar=(ProgressBar)findViewById(R.id.progressbar);
+  mProgressBar.setVisibility(View.VISIBLE);
+  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
+  mViewPager.setOffscreenPageLimit(2);
+  mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
-      actionBar.setSelectedNavigationItem(position);
+      mActionBar.setSelectedNavigationItem(position);
+      updateActionBarDrawable(1,false,false);
     }
   }
 );
   if (savedInstanceState != null) {
-    json=savedInstanceState.getString("json","");
-    baseUrl=savedInstanceState.getString("baseUrl");
+    mJson=savedInstanceState.getString("json","");
+    mBaseUrl=savedInstanceState.getString("baseUrl");
     setupActionBarStuff();
-    awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
+    mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
  else {
-    new MovieLoader().execute(movieId);
+    new MovieLoader(getApplicationContext()).execute(mMovieId);
   }
 }

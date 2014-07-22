@@ -1,5 +1,5 @@
 {
   super.onCreate(savedInstanceState);
   settings=PreferenceManager.getDefaultSharedPreferences(getActivity());
-  mTraktApiKey=MizLib.getTraktApiKey(getActivity());
+  mTraktApiKey=Trakt.getApiKey(getActivity());
 }

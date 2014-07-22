@@ -4,7 +4,7 @@
       String[] dateArray=date.split("-");
       Calendar cal=Calendar.getInstance();
       cal.set(Integer.parseInt(dateArray[0]),Integer.parseInt(dateArray[1]) - 1,Integer.parseInt(dateArray[2]));
-      return cal.getDisplayName(Calendar.MONTH,Calendar.LONG,Locale.getDefault()) + " " + cal.get(Calendar.YEAR);
+      return MizLib.toCapitalFirstChar(cal.getDisplayName(Calendar.MONTH,Calendar.LONG,Locale.getDefault()) + " " + cal.get(Calendar.YEAR));
     }
  catch (    Exception e) {
       return date;

@@ -1,0 +1,20 @@
+{
+  long time=PreferenceManager.getDefaultSharedPreferences(context).getLong(TMDB_BASE_URL_TIME,0);
+  long currentTime=System.currentTimeMillis();
+  if (((currentTime - time) < DAY && PreferenceManager.getDefaultSharedPreferences(context).contains(TMDB_BASE_URL)) | Looper.getMainLooper().getThread() == Thread.currentThread()) {
+    return PreferenceManager.getDefaultSharedPreferences(context).getString(TMDB_BASE_URL,"");
+  }
+  try {
+    JSONObject configuration=MizLib.getJSONObject("https://api.themoviedb.org/3/configuration?api_key=" + getTmdbApiKey(context));
+    String baseUrl=configuration.getJSONObject("images").getString("secure_base_url");
+    System.out.println("BASE: " + baseUrl);
+    Editor editor=PreferenceManager.getDefaultSharedPreferences(context).edit();
+    editor.putString(TMDB_BASE_URL,baseUrl);
+    editor.putLong(TMDB_BASE_URL_TIME,System.currentTimeMillis());
+    editor.commit();
+    return baseUrl;
+  }
+ catch (  JSONException e) {
+    return null;
+  }
+}

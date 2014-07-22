@@ -1,4 +1,4 @@
 {
   super.onStart();
-  getActionBar().setDisplayHomeAsUpEnabled(true);
+  mActionBar.setDisplayHomeAsUpEnabled(true);
 }

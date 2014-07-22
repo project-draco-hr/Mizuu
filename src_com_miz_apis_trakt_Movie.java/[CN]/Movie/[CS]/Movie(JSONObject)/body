@@ -1,0 +1,21 @@
+{
+  try {
+    mTitle=summaryJson.getString("title");
+    mYear=summaryJson.getInt("year");
+    mReleased=summaryJson.getLong("released");
+    mUrl=summaryJson.getString("url");
+    mOverview=summaryJson.getString("overview");
+    mTagline=summaryJson.getString("tagline");
+    mRuntime=summaryJson.getInt("runtime");
+    mCertification=summaryJson.getString("certification");
+    mTmdbId=summaryJson.getInt("tmdb_id");
+    mImdbId=summaryJson.getString("imdb_id");
+    mPoster=summaryJson.getString("poster");
+    mFanart=summaryJson.getJSONObject("images").getString("fanart");
+    mRating=summaryJson.getJSONObject("ratings").getInt("percentage");
+    JSONArray genres=summaryJson.getJSONArray("genres");
+    for (int i=0; i < genres.length(); i++)     mGenres.add(genres.getString(i));
+  }
+ catch (  JSONException e) {
+  }
+}

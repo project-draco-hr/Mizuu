@@ -1,7 +1,6 @@
 {
   if (!showId.equals("invalid")) {
     mUniqueShowIds.add(showId);
-    sendUpdateBroadcast();
   }
   updateTvShowAddedNotification(showId,title,cover,backdrop,count);
 }

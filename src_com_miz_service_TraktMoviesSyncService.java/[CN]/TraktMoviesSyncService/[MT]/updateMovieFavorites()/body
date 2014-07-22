@@ -2,7 +2,7 @@
   ArrayList<Movie> favs=new ArrayList<Movie>();
   int count=mMovies.size();
   for (int i=0; i < count; i++)   if (!mMovieFavorites.contains(mMovies.get(i).getTmdbId()) && mMovies.get(i).isFavourite())   favs.add(mMovies.get(i));
-  if (favs.size() > 0)   MizLib.movieFavorite(favs,this);
+  if (favs.size() > 0)   Trakt.movieFavorite(favs,this);
   favs.clear();
   favs=null;
   mMovieFavorites.clear();

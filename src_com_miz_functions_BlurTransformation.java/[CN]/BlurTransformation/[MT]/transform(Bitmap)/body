@@ -1,0 +1,5 @@
+{
+  Bitmap blur=MizLib.fastblur(mContext,Bitmap.createScaledBitmap(source,source.getWidth() / 2,source.getHeight() / 2,false),mBlurRadius);
+  source.recycle();
+  return blur;
+}

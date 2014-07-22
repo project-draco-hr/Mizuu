@@ -10,7 +10,7 @@
   awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,ShowBackdropWidgetProvider.class)),R.id.widget_grid);
   LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
   MizLib.scheduleShowsUpdate(this);
-  if (MizLib.hasTraktAccount(this) && mSyncLibraries && (mEpisodeCount > 0)) {
+  if (Trakt.hasTraktAccount(this) && mSyncLibraries && (mEpisodeCount > 0)) {
     startService(new Intent(getApplicationContext(),TraktTvShowsSyncService.class));
   }
 }

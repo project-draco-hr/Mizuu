@@ -24,6 +24,6 @@
     awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
  else {
-    new MovieLoader().execute(tmdbId,collectionId);
+    new MovieLoader(getApplicationContext()).execute(tmdbId,collectionId);
   }
 }

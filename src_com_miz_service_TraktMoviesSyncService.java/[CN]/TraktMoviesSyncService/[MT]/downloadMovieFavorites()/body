@@ -1,5 +1,5 @@
 {
-  JSONArray jsonArray=MizLib.getTraktMovieLibrary(this,MizLib.RATINGS);
+  JSONArray jsonArray=Trakt.getMovieLibrary(this,Trakt.RATINGS);
   if (jsonArray.length() > 0) {
     for (int i=0; i < jsonArray.length(); i++) {
       try {

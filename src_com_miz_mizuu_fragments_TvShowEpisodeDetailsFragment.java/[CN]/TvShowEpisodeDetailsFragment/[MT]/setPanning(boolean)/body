@@ -1,0 +1,9 @@
+{
+  if (!MizLib.isPortrait(getActivity()))   return;
+  if (successful) {
+    ((PanningView)mEpisodePhoto).startPanning();
+  }
+ else {
+    ((PanningView)mEpisodePhoto).setScaleType(ScaleType.CENTER_CROP);
+  }
+}

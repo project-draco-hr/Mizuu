@@ -1,0 +1,28 @@
+{
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
+  String username=settings.getString(TRAKT_USERNAME,"").trim();
+  String password=settings.getString(TRAKT_PASSWORD,"");
+  if (username.isEmpty() || password.isEmpty() || shows.size() == 0)   return false;
+  OkHttpClient client=new OkHttpClient();
+  try {
+    JSONObject json=new JSONObject();
+    json.put("username",username);
+    json.put("password",password);
+    JSONArray array=new JSONArray();
+    int count=shows.size();
+    for (int i=0; i < count; i++) {
+      JSONObject jsonShow=new JSONObject();
+      jsonShow.put("tvdb_id",shows.get(i).getId());
+      jsonShow.put("title",shows.get(i).getTitle());
+      jsonShow.put("rating",shows.get(i).isFavorite() ? "love" : "unrate");
+      array.put(jsonShow);
+    }
+    json.put("shows",array);
+    Request request=MizLib.getJsonPostRequest("http://api.trakt.tv/rate/shows/" + getApiKey(c),json);
+    Response response=client.newCall(request).execute();
+    return response.isSuccessful();
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

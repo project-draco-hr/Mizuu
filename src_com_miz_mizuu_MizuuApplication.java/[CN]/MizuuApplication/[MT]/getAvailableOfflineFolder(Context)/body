@@ -1,6 +1,6 @@
 {
   if (sAvailableOfflineFolder == null) {
-    sAvailableOfflineFolder=new File(c.getExternalFilesDir(null) + "/offline_storage");
+    sAvailableOfflineFolder=new File(c.getExternalFilesDir(null),"offline_storage");
     sAvailableOfflineFolder.mkdirs();
   }
   return sAvailableOfflineFolder;

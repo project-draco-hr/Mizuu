@@ -6,4 +6,11 @@
   sDbTvShowEpisode=new DbAdapterTvShowEpisode(this);
   sDbSources=new DbAdapterSources(this);
   sDb=new DbAdapter(this);
+  getMovieThumbFolder(this);
+  getMovieBackdropFolder(this);
+  getTvShowThumbFolder(this);
+  getTvShowBackdropFolder(this);
+  getTvShowEpisodeFolder(this);
+  getTvShowSeasonFolder(this);
+  getAvailableOfflineFolder(this);
 }

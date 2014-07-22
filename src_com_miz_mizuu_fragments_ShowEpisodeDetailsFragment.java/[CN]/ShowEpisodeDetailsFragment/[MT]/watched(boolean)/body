@@ -18,7 +18,7 @@
     @Override public void run(){
       ArrayList<com.miz.functions.TvShowEpisode> episode=new ArrayList<com.miz.functions.TvShowEpisode>();
       episode.add(new com.miz.functions.TvShowEpisode(thisEpisode.getShowId(),Integer.valueOf(thisEpisode.getEpisode()),Integer.valueOf(thisEpisode.getSeason())));
-      MizLib.markEpisodeAsWatched(thisEpisode.getShowId(),episode,getActivity(),false);
+      Trakt.markEpisodeAsWatched(thisEpisode.getShowId(),episode,getActivity(),false);
     }
   }
 .start();

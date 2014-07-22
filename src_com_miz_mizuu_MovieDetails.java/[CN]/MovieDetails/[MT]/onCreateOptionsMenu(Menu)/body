@@ -11,7 +11,7 @@
       menu.findItem(R.id.movie_fav).setTitle(R.string.menuFavouriteTitleRemove);
     }
  else {
-      menu.findItem(R.id.movie_fav).setIcon(R.drawable.reviews);
+      menu.findItem(R.id.movie_fav).setIcon(R.drawable.ic_action_star_0);
       menu.findItem(R.id.movie_fav).setTitle(R.string.menuFavouriteTitle);
     }
     if (mMovie.toWatch()) {

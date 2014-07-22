@@ -1,3 +1,5 @@
 {
-  return context.getString(R.string.tmdb_api_key);
+  String key=context.getString(R.string.tmdb_api_key);
+  if (key.isEmpty() || key.equals("add_your_own"))   throw new RuntimeException("You need to add a TMDb API key!");
+  return key;
 }

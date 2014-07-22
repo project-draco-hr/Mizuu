@@ -1,5 +1,5 @@
 {
-  if (mStartup.equals("0") && !mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && MizLib.isTablet(this)) {
+  if (mStartup == 0 && !mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && MizLib.isTablet(this)) {
     Intent i=new Intent(Intent.ACTION_VIEW);
     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
     i.setClass(getApplicationContext(),Welcome.class);
@@ -7,17 +7,21 @@
     finish();
     return;
   }
-  if (!mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer)) && mConfirmExit) {
-    if (mTriedOnce) {
-      finish();
+  if (!mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer))) {
+    if (mConfirmExit) {
+      if (mTriedOnce) {
+        finish();
+      }
+ else {
+        Toast.makeText(this,getString(R.string.pressBackToExit),Toast.LENGTH_SHORT).show();
+        mTriedOnce=true;
+      }
     }
  else {
-      Toast.makeText(this,getString(R.string.pressBackToExit),Toast.LENGTH_SHORT).show();
-      mTriedOnce=true;
+      finish();
     }
   }
  else {
-    if (MizLib.isGoogleTV(this))     mDrawerLayout.closeDrawers();
- else     finish();
+    mDrawerLayout.closeDrawers();
   }
 }

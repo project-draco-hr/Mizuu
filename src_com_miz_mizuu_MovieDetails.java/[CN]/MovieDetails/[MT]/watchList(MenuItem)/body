@@ -23,7 +23,7 @@
     @Override public void run(){
       ArrayList<Movie> watchlist=new ArrayList<Movie>();
       watchlist.add(mMovie);
-      MizLib.movieWatchlist(watchlist,getApplicationContext());
+      Trakt.movieWatchlist(watchlist,getApplicationContext());
     }
   }
 .start();

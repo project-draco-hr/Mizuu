@@ -1,22 +1,27 @@
 {
   super.onCreate(savedInstanceState);
-  if (!MizLib.isPortrait(this))   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
+  mBus=MizuuApplication.getBus();
+  if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
  else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
- else   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_FullScreen);
- else   setTheme(R.style.Mizuu_Theme_Transparent);
+  if (MizLib.isPortrait(this)) {
+    getWindow().setBackgroundDrawableResource(R.drawable.bg);
+  }
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
-  actionBar=getActionBar();
-  actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+  mActionBarOverlay=(ImageView)findViewById(R.id.actionbar_overlay);
+  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(this) : MizLib.getActionBarAndStatusBarHeight(this)));
+  mActionBar=getActionBar();
+  mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
   if (spinnerAdapter == null)   spinnerAdapter=new ActionBarSpinner(this,spinnerItems);
   setTitle(null);
-  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
-  awesomePager.setOffscreenPageLimit(3);
-  awesomePager.setAdapter(new ShowDetailsAdapter(getSupportFragmentManager()));
-  awesomePager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
+  mViewPager.setOffscreenPageLimit(3);
+  mViewPager.setAdapter(new ShowDetailsAdapter(getSupportFragmentManager()));
+  mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
-      actionBar.setSelectedNavigationItem(position);
+      mActionBar.setSelectedNavigationItem(position);
       invalidateOptionsMenu();
+      updateActionBarDrawable(1,false,false);
     }
   }
 );
@@ -48,7 +53,7 @@
   }
   setupSpinnerItems();
   if (savedInstanceState != null) {
-    awesomePager.setCurrentItem(savedInstanceState.getInt("tab",0));
+    mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
   }
-  if (!PreferenceManager.getDefaultSharedPreferences(this).getString(TVSHOWS_START_PAGE,getString(R.string.showDetails)).equals(getString(R.string.showDetails)))   awesomePager.setCurrentItem(1);
+  if (!PreferenceManager.getDefaultSharedPreferences(this).getString(TVSHOWS_START_PAGE,getString(R.string.showDetails)).equals(getString(R.string.showDetails)))   mViewPager.setCurrentItem(1);
 }

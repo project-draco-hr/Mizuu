@@ -1,5 +1,6 @@
 {
   super.onResume();
+  mBus.register(getActivity());
   mVideoPlaybackEnded=System.currentTimeMillis();
   if (mVideoPlaybackStarted > 0 && mVideoPlaybackEnded - mVideoPlaybackStarted > (1000 * 60 * 5)) {
     if (!mEpisode.hasWatched())     watched(false);

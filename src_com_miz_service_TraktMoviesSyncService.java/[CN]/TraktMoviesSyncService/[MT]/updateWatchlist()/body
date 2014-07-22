@@ -2,7 +2,7 @@
   ArrayList<Movie> watchlistMovies=new ArrayList<Movie>();
   int count=mMovies.size();
   for (int i=0; i < count; i++)   if (!mWatchlist.contains(mMovies.get(i).getTmdbId()) && mMovies.get(i).toWatch())   watchlistMovies.add(mMovies.get(i));
-  if (watchlistMovies.size() > 0)   MizLib.movieWatchlist(watchlistMovies,this);
+  if (watchlistMovies.size() > 0)   Trakt.movieWatchlist(watchlistMovies,this);
   watchlistMovies.clear();
   watchlistMovies=null;
   mWatchlist.clear();

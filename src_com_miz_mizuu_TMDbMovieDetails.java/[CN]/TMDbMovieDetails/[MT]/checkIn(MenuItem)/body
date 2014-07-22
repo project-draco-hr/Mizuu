@@ -1,7 +1,7 @@
 {
   new AsyncTask<Void,Void,Boolean>(){
     @Override protected Boolean doInBackground(    Void... params){
-      return MizLib.checkInMovieTrakt(movieId,getApplicationContext());
+      return Trakt.performMovieCheckin(mMovieId,getApplicationContext());
     }
     @Override protected void onPostExecute(    Boolean result){
       if (result)       Toast.makeText(getApplicationContext(),getString(R.string.checked_in),Toast.LENGTH_SHORT).show();

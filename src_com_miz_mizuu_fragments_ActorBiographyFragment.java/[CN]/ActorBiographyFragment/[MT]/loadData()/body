@@ -30,7 +30,7 @@
     try {
       JSONArray resultArray=jObject.getJSONObject("tagged_images").getJSONArray("results");
       if (mRandomInt == -1)       mRandomInt=new Random().nextInt(resultArray.length());
-      mBackgroundImage=MizLib.TMDB_BASE_URL + "w300" + resultArray.getJSONObject(mRandomInt).getString("file_path");
+      mBackgroundImage=MizLib.getTmdbImageBaseUrl(getActivity()) + "w300" + resultArray.getJSONObject(mRandomInt).getString("file_path");
     }
  catch (    Exception ignored) {
       mBackgroundImage="";
@@ -45,8 +45,27 @@
  else     mActorBirth.setVisibility(View.GONE);
     if (!MizLib.isEmpty(mBirthday))     mActorBirthday.setText(MizLib.getPrettyDate(getActivity(),mBirthday));
  else     mActorBirthday.setVisibility(View.GONE);
-    if (!mThumb.isEmpty() || !mThumb.contains("null") || !mBackgroundImage.isEmpty()) {
-      new BlurImage().execute();
+    if (!MizLib.isEmpty(mImage)) {
+      mPicasso.load(mImage).placeholder(R.drawable.bg).error(R.drawable.noactor).config(MizuuApplication.getBitmapConfig()).into(mActorImage);
+      if (!mBackgroundImage.isEmpty()) {
+        mPicasso.load(mBackgroundImage).placeholder(R.drawable.bg).transform(new BlurTransformation(getActivity(),mBackgroundImage + "-blur",2)).config(MizuuApplication.getBitmapConfig()).into(mActorImageBackground,new Callback(){
+          @Override public void onError(){
+            mPicasso.load(mImage).placeholder(R.drawable.bg).error(R.drawable.bg).transform(new BlurTransformation(getActivity(),mImage + "-blur",2)).config(MizuuApplication.getBitmapConfig()).into(mActorImageBackground);
+            mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+            if (MizLib.isPortrait(getActivity()))             ((PanningView)mActorImageBackground).setScaleType(ScaleType.CENTER_CROP);
+          }
+          @Override public void onSuccess(){
+            mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+            if (MizLib.isPortrait(getActivity()))             ((PanningView)mActorImageBackground).startPanning();
+          }
+        }
+);
+      }
+ else {
+        mPicasso.load(mImage).placeholder(R.drawable.bg).error(R.drawable.bg).transform(new BlurTransformation(getActivity(),mImage + "-blur",2)).config(MizuuApplication.getBitmapConfig()).into(mActorImageBackground);
+        mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+        if (MizLib.isPortrait(getActivity()))         ((PanningView)mActorImageBackground).setScaleType(ScaleType.CENTER_CROP);
+      }
     }
   }
  catch (  Exception ignored) {

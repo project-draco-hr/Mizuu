@@ -8,6 +8,8 @@
   mIgnoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_FILES_ENABLED,false);
   mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
   mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
+  mLightItalic=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-LightItalic.ttf");
+  mMedium=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Medium.ttf");
   mDatabaseHelper=MizuuApplication.getTvEpisodeDbAdapter();
   if (!getArguments().getString("showId").isEmpty() && getArguments().getInt("season") >= 0 && getArguments().getInt("episode") > 0) {
     Cursor cursor=mDatabaseHelper.getEpisode(getArguments().getString("showId"),getArguments().getInt("season"),getArguments().getInt("episode"));

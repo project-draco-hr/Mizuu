@@ -1,0 +1,33 @@
+{
+  SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
+  String username=settings.getString(TRAKT_USERNAME,"").trim();
+  String password=settings.getString(TRAKT_PASSWORD,"");
+  if (username.isEmpty() || password.isEmpty())   return false;
+  OkHttpClient client=new OkHttpClient();
+  try {
+    Request request=MizLib.getTraktAuthenticationRequest("http://api.trakt.tv/show/cancelcheckin/" + getApiKey(c),username,password);
+    Response response=client.newCall(request).execute();
+    if (!response.isSuccessful())     return false;
+  }
+ catch (  Exception e) {
+    return false;
+  }
+  try {
+    JSONObject holder=new JSONObject();
+    holder.put("username",username);
+    holder.put("password",password);
+    holder.put("tvdb_id",episode.getShowId());
+    holder.put("title","");
+    holder.put("year","");
+    holder.put("season",episode.getSeason());
+    holder.put("episode",episode.getEpisode());
+    holder.put("app_version",c.getPackageManager().getPackageInfo(c.getPackageName(),0).versionName);
+    holder.put("app_date",c.getPackageManager().getPackageInfo(c.getPackageName(),0).versionName);
+    Request request=MizLib.getJsonPostRequest("http://api.trakt.tv/show/checkin/" + getApiKey(c),holder);
+    Response response=client.newCall(request).execute();
+    return response.isSuccessful();
+  }
+ catch (  Exception e) {
+    return false;
+  }
+}

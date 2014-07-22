@@ -4,7 +4,6 @@
   mGridView=(GridView)v.findViewById(R.id.gridView);
   if (!MizuuApplication.isFullscreen(getActivity()))   MizLib.addActionBarAndStatusBarPadding(getActivity(),v.findViewById(R.id.container));
  else   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
-  if (!MizLib.isTablet(getActivity()) && MizLib.isPortrait(getActivity()))   MizLib.addActionBarMarginBottom(getActivity(),mGridView);
   pbar=(ProgressBar)v.findViewById(R.id.progress);
   if (pics_sources.size() > 0)   pbar.setVisibility(View.GONE);
   mAdapter=new ImageAdapter(getActivity());
@@ -41,6 +40,6 @@
     loadJson(getArguments().getString("baseUrl"));
   }
  else {
-    new GetMovies().execute(getArguments().getString("tmdbId"));
+    new GetMovies(getActivity()).execute(getArguments().getString("tmdbId"));
   }
 }

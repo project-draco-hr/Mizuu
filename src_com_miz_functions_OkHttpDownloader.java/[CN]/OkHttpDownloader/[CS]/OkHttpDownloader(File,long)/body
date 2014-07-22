@@ -1,7 +1,7 @@
 {
   this(new OkHttpClient());
   try {
-    client.setResponseCache(new HttpResponseCache(cacheDir,maxSize));
+    urlFactory.client().setCache(new com.squareup.okhttp.Cache(cacheDir,maxSize));
   }
  catch (  IOException ignored) {
   }

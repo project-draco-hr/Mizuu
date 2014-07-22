@@ -1,6 +1,7 @@
 {
   if (sTvShowThumbFolder == null) {
-    sTvShowThumbFolder=new File(c.getExternalFilesDir(null) + "/tvshows-thumbs");
+    sTvShowThumbFolder=new File(c.getExternalFilesDir(null),"tvshows-thumbs");
+    System.out.println("mkdir " + sTvShowThumbFolder.getAbsolutePath());
     sTvShowThumbFolder.mkdirs();
   }
   return sTvShowThumbFolder;
