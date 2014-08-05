@@ -3,7 +3,6 @@
   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
   setContentView(R.layout.identify_episode_layout);
   settings=PreferenceManager.getDefaultSharedPreferences(this);
-  localizedInfo=settings.getBoolean(USE_LOCALIZED_DATA,false);
   isShow=getIntent().getExtras().getBoolean("isShow");
   includeShowData=getIntent().getExtras().getBoolean("includeShowData");
   rowId=Long.valueOf(getIntent().getExtras().getString("rowId"));
@@ -17,7 +16,6 @@
   pbar=(ProgressBar)findViewById(R.id.pbar);
   useSystemLanguage=(CheckBox)findViewById(R.id.searchLanguage);
   useSystemLanguage.setText(getString(R.string.searchIn) + " " + locale.getDisplayLanguage(Locale.ENGLISH));
-  if (localizedInfo)   useSystemLanguage.setChecked(true);
   lv=(ListView)findViewById(android.R.id.list);
   lv.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){

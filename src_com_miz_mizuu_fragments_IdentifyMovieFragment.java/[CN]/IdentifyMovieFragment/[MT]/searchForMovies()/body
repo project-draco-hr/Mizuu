@@ -1,0 +1,14 @@
+{
+  if (MizLib.isOnline(getActivity())) {
+    if (!mQuery.getText().toString().isEmpty()) {
+      mMovieSearch.cancel(true);
+      mMovieSearch=new MovieSearch(getActivity(),mQuery.getText().toString());
+    }
+ else {
+      mAdapter.notifyDataSetChanged();
+    }
+  }
+ else {
+    Toast.makeText(getActivity(),getString(R.string.noInternet),Toast.LENGTH_SHORT).show();
+  }
+}

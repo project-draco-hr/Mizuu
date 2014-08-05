@@ -1,13 +1,6 @@
 {
   mMovie.setHasWatched(!mMovie.hasWatched());
-  boolean success=true;
-  if (mMovie.hasMultipleVersions()) {
-    MovieVersion[] versions=mMovie.getMultipleVersions();
-    for (int i=0; i < versions.length; i++)     success=success && mDatabase.updateMovieSingleItem(Long.valueOf(versions[i].getRowId()),DbAdapter.KEY_HAS_WATCHED,mMovie.getHasWatched());
-  }
- else {
-    success=mDatabase.updateMovieSingleItem(Long.valueOf(mMovie.getRowId()),DbAdapter.KEY_HAS_WATCHED,mMovie.getHasWatched());
-  }
+  boolean success=mDatabase.updateMovieSingleItem(mMovie.getTmdbId(),DbAdapter.KEY_HAS_WATCHED,mMovie.getHasWatched());
   if (success) {
     invalidateOptionsMenu();
     if (showToast)     if (mMovie.hasWatched()) {

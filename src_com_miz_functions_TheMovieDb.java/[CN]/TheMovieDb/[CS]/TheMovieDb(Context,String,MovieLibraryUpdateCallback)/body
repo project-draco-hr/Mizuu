@@ -1,7 +1,6 @@
 {
   this.context=context;
   this.filepath=filepath;
-  this.rowId=0;
   this.language="";
   this.callback=callback;
   setup();

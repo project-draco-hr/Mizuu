@@ -8,7 +8,7 @@
     if (!dbMovies.get(i).isNetworkFile()) {
       temp=new File(dbMovies.get(i).getFilepath());
       if (!temp.exists()) {
-        deleted=db.deleteMovie(dbMovies.get(i).getRowId());
+        deleted=db.deleteMovie(dbMovies.get(i).getTmdbId());
         if (deleted)         deletedMovies.add(dbMovies.get(i));
       }
     }

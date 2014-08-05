@@ -1,0 +1,7 @@
+{
+  MovieDetailsFragment pageFragment=new MovieDetailsFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("tmdbId",tmdbId);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

@@ -2,7 +2,8 @@
   super.onViewCreated(v,savedInstanceState);
   final ProgressBar pbar=(ProgressBar)v.findViewById(R.id.progressBar1);
   ImageView img=(ImageView)v.findViewById(R.id.imageView1);
-  mPicasso.load(photoUrl).error(R.drawable.noactor).into(img,new Callback(){
+  if (MizLib.isPortrait(getActivity()) && mPortraitPhotos || !MizLib.isPortrait(getActivity()) && !mPortraitPhotos)   img.setScaleType(ScaleType.CENTER_CROP);
+  mPicasso.load(mPhotoUrl).error(R.drawable.noactor).into(img,new Callback(){
     @Override public void onError(){
       pbar.setVisibility(View.GONE);
     }
@@ -15,6 +16,7 @@
     @Override public void onClick(    View v){
       if (isAdded()) {
         ActionBar ab=getActivity().getActionBar();
+        mBus.post(Boolean.valueOf(!ab.isShowing()));
         if (ab.isShowing()) {
           ab.hide();
         }

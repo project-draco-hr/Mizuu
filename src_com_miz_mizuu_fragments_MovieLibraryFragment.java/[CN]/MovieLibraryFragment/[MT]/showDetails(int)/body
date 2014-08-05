@@ -7,7 +7,7 @@
     startActivity(intent);
   }
  else {
-    intent.putExtra("rowId",Integer.parseInt(mMovies.get(mMovieKeys.get(arg2)).getRowId()));
+    intent.putExtra("tmdbId",mMovies.get(mMovieKeys.get(arg2)).getTmdbId());
     intent.setClass(getActivity(),MovieDetails.class);
     startActivityForResult(intent,0);
   }

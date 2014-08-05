@@ -1,0 +1,11 @@
+{
+  if (hasShowFolder()) {
+    String temp=MizLib.decryptImdbId(getShowFolderName());
+    if (null != temp) {
+      mImdbId=temp;
+      return;
+    }
+  }
+  String temp=MizLib.decryptImdbId(getFilename());
+  if (null != temp)   mImdbId=temp;
+}

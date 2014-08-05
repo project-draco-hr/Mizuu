@@ -11,7 +11,7 @@
     view.setViewVisibility(R.id.widgetTitle,View.VISIBLE);
   }
   Intent fillInIntent=new Intent(MovieStackWidgetProvider.MOVIE_STACK_WIDGET);
-  fillInIntent.putExtra("rowId",Integer.parseInt(movies.get(position).getRowId()));
+  fillInIntent.putExtra("tmdbId",movies.get(position).getTmdbId());
   view.setOnClickFillInIntent(R.id.widget_item,fillInIntent);
   return view;
 }

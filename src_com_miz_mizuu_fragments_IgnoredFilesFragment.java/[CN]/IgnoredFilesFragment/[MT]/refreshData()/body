@@ -1,18 +1,33 @@
 {
   movies.clear();
+  ColumnIndexCache cache=new ColumnIndexCache();
   DbAdapter db=MizuuApplication.getMovieAdapter();
   Cursor cursor=db.getAllIgnoredMovies();
-  while (cursor.moveToNext()) {
-    movies.add(new Movie(getActivity(),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CAST)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_2)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COVERPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_1)),false,false));
+  try {
+    while (cursor.moveToNext()) {
+      movies.add(new Movie(getActivity(),MizuuApplication.getMovieMappingAdapter().getFirstFilepathForMovie(cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TMDB_ID))),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TITLE)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_PLOT)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TAGLINE)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TMDB_ID)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_IMDB_ID)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_RATING)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_RELEASEDATE)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_CERTIFICATION)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_RUNTIME)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TRAILER)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_GENRES)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_FAVOURITE)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_ACTORS)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_COLLECTION)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_COLLECTION_ID)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TO_WATCH)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_DATE_ADDED)),false,false));
+    }
   }
-  cursor.close();
+ catch (  Exception e) {
+  }
+ finally {
+    cursor.close();
+    cache.clear();
+  }
   episodes.clear();
   DbAdapterTvShowEpisode db2=MizuuApplication.getTvEpisodeDbAdapter();
   Cursor cursor2=db2.getAllIgnoredEpisodesInDatabase();
-  while (cursor2.moveToNext()) {
-    episodes.add(new TvShowEpisode(getActivity(),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_ROWID)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_SHOW_ID)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_FILEPATH)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_TITLE)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_PLOT)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_SEASON)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_AIRDATE)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_DIRECTOR)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_WRITER)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_GUESTSTARS)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_RATING)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_HAS_WATCHED)),cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisode.KEY_EXTRA_1))));
+  try {
+    while (cursor2.moveToNext()) {
+      episodes.add(new TvShowEpisode(getActivity(),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_ROWID)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_SHOW_ID)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_FILEPATH)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_EPISODE_TITLE)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_EPISODE_PLOT)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_SEASON)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_EPISODE)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_EPISODE_AIRDATE)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_EPISODE_DIRECTOR)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_EPISODE_WRITER)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_EPISODE_GUESTSTARS)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_EPISODE_RATING)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_HAS_WATCHED)),cursor2.getString(cache.getColumnIndex(cursor2,DbAdapterTvShowEpisode.KEY_EXTRA_1))));
+    }
   }
-  cursor2.close();
+ catch (  Exception e) {
+  }
+ finally {
+    cursor2.close();
+    cache.clear();
+  }
   if (awesomePager != null) {
     if (mAdapter == null)     mAdapter=new IgnoredFilesAdapter();
     if (awesomePager.getAdapter() == null)     awesomePager.setAdapter(mAdapter);

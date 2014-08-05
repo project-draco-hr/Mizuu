@@ -6,7 +6,7 @@
     httppost.setHeader("Accept","application/json");
     ResponseHandler<String> responseHandler=new BasicResponseHandler();
     json=httpclient.execute(httppost,responseHandler);
-    if (!collectionId.equals("null") && !collectionId.isEmpty()) {
+    if (MizLib.isValidTmdbId(collectionId)) {
       httppost=new HttpGet("https://api.themoviedb.org/3/collection/" + params[1] + "/images?api_key="+ mTmdbApiKey);
       httppost.setHeader("Accept","application/json");
       responseHandler=new BasicResponseHandler();

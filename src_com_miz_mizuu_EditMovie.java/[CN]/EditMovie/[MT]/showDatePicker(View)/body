@@ -1,19 +1,20 @@
 {
   int year, month, day;
+  String release=mRelease.getText().toString();
   try {
-    year=Integer.valueOf(release.getText().toString().substring(0,release.getText().toString().indexOf("-")));
+    year=Integer.valueOf(release.substring(0,release.indexOf("-")));
   }
  catch (  Exception e) {
     year=Calendar.getInstance().get(Calendar.YEAR);
   }
   try {
-    month=Integer.valueOf(release.getText().toString().substring(release.getText().toString().indexOf("-") + 1,release.getText().toString().lastIndexOf("-"))) - 1;
+    month=Integer.valueOf(release.substring(release.indexOf("-") + 1,release.lastIndexOf("-"))) - 1;
   }
  catch (  Exception e) {
     month=Calendar.getInstance().get(Calendar.MONTH);
   }
   try {
-    day=Integer.valueOf(release.getText().toString().substring(release.getText().toString().lastIndexOf("-") + 1));
+    day=Integer.valueOf(release.substring(release.lastIndexOf("-") + 1));
   }
  catch (  Exception e) {
     day=Calendar.getInstance().get(Calendar.DATE);
@@ -23,7 +24,7 @@
       String day=String.valueOf(dayOfMonth), month=String.valueOf(monthOfYear + 1);
       if (day.length() == 1)       day="0" + day;
       if (month.length() == 1)       month="0" + month;
-      release.setText(year + "-" + month+ "-"+ day);
+      mRelease.setText(year + "-" + month+ "-"+ day);
     }
   }
 ,year,month,day);

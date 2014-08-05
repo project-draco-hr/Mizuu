@@ -7,20 +7,20 @@
   imageSwitcher.setInAnimation(aniIn);
   imageSwitcher.setOutAnimation(aniOut);
   imageSwitcher.setFactory(this);
-  imageSwitcher.setImageURI(Uri.parse(backdrops.get(index).getPath()));
+  imageSwitcher.setImageURI(Uri.parse(mBackdrops.get(mIndex).getPath()));
   final Handler handler=new Handler();
   Runnable runnable=new Runnable(){
     @Override public void run(){
-      if (isRunning) {
-        index++;
-        index=index % backdrops.size();
-        imageSwitcher.setImageURI(Uri.parse(backdrops.get(index).getPath()));
+      if (mRunning) {
+        mIndex++;
+        mIndex=mIndex % mBackdrops.size();
+        imageSwitcher.setImageURI(Uri.parse(mBackdrops.get(mIndex).getPath()));
         final Animation aniIn=AnimationUtils.loadAnimation(getApplicationContext(),android.R.anim.fade_in);
         Animation aniOut=AnimationUtils.loadAnimation(getApplicationContext(),android.R.anim.fade_out);
         aniOut.setAnimationListener(new AnimationListener(){
           @Override public void onAnimationEnd(          Animation animation){
-            title.setText(backdrops.get(index).getTitle());
-            title.startAnimation(aniIn);
+            mTitle.setText(mBackdrops.get(mIndex).getTitle());
+            mTitle.startAnimation(aniIn);
           }
           @Override public void onAnimationRepeat(          Animation animation){
           }
@@ -28,11 +28,11 @@
           }
         }
 );
-        title.startAnimation(aniOut);
-        handler.postDelayed(this,interval);
+        mTitle.startAnimation(aniOut);
+        handler.postDelayed(this,mInterval);
       }
     }
   }
 ;
-  handler.postDelayed(runnable,interval);
+  handler.postDelayed(runnable,mInterval);
 }

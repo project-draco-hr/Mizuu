@@ -1,0 +1,8 @@
+{
+  ShowStructure ss=new ShowStructure("/2 Broke Girls/Season 1/2 Broke Girls - S01E01 - Reboot in Brooklyn.avi");
+  assertEquals("2 Broke Girls",ss.getDecryptedShowFolderName());
+  assertEquals("2 Broke Girls",ss.getDecryptedFilename());
+  ss.setCustomTags("Girls");
+  assertEquals("2 Broke",ss.getDecryptedShowFolderName());
+  assertEquals("2 Broke",ss.getDecryptedFilename());
+}

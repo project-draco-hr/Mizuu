@@ -1,0 +1,15 @@
+{
+  ShowStructure ss=new ShowStructure("/Talespin V1-2 DVDRip x264-panos/1/1e16-Her Chance to Dream.mkv");
+  assertEquals("Talespin V1-2 DVDRip x264-panos",ss.getShowFolderName());
+  assertEquals("1e16-Her Chance to Dream.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("1",ss.getSeasonFolderName());
+  assertEquals(1,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(16,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Talespin V12 panos",ss.getDecryptedShowFolderName());
+  assertEquals("",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

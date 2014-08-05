@@ -43,6 +43,11 @@ int random=new Random().nextInt(mMovieKeys.size());
 showDetails(random);
 }
 break;
+case R.id.view_collection_online:
+Intent i=new Intent(Intent.ACTION_VIEW);
+i.setData(Uri.parse("http://www.themoviedb.org/collection/" + mCollectionId));
+startActivity(i);
+break;
 }
 return true;
 }

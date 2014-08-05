@@ -1,0 +1,21 @@
+{
+  boolean downloadCovers=true;
+  if (!thisShow.getId().equals("invalid") && !thisShow.getId().isEmpty()) {
+    DbAdapterTvShow db=MizuuApplication.getTvDbAdapter();
+    Cursor cursor=db.getShow(thisShow.getId());
+    if (cursor.getCount() > 0) {
+      downloadCovers=false;
+    }
+  }
+  if (downloadCovers) {
+    if (!thisShow.getId().equals("invalid") && !thisShow.getId().isEmpty()) {
+      String thumb_filepath=MizLib.getTvShowThumb(mContext,thisShow.getId()).getAbsolutePath();
+      String backdrop_filepath=MizLib.getTvShowBackdrop(mContext,thisShow.getId()).getAbsolutePath();
+      if (!thisShow.getCover_url().isEmpty())       if (!MizLib.downloadFile(thisShow.getCover_url(),thumb_filepath))       MizLib.downloadFile(thisShow.getCover_url(),thumb_filepath);
+      MizLib.resizeBitmapFileToCoverSize(mContext,thumb_filepath);
+      if (!thisShow.getBackdrop_url().isEmpty())       if (!MizLib.downloadFile(thisShow.getBackdrop_url(),backdrop_filepath))       MizLib.downloadFile(thisShow.getBackdrop_url(),backdrop_filepath);
+      DbAdapterTvShow dbHelper=MizuuApplication.getTvDbAdapter();
+      dbHelper.createShow(thisShow.getId(),thisShow.getTitle(),thisShow.getDescription(),thisShow.getActors(),thisShow.getGenre(),thisShow.getRating(),thisShow.getCertification(),thisShow.getRuntime(),thisShow.getFirst_aired(),"0");
+    }
+  }
+}

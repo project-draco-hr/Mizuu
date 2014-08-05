@@ -2,41 +2,42 @@
   super.onCreate(savedInstanceState);
   getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
   setContentView(R.layout.editmovie);
-  title=(EditText)findViewById(R.id.titleText);
-  tagline=(EditText)findViewById(R.id.taglineText);
-  plot=(EditText)findViewById(R.id.plotText);
-  runtime=(EditText)findViewById(R.id.runtimeText);
-  rating=(EditText)findViewById(R.id.ratingText);
-  genres=(EditText)findViewById(R.id.genresText);
-  release=(TextView)findViewById(R.id.releasedateText);
-  certification=(Spinner)findViewById(R.id.certificationSpinner);
-  rowID=getIntent().getExtras().getInt("rowId");
-  tmdbId=getIntent().getExtras().getString("tmdbId");
-  dbHelper=MizuuApplication.getMovieAdapter();
-  cursor=dbHelper.fetchMovie(rowID);
-  if (cursor.moveToFirst()) {
-    title.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)));
-    plot.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)));
-    tagline.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)));
-    if (tagline.getText().toString().equals("NOTAGLINE") || !(tagline.getText().toString().length() > 0))     tagline.setText("");
-    runtime.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)));
+  mTitle=(EditText)findViewById(R.id.titleText);
+  mTagline=(EditText)findViewById(R.id.taglineText);
+  mPlot=(EditText)findViewById(R.id.plotText);
+  mRuntime=(EditText)findViewById(R.id.runtimeText);
+  mRating=(EditText)findViewById(R.id.ratingText);
+  mGenres=(EditText)findViewById(R.id.genresText);
+  mRelease=(TextView)findViewById(R.id.releasedateText);
+  mCertification=(Spinner)findViewById(R.id.certificationSpinner);
+  mTmdbId=getIntent().getExtras().getString("tmdbId");
+  mDatabaseHelper=MizuuApplication.getMovieAdapter();
+  mCursor=mDatabaseHelper.fetchMovie(mTmdbId);
+  if (mCursor.moveToFirst()) {
+    mToWatch=mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_TO_WATCH));
+    mHasWatched=mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED));
+    mTitle.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_TITLE)));
+    mPlot.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_PLOT)));
+    mTagline.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_TAGLINE)));
+    if (mTagline.getText().toString().equals("NOTAGLINE") || !(mTagline.getText().toString().length() > 0))     mTagline.setText("");
+    mRuntime.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_RUNTIME)));
     try {
-      rating.setText(String.valueOf(Float.valueOf(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)).trim()).floatValue()));
+      mRating.setText(String.valueOf(Float.valueOf(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_RATING)).trim()).floatValue()));
     }
  catch (    Exception e) {
-      rating.setText("0.0");
+      mRating.setText("0.0");
     }
     boolean found=false;
-    for (int i=0; i < certifications.length; i++) {
-      if (certifications[i].equals(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)))) {
-        certification.setSelection(i);
+    for (int i=0; i < mCertifications.length; i++) {
+      if (mCertifications[i].equals(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)))) {
+        mCertification.setSelection(i);
         found=true;
         break;
       }
     }
-    if (!found)     certification.setSelection(certifications.length - 1);
-    release.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)));
-    genres.setText(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)));
+    if (!found)     mCertification.setSelection(mCertifications.length - 1);
+    mRelease.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)));
+    mGenres.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_GENRES)));
   }
-  cursor.close();
+  mCursor.close();
 }

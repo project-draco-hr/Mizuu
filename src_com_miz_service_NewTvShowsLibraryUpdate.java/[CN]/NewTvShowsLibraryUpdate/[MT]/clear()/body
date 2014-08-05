@@ -1,0 +1,19 @@
+{
+  mFileSources=new ArrayList<FileSource>();
+  mTvShowFileSources=new ArrayList<TvShowFileSource<?>>();
+  mFiles=new ArrayList<ShowStructure>();
+  mUniqueShowIds=new HashSet<String>();
+  mIgnoreRemovedFiles=false;
+  mClearLibrary=false;
+  mSearchSubfolders=true;
+  mClearUnavailable=false;
+  mDisableEthernetWiFiCheck=false;
+  mSyncLibraries=true;
+  mStopUpdate=false;
+  mEditor=null;
+  mSettings=null;
+  mTotalFiles=0;
+  mShowCount=0;
+  mNotificationManager=null;
+  mBuilder=null;
+}

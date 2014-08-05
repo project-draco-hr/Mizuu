@@ -1,5 +1,3 @@
 {
   database.execSQL(DATABASE_CREATE);
-  database.execSQL(DATABASE_CREATE_INDEX_TITLE);
-  database.execSQL(DATABASE_CREATE_INDEX_GENRE);
 }

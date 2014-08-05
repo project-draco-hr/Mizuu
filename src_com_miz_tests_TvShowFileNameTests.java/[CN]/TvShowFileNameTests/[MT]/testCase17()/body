@@ -1,0 +1,15 @@
+{
+  ShowStructure ss=new ShowStructure("/World War II in HD/Season 1/World War II in HD 01 Darkness Falls.mkv");
+  assertEquals("World War II in HD",ss.getShowFolderName());
+  assertEquals("World War II in HD 01 Darkness Falls.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("Season 1",ss.getSeasonFolderName());
+  assertEquals(1,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("World War II in HD",ss.getDecryptedShowFolderName());
+  assertEquals("World War II in HD",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

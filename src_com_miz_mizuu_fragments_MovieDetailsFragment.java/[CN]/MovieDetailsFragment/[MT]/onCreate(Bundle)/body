@@ -2,19 +2,18 @@
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
   mBus=MizuuApplication.getBus();
-  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_TITLE_PREFIXES,false);
-  ignoreNfo=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_NFO_FILES,true);
+  mIgnorePrefixes=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_TITLE_PREFIXES,false);
+  mIgnoreNfo=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_NFO_FILES,true);
   mShowFileLocation=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(SHOW_FILE_LOCATION,true);
-  movieId=getArguments().getInt("movieId");
   mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
   mLightItalic=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-LightItalic.ttf");
   mMedium=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Medium.ttf");
   mBoldItalic=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-BoldItalic.ttf");
-  db=MizuuApplication.getMovieAdapter();
+  mDatabase=MizuuApplication.getMovieAdapter();
   Cursor cursor=null;
   try {
-    cursor=db.fetchMovie(movieId);
-    thisMovie=new Movie(getActivity(),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CAST)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_2)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COVERPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_1)),ignorePrefixes,ignoreNfo);
+    cursor=mDatabase.fetchMovie(getArguments().getString("tmdbId"));
+    mMovie=new Movie(getActivity(),MizuuApplication.getMovieMappingAdapter().getFirstFilepathForMovie(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID))),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ACTORS)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION_ID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_DATE_ADDED)),mIgnorePrefixes,mIgnoreNfo);
   }
  catch (  Exception e) {
     getActivity().finish();
@@ -23,10 +22,10 @@
  finally {
     cursor.close();
   }
-  if (db.hasMultipleVersions(thisMovie.getTmdbId()) && !thisMovie.isUnidentified()) {
-    thisMovie.setMultipleVersions(db.getRowIdsForMovie(thisMovie.getTmdbId()));
+  if (MizuuApplication.getMovieMappingAdapter().hasMultipleFilepaths(mMovie.getTmdbId())) {
+    mMovie.setFilepaths(MizuuApplication.getMovieMappingAdapter().getMovieFilepaths(mMovie.getTmdbId()));
   }
   mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movie-cover-change"));
+  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movie-mCover-change"));
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movie-backdrop-change"));
 }

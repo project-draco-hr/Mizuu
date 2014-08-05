@@ -4,10 +4,10 @@
     convertView=inflater.inflate(R.layout.list_item_movie,parent,false);
     holder=new ViewHolder();
     holder.title=(TextView)convertView.findViewById(R.id.text);
-    holder.description=(TextView)convertView.findViewById(R.id.origTitle);
+    holder.description=(TextView)convertView.findViewById(R.id.textView7);
     holder.descriptionTitle=(TextView)convertView.findViewById(R.id.overviewMessage);
     holder.descriptionTitle.setText(getString(R.string.overview));
-    holder.release=(TextView)convertView.findViewById(R.id.releasedate);
+    holder.release=(TextView)convertView.findViewById(R.id.textReleaseDate);
     holder.releasedate=(TextView)convertView.findViewById(R.id.TextView01);
     holder.releasedate.setText(getString(R.string.detailsFirstAired));
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);

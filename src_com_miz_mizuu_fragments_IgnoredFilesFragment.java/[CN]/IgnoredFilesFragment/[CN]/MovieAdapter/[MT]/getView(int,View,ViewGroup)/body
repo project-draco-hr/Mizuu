@@ -1,7 +1,7 @@
 {
   ViewHolder holder;
   if (convertView == null) {
-    convertView=inflater.inflate(R.layout.filesource_list,null);
+    convertView=inflater.inflate(R.layout.filesource_list,parent,false);
     holder=new ViewHolder();
     holder.folderName=(TextView)convertView.findViewById(R.id.txtListTitle);
     holder.folderName.setTextAppearance(c,android.R.style.TextAppearance_Medium);
@@ -18,7 +18,7 @@
   holder.folderName.setText(movies.get(position).getFilepath());
   holder.remove.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
-      removeSelectedMovie(movies.get(position).getRowId());
+      removeSelectedMovie(movies.get(position).getTmdbId());
     }
   }
 );

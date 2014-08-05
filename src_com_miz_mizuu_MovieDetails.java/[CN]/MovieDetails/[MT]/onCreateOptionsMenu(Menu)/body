@@ -33,7 +33,7 @@
       if (mMovie.hasOfflineCopy())       menu.findItem(R.id.watchOffline).setTitle(R.string.removeOfflineCopy);
  else       menu.findItem(R.id.watchOffline).setTitle(R.string.watchOffline);
     }
-    if (mMovie.getTmdbId().isEmpty() || mMovie.getTmdbId().equals("invalid"))     menu.findItem(R.id.change_cover).setVisible(false);
+    if (MizLib.isValidTmdbId(mMovie.getTmdbId()))     menu.findItem(R.id.change_cover).setVisible(false);
   }
  catch (  Exception e) {
   }

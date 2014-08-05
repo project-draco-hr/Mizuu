@@ -1,0 +1,15 @@
+{
+  ShowStructure ss=new ShowStructure("/TV/It's Always Sunny in Philadelphia/Season 2/01 - Charlie Gets Crippled.mkv");
+  assertEquals("It's Always Sunny in Philadelphia",ss.getShowFolderName());
+  assertEquals("01 - Charlie Gets Crippled.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("Season 2",ss.getSeasonFolderName());
+  assertEquals(2,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(2,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Its Always Sunny in Philadelphia",ss.getDecryptedShowFolderName());
+  assertEquals("",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

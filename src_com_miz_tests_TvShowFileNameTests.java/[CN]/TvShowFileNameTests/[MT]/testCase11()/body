@@ -1,0 +1,14 @@
+{
+  ShowStructure ss=new ShowStructure("/Doctor.Who.2005.S07.720p.BluRay.DTS.x264/trips-doctor.who.s07e06.mkv");
+  assertEquals("Doctor.Who.2005.S07.720p.BluRay.DTS.x264",ss.getShowFolderName());
+  assertEquals("trips-doctor.who.s07e06.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(false,ss.hasSeasonFolder());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(7,ss.getEpisodes().get(0).getSeason());
+  assertEquals(6,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Doctor Who",ss.getDecryptedShowFolderName());
+  assertEquals("tripsdoctor who",ss.getDecryptedFilename());
+  assertEquals(true,ss.hasReleaseYear());
+  assertEquals(2005,ss.getReleaseYear());
+}

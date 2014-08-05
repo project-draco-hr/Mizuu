@@ -1,5 +1,4 @@
 {
-  if (folder.getName().equals("/"))   return false;
   List<BrowserFileObject> list=new ArrayList<BrowserFileObject>();
   List<File> orderedArray=new ArrayList<File>();
   List<File> temp=new ArrayList<File>();
@@ -30,7 +29,8 @@
     listFiles=temp.toArray(new File[temp.size()]);
     temp.clear();
     orderedArray.clear();
-    setParentFolder(new File(folder.getParent()));
+    if (folder.getAbsolutePath().equals("/"))     setParentFolder(null);
+ else     setParentFolder(new File(folder.getParent()));
     setCurrentFolder(folder);
     setCurrentFiles(listFiles);
     setBrowserFiles(list);

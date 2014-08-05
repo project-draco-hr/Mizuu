@@ -1,7 +1,6 @@
 {
   mMovies=new ArrayList<Movie>();
-  mTmdbIdRowIdMap=LinkedListMultimap.create();
-  rowId=new StringBuilder();
+  mTmdbIds=new ArrayList<String>();
   mMovieCollection=new HashSet<String>();
   mWatchedMovies=new HashSet<String>();
   mMovieFavorites=new HashSet<String>();

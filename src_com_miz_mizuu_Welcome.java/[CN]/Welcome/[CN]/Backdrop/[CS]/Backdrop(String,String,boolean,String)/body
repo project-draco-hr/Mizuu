@@ -1,6 +1,6 @@
 {
-  this.path=path;
-  this.id=id;
-  this.isMovie=isMovie;
-  this.title=title;
+  mPath=path;
+  mPath=id;
+  mMovie=isMovie;
+  mTitle=title;
 }

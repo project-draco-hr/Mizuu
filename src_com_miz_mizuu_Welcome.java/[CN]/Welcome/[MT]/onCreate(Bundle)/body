@@ -9,10 +9,10 @@
   tf=MizuuApplication.getOrCreateTypeface(this,"Roboto-Thin.ttf");
   dbHelper=MizuuApplication.getMovieAdapter();
   dbHelperTv=MizuuApplication.getTvDbAdapter();
-  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false,false);
+  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
   while (cursor.moveToNext()) {
     try {
-      backdrops.add(new Backdrop(MizLib.getMovieBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),true,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE))));
+      backdrops.add(new Backdrop(MizLib.getMovieBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID)),true,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE))));
     }
  catch (    NullPointerException e) {
     }
@@ -74,7 +74,7 @@ if (!MizLib.isGoogleTV(this)) imageSwitcher.setOnClickListener(new OnClickListen
 Intent intent=new Intent();
 if (index == -1) index=0;
 if (backdrops.get(index).isMovie()) {
-intent.putExtra("rowId",Integer.parseInt(backdrops.get(index).getId()));
+intent.putExtra("tmdbId",backdrops.get(index).getId());
 intent.setClass(getApplicationContext(),MovieDetails.class);
 }
  else {

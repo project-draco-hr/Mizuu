@@ -12,7 +12,8 @@
       mPicasso.load(new File(MizLib.getCacheFolder(getApplicationContext()),"avatar.jpg")).resize(MizLib.convertDpToPixels(getApplicationContext(),72),MizLib.convertDpToPixels(getApplicationContext(),72)).error(R.drawable.unknown_user).into(userImage);
     }
  else     convertView.findViewById(R.id.drawer_user_info).setVisibility(View.GONE);
-    mPicasso.load(MizLib.getLatestBackdropPath(getApplicationContext())).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
+    String backdropPath=MizLib.getLatestBackdropPath(getApplicationContext());
+    if (!backdropPath.isEmpty())     mPicasso.load(backdropPath).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
   }
  else   if (mMenuItems.get(position).getType() == MenuItem.SEPARATOR) {
     convertView=mInflater.inflate(R.layout.menu_drawer_header_item,parent,false);

@@ -1,4 +1,5 @@
 {
+  super.onCreateOptionsMenu(menu,inflater);
   setupActionBar();
   inflater.inflate(R.menu.menu,menu);
   menu.removeItem(R.id.update);
@@ -28,5 +29,5 @@
     }
   }
 );
-  super.onCreateOptionsMenu(menu,inflater);
+  menu.findItem(R.id.view_collection_online).setVisible(true);
 }

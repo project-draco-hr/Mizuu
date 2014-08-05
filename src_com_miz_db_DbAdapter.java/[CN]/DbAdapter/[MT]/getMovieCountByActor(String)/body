@@ -1,6 +1,6 @@
 {
   String newQuery=actor.replace("'","''");
-  Cursor cursor=database.query(DATABASE_TABLE,SELECT_ALL,KEY_CAST + " like '%" + newQuery+ "%'",null,KEY_TMDBID,null,KEY_TITLE + " ASC");
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,SELECT_ALL,KEY_ACTORS + " like '%" + newQuery+ "%'",null,KEY_TMDB_ID,null,KEY_TITLE + " ASC");
   int count=cursor.getCount();
   cursor.close();
   return count;

@@ -1,0 +1,4 @@
+{
+  boolean result=mDatabase.delete(DATABASE_TABLE,KEY_TMDB_ID + "='" + tmdbId+ "'",null) > 0;
+  return result && MizuuApplication.getMovieMappingAdapter().deleteMovie(tmdbId);
+}

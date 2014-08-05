@@ -1,0 +1,6 @@
+{
+  AppWidgetManager awm=AppWidgetManager.getInstance(mContext);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(mContext,ShowStackWidgetProvider.class)),R.id.stack_view);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(mContext,ShowCoverWidgetProvider.class)),R.id.widget_grid);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(mContext,ShowBackdropWidgetProvider.class)),R.id.widget_grid);
+}

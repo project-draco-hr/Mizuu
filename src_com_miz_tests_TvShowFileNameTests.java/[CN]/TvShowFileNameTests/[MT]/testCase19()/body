@@ -1,0 +1,15 @@
+{
+  ShowStructure ss=new ShowStructure("/House MD Season 1,2,3,4,5,6,7 + Extras (Deleted Scenes etc) DVDR/Season 1/House MD Season 1 Episode 01 - Pilot.avi");
+  assertEquals("House MD Season 1,2,3,4,5,6,7 + Extras (Deleted Scenes etc) DVDR",ss.getShowFolderName());
+  assertEquals("House MD Season 1 Episode 01 - Pilot.avi",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("Season 1",ss.getSeasonFolderName());
+  assertEquals(1,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("House MD",ss.getDecryptedShowFolderName());
+  assertEquals("House MD",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

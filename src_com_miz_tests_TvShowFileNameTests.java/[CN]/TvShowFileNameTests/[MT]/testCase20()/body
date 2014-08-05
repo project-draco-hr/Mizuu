@@ -1,0 +1,13 @@
+{
+  ShowStructure ss=new ShowStructure("/Skins.S01.COMPLETE.ENGLISH.HDTVRip.720p.x264-TvR/Skins.S01E01.Tony.ENGLISH.HDTVRip.720p.x264-TvR/tvr-skins-s01e01-720p.mkv");
+  assertEquals("Skins.S01E01.Tony.ENGLISH.HDTVRip.720p.x264-TvR",ss.getShowFolderName());
+  assertEquals("tvr-skins-s01e01-720p.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(false,ss.hasSeasonFolder());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Skins",ss.getDecryptedShowFolderName());
+  assertEquals("skins",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

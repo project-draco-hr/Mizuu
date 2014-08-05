@@ -1,0 +1,15 @@
+{
+  ShowStructure ss=new ShowStructure("/The.Corner/Season 1/The Corner - Episode 1 -Gary's Blues.avi");
+  assertEquals("The.Corner",ss.getShowFolderName());
+  assertEquals("The Corner - Episode 1 -Gary's Blues.avi",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("Season 1",ss.getSeasonFolderName());
+  assertEquals(1,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("The Corner",ss.getDecryptedShowFolderName());
+  assertEquals("The Corner",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

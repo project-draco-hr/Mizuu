@@ -1,4 +1,4 @@
 {
-  if (collectionId.equals("null") || collectionId.isEmpty())   return 2;
+  if (!MizLib.isValidTmdbId(collectionId))   return 2;
   return 3;
 }

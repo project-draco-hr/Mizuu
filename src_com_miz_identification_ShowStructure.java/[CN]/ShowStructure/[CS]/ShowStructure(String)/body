@@ -1,0 +1,7 @@
+{
+  mFilepath=filepath;
+  split();
+  checkImdbId();
+  mEpisodes=new ArrayList<Episode>(decryptEpisodes(getFilename()));
+  seasonFolderOverride();
+}

@@ -1,8 +1,0 @@
-{
-  if (movieId.equalsIgnoreCase("invalid") || movieId.isEmpty())   return false;
-  Cursor mCursor=database.query(true,DATABASE_TABLE,SELECT_ALL,KEY_TMDBID + "='" + movieId+ "'",null,null,null,null,null);
-  if (mCursor == null)   return false;
-  boolean result=mCursor.getCount() > 1;
-  mCursor.close();
-  return result;
-}

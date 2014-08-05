@@ -1,0 +1,5 @@
+{
+  mRowId=rowId;
+  mFilepath=filepath;
+  mIgnored=ignored;
+}

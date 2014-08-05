@@ -29,5 +29,6 @@
   }
   output=output.replaceAll("\\s\\-\\s|\\.|\\,|\\_"," ");
   output=output.trim().replaceAll("(?i)(part)$","");
+  output=output.trim().replaceAll("(?i)(?:s|season[ ._-]*)\\d{1,4}.*","");
   return output.replaceAll(" +"," ").trim();
 }

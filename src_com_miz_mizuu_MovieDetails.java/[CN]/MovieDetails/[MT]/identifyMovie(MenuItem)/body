@@ -1,6 +1,6 @@
 {
   if (mMovie.hasMultipleVersions()) {
-    final MovieVersion[] versions=mMovie.getMultipleVersions();
+    final MovieFilepath[] versions=mMovie.getMultipleVersions();
     CharSequence[] items=new CharSequence[versions.length];
     for (int i=0; i < versions.length; i++)     items[i]=MizLib.transformSmbPath(versions[i].getFilepath());
     AlertDialog.Builder builder=new AlertDialog.Builder(this);
@@ -22,7 +22,7 @@
  else {
     Intent intent=new Intent();
     intent.putExtra("fileName",mMovie.getManualIdentificationQuery());
-    intent.putExtra("rowId",mMovie.getRowId());
+    intent.putExtra("tmdbId",mMovie.getTmdbId());
     intent.setClass(this,IdentifyMovie.class);
     startActivityForResult(intent,0);
   }

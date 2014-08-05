@@ -1,0 +1,12 @@
+{
+  ShowStructure ss=new ShowStructure("/An Idiot Abroad s02e02.thebox.hannibal-LF.mkv");
+  assertEquals(false,ss.hasShowFolder());
+  assertEquals("An Idiot Abroad s02e02.thebox.hannibal-LF.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(false,ss.hasSeasonFolder());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(2,ss.getEpisodes().get(0).getSeason());
+  assertEquals(2,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("An Idiot Abroad",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

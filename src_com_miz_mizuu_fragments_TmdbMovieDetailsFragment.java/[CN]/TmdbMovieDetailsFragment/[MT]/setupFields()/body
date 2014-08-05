@@ -80,7 +80,6 @@
  else         background.setImageResource(R.drawable.bg);
       }
       @Override public void onSuccess(){
-        System.out.println("onSuccess() ADDED " + isAdded());
         if (!isAdded())         return;
         if (MizLib.isPortrait(getActivity())) {
           ((PanningView)background).startPanning();

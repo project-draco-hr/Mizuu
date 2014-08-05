@@ -1,8 +1,6 @@
 {
-  convertView=inflater.inflate(R.layout.split_file_item,parent,false);
-  TextView title=(TextView)convertView.findViewById(R.id.title);
-  TextView description=(TextView)convertView.findViewById(R.id.description);
-  title.setText(getString(R.string.part) + " " + mFiles.get(position).getPartNumber());
-  description.setText(mFiles.get(position).getUserFilepath());
+  if (convertView == null)   convertView=inflater.inflate(R.layout.split_file_item,parent,false);
+  ((TextView)convertView.findViewById(R.id.title)).setText(getString(R.string.part) + " " + mFiles.get(position).getPartNumber());
+  ((TextView)convertView.findViewById(R.id.description)).setText(mFiles.get(position).getUserFilepath());
   return convertView;
 }

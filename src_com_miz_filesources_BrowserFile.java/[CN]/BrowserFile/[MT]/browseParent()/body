@@ -3,7 +3,7 @@
   List<BrowserFileObject> list=new ArrayList<BrowserFileObject>();
   List<File> orderedArray=new ArrayList<File>();
   List<File> temp=new ArrayList<File>();
-  if (folder.getName().equals("/")) {
+  if (folder == null) {
     setBrowserParentFiles(list);
     return true;
   }

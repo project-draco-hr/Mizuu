@@ -1,0 +1,34 @@
+{
+  if (!MizLib.isOnline(this)) {
+    mStopUpdate=true;
+    return;
+  }
+  LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mMessageReceiver,new IntentFilter(STOP_TVSHOW_LIBRARY_UPDATE));
+  Intent notificationIntent=new Intent(this,CancelLibraryUpdate.class);
+  notificationIntent.putExtra("isMovie",false);
+  notificationIntent.setAction(Intent.ACTION_MAIN);
+  notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+  PendingIntent contentIntent=PendingIntent.getActivity(this,NOTIFICATION_ID,notificationIntent,0);
+  mBuilder=new NotificationCompat.Builder(getApplicationContext());
+  mBuilder.setSmallIcon(R.drawable.refresh);
+  mBuilder.setTicker(getString(R.string.updatingTvShows));
+  mBuilder.setContentTitle(getString(R.string.updatingTvShows));
+  mBuilder.setContentText(getString(R.string.gettingReady));
+  mBuilder.setContentIntent(contentIntent);
+  mBuilder.setOngoing(true);
+  mBuilder.setOnlyAlertOnce(true);
+  mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.refresh));
+  mBuilder.addAction(R.drawable.ic_action_discard,getString(android.R.string.cancel),contentIntent);
+  Notification updateNotification=mBuilder.build();
+  mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+  mNotificationManager.notify(NOTIFICATION_ID,updateNotification);
+  startForeground(NOTIFICATION_ID,updateNotification);
+  mSettings=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+  mClearLibrary=mSettings.getBoolean(CLEAR_LIBRARY_TVSHOWS,false);
+  mSearchSubfolders=mSettings.getBoolean(ENABLE_SUBFOLDER_SEARCH,true);
+  mClearUnavailable=mSettings.getBoolean(REMOVE_UNAVAILABLE_FILES_TVSHOWS,false);
+  mDisableEthernetWiFiCheck=mSettings.getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
+  mIgnoreRemovedFiles=mSettings.getBoolean(IGNORED_FILES_ENABLED,false);
+  mSyncLibraries=mSettings.getBoolean(SYNC_WITH_TRAKT,true);
+  mEditor=mSettings.edit();
+}

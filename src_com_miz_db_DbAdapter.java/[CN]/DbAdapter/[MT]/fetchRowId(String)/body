@@ -1,8 +1,0 @@
-{
-  movieUrl=movieUrl.replaceAll("\'","\'\'");
-  Cursor mCursor=database.query(DATABASE_TABLE,new String[]{KEY_ROWID},KEY_FILEPATH + " = \'" + movieUrl+ "\'",null,null,null,null);
-  if (mCursor != null) {
-    mCursor.moveToFirst();
-  }
-  return mCursor;
-}

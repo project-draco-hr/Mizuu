@@ -7,11 +7,10 @@
     }
   }
  else {
-    String lowerCase="";
     Pattern p=Pattern.compile(MizLib.CHARACTER_REGEX);
     for (int i=0; i < mTvShows.size(); i++) {
       if (isCancelled())       return null;
-      lowerCase=mTvShows.get(i).getTitle().toLowerCase(Locale.ENGLISH);
+      String lowerCase=mTvShows.get(i).getTitle().toLowerCase(Locale.ENGLISH);
       if (lowerCase.indexOf(mSearchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(mSearchQuery) != -1)       mTempKeys.add(i);
     }
   }

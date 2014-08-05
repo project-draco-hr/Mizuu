@@ -1,0 +1,18 @@
+{
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_ROWS,null,null,null,null,null);
+  ColumnIndexCache cache=new ColumnIndexCache();
+  HashMap<String,String> map=new HashMap<String,String>();
+  if (cursor != null) {
+    try {
+      while (cursor.moveToNext()) {
+        map.put(cursor.getString(cache.getColumnIndex(cursor,KEY_TMDB_ID)),cursor.getString(cache.getColumnIndex(cursor,KEY_FILEPATH)));
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+    }
+  }
+  return map;
+}

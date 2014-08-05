@@ -1,0 +1,13 @@
+{
+  ShowStructure ss=new ShowStructure("/Lost/Lost S01E01.mp4");
+  assertEquals("Lost",ss.getShowFolderName());
+  assertEquals("Lost S01E01.mp4",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(false,ss.hasSeasonFolder());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Lost",ss.getDecryptedShowFolderName());
+  assertEquals("Lost",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

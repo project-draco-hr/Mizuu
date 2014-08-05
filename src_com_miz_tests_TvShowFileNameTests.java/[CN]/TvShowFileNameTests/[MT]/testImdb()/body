@@ -1,0 +1,8 @@
+{
+  ShowStructure ss=new ShowStructure("/The Big Bang Theory tt0898266/S05E01.mkv");
+  assertEquals("tt0898266",ss.getImdbId());
+  ss=new ShowStructure("/The Big Bang Theory/S05E01 tt0898266.mkv");
+  assertEquals("tt0898266",ss.getImdbId());
+  ss=new ShowStructure("/The Big Bang Theory tt0898266/S05E01 tt0898265.mkv");
+  assertEquals("tt0898266",ss.getImdbId());
+}

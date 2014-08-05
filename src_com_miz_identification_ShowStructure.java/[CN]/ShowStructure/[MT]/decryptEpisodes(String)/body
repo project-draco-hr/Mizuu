@@ -1,0 +1,187 @@
+{
+  filename=filename.replaceAll("(?i)(?:(m?[-]?\\d{3,4}[ip])|[hx]264|\\d{3,4}mb)","");
+  ArrayList<Episode> episodes=new ArrayList<Episode>();
+  Pattern pattern=Pattern.compile("(.*?)[s](\\d{1,4})[ ._-]*[e](\\d{1,3})",Pattern.CASE_INSENSITIVE);
+  Matcher matcher=pattern.matcher(filename);
+  if (matcher.find()) {
+    int count=1;
+    while (matcher.find())     count++;
+    if (count > 1) {
+      matcher.reset();
+      while (matcher.find()) {
+        String before=matcher.group(1);
+        int season=MizLib.getInteger(matcher.group(2));
+        int episode=MizLib.getInteger(matcher.group(3));
+        String after=filename.substring(matcher.end(),filename.length());
+        episodes.add(new Episode(season,episode,before,after));
+      }
+    }
+ else {
+      pattern=Pattern.compile("(.*?)[s](\\d{1,4})[ ._-]*[e](\\d{1,3}(?:[-_ex]\\d{1,3})*)(.*)",Pattern.CASE_INSENSITIVE);
+      matcher=pattern.matcher(filename);
+      while (matcher.find()) {
+        String before=matcher.group(1);
+        String after=matcher.group(4);
+        int season=MizLib.getInteger(matcher.group(2));
+        Pattern splitPattern=Pattern.compile("[-_ex]",Pattern.CASE_INSENSITIVE);
+        for (        String episode : splitPattern.split(matcher.group(3)))         episodes.add(new Episode(season,MizLib.getInteger(episode),before,after));
+      }
+    }
+  }
+  if (episodes.size() > 0)   return episodes;
+  pattern=Pattern.compile("^(\\d{1,4})[ ._-]*[e](\\d{1,3})",Pattern.CASE_INSENSITIVE);
+  matcher=pattern.matcher(filename);
+  if (matcher.find()) {
+    int season=MizLib.getInteger(matcher.group(1));
+    int episode=MizLib.getInteger(matcher.group(2));
+    String after=filename.substring(matcher.end(),filename.length());
+    episodes.add(new Episode(season,episode,"",after));
+  }
+  if (episodes.size() > 0)   return episodes;
+  pattern=Pattern.compile("(.*?)season[ ._-]*(\\d{1,4})[ ._-]*episode[ ._-]*(\\d{1,3})(.*)",Pattern.CASE_INSENSITIVE);
+  matcher=pattern.matcher(filename);
+  if (matcher.find()) {
+    String before=matcher.group(1);
+    int season=MizLib.getInteger(matcher.group(2));
+    int episode=MizLib.getInteger(matcher.group(3));
+    String after=filename.substring(matcher.end(),filename.length());
+    episodes.add(new Episode(season,episode,before,after));
+  }
+  if (episodes.size() > 0)   return episodes;
+  pattern=Pattern.compile("(.*?)[e][p](?:[i][s][o][d][e])?[ ._-]*(\\d{1,3})",Pattern.CASE_INSENSITIVE);
+  matcher=pattern.matcher(filename);
+  if (matcher.find()) {
+    int count=1;
+    while (matcher.find())     count++;
+    if (count > 1) {
+      matcher.reset();
+      int season=1;
+      while (matcher.find()) {
+        String before=matcher.group(1);
+        int episode=MizLib.getInteger(matcher.group(2));
+        String after=filename.substring(matcher.end(),filename.length());
+        episodes.add(new Episode(season,episode,before,after));
+      }
+    }
+ else {
+      pattern=Pattern.compile("(.*?)[e][p](?:[i][s][o][d][e])?[ ._-]*(\\d{1,3}(?:[-_ex]\\d{1,3})*)(.*)",Pattern.CASE_INSENSITIVE);
+      matcher=pattern.matcher(filename);
+      int season=1;
+      while (matcher.find()) {
+        String before=matcher.group(1);
+        String after=matcher.group(3);
+        Pattern splitPattern=Pattern.compile("[-_ex]",Pattern.CASE_INSENSITIVE);
+        for (        String episode : splitPattern.split(matcher.group(2)))         episodes.add(new Episode(season,MizLib.getInteger(episode),before,after));
+      }
+    }
+  }
+  if (episodes.size() > 0)   return episodes;
+  pattern=Pattern.compile("(.*?)[p](?:[a][r])?[t][ ._-]*(\\d{1,3})",Pattern.CASE_INSENSITIVE);
+  matcher=pattern.matcher(filename);
+  if (matcher.find()) {
+    int count=1;
+    while (matcher.find())     count++;
+    if (count > 1) {
+      matcher.reset();
+      int season=1;
+      while (matcher.find()) {
+        String before=matcher.group(1);
+        int episode=MizLib.getInteger(matcher.group(2));
+        String after=filename.substring(matcher.end(),filename.length());
+        episodes.add(new Episode(season,episode,before,after));
+      }
+    }
+ else {
+      pattern=Pattern.compile("(.*?)[p](?:[a][r])?[t][ ._-]*(\\d{1,3}(?:[-_ex]\\d{1,3})*)(.*)",Pattern.CASE_INSENSITIVE);
+      matcher=pattern.matcher(filename);
+      int season=1;
+      while (matcher.find()) {
+        String before=matcher.group(1);
+        String after=matcher.group(3);
+        Pattern splitPattern=Pattern.compile("[-_ex]",Pattern.CASE_INSENSITIVE);
+        for (        String episode : splitPattern.split(matcher.group(2)))         episodes.add(new Episode(season,MizLib.getInteger(episode),before,after));
+      }
+    }
+  }
+  if (episodes.size() > 0)   return episodes;
+  pattern=Pattern.compile("(.*?)(\\d{1,4})[ ._-]*[x](\\d{1,3})",Pattern.CASE_INSENSITIVE);
+  matcher=pattern.matcher(filename);
+  if (matcher.find()) {
+    int count=1;
+    while (matcher.find())     count++;
+    if (count > 1) {
+      matcher.reset();
+      while (matcher.find()) {
+        String before=matcher.group(1);
+        int season=MizLib.getInteger(matcher.group(2));
+        int episode=MizLib.getInteger(matcher.group(3));
+        String after=filename.substring(matcher.end(),filename.length());
+        episodes.add(new Episode(season,episode,before,after));
+      }
+    }
+ else {
+      pattern=Pattern.compile("(.*?)(\\d{1,4})[ ._-]*[x](\\d{1,3}(?:[-_ex]\\d{1,3})*)(.*)",Pattern.CASE_INSENSITIVE);
+      matcher=pattern.matcher(filename);
+      while (matcher.find()) {
+        String before=matcher.group(1);
+        String after=matcher.group(4);
+        int season=MizLib.getInteger(matcher.group(2));
+        Pattern splitPattern=Pattern.compile("[-_ex]",Pattern.CASE_INSENSITIVE);
+        for (        String episode : splitPattern.split(matcher.group(3)))         episodes.add(new Episode(season,MizLib.getInteger(episode),before,after));
+      }
+    }
+  }
+  if (episodes.size() > 0)   return episodes;
+  pattern=Pattern.compile("(^.*?)((\\d){3,7})(.*?)$",Pattern.CASE_INSENSITIVE);
+  matcher=pattern.matcher(filename);
+  if (matcher.find()) {
+    int season=0, episode=0;
+    String before=matcher.group(1);
+    String group=matcher.group(2);
+    String after=matcher.group(3);
+switch (group.length()) {
+case 3:
+      season=MizLib.getInteger(group.substring(0,1));
+    episode=MizLib.getInteger(group.substring(1,3));
+  break;
+case 4:
+season=MizLib.getInteger(group.substring(0,2));
+episode=MizLib.getInteger(group.substring(2,4));
+break;
+case 5:
+season=MizLib.getInteger(group.substring(0,2));
+episode=MizLib.getInteger(group.substring(2,5));
+break;
+case 6:
+season=MizLib.getInteger(group.substring(0,3));
+episode=MizLib.getInteger(group.substring(3,6));
+break;
+case 7:
+season=MizLib.getInteger(group.substring(0,4));
+episode=MizLib.getInteger(group.substring(4,7));
+break;
+}
+episodes.add(new Episode(season,episode,before,after));
+}
+if (episodes.size() > 0) return episodes;
+pattern=Pattern.compile("^(\\d{1,3})(.*?)$",Pattern.CASE_INSENSITIVE);
+matcher=pattern.matcher(filename);
+if (matcher.find()) {
+int season=1;
+int episode=MizLib.getInteger(matcher.group(1));
+String after=matcher.group(2);
+episodes.add(new Episode(season,episode,"",after));
+}
+if (episodes.size() > 0) return episodes;
+pattern=Pattern.compile("(.*?)(\\d{1,2})(.*?)$",Pattern.CASE_INSENSITIVE);
+matcher=pattern.matcher(filename);
+if (matcher.find()) {
+String before=matcher.group(1);
+int season=1;
+int episode=MizLib.getInteger(matcher.group(2));
+String after=matcher.group(3);
+episodes.add(new Episode(season,episode,before,after));
+}
+if (episodes.size() > 0) return episodes;
+return episodes;
+}

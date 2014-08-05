@@ -1,0 +1,15 @@
+{
+  mFileSources=new ArrayList<FileSource>();
+  DbAdapterSources dbHelperSources=MizuuApplication.getSourcesAdapter();
+  Cursor c=dbHelperSources.fetchAllShowSources();
+  try {
+    while (c.moveToNext()) {
+      mFileSources.add(new FileSource(c.getLong(c.getColumnIndex(DbAdapterSources.KEY_ROWID)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),c.getInt(c.getColumnIndex(DbAdapterSources.KEY_FILESOURCE_TYPE)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_USER)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_TYPE))));
+    }
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    c.close();
+  }
+}

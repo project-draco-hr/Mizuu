@@ -1,0 +1,6 @@
+String name
+String originalTitle
+String id
+String image
+String rating
+String release

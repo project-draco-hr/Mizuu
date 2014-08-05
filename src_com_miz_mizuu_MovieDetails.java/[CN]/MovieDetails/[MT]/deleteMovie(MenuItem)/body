@@ -7,21 +7,16 @@
   builder.setTitle(getString(R.string.removeMovie)).setView(dialogLayout).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int id){
       boolean deleted=true;
-      if (mMovie.hasMultipleVersions()) {
-        MovieVersion[] versions=mMovie.getMultipleVersions();
-        for (int i=0; i < versions.length; i++) {
-          if (mIgnoreDeletedFiles)           deleted=deleted && mDatabase.ignoreMovie(Long.valueOf(versions[i].getRowId()));
- else           deleted=deleted && mDatabase.deleteMovie(Long.valueOf(versions[i].getRowId()));
-        }
+      if (mIgnoreDeletedFiles) {
+        deleted=mDatabase.ignoreMovie(mMovie.getTmdbId());
       }
  else {
-        if (mIgnoreDeletedFiles)         deleted=mDatabase.ignoreMovie(Long.valueOf(mMovie.getRowId()));
- else         deleted=mDatabase.deleteMovie(Long.valueOf(mMovie.getRowId()));
+        deleted=mDatabase.deleteMovie(mMovie.getTmdbId());
       }
       if (deleted) {
         if (cb.isChecked()) {
           if (mMovie.hasMultipleVersions()) {
-            MovieVersion[] versions=mMovie.getMultipleVersions();
+            MovieFilepath[] versions=mMovie.getMultipleVersions();
             for (int i=0; i < versions.length; i++) {
               Intent deleteIntent=new Intent(getApplicationContext(),DeleteFile.class);
               deleteIntent.putExtra("filepath",versions[i].getFilepath());

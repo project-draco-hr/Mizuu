@@ -1,0 +1,27 @@
+{
+  String testFilename="anything_102.ext";
+  ShowStructure ss=new ShowStructure(testFilename);
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(2,ss.getEpisodes().get(0).getEpisode());
+  testFilename="anything_1021.ext";
+  ss=new ShowStructure(testFilename);
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(10,ss.getEpisodes().get(0).getSeason());
+  assertEquals(21,ss.getEpisodes().get(0).getEpisode());
+  testFilename="anything_25123.ext";
+  ss=new ShowStructure(testFilename);
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(25,ss.getEpisodes().get(0).getSeason());
+  assertEquals(123,ss.getEpisodes().get(0).getEpisode());
+  testFilename="anything_025123.ext";
+  ss=new ShowStructure(testFilename);
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(25,ss.getEpisodes().get(0).getSeason());
+  assertEquals(123,ss.getEpisodes().get(0).getEpisode());
+  testFilename="anything_2014023.ext";
+  ss=new ShowStructure(testFilename);
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(2014,ss.getEpisodes().get(0).getSeason());
+  assertEquals(23,ss.getEpisodes().get(0).getEpisode());
+}

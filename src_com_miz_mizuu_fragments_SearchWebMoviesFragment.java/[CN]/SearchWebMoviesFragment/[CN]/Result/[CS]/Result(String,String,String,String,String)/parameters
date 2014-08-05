@@ -1,5 +1,5 @@
 String name
 String id
-String pic
-String originalTitle
+String image
+String rating
 String release

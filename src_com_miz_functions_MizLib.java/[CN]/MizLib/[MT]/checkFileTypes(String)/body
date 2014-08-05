@@ -1,4 +1,5 @@
 {
+  if (file.matches("(?i).*[/][\\.](?:_|DS_Store).*[\\.].*$"))   return false;
   if (file.contains(".")) {
     String type=file.substring(file.lastIndexOf("."));
     String[] filetypes=allFileTypes.split("\\.");

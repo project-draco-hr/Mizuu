@@ -21,8 +21,8 @@
       if (mMovieMap.get(Integer.valueOf(mMovies.get(arg2).getId()))) {
         Intent intent=new Intent();
         intent.setClass(getActivity(),MovieDetails.class);
-        intent.putExtra("tmdbid",mMovies.get(arg2).getId());
-        startActivityForResult(intent,0);
+        intent.putExtra("tmdbId",mMovies.get(arg2).getId());
+        startActivity(intent);
       }
  else {
         Intent i=new Intent(Intent.ACTION_VIEW);

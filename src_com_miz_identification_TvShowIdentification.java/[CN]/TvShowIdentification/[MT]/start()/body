@@ -1,0 +1,67 @@
+{
+  for (int i=0; i < mShowStructures.size(); i++) {
+    if (mCancel)     return;
+    ShowStructure ss=mShowStructures.get(i);
+    ss.setCustomTags(mIgnoredTags);
+    mShowFolderNameMap.put(ss.getDecryptedShowFolderName(),i);
+    mImdbMap.put(i,ss.hasImdbId());
+  }
+  TheTVDb service=new TheTVDb(mContext);
+  for (  String showFolderName : mShowFolderNameMap.keySet()) {
+    if (mCancel)     return;
+    Tvshow show=null;
+    ArrayList<Tvshow> results=new ArrayList<Tvshow>();
+    if (!overrideShowId()) {
+      ShowStructure ss=mShowStructures.get(mShowFolderNameMap.get(showFolderName).iterator().next());
+      if (ss.hasImdbId())       results=service.searchForShowsByImdbId(ss.getImdbId(),"all");
+      if (results.size() == 0) {
+        int year=mShowStructures.get(mShowFolderNameMap.get(showFolderName).iterator().next()).getReleaseYear();
+        if (year >= 0)         results=service.searchForShows(showFolderName + " " + year,"all");
+      }
+      if (results.size() == 0)       results=service.searchForShows(showFolderName,"all");
+    }
+ else     show=service.getShow(getShowId(),mLocale);
+    if (results.size() > 0 || overrideShowId()) {
+      if (!overrideShowId())       show=service.getShow(results.get(0).getId(),mLocale);
+      createShow(show);
+      int episodeCount=0;
+      for (      Integer value : mShowFolderNameMap.get(showFolderName)) {
+        if (mCancel)         continue;
+        ShowStructure ss=mShowStructures.get(value);
+        for (        com.miz.identification.Episode ep : ss.getEpisodes()) {
+          if (mCancel)           continue;
+          downloadEpisode(show,ep.getSeason(),ep.getEpisode(),ss.getFilepath());
+          episodeCount++;
+        }
+      }
+      showAddedShowNotification(show,episodeCount);
+    }
+ else {
+      for (      Integer value : mShowFolderNameMap.get(showFolderName)) {
+        if (mCancel)         continue;
+        ShowStructure ss=mShowStructures.get(value);
+        show=null;
+        results=new ArrayList<Tvshow>();
+        if (ss.hasImdbId())         results=service.searchForShowsByImdbId(ss.getImdbId(),"all");
+        if (results.size() == 0) {
+          int year=ss.getReleaseYear();
+          if (year >= 0)           results=service.searchForShows(ss.getDecryptedFilename() + " " + year,"all");
+        }
+        if (results.size() == 0)         results=service.searchForShows(ss.getDecryptedFilename(),"all");
+        if (results.size() == 0) {
+          show=new Tvshow();
+          show.setId("invalid");
+        }
+ else {
+          show=service.getShow(results.get(0).getId(),mLocale);
+        }
+        createShow(show);
+        for (        com.miz.identification.Episode ep : ss.getEpisodes()) {
+          if (mCancel)           continue;
+          downloadEpisode(show,ep.getSeason(),ep.getEpisode(),ss.getFilepath());
+        }
+        showAddedShowNotification(show,ss.getEpisodes().size());
+      }
+    }
+  }
+}

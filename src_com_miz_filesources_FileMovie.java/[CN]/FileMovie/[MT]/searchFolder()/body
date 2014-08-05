@@ -1,15 +1,17 @@
 {
-  DbAdapter dbHelper=MizuuApplication.getMovieAdapter();
-  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",ignoreRemovedFiles(),true);
+  DbAdapterMovieMapping dbHelper=MizuuApplication.getMovieMappingAdapter();
+  Cursor cursor=dbHelper.getAllFilepaths(ignoreRemovedFiles());
+  ColumnIndexCache cache=new ColumnIndexCache();
   try {
     while (cursor.moveToNext()) {
-      existingMovies.put(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),"");
+      existingMovies.put(cursor.getString(cache.getColumnIndex(cursor,DbAdapterMovieMapping.KEY_FILEPATH)),"");
     }
   }
  catch (  Exception e) {
   }
  finally {
     cursor.close();
+    cache.clear();
   }
   TreeSet<String> results=new TreeSet<String>();
   recursiveSearch(getFolder(),results);

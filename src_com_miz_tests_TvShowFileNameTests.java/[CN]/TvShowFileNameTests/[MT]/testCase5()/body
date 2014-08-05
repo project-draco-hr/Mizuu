@@ -1,0 +1,12 @@
+{
+  ShowStructure ss=new ShowStructure("/Lost.306.m720p-FReeLOVE.mkv");
+  assertEquals(false,ss.hasShowFolder());
+  assertEquals("Lost.306.m720p-FReeLOVE.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(false,ss.hasSeasonFolder());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(3,ss.getEpisodes().get(0).getSeason());
+  assertEquals(6,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Lost",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

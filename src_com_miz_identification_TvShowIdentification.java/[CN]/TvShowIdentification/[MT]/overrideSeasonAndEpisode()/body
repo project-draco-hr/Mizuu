@@ -1,0 +1,3 @@
+{
+  return getSeason() >= 0 && getEpisode() >= 0;
+}

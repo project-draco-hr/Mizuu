@@ -1,0 +1,11 @@
+{
+  ShowStructure ss=new ShowStructure("Doctor Who (2005) S01E01.mkv");
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  ss=new ShowStructure("Doctor Who (2005) 01x01.mkv");
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  ss=new ShowStructure("Doctor Who (2005) ep01.mkv");
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+}

@@ -1,6 +1,8 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
-  photoUrl=getArguments().getString("photo");
+  mBus=MizuuApplication.getBus();
+  mPhotoUrl=getArguments().getString("photo");
+  mPortraitPhotos=getArguments().getBoolean("portrait");
   mPicasso=MizuuApplication.getPicasso(getActivity());
 }

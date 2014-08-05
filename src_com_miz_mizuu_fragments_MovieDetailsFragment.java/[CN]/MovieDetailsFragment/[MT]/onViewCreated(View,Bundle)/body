@@ -1,117 +1,117 @@
 {
   super.onViewCreated(view,savedInstanceState);
-  background=(ImageView)view.findViewById(R.id.imageBackground);
-  textTitle=(TextView)view.findViewById(R.id.movieTitle);
-  textPlot=(TextView)view.findViewById(R.id.textView2);
-  textSrc=(TextView)view.findViewById(R.id.textView3);
-  textGenre=(TextView)view.findViewById(R.id.textView7);
-  textRuntime=(TextView)view.findViewById(R.id.textView9);
-  textReleaseDate=(TextView)view.findViewById(R.id.textReleaseDate);
-  textRating=(TextView)view.findViewById(R.id.textView12);
-  textTagline=(TextView)view.findViewById(R.id.textView6);
-  textCertification=(TextView)view.findViewById(R.id.textView11);
-  cover=(ImageView)view.findViewById(R.id.traktIcon);
+  mBackground=(ImageView)view.findViewById(R.id.imageBackground);
+  mTitle=(TextView)view.findViewById(R.id.movieTitle);
+  mPlot=(TextView)view.findViewById(R.id.textView2);
+  mSrc=(TextView)view.findViewById(R.id.textView3);
+  mGenre=(TextView)view.findViewById(R.id.textView7);
+  mRuntime=(TextView)view.findViewById(R.id.textView9);
+  mReleaseDate=(TextView)view.findViewById(R.id.textReleaseDate);
+  mRating=(TextView)view.findViewById(R.id.textView12);
+  mTagline=(TextView)view.findViewById(R.id.textView6);
+  mCertification=(TextView)view.findViewById(R.id.textView11);
+  mCover=(ImageView)view.findViewById(R.id.traktIcon);
   if (MizLib.isPortrait(getActivity())) {
     final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
     final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());
     ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.scrollView1);
     sv.setOnScrollChangedListener(new OnScrollChangedListener(){
       @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
-        final int headerHeight=background.getHeight() - height;
+        final int headerHeight=mBackground.getHeight() - height;
         final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
         final int newAlpha=(int)(ratio * 255);
         if (t <= headerHeight * 1.2) {
           mBus.post(Integer.valueOf(newAlpha));
-          background.setPadding(0,(int)(t / 1.5),0,0);
+          mBackground.setPadding(0,(int)(t / 1.5),0,0);
         }
       }
     }
 );
   }
-  textTitle.setVisibility(View.VISIBLE);
-  textTitle.setText(thisMovie.getTitle());
-  textTitle.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf"));
-  textTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
-  textPlot.setTypeface(mLight);
-  textSrc.setTypeface(mLight);
-  textRuntime.setTypeface(mMedium);
-  textCertification.setTypeface(mMedium);
-  textRating.setTypeface(mMedium);
+  mTitle.setVisibility(View.VISIBLE);
+  mTitle.setText(mMovie.getTitle());
+  mTitle.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf"));
+  mTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
+  mPlot.setTypeface(mLight);
+  mSrc.setTypeface(mLight);
+  mRuntime.setTypeface(mMedium);
+  mCertification.setTypeface(mMedium);
+  mRating.setTypeface(mMedium);
   if (!MizLib.isPortrait(getActivity())) {
-    textPlot.setBackgroundResource(R.drawable.selectable_background);
-    if (!thisMovie.getTagline().isEmpty())     textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
- else     textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
-    textPlot.setTag(true);
-    textPlot.setOnClickListener(new OnClickListener(){
+    mPlot.setBackgroundResource(R.drawable.selectable_background);
+    if (!mMovie.getTagline().isEmpty())     mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
+ else     mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
+    mPlot.setTag(true);
+    mPlot.setOnClickListener(new OnClickListener(){
       @Override public void onClick(      View v){
-        if (((Boolean)textPlot.getTag())) {
-          textPlot.setMaxLines(1000);
-          textPlot.setTag(false);
+        if (((Boolean)mPlot.getTag())) {
+          mPlot.setMaxLines(1000);
+          mPlot.setTag(false);
         }
  else {
-          if (!thisMovie.getTagline().isEmpty())           textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
- else           textPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
-          textPlot.setTag(true);
+          if (!mMovie.getTagline().isEmpty())           mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
+ else           mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
+          mPlot.setTag(true);
         }
       }
     }
 );
-    textPlot.setEllipsize(TextUtils.TruncateAt.END);
-    textPlot.setFocusable(true);
+    mPlot.setEllipsize(TextUtils.TruncateAt.END);
+    mPlot.setFocusable(true);
   }
  else {
-    if (MizLib.isTablet(getActivity()))     textPlot.setLineSpacing(0,1.15f);
+    if (MizLib.isTablet(getActivity()))     mPlot.setLineSpacing(0,1.15f);
   }
-  textPlot.setText(thisMovie.getPlot());
+  mPlot.setText(mMovie.getPlot());
   if (mShowFileLocation) {
-    if (thisMovie.hasMultipleVersions() && !thisMovie.isUnidentified()) {
+    if (mMovie.hasMultipleVersions() && !mMovie.isUnidentified()) {
       StringBuilder sb=new StringBuilder();
-      MovieVersion[] versions=thisMovie.getMultipleVersions();
+      MovieFilepath[] versions=mMovie.getMultipleVersions();
       for (int i=0; i < versions.length; i++)       sb.append(MizLib.transformSmbPath(versions[i].getFilepath()) + "\n");
-      textSrc.setText(sb.toString().trim());
+      mSrc.setText(sb.toString().trim());
     }
  else {
-      textSrc.setText(thisMovie.getFilepath());
+      mSrc.setText(mMovie.getFilepath());
     }
   }
  else {
-    textSrc.setVisibility(View.GONE);
+    mSrc.setVisibility(View.GONE);
   }
-  textTagline.setTypeface(mBoldItalic);
-  if (thisMovie.getTagline().isEmpty())   textTagline.setVisibility(TextView.GONE);
- else   textTagline.setText(thisMovie.getTagline());
-  textGenre.setTypeface(mLightItalic);
-  if (!MizLib.isEmpty(thisMovie.getGenres())) {
-    textGenre.setText(thisMovie.getGenres());
+  mTagline.setTypeface(mBoldItalic);
+  if (mMovie.getTagline().isEmpty())   mTagline.setVisibility(TextView.GONE);
+ else   mTagline.setText(mMovie.getTagline());
+  mGenre.setTypeface(mLightItalic);
+  if (!MizLib.isEmpty(mMovie.getGenres())) {
+    mGenre.setText(mMovie.getGenres());
   }
  else {
-    textGenre.setVisibility(View.GONE);
+    mGenre.setVisibility(View.GONE);
   }
-  textRuntime.setText(MizLib.getPrettyRuntime(getActivity(),Integer.parseInt(thisMovie.getRuntime())));
-  textReleaseDate.setTypeface(mMedium);
-  textReleaseDate.setText(MizLib.getPrettyDate(getActivity(),thisMovie.getReleasedate()));
-  if (!thisMovie.getRating().equals("0.0/10")) {
-    if (thisMovie.getRating().contains("/")) {
+  mRuntime.setText(MizLib.getPrettyRuntime(getActivity(),Integer.parseInt(mMovie.getRuntime())));
+  mReleaseDate.setTypeface(mMedium);
+  mReleaseDate.setText(MizLib.getPrettyDate(getActivity(),mMovie.getReleasedate()));
+  if (!mMovie.getRating().equals("0.0/10")) {
+    if (mMovie.getRating().contains("/")) {
       try {
-        int rating=(int)(Double.parseDouble(thisMovie.getRating().substring(0,thisMovie.getRating().indexOf("/"))) * 10);
-        textRating.setText(Html.fromHtml(+rating + "<small> %</small>"));
+        int rating=(int)(Double.parseDouble(mMovie.getRating().substring(0,mMovie.getRating().indexOf("/"))) * 10);
+        mRating.setText(Html.fromHtml(+rating + "<small> %</small>"));
       }
  catch (      NumberFormatException e) {
-        textRating.setText(Html.fromHtml(thisMovie.getRating().replace("/","<small> / ") + "</small>"));
+        mRating.setText(Html.fromHtml(mMovie.getRating().replace("/","<small> / ") + "</small>"));
       }
     }
  else {
-      textRating.setText(thisMovie.getRating());
+      mRating.setText(mMovie.getRating());
     }
   }
  else {
-    textRating.setText(R.string.stringNA);
+    mRating.setText(R.string.stringNA);
   }
-  if (!MizLib.isEmpty(thisMovie.getCertification())) {
-    textCertification.setText(thisMovie.getCertification());
+  if (!MizLib.isEmpty(mMovie.getCertification())) {
+    mCertification.setText(mMovie.getCertification());
   }
  else {
-    textCertification.setText(R.string.stringNA);
+    mCertification.setText(R.string.stringNA);
   }
   loadImages();
 }

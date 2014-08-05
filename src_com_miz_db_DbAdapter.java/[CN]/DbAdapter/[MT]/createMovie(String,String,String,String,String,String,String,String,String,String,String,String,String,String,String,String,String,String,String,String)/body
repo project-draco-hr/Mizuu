@@ -1,4 +1,0 @@
-{
-  ContentValues initialValues=createContentValues(filepath,coverpath,title,plot,tmdbid,imdbid,rating,tagline,release,certification,runtime,trailer,genres,favourite,watched,collection,collectionId,toWatch,hasWatched,date);
-  return database.insert(DATABASE_TABLE,null,initialValues);
-}

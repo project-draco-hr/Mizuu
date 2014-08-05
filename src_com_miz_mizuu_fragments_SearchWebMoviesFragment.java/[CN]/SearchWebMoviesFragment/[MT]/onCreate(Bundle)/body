@@ -1,9 +1,8 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
-  localizedInfo=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(USE_LOCALIZED_DATA,false);
+  getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
-  locale=Locale.getDefault();
   startSearch=new StartSearch();
 }

@@ -1,0 +1,17 @@
+{
+  String testFilename="anything_1x02.ext";
+  ShowStructure ss=new ShowStructure(testFilename);
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(2,ss.getEpisodes().get(0).getEpisode());
+  testFilename="foo.1x09";
+  ss=new ShowStructure(testFilename);
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(9,ss.getEpisodes().get(0).getEpisode());
+  testFilename="1x09";
+  ss=new ShowStructure(testFilename);
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(9,ss.getEpisodes().get(0).getEpisode());
+}

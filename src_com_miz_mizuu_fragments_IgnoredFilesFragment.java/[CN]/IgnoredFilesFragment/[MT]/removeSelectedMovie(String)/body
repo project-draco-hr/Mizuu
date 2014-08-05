@@ -1,5 +1,4 @@
 {
-  DbAdapter db=MizuuApplication.getMovieAdapter();
-  db.deleteMovie(Long.parseLong(rowId));
+  MizuuApplication.getMovieAdapter().deleteMovie(tmdbId);
   refreshData();
 }

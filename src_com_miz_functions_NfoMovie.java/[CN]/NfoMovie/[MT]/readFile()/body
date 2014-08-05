@@ -36,6 +36,7 @@
           element=(Element)list.item(0);
           tag=element.getChildNodes();
           movie.setCollectionTitle(((Node)tag.item(0)).getNodeValue().trim());
+          movie.setCollectionId(((Node)tag.item(0)).getNodeValue().trim());
         }
  catch (        Exception e) {
           movie.setCollectionTitle("");

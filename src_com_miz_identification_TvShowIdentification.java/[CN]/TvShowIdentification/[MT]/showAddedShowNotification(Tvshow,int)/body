@@ -1,0 +1,8 @@
+{
+  if (show == null)   return;
+  updateWidgets();
+  File coverFile=MizLib.getTvShowThumb(mContext,show.getId());
+  File backdropFile=MizLib.getTvShowBackdrop(mContext,show.getId());
+  if (!backdropFile.exists())   backdropFile=coverFile;
+  mCallback.onTvShowAdded(show.getId(),show.getTitle(),MizLib.getNotificationImageThumbnail(mContext,coverFile.getAbsolutePath()),MizLib.decodeSampledBitmapFromFile(backdropFile.getAbsolutePath(),getNotificationImageWidth(),getNotificationImageHeight()),episodeCount);
+}

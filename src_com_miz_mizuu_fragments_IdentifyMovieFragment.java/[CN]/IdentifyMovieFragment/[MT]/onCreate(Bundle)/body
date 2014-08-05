@@ -1,0 +1,12 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+  mTmdbId=getArguments().getString("tmdbId");
+  mFilepath=getArguments().getString("filepath");
+  mMovie=MizLib.decryptMovie(mFilepath,PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(IGNORED_FILENAME_TAGS,""));
+  mPicasso=MizuuApplication.getPicasso(getActivity());
+  mConfig=MizuuApplication.getBitmapConfig();
+  mAdapter=new ListAdapter(getActivity());
+  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movies-identification"));
+}

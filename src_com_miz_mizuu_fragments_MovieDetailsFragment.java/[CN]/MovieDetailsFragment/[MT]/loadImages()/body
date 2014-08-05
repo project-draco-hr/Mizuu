@@ -1,41 +1,41 @@
 {
   if (!MizLib.isPortrait(getActivity())) {
-    if (!ignoreNfo && thisMovie.isNetworkFile()) {
-      mPicasso.load(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail()).placeholder(R.drawable.loading_image).error(R.drawable.loading_image).into(cover);
-      mPicasso.load(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
+    if (!mIgnoreNfo && mMovie.isNetworkFile()) {
+      mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).placeholder(R.drawable.loading_image).error(R.drawable.loading_image).into(mCover);
+      mPicasso.load(mMovie.getFilepath() + "MIZ_BG<MiZ>" + mMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(mBackground);
     }
  else {
-      mPicasso.load(thisMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(cover);
-      mPicasso.load(thisMovie.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).into(background);
+      mPicasso.load(mMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(mCover);
+      mPicasso.load(mMovie.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).into(mBackground);
     }
   }
  else {
-    if (!ignoreNfo && thisMovie.isNetworkFile()) {
-      mPicasso.load(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail()).placeholder(R.drawable.loading_image).error(R.drawable.loading_image).into(cover);
-      mPicasso.load(thisMovie.getFilepath() + "MIZ_BG<MiZ>" + thisMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(background,new Callback(){
+    if (!mIgnoreNfo && mMovie.isNetworkFile()) {
+      mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).placeholder(R.drawable.loading_image).error(R.drawable.loading_image).into(mCover);
+      mPicasso.load(mMovie.getFilepath() + "MIZ_BG<MiZ>" + mMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(mBackground,new Callback(){
         @Override public void onError(){
           if (!isAdded())           return;
-          ((PanningView)background).setScaleType(ScaleType.CENTER_CROP);
-          mPicasso.load(thisMovie.getFilepath() + "<MiZ>" + thisMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
+          ((PanningView)mBackground).setScaleType(ScaleType.CENTER_CROP);
+          mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(mBackground);
         }
         @Override public void onSuccess(){
           if (!isAdded())           return;
-          ((PanningView)background).startPanning();
+          ((PanningView)mBackground).startPanning();
         }
       }
 );
     }
  else {
-      mPicasso.load(thisMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(cover);
-      mPicasso.load(thisMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(background,new Callback(){
+      mPicasso.load(mMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(mCover);
+      mPicasso.load(mMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(mBackground,new Callback(){
         @Override public void onError(){
           if (!isAdded())           return;
-          ((PanningView)background).setScaleType(ScaleType.CENTER_CROP);
-          mPicasso.load(thisMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
+          ((PanningView)mBackground).setScaleType(ScaleType.CENTER_CROP);
+          mPicasso.load(mMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(mBackground);
         }
         @Override public void onSuccess(){
           if (!isAdded())           return;
-          ((PanningView)background).startPanning();
+          ((PanningView)mBackground).startPanning();
         }
       }
 );

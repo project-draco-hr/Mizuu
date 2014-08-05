@@ -1,0 +1,3 @@
+{
+  mLocale=PreferenceManager.getDefaultSharedPreferences(mContext).getString(LANGUAGE_PREFERENCE,"en");
+}

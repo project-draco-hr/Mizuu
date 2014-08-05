@@ -1,3 +1,4 @@
 {
+  if (!MizLib.isValidTmdbId(mMovie.getTmdbId()))   return 1;
   return 2;
 }

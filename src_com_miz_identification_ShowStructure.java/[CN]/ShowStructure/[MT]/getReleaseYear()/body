@@ -1,0 +1,11 @@
+{
+  if (mEpisodes.size() == 0)   return -1;
+  Pattern pattern=Pattern.compile("^.*?((?:18|19|20)[0-9][0-9]).*?$");
+  Matcher matcher=pattern.matcher(getShowFolderName());
+  if (matcher.find())   return MizLib.getInteger(matcher.group(1));
+  matcher=pattern.matcher(mEpisodes.get(0).getBefore());
+  if (matcher.find())   return MizLib.getInteger(matcher.group(1));
+  matcher=pattern.matcher(mEpisodes.get(mEpisodes.size() - 1).getAfter());
+  if (matcher.find())   return MizLib.getInteger(matcher.group(1));
+  return -1;
+}

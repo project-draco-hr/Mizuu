@@ -1,0 +1,7 @@
+{
+  mContext=context;
+  mCallback=callback;
+  mShowStructures=new ArrayList<ShowStructure>(files);
+  mIgnoredTags=PreferenceManager.getDefaultSharedPreferences(mContext).getString(IGNORED_FILENAME_TAGS,"");
+  getLanguagePreference();
+}

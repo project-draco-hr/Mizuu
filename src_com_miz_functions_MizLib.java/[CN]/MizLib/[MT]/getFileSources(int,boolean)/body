@@ -4,16 +4,24 @@
   Cursor c=null;
   if (type == TYPE_MOVIE)   c=dbHelperSources.fetchAllMovieSources();
  else   c=dbHelperSources.fetchAllShowSources();
-  while (c.moveToNext()) {
-    if (onlyNetworkSources) {
-      if (c.getInt(c.getColumnIndex(DbAdapterSources.KEY_FILESOURCE_TYPE)) == FileSource.SMB) {
-        filesources.add(new FileSource(c.getLong(c.getColumnIndex(DbAdapterSources.KEY_ROWID)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),c.getInt(c.getColumnIndex(DbAdapterSources.KEY_FILESOURCE_TYPE)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_USER)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_TYPE))));
+  ColumnIndexCache cache=new ColumnIndexCache();
+  try {
+    while (c.moveToNext()) {
+      if (onlyNetworkSources) {
+        if (c.getInt(cache.getColumnIndex(c,DbAdapterSources.KEY_FILESOURCE_TYPE)) == FileSource.SMB) {
+          filesources.add(new FileSource(c.getLong(cache.getColumnIndex(c,DbAdapterSources.KEY_ROWID)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_FILEPATH)),c.getInt(cache.getColumnIndex(c,DbAdapterSources.KEY_FILESOURCE_TYPE)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_USER)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_PASSWORD)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_DOMAIN)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_TYPE))));
+        }
+      }
+ else {
+        filesources.add(new FileSource(c.getLong(cache.getColumnIndex(c,DbAdapterSources.KEY_ROWID)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_FILEPATH)),c.getInt(cache.getColumnIndex(c,DbAdapterSources.KEY_FILESOURCE_TYPE)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_USER)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_PASSWORD)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_DOMAIN)),c.getString(cache.getColumnIndex(c,DbAdapterSources.KEY_TYPE))));
       }
     }
- else {
-      filesources.add(new FileSource(c.getLong(c.getColumnIndex(DbAdapterSources.KEY_ROWID)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_FILEPATH)),c.getInt(c.getColumnIndex(DbAdapterSources.KEY_FILESOURCE_TYPE)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_USER)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_PASSWORD)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_DOMAIN)),c.getString(c.getColumnIndex(DbAdapterSources.KEY_TYPE))));
-    }
   }
-  c.close();
+ catch (  Exception e) {
+  }
+ finally {
+    c.close();
+    cache.clear();
+  }
   return filesources;
 }

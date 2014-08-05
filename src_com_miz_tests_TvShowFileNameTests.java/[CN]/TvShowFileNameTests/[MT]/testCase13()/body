@@ -1,0 +1,15 @@
+{
+  ShowStructure ss=new ShowStructure("/Serier/The Fresh Prince of Bel-Air/S01/The Fresh Prince of Bel-Air - 101 - The Fresh Prince Project.avi");
+  assertEquals("The Fresh Prince of Bel-Air",ss.getShowFolderName());
+  assertEquals("The Fresh Prince of Bel-Air - 101 - The Fresh Prince Project.avi",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("S01",ss.getSeasonFolderName());
+  assertEquals(1,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("The Fresh Prince of BelAir",ss.getDecryptedShowFolderName());
+  assertEquals("The Fresh Prince of BelAir",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

@@ -1,0 +1,16 @@
+{
+  ShowStructure ss=new ShowStructure("/Serien/Falling Skies/Staffel 1/Falling Skies - 1x05 - Die Rettung - 2011-07-10 - Sci-Fi-Serie.avi");
+  assertEquals("Falling Skies",ss.getShowFolderName());
+  assertEquals("Falling Skies - 1x05 - Die Rettung - 2011-07-10 - Sci-Fi-Serie.avi",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("Staffel 1",ss.getSeasonFolderName());
+  assertEquals(1,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(5,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Falling Skies",ss.getDecryptedShowFolderName());
+  assertEquals("Falling Skies",ss.getDecryptedFilename());
+  assertEquals(true,ss.hasReleaseYear());
+  assertEquals(2011,ss.getReleaseYear());
+}

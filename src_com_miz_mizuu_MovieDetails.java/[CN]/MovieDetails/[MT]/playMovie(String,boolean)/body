@@ -13,13 +13,11 @@
         checkIn();
       }
  catch (      Exception e) {
-        System.out.println(e);
         try {
           startActivity(MizLib.getVideoIntent(filepath,"video/*",mMovie));
           checkIn();
         }
  catch (        Exception e2) {
-          System.out.println(e2);
           Toast.makeText(getApplicationContext(),getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
         }
       }

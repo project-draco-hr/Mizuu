@@ -1,0 +1,4 @@
+{
+  if (mEpisodes.size() > 0)   return MizLib.decryptName(mEpisodes.get(0).getBefore(),mCustomTags);
+  return MizLib.decryptName(getFilename(),mCustomTags);
+}

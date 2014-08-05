@@ -1,0 +1,4 @@
+{
+  if (!mMap.containsKey(columnName))   mMap.put(columnName,cursor.getColumnIndex(columnName));
+  return mMap.get(columnName);
+}

@@ -1,7 +1,0 @@
-Context context
-String rowId
-String filepath
-String title
-String tmdbId
-boolean ignorePrefixes
-boolean ignoreNfo

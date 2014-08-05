@@ -1,4 +1,4 @@
 {
-  isRunning=false;
-  backdrops.clear();
+  mRunning=false;
+  mBackdrops.clear();
 }

@@ -5,4 +5,43 @@
   PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
   mPref=getPreferenceScreen().findPreference("prefsIgnoredFiles");
   if (mPref != null)   mPref.setEnabled(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_FILES_ENABLED,false));
+  mLanguagePref=getPreferenceScreen().findPreference(LANGUAGE_PREFERENCE);
+  if (mLanguagePref != null)   mLanguagePref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+    @Override public boolean onPreferenceClick(    Preference preference){
+      mSystemLocales=Locale.getAvailableLocales();
+      String[] languageCodes=Locale.getISOLanguages();
+      final ArrayList<Locale> mTemp=new ArrayList<Locale>();
+      for (      String code : languageCodes) {
+        if (code.length() == 2) {
+          Locale l=new Locale(code);
+          if (hasLocale(l))           mTemp.add(l);
+        }
+      }
+      Collections.sort(mTemp,new Comparator<Locale>(){
+        @Override public int compare(        Locale lhs,        Locale rhs){
+          return lhs.getDisplayLanguage(Locale.getDefault()).compareToIgnoreCase(rhs.getDisplayLanguage(Locale.getDefault()));
+        }
+      }
+);
+      String[] items=new String[mTemp.size()];
+      for (int i=0; i < mTemp.size(); i++)       items[i]=mTemp.get(i).getDisplayLanguage(Locale.getDefault());
+      final String[] codes=new String[mTemp.size()];
+      for (int i=0; i < mTemp.size(); i++)       codes[i]=mTemp.get(i).getLanguage();
+      mTemp.clear();
+      int checkedItem=getIndexForLocale(codes,PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(LANGUAGE_PREFERENCE,"en"));
+      if (checkedItem == -1)       checkedItem=getIndexForLocale(codes,"en");
+      AlertDialog.Builder bldr=new AlertDialog.Builder(getActivity());
+      bldr.setTitle(R.string.set_pref_language_title);
+      bldr.setSingleChoiceItems(items,checkedItem,new OnClickListener(){
+        @Override public void onClick(        DialogInterface dialog,        int which){
+          savePreference(LANGUAGE_PREFERENCE,codes[which]);
+          dialog.dismiss();
+        }
+      }
+);
+      bldr.show();
+      return true;
+    }
+  }
+);
 }

@@ -4,6 +4,7 @@
   sDbTvShow=new DbAdapterTvShow(this);
   sDbTvShowEpisode=new DbAdapterTvShowEpisode(this);
   sDbSources=new DbAdapterSources(this);
+  sDbMovieMapping=new DbAdapterMovieMapping(this);
   sDb=new DbAdapter(this);
   getMovieThumbFolder(this);
   getMovieBackdropFolder(this);
@@ -12,4 +13,26 @@
   getTvShowEpisodeFolder(this);
   getTvShowSeasonFolder(this);
   getAvailableOfflineFolder(this);
+  transitionLocalizationPreference();
+  File dbFile=getDatabasePath("mizuu_tv_show_data");
+  System.out.println("DATABASE EXISTS: " + dbFile.exists());
+  if (dbFile.exists()) {
+    String KEY_SHOW_ID="show_id";
+    String KEY_SHOW_TITLE="show_title";
+    String KEY_SHOW_PLOT="show_description";
+    String KEY_SHOW_ACTORS="show_actors";
+    String KEY_SHOW_GENRES="show_genres";
+    String KEY_SHOW_RATING="show_rating";
+    String KEY_SHOW_CERTIFICATION="show_certification";
+    String KEY_SHOW_RUNTIME="show_runtime";
+    String KEY_SHOW_FIRST_AIRDATE="show_first_airdate";
+    String KEY_SHOW_EXTRA1="extra1";
+    String[] SELECT_ALL=new String[]{KEY_SHOW_ID,KEY_SHOW_TITLE,KEY_SHOW_PLOT,KEY_SHOW_ACTORS,KEY_SHOW_GENRES,KEY_SHOW_RATING,KEY_SHOW_RATING,KEY_SHOW_CERTIFICATION,KEY_SHOW_RUNTIME,KEY_SHOW_FIRST_AIRDATE,KEY_SHOW_EXTRA1};
+    SQLiteDatabase db=SQLiteDatabase.openOrCreateDatabase(dbFile,null);
+    Cursor c=db.query("tvshows",SELECT_ALL,null,null,null,null,KEY_SHOW_TITLE + " ASC");
+    while (c.moveToNext()) {
+      System.out.println(c.getString(c.getColumnIndex(KEY_SHOW_TITLE)));
+    }
+    c.close();
+  }
 }

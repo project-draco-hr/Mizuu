@@ -1,0 +1,15 @@
+{
+  ShowStructure ss=new ShowStructure("/Curb Your Enthusiasm/Season 1/Curb Your Enthusiasm Season 1 Episode 04 - The Bracelet.mkv");
+  assertEquals("Curb Your Enthusiasm",ss.getShowFolderName());
+  assertEquals("Curb Your Enthusiasm Season 1 Episode 04 - The Bracelet.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("Season 1",ss.getSeasonFolderName());
+  assertEquals(1,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(4,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Curb Your Enthusiasm",ss.getDecryptedShowFolderName());
+  assertEquals("Curb Your Enthusiasm",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

@@ -1,6 +1,0 @@
-{
-  this.context=context;
-  this.filepath=filepath;
-  this.rowId=rowId;
-  this.tmdbId=tmdbId;
-}

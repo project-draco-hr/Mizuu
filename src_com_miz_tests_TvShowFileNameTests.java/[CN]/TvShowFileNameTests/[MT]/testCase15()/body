@@ -1,0 +1,16 @@
+{
+  ShowStructure ss=new ShowStructure("/TV Shows/Battlestar Galactica (2003)/Season 0/S00E03 - The Story So Far.mkv");
+  assertEquals("Battlestar Galactica (2003)",ss.getShowFolderName());
+  assertEquals("S00E03 - The Story So Far.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("Season 0",ss.getSeasonFolderName());
+  assertEquals(0,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(0,ss.getEpisodes().get(0).getSeason());
+  assertEquals(3,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Battlestar Galactica",ss.getDecryptedShowFolderName());
+  assertEquals("",ss.getDecryptedFilename());
+  assertEquals(true,ss.hasReleaseYear());
+  assertEquals(2003,ss.getReleaseYear());
+}

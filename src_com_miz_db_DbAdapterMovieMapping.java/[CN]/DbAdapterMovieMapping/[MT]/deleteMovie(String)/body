@@ -1,0 +1,3 @@
+{
+  return mDatabase.delete(DATABASE_TABLE,KEY_TMDB_ID + "='" + tmdbId+ "'",null) > 0;
+}

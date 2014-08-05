@@ -1,7 +1,0 @@
-{
-  MovieDetailsFragment pageFragment=new MovieDetailsFragment();
-  Bundle bundle=new Bundle();
-  bundle.putInt("movieId",movieId);
-  pageFragment.setArguments(bundle);
-  return pageFragment;
-}

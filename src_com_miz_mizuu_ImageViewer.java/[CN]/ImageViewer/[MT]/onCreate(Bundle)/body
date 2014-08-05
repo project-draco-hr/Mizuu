@@ -1,11 +1,27 @@
 {
   super.onCreate(savedInstanceState);
+  if (MizLib.hasKitKat()) {
+    if (isFullscreen())     setTheme(R.style.Mizuu_Theme_Translucent_FullScreen);
+ else     setTheme(R.style.Mizuu_Theme_Translucent);
+  }
+ else {
+    if (isFullscreen())     setTheme(R.style.Mizuu_Theme_Transparent_FullScreen);
+ else     setTheme(R.style.Mizuu_Theme_Transparent);
+  }
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
+  mBus=MizuuApplication.getBus();
+  mActionBarOverlay=(ImageView)findViewById(R.id.actionbar_overlay);
+  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(this) : MizLib.getActionBarAndStatusBarHeight(this)));
+  mActionBarOverlay.setImageResource(R.drawable.transparent_actionbar);
+  mActionBarOverlay.setVisibility(View.VISIBLE);
+  getActionBar().setBackgroundDrawable(null);
+  mPortraitPhotos=getIntent().getBooleanExtra("portraitPhotos",true);
   photos=getIntent().getStringArrayExtra("photos");
   setTitle(getIntent().getStringExtra("actorName"));
   getActionBar().setSubtitle((getIntent().getIntExtra("selectedIndex",0) + 1) + " " + getString(R.string.of)+ " "+ photos.length);
   awesomePager=(ViewPager)findViewById(R.id.awesomepager);
+  awesomePager.setPageMargin(MizLib.convertDpToPixels(getApplicationContext(),16));
   awesomePager.setAdapter(new ActorPhotosAdapter(getSupportFragmentManager()));
   awesomePager.setOnPageChangeListener(new OnPageChangeListener(){
     @Override public void onPageScrollStateChanged(    int arg0){
@@ -18,4 +34,14 @@
   }
 );
   awesomePager.setCurrentItem(getIntent().getIntExtra("selectedIndex",0));
+  View decorView=getWindow().getDecorView();
+  decorView.setOnSystemUiVisibilityChangeListener(new OnSystemUiVisibilityChangeListener(){
+    @Override public void onSystemUiVisibilityChange(    int visibility){
+      if ((visibility & View.SYSTEM_UI_FLAG_VISIBLE) == 0) {
+        getActionBar().show();
+        mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(getApplicationContext()) : MizLib.getActionBarAndStatusBarHeight(getApplicationContext())));
+      }
+    }
+  }
+);
 }

@@ -1,0 +1,3 @@
+int rowId
+String filepath
+boolean ignored

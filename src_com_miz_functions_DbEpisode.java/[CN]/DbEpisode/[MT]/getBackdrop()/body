@@ -1,3 +1,3 @@
 {
-  return MizLib.getTvShowBackdrop(context,getShowId()).getAbsolutePath();
+  return MizLib.getTvShowBackdrop(mContext,getShowId()).getAbsolutePath();
 }

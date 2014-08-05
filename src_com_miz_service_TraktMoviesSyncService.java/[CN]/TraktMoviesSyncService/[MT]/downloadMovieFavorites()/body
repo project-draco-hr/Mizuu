@@ -5,12 +5,7 @@
       try {
         String tmdbId=String.valueOf(jsonArray.getJSONObject(i).get("tmdb_id"));
         mMovieFavorites.add(tmdbId);
-        Collection<String> rowIds=mTmdbIdRowIdMap.get(tmdbId);
-        for (        String id : rowIds) {
-          rowId.delete(0,rowId.length());
-          rowId.append(id);
-          if (rowId.toString() != null)           mMovieDatabase.updateMovieSingleItem(Long.valueOf(rowId.toString()),DbAdapter.KEY_FAVOURITE,"1");
-        }
+        mMovieDatabase.updateMovieSingleItem(tmdbId,DbAdapter.KEY_FAVOURITE,"1");
       }
  catch (      Exception e) {
       }

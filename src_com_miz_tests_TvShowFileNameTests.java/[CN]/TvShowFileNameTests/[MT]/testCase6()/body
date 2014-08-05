@@ -1,0 +1,12 @@
+{
+  ShowStructure ss=new ShowStructure("/The_Office_S02E09_720p_h264-CtrlHD.mkv");
+  assertEquals(false,ss.hasShowFolder());
+  assertEquals("The_Office_S02E09_720p_h264-CtrlHD.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(false,ss.hasSeasonFolder());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(2,ss.getEpisodes().get(0).getSeason());
+  assertEquals(9,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("The Office",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

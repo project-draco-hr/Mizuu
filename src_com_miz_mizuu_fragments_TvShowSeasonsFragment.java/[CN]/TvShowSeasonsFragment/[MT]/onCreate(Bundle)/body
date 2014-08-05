@@ -5,7 +5,8 @@
   mBus.register(this);
   mPicasso=MizuuApplication.getPicasso(mContext);
   mConfig=MizuuApplication.getBitmapConfig();
-  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+  if (!MizLib.isTablet(mContext))   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1.5);
+ else   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   mShowId=getArguments().getString(SHOW_ID);
   mDualPane=getArguments().getBoolean(DUAL_PANE);

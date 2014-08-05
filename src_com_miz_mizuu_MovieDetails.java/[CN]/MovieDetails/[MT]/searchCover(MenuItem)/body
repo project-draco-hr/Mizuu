@@ -1,5 +1,5 @@
 {
-  if (mMovie.getTmdbId() != null && !mMovie.getTmdbId().isEmpty() && MizLib.isOnline(getApplicationContext())) {
+  if (MizLib.isOnline(getApplicationContext())) {
     Intent intent=new Intent();
     intent.putExtra("tmdbId",mMovie.getTmdbId());
     intent.putExtra("collectionId",mMovie.getCollectionId());

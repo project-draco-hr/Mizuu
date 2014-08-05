@@ -1,0 +1,4 @@
+Tvshow thisShow
+int season
+int episode
+String filepath

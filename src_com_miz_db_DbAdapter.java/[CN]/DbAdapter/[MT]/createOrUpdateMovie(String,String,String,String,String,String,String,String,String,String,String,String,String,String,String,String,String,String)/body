@@ -1,0 +1,8 @@
+{
+  if (movieExists(tmdbid)) {
+    updateMovie(tmdbid,title,plot,imdbid,rating,tagline,release,certification,runtime,trailer,genres,actors,collection,collectionId,date);
+  }
+ else {
+    createMovie(tmdbid,title,plot,imdbid,rating,tagline,release,certification,runtime,trailer,genres,favourite,actors,collection,collectionId,toWatch,hasWatched,date);
+  }
+}

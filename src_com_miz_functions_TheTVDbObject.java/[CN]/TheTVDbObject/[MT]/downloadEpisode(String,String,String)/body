@@ -8,9 +8,9 @@
       continue;
     }
   }
-  if (thisEpisode.getEpisode().isEmpty()) {
-    thisEpisode.setEpisode(episode);
-    thisEpisode.setSeason(season);
+  if (thisEpisode.getEpisode() == -1) {
+    thisEpisode.setEpisode(MizLib.getInteger(episode));
+    thisEpisode.setSeason(MizLib.getInteger(season));
   }
   if (!thisEpisode.getScreenshot_url().isEmpty()) {
     String screenshotFile=MizLib.getTvShowEpisode(context,thisShow.getId(),season,episode).getAbsolutePath();

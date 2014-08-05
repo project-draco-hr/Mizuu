@@ -23,29 +23,15 @@
   mDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
   mYouTubeApiKey=MizLib.getYouTubeApiKey(this);
   if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
-    mMovieId=Integer.valueOf(getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY));
+    mMovieId=getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY);
   }
  else {
-    mMovieId=getIntent().getExtras().getInt("rowId");
-  }
-  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
-  mViewPager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
-  mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
-    @Override public void onPageSelected(    int position){
-      mActionBar.setSelectedNavigationItem(position);
-      updateActionBarDrawable(1,false,false);
-    }
-  }
-);
-  if (savedInstanceState != null) {
-    mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
+    mMovieId=getIntent().getExtras().getString("tmdbId");
   }
   mDatabase=MizuuApplication.getMovieAdapter();
-  Cursor cursor=null;
+  Cursor cursor=mDatabase.fetchMovie(mMovieId);
   try {
-    if (mMovieId > 0)     cursor=mDatabase.fetchMovie(mMovieId);
- else     cursor=mDatabase.fetchMovie(getIntent().getExtras().getString("tmdbId"));
-    mMovie=new Movie(this,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ROWID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FILEPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDBID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CAST)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_2)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COVERPATH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_EXTRA_1)),mIgnorePrefixes,mIgnoreNfo);
+    mMovie=new Movie(this,MizuuApplication.getMovieMappingAdapter().getFirstFilepathForMovie(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID))),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ACTORS)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION_ID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_DATE_ADDED)),mIgnorePrefixes,mIgnoreNfo);
   }
  catch (  Exception e) {
     finish();
@@ -55,9 +41,20 @@
     cursor.close();
   }
   if (mMovie != null) {
-    mMovieId=Integer.parseInt(mMovie.getRowId());
-    if (mDatabase.hasMultipleVersions(mMovie.getTmdbId())) {
-      mMovie.setMultipleVersions(mDatabase.getRowIdsForMovie(mMovie.getTmdbId()));
+    mViewPager=(ViewPager)findViewById(R.id.awesomepager);
+    mViewPager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
+    mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+      @Override public void onPageSelected(      int position){
+        mActionBar.setSelectedNavigationItem(position);
+        updateActionBarDrawable(1,false,false);
+      }
+    }
+);
+    if (savedInstanceState != null) {
+      mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
+    }
+    if (MizuuApplication.getMovieMappingAdapter().hasMultipleFilepaths(mMovie.getTmdbId())) {
+      mMovie.setFilepaths(MizuuApplication.getMovieMappingAdapter().getMovieFilepaths(mMovie.getTmdbId()));
     }
     setupSpinnerItems();
   }

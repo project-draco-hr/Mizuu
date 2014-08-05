@@ -1,13 +1,7 @@
 {
   settings=PreferenceManager.getDefaultSharedPreferences(context);
-  localizedInfo=settings.getBoolean(USE_LOCALIZED_DATA,false);
   if (language.isEmpty()) {
-    if (localizedInfo) {
-      LOCALE=Locale.getDefault().toString();
-      if (LOCALE.contains("_"))       LOCALE=LOCALE.substring(0,LOCALE.indexOf("_"));
- else       LOCALE="en";
-    }
- else     LOCALE="en";
+    LOCALE=PreferenceManager.getDefaultSharedPreferences(context).getString(LANGUAGE_PREFERENCE,"en");
   }
  else {
     LOCALE=language;

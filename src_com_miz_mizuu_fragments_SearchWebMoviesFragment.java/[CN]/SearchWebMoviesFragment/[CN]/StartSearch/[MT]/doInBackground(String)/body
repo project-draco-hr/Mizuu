@@ -3,12 +3,11 @@
     if (isCancelled())     return null;
     TMDb tmdb=new TMDb(getActivity().getApplicationContext());
     ArrayList<TMDbMovie> movieResults;
-    if (useSystemLanguage.isChecked())     movieResults=tmdb.searchForMovies(params[0],"",getLocaleShortcode());
- else     movieResults=tmdb.searchForMovies(params[0],"","en");
+    movieResults=tmdb.searchForMovies(params[0],"","en");
     if (isCancelled())     return null;
     int count=movieResults.size();
     for (int i=0; i < count; i++) {
-      results.add(new Result(movieResults.get(i).getTitle(),movieResults.get(i).getId(),movieResults.get(i).getCover(),movieResults.get(i).getOriginalTitle(),movieResults.get(i).getReleasedate()));
+      results.add(new Result(movieResults.get(i).getTitle(),movieResults.get(i).getId(),movieResults.get(i).getCover(),movieResults.get(i).getRating() + "/10",movieResults.get(i).getReleasedate()));
     }
     if (isCancelled())     return null;
     return "";

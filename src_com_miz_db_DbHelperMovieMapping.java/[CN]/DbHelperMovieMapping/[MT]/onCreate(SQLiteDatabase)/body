@@ -1,0 +1,4 @@
+{
+  database.execSQL(DATABASE_CREATE);
+  database.execSQL(INDEX_CREATE);
+}

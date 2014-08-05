@@ -1,0 +1,4 @@
+{
+  ContentValues updateValues=createEditContentValues(title,plot,rating,tagline,release,certification,runtime,genres,toWatch,hasWatched,date);
+  return mDatabase.update(DATABASE_TABLE,updateValues,KEY_TMDB_ID + "='" + tmdbId+ "'",null) > 0;
+}

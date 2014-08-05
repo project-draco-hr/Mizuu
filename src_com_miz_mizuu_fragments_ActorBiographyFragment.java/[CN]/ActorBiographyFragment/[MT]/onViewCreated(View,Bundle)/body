@@ -11,7 +11,7 @@
     if (MizLib.isPortrait(getActivity()))     MizLib.addActionBarAndStatusBarMargin(getActivity(),mActorImage,(LayoutParams)mActorImage.getLayoutParams());
  else     MizLib.addActionBarAndStatusBarPadding(getActivity(),v.findViewById(R.id.linearLayout1));
   }
- else   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.linearLayout1));
+ else   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.frameLayout1));
   if (MizLib.isPortrait(getActivity())) {
     final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
     final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());

@@ -1,0 +1,6 @@
+Context context
+String filepath
+String title
+String tmdbId
+boolean ignorePrefixes
+boolean ignoreNfo

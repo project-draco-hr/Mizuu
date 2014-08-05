@@ -1,0 +1,14 @@
+{
+  boolean result=false;
+  Cursor mCursor=db.query(true,DbAdapter.DATABASE_TABLE,new String[]{DbAdapter.KEY_TMDB_ID},DbAdapter.KEY_TMDB_ID + "='" + movieId+ "'",null,DbAdapter.KEY_TMDB_ID,null,null,null);
+  if (mCursor == null)   return false;
+  try {
+    result=mCursor.getCount() > 0;
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    mCursor.close();
+  }
+  return result;
+}

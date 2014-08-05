@@ -1,0 +1,15 @@
+{
+  if (!result)   return;
+  hideProgressBar();
+  if (mQuery.getText().toString().length() > 0) {
+    if (mListView.getAdapter() == null) {
+      mAdapter=new ListAdapter(mContext);
+      mAdapter.setList(mResults);
+      mListView.setAdapter(mAdapter);
+    }
+ else {
+      mAdapter.setList(mResults);
+      mAdapter.notifyDataSetChanged();
+    }
+  }
+}

@@ -1,34 +1,39 @@
 {
   super.onAttachedToWindow();
-  isRunning=true;
+  mRunning=true;
   setInteractive(false);
   setFullscreen(true);
-  setContentView(R.layout.welcome);
-  findViewById(R.id.list).setVisibility(View.GONE);
-  title=(TextView)findViewById(R.id.title);
-  if (MizLib.isTablet(this))   title.setTextSize(26f);
-  dbHelper=MizuuApplication.getMovieAdapter();
-  dbHelperTv=MizuuApplication.getTvDbAdapter();
-  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false,false);
+  setContentView(R.layout.dream);
+  mTitle=(TextView)findViewById(R.id.title);
+  mTitle.setTypeface(MizuuApplication.getOrCreateTypeface(this,"RobotoCondensed-Regular.ttf"));
+  mDatabaseHelper=MizuuApplication.getMovieAdapter();
+  mDatabaseHelperTv=MizuuApplication.getTvDbAdapter();
+  File temp=null;
+  ColumnIndexCache cache=new ColumnIndexCache();
+  Cursor cursor=mDatabaseHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
   while (cursor.moveToNext()) {
     try {
-      backdrops.add(new Backdrop(MizLib.getMovieBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDBID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE))));
-    }
- catch (    NullPointerException e) {
-    }
-  }
-  cursor=dbHelperTv.getAllShows();
-  while (cursor.moveToNext()) {
-    try {
-      backdrops.add(new Backdrop(MizLib.getTvShowBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_TITLE))));
+      temp=MizLib.getMovieBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TMDB_ID)));
+      if (temp.exists())       mBackdrops.add(new Backdrop(temp.getAbsolutePath(),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TITLE))));
     }
  catch (    NullPointerException e) {
     }
   }
   cursor.close();
-  Collections.shuffle(backdrops,new Random(System.nanoTime()));
-  if (backdrops.size() > 0) {
-    title.setText(backdrops.get(index).getTitle());
+  cursor=mDatabaseHelperTv.getAllShows();
+  while (cursor.moveToNext()) {
+    try {
+      temp=MizLib.getTvShowBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShow.KEY_SHOW_ID)));
+      if (temp.exists())       mBackdrops.add(new Backdrop(temp.getAbsolutePath(),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShow.KEY_SHOW_TITLE))));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  cursor.close();
+  cache.clear();
+  Collections.shuffle(mBackdrops,new Random(System.nanoTime()));
+  if (mBackdrops.size() > 0) {
+    mTitle.setText(mBackdrops.get(mIndex).getTitle());
     startAnimatedBackground();
   }
 }

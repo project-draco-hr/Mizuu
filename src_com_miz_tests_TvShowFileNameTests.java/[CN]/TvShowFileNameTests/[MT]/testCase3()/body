@@ -1,0 +1,15 @@
+{
+  ShowStructure ss=new ShowStructure("/The.British.Empire.in.Colour/Season1 /The British Empire in Colour Part 1.mkv");
+  assertEquals("The.British.Empire.in.Colour",ss.getShowFolderName());
+  assertEquals("The British Empire in Colour Part 1.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(true,ss.hasSeasonFolder());
+  assertEquals("Season1",ss.getSeasonFolderName());
+  assertEquals(1,ss.getSeasonFolderNumber());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(1,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("The British Empire in Colour",ss.getDecryptedShowFolderName());
+  assertEquals("The British Empire in Colour",ss.getDecryptedFilename());
+  assertEquals(false,ss.hasReleaseYear());
+}

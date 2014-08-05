@@ -1,7 +1,17 @@
 {
-  convertView=mInflater.inflate(R.layout.spinner_header,parent,false);
-  ((TextView)convertView.findViewById(R.id.title)).setText(mSpinnerItems.get(position).getTitle());
+  ActionBarSpinnerViewHolder holder;
+  if (convertView == null) {
+    convertView=mInflater.inflate(R.layout.spinner_header,parent,false);
+    holder=new ActionBarSpinnerViewHolder();
+    holder.title=(TextView)convertView.findViewById(R.id.title);
+    holder.subtitle=(TextView)convertView.findViewById(R.id.subtitle);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(ActionBarSpinnerViewHolder)convertView.getTag();
+  }
+  holder.title.setText(mSpinnerItems.get(position).getTitle());
   int size=mTvShowKeys.size();
-  ((TextView)convertView.findViewById(R.id.subtitle)).setText(size + " " + getResources().getQuantityString(R.plurals.showsInLibrary,size,size));
+  holder.subtitle.setText(size + " " + getResources().getQuantityString(R.plurals.showsInLibrary,size,size));
   return convertView;
 }

@@ -10,7 +10,7 @@
   view.setTextViewText(R.id.widgetTitle,movies.get(position).getTitle());
   view.setViewVisibility(R.id.widgetTitle,View.VISIBLE);
   Intent i=new Intent(MovieBackdropWidgetProvider.MOVIE_BACKDROP_WIDGET);
-  i.putExtra("rowId",Integer.parseInt(movies.get(position).getRowId()));
+  i.putExtra("tmdbId",movies.get(position).getTmdbId());
   view.setOnClickFillInIntent(R.id.list_item,i);
   return view;
 }

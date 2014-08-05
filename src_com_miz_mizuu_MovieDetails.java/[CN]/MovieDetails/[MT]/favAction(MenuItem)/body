@@ -1,13 +1,6 @@
 {
   mMovie.setFavourite(!mMovie.isFavourite());
-  boolean success=true;
-  if (mMovie.hasMultipleVersions()) {
-    MovieVersion[] versions=mMovie.getMultipleVersions();
-    for (int i=0; i < versions.length; i++)     success=success && mDatabase.updateMovieSingleItem(Long.valueOf(versions[i].getRowId()),DbAdapter.KEY_FAVOURITE,mMovie.getFavourite());
-  }
- else {
-    success=mDatabase.updateMovieSingleItem(Long.valueOf(mMovie.getRowId()),DbAdapter.KEY_FAVOURITE,mMovie.getFavourite());
-  }
+  boolean success=mDatabase.updateMovieSingleItem(mMovie.getTmdbId(),DbAdapter.KEY_FAVOURITE,mMovie.getFavourite());
   if (success) {
     invalidateOptionsMenu();
     if (mMovie.isFavourite()) {

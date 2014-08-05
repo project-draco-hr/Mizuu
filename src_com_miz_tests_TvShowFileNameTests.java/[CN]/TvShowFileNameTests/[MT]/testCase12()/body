@@ -1,0 +1,14 @@
+{
+  ShowStructure ss=new ShowStructure("/Doctor.Who.2005.S07.720p.BluRay.DTS.x264/doctor.who.2005.s07e01.720p.bluray.x264-bia.mkv");
+  assertEquals("Doctor.Who.2005.S07.720p.BluRay.DTS.x264",ss.getShowFolderName());
+  assertEquals("doctor.who.2005.s07e01.720p.bluray.x264-bia.mkv",ss.getFilename());
+  assertEquals(false,ss.hasImdbId());
+  assertEquals(false,ss.hasSeasonFolder());
+  assertEquals(1,ss.getEpisodes().size());
+  assertEquals(7,ss.getEpisodes().get(0).getSeason());
+  assertEquals(1,ss.getEpisodes().get(0).getEpisode());
+  assertEquals("Doctor Who",ss.getDecryptedShowFolderName());
+  assertEquals("doctor who",ss.getDecryptedFilename());
+  assertEquals(true,ss.hasReleaseYear());
+  assertEquals(2005,ss.getReleaseYear());
+}

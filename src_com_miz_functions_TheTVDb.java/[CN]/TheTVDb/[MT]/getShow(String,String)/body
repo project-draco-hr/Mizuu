@@ -162,19 +162,19 @@
           list=firstElement.getElementsByTagName("EpisodeNumber");
           element=(Element)list.item(0);
           tag=element.getChildNodes();
-          episode.setEpisode(((Node)tag.item(0)).getNodeValue());
+          episode.setEpisode(MizLib.getInteger(((Node)tag.item(0)).getNodeValue()));
         }
  catch (        Exception e) {
-          episode.setEpisode("0");
+          episode.setEpisode(0);
         }
         try {
           list=firstElement.getElementsByTagName("SeasonNumber");
           element=(Element)list.item(0);
           tag=element.getChildNodes();
-          episode.setSeason(((Node)tag.item(0)).getNodeValue());
+          episode.setSeason(MizLib.getInteger(((Node)tag.item(0)).getNodeValue()));
         }
  catch (        Exception e) {
-          episode.setSeason("0");
+          episode.setSeason(0);
         }
         try {
           list=firstElement.getElementsByTagName("EpisodeName");

@@ -1,0 +1,14 @@
+{
+  ShowStructure ss=new ShowStructure("/2 Broke Girls/Special/2 Broke Girls - S01E01 - Reboot in Brooklyn.avi");
+  assertEquals(0,ss.getSeasonFolderNumber());
+  ss=new ShowStructure("/2 Broke Girls/Specials/2 Broke Girls - S01E01 - Reboot in Brooklyn.avi");
+  assertEquals(0,ss.getSeasonFolderNumber());
+  ss=new ShowStructure("/2 Broke Girls/Special episode/2 Broke Girls - S01E01 - Reboot in Brooklyn.avi");
+  assertEquals(0,ss.getSeasonFolderNumber());
+  ss=new ShowStructure("/2 Broke Girls/Special episodes/2 Broke Girls - S01E01 - Reboot in Brooklyn.avi");
+  assertEquals(0,ss.getSeasonFolderNumber());
+  ss=new ShowStructure("/2 Broke Girls/extra/2 Broke Girls - S01E01 - Reboot in Brooklyn.avi");
+  assertEquals(0,ss.getSeasonFolderNumber());
+  ss=new ShowStructure("/2 Broke Girls/extras/2 Broke Girls - S01E01 - Reboot in Brooklyn.avi");
+  assertEquals(0,ss.getSeasonFolderNumber());
+}

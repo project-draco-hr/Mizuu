@@ -1,15 +1,19 @@
 {
   ArrayList<DbEpisode> dbEpisodes=new ArrayList<DbEpisode>(), removedEpisodes=new ArrayList<DbEpisode>();
   DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+  ColumnIndexCache cache=new ColumnIndexCache();
   Cursor tempCursor=db.getAllEpisodesInDatabase(ignoreRemovedFiles());
   while (tempCursor.moveToNext()) {
     try {
-      dbEpisodes.add(new DbEpisode(getContext(),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_FILEPATH)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_ROWID)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SHOW_ID)),tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SHOW_ID)) + "_S" + tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_SEASON))+ "E"+ tempCursor.getString(tempCursor.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE))+ ".jpg"));
+      dbEpisodes.add(new DbEpisode(getContext(),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterTvShowEpisode.KEY_FILEPATH)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterTvShowEpisode.KEY_ROWID)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterTvShowEpisode.KEY_SHOW_ID)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterTvShowEpisode.KEY_SEASON)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterTvShowEpisode.KEY_EPISODE))));
     }
  catch (    NullPointerException e) {
     }
+ finally {
+      tempCursor.close();
+      cache.clear();
+    }
   }
-  tempCursor.close();
   int count=dbEpisodes.size();
   for (int i=0; i < dbEpisodes.size(); i++) {
     if (!new File(dbEpisodes.get(i).getFilepath()).exists()) {

@@ -6,12 +6,20 @@
     DbAdapterTvShow db=MizuuApplication.getTvDbAdapter();
     query=query.toLowerCase(Locale.ENGLISH);
     Cursor c=db.getAllShows();
-    String actors="";
-    while (c.moveToNext()) {
-      actors=c.getString(c.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ACTORS)).toLowerCase(Locale.ENGLISH);
-      if (actors.indexOf(query) != -1) {
-        for (        String actor : c.getString(c.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ACTORS)).split("\\|"))         if (actor.toLowerCase(Locale.ENGLISH).startsWith(query))         actorMap.put(actor,actor);
+    ColumnIndexCache cache=new ColumnIndexCache();
+    try {
+      while (c.moveToNext()) {
+        String actors=c.getString(cache.getColumnIndex(c,DbAdapterTvShow.KEY_SHOW_ACTORS)).toLowerCase(Locale.ENGLISH);
+        if (actors.indexOf(query) != -1) {
+          for (          String actor : c.getString(cache.getColumnIndex(c,DbAdapterTvShow.KEY_SHOW_ACTORS)).split("\\|"))           if (actor.toLowerCase(Locale.ENGLISH).startsWith(query))           actorMap.put(actor,actor);
+        }
       }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      c.close();
+      cache.clear();
     }
     actorList=new ArrayList<String>(actorMap.values());
     Collections.sort(actorList);

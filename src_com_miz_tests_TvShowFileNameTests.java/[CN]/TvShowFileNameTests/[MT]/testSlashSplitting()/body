@@ -1,0 +1,34 @@
+{
+  ShowStructure ss=new ShowStructure("/TV Shows/Chuck/Season 5/S05E01.mkv");
+  assertEquals("S05E01.mkv",ss.getFilename());
+  assertEquals("Season 5",ss.getSeasonFolderName());
+  assertEquals("Chuck",ss.getShowFolderName());
+  ss=new ShowStructure("/Chuck/Season05/S05E01.mkv");
+  assertEquals("S05E01.mkv",ss.getFilename());
+  assertEquals("Season05",ss.getSeasonFolderName());
+  assertEquals("Chuck",ss.getShowFolderName());
+  ss=new ShowStructure("/Chuck/S05/S05E01.mkv");
+  assertEquals("S05E01.mkv",ss.getFilename());
+  assertEquals("S05",ss.getSeasonFolderName());
+  assertEquals("Chuck",ss.getShowFolderName());
+  ss=new ShowStructure("Chuck/05/S05E01.mkv");
+  assertEquals("S05E01.mkv",ss.getFilename());
+  assertEquals("05",ss.getSeasonFolderName());
+  assertEquals("Chuck",ss.getShowFolderName());
+  ss=new ShowStructure("Chuck/05 lulz/S05E01.mkv");
+  assertEquals("S05E01.mkv",ss.getFilename());
+  assertEquals("",ss.getSeasonFolderName());
+  assertEquals("05 lulz",ss.getShowFolderName());
+  ss=new ShowStructure("Chuck/S05E01.mkv");
+  assertEquals("S05E01.mkv",ss.getFilename());
+  assertEquals("",ss.getSeasonFolderName());
+  assertEquals("Chuck",ss.getShowFolderName());
+  ss=new ShowStructure("/S05E01.mkv");
+  assertEquals("S05E01.mkv",ss.getFilename());
+  assertEquals("",ss.getSeasonFolderName());
+  assertEquals("",ss.getShowFolderName());
+  ss=new ShowStructure("S05E01.mkv");
+  assertEquals("S05E01.mkv",ss.getFilename());
+  assertEquals("",ss.getSeasonFolderName());
+  assertEquals("",ss.getShowFolderName());
+}

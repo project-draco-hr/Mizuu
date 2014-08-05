@@ -5,13 +5,21 @@
   if (!MizLib.isEmpty(query)) {
     DbAdapter db=MizuuApplication.getMovieAdapter();
     query=query.toLowerCase(Locale.ENGLISH);
-    Cursor c=db.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false,false);
-    String actors="";
-    while (c.moveToNext()) {
-      actors=c.getString(c.getColumnIndex(DbAdapter.KEY_CAST)).toLowerCase(Locale.ENGLISH);
-      if (actors.indexOf(query) != -1) {
-        for (        String actor : c.getString(c.getColumnIndex(DbAdapter.KEY_CAST)).split("\\|"))         if (actor.toLowerCase(Locale.ENGLISH).startsWith(query))         actorMap.put(actor,actor);
+    Cursor c=db.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
+    ColumnIndexCache cache=new ColumnIndexCache();
+    try {
+      while (c.moveToNext()) {
+        String actors=c.getString(cache.getColumnIndex(c,DbAdapter.KEY_ACTORS)).toLowerCase(Locale.ENGLISH);
+        if (actors.indexOf(query) != -1) {
+          for (          String actor : c.getString(cache.getColumnIndex(c,DbAdapter.KEY_ACTORS)).split("\\|"))           if (actor.toLowerCase(Locale.ENGLISH).startsWith(query))           actorMap.put(actor,actor);
+        }
       }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      c.close();
+      cache.clear();
     }
     actorList=new ArrayList<String>(actorMap.values());
     Collections.sort(actorList);

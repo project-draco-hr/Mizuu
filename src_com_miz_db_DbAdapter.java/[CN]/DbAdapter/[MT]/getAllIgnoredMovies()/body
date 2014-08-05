@@ -1,3 +1,3 @@
 {
-  return database.query(DATABASE_TABLE,SELECT_ALL,KEY_TITLE + " = 'MIZ_REMOVED_MOVIE'",null,null,null,null);
+  return mDatabase.query(DATABASE_TABLE,SELECT_ALL,KEY_TITLE + " = '" + REMOVED_MOVIE_TITLE+ "'",null,null,null,null);
 }

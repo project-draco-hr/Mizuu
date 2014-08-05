@@ -10,6 +10,7 @@
   notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
   PendingIntent contentIntent=PendingIntent.getActivity(this,NOTIFICATION_ID,notificationIntent,0);
   mBuilder=new NotificationCompat.Builder(getApplicationContext());
+  mBuilder.setPriority(NotificationCompat.PRIORITY_MAX);
   mBuilder.setSmallIcon(R.drawable.refresh);
   mBuilder.setTicker(getString(R.string.updatingTvShows));
   mBuilder.setContentTitle(getString(R.string.updatingTvShows));

@@ -3,7 +3,7 @@
     playMovie(mMovie.getOfflineCopyUri(),false);
   }
  else   if (mMovie.hasMultipleVersions() && !mMovie.isUnidentified()) {
-    final MovieVersion[] versions=mMovie.getMultipleVersions();
+    final MovieFilepath[] versions=mMovie.getMultipleVersions();
     CharSequence[] items=new CharSequence[versions.length];
     for (int i=0; i < versions.length; i++)     items[i]=MizLib.transformSmbPath(versions[i].getFilepath());
     AlertDialog.Builder builder=new AlertDialog.Builder(this);

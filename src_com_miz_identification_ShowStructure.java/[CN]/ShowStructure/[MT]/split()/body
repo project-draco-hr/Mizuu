@@ -1,0 +1,22 @@
+{
+  Pattern splitPattern=Pattern.compile("/");
+  String[] split=splitPattern.split(mFilepath.contains("<MiZ>") ? mFilepath.split("<MiZ>")[0] : mFilepath);
+  if (split.length >= 3) {
+    mFilename=split[split.length - 1];
+    int tempSeasonCheck=getSeasonFolderNumber(split[split.length - 2].trim());
+    if (tempSeasonCheck >= 0) {
+      mSeasonFolder=split[split.length - 2].trim();
+      mSeasonFolderNumber=tempSeasonCheck;
+      mShowFolder=split[split.length - 3].trim();
+    }
+ else {
+      mShowFolder=split[split.length - 2].trim();
+    }
+  }
+ else {
+    mFilename=split[split.length - 1].trim();
+    if (split.length == 2) {
+      mShowFolder=split[0].trim();
+    }
+  }
+}

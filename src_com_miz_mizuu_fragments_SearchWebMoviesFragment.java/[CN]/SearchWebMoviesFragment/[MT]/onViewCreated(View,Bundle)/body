@@ -1,10 +1,9 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  pbar=(ProgressBar)v.findViewById(R.id.pbar);
-  useSystemLanguage=(CheckBox)v.findViewById(R.id.searchLanguage);
-  useSystemLanguage.setText(getString(R.string.searchIn) + " " + locale.getDisplayLanguage(Locale.ENGLISH));
-  if (localizedInfo)   useSystemLanguage.setChecked(true);
-  lv=(ListView)v.findViewById(android.R.id.list);
+  pbar=(ProgressBar)v.findViewById(R.id.progressBar1);
+  v.findViewById(R.id.languageSection).setVisibility(View.GONE);
+  lv=(ListView)v.findViewById(R.id.listView1);
+  hideProgressBar();
   lv.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
       showMovie(arg2);
@@ -13,7 +12,7 @@
 );
   lv.setEmptyView(v.findViewById(R.id.no_results));
   v.findViewById(R.id.no_results).setVisibility(View.GONE);
-  searchText=(EditText)v.findViewById(R.id.search);
+  searchText=(EditText)v.findViewById(R.id.editText1);
   searchText.setSelection(searchText.length());
   searchText.addTextChangedListener(new TextWatcher(){
     @Override public void beforeTextChanged(    CharSequence s,    int start,    int count,    int after){

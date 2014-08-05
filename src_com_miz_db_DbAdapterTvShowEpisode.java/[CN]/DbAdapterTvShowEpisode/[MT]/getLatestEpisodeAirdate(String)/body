@@ -1,7 +1,7 @@
 {
   String s="";
   Cursor c=database.query(DATABASE_TABLE,allRows,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_EPISODE_AIRDATE+ " LIKE '%-%'",null,null,null,KEY_EPISODE_AIRDATE + " desc");
-  if (c.moveToFirst())   s=c.getString((c.getColumnIndex(DbAdapterTvShowEpisode.KEY_EPISODE_AIRDATE)));
+  if (c.moveToFirst())   s=c.getString(mCache.getColumnIndex(c,DbAdapterTvShowEpisode.KEY_EPISODE_AIRDATE));
   c.close();
   return s;
 }
