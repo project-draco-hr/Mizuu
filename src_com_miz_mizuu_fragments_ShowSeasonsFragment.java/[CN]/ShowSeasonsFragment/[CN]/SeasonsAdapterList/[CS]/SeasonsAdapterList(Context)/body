@@ -1,3 +1,0 @@
-{
-  inflater=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-}

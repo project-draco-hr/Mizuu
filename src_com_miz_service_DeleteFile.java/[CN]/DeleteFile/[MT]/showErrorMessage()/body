@@ -1,5 +1,5 @@
 {
-  Handler mHandler=new Handler();
+  Handler mHandler=new Handler(Looper.getMainLooper());
   mHandler.post(new Runnable(){
     @Override public void run(){
       Toast.makeText(getApplicationContext(),R.string.failedDeleting,Toast.LENGTH_LONG).show();

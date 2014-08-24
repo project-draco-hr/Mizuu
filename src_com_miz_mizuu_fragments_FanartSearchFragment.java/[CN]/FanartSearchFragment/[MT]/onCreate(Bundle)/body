@@ -2,7 +2,7 @@
   super.onCreate(savedInstanceState);
   setHasOptionsMenu(true);
   setRetainInstance(true);
-  TMDB_ID=getArguments().getString("tmdbId");
+  mTmdbId=getArguments().getString("tmdbId");
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
 }

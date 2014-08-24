@@ -1,0 +1,12 @@
+String season
+String episode
+String showId
+String episodeTitle
+String episodePlot
+String episodeAirdate
+String episodeRating
+String episodeDirector
+String episodeWriter
+String episodeGuestStars
+String hasWatched
+String favorite

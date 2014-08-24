@@ -1,0 +1,3 @@
+{
+  return mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + " = 'invalid'",null) > 0 && MizuuApplication.getTvDbAdapter().deleteAllUnidentifiedShows();
+}

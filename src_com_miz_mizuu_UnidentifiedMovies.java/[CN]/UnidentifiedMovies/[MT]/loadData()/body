@@ -1,0 +1,16 @@
+{
+  mFilepaths.clear();
+  Cursor cursor=MizuuApplication.getMovieMappingAdapter().getAllUnidentifiedFilepaths();
+  try {
+    while (cursor.moveToNext()) {
+      mFilepaths.add(cursor.getString(cursor.getColumnIndex(DbAdapterMovieMappings.KEY_FILEPATH)));
+    }
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    cursor.close();
+  }
+  mList.setAdapter(new ListAdapter(this));
+  enableNoFilesMessage(mFilepaths.size() == 0);
+}

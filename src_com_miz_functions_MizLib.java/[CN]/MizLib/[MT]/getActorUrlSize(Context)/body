@@ -5,9 +5,9 @@
   Display d=window.getDefaultDisplay();
   Point size=new Point();
   d.getSize(size);
-  final int numColumns=(int)Math.floor(getGreatestNumber(size.x,size.y) / (mImageThumbSize + mImageThumbSpacing));
+  final int numColumns=(int)Math.floor(Math.max(size.x,size.y) / (mImageThumbSize + mImageThumbSpacing));
   if (numColumns > 0) {
-    final int columnWidth=(getGreatestNumber(size.x,size.y) / numColumns) - mImageThumbSpacing;
+    final int columnWidth=(Math.max(size.x,size.y) / numColumns) - mImageThumbSpacing;
     if (columnWidth > 400)     return "h632";
     if (columnWidth >= 300)     return "w300";
   }

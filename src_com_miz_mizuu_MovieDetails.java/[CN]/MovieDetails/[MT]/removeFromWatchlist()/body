@@ -1,6 +1,6 @@
 {
   mMovie.setToWatch(false);
-  boolean success=mDatabase.updateMovieSingleItem(mMovie.getTmdbId(),DbAdapter.KEY_TO_WATCH,mMovie.getToWatch());
+  boolean success=mDatabase.updateMovieSingleItem(mMovie.getTmdbId(),DbAdapterMovies.KEY_TO_WATCH,mMovie.getToWatch());
   if (success) {
     invalidateOptionsMenu();
     notifyDatasetChanges();

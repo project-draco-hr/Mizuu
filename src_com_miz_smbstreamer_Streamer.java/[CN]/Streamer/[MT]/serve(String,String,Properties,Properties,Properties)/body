@@ -3,9 +3,9 @@
   try {
     SmbFile sourceFile=null;
     String name=getNameFromPath(uri);
-    if (file != null && file.getName().equals(name))     sourceFile=file;
- else     if (extras != null) {
-      for (      SmbFile i : extras) {
+    if (mFile != null && mFile.getName().equals(name))     sourceFile=mFile;
+ else     if (mExtras != null) {
+      for (      SmbFile i : mExtras) {
         if (i != null && i.getName().equals(name)) {
           sourceFile=i;
           break;
@@ -60,7 +60,6 @@
     }
   }
  catch (  IOException ioe) {
-    ioe.printStackTrace();
     res=new Response(HTTP_FORBIDDEN,MIME_PLAINTEXT,null);
   }
   res.addHeader("Accept-Ranges","bytes");

@@ -1,3 +1,0 @@
-{
-  return getFilepath().matches(".*(cd1|part1).*");
-}

@@ -1,0 +1,35 @@
+{
+  File dbFile=context.getDatabasePath("mizuu_sources");
+  if (dbFile.exists()) {
+    database.execSQL(DATABASE_CREATE_FILESOURCES);
+    String KEY_FILEPATH="filepath";
+    String KEY_TYPE="type";
+    String KEY_FILESOURCE_TYPE="is_smb";
+    String KEY_USER="user";
+    String KEY_PASSWORD="password";
+    String KEY_DOMAIN="domain";
+    String[] SELECT_ALL=new String[]{KEY_FILEPATH,KEY_TYPE,KEY_FILESOURCE_TYPE,KEY_USER,KEY_PASSWORD,KEY_DOMAIN};
+    SQLiteDatabase db=SQLiteDatabase.openOrCreateDatabase(dbFile,null);
+    Cursor c=db.query("sources",SELECT_ALL,null,null,null,null,null);
+    try {
+      while (c.moveToNext()) {
+        ContentValues cv=new ContentValues();
+        cv.put(KEY_FILEPATH,c.getString(c.getColumnIndex(KEY_FILEPATH)));
+        cv.put(KEY_TYPE,c.getString(c.getColumnIndex(KEY_TYPE)));
+        cv.put(KEY_FILESOURCE_TYPE,c.getInt(c.getColumnIndex(KEY_FILESOURCE_TYPE)));
+        cv.put(KEY_USER,c.getString(c.getColumnIndex(KEY_USER)));
+        cv.put(KEY_PASSWORD,c.getString(c.getColumnIndex(KEY_PASSWORD)));
+        cv.put(KEY_DOMAIN,c.getString(c.getColumnIndex(KEY_DOMAIN)));
+        database.insert("sources",null,cv);
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      c.close();
+      db.close();
+      if (MizLib.hasJellyBean())       SQLiteDatabase.deleteDatabase(dbFile);
+ else       dbFile.delete();
+    }
+  }
+}

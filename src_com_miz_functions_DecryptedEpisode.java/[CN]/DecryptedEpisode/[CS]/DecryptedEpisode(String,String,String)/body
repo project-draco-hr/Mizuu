@@ -1,5 +1,0 @@
-{
-  setName(name);
-  setSeason(season);
-  setEpisode(episode);
-}

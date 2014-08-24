@@ -1,5 +1,0 @@
-{
-  File f=c.getExternalFilesDir(null);
-  f.mkdirs();
-  return f;
-}

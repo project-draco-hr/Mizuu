@@ -5,7 +5,7 @@
       try {
         String showId=String.valueOf(jsonArray.getJSONObject(i).getString("tvdb_id"));
         mTraktFavorites.add(showId);
-        if (!mLocalFavorites.contains(showId))         mShowDatabase.updateShowSingleItem(showId,DbAdapterTvShow.KEY_SHOW_EXTRA1,"1");
+        if (!mLocalFavorites.contains(showId))         mShowDatabase.updateShowSingleItem(showId,DbAdapterTvShows.KEY_SHOW_FAVOURITE,"1");
       }
  catch (      Exception e) {
       }

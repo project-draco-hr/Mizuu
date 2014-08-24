@@ -1,5 +1,0 @@
-{
-  int count=0;
-  for (int i=0; i < seasons.size(); i++)   count+=seasonEpisodeCount.get(Integer.valueOf(seasons.get(i)));
-  return count;
-}

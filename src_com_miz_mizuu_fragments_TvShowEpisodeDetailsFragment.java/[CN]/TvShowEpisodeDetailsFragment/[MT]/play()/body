@@ -1,8 +1,47 @@
 {
-  if (mEpisode.hasOfflineCopy()) {
-    playEpisode(mEpisode.getOfflineCopyUri(),false);
+  ArrayList<Filepath> paths=mEpisode.getFilepaths();
+  if (paths.size() == 1) {
+    Filepath path=paths.get(0);
+    if (mEpisode.hasOfflineCopy(path)) {
+      boolean playbackStarted=VideoUtils.playVideo(getActivity(),mEpisode.getOfflineCopyUri(path),false,mEpisode);
+      if (playbackStarted) {
+        mVideoPlaybackStarted=System.currentTimeMillis();
+        checkIn();
+      }
+    }
+ else {
+      boolean playbackStarted=VideoUtils.playVideo(getActivity(),path.getFilepath(),path.isNetworkFile(),mEpisode);
+      if (playbackStarted) {
+        mVideoPlaybackStarted=System.currentTimeMillis();
+        checkIn();
+      }
+    }
   }
  else {
-    playEpisode(mEpisode.getFilepath(),mEpisode.isNetworkFile());
+    boolean hasOfflineCopy=false;
+    for (    Filepath path : paths) {
+      if (mEpisode.hasOfflineCopy(path)) {
+        boolean playbackStarted=VideoUtils.playVideo(getActivity(),mEpisode.getOfflineCopyUri(path),false,mEpisode);
+        if (playbackStarted) {
+          mVideoPlaybackStarted=System.currentTimeMillis();
+          checkIn();
+        }
+        hasOfflineCopy=true;
+        break;
+      }
+    }
+    if (!hasOfflineCopy) {
+      MizLib.showSelectFileDialog(getActivity(),mEpisode.getFilepaths(),new Dialog.OnClickListener(){
+        @Override public void onClick(        DialogInterface dialog,        int which){
+          Filepath path=mEpisode.getFilepaths().get(which);
+          boolean playbackStarted=VideoUtils.playVideo(getActivity(),path.getFilepath(),path.isNetworkFile(),mEpisode);
+          if (playbackStarted) {
+            mVideoPlaybackStarted=System.currentTimeMillis();
+            checkIn();
+          }
+        }
+      }
+);
+    }
   }
 }

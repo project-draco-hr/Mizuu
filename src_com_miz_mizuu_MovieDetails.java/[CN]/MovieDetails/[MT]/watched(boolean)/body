@@ -1,6 +1,6 @@
 {
   mMovie.setHasWatched(!mMovie.hasWatched());
-  boolean success=mDatabase.updateMovieSingleItem(mMovie.getTmdbId(),DbAdapter.KEY_HAS_WATCHED,mMovie.getHasWatched());
+  boolean success=mDatabase.updateMovieSingleItem(mMovie.getTmdbId(),DbAdapterMovies.KEY_HAS_WATCHED,mMovie.getHasWatched());
   if (success) {
     invalidateOptionsMenu();
     if (showToast)     if (mMovie.hasWatched()) {

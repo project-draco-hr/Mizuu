@@ -1,6 +1,0 @@
-{
-  super.onCreate(savedInstanceState);
-  setRetainInstance(true);
-  currentFolder=new File(getArguments().getString("path"));
-  isMovie=getArguments().getBoolean("isMovie");
-}

@@ -1,0 +1,17 @@
+{
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ season+ "' AND "+ KEY_EPISODE+ "='"+ episode+ "'",null,null,null,null);
+  String filepath="";
+  if (cursor != null) {
+    try {
+      if (cursor.moveToFirst()) {
+        filepath=cursor.getString(cursor.getColumnIndex(KEY_FILEPATH));
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+    }
+  }
+  return filepath;
+}

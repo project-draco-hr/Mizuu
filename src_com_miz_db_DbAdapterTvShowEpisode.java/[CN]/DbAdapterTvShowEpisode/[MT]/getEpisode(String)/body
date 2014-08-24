@@ -1,3 +1,0 @@
-{
-  return database.query(DATABASE_TABLE,allRows,KEY_ROWID + "='" + rowId+ "'",null,null,null,null);
-}

@@ -4,5 +4,5 @@
   mime=MizLib.getMimeType(file.getName(),false);
   name=file.getName();
   this.file=file;
-  bufferSize=1024 * 16;
+  bufferSize=16 * 1024;
 }

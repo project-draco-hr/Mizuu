@@ -1,11 +1,11 @@
 {
   mDbMovies.clear();
-  DbAdapter db=MizuuApplication.getMovieAdapter();
+  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
   ColumnIndexCache cache=new ColumnIndexCache();
-  Cursor tempCursor=db.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",ignoreRemovedFiles());
+  Cursor tempCursor=db.fetchAllMovies(DbAdapterMovies.KEY_TITLE + " ASC",ignoreRemovedFiles());
   try {
     while (tempCursor.moveToNext()) {
-      mDbMovies.add(new DbMovie(getContext(),MizuuApplication.getMovieMappingAdapter().getFirstFilepathForMovie(tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovieMapping.KEY_TMDB_ID))),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapter.KEY_TMDB_ID)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapter.KEY_RUNTIME)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapter.KEY_RELEASEDATE)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapter.KEY_GENRES)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapter.KEY_TITLE))));
+      mDbMovies.add(new DbMovie(getContext(),MizuuApplication.getMovieMappingAdapter().getFirstFilepathForMovie(tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovieMappings.KEY_TMDB_ID))),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_TMDB_ID)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_RUNTIME)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_RELEASEDATE)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_GENRES)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_TITLE))));
     }
   }
  catch (  NullPointerException e) {

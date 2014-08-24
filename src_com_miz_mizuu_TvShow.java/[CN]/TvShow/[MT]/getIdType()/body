@@ -1,0 +1,4 @@
+{
+  if (mId.startsWith("tmdb_"))   return TMDB;
+  return THETVDB;
+}

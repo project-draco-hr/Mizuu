@@ -16,11 +16,8 @@
   if (mSpinnerAdater == null)   mSpinnerAdater=new ActionBarSpinner(this,mSpinnerItems);
   setTitle(null);
   mIgnorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_TITLE_PREFIXES,false);
-  mIgnoreNfo=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_NFO_FILES,true);
   mRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(REMOVE_MOVIES_FROM_WATCHLIST,true);
   mIgnoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_FILES_ENABLED,false);
-  mWildcard=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORE_VIDEO_FILE_TYPE,false);
-  mDisableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
   mYouTubeApiKey=MizLib.getYouTubeApiKey(this);
   if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
     mMovieId=getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY);
@@ -31,7 +28,7 @@
   mDatabase=MizuuApplication.getMovieAdapter();
   Cursor cursor=mDatabase.fetchMovie(mMovieId);
   try {
-    mMovie=new Movie(this,MizuuApplication.getMovieMappingAdapter().getFirstFilepathForMovie(cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID))),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_IMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_ACTORS)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_COLLECTION_ID)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_DATE_ADDED)),mIgnorePrefixes,mIgnoreNfo);
+    mMovie=new Movie(this,cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_IMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_ACTORS)),MizuuApplication.getCollectionsAdapter().getCollection(cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_COLLECTION_ID))),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_COLLECTION_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_DATE_ADDED)),mIgnorePrefixes);
   }
  catch (  Exception e) {
     finish();
@@ -52,9 +49,6 @@
 );
     if (savedInstanceState != null) {
       mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
-    }
-    if (MizuuApplication.getMovieMappingAdapter().hasMultipleFilepaths(mMovie.getTmdbId())) {
-      mMovie.setFilepaths(MizuuApplication.getMovieMappingAdapter().getMovieFilepaths(mMovie.getTmdbId()));
     }
     setupSpinnerItems();
   }

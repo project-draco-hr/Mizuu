@@ -1,4 +1,0 @@
-{
-  FileBrowserFragment frag=(FileBrowserFragment)getSupportFragmentManager().findFragmentByTag(TAG);
-  frag.onBackPressed();
-}

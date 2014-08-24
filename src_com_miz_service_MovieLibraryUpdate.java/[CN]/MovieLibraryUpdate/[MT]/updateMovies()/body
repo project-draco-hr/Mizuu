@@ -10,7 +10,6 @@
       newMovieDbObject(sb.toString());
     }
  else {
-      System.out.println("WE HAVE A NFO FILE! " + sb.toString());
       sb1.delete(0,sb1.length());
       sb1.append(MizLib.removeExtension(sb.toString().replaceAll("part[1-9]|cd[1-9]","").trim()));
       sb2.delete(0,sb2.length());

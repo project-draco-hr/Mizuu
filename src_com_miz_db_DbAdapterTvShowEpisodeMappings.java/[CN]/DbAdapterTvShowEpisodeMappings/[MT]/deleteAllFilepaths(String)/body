@@ -1,0 +1,4 @@
+{
+  boolean result=MizuuApplication.getTvEpisodeDbAdapter().deleteAllEpisodes(showId);
+  return result && mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + "='" + showId+ "'",null) > 0;
+}

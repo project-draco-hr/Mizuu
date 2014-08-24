@@ -1,0 +1,5 @@
+{
+  ContentValues initialValues=createContentValues(season,episode,showId,episodeTitle,episodePlot,episodeAirdate,episodeRating,episodeDirector,episodeWriter,episodeGuestStars,hasWatched,favorite);
+  MizuuApplication.getTvShowEpisodeMappingsDbAdapter().createFilepathMapping(filepath,showId,season,episode);
+  return mDatabase.insert(DATABASE_TABLE,null,initialValues);
+}

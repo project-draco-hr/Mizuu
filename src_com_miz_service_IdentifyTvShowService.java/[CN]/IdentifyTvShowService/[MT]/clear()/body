@@ -1,0 +1,7 @@
+{
+  mNewShowTitle="";
+  mNewShowId="";
+  mOldShowId="";
+  mLanguage="";
+  mFiles=new ArrayList<ShowStructure>();
+}

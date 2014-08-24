@@ -1,6 +1,6 @@
 {
   if (sMovieThumbFolder == null) {
-    sMovieThumbFolder=new File(c.getExternalFilesDir(null),"movie-thumbs");
+    sMovieThumbFolder=getSubAppFolder(c,"movie-thumbs");
     sMovieThumbFolder.mkdirs();
   }
   return sMovieThumbFolder;

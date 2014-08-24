@@ -1,3 +1,0 @@
-{
-  return database.delete(DATABASE_TABLE,KEY_SHOW_ID + " = '" + showId+ "' and "+ KEY_SEASON+ " = '"+ season+ "'",null) > 0;
-}

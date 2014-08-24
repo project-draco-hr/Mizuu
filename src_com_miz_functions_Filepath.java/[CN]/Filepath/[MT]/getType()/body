@@ -1,0 +1,11 @@
+{
+  if (mFilepath.contains("smb://")) {
+    return FileSource.SMB;
+  }
+ else   if (mFilepath.contains("http://")) {
+    return FileSource.UPNP;
+  }
+ else {
+    return FileSource.FILE;
+  }
+}

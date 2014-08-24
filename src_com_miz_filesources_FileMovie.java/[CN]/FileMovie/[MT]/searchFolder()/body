@@ -1,10 +1,10 @@
 {
-  DbAdapterMovieMapping dbHelper=MizuuApplication.getMovieMappingAdapter();
+  DbAdapterMovieMappings dbHelper=MizuuApplication.getMovieMappingAdapter();
   Cursor cursor=dbHelper.getAllFilepaths(ignoreRemovedFiles());
   ColumnIndexCache cache=new ColumnIndexCache();
   try {
     while (cursor.moveToNext()) {
-      existingMovies.put(cursor.getString(cache.getColumnIndex(cursor,DbAdapterMovieMapping.KEY_FILEPATH)),"");
+      existingMovies.put(cursor.getString(cache.getColumnIndex(cursor,DbAdapterMovieMappings.KEY_FILEPATH)),"");
     }
   }
  catch (  Exception e) {

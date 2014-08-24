@@ -6,12 +6,5 @@
   mTmdbApiKey=MizLib.getTmdbApiKey(getActivity());
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
-  if (!getArguments().containsKey("json")) {
-    if (getArguments().getString("showId") == null) {
-      new GetActorDetails(getActivity()).execute(getActivity().getIntent().getExtras().getString("showId"));
-    }
- else {
-      new GetActorDetails(getActivity()).execute(getArguments().getString("showId"));
-    }
-  }
+  new GetActorDetails(getActivity(),getArguments().getString("showId")).execute();
 }

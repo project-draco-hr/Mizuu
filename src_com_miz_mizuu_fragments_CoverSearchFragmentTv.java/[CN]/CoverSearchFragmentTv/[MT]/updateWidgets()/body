@@ -1,7 +1,0 @@
-{
-  if (isAdded()) {
-    AppWidgetManager awm=AppWidgetManager.getInstance(getActivity());
-    awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(getActivity(),ShowStackWidgetProvider.class)),R.id.stack_view);
-    awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(getActivity(),ShowCoverWidgetProvider.class)),R.id.widget_grid);
-  }
-}

@@ -1,0 +1,37 @@
+{
+  super(context,title,tmdbId,ignorePrefixes);
+  RATING=rating;
+  RELEASEDATE=releasedate;
+  GENRES=genres;
+  FAVOURITE=favourite;
+  CAST=cast;
+  COLLECTION=collection;
+  COLLECTION_ID=collectionId;
+  TO_WATCH=toWatch;
+  HAS_WATCHED=hasWatched;
+  DATE_ADDED=date_added;
+  CERTIFICATION=certification;
+  RUNTIME=runtime.replace("min","").trim();
+  if (!TextUtils.isEmpty(RELEASEDATE)) {
+    String YEAR=RELEASEDATE.trim();
+    try {
+      if (YEAR.substring(4,5).equals("-") && YEAR.substring(7,8).equals("-")) {
+        mGetReleaseYear=YEAR.substring(0,4);
+      }
+ else {
+        mGetReleaseYear=mContext.getString(R.string.unknownYear);
+      }
+    }
+ catch (    Exception e) {
+      if (YEAR.length() == 4)       mGetReleaseYear=YEAR;
+ else       mGetReleaseYear=mContext.getString(R.string.unknownYear);
+    }
+  }
+ else {
+    mGetReleaseYear=mContext.getString(R.string.unknownYear);
+  }
+  mWeightedCompatibility=(int)(getWeightedRating() * 10) + "% " + mContext.getString(R.string.compatibility);
+  mDateAdded=MizLib.getPrettyDate(mContext,Long.valueOf(getDateAdded()));
+  mRuntime=MizLib.getPrettyTime(mContext,Integer.parseInt(getRuntime()));
+  mReleaseDate=MizLib.getPrettyDate(mContext,getReleasedate());
+}

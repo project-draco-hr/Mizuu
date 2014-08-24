@@ -1,8 +1,0 @@
-{
-  try {
-    return list.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition,childPosition));
-  }
- catch (  Exception e) {
-    return 0;
-  }
-}

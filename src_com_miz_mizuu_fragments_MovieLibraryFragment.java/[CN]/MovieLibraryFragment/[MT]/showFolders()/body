@@ -1,13 +1,15 @@
 {
   final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
   for (int i=0; i < mMovieKeys.size(); i++) {
-    String folder=MizLib.getParentFolder(mMovies.get(mMovieKeys.get(i)).getFilepath());
-    if (!MizLib.isEmpty(folder)) {
-      if (map.containsKey(folder.trim())) {
-        map.put(folder.trim(),map.get(folder.trim()) + 1);
-      }
+    for (    Filepath path : mMovies.get(mMovieKeys.get(i)).getFilepaths()) {
+      String folder=path.getFilepath();
+      if (!TextUtils.isEmpty(folder)) {
+        if (map.containsKey(folder.trim())) {
+          map.put(folder.trim(),map.get(folder.trim()) + 1);
+        }
  else {
-        map.put(folder.trim(),1);
+          map.put(folder.trim(),1);
+        }
       }
     }
   }

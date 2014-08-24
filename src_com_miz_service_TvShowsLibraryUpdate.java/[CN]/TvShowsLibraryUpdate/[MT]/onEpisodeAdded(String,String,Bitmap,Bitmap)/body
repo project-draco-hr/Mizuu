@@ -1,4 +1,4 @@
 {
-  if (!showId.equals("invalid"))   mEpisodeCount++;
+  if (!showId.equals(DbAdapterTvShows.UNIDENTIFIED_ID))   mEpisodeCount++;
   updateEpisodeAddedNotification(showId,title,cover,photo);
 }

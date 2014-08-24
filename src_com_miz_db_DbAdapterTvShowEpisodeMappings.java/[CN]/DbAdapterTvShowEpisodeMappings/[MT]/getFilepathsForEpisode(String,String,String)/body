@@ -1,0 +1,17 @@
+{
+  ArrayList<String> paths=new ArrayList<String>();
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ season+ "' AND "+ KEY_EPISODE+ "='"+ episode+ "'",null,null,null,null);
+  if (cursor != null) {
+    try {
+      while (cursor.moveToNext()) {
+        paths.add(cursor.getString(cursor.getColumnIndex(KEY_FILEPATH)));
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+    }
+  }
+  return paths;
+}

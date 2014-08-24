@@ -1,4 +1,0 @@
-{
-  if (!showId.equals("invalid"))   mEpisodeCount++;
-  updateEpisodeAddedNotification(showId,title,cover,photo);
-}

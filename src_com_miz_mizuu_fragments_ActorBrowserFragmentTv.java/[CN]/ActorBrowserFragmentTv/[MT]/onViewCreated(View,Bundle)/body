@@ -30,8 +30,4 @@
     }
   }
 );
-  if (getArguments().containsKey("json")) {
-    json=getArguments().getString("json");
-    loadJson(getArguments().getString("baseUrl"));
-  }
 }

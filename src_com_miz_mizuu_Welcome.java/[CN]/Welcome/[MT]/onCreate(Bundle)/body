@@ -9,10 +9,10 @@
   tf=MizuuApplication.getOrCreateTypeface(this,"Roboto-Thin.ttf");
   dbHelper=MizuuApplication.getMovieAdapter();
   dbHelperTv=MizuuApplication.getTvDbAdapter();
-  Cursor cursor=dbHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
+  Cursor cursor=dbHelper.fetchAllMovies(DbAdapterMovies.KEY_TITLE + " ASC",false);
   while (cursor.moveToNext()) {
     try {
-      backdrops.add(new Backdrop(MizLib.getMovieBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TMDB_ID)),true,cursor.getString(cursor.getColumnIndex(DbAdapter.KEY_TITLE))));
+      backdrops.add(new Backdrop(MizLib.getMovieBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TMDB_ID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TMDB_ID)),true,cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TITLE))));
     }
  catch (    NullPointerException e) {
     }
@@ -20,7 +20,7 @@
   cursor=dbHelperTv.getAllShows();
   while (cursor.moveToNext()) {
     try {
-      backdrops.add(new Backdrop(MizLib.getTvShowBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_ID)),false,cursor.getString(cursor.getColumnIndex(DbAdapterTvShow.KEY_SHOW_TITLE))));
+      backdrops.add(new Backdrop(MizLib.getTvShowBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapterTvShows.KEY_SHOW_ID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapterTvShows.KEY_SHOW_ID)),false,cursor.getString(cursor.getColumnIndex(DbAdapterTvShows.KEY_SHOW_TITLE))));
     }
  catch (    NullPointerException e) {
     }
@@ -69,7 +69,7 @@ aniIn.setDuration(800);
 Animation aniOut=AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
 aniOut.setDuration(800);
 imageSwitcher=(ImageSwitcher)findViewById(R.id.imageSwitcher1);
-if (!MizLib.isGoogleTV(this)) imageSwitcher.setOnClickListener(new OnClickListener(){
+if (!MizLib.usesNavigationControl(getApplicationContext())) imageSwitcher.setOnClickListener(new OnClickListener(){
 @Override public void onClick(View v){
 Intent intent=new Intent();
 if (index == -1) index=0;

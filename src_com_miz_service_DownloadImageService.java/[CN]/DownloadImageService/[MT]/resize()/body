@@ -1,0 +1,4 @@
+{
+  if (!mNeedsResizing)   return;
+  MizLib.resizeBitmapFileToCoverSize(this,mDownloadPath);
+}

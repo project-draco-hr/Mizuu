@@ -1,3 +1,0 @@
-{
-  database=DbHelperTvShow.getHelper(context).getWritableDatabase();
-}

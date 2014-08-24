@@ -1,0 +1,8 @@
+{
+  mKey=key;
+  mView=view;
+  Palette p=MizuuApplication.getPalette(mKey);
+  if (p != null) {
+    setBackgroundColor(p,false);
+  }
+}

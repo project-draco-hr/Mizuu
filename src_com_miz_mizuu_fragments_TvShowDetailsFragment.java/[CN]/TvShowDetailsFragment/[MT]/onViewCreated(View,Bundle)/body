@@ -1,5 +1,6 @@
 {
   super.onViewCreated(v,savedInstanceState);
+  mDetailsArea=v.findViewById(R.id.details_area);
   v.findViewById(R.id.textView3).setVisibility(View.GONE);
   v.findViewById(R.id.textView6).setVisibility(View.GONE);
   if (MizLib.isPortrait(getActivity())) {
@@ -64,7 +65,7 @@
   }
   textPlot.setText(thisShow.getDescription());
   textGenre.setTypeface(mLightItalic);
-  if (!MizLib.isEmpty(thisShow.getGenres())) {
+  if (!TextUtils.isEmpty(thisShow.getGenres())) {
     textGenre.setText(thisShow.getGenres());
   }
  else {
@@ -90,7 +91,7 @@
  else {
     textRating.setText(R.string.stringNA);
   }
-  if (!MizLib.isEmpty(thisShow.getCertification())) {
+  if (!TextUtils.isEmpty(thisShow.getCertification())) {
     textCertification.setText(thisShow.getCertification());
   }
  else {

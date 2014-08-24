@@ -1,3 +1,0 @@
-{
-  return seasonEpisodeCount.get(Integer.valueOf(seasons.get(groupPosition)));
-}

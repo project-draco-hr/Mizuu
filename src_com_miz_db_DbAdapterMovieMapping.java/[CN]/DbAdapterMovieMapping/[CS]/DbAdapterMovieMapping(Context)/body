@@ -1,3 +1,0 @@
-{
-  mDatabase=DbHelperMovieMapping.getHelper(context).getWritableDatabase();
-}

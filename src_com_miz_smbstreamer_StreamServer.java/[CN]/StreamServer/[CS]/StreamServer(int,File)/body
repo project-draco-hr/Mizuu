@@ -1,11 +1,11 @@
 {
-  myTcpPort=port;
-  myServerSocket=new ServerSocket(myTcpPort);
-  myThread=new Thread(new Runnable(){
+  mTcpPort=port;
+  mServerSocket=new ServerSocket(mTcpPort);
+  mServerThread=new Thread(new Runnable(){
     public void run(){
       try {
         while (true) {
-          Socket accept=myServerSocket.accept();
+          Socket accept=mServerSocket.accept();
           new HTTPSession(accept);
         }
       }
@@ -14,7 +14,7 @@
     }
   }
 );
-  myThread.setDaemon(true);
-  myThread.setPriority(Thread.MAX_PRIORITY);
-  myThread.start();
+  mServerThread.setDaemon(true);
+  mServerThread.setPriority(Thread.MAX_PRIORITY);
+  mServerThread.start();
 }

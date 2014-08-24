@@ -1,0 +1,13 @@
+Context context
+String showId
+String title
+String description
+String season
+String episode
+String releasedate
+String director
+String writer
+String gueststars
+String rating
+String hasWatched
+String favorite

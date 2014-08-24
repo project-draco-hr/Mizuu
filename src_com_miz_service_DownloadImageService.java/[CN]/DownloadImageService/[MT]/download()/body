@@ -1,0 +1,3 @@
+{
+  MizLib.downloadFile(mImageUrl,mDownloadPath);
+}

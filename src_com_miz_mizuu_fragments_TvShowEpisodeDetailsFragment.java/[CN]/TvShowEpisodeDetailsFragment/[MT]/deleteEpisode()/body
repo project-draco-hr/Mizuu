@@ -6,9 +6,8 @@
   builder.setTitle(getString(R.string.removeEpisode) + " S" + mEpisode.getSeason()+ "E"+ mEpisode.getEpisode()).setView(dialogLayout).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int id){
       mDatabaseHelper=MizuuApplication.getTvEpisodeDbAdapter();
-      boolean deleted=false;
-      if (mIgnoreDeletedFiles)       deleted=mDatabaseHelper.ignoreEpisode(mEpisode.getRowId());
- else       deleted=mDatabaseHelper.deleteEpisode(mEpisode.getRowId());
+      boolean deleted=true;
+      for (      Filepath path : mEpisode.getFilepaths())       deleted=deleted && MizuuApplication.getTvShowEpisodeMappingsDbAdapter().deleteFilepath(path.getFullFilepath());
       if (deleted) {
         try {
           File episodePhoto=MizLib.getTvShowEpisode(getActivity(),mEpisode.getShowId(),mEpisode.getSeason(),mEpisode.getEpisode());
@@ -19,7 +18,7 @@
  catch (        NullPointerException e) {
         }
         if (mDatabaseHelper.getEpisodeCount(mEpisode.getShowId()) == 0) {
-          DbAdapterTvShow dbShow=MizuuApplication.getTvDbAdapter();
+          DbAdapterTvShows dbShow=MizuuApplication.getTvDbAdapter();
           boolean deletedShow=dbShow.deleteShow(mEpisode.getShowId());
           if (deletedShow) {
             MizLib.deleteFile(MizLib.getTvShowThumb(getActivity(),mEpisode.getShowId()));
@@ -27,9 +26,11 @@
           }
         }
         if (cb.isChecked()) {
-          Intent deleteIntent=new Intent(getActivity(),DeleteFile.class);
-          deleteIntent.putExtra("filepath",mEpisode.getFilepath());
-          getActivity().startService(deleteIntent);
+          for (          Filepath path : mEpisode.getFilepaths()) {
+            Intent deleteIntent=new Intent(getActivity(),DeleteFile.class);
+            deleteIntent.putExtra("filepath",path.getFilepath());
+            getActivity().startService(deleteIntent);
+          }
         }
         notifyDatasetChanges();
         getActivity().finish();

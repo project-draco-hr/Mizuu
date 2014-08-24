@@ -1,0 +1,4 @@
+{
+  if (mInstance == null)   mInstance=new DatabaseHelper(context);
+  return mInstance;
+}

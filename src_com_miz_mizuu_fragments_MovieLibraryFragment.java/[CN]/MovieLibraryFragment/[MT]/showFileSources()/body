@@ -8,15 +8,16 @@
   cursor.close();
   final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
   for (int i=0; i < mMovieKeys.size(); i++) {
-    String filepath=mMovies.get(mMovieKeys.get(i)).getFilepath();
-    for (int j=0; j < sources.size(); j++) {
-      String source=sources.get(j).getFilepath();
-      if (!MizLib.isEmpty(source) && !MizLib.isEmpty(filepath) && filepath.contains(source)) {
-        if (map.containsKey(source.trim())) {
-          map.put(source.trim(),map.get(source.trim()) + 1);
-        }
+    for (    Filepath path : mMovies.get(mMovieKeys.get(i)).getFilepaths()) {
+      for (int j=0; j < sources.size(); j++) {
+        String source=sources.get(j).getFilepath();
+        if (!TextUtils.isEmpty(source) && !TextUtils.isEmpty(path.getFilepath()) && path.getFilepath().contains(source)) {
+          if (map.containsKey(source.trim())) {
+            map.put(source.trim(),map.get(source.trim()) + 1);
+          }
  else {
-          map.put(source.trim(),1);
+            map.put(source.trim(),1);
+          }
         }
       }
     }

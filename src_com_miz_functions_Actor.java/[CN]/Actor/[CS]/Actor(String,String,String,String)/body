@@ -1,6 +1,6 @@
 {
-  this.name=name;
-  this.character=character;
-  this.id=id;
-  this.url=url;
+  mName=name;
+  mCharacter=character;
+  mId=id;
+  mUrl=url;
 }

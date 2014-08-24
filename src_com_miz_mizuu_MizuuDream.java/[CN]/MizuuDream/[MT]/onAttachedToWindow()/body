@@ -10,11 +10,11 @@
   mDatabaseHelperTv=MizuuApplication.getTvDbAdapter();
   File temp=null;
   ColumnIndexCache cache=new ColumnIndexCache();
-  Cursor cursor=mDatabaseHelper.fetchAllMovies(DbAdapter.KEY_TITLE + " ASC",false);
+  Cursor cursor=mDatabaseHelper.fetchAllMovies(DbAdapterMovies.KEY_TITLE + " ASC",false);
   while (cursor.moveToNext()) {
     try {
-      temp=MizLib.getMovieBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TMDB_ID)));
-      if (temp.exists())       mBackdrops.add(new Backdrop(temp.getAbsolutePath(),cursor.getString(cache.getColumnIndex(cursor,DbAdapter.KEY_TITLE))));
+      temp=MizLib.getMovieBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapterMovies.KEY_TMDB_ID)));
+      if (temp.exists())       mBackdrops.add(new Backdrop(temp.getAbsolutePath(),cursor.getString(cache.getColumnIndex(cursor,DbAdapterMovies.KEY_TITLE))));
     }
  catch (    NullPointerException e) {
     }
@@ -23,8 +23,8 @@
   cursor=mDatabaseHelperTv.getAllShows();
   while (cursor.moveToNext()) {
     try {
-      temp=MizLib.getTvShowBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShow.KEY_SHOW_ID)));
-      if (temp.exists())       mBackdrops.add(new Backdrop(temp.getAbsolutePath(),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShow.KEY_SHOW_TITLE))));
+      temp=MizLib.getTvShowBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_ID)));
+      if (temp.exists())       mBackdrops.add(new Backdrop(temp.getAbsolutePath(),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_TITLE))));
     }
  catch (    NullPointerException e) {
     }

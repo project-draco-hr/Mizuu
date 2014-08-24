@@ -12,7 +12,7 @@
   LATEST_EPISODE_AIR_DATE=latestEpisodeAirDate;
   mFavorite=!(isFavorite.equals("0") || isFavorite.isEmpty());
   mThumbnail=MizLib.getTvShowThumb(mContext,mId);
-  if (MizLib.isEmpty(TITLE)) {
+  if (TextUtils.isEmpty(TITLE)) {
     mTitle="";
   }
  else {
@@ -29,7 +29,7 @@
       }
     }
   }
-  if (!MizLib.isEmpty(FIRST_AIR_DATE)) {
+  if (!TextUtils.isEmpty(FIRST_AIR_DATE)) {
     String YEAR=FIRST_AIR_DATE.trim();
     try {
       if (YEAR.substring(4,5).equals("-") && YEAR.substring(7,8).equals("-")) {

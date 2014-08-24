@@ -1,0 +1,3 @@
+{
+  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,"NOT(" + KEY_IGNORED + " = '1') AND "+ KEY_TMDB_ID+ "='"+ DbAdapterMovies.UNIDENTIFIED_ID+ "'",null,null,null,null);
+}

@@ -1,0 +1,5 @@
+{
+  ContentValues values=new ContentValues();
+  values.put(table,value);
+  return mDatabase.update(DATABASE_TABLE,values,KEY_SHOW_ID + "='" + showId+ "'",null) > 0;
+}

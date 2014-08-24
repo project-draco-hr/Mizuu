@@ -4,6 +4,5 @@
     sortMovies();
     notifyDataSetChanged();
     setProgressBarVisible(false);
-    mGridView.smoothScrollToPosition(0);
   }
 }

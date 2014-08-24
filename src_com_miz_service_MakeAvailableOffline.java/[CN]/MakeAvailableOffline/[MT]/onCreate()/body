@@ -1,4 +1,4 @@
 {
   super.onCreate();
-  mHandler=new Handler();
+  mHandler=new Handler(Looper.getMainLooper());
 }

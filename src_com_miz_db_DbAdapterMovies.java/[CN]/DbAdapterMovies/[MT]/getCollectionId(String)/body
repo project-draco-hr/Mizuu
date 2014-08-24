@@ -1,0 +1,17 @@
+{
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,SELECT_ALL,KEY_TMDB_ID + "='" + tmdbId+ "'",null,null,null,null);
+  String collectionId="";
+  if (cursor != null) {
+    try {
+      if (cursor.moveToFirst()) {
+        collectionId=cursor.getString(cursor.getColumnIndex(KEY_COLLECTION_ID));
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+    }
+  }
+  return collectionId;
+}

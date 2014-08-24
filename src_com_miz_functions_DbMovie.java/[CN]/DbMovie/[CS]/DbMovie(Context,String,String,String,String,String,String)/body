@@ -1,9 +1,9 @@
 {
-  this.context=context;
-  this.filepath=filepath;
-  this.tmdbId=tmdbId;
-  this.runtime=runtime;
-  this.year=year;
-  this.genres=genres;
-  this.title=title;
+  mContext=context;
+  mFilepath=filepath;
+  mTmdbId=tmdbId;
+  mRuntime=runtime;
+  mYear=year;
+  mGenres=genres;
+  mTitle=title;
 }

@@ -1,0 +1,21 @@
+{
+  boolean videoWildcard=PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(IGNORE_VIDEO_FILE_TYPE,false);
+  boolean playbackStarted=false;
+  if (isNetworkFile) {
+    playbackStarted=playNetworkFile(activity,filepath,videoObject);
+  }
+ else {
+    try {
+      activity.startActivity(MizLib.getVideoIntent(filepath,videoWildcard,videoObject));
+    }
+ catch (    Exception e) {
+      try {
+        activity.startActivity(MizLib.getVideoIntent(filepath,"video/*",videoObject));
+      }
+ catch (      Exception e2) {
+        Toast.makeText(activity,activity.getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
+      }
+    }
+  }
+  return playbackStarted;
+}

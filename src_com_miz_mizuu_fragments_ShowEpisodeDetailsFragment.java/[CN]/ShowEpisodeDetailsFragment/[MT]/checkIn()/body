@@ -1,8 +1,0 @@
-{
-  new Thread(){
-    @Override public void run(){
-      Trakt.performEpisodeCheckin(thisEpisode,getActivity());
-    }
-  }
-.start();
-}

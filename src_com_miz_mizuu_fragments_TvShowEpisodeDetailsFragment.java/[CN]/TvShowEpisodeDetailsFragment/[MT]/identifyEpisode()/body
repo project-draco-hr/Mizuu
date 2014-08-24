@@ -1,8 +1,14 @@
 {
-  Intent i=new Intent();
-  i.setClass(getActivity(),IdentifyTvShow.class);
-  i.putExtra("rowId",mEpisode.getRowId());
-  i.putExtra("files",new String[]{mEpisode.getFullFilepath()});
-  i.putExtra("isShow",false);
-  startActivity(i);
+  if (mEpisode.getFilepaths().size() == 1) {
+    startActivity(getIdentifyIntent(mEpisode.getFilepaths().get(0).getFullFilepath()));
+  }
+ else {
+    MizLib.showSelectFileDialog(getActivity(),mEpisode.getFilepaths(),new Dialog.OnClickListener(){
+      @Override public void onClick(      DialogInterface dialog,      int which){
+        startActivity(getIdentifyIntent(mEpisode.getFilepaths().get(which).getFullFilepath()));
+        dialog.dismiss();
+      }
+    }
+);
+  }
 }

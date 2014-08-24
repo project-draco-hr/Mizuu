@@ -15,10 +15,12 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  holder.folderName.setText(episodes.get(position).getFilepath());
+  String filepath=mEpisodes.get(position);
+  String temp=filepath.contains("<MiZ>") ? filepath.split("<MiZ>")[1] : filepath;
+  holder.folderName.setText(MizLib.transformSmbPath(temp));
   holder.remove.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
-      removeSelectedEpisode(episodes.get(position).getRowId());
+      removeSelectedEpisode(mEpisodes.get(position));
     }
   }
 );

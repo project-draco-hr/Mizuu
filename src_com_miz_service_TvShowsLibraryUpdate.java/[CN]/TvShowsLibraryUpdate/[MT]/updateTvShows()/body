@@ -1,10 +1,5 @@
 {
-  StringBuilder sb=new StringBuilder();
-  TreeSet<String> mSet=new TreeSet<String>(mMap.keySet());
-  for (  String tvShow : mSet) {
-    if (mStopUpdate)     return;
-    sb.delete(0,sb.length());
-    sb.append(tvShow);
-    newTvShowObject(mMap.get(sb.toString()));
-  }
+  showTvShowAnalyzingNotification();
+  mIdentification=new TvShowIdentification(getApplicationContext(),this,mFiles);
+  mIdentification.start();
 }

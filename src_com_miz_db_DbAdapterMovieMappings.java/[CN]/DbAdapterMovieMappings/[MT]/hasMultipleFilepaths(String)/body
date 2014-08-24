@@ -1,0 +1,15 @@
+{
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_TMDB_ID + "='" + tmdbId+ "'",null,null,null,null);
+  boolean result=false;
+  if (cursor != null) {
+    try {
+      if (cursor.getCount() > 1)       result=true;
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+    }
+  }
+  return result;
+}

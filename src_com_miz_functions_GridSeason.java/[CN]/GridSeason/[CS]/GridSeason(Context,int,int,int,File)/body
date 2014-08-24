@@ -6,8 +6,7 @@
   mCover=cover;
   mUseGridView=PreferenceManager.getDefaultSharedPreferences(mContext).getString(TVSHOWS_COLLECTION_LAYOUT,mContext.getString(R.string.gridView)).equals(mContext.getString(R.string.gridView));
   StringBuilder sb=new StringBuilder();
-  sb.append(getEpisodeCount() + " ");
-  sb.append(mContext.getResources().getQuantityString(R.plurals.episodes,getEpisodeCount(),getEpisodeCount()));
+  sb.append(getEpisodeCount()).append(" ").append(mContext.getResources().getQuantityString(R.plurals.episodes,getEpisodeCount(),getEpisodeCount()));
   if (getUnwatchedCount() > 0) {
     if (MizLib.isXlargeTablet(mContext) || !mUseGridView)     sb.append(" (" + String.format(mContext.getString(R.string.unwatchedEpisodesCount),getUnwatchedCount()) + ")");
  else     if (MizLib.isTablet(mContext))     sb.append(" (" + String.format(mContext.getString(R.string.leftEpisodesCount),getUnwatchedCount()) + ")");

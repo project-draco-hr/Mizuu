@@ -2,7 +2,7 @@
   final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
   for (int i=0; i < mTvShowKeys.size(); i++) {
     String certification=mTvShows.get(mTvShowKeys.get(i)).getCertification();
-    if (!MizLib.isEmpty(certification) && !certification.equalsIgnoreCase(getString(R.string.stringNA))) {
+    if (!TextUtils.isEmpty(certification) && !certification.equalsIgnoreCase(getString(R.string.stringNA))) {
       if (map.containsKey(certification.trim())) {
         map.put(certification.trim(),map.get(certification.trim()) + 1);
       }

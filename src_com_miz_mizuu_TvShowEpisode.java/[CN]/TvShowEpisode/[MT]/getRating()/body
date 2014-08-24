@@ -1,4 +1,4 @@
 {
-  if (MizLib.isEmpty(RATING))   return "0/10";
-  return RATING + "/10";
+  if (TextUtils.isEmpty(mRating))   return "0/10";
+  return mRating + "/10";
 }

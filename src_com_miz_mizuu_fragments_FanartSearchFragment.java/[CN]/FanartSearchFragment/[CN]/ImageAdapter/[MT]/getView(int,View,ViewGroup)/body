@@ -10,6 +10,6 @@
     holder=(CoverItem)convertView.getTag();
   }
   holder.cover.setImageResource(R.color.card_background_dark);
-  mPicasso.load(pics_sources.get(position)).placeholder(R.color.card_background_dark).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
+  mPicasso.load(mImageUrls.get(position)).placeholder(R.color.card_background_dark).error(R.drawable.nobackdrop).config(mConfig).into(holder.cover);
   return convertView;
 }

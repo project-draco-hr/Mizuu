@@ -1,5 +1,0 @@
-String boundary
-byte[] fbuf
-BufferedReader in
-Properties parms
-Properties files

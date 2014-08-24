@@ -1,0 +1,14 @@
+{
+  mBuilder=new NotificationCompat.Builder(getApplicationContext());
+  mBuilder.setSmallIcon(android.R.drawable.stat_sys_download);
+  mBuilder.setTicker(getString(R.string.addingCover));
+  mBuilder.setContentTitle(getString(R.string.addingCover));
+  mBuilder.setContentText(getString(R.string.few_moments));
+  mBuilder.setOngoing(true);
+  mBuilder.setOnlyAlertOnce(true);
+  mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_action_download));
+  Notification updateNotification=mBuilder.build();
+  mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+  mNotificationManager.notify(NOTIFICATION_ID,updateNotification);
+  startForeground(NOTIFICATION_ID,updateNotification);
+}

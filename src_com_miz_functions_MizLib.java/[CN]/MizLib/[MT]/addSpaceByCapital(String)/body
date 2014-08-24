@@ -1,8 +1,8 @@
 {
-  if (s == null || s.isEmpty())   return "";
+  if (TextUtils.isEmpty(s))   return "";
   StringBuilder result=new StringBuilder();
   char[] chars=s.toCharArray();
-  for (int i=0; i < chars.length; i++)   if (chars.length > (i + 1))   if (Character.isUpperCase(chars[i]) && (Character.isLowerCase(chars[i + 1]) && !Character.isSpaceChar(chars[i + 1])))   result.append(" " + chars[i]);
+  for (int i=0; i < chars.length; i++)   if (chars.length > (i + 1))   if (Character.isUpperCase(chars[i]) && (Character.isLowerCase(chars[i + 1]) && !Character.isSpaceChar(chars[i + 1])))   result.append(" ").append(chars[i]);
  else   result.append(chars[i]);
  else   result.append(chars[i]);
   return result.toString().trim();

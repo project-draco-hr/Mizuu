@@ -1,44 +1,21 @@
 {
   if (!MizLib.isPortrait(getActivity())) {
-    if (!mIgnoreNfo && mMovie.isNetworkFile()) {
-      mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).placeholder(R.drawable.loading_image).error(R.drawable.loading_image).into(mCover);
-      mPicasso.load(mMovie.getFilepath() + "MIZ_BG<MiZ>" + mMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(mBackground);
-    }
- else {
-      mPicasso.load(mMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(mCover);
-      mPicasso.load(mMovie.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).into(mBackground);
-    }
+    mPicasso.load(mMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).transform(new PaletteTransformation(mMovie.getThumbnail().getAbsolutePath(),mDetailsArea)).into(mCover);
+    mPicasso.load(mMovie.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).into(mBackground);
   }
  else {
-    if (!mIgnoreNfo && mMovie.isNetworkFile()) {
-      mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).placeholder(R.drawable.loading_image).error(R.drawable.loading_image).into(mCover);
-      mPicasso.load(mMovie.getFilepath() + "MIZ_BG<MiZ>" + mMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(mBackground,new Callback(){
-        @Override public void onError(){
-          if (!isAdded())           return;
-          ((PanningView)mBackground).setScaleType(ScaleType.CENTER_CROP);
-          mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(mBackground);
-        }
-        @Override public void onSuccess(){
-          if (!isAdded())           return;
-          ((PanningView)mBackground).startPanning();
-        }
+    mPicasso.load(mMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).transform(new PaletteTransformation(mMovie.getThumbnail().getAbsolutePath(),mDetailsArea)).into(mCover);
+    mPicasso.load(mMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(mBackground,new Callback(){
+      @Override public void onError(){
+        if (!isAdded())         return;
+        ((PanningView)mBackground).setScaleType(ScaleType.CENTER_CROP);
+        mPicasso.load(mMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(mBackground);
       }
-);
-    }
- else {
-      mPicasso.load(mMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(mCover);
-      mPicasso.load(mMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(mBackground,new Callback(){
-        @Override public void onError(){
-          if (!isAdded())           return;
-          ((PanningView)mBackground).setScaleType(ScaleType.CENTER_CROP);
-          mPicasso.load(mMovie.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(mBackground);
-        }
-        @Override public void onSuccess(){
-          if (!isAdded())           return;
-          ((PanningView)mBackground).startPanning();
-        }
+      @Override public void onSuccess(){
+        if (!isAdded())         return;
+        ((PanningView)mBackground).startPanning();
       }
-);
     }
+);
   }
 }

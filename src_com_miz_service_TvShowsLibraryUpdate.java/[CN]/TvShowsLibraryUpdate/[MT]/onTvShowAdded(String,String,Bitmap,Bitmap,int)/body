@@ -1,5 +1,5 @@
 {
-  if (!showId.equals("invalid")) {
+  if (!showId.equals(DbAdapterTvShows.UNIDENTIFIED_ID)) {
     mUniqueShowIds.add(showId);
   }
   updateTvShowAddedNotification(showId,title,cover,backdrop,count);

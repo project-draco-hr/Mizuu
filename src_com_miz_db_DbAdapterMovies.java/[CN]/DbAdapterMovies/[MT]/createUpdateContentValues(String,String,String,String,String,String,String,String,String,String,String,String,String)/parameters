@@ -1,0 +1,13 @@
+String title
+String plot
+String imdbid
+String rating
+String tagline
+String release
+String certification
+String runtime
+String trailer
+String genres
+String actors
+String collectionId
+String date

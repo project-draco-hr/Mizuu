@@ -1,5 +1,5 @@
 {
-  DbAdapter db=MizuuApplication.getMovieAdapter();
+  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
   List<DbMovie> dbMovies=getDbMovies(), deletedMovies=new ArrayList<DbMovie>();
   boolean deleted;
   File temp;

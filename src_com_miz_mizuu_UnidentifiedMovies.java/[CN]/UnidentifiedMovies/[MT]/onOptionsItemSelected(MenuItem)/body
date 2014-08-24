@@ -1,0 +1,29 @@
+{
+switch (item.getItemId()) {
+case android.R.id.home:
+    finish();
+  return true;
+case R.id.remove_all:
+AlertDialog.Builder builder=new AlertDialog.Builder(this);
+builder.setMessage(getString(R.string.areYouSure)).setTitle(getString(R.string.removeAllUnidentifiedFiles)).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
+public void onClick(DialogInterface dialog,int id){
+  DbAdapterTvShows dbTvShow=MizuuApplication.getTvDbAdapter();
+  dbTvShow.deleteAllUnidentifiedShows();
+  DbAdapterTvShowEpisodes db=MizuuApplication.getTvEpisodeDbAdapter();
+  db.deleteAllUnidentifiedEpisodes();
+  mFilepaths.clear();
+  ((BaseAdapter)mList.getAdapter()).notifyDataSetChanged();
+  enableNoFilesMessage(true);
+}
+}
+).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){
+public void onClick(DialogInterface dialog,int id){
+  dialog.cancel();
+}
+}
+).create().show();
+return true;
+default :
+return super.onOptionsItemSelected(item);
+}
+}

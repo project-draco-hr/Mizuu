@@ -1,9 +1,0 @@
-{
-  Cursor cursor=database.query(DATABASE_TABLE,new String[]{KEY_SHOW_TITLE,KEY_SHOW_ID},KEY_SHOW_ID + " = '" + showId+ "'",null,null,null,null);
-  if (cursor.moveToFirst()) {
-    String showTitle=cursor.getString(cursor.getColumnIndex(KEY_SHOW_TITLE));
-    cursor.close();
-    return showTitle;
-  }
-  return "";
-}

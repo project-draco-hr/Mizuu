@@ -1,0 +1,24 @@
+{
+  boolean isOnline=MizLib.isOnline(this);
+  final int stringId=isOnline ? R.string.addingCover : R.string.noInternet;
+  new Handler(Looper.getMainLooper()).post(new Runnable(){
+    @Override public void run(){
+      Toast.makeText(MizuuApplication.getContext(),stringId,Toast.LENGTH_LONG).show();
+    }
+  }
+);
+  if (!isOnline) {
+    return;
+  }
+  clear();
+  Bundle bundle=intent.getExtras();
+  mImageUrl=bundle.getString(IMAGE_URL,"");
+  mContentId=bundle.getString(CONTENT_ID,"");
+  mImageType=bundle.getInt(IMAGE_TYPE,0);
+  setup();
+  showNotification();
+  download();
+  resize();
+  update();
+  dismiss();
+}

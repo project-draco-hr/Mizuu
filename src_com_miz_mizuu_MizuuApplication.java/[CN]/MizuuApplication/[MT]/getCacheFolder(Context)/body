@@ -1,0 +1,7 @@
+{
+  if (sCacheFolder == null) {
+    sCacheFolder=getSubAppFolder(c,"app_cache");
+    sCacheFolder.mkdirs();
+  }
+  return sCacheFolder;
+}

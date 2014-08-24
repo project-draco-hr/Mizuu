@@ -1,4 +1,0 @@
-{
-  if (mDecryptedFileName.isEmpty())   return getDecryptedParentName();
-  return MizLib.toCapitalWords(mDecryptedFileName);
-}

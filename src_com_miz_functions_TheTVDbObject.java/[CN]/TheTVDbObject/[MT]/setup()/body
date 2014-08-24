@@ -1,8 +1,0 @@
-{
-  if (MizLib.isEmpty(language)) {
-    LOCALE=PreferenceManager.getDefaultSharedPreferences(context).getString(LANGUAGE_PREFERENCE,"en");
-  }
- else {
-    LOCALE=language;
-  }
-}

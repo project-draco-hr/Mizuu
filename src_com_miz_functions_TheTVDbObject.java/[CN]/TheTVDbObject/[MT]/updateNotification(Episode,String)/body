@@ -1,8 +1,0 @@
-{
-  File coverFile=MizLib.getTvShowThumb(context,thisShow.getId());
-  File backdropFile=MizLib.getTvShowEpisode(context,thisShow.getId(),MizLib.addIndexZero(ep.getSeason()),MizLib.addIndexZero(ep.getEpisode()));
-  if (!backdropFile.exists())   backdropFile=coverFile;
-  cover=MizLib.getNotificationImageThumbnail(context,coverFile.getAbsolutePath());
-  backdrop=MizLib.decodeSampledBitmapFromFile(backdropFile.getAbsolutePath(),getNotificationImageWidth(),getNotificationImageHeight());
-  callback.onEpisodeAdded(thisShow.getId(),thisShow.getId().equals("invalid") ? filepath : thisShow.getTitle() + " S" + MizLib.addIndexZero(ep.getSeason())+ "E"+ MizLib.addIndexZero(ep.getEpisode()),cover,backdrop);
-}

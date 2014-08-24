@@ -1,0 +1,4 @@
+{
+  if (showMessage)   findViewById(R.id.noFileSourcesTitle).setVisibility(View.VISIBLE);
+ else   findViewById(R.id.noFileSourcesTitle).setVisibility(View.GONE);
+}

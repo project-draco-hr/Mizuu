@@ -1,0 +1,6 @@
+{
+  Cursor c=mDatabase.query(DATABASE_TABLE,new String[]{KEY_SHOW_ID,KEY_SHOW_TITLE},"not (" + KEY_SHOW_ID + " = 'invalid') and not ("+ KEY_SHOW_TITLE+ " like '%MizUnidentified%'"+ ") and not ("+ KEY_SHOW_ID+ " = ''"+ ")",null,KEY_SHOW_ID,null,null);
+  int count=c.getCount();
+  c.close();
+  return count;
+}

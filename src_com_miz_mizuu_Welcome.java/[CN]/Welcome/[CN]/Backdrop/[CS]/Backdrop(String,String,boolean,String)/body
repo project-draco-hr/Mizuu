@@ -1,6 +1,6 @@
 {
   mPath=path;
-  mPath=id;
+  mId=id;
   mMovie=isMovie;
   mTitle=title;
 }

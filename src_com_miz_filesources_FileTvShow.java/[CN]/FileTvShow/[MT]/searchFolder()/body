@@ -1,9 +1,8 @@
 {
-  DbAdapterTvShowEpisode dbHelper=MizuuApplication.getTvEpisodeDbAdapter();
-  Cursor cursor=dbHelper.getAllEpisodesInDatabase(ignoreRemovedFiles());
+  Cursor cursor=MizuuApplication.getTvShowEpisodeMappingsDbAdapter().getAllFilepaths();
   ColumnIndexCache cache=new ColumnIndexCache();
   try {
-    while (cursor.moveToNext())     existingEpisodes.put(cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShowEpisode.KEY_FILEPATH)),"");
+    while (cursor.moveToNext())     existingEpisodes.put(cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShowEpisodeMappings.KEY_FILEPATH)),"");
   }
  catch (  Exception e) {
   }

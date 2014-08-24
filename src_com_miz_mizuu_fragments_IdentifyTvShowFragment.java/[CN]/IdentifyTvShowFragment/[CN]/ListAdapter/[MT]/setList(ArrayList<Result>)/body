@@ -1,0 +1,3 @@
+{
+  mItems=new ArrayList<Result>(list);
+}

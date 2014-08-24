@@ -1,0 +1,5 @@
+{
+  String path=mFilepaths.get(position);
+  if (path.contains("<MiZ>"))   path=path.split("<MiZ>")[1];
+  return path;
+}

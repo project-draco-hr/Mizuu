@@ -1,10 +1,3 @@
 {
-  WRITER=WRITER.replace("|",", ");
-  if (WRITER.startsWith(", ")) {
-    WRITER=WRITER.substring(2,WRITER.length());
-  }
-  if (WRITER.endsWith(", ")) {
-    WRITER=WRITER.substring(0,WRITER.length() - 2);
-  }
-  return WRITER;
+  return StringUtils.replacePipesWithCommas(mWriter);
 }

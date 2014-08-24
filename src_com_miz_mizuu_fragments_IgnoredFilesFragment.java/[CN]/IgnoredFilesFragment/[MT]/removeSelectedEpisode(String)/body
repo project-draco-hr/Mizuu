@@ -1,5 +1,4 @@
 {
-  DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
-  db.deleteEpisode(rowId);
+  MizuuApplication.getTvShowEpisodeMappingsDbAdapter().deleteFilepath(filepath);
   refreshData();
 }

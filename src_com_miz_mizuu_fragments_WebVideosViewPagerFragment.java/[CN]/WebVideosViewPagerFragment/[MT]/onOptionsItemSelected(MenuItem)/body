@@ -1,8 +1,0 @@
-{
-switch (item.getItemId()) {
-case R.id.menuSettings:
-    startActivity(new Intent(getActivity(),Preferences.class));
-  break;
-}
-return super.onOptionsItemSelected(item);
-}

@@ -1,8 +1,0 @@
-{
-  if (!isLoading && isAdded())   if (resetSelection)   setLoading(true);
-  seasonEpisodeCount.clear();
-  seasons.clear();
-  EpisodeLoader loader=new EpisodeLoader();
-  loader.setResetSelection(resetSelection);
-  loader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,type);
-}

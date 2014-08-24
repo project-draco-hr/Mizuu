@@ -1,11 +1,12 @@
 {
-  if (TITLE == null || TITLE.isEmpty()) {
-    String temp=FILEPATH.contains("<MiZ>") ? FILEPATH.split("<MiZ>")[0] : FILEPATH;
+  if (TextUtils.isEmpty(mTitle)) {
+    String path=getFilepaths().get(0).getFullFilepath();
+    String temp=path.contains("<MiZ>") ? path.split("<MiZ>")[0] : path;
     File fileName=new File(temp);
     int pointPosition=fileName.getName().lastIndexOf(".");
     return pointPosition == -1 ? fileName.getName() : fileName.getName().substring(0,pointPosition);
   }
  else {
-    return TITLE;
+    return mTitle;
   }
 }

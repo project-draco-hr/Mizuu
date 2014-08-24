@@ -1,0 +1,22 @@
+{
+  List<GridEpisode> episodes=new ArrayList<GridEpisode>();
+  ColumnIndexCache cache=new ColumnIndexCache();
+  Cursor cursor=null;
+  try {
+    String seasonWithIndex=MizLib.addIndexZero(season);
+    cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + "='" + showId+ "' and "+ KEY_SEASON+ "='"+ seasonWithIndex+ "'",null,KEY_EPISODE,null,KEY_EPISODE + " asc");
+    File temp;
+    while (cursor.moveToNext()) {
+      temp=MizLib.getTvShowEpisode(context,showId,cursor.getString(cache.getColumnIndex(cursor,KEY_SEASON)),cursor.getString(cache.getColumnIndex(cursor,KEY_EPISODE)));
+      if (!temp.exists())       temp=MizLib.getTvShowBackdrop(context,showId);
+      episodes.add(new GridEpisode(context,cursor.getString(cache.getColumnIndex(cursor,KEY_EPISODE_TITLE)),MizuuApplication.getTvShowEpisodeMappingsDbAdapter().getFirstFilepath(showId,seasonWithIndex,cursor.getString(cache.getColumnIndex(cursor,KEY_EPISODE))),season,Integer.valueOf(cursor.getString(cache.getColumnIndex(cursor,KEY_EPISODE))),cursor.getString(cache.getColumnIndex(cursor,KEY_HAS_WATCHED)).equals("1"),temp));
+    }
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    cache.clear();
+    if (cursor != null)     cursor.close();
+  }
+  return episodes;
+}

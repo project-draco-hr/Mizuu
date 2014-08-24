@@ -1,3 +1,3 @@
 {
-  return database.insert(DATABASE_TABLE,null,createContentValues(filepath,type,isSmb,user,password,domain));
+  return mDatabase.insert(DATABASE_TABLE,null,createContentValues(filepath,type,isSmb,user,password,domain));
 }

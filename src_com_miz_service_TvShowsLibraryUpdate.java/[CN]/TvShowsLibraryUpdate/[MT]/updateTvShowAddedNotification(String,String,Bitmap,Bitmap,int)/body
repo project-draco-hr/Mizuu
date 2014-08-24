@@ -1,6 +1,6 @@
 {
   String contentText;
-  if (showId.isEmpty() || showId.equalsIgnoreCase("invalid"))   contentText=getString(R.string.unidentified) + ": " + title+ " ("+ count+ " "+ getResources().getQuantityString(R.plurals.episodes,count,count)+ ")";
+  if (showId.isEmpty() || showId.equalsIgnoreCase(DbAdapterTvShows.UNIDENTIFIED_ID))   contentText=getString(R.string.unidentified) + ": " + title+ " ("+ count+ " "+ getResources().getQuantityString(R.plurals.episodes,count,count)+ ")";
  else   contentText=getString(R.string.stringJustAdded) + ": " + title+ " ("+ count+ " "+ getResources().getQuantityString(R.plurals.episodes,count,count)+ ")";
   mBuilder.setLargeIcon(cover);
   mBuilder.setContentTitle(getString(R.string.updatingTvShows) + " (" + (int)((100.0 / (double)mTotalFiles) * (double)mEpisodeCount)+ "%)");

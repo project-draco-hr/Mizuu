@@ -1,0 +1,4 @@
+{
+  language=getLanguage(language);
+  return getListFromUrl("https://api.themoviedb.org/3/find/" + imdbId + "&language="+ language+ "&external_source=imdb_id&api_key="+ mTmdbApiKey);
+}

@@ -1,0 +1,3 @@
+{
+  return arg0.buildUpon().setUri(Uri.parse(arg0.uri.toString().replace("file://","/"))).build();
+}

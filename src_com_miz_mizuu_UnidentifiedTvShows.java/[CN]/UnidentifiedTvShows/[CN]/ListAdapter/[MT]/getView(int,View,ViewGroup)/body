@@ -1,0 +1,16 @@
+{
+  ViewHolder holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.file_list_item,parent,false);
+    holder=new ViewHolder();
+    holder.name=(TextView)convertView.findViewById(R.id.text1);
+    holder.size=(TextView)convertView.findViewById(R.id.size);
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(ViewHolder)convertView.getTag();
+  }
+  holder.name.setText(mEpisodes.get(position).getTitle().substring(MizLib.indexOfLastSeparator(mEpisodes.get(position).getTitle()),mEpisodes.get(position).getTitle().length()));
+  holder.size.setText(mEpisodes.get(position).getFilepaths().get(0).getFullFilepath());
+  return convertView;
+}

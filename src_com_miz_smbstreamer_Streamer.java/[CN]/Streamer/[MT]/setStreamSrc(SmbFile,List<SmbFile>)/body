@@ -1,4 +1,4 @@
 {
-  this.file=file;
-  this.extras=extraFiles;
+  mFile=file;
+  mExtras=extraFiles;
 }

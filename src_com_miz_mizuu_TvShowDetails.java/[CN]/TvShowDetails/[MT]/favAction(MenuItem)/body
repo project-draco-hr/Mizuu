@@ -1,6 +1,6 @@
 {
   thisShow.setFavorite(!thisShow.isFavorite());
-  if (dbHelper.updateShowSingleItem(thisShow.getId(),DbAdapterTvShow.KEY_SHOW_EXTRA1,thisShow.getFavorite())) {
+  if (dbHelper.updateShowSingleItem(thisShow.getId(),DbAdapterTvShows.KEY_SHOW_FAVOURITE,thisShow.getFavorite())) {
     invalidateOptionsMenu();
     if (thisShow.isFavorite()) {
       Toast.makeText(this,getString(R.string.addedToFavs),Toast.LENGTH_SHORT).show();

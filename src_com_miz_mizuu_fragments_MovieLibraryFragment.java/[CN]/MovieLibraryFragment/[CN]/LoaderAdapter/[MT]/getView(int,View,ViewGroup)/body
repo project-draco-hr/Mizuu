@@ -8,6 +8,7 @@
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.subtext.setSingleLine(true);
     holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
     convertView.setTag(holder);
   }
@@ -22,11 +23,13 @@
     holder.text.setVisibility(View.VISIBLE);
     holder.text.setText(mCollectionsView ? mMovie.getCollection() : mMovie.getTitle());
     if (mCollectionsView) {
+      holder.text.setSingleLine(false);
       holder.text.setLines(2);
       holder.text.setMaxLines(2);
       holder.subtext.setVisibility(View.GONE);
     }
  else {
+      holder.text.setSingleLine(true);
       holder.text.setLines(1);
       holder.text.setMaxLines(1);
       holder.subtext.setVisibility(View.VISIBLE);
@@ -35,14 +38,8 @@
   }
   holder.cover.setImageResource(R.color.card_background_dark);
   if (!mCollectionsView) {
-    if (!mIgnoreNfo && mMovie.isNetworkFile()) {
-      if (mResizedWidth > 0)       mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
- else       mPicasso.load(mMovie.getFilepath() + "<MiZ>" + mMovie.getThumbnail()).config(mConfig).into(holder);
-    }
- else {
-      if (mResizedWidth > 0)       mPicasso.load(mMovie.getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
- else       mPicasso.load(mMovie.getThumbnail()).config(mConfig).into(holder);
-    }
+    if (mResizedWidth > 0)     mPicasso.load(mMovie.getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
+ else     mPicasso.load(mMovie.getThumbnail()).config(mConfig).into(holder);
   }
  else {
     if (mResizedWidth > 0)     mPicasso.load(mMovie.getCollectionPoster()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);

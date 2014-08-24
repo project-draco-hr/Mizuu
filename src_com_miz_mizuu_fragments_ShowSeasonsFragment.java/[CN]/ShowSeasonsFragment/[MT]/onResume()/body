@@ -1,4 +1,0 @@
-{
-  super.onResume();
-  isPortrait=MizLib.isPortrait(getActivity());
-}

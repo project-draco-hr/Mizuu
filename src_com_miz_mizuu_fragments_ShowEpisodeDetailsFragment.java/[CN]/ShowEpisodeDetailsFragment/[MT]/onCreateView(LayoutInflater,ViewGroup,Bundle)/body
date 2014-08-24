@@ -1,4 +1,0 @@
-{
-  if (thisEpisode == null)   return inflater.inflate(R.layout.empty_layout,null,false);
-  return inflater.inflate(R.layout.episode_details,null,false);
-}

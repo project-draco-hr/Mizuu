@@ -1,0 +1,95 @@
+{
+  ArrayList<ContentValues> mOldValues=new ArrayList<ContentValues>();
+  String[] oldColumns=new String[]{"filepath","coverpath","title","plot","tmdbid","imdbid","rating","tagline","release","certification","runtime","trailer","genres","favourite","watched","collection","to_watch","has_watched","extra1","extra2"};
+  Cursor cursor=database.query(DbAdapterMovies.DATABASE_TABLE,oldColumns,null,null,null,null,null);
+  try {
+    while (cursor.moveToNext()) {
+      String filepath=cursor.getString(cursor.getColumnIndex("filepath"));
+      String title=cursor.getString(cursor.getColumnIndex("title"));
+      String plot=cursor.getString(cursor.getColumnIndex("plot"));
+      String tmdbId=cursor.getString(cursor.getColumnIndex("tmdbid"));
+      String imdbId=cursor.getString(cursor.getColumnIndex("imdbid"));
+      String rating=cursor.getString(cursor.getColumnIndex("rating"));
+      String tagline=cursor.getString(cursor.getColumnIndex("tagline"));
+      String releaseDate=cursor.getString(cursor.getColumnIndex("release"));
+      String certification=cursor.getString(cursor.getColumnIndex("certification"));
+      String runtime=cursor.getString(cursor.getColumnIndex("runtime"));
+      String trailer=cursor.getString(cursor.getColumnIndex("trailer"));
+      String genres=cursor.getString(cursor.getColumnIndex("genres"));
+      String favourite=cursor.getString(cursor.getColumnIndex("favourite"));
+      String cast=cursor.getString(cursor.getColumnIndex("watched"));
+      String collection=cursor.getString(cursor.getColumnIndex("collection"));
+      String collectionId=cursor.getString(cursor.getColumnIndex("extra2"));
+      String toWatch=cursor.getString(cursor.getColumnIndex("to_watch"));
+      String hasWatched=cursor.getString(cursor.getColumnIndex("has_watched"));
+      String dateAdded=cursor.getString(cursor.getColumnIndex("extra1"));
+      ContentValues values=new ContentValues();
+      values.put(DbAdapterMovieMappings.KEY_FILEPATH,filepath);
+      values.put(DbAdapterMovies.KEY_TMDB_ID,tmdbId);
+      values.put(DbAdapterMovies.KEY_TITLE,title);
+      values.put(DbAdapterMovies.KEY_PLOT,plot);
+      values.put(DbAdapterMovies.KEY_IMDB_ID,imdbId);
+      values.put(DbAdapterMovies.KEY_RATING,rating);
+      values.put(DbAdapterMovies.KEY_TAGLINE,tagline);
+      values.put(DbAdapterMovies.KEY_RELEASEDATE,releaseDate);
+      values.put(DbAdapterMovies.KEY_CERTIFICATION,certification);
+      values.put(DbAdapterMovies.KEY_RUNTIME,runtime);
+      values.put(DbAdapterMovies.KEY_TRAILER,trailer);
+      values.put(DbAdapterMovies.KEY_GENRES,genres);
+      values.put(DbAdapterMovies.KEY_FAVOURITE,favourite);
+      values.put(DbAdapterMovies.KEY_ACTORS,cast);
+      values.put(DbAdapterCollections.KEY_COLLECTION,collection);
+      values.put(DbAdapterMovies.KEY_TO_WATCH,toWatch);
+      values.put(DbAdapterMovies.KEY_HAS_WATCHED,hasWatched);
+      values.put(DbAdapterMovies.KEY_DATE_ADDED,dateAdded);
+      values.put(DbAdapterMovies.KEY_COLLECTION_ID,collectionId);
+      mOldValues.add(values);
+    }
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    if (cursor != null)     cursor.close();
+  }
+  database.execSQL("DROP TABLE IF EXISTS movie");
+  database.execSQL(DATABASE_CREATE_MOVIE);
+  database.execSQL(DATABASE_CREATE_MOVIE_MAPPING);
+  database.execSQL(DATABASE_CREATE_TMDB_ID_INDEX);
+  database.execSQL(DATABASE_CREATE_MOVIE_COLLECTIONS);
+  HashSet<String> collectionsAdded=new HashSet<String>();
+  for (  ContentValues values : mOldValues) {
+    if (!movieExists(database,values.getAsString(DbAdapterMovies.KEY_TMDB_ID))) {
+      ContentValues contentValues=new ContentValues();
+      contentValues.put(DbAdapterMovies.KEY_TMDB_ID,values.getAsString(DbAdapterMovies.KEY_TMDB_ID).isEmpty() ? values.getAsString(DbAdapterMovieMappings.KEY_FILEPATH) : values.getAsString(DbAdapterMovies.KEY_TMDB_ID));
+      contentValues.put(DbAdapterMovies.KEY_TITLE,values.getAsString(DbAdapterMovies.KEY_TITLE));
+      contentValues.put(DbAdapterMovies.KEY_PLOT,values.getAsString(DbAdapterMovies.KEY_PLOT));
+      contentValues.put(DbAdapterMovies.KEY_IMDB_ID,values.getAsString(DbAdapterMovies.KEY_IMDB_ID));
+      contentValues.put(DbAdapterMovies.KEY_RATING,values.getAsString(DbAdapterMovies.KEY_RATING));
+      contentValues.put(DbAdapterMovies.KEY_TAGLINE,values.getAsString(DbAdapterMovies.KEY_TAGLINE));
+      contentValues.put(DbAdapterMovies.KEY_RELEASEDATE,values.getAsString(DbAdapterMovies.KEY_RELEASEDATE));
+      contentValues.put(DbAdapterMovies.KEY_CERTIFICATION,values.getAsString(DbAdapterMovies.KEY_CERTIFICATION));
+      contentValues.put(DbAdapterMovies.KEY_RUNTIME,values.getAsString(DbAdapterMovies.KEY_RUNTIME));
+      contentValues.put(DbAdapterMovies.KEY_TRAILER,values.getAsString(DbAdapterMovies.KEY_TRAILER));
+      contentValues.put(DbAdapterMovies.KEY_GENRES,values.getAsString(DbAdapterMovies.KEY_GENRES));
+      contentValues.put(DbAdapterMovies.KEY_FAVOURITE,values.getAsString(DbAdapterMovies.KEY_FAVOURITE));
+      contentValues.put(DbAdapterMovies.KEY_ACTORS,values.getAsString(DbAdapterMovies.KEY_ACTORS));
+      contentValues.put(DbAdapterMovies.KEY_TO_WATCH,values.getAsString(DbAdapterMovies.KEY_TO_WATCH));
+      contentValues.put(DbAdapterMovies.KEY_HAS_WATCHED,values.getAsString(DbAdapterMovies.KEY_HAS_WATCHED));
+      contentValues.put(DbAdapterMovies.KEY_DATE_ADDED,values.getAsString(DbAdapterMovies.KEY_DATE_ADDED));
+      contentValues.put(DbAdapterMovies.KEY_COLLECTION_ID,values.getAsString(DbAdapterMovies.KEY_COLLECTION_ID));
+      database.insert(DbAdapterMovies.DATABASE_TABLE,null,contentValues);
+    }
+    if (!collectionsAdded.contains(values.getAsString(DbAdapterMovies.KEY_COLLECTION_ID))) {
+      ContentValues cv=new ContentValues();
+      cv.put(DbAdapterCollections.KEY_COLLECTION_ID,values.getAsString(DbAdapterMovies.KEY_COLLECTION_ID));
+      cv.put(DbAdapterCollections.KEY_COLLECTION,values.getAsString(DbAdapterCollections.KEY_COLLECTION));
+      database.insert(DbAdapterCollections.DATABASE_TABLE,null,cv);
+      collectionsAdded.add(values.getAsString(DbAdapterMovies.KEY_COLLECTION_ID));
+    }
+    ContentValues fileMap=new ContentValues();
+    fileMap.put(DbAdapterMovieMappings.KEY_FILEPATH,values.getAsString(DbAdapterMovieMappings.KEY_FILEPATH));
+    fileMap.put(DbAdapterMovieMappings.KEY_TMDB_ID,values.getAsString(DbAdapterMovies.KEY_TMDB_ID).isEmpty() ? values.getAsString(DbAdapterMovieMappings.KEY_FILEPATH) : values.getAsString(DbAdapterMovies.KEY_TMDB_ID));
+    fileMap.put(DbAdapterMovieMappings.KEY_IGNORED,0);
+    database.insert(DbAdapterMovieMappings.DATABASE_TABLE,null,fileMap);
+  }
+}

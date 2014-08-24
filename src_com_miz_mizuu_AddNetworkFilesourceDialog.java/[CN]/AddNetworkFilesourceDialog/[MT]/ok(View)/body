@@ -3,7 +3,7 @@
     Toast.makeText(AddNetworkFilesourceDialog.this,getString(R.string.enterNetworkAddress),Toast.LENGTH_LONG).show();
     return;
   }
-  if (MizLib.isWifiConnected(this,prefsDisableEthernetWiFiCheck)) {
+  if (MizLib.isWifiConnected(this)) {
     mDomain=domain.getText().toString();
     mUser=username.getText().toString();
     mPass=password.getText().toString();

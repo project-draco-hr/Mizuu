@@ -1,7 +1,7 @@
 {
   ViewHolder holder;
   if (convertView == null) {
-    convertView=inflater.inflate(R.layout.list_item_movie,parent,false);
+    convertView=inflater.inflate(R.layout.list_item_movie_and_tv_show,parent,false);
     holder=new ViewHolder();
     holder.title=(TextView)convertView.findViewById(R.id.movieTitle);
     holder.rating=(TextView)convertView.findViewById(R.id.textView7);

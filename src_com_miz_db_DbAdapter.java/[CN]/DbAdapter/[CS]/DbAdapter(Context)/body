@@ -1,3 +1,0 @@
-{
-  mDatabase=DbHelper.getHelper(context).getWritableDatabase();
-}

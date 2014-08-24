@@ -1,0 +1,5 @@
+{
+  String option=PreferenceManager.getDefaultSharedPreferences(context).getString(TV_SHOW_DATA_SOURCE,context.getString(R.string.ratings_option_0));
+  if (option.equals(context.getString(R.string.ratings_option_0)))   return new TheTVDb(context);
+  return new TMDbTvShow(context);
+}

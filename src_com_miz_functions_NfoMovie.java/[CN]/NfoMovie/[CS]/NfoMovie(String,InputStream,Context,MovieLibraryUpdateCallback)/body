@@ -3,6 +3,5 @@
   this.is=is;
   this.c=c;
   this.callback=callback;
-  System.out.println("HAHA AWESOME!");
   readFile();
 }

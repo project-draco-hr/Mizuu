@@ -1,0 +1,12 @@
+{
+  Log.d("Mizuu","Upgrading database...");
+  if (oldVersion == 4) {
+    upgradeMovieTable(database);
+    moveTvShowDb(MizuuApplication.getContext(),database);
+    moveFileSourcesDb(MizuuApplication.getContext(),database);
+  }
+ else {
+    database.execSQL("DROP TABLE IF EXISTS movie");
+    onCreate(database);
+  }
+}

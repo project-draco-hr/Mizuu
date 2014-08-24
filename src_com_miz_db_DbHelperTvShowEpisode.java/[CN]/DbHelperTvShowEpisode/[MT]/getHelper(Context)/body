@@ -1,4 +1,0 @@
-{
-  if (instance == null)   instance=new DbHelperTvShowEpisode(context);
-  return instance;
-}

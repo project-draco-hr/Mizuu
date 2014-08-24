@@ -1,7 +1,7 @@
 {
   mFileSources=new ArrayList<FileSource>();
   mTvShowFileSources=new ArrayList<TvShowFileSource<?>>();
-  mMap=LinkedListMultimap.create();
+  mFiles=new ArrayList<ShowStructure>();
   mUniqueShowIds=new HashSet<String>();
   mIgnoreRemovedFiles=false;
   mClearLibrary=false;

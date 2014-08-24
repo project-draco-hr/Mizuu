@@ -1,5 +1,0 @@
-{
-  super.onCreate(savedInstanceState);
-  showId=getArguments().getString("showId");
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-show-episode-selected"));
-}

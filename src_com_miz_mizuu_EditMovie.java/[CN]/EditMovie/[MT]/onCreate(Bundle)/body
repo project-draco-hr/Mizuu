@@ -14,30 +14,30 @@
   mDatabaseHelper=MizuuApplication.getMovieAdapter();
   mCursor=mDatabaseHelper.fetchMovie(mTmdbId);
   if (mCursor.moveToFirst()) {
-    mToWatch=mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_TO_WATCH));
-    mHasWatched=mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_HAS_WATCHED));
-    mTitle.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_TITLE)));
-    mPlot.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_PLOT)));
-    mTagline.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_TAGLINE)));
+    mToWatch=mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_TO_WATCH));
+    mHasWatched=mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_HAS_WATCHED));
+    mTitle.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_TITLE)));
+    mPlot.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_PLOT)));
+    mTagline.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_TAGLINE)));
     if (mTagline.getText().toString().equals("NOTAGLINE") || !(mTagline.getText().toString().length() > 0))     mTagline.setText("");
-    mRuntime.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_RUNTIME)));
+    mRuntime.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_RUNTIME)));
     try {
-      mRating.setText(String.valueOf(Float.valueOf(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_RATING)).trim()).floatValue()));
+      mRating.setText(String.valueOf(Float.valueOf(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_RATING)).trim()).floatValue()));
     }
  catch (    Exception e) {
       mRating.setText("0.0");
     }
     boolean found=false;
     for (int i=0; i < mCertifications.length; i++) {
-      if (mCertifications[i].equals(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_CERTIFICATION)))) {
+      if (mCertifications[i].equals(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_CERTIFICATION)))) {
         mCertification.setSelection(i);
         found=true;
         break;
       }
     }
     if (!found)     mCertification.setSelection(mCertifications.length - 1);
-    mRelease.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_RELEASEDATE)));
-    mGenres.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapter.KEY_GENRES)));
+    mRelease.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_RELEASEDATE)));
+    mGenres.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_GENRES)));
   }
   mCursor.close();
 }

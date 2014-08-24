@@ -1,5 +1,0 @@
-{
-  this.context=context;
-  this.filepath=filepath;
-  this.tmdbId=tmdbId;
-}

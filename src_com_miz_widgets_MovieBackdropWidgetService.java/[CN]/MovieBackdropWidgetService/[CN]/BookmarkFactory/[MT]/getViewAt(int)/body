@@ -1,14 +1,14 @@
 {
   RemoteViews view=new RemoteViews(mContext.getPackageName(),R.layout.movie_backdrop_widget_item);
-  BitmapFactory.Options options=new BitmapFactory.Options();
-  options.inPreferredConfig=Config.RGB_565;
-  options.inPreferQualityOverSpeed=true;
-  if (isTablet)   options.inSampleSize=4;
- else   options.inSampleSize=2;
-  Bitmap cover=BitmapFactory.decodeFile(movies.get(position).getBackdrop(),options);
-  view.setImageViewBitmap(R.id.thumb,cover);
-  view.setTextViewText(R.id.widgetTitle,movies.get(position).getTitle());
-  view.setViewVisibility(R.id.widgetTitle,View.VISIBLE);
+  try {
+    Bitmap cover=mPicasso.load(movies.get(position).getBackdrop()).config(mConfig).get();
+    view.setImageViewBitmap(R.id.thumb,cover);
+  }
+ catch (  IOException e) {
+    view.setImageViewResource(R.id.thumb,R.drawable.loading_image);
+    view.setTextViewText(R.id.widgetTitle,movies.get(position).getTitle());
+    view.setViewVisibility(R.id.widgetTitle,View.VISIBLE);
+  }
   Intent i=new Intent(MovieBackdropWidgetProvider.MOVIE_BACKDROP_WIDGET);
   i.putExtra("tmdbId",movies.get(position).getTmdbId());
   view.setOnClickFillInIntent(R.id.list_item,i);

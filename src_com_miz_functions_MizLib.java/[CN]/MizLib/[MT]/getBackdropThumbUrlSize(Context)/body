@@ -3,7 +3,7 @@
   Display d=window.getDefaultDisplay();
   Point size=new Point();
   d.getSize(size);
-  final int width=getLowestNumber(size.x,size.y);
+  final int width=Math.min(size.x,size.y);
   if (width >= 780)   return "w780";
   if (width >= 400)   return "w500";
   return "w300";

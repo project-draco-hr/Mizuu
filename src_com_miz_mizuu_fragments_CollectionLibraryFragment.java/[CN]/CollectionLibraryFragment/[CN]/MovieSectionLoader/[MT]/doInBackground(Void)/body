@@ -2,7 +2,7 @@
   if (isCancelled())   return false;
 switch (mPosition) {
 case ALL_MOVIES:
-    for (int i=0; i < mMovies.size(); i++)     if (!mMovies.get(i).isUnidentified())     mTempKeys.add(i);
+    for (int i=0; i < mMovies.size(); i++)     mTempKeys.add(i);
   break;
 case FAVORITES:
 for (int i=0; i < mMovies.size(); i++) if (mMovies.get(i).isFavourite()) mTempKeys.add(i);
@@ -11,25 +11,45 @@ case AVAILABLE_FILES:
 ArrayList<FileSource> filesources=MizLib.getFileSources(MizLib.TYPE_MOVIE,true);
 for (int i=0; i < mMovies.size(); i++) {
 if (isCancelled()) return false;
-if (mMovies.get(i).isNetworkFile()) if (mMovies.get(i).hasOfflineCopy()) mTempKeys.add(i);
+for (Filepath path : mMovies.get(i).getFilepaths()) {
+if (path.isNetworkFile()) if (mMovies.get(i).hasOfflineCopy(path)) {
+mTempKeys.add(i);
+break;
+}
  else {
-if (MizLib.isWifiConnected(getActivity(),mDisableEthernetWiFiCheck)) {
-FileSource source=null;
-for (int j=0; j < filesources.size(); j++) if (mMovies.get(i).getFilepath().contains(filesources.get(j).getFilepath())) {
-  source=filesources.get(j);
-  continue;
+if (path.getType() == FileSource.SMB) {
+  if (MizLib.isWifiConnected(getActivity())) {
+    FileSource source=null;
+    for (int j=0; j < filesources.size(); j++)     if (path.getFilepath().contains(filesources.get(j).getFilepath())) {
+      source=filesources.get(j);
+      continue;
+    }
+    if (source == null)     continue;
+    try {
+      final SmbFile file=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(source.getDomain(),"utf-8"),URLEncoder.encode(source.getUser(),"utf-8"),URLEncoder.encode(source.getPassword(),"utf-8"),path.getFilepath(),false));
+      if (file.exists()) {
+        mTempKeys.add(i);
+        break;
+      }
+    }
+ catch (    Exception e) {
+    }
+  }
 }
-if (source == null) continue;
-try {
-  final SmbFile file=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(source.getDomain(),"utf-8"),URLEncoder.encode(source.getUser(),"utf-8"),URLEncoder.encode(source.getPassword(),"utf-8"),mMovies.get(i).getFilepath(),false));
-  if (file.exists())   mTempKeys.add(i);
-}
- catch (Exception e) {
-}
+ else if (path.getType() == FileSource.UPNP) {
+  if (MizLib.exists(path.getFilepath())) {
+    mTempKeys.add(i);
+    break;
+  }
 }
 }
- else if (mMovies.get(i).isUpnpFile()) if (MizLib.exists(mMovies.get(i).getFilepath())) mTempKeys.add(i);
- else if (new File(mMovies.get(i).getFilepath()).exists()) mTempKeys.add(i);
+ else {
+if (new File(path.getFilepath()).exists()) {
+  mTempKeys.add(i);
+  break;
+}
+}
+}
 }
 break;
 case WATCHED_MOVIES:
@@ -43,7 +63,10 @@ File offlineFolder=MizuuApplication.getAvailableOfflineFolder(getActivity());
 if (offlineFolder != null && offlineFolder.listFiles().length == 0) return true;
 for (int i=0; i < mMovies.size(); i++) {
 if (isCancelled()) return false;
-if (mMovies.get(i).hasOfflineCopy()) mTempKeys.add(i);
+for (Filepath path : mMovies.get(i).getFilepaths()) if (mMovies.get(i).hasOfflineCopy(path)) {
+mTempKeys.add(i);
+break;
+}
 }
 break;
 }

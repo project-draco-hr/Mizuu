@@ -1,4 +1,0 @@
-{
-  if (mFilepath.contains("<MiZ>"))   return MizLib.getOfflineFile(mContext,getFilepath());
-  return MizLib.getOfflineFile(mContext,getFullFilepath());
-}

@@ -1,6 +1,0 @@
-{
-  if (isAdded()) {
-    AppWidgetManager awm=AppWidgetManager.getInstance(getActivity());
-    awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(getActivity(),MovieBackdropWidgetProvider.class)),R.id.widget_grid);
-  }
-}

@@ -1,5 +1,0 @@
-{
-  mContext=c;
-  mRatingsProvider=PreferenceManager.getDefaultSharedPreferences(c).getString(TVSHOWS_RATINGS_SOURCE,mContext.getString(R.string.ratings_option_4));
-  mTvdbApiKey=MizLib.getTvdbApiKey(mContext);
-}

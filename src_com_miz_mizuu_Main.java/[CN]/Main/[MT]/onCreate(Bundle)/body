@@ -30,6 +30,17 @@ if (i != null) {
   startActivity(i);
 }
 break;
+case MenuItem.SMALL_SECTION:
+Intent smallIntent=new Intent(getApplicationContext(),Preferences.class);
+if (mMenuItems.get(arg2).getIcon() == R.drawable.support_small) {
+smallIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,ContactDeveloperFragment.class.getName());
+smallIntent.putExtra(PreferenceActivity.EXTRA_NO_HEADERS,true);
+smallIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,getString(R.string.menuAboutContact));
+smallIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_SHORT_TITLE,getString(R.string.menuAboutContact));
+}
+startActivity(smallIntent);
+mDrawerLayout.closeDrawers();
+break;
 }
 }
 }
@@ -43,7 +54,7 @@ invalidateOptionsMenu();
 }
 public void onDrawerOpened(View drawerView){
 invalidateOptionsMenu();
-if (MizLib.isGoogleTV(getApplicationContext())) mDrawerList.requestFocus();
+if (MizLib.usesNavigationControl(getApplicationContext())) mDrawerList.requestFocus();
 }
 }
 ;

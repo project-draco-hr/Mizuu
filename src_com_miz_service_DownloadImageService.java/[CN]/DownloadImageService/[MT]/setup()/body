@@ -1,0 +1,27 @@
+{
+switch (mImageType) {
+case IMAGE_TYPE_TVSHOW_COVER:
+    if (!mContentId.startsWith("tmdb_")) {
+      mImageUrl=mImageUrl.replace("/_cache/","/");
+      mNeedsResizing=true;
+    }
+  mDownloadPath=MizLib.getTvShowThumb(this,mContentId).getAbsolutePath();
+break;
+case IMAGE_TYPE_TVSHOW_BACKDROP:
+if (mContentId.startsWith("tmdb_")) {
+mImageUrl=mImageUrl.replace(MizLib.getBackdropThumbUrlSize(this),MizLib.getBackdropUrlSize(this));
+}
+ else {
+mImageUrl=mImageUrl.replace("","").replace("/_cache/","/");
+}
+mDownloadPath=MizLib.getTvShowBackdrop(this,mContentId).getAbsolutePath();
+break;
+case IMAGE_TYPE_MOVIE_COVER:
+mDownloadPath=MizLib.getMovieThumb(this,mContentId).getAbsolutePath();
+break;
+case IMAGE_TYPE_MOVIE_BACKDROP:
+mImageUrl=mImageUrl.replace(MizLib.getBackdropThumbUrlSize(this),MizLib.getBackdropUrlSize(this));
+mDownloadPath=MizLib.getMovieBackdrop(this,mContentId).getAbsolutePath();
+break;
+}
+}

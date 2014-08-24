@@ -1,5 +1,5 @@
 {
-  if (!MizLib.isEmpty(date)) {
+  if (!TextUtils.isEmpty(date)) {
     try {
       String[] dateArray=date.split("-");
       Calendar cal=Calendar.getInstance();

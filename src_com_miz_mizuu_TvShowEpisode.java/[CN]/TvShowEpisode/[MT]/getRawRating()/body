@@ -1,6 +1,6 @@
 {
   try {
-    return Double.valueOf(RATING);
+    return Double.valueOf(mRating);
   }
  catch (  NumberFormatException e) {
     return 0.0;

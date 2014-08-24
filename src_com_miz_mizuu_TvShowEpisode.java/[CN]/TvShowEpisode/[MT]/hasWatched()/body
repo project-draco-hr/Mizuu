@@ -1,3 +1,3 @@
 {
-  return (HAS_WATCHED.isEmpty() || HAS_WATCHED.equals("0")) ? false : true;
+  return (mHasWatched.isEmpty() || mHasWatched.equals("0")) ? false : true;
 }

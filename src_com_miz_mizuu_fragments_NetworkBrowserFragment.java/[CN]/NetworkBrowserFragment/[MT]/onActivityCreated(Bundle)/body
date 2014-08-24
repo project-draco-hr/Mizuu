@@ -1,8 +1,0 @@
-{
-  super.onActivityCreated(savedInstanceState);
-  try {
-    browse(MizLib.URLEncodeUTF8(MizLib.createSmbLoginString(URLEncoder.encode(domain,"utf-8"),URLEncoder.encode(user,"utf-8"),URLEncoder.encode(pass,"utf-8"),server,true)));
-  }
- catch (  UnsupportedEncodingException e) {
-  }
-}

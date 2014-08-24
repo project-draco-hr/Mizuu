@@ -1,0 +1,17 @@
+{
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_COLLECTION_ID + "='" + collectionId+ "'",null,null,null,null);
+  String collection="";
+  if (cursor != null) {
+    try {
+      if (cursor.moveToFirst()) {
+        collection=cursor.getString(cursor.getColumnIndex(KEY_COLLECTION));
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+    }
+  }
+  return collection;
+}

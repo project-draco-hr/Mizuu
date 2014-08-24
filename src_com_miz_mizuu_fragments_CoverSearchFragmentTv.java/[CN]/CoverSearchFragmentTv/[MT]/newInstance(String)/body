@@ -1,7 +1,7 @@
 {
   CoverSearchFragmentTv pageFragment=new CoverSearchFragmentTv();
   Bundle b=new Bundle();
-  b.putString("tvdbId",tvdbId);
+  b.putString("showId",showId);
   pageFragment.setArguments(b);
   return pageFragment;
 }

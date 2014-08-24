@@ -1,5 +1,5 @@
 {
-  if (MizLib.isEmpty(mTitle)) {
+  if (TextUtils.isEmpty(mTitle)) {
     String temp=mFilepath.contains("<MiZ>") ? mFilepath.split("<MiZ>")[0] : mFilepath;
     File fileName=new File(temp);
     int pointPosition=fileName.getName().lastIndexOf(".");

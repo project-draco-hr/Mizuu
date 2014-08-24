@@ -1,0 +1,14 @@
+{
+  if (mEpisode.getFilepaths().size() == 1) {
+    watchOffline(mEpisode.getFilepaths().get(0));
+  }
+ else {
+    MizLib.showSelectFileDialog(getActivity(),mEpisode.getFilepaths(),new Dialog.OnClickListener(){
+      @Override public void onClick(      DialogInterface dialog,      int which){
+        watchOffline(mEpisode.getFilepaths().get(which));
+        dialog.dismiss();
+      }
+    }
+);
+  }
+}

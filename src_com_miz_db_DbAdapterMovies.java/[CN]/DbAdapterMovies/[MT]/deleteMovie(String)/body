@@ -1,0 +1,6 @@
+{
+  boolean result=mDatabase.delete(DATABASE_TABLE,KEY_TMDB_ID + "='" + tmdbId+ "'",null) > 0;
+  String collectionId=getCollectionId(tmdbId);
+  if (!hasMultipleCollectionMappings(collectionId))   result=result && MizuuApplication.getCollectionsAdapter().deleteCollection(collectionId);
+  return result && MizuuApplication.getMovieMappingAdapter().deleteMovie(tmdbId);
+}

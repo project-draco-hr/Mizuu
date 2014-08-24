@@ -4,7 +4,6 @@
   mIgnoreRemovedFiles=ignoreRemovedFiles;
   mSubFolderSearch=subFolderSearch;
   mClearLibrary=clearLibrary;
-  mDisableEthernetWiFiCheck=disableEthernetWiFiCheck;
   mFileSizeLimit=MizLib.getFileSizeLimit(getContext());
   setFolder(getRootFolder());
 }

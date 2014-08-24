@@ -1,4 +1,0 @@
-{
-  cover.setImageBitmap(arg0);
-  ObjectAnimator.ofFloat(cover,"alpha",0f,1f).setDuration(200).start();
-}

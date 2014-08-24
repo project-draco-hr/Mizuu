@@ -8,22 +8,20 @@
   mActorImage=(ImageView)v.findViewById(R.id.traktIcon);
   mActorImageBackground=(ImageView)v.findViewById(R.id.imageView2);
   if (!MizuuApplication.isFullscreen(getActivity())) {
-    if (MizLib.isPortrait(getActivity()))     MizLib.addActionBarAndStatusBarMargin(getActivity(),mActorImage,(LayoutParams)mActorImage.getLayoutParams());
- else     MizLib.addActionBarAndStatusBarPadding(getActivity(),v.findViewById(R.id.linearLayout1));
+    if (!MizLib.isPortrait(getActivity()))     MizLib.addActionBarAndStatusBarPadding(getActivity(),v.findViewById(R.id.linearLayout1));
   }
- else   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.frameLayout1));
   if (MizLib.isPortrait(getActivity())) {
     final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
     final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());
     ObservableScrollView sv=(ObservableScrollView)v.findViewById(R.id.scrollView1);
     sv.setOnScrollChangedListener(new OnScrollChangedListener(){
       @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
-        final int headerHeight=mActorImageBackground.getHeight() - height;
+        final int headerHeight=mActorImage.getHeight() - height;
         final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
         final int newAlpha=(int)(ratio * 255);
         if (t <= headerHeight * 1.2) {
           mBus.post(Integer.valueOf(newAlpha));
-          mActorImageBackground.setPadding(0,(int)(t / 1.5),0,0);
+          mActorImage.setPadding(0,(int)(t / 1.5),0,0);
         }
       }
     }

@@ -1,0 +1,29 @@
+{
+  if (MizLib.isTvShowLibraryBeingUpdated(this)) {
+    Handler mHandler=new Handler(Looper.getMainLooper());
+    mHandler.post(new Runnable(){
+      @Override public void run(){
+        Toast.makeText(IdentifyTvShowService.this,R.string.cant_identify_while_updating,Toast.LENGTH_LONG).show();
+      }
+    }
+);
+    return;
+  }
+  log("clear()");
+  clear();
+  log("setup()");
+  setup();
+  log("Intent extras");
+  Bundle b=intent.getExtras();
+  mNewShowTitle=b.getString("showTitle");
+  mNewShowId=b.getString("newShowId");
+  mOldShowId=b.getString("oldShowId");
+  mLanguage=b.getString("language","all");
+  log("Title: " + mNewShowTitle + ". New ID: "+ mNewShowId+ ". Old ID: "+ mOldShowId+ ". Language: "+ mLanguage);
+  log("setupList()");
+  setupList();
+  log("removeOldDatabaseEntries()");
+  removeOldDatabaseEntries();
+  log("start()");
+  start();
+}

@@ -1,5 +1,7 @@
 {
   mContext=context;
   ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORED_TITLE_PREFIXES,false);
-  ignoreNfo=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORED_NFO_FILES,true);
+  mPicasso=MizuuApplication.getPicasso(mContext);
+  mConfig=MizuuApplication.getBitmapConfig();
+  mLoadingView=new RemoteViews(mContext.getPackageName(),R.layout.movie_cover_widget_item);
 }

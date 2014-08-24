@@ -1,0 +1,5 @@
+{
+  String temp=mFilepath.contains("<MiZ>") ? mFilepath.split("<MiZ>")[1] : mFilepath;
+  if (getType() == FileSource.SMB)   return MizLib.transformSmbPath(temp);
+  return temp;
+}

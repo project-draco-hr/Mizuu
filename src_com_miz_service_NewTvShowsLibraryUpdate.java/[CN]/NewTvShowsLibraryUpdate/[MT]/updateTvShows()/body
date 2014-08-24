@@ -1,5 +1,0 @@
-{
-  showTvShowAnalyzingNotification();
-  mIdentification=new TvShowIdentification(getApplicationContext(),this,mFiles);
-  mIdentification.start();
-}

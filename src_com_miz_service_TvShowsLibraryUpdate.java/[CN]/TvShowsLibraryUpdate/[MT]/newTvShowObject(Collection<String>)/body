@@ -1,5 +1,0 @@
-{
-  if (MizLib.isOnline(getApplicationContext())) {
-    new TheTVDbObject(this,files,"",this);
-  }
-}

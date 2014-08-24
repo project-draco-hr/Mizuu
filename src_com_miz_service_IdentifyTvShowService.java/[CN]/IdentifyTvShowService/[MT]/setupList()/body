@@ -1,0 +1,16 @@
+{
+  Cursor cursor=MizuuApplication.getTvShowEpisodeMappingsDbAdapter().getAllFilepaths(mOldShowId);
+  ColumnIndexCache cache=new ColumnIndexCache();
+  try {
+    while (cursor.moveToNext())     mFiles.add(new ShowStructure(cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShowEpisodeMappings.KEY_FILEPATH))));
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    cursor.close();
+    cache.clear();
+  }
+  for (  ShowStructure ss : mFiles) {
+    mTotalFiles+=ss.getEpisodes().size();
+  }
+}

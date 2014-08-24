@@ -1,0 +1,9 @@
+{
+  mTitle=title;
+  mOriginalTitle=originalTitle;
+  mId=id;
+  mImage=image;
+  mDescription=description;
+  mRelease=MizLib.getPrettyDate(getActivity(),release);
+  mRating=rating;
+}

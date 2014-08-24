@@ -1,0 +1,7 @@
+{
+  ContentValues values=new ContentValues();
+  values.put(KEY_FILEPATH,filepath);
+  values.put(KEY_TMDB_ID,tmdbId);
+  values.put(KEY_IGNORED,0);
+  return mDatabase.insert(DATABASE_TABLE,null,values);
+}

@@ -1,5 +1,5 @@
 {
-  DbAdapter db=MizuuApplication.getMovieAdapter();
+  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
   if (db.movieExists(results.get(arg2).getId())) {
     Intent intent=new Intent();
     intent.setClass(getActivity(),MovieDetails.class);

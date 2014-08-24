@@ -1,0 +1,7 @@
+{
+  mImageUrl="";
+  mContentId="";
+  mDownloadPath="";
+  mImageType=0;
+  mNeedsResizing=false;
+}

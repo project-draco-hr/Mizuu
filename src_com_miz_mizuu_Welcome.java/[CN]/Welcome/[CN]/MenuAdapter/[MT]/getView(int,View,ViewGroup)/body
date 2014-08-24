@@ -1,6 +1,6 @@
 {
   if (position == 0 || position == 4) {
-    convertView=LayoutInflater.from(getApplicationContext()).inflate(R.layout.row_header,null);
+    convertView=LayoutInflater.from(getApplicationContext()).inflate(R.layout.row_header,parent,false);
     if (position == 0) {
       ((TextView)convertView.findViewById(R.id.options)).setText(getString(R.string.stringLocal));
     }
@@ -9,7 +9,7 @@
     }
     return convertView;
   }
-  convertView=LayoutInflater.from(getApplicationContext()).inflate(R.layout.row,null);
+  convertView=LayoutInflater.from(getApplicationContext()).inflate(R.layout.row,parent,false);
   ImageView icon=(ImageView)convertView.findViewById(R.id.row_icon);
   TextView title=(TextView)convertView.findViewById(R.id.row_title);
   if (MizLib.isTablet(getApplicationContext()))   title.setTextSize(26f);

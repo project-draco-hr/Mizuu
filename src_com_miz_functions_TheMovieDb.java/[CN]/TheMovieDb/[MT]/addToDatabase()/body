@@ -1,6 +1,6 @@
 {
-  DbAdapterMovieMapping dbHelperMovieMapping=MizuuApplication.getMovieMappingAdapter();
-  DbAdapter dbHelper=MizuuApplication.getMovieAdapter();
+  DbAdapterMovieMappings dbHelperMovieMapping=MizuuApplication.getMovieMappingAdapter();
+  DbAdapterMovies dbHelper=MizuuApplication.getMovieAdapter();
   if (isFromManualIdentify) {
     dbHelperMovieMapping.updateTmdbId(filepath,movie.getId());
     if (!dbHelperMovieMapping.exists(mOldTmdbId))     dbHelper.deleteMovie(mOldTmdbId);

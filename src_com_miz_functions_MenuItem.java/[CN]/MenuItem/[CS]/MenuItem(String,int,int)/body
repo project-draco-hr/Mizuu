@@ -1,0 +1,5 @@
+{
+  mTitle=title;
+  mType=type;
+  mIcon=icon;
+}

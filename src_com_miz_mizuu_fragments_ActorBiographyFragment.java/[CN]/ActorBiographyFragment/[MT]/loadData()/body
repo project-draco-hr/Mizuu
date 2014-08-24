@@ -38,35 +38,34 @@
     if (mBirthday.equals("null"))     mBirthday="";
     mImage=mThumb.replace("/" + MizLib.getActorUrlSize(getActivity()),"/h632");
     mActorName.setText(mName);
-    if (!MizLib.isEmpty(mBio))     mActorBio.setText(mBio);
+    if (!TextUtils.isEmpty(mBio))     mActorBio.setText(mBio);
  else     mActorBio.setText(R.string.no_biography);
     if (MizLib.isTablet(getActivity()) && MizLib.isPortrait(getActivity()))     mActorBio.setLineSpacing(0,1.15f);
-    if (!MizLib.isEmpty(mBirth))     mActorBirth.setText(mBirth);
+    if (!TextUtils.isEmpty(mBirth))     mActorBirth.setText(mBirth);
  else     mActorBirth.setVisibility(View.GONE);
-    if (!MizLib.isEmpty(mBirthday))     mActorBirthday.setText(MizLib.getPrettyDate(getActivity(),mBirthday));
+    if (!TextUtils.isEmpty(mBirthday))     mActorBirthday.setText(MizLib.getPrettyDate(getActivity(),mBirthday));
  else     mActorBirthday.setVisibility(View.GONE);
-    if (!MizLib.isEmpty(mImage)) {
+    if (!TextUtils.isEmpty(mImage)) {
       mPicasso.load(mImage).placeholder(R.drawable.bg).error(R.drawable.noactor).config(MizuuApplication.getBitmapConfig()).into(mActorImage);
-      if (!mBackgroundImage.isEmpty()) {
-        mPicasso.load(mBackgroundImage).placeholder(R.drawable.bg).transform(new BlurTransformation(getActivity(),mBackgroundImage + "-blur",2)).config(MizuuApplication.getBitmapConfig()).into(mActorImageBackground,new Callback(){
-          @Override public void onError(){
-            if (!isAdded())             return;
-            mPicasso.load(mImage).placeholder(R.drawable.bg).error(R.drawable.bg).transform(new BlurTransformation(getActivity(),mImage + "-blur",2)).config(MizuuApplication.getBitmapConfig()).into(mActorImageBackground);
-            mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
-            if (MizLib.isPortrait(getActivity()))             ((PanningView)mActorImageBackground).setScaleType(ScaleType.CENTER_CROP);
+      if (!MizLib.isPortrait(getActivity())) {
+        if (!mBackgroundImage.isEmpty()) {
+          mPicasso.load(mBackgroundImage).placeholder(R.drawable.bg).transform(new BlurTransformation(getActivity(),mBackgroundImage + "-blur",2)).config(MizuuApplication.getBitmapConfig()).into(mActorImageBackground,new Callback(){
+            @Override public void onError(){
+              if (!isAdded())               return;
+              mPicasso.load(mImage).placeholder(R.drawable.bg).error(R.drawable.bg).transform(new BlurTransformation(getActivity(),mImage + "-blur",2)).config(MizuuApplication.getBitmapConfig()).into(mActorImageBackground);
+              mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+            }
+            @Override public void onSuccess(){
+              if (!isAdded())               return;
+              mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+            }
           }
-          @Override public void onSuccess(){
-            if (!isAdded())             return;
-            mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
-            if (MizLib.isPortrait(getActivity()))             ((PanningView)mActorImageBackground).startPanning();
-          }
-        }
 );
-      }
+        }
  else {
-        mPicasso.load(mImage).placeholder(R.drawable.bg).error(R.drawable.bg).transform(new BlurTransformation(getActivity(),mImage + "-blur",2)).config(MizuuApplication.getBitmapConfig()).into(mActorImageBackground);
-        mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
-        if (MizLib.isPortrait(getActivity()))         ((PanningView)mActorImageBackground).setScaleType(ScaleType.CENTER_CROP);
+          mPicasso.load(mImage).placeholder(R.drawable.bg).error(R.drawable.bg).transform(new BlurTransformation(getActivity(),mImage + "-blur",2)).config(MizuuApplication.getBitmapConfig()).into(mActorImageBackground);
+          mActorImageBackground.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+        }
       }
     }
   }

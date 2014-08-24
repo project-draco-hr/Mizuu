@@ -1,0 +1,4 @@
+{
+  if (smallSize == 0)   smallSize=MizLib.getThumbnailNotificationSize(mContext);
+  return smallSize;
+}

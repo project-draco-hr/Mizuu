@@ -1,0 +1,6 @@
+{
+  Intent intent=new Intent(MovieDetails.this,IdentifyMovie.class);
+  intent.putExtra("fileName",filepath);
+  intent.putExtra("tmdbId",mMovie.getTmdbId());
+  return intent;
+}

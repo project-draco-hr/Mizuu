@@ -23,10 +23,16 @@ case CERTIFICATION:
     condition=mMovies.get(currentlyShown.get(i)).getCertification().trim().contains(selected);
   break;
 case FILE_SOURCES:
-condition=mMovies.get(currentlyShown.get(i)).getFilepath().trim().contains(selected);
+for (Filepath path : mMovies.get(currentlyShown.get(i)).getFilepaths()) {
+  condition=path.getFilepath().trim().contains(selected);
+  if (condition)   break;
+}
 break;
 case FOLDERS:
-condition=mMovies.get(currentlyShown.get(i)).getFilepath().trim().startsWith(selected);
+for (Filepath path : mMovies.get(currentlyShown.get(i)).getFilepaths()) {
+condition=path.getFilepath().trim().startsWith(selected);
+if (condition) break;
+}
 break;
 }
 if (condition) mMovieKeys.add(currentlyShown.get(i));

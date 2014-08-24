@@ -1,8 +1,0 @@
-{
-switch (item.getItemId()) {
-case R.id.filter:
-    showFilterDialog();
-  break;
-}
-return false;
-}

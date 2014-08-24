@@ -1,7 +1,7 @@
 {
   TMDbMovie movie=new TMDbMovie();
   movie.setId(id);
-  if (id.equals("invalid"))   return movie;
+  if (id.equals(DbAdapterMovies.UNIDENTIFIED_ID))   return movie;
   try {
     String baseUrl=MizLib.getTmdbImageBaseUrl(mContext);
     JSONObject jObject=null;
@@ -47,7 +47,18 @@
  catch (    Exception e) {
     }
     try {
-      if (jObject.getJSONObject("trailers").getJSONArray("youtube").length() > 0)       movie.setTrailer("http://www.youtube.com/watch?v=" + jObject.getJSONObject("releases").getJSONArray("youtube").getJSONObject(0).getString("source"));
+      if (jObject.getJSONObject("trailers").getJSONArray("youtube").length() > 0) {
+        JSONArray youtube=jObject.getJSONObject("trailers").getJSONArray("youtube");
+        for (int i=0; i < youtube.length(); i++) {
+          if (youtube.getJSONObject(i).getString("type").equals("Trailer")) {
+            movie.setTrailer("http://www.youtube.com/watch?v=" + youtube.getJSONObject(i).getString("source"));
+            break;
+          }
+        }
+        if (TextUtils.isEmpty(movie.getTrailer())) {
+          movie.setTrailer("http://www.youtube.com/watch?v=" + jObject.getJSONObject("trailers").getJSONArray("youtube").getJSONObject(0).getString("source"));
+        }
+      }
     }
  catch (    Exception e) {
     }
@@ -60,13 +71,13 @@
  catch (    Exception e) {
     }
     try {
-      String cast="";
+      StringBuilder cast=new StringBuilder();
       JSONArray array=jObject.getJSONObject("casts").getJSONArray("cast");
       for (int i=0; i < array.length(); i++) {
-        cast+=array.getJSONObject(i).getString("name") + "|";
+        cast.append(array.getJSONObject(i).getString("name"));
+        cast.append("|");
       }
-      if (cast.endsWith("|"))       cast=cast.substring(0,cast.length() - 1);
-      movie.setCast(cast);
+      movie.setCast(cast.toString());
     }
  catch (    Exception e) {
     }

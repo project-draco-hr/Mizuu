@@ -1,3 +1,0 @@
-{
-  return MizLib.getOfflineFile(CONTEXT,filepath);
-}

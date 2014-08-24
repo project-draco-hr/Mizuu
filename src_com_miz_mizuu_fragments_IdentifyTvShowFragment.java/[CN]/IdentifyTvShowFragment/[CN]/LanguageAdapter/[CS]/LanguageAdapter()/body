@@ -1,0 +1,19 @@
+{
+  mInflater=LayoutInflater.from(getActivity());
+  mSystemLocales=Locale.getAvailableLocales();
+  String[] languageCodes=Locale.getISOLanguages();
+  ArrayList<Locale> mTemp=new ArrayList<Locale>();
+  for (  String code : languageCodes) {
+    if (code.length() == 2) {
+      Locale l=new Locale(code);
+      if (hasLocale(l))       mTemp.add(l);
+    }
+  }
+  Collections.sort(mTemp,new Comparator<Locale>(){
+    @Override public int compare(    Locale lhs,    Locale rhs){
+      return lhs.getDisplayLanguage(Locale.getDefault()).compareToIgnoreCase(rhs.getDisplayLanguage(Locale.getDefault()));
+    }
+  }
+);
+  mLocales=new ArrayList<Locale>(mTemp);
+}

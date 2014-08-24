@@ -1,7 +1,7 @@
 {
-  DbAdapterTvShow dbHelper=MizuuApplication.getTvDbAdapter();
+  DbAdapterTvShows dbHelper=MizuuApplication.getTvDbAdapter();
   boolean deleted=dbHelper.deleteShow(thisShow.getId());
-  DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+  DbAdapterTvShowEpisodes db=MizuuApplication.getTvEpisodeDbAdapter();
   deleted=deleted && db.deleteAllEpisodes(thisShow.getId());
   if (deleted) {
     try {

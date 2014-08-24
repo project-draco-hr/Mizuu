@@ -1,0 +1,7 @@
+{
+  mContext=context;
+  mFilepath=filepath;
+  mShowId=showId;
+  mSeason=season;
+  mEpisode=episode;
+}

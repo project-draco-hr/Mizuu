@@ -1,4 +1,0 @@
-{
-  if (instance == null)   instance=new DbHelperSources(context);
-  return instance;
-}

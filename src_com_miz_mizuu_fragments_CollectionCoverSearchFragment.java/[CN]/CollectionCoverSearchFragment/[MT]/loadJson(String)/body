@@ -1,12 +1,12 @@
 {
   try {
-    pics_sources.clear();
-    JSONObject jObject=new JSONObject(json);
+    mImageUrls.clear();
+    JSONObject jObject=new JSONObject(mJson);
     JSONArray array=jObject.getJSONArray("posters");
     for (int i=0; i < array.length(); i++) {
       JSONObject o=array.getJSONObject(i);
-      covers.add(new Cover(baseUrl + MizLib.getImageUrlSize(getActivity()) + o.getString("file_path"),o.getString("iso_639_1")));
-      pics_sources.add(baseUrl + MizLib.getImageUrlSize(getActivity()) + o.getString("file_path"));
+      mCovers.add(new Cover(baseUrl + MizLib.getImageUrlSize(getActivity()) + o.getString("file_path"),o.getString("iso_639_1")));
+      mImageUrls.add(baseUrl + MizLib.getImageUrlSize(getActivity()) + o.getString("file_path"));
     }
   }
  catch (  Exception e) {

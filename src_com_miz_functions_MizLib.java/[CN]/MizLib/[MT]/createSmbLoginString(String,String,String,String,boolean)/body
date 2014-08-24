@@ -6,9 +6,9 @@
   domain=domain.replace("+","%20");
   server=server.replace("+","%20");
   if (!user.isEmpty()) {
-    if (!domain.isEmpty())     sb.append(domain + ";");
+    if (!domain.isEmpty())     sb.append(domain).append(";");
     sb.append(user);
-    if (!password.isEmpty())     sb.append(":" + password);
+    if (!password.isEmpty())     sb.append(":").append(password);
     sb.append("@");
   }
   sb.append(server.replace("smb://",""));

@@ -7,20 +7,19 @@
     final TextView userName=((TextView)convertView.findViewById(R.id.username));
     userName.setTextSize(26f);
     userName.setTypeface(mTfCondensed);
-    if (!MizLib.isEmpty(fullName)) {
+    if (!TextUtils.isEmpty(fullName)) {
       userName.setText(fullName);
-      mPicasso.load(new File(MizLib.getCacheFolder(getApplicationContext()),"avatar.jpg")).resize(MizLib.convertDpToPixels(getApplicationContext(),72),MizLib.convertDpToPixels(getApplicationContext(),72)).error(R.drawable.unknown_user).into(userImage);
+      mPicasso.load(new File(MizuuApplication.getCacheFolder(getApplicationContext()),"avatar.jpg")).resize(MizLib.convertDpToPixels(getApplicationContext(),72),MizLib.convertDpToPixels(getApplicationContext(),72)).error(R.drawable.unknown_user).into(userImage);
     }
  else     convertView.findViewById(R.id.drawer_user_info).setVisibility(View.GONE);
-    String backdropPath=MizLib.getLatestBackdropPath(getApplicationContext());
-    if (!backdropPath.isEmpty())     mPicasso.load(backdropPath).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
+    if (!mBackdropPath.isEmpty())     mPicasso.load(mBackdropPath).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
   }
  else   if (mMenuItems.get(position).getType() == MenuItem.SEPARATOR) {
     convertView=mInflater.inflate(R.layout.menu_drawer_header_item,parent,false);
     TextView title=(TextView)convertView.findViewById(R.id.title);
     title.setText(mMenuItems.get(position).getTitle());
   }
- else {
+ else   if (mMenuItems.get(position).getType() == MenuItem.THIRD_PARTY_APP || mMenuItems.get(position).getType() == MenuItem.SECTION) {
     convertView=mInflater.inflate(R.layout.menu_drawer_item,parent,false);
     TextView title=(TextView)convertView.findViewById(R.id.title);
     title.setText(mMenuItems.get(position).getTitle());
@@ -33,6 +32,13 @@
     description.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
     if (mMenuItems.get(position).getCount() >= 0)     description.setText(String.valueOf(mMenuItems.get(position).getCount()));
  else     description.setVisibility(View.GONE);
+  }
+ else {
+    convertView=mInflater.inflate(R.layout.menu_drawer_small_item,parent,false);
+    TextView title=(TextView)convertView.findViewById(R.id.title);
+    title.setText(mMenuItems.get(position).getTitle());
+    ImageView image=(ImageView)convertView.findViewById(R.id.icon);
+    image.setImageResource(mMenuItems.get(position).getIcon());
   }
   return convertView;
 }

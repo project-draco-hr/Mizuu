@@ -1,8 +1,8 @@
 {
-  if (s == null || s.isEmpty())   return "";
+  if (TextUtils.isEmpty(s))   return "";
   StringBuilder result=new StringBuilder();
   String[] split=s.split("\\s");
   int count=split.length;
-  for (int i=0; i < count; i++)   result.append(toCapitalFirstChar(split[i]) + " ");
+  for (int i=0; i < count; i++)   result.append(toCapitalFirstChar(split[i])).append(" ");
   return result.toString().trim();
 }

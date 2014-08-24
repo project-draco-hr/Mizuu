@@ -2,6 +2,7 @@
   super.onViewCreated(view,savedInstanceState);
   mBackdrop=(ImageView)view.findViewById(R.id.imageBackground);
   mEpisodePhoto=(ImageView)view.findViewById(R.id.episodePhoto);
+  mDetailsArea=view.findViewById(R.id.details_area);
   mTitle=(TextView)view.findViewById(R.id.movieTitle);
   mSeasonEpisodeNumber=(TextView)view.findViewById(R.id.textView7);
   mDescription=(TextView)view.findViewById(R.id.textView2);
@@ -75,7 +76,12 @@
     if (MizLib.isTablet(getActivity()))     mDescription.setLineSpacing(0,1.15f);
   }
   mDescription.setText(mEpisode.getDescription());
-  mFileSource.setText(mEpisode.getFilepath());
+  if (mShowFileLocation) {
+    mFileSource.setText(mEpisode.getAllFilepaths());
+  }
+ else {
+    mFileSource.setVisibility(View.GONE);
+  }
   mAirDate.setText(MizLib.getPrettyDatePrecise(getActivity(),mEpisode.getReleasedate()));
   if (!mEpisode.getRating().equals("0.0/10")) {
     if (mEpisode.getRating().contains("/")) {
@@ -94,25 +100,25 @@
  else {
     mRating.setText(R.string.stringNA);
   }
-  if (MizLib.isEmpty(mEpisode.getDirector()) || mEpisode.getDirector().equals(getString(R.string.stringNA))) {
+  if (TextUtils.isEmpty(mEpisode.getDirector()) || mEpisode.getDirector().equals(getString(R.string.stringNA))) {
     mDirector.setVisibility(View.GONE);
   }
  else {
     mDirector.setText(mEpisode.getDirector());
   }
-  if (MizLib.isEmpty(mEpisode.getWriter()) || mEpisode.getWriter().equals(getString(R.string.stringNA))) {
+  if (TextUtils.isEmpty(mEpisode.getWriter()) || mEpisode.getWriter().equals(getString(R.string.stringNA))) {
     mWriter.setVisibility(View.GONE);
   }
  else {
     mWriter.setText(mEpisode.getWriter());
   }
-  if (MizLib.isEmpty(mEpisode.getGuestStars()) || mEpisode.getGuestStars().equals(getString(R.string.stringNA))) {
+  if (TextUtils.isEmpty(mEpisode.getGuestStars()) || mEpisode.getGuestStars().equals(getString(R.string.stringNA))) {
     mGuestStars.setVisibility(View.GONE);
   }
  else {
     mGuestStars.setText(mEpisode.getGuestStars());
   }
-  mPicasso.load(mEpisode.getEpisodePhoto()).placeholder(R.drawable.bg).config(MizuuApplication.getBitmapConfig()).into(mEpisodePhoto,new Callback(){
+  mPicasso.load(mEpisode.getEpisodePhoto()).placeholder(R.drawable.bg).config(MizuuApplication.getBitmapConfig()).transform(new PaletteTransformation(mEpisode.getEpisodePhoto().getAbsolutePath(),mDetailsArea)).into(mEpisodePhoto,new Callback(){
     @Override public void onError(){
       if (!isAdded())       return;
       int width=getActivity().getResources().getDimensionPixelSize(R.dimen.episode_details_background_overlay_width);
@@ -137,6 +143,7 @@
 );
   if (!MizLib.isPortrait(getActivity()))   mPicasso.load(mEpisode.getEpisodePhoto()).placeholder(R.drawable.bg).error(R.drawable.bg).transform(new BlurTransformation(getActivity().getApplicationContext(),mEpisode.getEpisodePhoto().getAbsolutePath() + "-blur",4)).config(MizuuApplication.getBitmapConfig()).into(mBackdrop,new Callback(){
     @Override public void onError(){
+      if (!isAdded())       return;
       mPicasso.load(mEpisode.getTvShowBackdrop()).placeholder(R.drawable.bg).error(R.drawable.nobackdrop).transform(new BlurTransformation(getActivity().getApplicationContext(),mEpisode.getTvShowBackdrop().getAbsolutePath() + "-blur",4)).config(MizuuApplication.getBitmapConfig()).config(MizuuApplication.getBitmapConfig()).into(mBackdrop,new Callback(){
         @Override public void onError(){
         }

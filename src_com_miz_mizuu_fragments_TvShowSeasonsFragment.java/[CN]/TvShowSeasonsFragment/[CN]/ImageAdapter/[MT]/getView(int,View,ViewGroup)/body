@@ -8,7 +8,9 @@
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.highlight=(ImageView)convertView.findViewById(R.id.highlight);
     holder.text=(TextView)convertView.findViewById(R.id.text);
+    holder.text.setSingleLine(true);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.subtext.setSingleLine(true);
     holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
     convertView.setTag(holder);
   }

@@ -1,6 +1,6 @@
 {
   mMenuItems.clear();
-  if (!MizLib.getLatestBackdropPath(getApplicationContext()).isEmpty() && !((!MizLib.isTablet(this) && !MizLib.isPortrait(this)) || MizLib.isGoogleTV(this)))   mMenuItems.add(new MenuItem(null,-1,MenuItem.HEADER,null));
+  if (!MizLib.getRandomBackdropPath(getApplicationContext()).isEmpty() && !((!MizLib.isTablet(this) && !MizLib.isPortrait(this)) || MizLib.usesNavigationControl(getApplicationContext())))   mMenuItems.add(new MenuItem(null,-1,MenuItem.HEADER,null));
   mMenuItems.add(new MenuItem(getString(R.string.drawerMyMovies),mNumMovies,MenuItem.SECTION,null,MOVIES));
   mMenuItems.add(new MenuItem(getString(R.string.drawerMyTvShows),mNumShows,MenuItem.SECTION,null,SHOWS));
   mMenuItems.add(new MenuItem(getString(R.string.chooserWatchList),mNumWatchlist,MenuItem.SECTION,null,WATCHLIST));
@@ -28,4 +28,6 @@
   }
   temp.clear();
   temp=null;
+  mMenuItems.add(new MenuItem(getString(R.string.settings_name),MenuItem.SMALL_SECTION,R.drawable.settings_small));
+  mMenuItems.add(new MenuItem(getString(R.string.menuAboutContact),MenuItem.SMALL_SECTION,R.drawable.support_small));
 }

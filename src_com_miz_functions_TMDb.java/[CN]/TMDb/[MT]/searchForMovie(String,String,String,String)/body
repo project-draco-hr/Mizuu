@@ -13,17 +13,17 @@
             break;
           }
         }
-        if (!match)         movie.setId("invalid");
+        if (!match)         movie.setId(DbAdapterMovies.UNIDENTIFIED_ID);
       }
- else       movie.setId("invalid");
+ else       movie.setId(DbAdapterMovies.UNIDENTIFIED_ID);
     }
  catch (    Exception e) {
-      movie.setId("invalid");
+      movie.setId(DbAdapterMovies.UNIDENTIFIED_ID);
     }
   }
-  if (movie.getId().equals("invalid") || movie.getId().isEmpty()) {
+  if (movie.getId().equals(DbAdapterMovies.UNIDENTIFIED_ID) || movie.getId().isEmpty()) {
     try {
-      JSONObject jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/search/movie?query=" + URLEncoder.encode(query,"utf-8") + "&api_key="+ mTmdbApiKey+ (!MizLib.isEmpty(year) ? "&year=" + year : "")+ (includeAdult ? "&include_adult=true" : ""));
+      JSONObject jObject=MizLib.getJSONObject("https://api.themoviedb.org/3/search/movie?query=" + URLEncoder.encode(query,"utf-8") + "&api_key="+ mTmdbApiKey+ (!TextUtils.isEmpty(year) ? "&year=" + year : "")+ (includeAdult ? "&include_adult=true" : ""));
       if (jObject.getJSONArray("results").length() > 0) {
         boolean match=false;
         for (int i=0; i < jObject.getJSONArray("results").length(); i++) {
@@ -33,15 +33,15 @@
             break;
           }
         }
-        if (!match)         movie.setId("invalid");
+        if (!match)         movie.setId(DbAdapterMovies.UNIDENTIFIED_ID);
       }
- else       movie.setId("invalid");
+ else       movie.setId(DbAdapterMovies.UNIDENTIFIED_ID);
     }
  catch (    Exception e) {
-      movie.setId("invalid");
+      movie.setId(DbAdapterMovies.UNIDENTIFIED_ID);
     }
   }
-  if (!movie.getId().equals("invalid")) {
+  if (!movie.getId().equals(DbAdapterMovies.UNIDENTIFIED_ID)) {
     movie=getMovie(movie.getId(),language);
   }
  else {

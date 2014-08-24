@@ -1,6 +1,6 @@
 {
   String contentText;
-  if (showId.isEmpty() || showId.equalsIgnoreCase("invalid"))   contentText=getString(R.string.unidentified) + ": " + title;
+  if (showId.isEmpty() || showId.equalsIgnoreCase(DbAdapterTvShows.UNIDENTIFIED_ID))   contentText=getString(R.string.unidentified) + ": " + title;
  else   contentText=getString(R.string.stringJustAdded) + ": " + title;
   mBuilder.setLargeIcon(cover);
   mBuilder.setContentTitle(getString(R.string.updatingTvShows) + " (" + (int)((100.0 / (double)mTotalFiles) * (double)mEpisodeCount)+ "%)");

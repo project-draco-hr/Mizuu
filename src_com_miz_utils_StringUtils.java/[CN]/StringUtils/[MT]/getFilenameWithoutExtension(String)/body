@@ -1,0 +1,5 @@
+{
+  File fileName=new File(input);
+  int pointPosition=fileName.getName().lastIndexOf(".");
+  return (pointPosition == -1) ? fileName.getName() : fileName.getName().substring(0,pointPosition);
+}

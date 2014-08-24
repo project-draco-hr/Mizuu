@@ -1,6 +1,0 @@
-{
-  Intent i=new Intent("mizuu-show-episode-selected");
-  i.putExtra("showId",episode.getShowId());
-  i.putExtra("rowId",episode.getRowId());
-  LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(i);
-}

@@ -10,7 +10,7 @@ for (int i=0; i < mTvShows.size(); i++) {
 }
 break;
 case UNWATCHED_SHOWS:
-DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+DbAdapterTvShowEpisodes db=MizuuApplication.getTvEpisodeDbAdapter();
 for (int i=0; i < mTvShows.size(); i++) if (db.hasUnwatchedEpisodes(mTvShows.get(i).getId())) mTempKeys.add(i);
 break;
 }

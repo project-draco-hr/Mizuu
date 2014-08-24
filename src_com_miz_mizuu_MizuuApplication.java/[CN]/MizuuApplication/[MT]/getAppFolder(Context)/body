@@ -1,0 +1,6 @@
+{
+  if (sBaseAppFolder == null) {
+    sBaseAppFolder=c.getExternalFilesDir(null);
+  }
+  return sBaseAppFolder;
+}

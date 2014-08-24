@@ -1,4 +1,0 @@
-{
-  if (null == string)   return true;
-  return string.length() == 0;
-}

@@ -1,0 +1,3 @@
+{
+  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,null,null,null,null,null);
+}

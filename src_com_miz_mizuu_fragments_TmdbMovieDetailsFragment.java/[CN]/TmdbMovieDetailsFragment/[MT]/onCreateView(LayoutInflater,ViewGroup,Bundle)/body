@@ -2,6 +2,7 @@
   final View v=inflater.inflate(R.layout.movie_and_tv_show_details,container,false);
   movieDetailsLayout=MizLib.isPortrait(getActivity()) ? v.findViewById(R.id.movieDetailsLayout_portrait) : v.findViewById(R.id.movieDetailsLayout);
   progressBar=v.findViewById(R.id.progressBar1);
+  mDetailsArea=v.findViewById(R.id.details_area);
   this.container=(FrameLayout)v.findViewById(R.id.container);
   background=(ImageView)v.findViewById(R.id.imageBackground);
   textTitle=(TextView)v.findViewById(R.id.movieTitle);

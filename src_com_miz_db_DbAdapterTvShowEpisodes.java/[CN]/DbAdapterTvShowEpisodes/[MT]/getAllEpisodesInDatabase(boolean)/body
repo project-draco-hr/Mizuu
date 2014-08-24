@@ -1,0 +1,4 @@
+{
+  if (includeRemoved)   return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,null,null,null,null,null);
+ else   return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,"NOT(" + KEY_EPISODE_TITLE + " = 'MIZ_REMOVED_EPISODE')",null,null,null,null);
+}

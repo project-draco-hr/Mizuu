@@ -20,9 +20,14 @@ case R.id.identify_show:
 identifyShow();
 break;
 case R.id.openInBrowser:
-Intent tmdbIntent=new Intent(Intent.ACTION_VIEW);
-tmdbIntent.setData(Uri.parse("http://thetvdb.com/?tab=series&id=" + thisShow.getId()));
-startActivity(tmdbIntent);
+Intent browserIntent=new Intent(Intent.ACTION_VIEW);
+if (thisShow.getIdType() == TvShow.TMDB) {
+browserIntent.setData(Uri.parse("https://www.themoviedb.org/tv/" + thisShow.getIdWithoutHack()));
+}
+ else {
+browserIntent.setData(Uri.parse("http://thetvdb.com/?tab=series&id=" + thisShow.getId()));
+}
+startActivity(browserIntent);
 break;
 }
 return false;

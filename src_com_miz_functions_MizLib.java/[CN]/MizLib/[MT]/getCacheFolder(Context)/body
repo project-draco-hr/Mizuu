@@ -1,5 +1,0 @@
-{
-  File f=new File(c.getExternalFilesDir(null) + "/app_cache");
-  f.mkdirs();
-  return f;
-}

@@ -1,3 +1,0 @@
-{
-  return database.query(DATABASE_TABLE,SELECT_ALL,KEY_SHOW_ID + " = '" + showId+ "'",null,null,null,null);
-}

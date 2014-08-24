@@ -1,4 +1,4 @@
 {
-  if (getRuntime().equals("0") && MizLib.isEmpty(getReleaseYear()) && MizLib.isEmpty(getGenres())&& MizLib.isEmpty(getTitle()))   return true;
+  if (getRuntime().equals("0") && TextUtils.isEmpty(getReleaseYear()) && TextUtils.isEmpty(getGenres())&& TextUtils.isEmpty(getTitle()))   return true;
   return false;
 }

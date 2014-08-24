@@ -1,0 +1,36 @@
+{
+  ArrayList<String> backdrops=new ArrayList<String>();
+  try {
+    DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+    DocumentBuilder db=dbf.newDocumentBuilder();
+    Document doc=db.parse("http://thetvdb.com/api/" + mTvdbApiKey + "/series/"+ id+ "/banners.xml");
+    doc.getDocumentElement().normalize();
+    NodeList nodeList=doc.getElementsByTagName("Banners");
+    if (nodeList.getLength() > 0) {
+      Node firstNode=nodeList.item(0);
+      if (firstNode.getNodeType() == Node.ELEMENT_NODE) {
+        Element firstElement=(Element)firstNode;
+        NodeList list, list2;
+        Element element;
+        list=firstElement.getChildNodes();
+        list2=firstElement.getChildNodes();
+        nodeList=doc.getElementsByTagName("Banner");
+        if (nodeList.getLength() > 0) {
+          try {
+            list=firstElement.getElementsByTagName("BannerType");
+            list2=firstElement.getElementsByTagName("BannerPath");
+            for (int i=0; i < list.getLength(); i++) {
+              element=(Element)list.item(i);
+              if (element.getTextContent().equals("fanart"))               backdrops.add("http://thetvdb.com/banners/_cache/" + ((Element)list2.item(i)).getTextContent().toString());
+            }
+          }
+ catch (          Exception e) {
+          }
+        }
+      }
+    }
+  }
+ catch (  Exception e) {
+  }
+  return backdrops;
+}

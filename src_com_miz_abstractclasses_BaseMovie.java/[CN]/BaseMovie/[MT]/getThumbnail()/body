@@ -1,25 +1,3 @@
 {
-  if (!mIgnoreNfo) {
-    try {
-      String filename=mFilepath.substring(0,mFilepath.lastIndexOf(".")).replaceAll("part[1-9]|cd[1-9]","").trim();
-      File parentFolder=new File(mFilepath).getParentFile();
-      if (parentFolder != null) {
-        File[] list=parentFolder.listFiles();
-        if (list != null) {
-          String name, absolutePath;
-          int count=list.length;
-          for (int i=0; i < count; i++) {
-            name=list[i].getName();
-            absolutePath=list[i].getAbsolutePath();
-            if (name.equalsIgnoreCase("poster.jpg") || name.equalsIgnoreCase("poster.jpeg") || name.equalsIgnoreCase("poster.tbn")|| name.equalsIgnoreCase("folder.jpg")|| name.equalsIgnoreCase("folder.jpeg")|| name.equalsIgnoreCase("folder.tbn")|| name.equalsIgnoreCase("cover.jpg")|| name.equalsIgnoreCase("cover.jpeg")|| name.equalsIgnoreCase("cover.tbn")|| absolutePath.equalsIgnoreCase(filename + "-poster.jpg")|| absolutePath.equalsIgnoreCase(filename + "-poster.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-poster.tbn")|| absolutePath.equalsIgnoreCase(filename + "-folder.jpg")|| absolutePath.equalsIgnoreCase(filename + "-folder.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-folder.tbn")|| absolutePath.equalsIgnoreCase(filename + "-cover.jpg")|| absolutePath.equalsIgnoreCase(filename + "-cover.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-cover.tbn")|| absolutePath.equalsIgnoreCase(filename + ".jpg")|| absolutePath.equalsIgnoreCase(filename + ".jpeg")|| absolutePath.equalsIgnoreCase(filename + ".tbn")) {
-              return list[i];
-            }
-          }
-        }
-      }
-    }
- catch (    Exception e) {
-    }
-  }
   return MizLib.getMovieThumb(mContext,mTmdbId);
 }

@@ -1,0 +1,9 @@
+{
+  ContentValues values=new ContentValues();
+  values.put(KEY_FILEPATH,filepath);
+  values.put(KEY_SHOW_ID,showId);
+  values.put(KEY_SEASON,season);
+  values.put(KEY_EPISODE,episode);
+  values.put(KEY_IGNORED,0);
+  return mDatabase.insert(DATABASE_TABLE,null,values);
+}

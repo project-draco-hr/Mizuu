@@ -1,3 +1,0 @@
-{
-  if (isDebugging)   Log.d("TvShowsLibraryUpdate",msg);
-}

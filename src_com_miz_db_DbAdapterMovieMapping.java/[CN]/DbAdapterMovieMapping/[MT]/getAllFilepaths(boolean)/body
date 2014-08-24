@@ -1,3 +1,0 @@
-{
-  return mDatabase.query(DATABASE_TABLE,ALL_ROWS,includeRemoved ? null : "NOT(" + KEY_IGNORED + " = '1')",null,null,null,null);
-}

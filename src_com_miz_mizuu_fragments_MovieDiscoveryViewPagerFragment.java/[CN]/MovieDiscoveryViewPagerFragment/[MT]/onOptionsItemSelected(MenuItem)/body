@@ -1,11 +1,8 @@
 {
 switch (item.getItemId()) {
-case R.id.menuSettings:
-    startActivity(new Intent(getActivity(),Preferences.class));
-  break;
 case R.id.search_textbox:
-Intent i=new Intent(getActivity().getApplicationContext(),SearchWebMovies.class);
-startActivity(i);
+    Intent i=new Intent(getActivity().getApplicationContext(),SearchWebMovies.class);
+  startActivity(i);
 break;
 }
 return super.onOptionsItemSelected(item);

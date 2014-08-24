@@ -1,5 +1,0 @@
-{
-  if (movieExists(tmdbid))   return;
-  ContentValues initialValues=createContentValues(tmdbid,title,plot,imdbid,rating,tagline,release,certification,runtime,trailer,genres,favourite,actors,collection,collectionId,toWatch,hasWatched,date,true);
-  mDatabase.insert(DATABASE_TABLE,null,initialValues);
-}

@@ -1,5 +1,0 @@
-{
-  ContentValues values=new ContentValues();
-  values.put(table,value);
-  return database.update(DATABASE_TABLE,values,KEY_ROWID + "='" + rowId+ "'",null) > 0;
-}

@@ -1,0 +1,21 @@
+{
+  mContext=context;
+  mShowId=showId;
+  mTitle=title;
+  mDescription=description;
+  mSeason=season;
+  mEpisode=episode;
+  mReleaseDate=releasedate;
+  mDirector=director;
+  mWriter=writer;
+  mGuestStars=gueststars;
+  mRating=rating;
+  mHasWatched=hasWatched;
+  mFavorite=favorite;
+  StringBuilder sb=new StringBuilder();
+  sb.append(mContext.getString(R.string.showEpisode));
+  sb.append(" ");
+  sb.append(getEpisode());
+  if (!hasWatched())   sb.append(" " + mContext.getString(R.string.unwatched));
+  mSubtitleText=sb.toString();
+}

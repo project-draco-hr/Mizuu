@@ -1,3 +1,0 @@
-{
-  database=DbHelperTvShowEpisode.getHelper(context).getWritableDatabase();
-}

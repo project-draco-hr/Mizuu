@@ -1,0 +1,4 @@
+{
+  Cursor c=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + " = '" + showId+ "' AND "+ KEY_HAS_WATCHED+ " = '0'",null,null,null,null);
+  return c.getCount() > 0;
+}

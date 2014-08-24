@@ -1,9 +1,9 @@
 {
-  DbAdapter dbHelper=MizuuApplication.getMovieAdapter();
+  DbAdapterMovies dbHelper=MizuuApplication.getMovieAdapter();
   dbHelper.createMovie(movie.getId().isEmpty() ? filepath : movie.getId(),movie.getTitle(),movie.getPlot(),movie.getImdbId(),movie.getRating(),movie.getTagline(),movie.getReleasedate(),movie.getCertification(),movie.getRuntime(),movie.getTrailer(),movie.getGenres(),"0",movie.getCast(),movie.getCollectionTitle(),movie.getCollectionId(),"0","0",String.valueOf(System.currentTimeMillis()));
   MizuuApplication.getMovieMappingAdapter().createFilepathMapping(filepath,movie.getId().isEmpty() ? filepath : movie.getId());
-  Movie temp=new Movie(c,filepath,movie.getTitle(),movie.getPlot(),movie.getTagline(),movie.getId(),movie.getImdbId(),movie.getRating(),movie.getReleasedate(),movie.getCertification(),movie.getRuntime(),movie.getTrailer(),movie.getGenres(),"0",movie.getCast(),movie.getCollectionTitle(),movie.getCollectionId(),"0","0",String.valueOf(System.currentTimeMillis()),false,false);
-  if (callback != null)   callback.onMovieAdded(movie.getTitle(),temp.getThumbnail().getAbsolutePath(),temp.getBackdrop());
+  Movie temp=new Movie(c,movie.getTitle(),movie.getPlot(),movie.getTagline(),movie.getId(),movie.getImdbId(),movie.getRating(),movie.getReleasedate(),movie.getCertification(),movie.getRuntime(),movie.getTrailer(),movie.getGenres(),"0",movie.getCast(),movie.getCollectionTitle(),movie.getCollectionId(),"0","0",String.valueOf(System.currentTimeMillis()),false);
+  if (callback != null)   callback.onMovieAdded(movie.getTitle(),temp.getThumbnail().getAbsolutePath(),temp.getBackdrop().getAbsolutePath());
   Intent intent=new Intent("mizuu-movies-object");
   intent.putExtra("movieName",movie.getTitle());
   intent.putExtra("cover",temp.getPoster());

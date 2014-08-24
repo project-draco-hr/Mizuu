@@ -1,0 +1,13 @@
+{
+  if (show == null)   return;
+  updateWidgets();
+  File coverFile=MizLib.getTvShowThumb(mContext,show.getId());
+  File backdropFile=MizLib.getTvShowBackdrop(mContext,show.getId());
+  if (!backdropFile.exists())   backdropFile=coverFile;
+  try {
+    mCallback.onTvShowAdded(show.getId(),show.getTitle(),mPicasso.load(coverFile).resize(getNotificationImageSizeSmall(),getNotificationImageSizeSmall()).get(),mPicasso.load(backdropFile).skipMemoryCache().resize(getNotificationImageWidth(),(getNotificationImageWidth() / 16) * 9).get(),episodeCount);
+  }
+ catch (  IOException e) {
+    mCallback.onTvShowAdded(show.getId(),show.getTitle(),MizLib.getNotificationImageThumbnail(mContext,coverFile.getAbsolutePath()),MizLib.decodeSampledBitmapFromFile(backdropFile.getAbsolutePath(),getNotificationImageWidth(),getNotificationImageHeight()),episodeCount);
+  }
+}

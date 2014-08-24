@@ -1,0 +1,16 @@
+{
+  Cursor mCursor=mDatabase.query(true,DATABASE_TABLE,ALL_COLUMNS,KEY_COLLECTION_ID + "='" + collectionId+ "'",null,null,null,null,null);
+  if (mCursor == null)   return false;
+  try {
+    if (mCursor.getCount() == 0) {
+      mCursor.close();
+      return false;
+    }
+  }
+ catch (  Exception e) {
+    mCursor.close();
+    return false;
+  }
+  mCursor.close();
+  return true;
+}

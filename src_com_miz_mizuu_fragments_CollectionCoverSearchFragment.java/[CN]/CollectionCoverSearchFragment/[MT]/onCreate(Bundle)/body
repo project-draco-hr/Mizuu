@@ -6,5 +6,5 @@
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
-  COLLECTION_ID=getArguments().getString("collectionId");
+  mCollectionId=getArguments().getString("collectionId");
 }

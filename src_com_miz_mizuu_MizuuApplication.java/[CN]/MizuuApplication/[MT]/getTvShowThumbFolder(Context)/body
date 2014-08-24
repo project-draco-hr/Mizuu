@@ -1,6 +1,6 @@
 {
   if (sTvShowThumbFolder == null) {
-    sTvShowThumbFolder=new File(c.getExternalFilesDir(null),"tvshows-thumbs");
+    sTvShowThumbFolder=getSubAppFolder(c,"tvshows-thumbs");
     sTvShowThumbFolder.mkdirs();
   }
   return sTvShowThumbFolder;

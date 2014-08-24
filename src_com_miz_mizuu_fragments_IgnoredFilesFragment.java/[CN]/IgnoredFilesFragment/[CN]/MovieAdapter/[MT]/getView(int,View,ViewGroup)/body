@@ -15,7 +15,7 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  holder.folderName.setText(movies.get(position).getFilepath());
+  holder.folderName.setText(movies.get(position).getAllFilepaths());
   holder.remove.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
       removeSelectedMovie(movies.get(position).getTmdbId());

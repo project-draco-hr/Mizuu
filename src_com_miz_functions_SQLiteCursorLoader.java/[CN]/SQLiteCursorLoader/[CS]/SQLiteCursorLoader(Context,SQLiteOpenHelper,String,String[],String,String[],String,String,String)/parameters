@@ -1,9 +1,0 @@
-Context context
-SQLiteOpenHelper db
-String table
-String[] columns
-String selection
-String[] selectionArgs
-String groupBy
-String having
-String orderBy

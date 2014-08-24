@@ -1,0 +1,105 @@
+{
+  File dbFile=context.getDatabasePath("mizuu_tv_show_data");
+  File dbFile2=context.getDatabasePath("mizuu_tv_show_episode_data");
+  if (dbFile.exists() && dbFile2.exists()) {
+    database.execSQL(DATABASE_CREATE_TV_SHOWS);
+    database.execSQL(DATABASE_CREATE_SHOW_ID_INDEX);
+    String KEY_SHOW_ID="show_id";
+    String KEY_SHOW_TITLE="show_title";
+    String KEY_SHOW_PLOT="show_description";
+    String KEY_SHOW_ACTORS="show_actors";
+    String KEY_SHOW_GENRES="show_genres";
+    String KEY_SHOW_RATING="show_rating";
+    String KEY_SHOW_CERTIFICATION="show_certification";
+    String KEY_SHOW_RUNTIME="show_runtime";
+    String KEY_SHOW_FIRST_AIRDATE="show_first_airdate";
+    String KEY_SHOW_EXTRA1="extra1";
+    String[] SELECT_ALL=new String[]{KEY_SHOW_ID,KEY_SHOW_TITLE,KEY_SHOW_PLOT,KEY_SHOW_ACTORS,KEY_SHOW_GENRES,KEY_SHOW_RATING,KEY_SHOW_RATING,KEY_SHOW_CERTIFICATION,KEY_SHOW_RUNTIME,KEY_SHOW_FIRST_AIRDATE,KEY_SHOW_EXTRA1};
+    SQLiteDatabase db=SQLiteDatabase.openOrCreateDatabase(dbFile,null);
+    Cursor c=db.query("tvshows",SELECT_ALL,null,null,null,null,KEY_SHOW_TITLE + " ASC");
+    try {
+      while (c.moveToNext()) {
+        ContentValues cv=new ContentValues();
+        cv.put(KEY_SHOW_ID,c.getString(c.getColumnIndex(KEY_SHOW_ID)));
+        cv.put(KEY_SHOW_TITLE,c.getString(c.getColumnIndex(KEY_SHOW_TITLE)));
+        cv.put(KEY_SHOW_PLOT,c.getString(c.getColumnIndex(KEY_SHOW_PLOT)));
+        cv.put(KEY_SHOW_ACTORS,c.getString(c.getColumnIndex(KEY_SHOW_ACTORS)));
+        cv.put(KEY_SHOW_GENRES,c.getString(c.getColumnIndex(KEY_SHOW_GENRES)));
+        cv.put(KEY_SHOW_RATING,c.getString(c.getColumnIndex(KEY_SHOW_RATING)));
+        cv.put(KEY_SHOW_CERTIFICATION,c.getString(c.getColumnIndex(KEY_SHOW_CERTIFICATION)));
+        cv.put(KEY_SHOW_RUNTIME,c.getString(c.getColumnIndex(KEY_SHOW_RUNTIME)));
+        cv.put(KEY_SHOW_FIRST_AIRDATE,c.getString(c.getColumnIndex(KEY_SHOW_FIRST_AIRDATE)));
+        cv.put(DbAdapterTvShows.KEY_SHOW_FAVOURITE,c.getString(c.getColumnIndex(KEY_SHOW_EXTRA1)));
+        database.insert("tvshows",null,cv);
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      c.close();
+      db.close();
+      if (MizLib.hasJellyBean())       SQLiteDatabase.deleteDatabase(dbFile);
+ else       dbFile.delete();
+    }
+    database.execSQL(DATABASE_CREATE_TV_SHOWS_EPISODES);
+    database.execSQL(DATABASE_CREATE_EPISODE_SHOW_ID_INDEX);
+    database.execSQL(DATABASE_CREATE_TV_SHOWS_EPISODES_MAPPING);
+    String KEY_FILEPATH="filepath";
+    String KEY_SEASON="season";
+    String KEY_EPISODE="episode";
+    String KEY_DATE_ADDED="date_added";
+    String KEY_TO_WATCH="to_watch";
+    String KEY_HAS_WATCHED="has_watched";
+    String KEY_EXTRA_1="extra1";
+    KEY_SHOW_ID="show_id";
+    String KEY_EPISODE_TITLE="episode_title";
+    String KEY_EPISODE_PLOT="episode_description";
+    String KEY_EPISODE_AIRDATE="episode_airdate";
+    String KEY_EPISODE_RATING="episode_rating";
+    String KEY_EPISODE_DIRECTOR="episode_director";
+    String KEY_EPISODE_WRITER="episode_writer";
+    String KEY_EPISODE_GUESTSTARS="episode_gueststars";
+    SELECT_ALL=new String[]{KEY_FILEPATH,KEY_SEASON,KEY_EPISODE,KEY_DATE_ADDED,KEY_TO_WATCH,KEY_HAS_WATCHED,KEY_EXTRA_1,KEY_SHOW_ID,KEY_EPISODE_TITLE,KEY_EPISODE_PLOT,KEY_EPISODE_AIRDATE,KEY_EPISODE_RATING,KEY_EPISODE_DIRECTOR,KEY_EPISODE_WRITER,KEY_EPISODE_GUESTSTARS};
+    db=SQLiteDatabase.openOrCreateDatabase(dbFile2,null);
+    c=db.query("tvshow_episodes",SELECT_ALL,null,null,null,null,null);
+    HashSet<String> fileSet=new HashSet<String>();
+    try {
+      while (c.moveToNext()) {
+        ContentValues cv=new ContentValues();
+        cv.put(KEY_SEASON,c.getString(c.getColumnIndex(KEY_SEASON)));
+        cv.put(KEY_EPISODE,c.getString(c.getColumnIndex(KEY_EPISODE)));
+        cv.put(KEY_DATE_ADDED,c.getString(c.getColumnIndex(KEY_DATE_ADDED)));
+        cv.put(KEY_TO_WATCH,c.getString(c.getColumnIndex(KEY_TO_WATCH)));
+        cv.put(KEY_HAS_WATCHED,c.getString(c.getColumnIndex(KEY_HAS_WATCHED)));
+        cv.put(DbAdapterTvShowEpisodes.KEY_FAVOURITE,c.getString(c.getColumnIndex(KEY_EXTRA_1)));
+        cv.put(KEY_SHOW_ID,c.getString(c.getColumnIndex(KEY_SHOW_ID)));
+        cv.put(KEY_EPISODE_TITLE,c.getString(c.getColumnIndex(KEY_EPISODE_TITLE)));
+        cv.put(KEY_EPISODE_PLOT,c.getString(c.getColumnIndex(KEY_EPISODE_PLOT)));
+        cv.put(KEY_EPISODE_AIRDATE,c.getString(c.getColumnIndex(KEY_EPISODE_AIRDATE)));
+        cv.put(KEY_EPISODE_RATING,c.getString(c.getColumnIndex(KEY_EPISODE_RATING)));
+        cv.put(KEY_EPISODE_DIRECTOR,c.getString(c.getColumnIndex(KEY_EPISODE_DIRECTOR)));
+        cv.put(KEY_EPISODE_WRITER,c.getString(c.getColumnIndex(KEY_EPISODE_WRITER)));
+        cv.put(KEY_EPISODE_GUESTSTARS,c.getString(c.getColumnIndex(KEY_EPISODE_GUESTSTARS)));
+        database.insert(DbAdapterTvShowEpisodes.DATABASE_TABLE,null,cv);
+        if (!fileSet.contains(c.getString(c.getColumnIndex(KEY_FILEPATH)))) {
+          cv.clear();
+          cv.put(DbAdapterTvShowEpisodeMappings.KEY_SHOW_ID,c.getString(c.getColumnIndex(KEY_SHOW_ID)));
+          cv.put(DbAdapterTvShowEpisodeMappings.KEY_FILEPATH,c.getString(c.getColumnIndex(KEY_FILEPATH)));
+          cv.put(DbAdapterTvShowEpisodeMappings.KEY_SEASON,c.getString(c.getColumnIndex(KEY_SEASON)));
+          cv.put(DbAdapterTvShowEpisodeMappings.KEY_EPISODE,c.getString(c.getColumnIndex(KEY_EPISODE)));
+          cv.put(DbAdapterTvShowEpisodeMappings.KEY_IGNORED,c.getString(c.getColumnIndex(KEY_EPISODE_TITLE)).equals("KEY_EPISODE_TITLE") ? 1 : 0);
+          database.insert(DbAdapterTvShowEpisodeMappings.DATABASE_TABLE,null,cv);
+          fileSet.add(c.getString(c.getColumnIndex(KEY_FILEPATH)));
+        }
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      c.close();
+      db.close();
+      if (MizLib.hasJellyBean())       SQLiteDatabase.deleteDatabase(dbFile2);
+ else       dbFile2.delete();
+    }
+  }
+}

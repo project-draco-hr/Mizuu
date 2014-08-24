@@ -29,10 +29,7 @@ case R.id.certifications:
 showCertifications();
 break;
 case R.id.unidentifiedFiles:
-startActivity(new Intent(getActivity(),UnidentifiedFiles.class));
-break;
-case R.id.menuSettings:
-startActivity(new Intent(getActivity(),Preferences.class));
+startActivity(new Intent(getActivity(),UnidentifiedTvShows.class));
 break;
 case R.id.clear_filters:
 showTvShowSection(mActionBar.getSelectedNavigationIndex());

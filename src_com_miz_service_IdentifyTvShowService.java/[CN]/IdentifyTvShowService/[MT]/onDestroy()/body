@@ -1,0 +1,11 @@
+{
+  super.onDestroy();
+  log("onDestroy()");
+  if (mNotificationManager == null)   mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+  mNotificationManager.cancel(NOTIFICATION_ID);
+  LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-shows-update"));
+  AppWidgetManager awm=AppWidgetManager.getInstance(this);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,ShowStackWidgetProvider.class)),R.id.stack_view);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,ShowCoverWidgetProvider.class)),R.id.widget_grid);
+  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,ShowBackdropWidgetProvider.class)),R.id.widget_grid);
+}

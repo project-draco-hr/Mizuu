@@ -7,9 +7,9 @@
   mWatched=watched;
   mCover=cover;
   StringBuilder sb=new StringBuilder();
-  sb.append(mContext.getString(R.string.showEpisode));
-  sb.append(" ");
-  sb.append(getEpisode());
-  if (!hasWatched())   sb.append(" " + mContext.getString(R.string.unwatched));
+  sb.append(mContext.getString(R.string.showEpisode)).append(" ").append(getEpisode());
+  if (!hasWatched()) {
+    sb.append(" ").append(mContext.getString(R.string.unwatched));
+  }
   mSubtitleText=sb.toString();
 }

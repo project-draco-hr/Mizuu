@@ -1,0 +1,4 @@
+Context context
+String title
+String tmdbId
+boolean ignorePrefixes

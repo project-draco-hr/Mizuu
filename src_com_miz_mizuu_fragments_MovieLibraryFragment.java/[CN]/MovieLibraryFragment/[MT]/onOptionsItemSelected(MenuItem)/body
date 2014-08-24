@@ -22,9 +22,6 @@ break;
 case R.id.menuSortDuration:
 sortBy(DURATION);
 break;
-case R.id.menuSettings:
-startActivity(new Intent(getActivity(),Preferences.class));
-break;
 case R.id.genres:
 showGenres();
 break;
@@ -45,6 +42,9 @@ if (mMovieKeys.size() > 0) {
 int random=new Random().nextInt(mMovieKeys.size());
 showDetails(random);
 }
+break;
+case R.id.unidentifiedFiles:
+startActivity(new Intent(getActivity(),UnidentifiedMovies.class));
 break;
 }
 return true;

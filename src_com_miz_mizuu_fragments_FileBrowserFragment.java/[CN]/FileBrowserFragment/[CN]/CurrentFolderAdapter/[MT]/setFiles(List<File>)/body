@@ -1,5 +1,0 @@
-{
-  files.clear();
-  files.addAll(l);
-  notifyDataSetChanged();
-}

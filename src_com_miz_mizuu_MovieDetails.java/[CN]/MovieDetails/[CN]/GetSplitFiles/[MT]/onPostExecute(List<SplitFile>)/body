@@ -1,22 +1,21 @@
 {
   progress.dismiss();
+  if (result.size() > 0)   mVideoPlaybackStarted=System.currentTimeMillis();
   if (result.size() > 1) {
     AlertDialog.Builder builder=new AlertDialog.Builder(getApplicationContext());
     builder.setTitle(getString(R.string.playPart));
     builder.setAdapter(new SplitAdapter(getApplicationContext(),result),new DialogInterface.OnClickListener(){
       public void onClick(      DialogInterface dialog,      int which){
-        String filepath=result.get(which).getFilepath();
-        if (isNetworkFile)         playNetworkFile(filepath);
- else         play(filepath);
+        boolean playbackStarted=VideoUtils.playVideo(MovieDetails.this,result.get(which).getFilepath(),isNetworkFile,mMovie);
+        if (playbackStarted)         checkIn();
       }
     }
 );
     builder.show();
   }
  else   if (result.size() == 1) {
-    String filepath=result.get(0).getFilepath();
-    if (isNetworkFile)     playNetworkFile(filepath);
- else     play(filepath);
+    boolean playbackStarted=VideoUtils.playVideo(MovieDetails.this,result.get(0).getFilepath(),isNetworkFile,mMovie);
+    if (playbackStarted)     checkIn();
   }
  else {
     Toast.makeText(getApplicationContext(),getString(R.string.errorSomethingWentWrong),Toast.LENGTH_LONG).show();

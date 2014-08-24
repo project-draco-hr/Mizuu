@@ -1,6 +1,6 @@
 {
   if (key.equals(IGNORED_TITLE_PREFIXES)) {
-    mDisableEthernetWiFiCheck=mSharedPreferences.getBoolean(IGNORED_TITLE_PREFIXES,false);
+    mIgnorePrefixes=mSharedPreferences.getBoolean(IGNORED_TITLE_PREFIXES,false);
     forceLoaderLoad();
   }
  else   if (key.equals(GRID_ITEM_SIZE)) {

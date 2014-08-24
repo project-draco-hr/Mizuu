@@ -1,5 +1,5 @@
 {
-  if (s == null || s.isEmpty())   return "";
+  if (TextUtils.isEmpty(s))   return "";
   StringBuilder result=new StringBuilder();
   char[] charArray=s.toCharArray();
   int count=charArray.length;

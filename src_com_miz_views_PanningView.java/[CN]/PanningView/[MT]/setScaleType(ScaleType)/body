@@ -1,7 +1,7 @@
 {
   if (scaleType == ScaleType.CENTER_CROP) {
-    super.setScaleType(scaleType);
     stopPanning();
+    super.setScaleType(scaleType);
   }
  else   throw new UnsupportedOperationException("only matrix scaleType is supported");
 }

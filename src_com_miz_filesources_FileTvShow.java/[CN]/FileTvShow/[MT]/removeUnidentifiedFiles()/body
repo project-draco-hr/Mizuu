@@ -1,12 +1,12 @@
 {
-  DbAdapterTvShowEpisode db=MizuuApplication.getTvEpisodeDbAdapter();
+  DbAdapterTvShowEpisodes db=MizuuApplication.getTvEpisodeDbAdapter();
   List<DbEpisode> dbEpisodes=getDbEpisodes();
   File temp;
   int count=dbEpisodes.size();
   for (int i=0; i < count; i++) {
     if (!dbEpisodes.get(i).isNetworkFile() && !dbEpisodes.get(i).isUpnpFile() && dbEpisodes.get(i).isUnidentified()) {
       temp=new File(dbEpisodes.get(i).getFilepath());
-      if (temp.exists())       db.deleteEpisode(dbEpisodes.get(i).getRowId());
+      if (temp.exists())       db.deleteEpisode(dbEpisodes.get(i).getShowId(),MizLib.getInteger(dbEpisodes.get(i).getSeason()),MizLib.getInteger(dbEpisodes.get(i).getEpisode()));
     }
   }
 }

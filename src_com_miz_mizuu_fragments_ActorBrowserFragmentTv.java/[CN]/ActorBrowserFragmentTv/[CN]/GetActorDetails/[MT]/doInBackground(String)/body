@@ -1,14 +1,24 @@
 {
   try {
     String baseUrl=MizLib.getTmdbImageBaseUrl(mContext);
-    HttpClient httpclient=new DefaultHttpClient();
-    HttpGet httppost=new HttpGet("https://api.themoviedb.org/3/find/" + params[0] + "?api_key="+ mTmdbApiKey+ "&external_source=tvdb_id");
-    httppost.setHeader("Accept","application/json");
-    ResponseHandler<String> responseHandler=new BasicResponseHandler();
-    String credits=httpclient.execute(httppost,responseHandler);
-    JSONObject jObject=new JSONObject(credits);
-    String newId=jObject.getJSONArray("tv_results").getJSONObject(0).getString("id");
-    httppost=new HttpGet("https://api.themoviedb.org/3/tv/" + newId + "/credits?api_key="+ mTmdbApiKey);
+    HttpClient httpclient=null;
+    HttpGet httppost=null;
+    ResponseHandler<String> responseHandler=null;
+    JSONObject jObject=null;
+    if (!mId.startsWith("tmdb_")) {
+      httpclient=new DefaultHttpClient();
+      httppost=new HttpGet("https://api.themoviedb.org/3/find/" + mId + "?api_key="+ mTmdbApiKey+ "&external_source=tvdb_id");
+      httppost.setHeader("Accept","application/json");
+      responseHandler=new BasicResponseHandler();
+      String results=httpclient.execute(httppost,responseHandler);
+      jObject=new JSONObject(results);
+      mId=MizLib.getStringFromJSONObject(jObject.getJSONArray("tv_results").getJSONObject(0),"id","");
+    }
+ else {
+      httpclient=new DefaultHttpClient();
+      mId=mId.replace("tmdb_","");
+    }
+    httppost=new HttpGet("https://api.themoviedb.org/3/tv/" + mId + "/credits?api_key="+ mTmdbApiKey);
     httppost.setHeader("Accept","application/json");
     responseHandler=new BasicResponseHandler();
     String html=httpclient.execute(httppost,responseHandler);

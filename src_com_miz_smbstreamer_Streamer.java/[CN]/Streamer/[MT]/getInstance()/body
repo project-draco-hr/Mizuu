@@ -1,9 +1,9 @@
 {
-  if (instance == null)   try {
-    instance=new Streamer(PORT);
+  if (sInstance == null)   try {
+    sInstance=new Streamer(PORT);
   }
  catch (  IOException e) {
     e.printStackTrace();
   }
-  return instance;
+  return sInstance;
 }

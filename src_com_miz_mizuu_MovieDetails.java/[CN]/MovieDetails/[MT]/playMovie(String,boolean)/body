@@ -1,26 +1,10 @@
 {
-  mVideoPlaybackStarted=System.currentTimeMillis();
   if (filepath.toLowerCase(Locale.getDefault()).matches(".*(cd1|part1).*")) {
     new GetSplitFiles(filepath,isNetworkFile).execute();
   }
  else {
-    if (isNetworkFile) {
-      playNetworkFile(filepath);
-    }
- else {
-      try {
-        startActivity(MizLib.getVideoIntent(filepath,mWildcard,mMovie));
-        checkIn();
-      }
- catch (      Exception e) {
-        try {
-          startActivity(MizLib.getVideoIntent(filepath,"video/*",mMovie));
-          checkIn();
-        }
- catch (        Exception e2) {
-          Toast.makeText(getApplicationContext(),getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
-        }
-      }
-    }
+    mVideoPlaybackStarted=System.currentTimeMillis();
+    boolean playbackStarted=VideoUtils.playVideo(this,filepath,isNetworkFile,mMovie);
+    if (playbackStarted)     checkIn();
   }
 }

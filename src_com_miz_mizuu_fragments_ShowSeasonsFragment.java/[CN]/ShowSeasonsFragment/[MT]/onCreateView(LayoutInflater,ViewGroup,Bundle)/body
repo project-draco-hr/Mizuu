@@ -1,4 +1,0 @@
-{
-  if (useGridView)   return inflater.inflate(R.layout.seasons_grid,container,false);
-  return inflater.inflate(R.layout.seasons_list,container,false);
-}

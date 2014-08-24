@@ -9,11 +9,11 @@
  else   if (mSearchQuery.equalsIgnoreCase("missing_genres")) {
     for (int i=0; i < mMovies.size(); i++) {
       if (isCancelled())       return null;
-      if (MizLib.isEmpty(mMovies.get(i).getGenres()))       mTempKeys.add(i);
+      if (TextUtils.isEmpty(mMovies.get(i).getGenres()))       mTempKeys.add(i);
     }
   }
  else   if (mSearchQuery.equalsIgnoreCase("multiple_versions")) {
-    DbAdapterMovieMapping db=MizuuApplication.getMovieMappingAdapter();
+    DbAdapterMovieMappings db=MizuuApplication.getMovieMappingAdapter();
     for (int i=0; i < mMovies.size(); i++) {
       if (isCancelled())       return null;
       if (db.hasMultipleFilepaths(mMovies.get(i).getTmdbId()))       mTempKeys.add(i);
@@ -23,9 +23,21 @@
     Pattern p=Pattern.compile(MizLib.CHARACTER_REGEX);
     for (int i=0; i < mMovies.size(); i++) {
       if (isCancelled())       return null;
-      String lowerCase=mMovies.get(i).getTitle().toLowerCase(Locale.ENGLISH);
-      String filepath=mMovies.get(i).getFilepath().toLowerCase(Locale.ENGLISH);
-      if (lowerCase.indexOf(mSearchQuery) != -1 || filepath.indexOf(mSearchQuery) != -1 || p.matcher(lowerCase).replaceAll("").indexOf(mSearchQuery) != -1)       mTempKeys.add(i);
+      String lowerCaseTitle=mMovies.get(i).getTitle().toLowerCase(Locale.ENGLISH);
+      boolean foundInTitle=false;
+      if (lowerCaseTitle.indexOf(mSearchQuery) != -1 || p.matcher(lowerCaseTitle).replaceAll("").indexOf(mSearchQuery) != -1) {
+        mTempKeys.add(i);
+        foundInTitle=true;
+      }
+      if (!foundInTitle) {
+        for (        Filepath path : mMovies.get(i).getFilepaths()) {
+          String filepath=path.getFilepath().toLowerCase(Locale.ENGLISH);
+          if (filepath.indexOf(mSearchQuery) != -1) {
+            mTempKeys.add(i);
+            break;
+          }
+        }
+      }
     }
   }
   return null;

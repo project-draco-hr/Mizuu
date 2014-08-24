@@ -4,9 +4,8 @@
   setRetainInstance(true);
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  TVDB_ID=getArguments().getString("tvdbId");
-  mTvdbApiKey=MizLib.getTvdbApiKey(getActivity());
+  mShowId=getArguments().getString("showId");
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
-  new GetCoverImages().execute(TVDB_ID);
+  new GetCoverImages().execute(mShowId);
 }

@@ -1,0 +1,6 @@
+{
+  TvShowIdentification identification=new TvShowIdentification(this,this,mFiles);
+  identification.setShowId(mNewShowId);
+  identification.setLanguage(mLanguage);
+  identification.start();
+}

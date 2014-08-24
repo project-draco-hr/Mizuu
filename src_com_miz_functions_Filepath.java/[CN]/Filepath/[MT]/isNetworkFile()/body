@@ -1,0 +1,4 @@
+{
+  int type=getType();
+  return type == FileSource.SMB || type == FileSource.UPNP;
+}

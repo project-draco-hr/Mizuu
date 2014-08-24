@@ -29,6 +29,33 @@ return true;
 case R.id.play_video:
 playMovie();
 return true;
+case R.id.watchOffline:
+watchOffline();
+return true;
+case R.id.change_cover:
+searchCover();
+return true;
+case R.id.editMovie:
+editMovie();
+return true;
+case R.id.identify:
+identifyMovie();
+return true;
+case R.id.watched:
+watched(true);
+return true;
+case R.id.trailer:
+watchTrailer();
+return true;
+case R.id.watch_list:
+watchList();
+return true;
+case R.id.movie_fav:
+favAction();
+return true;
+case R.id.delete_movie:
+deleteMovie();
+return true;
 default :
 return super.onOptionsItemSelected(item);
 }

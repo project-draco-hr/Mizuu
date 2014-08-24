@@ -20,7 +20,7 @@
             String seasonNumber=MizLib.addIndexZero(String.valueOf(season.get("season")));
             JSONArray seasonEpisodes=season.getJSONArray("episodes");
             for (int k=0; k < seasonEpisodes.length(); k++) {
-              mEpisodeDatabase.updateEpisode(showId,seasonNumber,MizLib.addIndexZero(String.valueOf(seasonEpisodes.get(k))),DbAdapterTvShowEpisode.KEY_HAS_WATCHED,"1");
+              mEpisodeDatabase.updateEpisode(showId,seasonNumber,MizLib.addIndexZero(String.valueOf(seasonEpisodes.get(k))),DbAdapterTvShowEpisodes.KEY_HAS_WATCHED,"1");
             }
           }
         }

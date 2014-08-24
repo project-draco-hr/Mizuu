@@ -3,5 +3,7 @@
   sDbTvShow.close();
   sDbTvShowEpisode.close();
   sDbSources.close();
-  sDb.close();
+  sDbMovies.close();
+  sDbMovieMapping.close();
+  sDbCollections.close();
 }

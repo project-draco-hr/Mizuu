@@ -4,7 +4,10 @@ case MenuItem.HEADER:
     return 0;
 case MenuItem.SEPARATOR:
   return 1;
-default :
+case MenuItem.THIRD_PARTY_APP:
+case MenuItem.SECTION:
 return 2;
+default :
+return 3;
 }
 }

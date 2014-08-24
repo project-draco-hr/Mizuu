@@ -7,6 +7,5 @@
   mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceCollections),getString(R.string.choiceCollections)));
   mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceWatchedMovies),getString(R.string.choiceWatchedMovies)));
   mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceUnwatchedMovies),getString(R.string.choiceUnwatchedMovies)));
-  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceUnidentifiedMovies),getString(R.string.choiceUnidentifiedMovies)));
   mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceOffline),getString(R.string.choiceOffline)));
 }

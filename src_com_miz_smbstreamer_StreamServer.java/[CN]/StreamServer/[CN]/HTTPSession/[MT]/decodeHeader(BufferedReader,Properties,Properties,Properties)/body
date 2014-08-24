@@ -10,7 +10,7 @@
     String uri=st.nextToken();
     int qmi=uri.indexOf('?');
     if (qmi >= 0) {
-      decodeParms(uri.substring(qmi + 1),parms);
+      decodeParams(uri.substring(qmi + 1),params);
       uri=decodePercent(uri.substring(0,qmi));
     }
  else     uri=Uri.decode(uri);
