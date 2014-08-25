@@ -1,18 +1,18 @@
 {
-  file="";
-  type=-1;
-  auth=null;
-  smb=null;
+  mFileUrl="";
+  mType=-1;
+  mAuth=null;
+  mSmb=null;
   mContext=null;
   mSize=-1;
   mBuilder=null;
   mNotificationManager=null;
   mNotification=null;
-  contentIntent=null;
+  mContentIntent=null;
   mStopDownload=false;
-  lastTime=0;
-  currentTime=0;
-  lastLength=0;
-  totalLength=0;
-  currentLength=0;
+  mLastTime=0;
+  mCurrentTime=0;
+  mLastLength=0;
+  mTotalLength=0;
+  mCurrentLength=0;
 }

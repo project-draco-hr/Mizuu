@@ -1,11 +1,11 @@
 {
   try {
-    long elapsed=(currentTime - lastTime);
-    long data_sent=(currentLength - lastLength);
-    double percentage=(100.0 / (double)totalLength) * (double)currentLength;
+    long elapsed=(mCurrentTime - mLastTime);
+    long data_sent=(mCurrentLength - mLastLength);
+    double percentage=(100.0 / (double)mTotalLength) * (double)mCurrentLength;
     long data_per_sec=(data_sent / elapsed) * 1000;
     if (mSize == -1)     return getString(R.string.unknown_size) + " (" + (data_per_sec / 1000)+ " KB/s)";
-    return Double.valueOf(oneDecimal.format(percentage)) + "% - " + (currentLength / 1024 / 1024)+ " of "+ (totalLength / 1024 / 1024)+ " MB ("+ (data_per_sec / 1000)+ " KB/s)";
+    return Double.valueOf(mOneDecimal.format(percentage)) + "% - " + (mCurrentLength / 1024 / 1024)+ " of "+ (mTotalLength / 1024 / 1024)+ " MB ("+ (data_per_sec / 1000)+ " KB/s)";
   }
  catch (  Exception e) {
     return getString(R.string.starting_download);

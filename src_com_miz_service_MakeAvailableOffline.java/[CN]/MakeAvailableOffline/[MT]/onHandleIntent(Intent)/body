@@ -2,20 +2,24 @@
   reset();
   LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-stop-offline-download"));
   mContext=getApplicationContext();
-  file=intent.getExtras().getString(FILEPATH);
-  type=intent.getExtras().getInt(TYPE);
+  String defaultSize=mContext.getString(R.string._16kb);
+  String bufferSize=PreferenceManager.getDefaultSharedPreferences(mContext).getString(BUFFER_SIZE,defaultSize);
+  if (bufferSize.equals(defaultSize))   mBufferSize=8192 * 2;
+ else   mBufferSize=8192;
+  mFileUrl=intent.getExtras().getString(FILEPATH);
+  mType=intent.getExtras().getInt(TYPE);
   mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
   Intent notificationIntent=new Intent(this,CancelOfflineDownload.class);
   notificationIntent.setAction(Intent.ACTION_MAIN);
   notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-  contentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
+  mContentIntent=PendingIntent.getActivity(this,0,notificationIntent,0);
   mBuilder=new NotificationCompat.Builder(mContext);
   mBuilder.setOngoing(true);
   mBuilder.setOnlyAlertOnce(true);
   mBuilder.setSmallIcon(android.R.drawable.stat_sys_download);
-  mBuilder.setContentIntent(contentIntent);
+  mBuilder.setContentIntent(mContentIntent);
   String message=getString(R.string.downloadingMovie);
-  if (type == MizLib.TYPE_SHOWS)   message=getString(R.string.downloadingEpisode);
+  if (mType == MizLib.TYPE_SHOWS)   message=getString(R.string.downloadingEpisode);
   mBuilder.setTicker(message);
   mBuilder.setContentTitle(message);
   mBuilder.setContentText(getContentText());
@@ -27,7 +31,7 @@
   }
  catch (  IOException e) {
   }
-  mBuilder.addAction(R.drawable.ic_action_discard,getString(android.R.string.cancel),contentIntent);
+  mBuilder.addAction(R.drawable.ic_action_discard,getString(android.R.string.cancel),mContentIntent);
   boolean exists=checkIfNetworkFileExists();
   if (!exists) {
     mHandler.post(new Runnable(){
@@ -68,7 +72,7 @@
   startForeground(NOTIFICATION_ID,mNotification);
   boolean success=beginTransfer();
   if (!success) {
-    if (file.startsWith("http"))     MizLib.getOfflineFile(mContext,file).delete();
- else     MizLib.getOfflineFile(mContext,smb.getCanonicalPath()).delete();
+    if (mFileUrl.startsWith("http"))     MizLib.getOfflineFile(mContext,mFileUrl).delete();
+ else     MizLib.getOfflineFile(mContext,mSmb.getCanonicalPath()).delete();
   }
 }

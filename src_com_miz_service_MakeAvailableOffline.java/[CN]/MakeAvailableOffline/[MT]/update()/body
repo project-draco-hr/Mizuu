@@ -1,8 +1,8 @@
 {
-  currentTime=System.currentTimeMillis();
-  if (currentTime - 1000 > lastTime) {
+  mCurrentTime=System.currentTimeMillis();
+  if (mCurrentTime - 1000 > mLastTime) {
     updateNotification();
-    lastTime=currentTime;
-    lastLength=currentLength;
+    mLastTime=mCurrentTime;
+    mLastLength=mCurrentLength;
   }
 }

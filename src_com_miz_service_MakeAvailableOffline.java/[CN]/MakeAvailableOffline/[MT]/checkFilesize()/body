@@ -1,8 +1,8 @@
 {
   try {
     long freeMemory=(long)(MizLib.getFreeMemory() * 0.975);
-    if (file.startsWith("http"))     mSize=MizLib.getFileSize(new URL(file));
- else     mSize=smb.length();
+    if (mFileUrl.startsWith("http"))     mSize=MizLib.getFileSize(new URL(mFileUrl));
+ else     mSize=mSmb.length();
     return freeMemory > mSize;
   }
  catch (  SmbException e) {

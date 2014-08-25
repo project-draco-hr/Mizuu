@@ -1,12 +1,12 @@
 {
-  if (file.startsWith("http")) {
-    return MizLib.exists(file);
+  if (mFileUrl.startsWith("http")) {
+    return MizLib.exists(mFileUrl);
   }
  else {
-    auth=MizLib.getAuthFromFilepath(type,file);
+    mAuth=MizLib.getAuthFromFilepath(mType,mFileUrl);
     try {
-      smb=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),file,false));
-      return smb.exists() && smb.length() > 1000;
+      mSmb=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(mAuth.getDomain(),"utf-8"),URLEncoder.encode(mAuth.getUsername(),"utf-8"),URLEncoder.encode(mAuth.getPassword(),"utf-8"),mFileUrl,false));
+      return mSmb.exists() && mSmb.length() > 1000;
     }
  catch (    Exception e) {
       return false;
