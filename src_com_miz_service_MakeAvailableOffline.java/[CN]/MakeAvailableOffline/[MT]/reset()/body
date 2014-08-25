@@ -5,7 +5,7 @@
   smb=null;
   mContext=null;
   mSize=-1;
-  builder=null;
+  mBuilder=null;
   mNotificationManager=null;
   mNotification=null;
   contentIntent=null;

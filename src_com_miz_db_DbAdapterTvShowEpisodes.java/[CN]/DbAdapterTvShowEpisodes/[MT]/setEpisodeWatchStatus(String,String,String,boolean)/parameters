@@ -1,0 +1,4 @@
+String showId
+String season
+String episode
+boolean watched

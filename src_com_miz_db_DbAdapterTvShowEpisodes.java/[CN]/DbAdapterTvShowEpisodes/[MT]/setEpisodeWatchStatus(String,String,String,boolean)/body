@@ -1,0 +1,5 @@
+{
+  ContentValues values=new ContentValues();
+  values.put(KEY_HAS_WATCHED,watched ? "1" : "0");
+  return mDatabase.update(DATABASE_TABLE,values,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ season+ "' AND "+ KEY_EPISODE+ "='"+ episode+ "'",null) > 0;
+}

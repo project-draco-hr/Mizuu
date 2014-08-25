@@ -1,3 +1,73 @@
 {
-  return false;
+  if (file.startsWith("http")) {
+    InputStream in=null;
+    OutputStream fileos=null;
+    try {
+      int bufferSize=8192;
+      byte[] retVal=null;
+      OkHttpClient client=new OkHttpClient();
+      Request request=new Request.Builder().url(file).build();
+      Response response=client.newCall(request).execute();
+      if (!response.isSuccessful())       return false;
+      File offline=MizLib.getOfflineFile(mContext,file);
+      offline.createNewFile();
+      fileos=new BufferedOutputStream(new FileOutputStream(offline));
+      in=new BufferedInputStream(response.body().byteStream(),bufferSize);
+      retVal=new byte[bufferSize];
+      int length=0;
+      while ((length=in.read(retVal)) > -1) {
+        fileos.write(retVal,0,length);
+        currentLength+=length;
+        update();
+      }
+      return true;
+    }
+ catch (    Exception e) {
+      return false;
+    }
+ finally {
+      if (fileos != null) {
+        try {
+          fileos.flush();
+          fileos.close();
+        }
+ catch (        IOException e) {
+        }
+      }
+      if (in != null) {
+        try {
+          in.close();
+        }
+ catch (        IOException e) {
+        }
+      }
+    }
+  }
+ else {
+    try {
+      File offline=MizLib.getOfflineFile(mContext,smb.getCanonicalPath());
+      offline.createNewFile();
+      totalLength=smb.length();
+      OutputStream os=new BufferedOutputStream(new FileOutputStream(offline),16384);
+      BufferedInputStream in=new BufferedInputStream(new SmbFileInputStream(smb),16384);
+      byte[] b=new byte[8192];
+      int n;
+      while ((n=in.read(b)) != -1) {
+        if (mStopDownload) {
+          os.close();
+          in.close();
+          return false;
+        }
+        os.write(b,0,n);
+        currentLength+=n;
+        update();
+      }
+      os.close();
+      in.close();
+      return true;
+    }
+ catch (    Exception ignored) {
+      return false;
+    }
+  }
 }

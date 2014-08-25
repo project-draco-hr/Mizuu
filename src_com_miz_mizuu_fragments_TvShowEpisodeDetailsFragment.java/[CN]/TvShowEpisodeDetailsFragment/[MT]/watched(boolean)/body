@@ -1,7 +1,7 @@
 {
   mDatabaseHelper=MizuuApplication.getTvEpisodeDbAdapter();
   mEpisode.setHasWatched(!mEpisode.hasWatched());
-  if (mDatabaseHelper.updateSingleItem(mEpisode.getShowId(),DbAdapterMovies.KEY_HAS_WATCHED,mEpisode.getHasWatched())) {
+  if (mDatabaseHelper.setEpisodeWatchStatus(mEpisode.getShowId(),mEpisode.getSeason(),mEpisode.getEpisode(),mEpisode.hasWatched())) {
     getActivity().invalidateOptionsMenu();
     if (showToast)     if (mEpisode.hasWatched()) {
       Toast.makeText(getActivity(),getString(R.string.markedAsWatched),Toast.LENGTH_SHORT).show();
