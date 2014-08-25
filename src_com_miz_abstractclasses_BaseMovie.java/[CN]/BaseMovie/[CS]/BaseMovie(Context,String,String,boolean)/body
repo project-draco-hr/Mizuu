@@ -14,5 +14,7 @@
       }
     }
   }
-  setFilepaths(MizuuApplication.getMovieMappingAdapter().getMovieFilepaths(getTmdbId()));
+  List<String> paths=MizuuApplication.getMovieFilepaths(mTmdbId);
+  if (paths != null)   setFilepaths(paths);
+ else   setFilepaths(MizuuApplication.getMovieMappingAdapter().getMovieFilepaths(getTmdbId()));
 }
