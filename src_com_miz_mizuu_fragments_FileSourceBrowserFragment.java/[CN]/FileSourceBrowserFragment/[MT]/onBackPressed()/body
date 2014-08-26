@@ -1,13 +1,3 @@
 {
-  if (mType != FileSource.UPNP)   browse(GO_BACK,false);
- else {
-    if (mBrowser == null)     return;
-    Container parentContainer=new Container();
-    String id="0";
-    if (((BrowserUpnp)mBrowser).getContainer() != null) {
-      id=((BrowserUpnp)mBrowser).getParentId(((BrowserUpnp)mBrowser).getContainer().getId());
-    }
-    parentContainer.setId(id);
-    if (((BrowserUpnp)mBrowser).getService() != null)     upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),((BrowserUpnp)mBrowser).getService(),parentContainer,contentListAdapter,false));
-  }
+  goBack();
 }

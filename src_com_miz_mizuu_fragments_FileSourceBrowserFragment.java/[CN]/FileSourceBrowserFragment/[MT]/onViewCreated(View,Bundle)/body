@@ -8,15 +8,20 @@
   mCurrentFolderAdapter=new CurrentFolderAdapter();
   mCurrent.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      if (mType != FileSource.UPNP) {
-        if (mBrowser.getBrowserFiles().get(arg2).isDirectory())         browse(arg2,false);
+      if (arg2 == 0) {
+        goBack();
       }
  else {
-        if (!mLoading) {
-          mLoading=true;
-          ContentItem content=contentListAdapter.getItem(arg2);
-          if (content.isContainer()) {
-            upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),content.getService(),content.getContainer(),contentListAdapter,true));
+        if (mType != FileSource.UPNP) {
+          if (mBrowser.getBrowserFiles().get(arg2 - 1).isDirectory())           browse(arg2 - 1,false);
+        }
+ else {
+          if (!mLoading) {
+            mLoading=true;
+            ContentItem content=contentListAdapter.getItem(arg2 - 1);
+            if (content.isContainer()) {
+              upnpService.getControlPoint().execute(new ContentBrowseCallback(getActivity(),content.getService(),content.getContainer(),contentListAdapter,true));
+            }
           }
         }
       }

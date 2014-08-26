@@ -1,7 +1,7 @@
 {
   ViewHolder holder;
   if (convertView == null) {
-    convertView=inflater.inflate(R.layout.file_list_item,null);
+    convertView=inflater.inflate(R.layout.file_list_item,parent,false);
     holder=new ViewHolder();
     holder.name=(TextView)convertView.findViewById(R.id.text1);
     holder.size=(TextView)convertView.findViewById(R.id.size);
@@ -11,18 +11,26 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  holder.name.setText(mItems.get(position).getName());
-  if (mItems.get(position).isDirectory()) {
-    holder.icon.setImageResource(R.drawable.folder);
-    holder.size.setText("");
+  if (position == 0) {
+    holder.icon.setImageResource(R.drawable.ic_arrow_back);
+    holder.name.setText("...");
     holder.size.setVisibility(View.GONE);
   }
  else {
-    if (MizLib.isVideoFile(mItems.get(position).getName()))     holder.icon.setImageResource(R.drawable.ic_action_movie);
- else     if (MizLib.isSubtitleFile(mItems.get(position).getName()))     holder.icon.setImageResource(R.drawable.ic_action_subtitles);
- else     holder.icon.setImageResource(R.drawable.file);
-    holder.size.setText(MizLib.filesizeToString(mItems.get(position).getSize()));
-    holder.size.setVisibility(View.VISIBLE);
+    final BrowserFileObject browser=mItems.get(position - 1);
+    holder.name.setText(browser.getName());
+    if (browser.isDirectory()) {
+      holder.icon.setImageResource(R.drawable.folder);
+      holder.size.setText("");
+      holder.size.setVisibility(View.GONE);
+    }
+ else {
+      if (MizLib.isVideoFile(browser.getName()))       holder.icon.setImageResource(R.drawable.ic_action_movie);
+ else       if (MizLib.isSubtitleFile(browser.getName()))       holder.icon.setImageResource(R.drawable.ic_action_subtitles);
+ else       holder.icon.setImageResource(R.drawable.file);
+      holder.size.setText(MizLib.filesizeToString(browser.getSize()));
+      holder.size.setVisibility(View.VISIBLE);
+    }
   }
   return convertView;
 }
