@@ -12,6 +12,7 @@
     }
     actorIds.clear();
     actorIds=null;
+    mLoaded=true;
   }
  catch (  Exception e) {
   }
