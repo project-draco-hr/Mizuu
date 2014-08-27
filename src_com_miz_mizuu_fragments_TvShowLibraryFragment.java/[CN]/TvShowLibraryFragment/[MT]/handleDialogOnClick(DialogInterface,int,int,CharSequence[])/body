@@ -22,6 +22,9 @@ case GENRES:
 case CERTIFICATION:
     condition=mTvShows.get(currentlyShown.get(i)).getCertification().trim().contains(selected);
   break;
+case RELEASE_YEAR:
+condition=mTvShows.get(currentlyShown.get(i)).getReleaseYear().trim().contains(selected);
+break;
 }
 if (condition) mTvShowKeys.add(currentlyShown.get(i));
 }

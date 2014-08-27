@@ -28,6 +28,9 @@ break;
 case R.id.certifications:
 showCertifications();
 break;
+case R.id.release_year:
+showReleaseYear();
+break;
 case R.id.unidentifiedFiles:
 startActivity(new Intent(getActivity(),UnidentifiedTvShows.class));
 break;

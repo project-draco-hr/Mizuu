@@ -34,6 +34,9 @@ condition=path.getFilepath().trim().startsWith(selected);
 if (condition) break;
 }
 break;
+case RELEASE_YEAR:
+condition=mMovies.get(currentlyShown.get(i)).getReleaseYear().trim().contains(selected);
+break;
 }
 if (condition) mMovieKeys.add(currentlyShown.get(i));
 }
