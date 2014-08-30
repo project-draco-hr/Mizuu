@@ -4,8 +4,7 @@
     intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetIds[i]);
     intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
     RemoteViews rv=new RemoteViews(context.getPackageName(),R.layout.movie_backdrop_widget);
-    if (MizLib.hasICS())     rv.setRemoteAdapter(R.id.widget_grid,intent);
- else     rv.setRemoteAdapter(appWidgetIds[i],R.id.widget_grid,intent);
+    rv.setRemoteAdapter(R.id.widget_grid,intent);
     Intent toastIntent=new Intent(context,ShowBackdropWidgetProvider.class);
     toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetIds[i]);
     rv.setPendingIntentTemplate(R.id.widget_grid,PendingIntent.getBroadcast(context,0,toastIntent,PendingIntent.FLAG_UPDATE_CURRENT));

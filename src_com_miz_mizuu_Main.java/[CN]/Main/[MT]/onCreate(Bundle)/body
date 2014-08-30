@@ -46,7 +46,7 @@ break;
 }
 );
 getActionBar().setDisplayHomeAsUpEnabled(true);
-if (MizLib.hasICS()) getActionBar().setHomeButtonEnabled(true);
+getActionBar().setHomeButtonEnabled(true);
 mDrawerToggle=new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.ic_drawer,R.string.drawer_open,R.string.drawer_close){
 public void onDrawerClosed(View view){
 getActionBar().setTitle(null);
