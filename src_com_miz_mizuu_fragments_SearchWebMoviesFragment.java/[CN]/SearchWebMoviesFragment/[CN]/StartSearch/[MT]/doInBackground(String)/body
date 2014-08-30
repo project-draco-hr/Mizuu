@@ -1,9 +1,8 @@
 {
   try {
     if (isCancelled())     return null;
-    TMDb tmdb=new TMDb(getActivity().getApplicationContext());
-    ArrayList<TMDbMovie> movieResults;
-    movieResults=tmdb.searchForMovies(params[0],"","en");
+    MovieApiService service=MizuuApplication.getMovieService(getActivity().getApplicationContext());
+    List<Movie> movieResults=service.search(params[0],"en");
     if (isCancelled())     return null;
     int count=movieResults.size();
     for (int i=0; i < count; i++) {

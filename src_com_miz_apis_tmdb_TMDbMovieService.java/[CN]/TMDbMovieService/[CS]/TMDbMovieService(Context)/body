@@ -1,0 +1,5 @@
+{
+  mContext=context;
+  mRatingsProvider=PreferenceManager.getDefaultSharedPreferences(mContext).getString(MOVIE_RATINGS_SOURCE,mContext.getString(R.string.ratings_option_4));
+  mTmdbApiKey=MizLib.getTmdbApiKey(mContext);
+}

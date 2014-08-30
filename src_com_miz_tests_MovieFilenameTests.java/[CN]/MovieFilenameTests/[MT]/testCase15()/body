@@ -1,0 +1,10 @@
+{
+  MovieStructure ms=new MovieStructure("/A.Day.at.the.Races.1937/A.Day.at.the.Races.1937.720p.WEB-DL.AAC2.0.H.264-HDStar.mkv");
+  assertEquals("A.Day.at.the.Races.1937",ms.getParentFolderName());
+  assertEquals("A.Day.at.the.Races.1937.720p.WEB-DL.AAC2.0.H.264-HDStar.mkv",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("A Day at the Races",ms.getDecryptedParentFolderName());
+  assertEquals("A Day at the Races",ms.getDecryptedFilename());
+  assertEquals(true,ms.hasReleaseYear());
+  assertEquals(1937,ms.getReleaseYear());
+}

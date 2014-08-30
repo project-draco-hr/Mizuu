@@ -1,6 +1,6 @@
 {
   try {
-    JSONObject jObject=MizLib.getJSONObject("https://gdata.youtube.com/feeds/api/videos?q=" + params[0] + "&max-results=20&alt=json&v=2");
+    JSONObject jObject=MizLib.getJSONObject(getApplicationContext(),"https://gdata.youtube.com/feeds/api/videos?q=" + params[0] + "&max-results=20&alt=json&v=2");
     JSONObject jdata=jObject.getJSONObject("feed");
     JSONArray aitems=jdata.getJSONArray("entry");
     for (int i=0; i < aitems.length(); i++) {

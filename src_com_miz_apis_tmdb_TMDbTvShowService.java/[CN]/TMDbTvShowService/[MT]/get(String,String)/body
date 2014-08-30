@@ -1,0 +1,140 @@
+{
+  language=getLanguage(language);
+  TvShow show=new TvShow();
+  show.setId("tmdb_" + id);
+  String baseUrl=MizLib.getTmdbImageBaseUrl(mContext);
+  JSONObject jObject=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/tv/" + id + "?api_key="+ mTmdbApiKey+ "&language="+ language+ "&append_to_response=credits,images,external_ids");
+  show.setTitle(MizLib.getStringFromJSONObject(jObject,"name",""));
+  show.setDescription(MizLib.getStringFromJSONObject(jObject,"overview",""));
+  if (!language.equals("en")) {
+    JSONObject englishResults=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/tv/" + id + "?api_key="+ mTmdbApiKey+ "&language=en");
+    if (show.getTitle().isEmpty())     show.setTitle(MizLib.getStringFromJSONObject(englishResults,"name",""));
+    if (show.getDescription().isEmpty())     show.setDescription(MizLib.getStringFromJSONObject(englishResults,"overview",""));
+  }
+  try {
+    StringBuilder actors=new StringBuilder();
+    JSONArray array=jObject.getJSONObject("credits").getJSONArray("cast");
+    for (int i=0; i < array.length(); i++) {
+      actors.append(array.getJSONObject(i).getString("name"));
+      actors.append("|");
+    }
+    show.setActors(actors.toString());
+  }
+ catch (  Exception e) {
+  }
+  try {
+    String genres="";
+    for (int i=0; i < jObject.getJSONArray("genres").length(); i++)     genres=genres + jObject.getJSONArray("genres").getJSONObject(i).getString("name") + ", ";
+    show.setGenres(genres.substring(0,genres.length() - 2));
+  }
+ catch (  Exception e) {
+  }
+  show.setRating(MizLib.getStringFromJSONObject(jObject,"vote_average","0.0"));
+  show.setCoverUrl(baseUrl + MizLib.getImageUrlSize(mContext) + MizLib.getStringFromJSONObject(jObject,"poster_path",""));
+  show.setBackdropUrl(baseUrl + MizLib.getBackdropUrlSize(mContext) + MizLib.getStringFromJSONObject(jObject,"backdrop_path",""));
+  show.setCertification("");
+  try {
+    show.setRuntime(String.valueOf(jObject.getJSONArray("episode_run_time").getInt(0)));
+  }
+ catch (  JSONException e) {
+  }
+  show.setFirstAired(MizLib.getStringFromJSONObject(jObject,"first_air_date",""));
+  try {
+    show.setIMDbId(jObject.getJSONObject("external_ids").getString("imdb_id"));
+  }
+ catch (  JSONException e) {
+  }
+  if (mRatingsProvider.equals(mContext.getString(R.string.ratings_option_2))) {
+    try {
+      com.miz.apis.trakt.Movie movieSummary=Trakt.getMovieSummary(mContext,id);
+      double rating=Double.valueOf(movieSummary.getRating() / 10);
+      if (rating > 0 || show.getRating().equals("0.0"))       show.setRating(String.valueOf(rating));
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (mRatingsProvider.equals(mContext.getString(R.string.ratings_option_3))) {
+    try {
+      jObject=MizLib.getJSONObject(mContext,"http://www.omdbapi.com/?i=" + show.getImdbId());
+      double rating=Double.valueOf(MizLib.getStringFromJSONObject(jObject,"imdbRating","0"));
+      if (rating > 0 || show.getRating().equals("0.0"))       show.setRating(String.valueOf(rating));
+    }
+ catch (    Exception e) {
+    }
+  }
+  try {
+    JSONArray seasons=jObject.getJSONArray("seasons");
+    for (int i=0; i < seasons.length(); i++) {
+      Season s=new Season();
+      s.setSeason(seasons.getJSONObject(i).getInt("season_number"));
+      s.setCoverPath(baseUrl + MizLib.getImageUrlSize(mContext) + MizLib.getStringFromJSONObject(seasons.getJSONObject(i),"poster_path",""));
+      show.addSeason(s);
+    }
+  }
+ catch (  JSONException e) {
+  }
+  for (  Season s : show.getSeasons()) {
+    jObject=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/tv/" + id + "/season/"+ s.getSeason()+ "?api_key="+ mTmdbApiKey);
+    try {
+      JSONArray episodes=jObject.getJSONArray("episodes");
+      for (int i=0; i < episodes.length(); i++) {
+        Episode ep=new Episode();
+        ep.setSeason(s.getSeason());
+        ep.setEpisode(episodes.getJSONObject(i).getInt("episode_number"));
+        ep.setTitle(episodes.getJSONObject(i).getString("name"));
+        ep.setAirdate(episodes.getJSONObject(i).getString("air_date"));
+        ep.setDescription(episodes.getJSONObject(i).getString("overview"));
+        ep.setRating(MizLib.getStringFromJSONObject(episodes.getJSONObject(i),"vote_average","0.0"));
+        try {
+          JSONObject episodeCall=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/tv/" + id + "/season/"+ s.getSeason()+ "/episode/"+ ep.getEpisode()+ "?api_key="+ mTmdbApiKey+ "&append_to_response=credits,images");
+          JSONArray images=episodeCall.getJSONObject("images").getJSONArray("stills");
+          if (images.length() > 0) {
+            JSONObject firstImage=images.getJSONObject(0);
+            int width=firstImage.getInt("width");
+            if (width < 500) {
+              ep.setScreenshotUrl(baseUrl + "original" + MizLib.getStringFromJSONObject(firstImage,"file_path",""));
+            }
+ else {
+              ep.setScreenshotUrl(baseUrl + MizLib.getBackdropThumbUrlSize(mContext) + MizLib.getStringFromJSONObject(firstImage,"file_path",""));
+            }
+          }
+          try {
+            StringBuilder actors=new StringBuilder();
+            JSONArray guest_stars=episodeCall.getJSONObject("credits").getJSONArray("guest_stars");
+            for (int j=0; j < guest_stars.length(); j++) {
+              actors.append(guest_stars.getJSONObject(j).getString("name"));
+              actors.append("|");
+            }
+            ep.setGueststars(actors.toString());
+          }
+ catch (          Exception e) {
+          }
+          try {
+            StringBuilder director=new StringBuilder(), writer=new StringBuilder();
+            JSONArray crew=episodeCall.getJSONObject("credits").getJSONArray("crew");
+            for (int j=0; j < crew.length(); j++) {
+              if (crew.getJSONObject(j).getString("job").equals("Director")) {
+                director.append(crew.getJSONObject(j).getString("name"));
+                director.append("|");
+              }
+ else               if (crew.getJSONObject(j).getString("job").equals("Writer")) {
+                writer.append(crew.getJSONObject(j).getString("name"));
+                writer.append("|");
+              }
+            }
+            ep.setDirector(director.toString());
+            ep.setWriter(writer.toString());
+          }
+ catch (          Exception e) {
+          }
+        }
+ catch (        Exception e) {
+        }
+        show.addEpisode(ep);
+      }
+    }
+ catch (    JSONException e) {
+    }
+  }
+  return show;
+}

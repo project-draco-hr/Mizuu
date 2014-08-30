@@ -1,0 +1,10 @@
+{
+  MovieStructure ms=new MovieStructure("/Movies/Fight Club (1999)/Fight Club.mkv");
+  assertEquals("Fight Club (1999)",ms.getParentFolderName());
+  assertEquals("Fight Club.mkv",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("Fight Club",ms.getDecryptedParentFolderName());
+  assertEquals("Fight Club",ms.getDecryptedFilename());
+  assertEquals(true,ms.hasReleaseYear());
+  assertEquals(1999,ms.getReleaseYear());
+}

@@ -1,9 +1,0 @@
-{
-  settings=PreferenceManager.getDefaultSharedPreferences(context);
-  if (language.isEmpty()) {
-    LOCALE=PreferenceManager.getDefaultSharedPreferences(context).getString(LANGUAGE_PREFERENCE,"en");
-  }
- else {
-    LOCALE=language;
-  }
-}

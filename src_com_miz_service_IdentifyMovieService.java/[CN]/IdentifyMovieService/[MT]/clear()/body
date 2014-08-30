@@ -1,0 +1,5 @@
+{
+  mMovieId="";
+  mLanguage="";
+  mFiles=new ArrayList<MovieStructure>();
+}

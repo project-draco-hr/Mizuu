@@ -1,0 +1,4 @@
+Context context
+MovieLibraryUpdateCallback callback
+ArrayList<MovieStructure> files
+HashMap<String,InputStream> nfoFiles

@@ -3,7 +3,6 @@
   String username=settings.getString(TRAKT_USERNAME,"").trim();
   String password=settings.getString(TRAKT_PASSWORD,"");
   if (username.isEmpty() || password.isEmpty() || movies.size() == 0)   return false;
-  OkHttpClient client=new OkHttpClient();
   try {
     JSONObject holder=new JSONObject();
     holder.put("username",username);
@@ -20,7 +19,7 @@
     }
     holder.put("movies",array);
     Request request=MizLib.getJsonPostRequest((movies.get(0).hasWatched() ? "http://api.trakt.tv/movie/seen/" : "http://api.trakt.tv/movie/unseen/") + getApiKey(c),holder);
-    Response response=client.newCall(request).execute();
+    Response response=MizuuApplication.getOkHttpClient().newCall(request).execute();
     return response.isSuccessful();
   }
  catch (  Exception e) {

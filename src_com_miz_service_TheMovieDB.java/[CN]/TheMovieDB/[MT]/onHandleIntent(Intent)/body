@@ -1,4 +1,0 @@
-{
-  Bundle bundle=intent.getExtras();
-  new TheMovieDb(this,bundle.getString("filepath"),bundle.getBoolean("isFromManualIdentify",false),bundle.getString("language",""),bundle.getString("oldTmdbId"),bundle.getString("tmdbId",DbAdapterMovies.UNIDENTIFIED_ID));
-}

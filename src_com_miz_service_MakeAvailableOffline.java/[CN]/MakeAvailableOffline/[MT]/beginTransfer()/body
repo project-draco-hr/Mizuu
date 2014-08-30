@@ -5,9 +5,8 @@
     try {
       int bufferSize=mBufferSize;
       byte[] retVal=null;
-      OkHttpClient client=new OkHttpClient();
       Request request=new Request.Builder().url(mFileUrl).build();
-      Response response=client.newCall(request).execute();
+      Response response=MizuuApplication.getOkHttpClient().newCall(request).execute();
       if (!response.isSuccessful())       return false;
       File offline=MizLib.getOfflineFile(mContext,mFileUrl);
       offline.createNewFile();

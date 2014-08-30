@@ -5,9 +5,8 @@
   try {
     int bufferSize=8192;
     byte[] retVal=null;
-    OkHttpClient client=new OkHttpClient();
     Request request=new Request.Builder().url(url).build();
-    Response response=client.newCall(request).execute();
+    Response response=MizuuApplication.getOkHttpClient().newCall(request).execute();
     if (!response.isSuccessful())     return false;
     fileos=new BufferedOutputStream(new FileOutputStream(savePath));
     in=new BufferedInputStream(response.body().byteStream(),bufferSize);

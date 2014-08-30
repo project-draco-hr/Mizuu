@@ -38,5 +38,5 @@ mList.setOnItemClickListener(new OnItemClickListener(){
 }
 );
 loadData();
-LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("tvshow-episode-changed"));
+LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_TV_SHOW_LIBRARY));
 }

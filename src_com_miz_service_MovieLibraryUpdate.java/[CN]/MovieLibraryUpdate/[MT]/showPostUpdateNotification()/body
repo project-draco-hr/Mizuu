@@ -9,19 +9,19 @@
     mBuilder.setSmallIcon(R.drawable.done);
     mBuilder.setTicker(getString(R.string.finishedMovieLibraryUpdate));
     mBuilder.setContentTitle(getString(R.string.finishedMovieLibraryUpdate));
-    mBuilder.setContentText(getString(R.string.stringJustAdded) + " " + (mTotalFiles - mMovieQueue.size())+ " "+ getResources().getQuantityString(R.plurals.moviesInLibrary,(mTotalFiles - mMovieQueue.size()),(mTotalFiles - mMovieQueue.size())));
+    mBuilder.setContentText(getString(R.string.stringJustAdded) + " " + mCount+ " "+ getResources().getQuantityString(R.plurals.moviesInLibrary,mCount,mCount));
     mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.done));
   }
  else {
     mBuilder.setSmallIcon(R.drawable.ignoresmallfiles);
     mBuilder.setTicker(getString(R.string.stringUpdateCancelled));
     mBuilder.setContentTitle(getString(R.string.stringUpdateCancelled));
-    mBuilder.setContentText(getString(R.string.stringJustAdded) + " " + (mTotalFiles - mMovieQueue.size())+ " "+ getResources().getQuantityString(R.plurals.moviesInLibrary,(mTotalFiles - mMovieQueue.size()),(mTotalFiles - mMovieQueue.size())));
+    mBuilder.setContentText(getString(R.string.stringJustAdded) + " " + mCount+ " "+ getResources().getQuantityString(R.plurals.moviesInLibrary,mCount,mCount));
     mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ignoresmallfiles));
   }
   mBuilder.setContentIntent(contentIntent);
   mBuilder.setAutoCancel(true);
   Notification updateNotification=mBuilder.build();
   mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-  if ((mTotalFiles - mMovieQueue.size()) > 0)   mNotificationManager.notify(POST_UPDATE_NOTIFICATION,updateNotification);
+  if (mCount > 0)   mNotificationManager.notify(POST_UPDATE_NOTIFICATION,updateNotification);
 }

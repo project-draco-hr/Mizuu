@@ -1,4 +1,0 @@
-{
-  if (TextUtils.isEmpty(language))   language="all";
-  return language;
-}

@@ -1,0 +1,9 @@
+{
+  MovieStructure ms=new MovieStructure("/Shaun of the Dead/Shaun of the Dead.mp4");
+  assertEquals("Shaun of the Dead",ms.getParentFolderName());
+  assertEquals("Shaun of the Dead.mp4",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("Shaun of the Dead",ms.getDecryptedParentFolderName());
+  assertEquals("Shaun of the Dead",ms.getDecryptedFilename());
+  assertEquals(false,ms.hasReleaseYear());
+}

@@ -1,4 +1,0 @@
-{
-  mDecryptedFileName=decryptedFileName;
-  if (hasImdbId())   mDecryptedFileName=mDecryptedFileName.replace(getImdbId(),"").trim();
-}

@@ -1,0 +1,9 @@
+{
+  MovieStructure ms=new MovieStructure("/Matando Cabos - DVDRIP - CD1.avi");
+  assertEquals("",ms.getParentFolderName());
+  assertEquals("Matando Cabos - DVDRIP - CD1.avi",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("",ms.getDecryptedParentFolderName());
+  assertEquals("Matando Cabos",ms.getDecryptedFilename());
+  assertEquals(false,ms.hasReleaseYear());
+}

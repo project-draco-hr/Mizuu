@@ -1,0 +1,4 @@
+{
+  if (widgetHeight == 0)   widgetHeight=(int)(MizLib.getLargeNotificationWidth(mContext) / 1.778);
+  return widgetHeight;
+}

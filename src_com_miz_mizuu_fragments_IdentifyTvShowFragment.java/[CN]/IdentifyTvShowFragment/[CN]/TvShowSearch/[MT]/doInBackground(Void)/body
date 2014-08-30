@@ -1,7 +1,7 @@
 {
   try {
     if (isCancelled())     return false;
-    ApiService<TvShow> service=MizuuApplication.getTvShowSourceService(mContext);
+    ApiService<TvShow> service=MizuuApplication.getTvShowService(mContext);
     List<TvShow> results=service.search(mQueryText,getSelectedLanguage());
     if (isCancelled())     return false;
     HashSet<String> addedIds=new HashSet<String>();

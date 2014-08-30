@@ -1,23 +1,13 @@
 {
-  AppWidgetManager awm=AppWidgetManager.getInstance(this);
+  LocalBroadcastUtils.clearImageCache(this);
 switch (mImageType) {
 case IMAGE_TYPE_TVSHOW_COVER:
-    LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-show-cover-change"));
-  awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,ShowStackWidgetProvider.class)),R.id.stack_view);
-awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,ShowCoverWidgetProvider.class)),R.id.widget_grid);
-break;
 case IMAGE_TYPE_TVSHOW_BACKDROP:
-LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-show-backdrop-change"));
-awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,ShowBackdropWidgetProvider.class)),R.id.widget_grid);
-break;
+    WidgetUtils.updateTvShowWidgets(this);
+  break;
 case IMAGE_TYPE_MOVIE_COVER:
-LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-movie-cover-change"));
-awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,MovieStackWidgetProvider.class)),R.id.stack_view);
-awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,MovieCoverWidgetProvider.class)),R.id.widget_grid);
-break;
 case IMAGE_TYPE_MOVIE_BACKDROP:
-LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-movie-backdrop-change"));
-awm.notifyAppWidgetViewDataChanged(awm.getAppWidgetIds(new ComponentName(this,ShowBackdropWidgetProvider.class)),R.id.widget_grid);
+WidgetUtils.updateMovieWidgets(this);
 break;
 }
 }

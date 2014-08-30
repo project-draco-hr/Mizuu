@@ -1,0 +1,14 @@
+{
+  Pattern splitPattern=Pattern.compile("/");
+  String[] split=splitPattern.split(mFilepath.contains("<MiZ>") ? mFilepath.split("<MiZ>")[0] : mFilepath);
+  if (split.length >= 2) {
+    mFilename=split[split.length - 1];
+    mParentFolder=split[split.length - 2].trim();
+  }
+ else {
+    mFilename=split[split.length - 1].trim();
+    if (split.length == 2) {
+      mParentFolder=split[0].trim();
+    }
+  }
+}

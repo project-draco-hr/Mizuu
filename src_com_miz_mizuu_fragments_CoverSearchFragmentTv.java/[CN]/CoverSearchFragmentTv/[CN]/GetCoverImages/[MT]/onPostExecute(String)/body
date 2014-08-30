@@ -2,8 +2,5 @@
   if (isAdded()) {
     mProgressBar.setVisibility(View.GONE);
     mAdapter.notifyDataSetChanged();
-    Intent intent=new Intent("mizuu-cover-search-fragment-tv");
-    intent.putExtra("coverCount",mImages.size());
-    LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
   }
 }

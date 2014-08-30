@@ -2,14 +2,9 @@
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
   getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-  mTmdbId=getArguments().getString("tmdbId");
   mFilepath=getArguments().getString("filepath");
-  String path=mFilepath;
-  if (path.contains("<MiZ>"))   path=path.split("<MiZ>")[0];
-  if (path.contains("/"))   path=path.substring(path.lastIndexOf("/") + 1,path.length());
-  mMovie=MizLib.decryptMovie(path,PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(IGNORED_FILENAME_TAGS,""));
+  mMovieStructure=new MovieStructure(mFilepath);
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
   mAdapter=new ListAdapter(getActivity());
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movies-identification"));
 }

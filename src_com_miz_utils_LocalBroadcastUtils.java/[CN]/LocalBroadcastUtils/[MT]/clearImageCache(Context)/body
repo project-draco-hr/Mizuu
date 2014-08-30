@@ -1,0 +1,4 @@
+{
+  MizuuApplication.clearLruCache(context);
+  LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(CLEAR_IMAGE_CACHE));
+}

@@ -6,7 +6,7 @@
     mShowFolderNameMap.put(ss.getDecryptedShowFolderName(),i);
     mImdbMap.put(i,ss.hasImdbId());
   }
-  TvShowApiService service=MizuuApplication.getTvShowSourceService(mContext);
+  TvShowApiService service=MizuuApplication.getTvShowService(mContext);
   for (  String showFolderName : mShowFolderNameMap.keySet()) {
     if (mCancel)     return;
     TvShow show=null;

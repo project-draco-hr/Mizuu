@@ -1,4 +1,4 @@
 {
-  thisMovie=tmdb.getMovie(movieId,params[0],"en");
+  thisMovie=mMovieApiService.get(movieId,params[0],"en");
   return null;
 }

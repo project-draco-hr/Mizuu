@@ -1,7 +1,7 @@
 {
   mFileSources=new ArrayList<FileSource>();
   mMovieFileSources=new ArrayList<MovieFileSource<?>>();
-  mMovieQueue=new LinkedList<String>();
+  mMovieQueue=new ArrayList<MovieStructure>();
   mNfoFiles=new HashMap<String,InputStream>();
   mIgnoreRemovedFiles=false;
   mClearLibrary=false;
@@ -14,7 +14,6 @@
   mEditor=null;
   mSettings=null;
   mTotalFiles=0;
-  mCount=0;
   mNotificationManager=null;
   mBuilder=null;
 }

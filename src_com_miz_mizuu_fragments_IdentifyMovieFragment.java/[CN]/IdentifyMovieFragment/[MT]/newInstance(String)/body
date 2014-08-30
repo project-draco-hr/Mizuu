@@ -1,0 +1,7 @@
+{
+  IdentifyMovieFragment frag=new IdentifyMovieFragment();
+  Bundle args=new Bundle();
+  args.putString("filepath",filepath);
+  frag.setArguments(args);
+  return frag;
+}

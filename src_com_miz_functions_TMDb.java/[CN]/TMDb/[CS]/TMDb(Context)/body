@@ -1,6 +1,0 @@
-{
-  mContext=c;
-  ratingsProvider=PreferenceManager.getDefaultSharedPreferences(c).getString(MOVIE_RATINGS_SOURCE,mContext.getString(R.string.ratings_option_1));
-  includeAdult=PreferenceManager.getDefaultSharedPreferences(c).getBoolean(INCLUDE_ADULT_CONTENT,false);
-  mTmdbApiKey=MizLib.getTmdbApiKey(mContext);
-}

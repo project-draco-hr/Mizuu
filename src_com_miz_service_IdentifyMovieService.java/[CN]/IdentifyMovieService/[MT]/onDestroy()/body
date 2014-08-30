@@ -1,0 +1,8 @@
+{
+  super.onDestroy();
+  log("onDestroy()");
+  if (mNotificationManager == null)   mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+  mNotificationManager.cancel(NOTIFICATION_ID);
+  LocalBroadcastUtils.updateMovieLibrary(this);
+  WidgetUtils.updateMovieWidgets(this);
+}

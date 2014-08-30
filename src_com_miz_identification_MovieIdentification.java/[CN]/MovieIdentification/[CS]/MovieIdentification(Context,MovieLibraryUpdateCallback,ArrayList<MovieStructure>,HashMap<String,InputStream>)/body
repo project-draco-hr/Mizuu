@@ -1,0 +1,11 @@
+{
+  mContext=context;
+  mCallback=callback;
+  mMovieStructures=new ArrayList<MovieStructure>(files);
+  if (nfoFiles == null)   mNfoFiles=new HashMap<String,InputStream>();
+ else   mNfoFiles=new HashMap<String,InputStream>(nfoFiles);
+  mIgnoredTags=PreferenceManager.getDefaultSharedPreferences(mContext).getString(IGNORED_FILENAME_TAGS,"");
+  mIgnoreNfoFiles=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORED_NFO_FILES,true);
+  mPicasso=Picasso.with(mContext);
+  getLanguagePreference();
+}

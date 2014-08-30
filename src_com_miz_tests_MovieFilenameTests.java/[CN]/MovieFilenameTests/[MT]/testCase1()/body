@@ -1,0 +1,10 @@
+{
+  MovieStructure ms=new MovieStructure("/Avatar (2009).mkv");
+  assertEquals("",ms.getParentFolderName());
+  assertEquals("Avatar (2009).mkv",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("",ms.getDecryptedParentFolderName());
+  assertEquals("Avatar",ms.getDecryptedFilename());
+  assertEquals(true,ms.hasReleaseYear());
+  assertEquals(2009,ms.getReleaseYear());
+}

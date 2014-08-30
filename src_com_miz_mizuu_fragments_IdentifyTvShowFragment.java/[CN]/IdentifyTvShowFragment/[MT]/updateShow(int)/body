@@ -3,7 +3,6 @@
     Toast.makeText(getActivity(),getString(R.string.updatingShowInfo),Toast.LENGTH_LONG).show();
     Intent identifyService=new Intent(getActivity(),IdentifyTvShowService.class);
     Bundle b=new Bundle();
-    b.putString("showTitle",mAdapter.getItem(id).getTitle());
     b.putString("oldShowId",mShowId);
     b.putString("newShowId",mAdapter.getItem(id).getId());
     b.putString("language",getSelectedLanguage());

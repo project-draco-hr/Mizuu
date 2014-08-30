@@ -1,0 +1,10 @@
+{
+  MovieStructure ms=new MovieStructure("/movies/Jack.the.Giant.Slayer.2013.1080p.BluRay.x264-SPARKS [PublicHD].mkv");
+  assertEquals("movies",ms.getParentFolderName());
+  assertEquals("Jack.the.Giant.Slayer.2013.1080p.BluRay.x264-SPARKS [PublicHD].mkv",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("movies",ms.getDecryptedParentFolderName());
+  assertEquals("Jack the Giant Slayer",ms.getDecryptedFilename());
+  assertEquals(true,ms.hasReleaseYear());
+  assertEquals(2013,ms.getReleaseYear());
+}

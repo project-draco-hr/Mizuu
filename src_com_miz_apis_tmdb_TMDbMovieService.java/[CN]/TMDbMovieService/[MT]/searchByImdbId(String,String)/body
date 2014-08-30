@@ -1,0 +1,24 @@
+{
+  language=getLanguage(language);
+  ArrayList<Movie> results=new ArrayList<Movie>();
+  try {
+    JSONObject jObject=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/find/" + imdbId + "?language="+ language+ "&external_source=imdb_id&api_key="+ mTmdbApiKey);
+    JSONArray array=jObject.getJSONArray("movie_results");
+    String baseUrl=MizLib.getTmdbImageBaseUrl(mContext);
+    String imageSizeUrl=MizLib.getImageUrlSize(mContext);
+    for (int i=0; i < array.length(); i++) {
+      Movie movie=new Movie();
+      movie.setTitle(array.getJSONObject(i).getString("title"));
+      movie.setOriginalTitle(array.getJSONObject(i).getString("original_title"));
+      movie.setReleasedate(array.getJSONObject(i).getString("release_date"));
+      movie.setPlot("");
+      movie.setRating(String.valueOf(array.getJSONObject(i).getDouble("vote_average")) + "/10");
+      movie.setId(String.valueOf(array.getJSONObject(i).getInt("id")));
+      movie.setCover(baseUrl + imageSizeUrl + array.getJSONObject(i).getString("poster_path"));
+      results.add(movie);
+    }
+  }
+ catch (  JSONException e) {
+  }
+  return results;
+}

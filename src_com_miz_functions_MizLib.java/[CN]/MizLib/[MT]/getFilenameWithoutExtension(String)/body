@@ -1,0 +1,8 @@
+{
+  try {
+    return filename.substring(0,filename.lastIndexOf("."));
+  }
+ catch (  IndexOutOfBoundsException e) {
+    return filename;
+  }
+}

@@ -1,6 +1,0 @@
-{
-  DecryptedMovie mMovie=MizLib.decryptMovie(TEST_FILENAMES[0],"avatar");
-  assertEquals("",mMovie.getDecryptedFileName());
-  mMovie=MizLib.decryptMovie(TEST_FILENAMES[0],"tar");
-  assertEquals("Ava",mMovie.getDecryptedFileName());
-}

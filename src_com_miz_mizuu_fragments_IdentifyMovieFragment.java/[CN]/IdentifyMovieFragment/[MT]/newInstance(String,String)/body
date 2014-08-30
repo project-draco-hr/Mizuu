@@ -1,8 +1,0 @@
-{
-  IdentifyMovieFragment frag=new IdentifyMovieFragment();
-  Bundle args=new Bundle();
-  args.putString("filepath",filepath);
-  args.putString("tmdbId",tmdbId);
-  frag.setArguments(args);
-  return frag;
-}

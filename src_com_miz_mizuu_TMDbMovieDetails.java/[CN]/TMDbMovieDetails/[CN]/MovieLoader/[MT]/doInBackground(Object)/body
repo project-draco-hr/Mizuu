@@ -1,7 +1,7 @@
 {
   try {
     mBaseUrl=MizLib.getTmdbImageBaseUrl(mContext);
-    mJson=MizLib.getJSONObject("https://api.themoviedb.org/3/movie/" + params[0] + "?api_key="+ mTmdbApiKey+ "&append_to_response=releases,trailers,images,casts,similar_movies").toString();
+    mJson=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/movie/" + params[0] + "?api_key="+ mTmdbApiKey+ "&append_to_response=releases,trailers,images,casts,similar_movies").toString();
     return "";
   }
  catch (  Exception e) {

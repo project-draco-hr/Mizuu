@@ -1,4 +1,4 @@
 {
   log("reloadLibrary()");
-  LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-movies-update"));
+  LocalBroadcastUtils.updateMovieLibrary(getApplicationContext());
 }

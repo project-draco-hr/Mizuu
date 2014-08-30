@@ -19,6 +19,6 @@
     cursor.close();
   }
   mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-show-cover-change"));
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-show-backdrop-change"));
+  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_TV_SHOW_LIBRARY));
+  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.CLEAR_IMAGE_CACHE));
 }

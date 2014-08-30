@@ -1,0 +1,3 @@
+{
+  getLruCache(context).clear();
+}

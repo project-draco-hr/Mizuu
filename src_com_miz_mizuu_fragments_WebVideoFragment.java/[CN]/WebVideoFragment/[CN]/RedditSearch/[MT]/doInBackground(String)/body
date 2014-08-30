@@ -1,7 +1,7 @@
 {
   mVideos.clear();
   try {
-    JSONObject jsonObject=MizLib.getJSONObject("http://www.reddit.com/r/videos/hot.json?sort=hot&limit=100");
+    JSONObject jsonObject=MizLib.getJSONObject(mContext,"http://www.reddit.com/r/videos/hot.json?sort=hot&limit=100");
     JSONArray jsonArray=jsonObject.getJSONObject("data").getJSONArray("children");
     for (int i=0; i < jsonArray.length(); i++) {
       if (jsonArray.getJSONObject(i).getJSONObject("data").getString("domain").equals("youtube.com") || jsonArray.getJSONObject(i).getJSONObject("data").getString("domain").equals("youtu.be")) {

@@ -25,7 +25,7 @@
   mSpinner.setAdapter(mSpinnerAdapter);
   String language=PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(LANGUAGE_PREFERENCE,"en");
   mSpinner.setSelection(mSpinnerAdapter.getIndexForLocale(language));
-  mQuery.setText(mMovie.getDecryptedFileName());
+  mQuery.setText(mMovieStructure.getDecryptedFilename());
   mQuery.setSelection(mQuery.length());
   mQuery.addTextChangedListener(new TextWatcher(){
     @Override public void beforeTextChanged(    CharSequence s,    int start,    int count,    int after){

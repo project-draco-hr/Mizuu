@@ -12,5 +12,5 @@
   }
 );
   loadData();
-  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-library-change"));
+  LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_MOVIE_LIBRARY));
 }

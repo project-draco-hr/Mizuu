@@ -1,5 +1,0 @@
-{
-  for (int i=0; i < 116; i++)   assertEquals(null,d[i].getImdbId());
-  assertEquals("tt0499549",d[116].getImdbId());
-  assertEquals("tt0499549",d[117].getImdbId());
-}

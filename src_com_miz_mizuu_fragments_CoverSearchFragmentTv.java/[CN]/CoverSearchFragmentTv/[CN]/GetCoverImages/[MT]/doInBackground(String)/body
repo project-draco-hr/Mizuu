@@ -3,10 +3,10 @@
   TvShowApiService service=null;
   if (id.startsWith("tmdb_")) {
     id=id.replace("tmdb_","");
-    service=new TMDbTvShow(getActivity());
+    service=new TMDbTvShowService(getActivity());
   }
  else {
-    service=new TheTVDb(getActivity());
+    service=new TheTVDbService(getActivity());
   }
   mImages.addAll(service.getCovers(id));
   return null;

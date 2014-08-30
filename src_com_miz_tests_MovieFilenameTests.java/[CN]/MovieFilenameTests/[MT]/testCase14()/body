@@ -1,0 +1,10 @@
+{
+  MovieStructure ms=new MovieStructure("/Prometheus [BRrip][AC3 5.1 Espanol Castellano][2012][www.newpct.com].avi");
+  assertEquals("",ms.getParentFolderName());
+  assertEquals("Prometheus [BRrip][AC3 5.1 Espanol Castellano][2012][www.newpct.com].avi",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("",ms.getDecryptedParentFolderName());
+  assertEquals("Prometheus",ms.getDecryptedFilename());
+  assertEquals(true,ms.hasReleaseYear());
+  assertEquals(2012,ms.getReleaseYear());
+}

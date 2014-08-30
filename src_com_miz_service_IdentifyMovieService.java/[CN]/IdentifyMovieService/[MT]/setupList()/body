@@ -1,0 +1,3 @@
+{
+  mFiles.add(new MovieStructure(mFilepath));
+}

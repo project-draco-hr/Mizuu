@@ -1,0 +1,9 @@
+{
+  MovieStructure ms=new MovieStructure("/Cenizas del  cielo (DVDRip) (EliteTorrent.net).avi");
+  assertEquals("",ms.getParentFolderName());
+  assertEquals("Cenizas del  cielo (DVDRip) (EliteTorrent.net).avi",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("",ms.getDecryptedParentFolderName());
+  assertEquals("Cenizas del cielo",ms.getDecryptedFilename());
+  assertEquals(false,ms.hasReleaseYear());
+}

@@ -1,0 +1,27 @@
+{
+  if (MizLib.isMovieLibraryBeingUpdated(this)) {
+    Handler mHandler=new Handler(Looper.getMainLooper());
+    mHandler.post(new Runnable(){
+      @Override public void run(){
+        Toast.makeText(IdentifyMovieService.this,R.string.cant_identify_while_updating,Toast.LENGTH_LONG).show();
+      }
+    }
+);
+    return;
+  }
+  log("clear()");
+  clear();
+  log("setup()");
+  setup();
+  log("Intent extras");
+  Bundle b=intent.getExtras();
+  mMovieId=b.getString("movieId");
+  mLanguage=b.getString("language","en");
+  mFilepath=b.getString("filepath");
+  log("setupList()");
+  setupList();
+  log("removeOldData()");
+  removeOldData();
+  log("start()");
+  start();
+}

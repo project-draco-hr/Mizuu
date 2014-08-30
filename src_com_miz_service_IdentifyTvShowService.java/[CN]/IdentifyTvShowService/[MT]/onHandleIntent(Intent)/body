@@ -15,11 +15,9 @@
   setup();
   log("Intent extras");
   Bundle b=intent.getExtras();
-  mNewShowTitle=b.getString("showTitle");
   mNewShowId=b.getString("newShowId");
   mOldShowId=b.getString("oldShowId");
   mLanguage=b.getString("language","all");
-  log("Title: " + mNewShowTitle + ". New ID: "+ mNewShowId+ ". Old ID: "+ mOldShowId+ ". Language: "+ mLanguage);
   log("setupList()");
   setupList();
   log("removeOldDatabaseEntries()");

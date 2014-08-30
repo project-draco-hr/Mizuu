@@ -2,10 +2,9 @@
   username=traktUser.getText().toString().trim();
   password=traktPass.getText().toString().trim();
   boolean success=false;
-  OkHttpClient client=new OkHttpClient();
   try {
     Request request=MizLib.getTraktAuthenticationRequest("http://api.trakt.tv/account/test/" + mTraktApiKey,username,MizLib.SHA1(password));
-    Response response=client.newCall(request).execute();
+    Response response=MizuuApplication.getOkHttpClient().newCall(request).execute();
     JSONObject jObject=new JSONObject(response.body().string());
     if (response.isSuccessful()) {
       String status=jObject.getString("status");
@@ -22,7 +21,7 @@
     editor.commit();
     try {
       Request request=MizLib.getTraktAuthenticationRequest("http://api.trakt.tv/user/profile.json/" + mTraktApiKey + "/"+ username,username,MizLib.SHA1(password));
-      Response response=client.newCall(request).execute();
+      Response response=MizuuApplication.getOkHttpClient().newCall(request).execute();
       JSONObject jObject=new JSONObject(response.body().string());
       if (response.isSuccessful()) {
         String name=jObject.getString("full_name");

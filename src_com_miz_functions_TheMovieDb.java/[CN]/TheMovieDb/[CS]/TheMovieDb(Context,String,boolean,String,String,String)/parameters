@@ -1,6 +1,0 @@
-Context context
-String filepath
-boolean isFromManualIdentify
-String language
-String oldTmdbId
-String tmdbId

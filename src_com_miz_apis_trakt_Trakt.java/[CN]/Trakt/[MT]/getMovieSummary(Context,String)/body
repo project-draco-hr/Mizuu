@@ -1,3 +1,3 @@
 {
-  return new com.miz.apis.trakt.Movie(MizLib.getJSONObject("http://api.trakt.tv/movie/summary.json/" + getApiKey(context) + "/"+ movieId));
+  return new com.miz.apis.trakt.Movie(MizLib.getJSONObject(context,"http://api.trakt.tv/movie/summary.json/" + getApiKey(context) + "/"+ movieId));
 }

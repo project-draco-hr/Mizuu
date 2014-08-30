@@ -11,6 +11,6 @@
     for (int i=0; i < episodePhotos.length; i++) {
       if (episodePhotos[i].getName().startsWith(mOldShowId + "_S"))       episodePhotos[i].delete();
     }
-    LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent("mizuu-shows-update"));
+    LocalBroadcastUtils.updateTvShowLibrary(this);
   }
 }

@@ -4,6 +4,7 @@
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
+  mContext=getActivity().getApplicationContext();
   mType=getArguments().getString("type");
   if (mType.equals(getString(R.string.choiceYouTube))) {
     new GetYouTubeVideos().execute();

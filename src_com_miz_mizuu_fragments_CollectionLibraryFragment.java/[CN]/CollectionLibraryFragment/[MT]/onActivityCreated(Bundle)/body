@@ -2,6 +2,5 @@
   super.onActivityCreated(savedInstanceState);
   setupActionBar();
   mActionBar.setListNavigationCallbacks(mSpinnerAdapter,this);
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-library-change"));
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movie-cover-change"));
+  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_MOVIE_LIBRARY));
 }

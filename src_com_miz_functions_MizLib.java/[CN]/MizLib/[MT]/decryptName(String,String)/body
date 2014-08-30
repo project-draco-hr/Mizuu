@@ -1,4 +1,5 @@
 {
+  if (TextUtils.isEmpty(input))   return "";
   String output=getNameFromFilename(input);
   output=fixAbbreviations(output);
   if (output.startsWith("[") && output.contains("]")) {

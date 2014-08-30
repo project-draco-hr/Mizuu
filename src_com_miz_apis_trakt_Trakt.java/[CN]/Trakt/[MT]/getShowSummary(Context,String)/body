@@ -1,3 +1,3 @@
 {
-  return new Show(MizLib.getJSONObject("http://api.trakt.tv/show/summary.json/" + getApiKey(context) + "/"+ showId));
+  return new Show(MizLib.getJSONObject(context,"http://api.trakt.tv/show/summary.json/" + getApiKey(context) + "/"+ showId));
 }

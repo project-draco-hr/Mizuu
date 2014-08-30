@@ -4,7 +4,9 @@
   for (int j=0; j < mMovieFileSources.size(); j++) {
     updateMovieScaningNotification(mMovieFileSources.get(j).toString());
     tempList=mMovieFileSources.get(j).searchFolder();
-    for (int i=0; i < tempList.size(); i++)     mMovieQueue.add(tempList.get(i));
+    for (int i=0; i < tempList.size(); i++) {
+      mMovieQueue.add(new MovieStructure(tempList.get(i)));
+    }
     if (!mIgnoreNfoFiles) {
       tempNfoMap=mMovieFileSources.get(j).getNfoFiles();
       mNfoFiles.putAll(tempNfoMap);

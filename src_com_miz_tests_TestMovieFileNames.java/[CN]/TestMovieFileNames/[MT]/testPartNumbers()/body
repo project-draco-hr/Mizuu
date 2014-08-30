@@ -1,8 +1,0 @@
-{
-  assertEquals(1,MizLib.getPartNumberFromFilepath("Avatar part1.mkv"));
-  assertEquals(2,MizLib.getPartNumberFromFilepath("Avatar part2.mkv"));
-  assertEquals(1,MizLib.getPartNumberFromFilepath("Avatar cd1.mkv"));
-  assertEquals(2,MizLib.getPartNumberFromFilepath("Avatar cd2.mkv"));
-  assertEquals(5,MizLib.getPartNumberFromFilepath("Avatar.cd5.mkv"));
-  assertEquals(5,MizLib.getPartNumberFromFilepath("Avatar.part5.mkv"));
-}

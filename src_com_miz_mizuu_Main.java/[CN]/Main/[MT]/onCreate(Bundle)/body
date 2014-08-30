@@ -69,5 +69,6 @@ loadFragment(Integer.parseInt(getIntent().getExtras().getString("startup")));
  else {
 loadFragment(mStartup);
 }
-LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-library-change"));
+LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_MOVIE_LIBRARY));
+LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_TV_SHOW_LIBRARY));
 }

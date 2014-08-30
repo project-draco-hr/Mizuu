@@ -1,0 +1,9 @@
+{
+  MovieStructure ms=new MovieStructure("/AE, Apocalypse Earth.avi");
+  assertEquals("",ms.getParentFolderName());
+  assertEquals("AE, Apocalypse Earth.avi",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("",ms.getDecryptedParentFolderName());
+  assertEquals("AE Apocalypse Earth",ms.getDecryptedFilename());
+  assertEquals(false,ms.hasReleaseYear());
+}
