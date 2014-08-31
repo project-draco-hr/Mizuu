@@ -10,6 +10,9 @@ case android.R.id.home:
     }
   finish();
 return true;
+case R.id.show_fav:
+favAction();
+break;
 case R.id.menuDeleteShow:
 deleteShow();
 break;

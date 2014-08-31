@@ -1,2 +1,2 @@
 String showId
-String season
+int season

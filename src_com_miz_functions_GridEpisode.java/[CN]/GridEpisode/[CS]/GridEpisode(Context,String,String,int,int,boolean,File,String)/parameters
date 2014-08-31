@@ -5,3 +5,4 @@ int season
 int episode
 boolean watched
 File cover
+String airdate

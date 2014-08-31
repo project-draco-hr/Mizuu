@@ -1,0 +1,31 @@
+{
+  final Context activityContext=getActivity();
+  AlertDialog.Builder builder=new AlertDialog.Builder(activityContext);
+  builder.setTitle(R.string.remove_selected_seasons);
+  builder.setMessage(R.string.areYouSure);
+  builder.setPositiveButton(android.R.string.yes,new DialogInterface.OnClickListener(){
+    @Override public void onClick(    DialogInterface dialog,    int which){
+      System.out.println("SEASONS SIZE: " + selectedSeasons.size());
+      for (      int season : selectedSeasons) {
+        System.out.println("SEASON " + season);
+        TvShowDatabaseUtils.removeSeason(activityContext,mShowId,season);
+      }
+      if (MizuuApplication.getTvEpisodeDbAdapter().getEpisodeCount(mShowId) == 0) {
+        System.out.println("NO EPISODES");
+        LocalBroadcastUtils.updateTvShowLibrary(activityContext);
+        getActivity().finish();
+      }
+ else {
+        loadSeasons(true);
+      }
+    }
+  }
+);
+  builder.setNegativeButton(android.R.string.no,new DialogInterface.OnClickListener(){
+    @Override public void onClick(    DialogInterface dialog,    int which){
+      dialog.cancel();
+    }
+  }
+);
+  builder.show();
+}

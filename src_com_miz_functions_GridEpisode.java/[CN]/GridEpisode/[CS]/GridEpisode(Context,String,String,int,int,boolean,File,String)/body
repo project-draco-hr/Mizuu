@@ -6,6 +6,7 @@
   mEpisode=episode;
   mWatched=watched;
   mCover=cover;
+  mAirDate=airdate;
   StringBuilder sb=new StringBuilder();
   sb.append(mContext.getString(R.string.showEpisode)).append(" ").append(getEpisode());
   if (!hasWatched()) {

@@ -30,7 +30,6 @@
         cv.put(KEY_SHOW_RUNTIME,c.getString(c.getColumnIndex(KEY_SHOW_RUNTIME)));
         cv.put(KEY_SHOW_FIRST_AIRDATE,c.getString(c.getColumnIndex(KEY_SHOW_FIRST_AIRDATE)));
         cv.put(DbAdapterTvShows.KEY_SHOW_FAVOURITE,c.getString(c.getColumnIndex(KEY_SHOW_EXTRA1)));
-        cv.put(DbAdapterTvShows.KEY_SHOW_WATCHLIST,"0");
         database.insert("tvshows",null,cv);
       }
     }

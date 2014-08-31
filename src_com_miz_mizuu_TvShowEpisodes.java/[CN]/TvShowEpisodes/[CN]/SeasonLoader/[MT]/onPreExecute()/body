@@ -1,0 +1,4 @@
+{
+  mItems.clear();
+  mProgressBar.setVisibility(View.VISIBLE);
+}

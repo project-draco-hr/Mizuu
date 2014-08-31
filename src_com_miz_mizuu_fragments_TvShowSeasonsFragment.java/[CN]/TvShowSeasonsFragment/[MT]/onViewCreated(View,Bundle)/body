@@ -61,7 +61,7 @@ case R.id.unwatched:
     changeWatchedStatus(false);
   break;
 case R.id.remove:
-removeSelectedSeasons();
+removeSelectedSeasons(new HashSet<Integer>(mCheckedSeasons));
 break;
 }
 mode.finish();
@@ -72,8 +72,8 @@ mContextualActionBarEnabled=false;
 mCheckedSeasons.clear();
 }
 @Override public void onItemCheckedStateChanged(ActionMode mode,int position,long id,boolean checked){
-if (checked) mCheckedSeasons.add(position);
- else mCheckedSeasons.remove(position);
+if (checked) mCheckedSeasons.add(mItems.get(position).getSeason());
+ else mCheckedSeasons.remove(mItems.get(position).getSeason());
 int count=mCheckedSeasons.size();
 mode.setTitle(count + " " + getResources().getQuantityString(R.plurals.seasons_selected,count,count));
 mAdapter.notifyDataSetChanged();

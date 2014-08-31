@@ -1,0 +1,11 @@
+{
+  mProgressBar.setVisibility(View.GONE);
+  mSeasonAdapter=new SeasonAdapter(getSupportFragmentManager());
+  mViewPager.setAdapter(mSeasonAdapter);
+  for (int i=0; i < mItems.size(); i++) {
+    if (mItems.get(i).getSeason() == mSeason) {
+      mViewPager.setCurrentItem(i);
+      break;
+    }
+  }
+}

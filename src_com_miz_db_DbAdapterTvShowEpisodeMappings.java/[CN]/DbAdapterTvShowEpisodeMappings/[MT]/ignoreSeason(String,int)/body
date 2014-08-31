@@ -1,0 +1,5 @@
+{
+  ContentValues values=new ContentValues();
+  values.put(KEY_IGNORED,1);
+  return mDatabase.update(DATABASE_TABLE,values,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ MizLib.addIndexZero(season)+ "'",null) > 0;
+}

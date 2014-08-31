@@ -27,7 +27,7 @@
     }
   }
  else {
-    if (mCheckedSeasons.contains(position)) {
+    if (mCheckedSeasons.contains(mSeason.getSeason())) {
       holder.highlight.setVisibility(View.VISIBLE);
     }
  else {
