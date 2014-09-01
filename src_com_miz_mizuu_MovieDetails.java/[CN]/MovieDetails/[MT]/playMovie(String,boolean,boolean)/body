@@ -1,0 +1,26 @@
+{
+  if (isUpnpFile) {
+    AlertDialog.Builder builder=new AlertDialog.Builder(MovieDetails.this);
+    builder.setTitle(R.string.where_to_play);
+    builder.setItems(R.array.upnp_play_dialog,new OnClickListener(){
+      @Override public void onClick(      DialogInterface dialog,      int which){
+        if (which == 0) {
+          Intent remotePlayback=new Intent(MovieDetails.this,RemotePlayback.class);
+          remotePlayback.putExtra("videoUrl",filepath);
+          remotePlayback.putExtra("coverUrl","");
+          remotePlayback.putExtra("title",mMovie.getTitle());
+          startActivity(remotePlayback);
+        }
+ else {
+          playMovie(filepath,isNetworkFile);
+        }
+        dialog.dismiss();
+      }
+    }
+);
+    builder.show();
+  }
+ else {
+    playMovie(filepath,isNetworkFile);
+  }
+}

@@ -1,0 +1,9 @@
+String movieId
+String title
+String tagline
+String description
+String genres
+String runtime
+String rating
+String releaseDate
+String certification

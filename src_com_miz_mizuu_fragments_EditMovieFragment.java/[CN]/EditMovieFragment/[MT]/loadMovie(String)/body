@@ -1,0 +1,15 @@
+{
+  Cursor cursor=MizuuApplication.getMovieAdapter().fetchMovie(movieId);
+  try {
+    mMovie=new Movie(getActivity(),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_IMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_ACTORS)),MizuuApplication.getCollectionsAdapter().getCollection(cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_COLLECTION_ID))),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_COLLECTION_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_DATE_ADDED)),false);
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    cursor.close();
+  }
+  if (mMovie == null) {
+    Toast.makeText(getActivity(),R.string.errorSomethingWentWrong,Toast.LENGTH_LONG).show();
+    getActivity().finish();
+  }
+}

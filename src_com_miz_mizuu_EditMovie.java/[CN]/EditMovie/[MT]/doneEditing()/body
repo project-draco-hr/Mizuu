@@ -1,6 +1,0 @@
-{
-  if (mRating.getText().toString().isEmpty())   mRating.setText("0.0");
-  mDatabaseHelper.editUpdateMovie(mTmdbId,mTitle.getText().toString(),mPlot.getText().toString(),mRating.getText().toString(),mTagline.getText().toString(),mRelease.getText().toString(),mCertifications[mCertification.getSelectedItemPosition()],mRuntime.getText().toString(),mGenres.getText().toString(),mToWatch,mHasWatched,String.valueOf(System.currentTimeMillis()));
-  setResult(4);
-  finish();
-}

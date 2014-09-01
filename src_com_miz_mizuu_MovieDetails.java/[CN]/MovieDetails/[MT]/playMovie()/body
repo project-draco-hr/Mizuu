@@ -10,7 +10,7 @@
       }
     }
  else {
-      playMovie(paths.get(0).getFilepath(),paths.get(0).isNetworkFile());
+      playMovie(paths.get(0).getFilepath(),paths.get(0).isNetworkFile(),paths.get(0).getType() == FileSource.UPNP);
     }
   }
  else {
@@ -30,7 +30,7 @@
       MizLib.showSelectFileDialog(MovieDetails.this,mMovie.getFilepaths(),new Dialog.OnClickListener(){
         @Override public void onClick(        DialogInterface dialog,        int which){
           Filepath path=mMovie.getFilepaths().get(which);
-          playMovie(path.getFilepath(),path.isNetworkFile());
+          playMovie(path.getFilepath(),path.isNetworkFile(),path.getType() == FileSource.UPNP);
         }
       }
 );

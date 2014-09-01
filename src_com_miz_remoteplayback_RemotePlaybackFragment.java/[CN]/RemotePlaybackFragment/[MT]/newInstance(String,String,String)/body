@@ -1,0 +1,9 @@
+{
+  RemotePlaybackFragment fragment=new RemotePlaybackFragment();
+  Bundle args=new Bundle();
+  args.putString("videoUrl",videoUrl);
+  args.putString("coverUrl",coverUrl);
+  args.putString("title",title);
+  fragment.setArguments(args);
+  return fragment;
+}

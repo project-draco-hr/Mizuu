@@ -1,43 +1,8 @@
 {
   super.onCreate(savedInstanceState);
-  getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-  setContentView(R.layout.editmovie);
-  mTitle=(EditText)findViewById(R.id.titleText);
-  mTagline=(EditText)findViewById(R.id.taglineText);
-  mPlot=(EditText)findViewById(R.id.plotText);
-  mRuntime=(EditText)findViewById(R.id.runtimeText);
-  mRating=(EditText)findViewById(R.id.ratingText);
-  mGenres=(EditText)findViewById(R.id.genresText);
-  mRelease=(TextView)findViewById(R.id.releasedateText);
-  mCertification=(Spinner)findViewById(R.id.certificationSpinner);
-  mTmdbId=getIntent().getExtras().getString("tmdbId");
-  mDatabaseHelper=MizuuApplication.getMovieAdapter();
-  mCursor=mDatabaseHelper.fetchMovie(mTmdbId);
-  if (mCursor.moveToFirst()) {
-    mToWatch=mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_TO_WATCH));
-    mHasWatched=mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_HAS_WATCHED));
-    mTitle.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_TITLE)));
-    mPlot.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_PLOT)));
-    mTagline.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_TAGLINE)));
-    if (mTagline.getText().toString().equals("NOTAGLINE") || !(mTagline.getText().toString().length() > 0))     mTagline.setText("");
-    mRuntime.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_RUNTIME)));
-    try {
-      mRating.setText(String.valueOf(Float.valueOf(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_RATING)).trim()).floatValue()));
-    }
- catch (    Exception e) {
-      mRating.setText("0.0");
-    }
-    boolean found=false;
-    for (int i=0; i < mCertifications.length; i++) {
-      if (mCertifications[i].equals(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_CERTIFICATION)))) {
-        mCertification.setSelection(i);
-        found=true;
-        break;
-      }
-    }
-    if (!found)     mCertification.setSelection(mCertifications.length - 1);
-    mRelease.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_RELEASEDATE)));
-    mGenres.setText(mCursor.getString(mCursor.getColumnIndex(DbAdapterMovies.KEY_GENRES)));
+  final String movieId=getIntent().getStringExtra("movieId");
+  final FragmentManager fm=getSupportFragmentManager();
+  if (fm.findFragmentById(android.R.id.content) == null) {
+    fm.beginTransaction().add(android.R.id.content,EditMovieFragment.newInstance(movieId)).commit();
   }
-  mCursor.close();
 }

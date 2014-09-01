@@ -74,17 +74,12 @@
   textRuntime.setText(MizLib.getPrettyRuntime(getActivity(),Integer.parseInt(thisShow.getRuntime())));
   textReleaseDate.setTypeface(mMedium);
   textReleaseDate.setText(MizLib.getPrettyDate(getActivity(),thisShow.getFirstAirdate()));
-  if (!thisShow.getRating().equals("0.0/10")) {
-    if (thisShow.getRating().contains("/")) {
-      try {
-        int rating=(int)(Double.parseDouble(thisShow.getRating().substring(0,thisShow.getRating().indexOf("/"))) * 10);
-        textRating.setText(Html.fromHtml(rating + "<small> %</small>"));
-      }
- catch (      NumberFormatException e) {
-        textRating.setText(Html.fromHtml(thisShow.getRating().replace("/","<small> / ") + "</small>"));
-      }
+  if (!thisShow.getRating().equals("0.0")) {
+    try {
+      int rating=(int)(Double.parseDouble(thisShow.getRating()) * 10);
+      textRating.setText(Html.fromHtml(rating + "<small> %</small>"));
     }
- else {
+ catch (    NumberFormatException e) {
       textRating.setText(thisShow.getRating());
     }
   }

@@ -1,0 +1,12 @@
+{
+  ContentValues cv=new ContentValues();
+  cv.put(KEY_TITLE,title);
+  cv.put(KEY_PLOT,description);
+  cv.put(KEY_RATING,rating);
+  cv.put(KEY_TAGLINE,tagline);
+  cv.put(KEY_RELEASEDATE,releaseDate);
+  cv.put(KEY_CERTIFICATION,certification);
+  cv.put(KEY_RUNTIME,runtime);
+  cv.put(KEY_GENRES,genres);
+  return mDatabase.update(DATABASE_TABLE,cv,KEY_TMDB_ID + "='" + movieId+ "'",null) > 0;
+}

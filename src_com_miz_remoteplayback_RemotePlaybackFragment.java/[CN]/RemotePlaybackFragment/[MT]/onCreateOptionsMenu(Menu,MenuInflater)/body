@@ -1,0 +1,8 @@
+{
+  mMenu=menu;
+  inflater.inflate(R.menu.remote_playback,menu);
+  updateMenu();
+  MenuItem item=menu.findItem(R.id.route_provider);
+  MediaRouteActionProvider provider=(MediaRouteActionProvider)MenuItemCompat.getActionProvider(item);
+  if (provider != null)   provider.setRouteSelector(mMediaRouteSelector);
+}

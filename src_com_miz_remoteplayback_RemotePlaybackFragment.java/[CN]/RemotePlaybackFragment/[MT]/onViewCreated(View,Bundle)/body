@@ -1,0 +1,4 @@
+{
+  super.onViewCreated(view,savedInstanceState);
+  mBackgroundImage=(ImageView)view.findViewById(R.id.background_image);
+}

@@ -1,0 +1,7 @@
+{
+  EditMovieFragment fragment=new EditMovieFragment();
+  Bundle args=new Bundle();
+  args.putString("movieId",movieId);
+  fragment.setArguments(args);
+  return fragment;
+}

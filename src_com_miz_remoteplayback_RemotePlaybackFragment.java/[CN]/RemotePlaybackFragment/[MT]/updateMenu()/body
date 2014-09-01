@@ -1,0 +1,7 @@
+{
+  if (mMenu != null) {
+    mMenu.findItem(R.id.stop).setVisible(mRemotePlaybackClient != null && mPlaying);
+    mMenu.findItem(R.id.pause).setVisible(mRemotePlaybackClient != null && mPlaying && !mPaused);
+    mMenu.findItem(R.id.play).setVisible(mRemotePlaybackClient != null && (!mPlaying || mPaused));
+  }
+}

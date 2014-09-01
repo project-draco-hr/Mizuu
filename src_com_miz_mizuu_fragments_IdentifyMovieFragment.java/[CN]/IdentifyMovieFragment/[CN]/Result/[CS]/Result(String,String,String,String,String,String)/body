@@ -3,6 +3,6 @@
   mOriginalTitle=originalTitle;
   mId=id;
   mImage=image;
-  mRating=rating + "/10";
+  mRating=rating;
   mRelease=MizLib.getPrettyDate(getActivity(),release);
 }

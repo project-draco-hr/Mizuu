@@ -1,5 +1,8 @@
 {
   super.onViewCreated(v,savedInstanceState);
+  if (MizLib.isTablet(mContext) && !MizLib.isPortrait(mContext)) {
+    v.findViewById(R.id.container).setBackgroundColor(Color.parseColor("#05FFFFFF"));
+  }
   mAdapter=new ImageAdapter(mContext);
   mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
   mGridView=(GridView)v.findViewById(R.id.gridView);

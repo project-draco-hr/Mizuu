@@ -1,0 +1,5 @@
+{
+  MizuuApplication.getMovieAdapter().editMovie(mMovie.getTmdbId(),mTitle.getText().toString(),mTagline.getText().toString(),mDescription.getText().toString(),mGenres.getText().toString(),mMovie.getRuntime(),mMovie.getRating(),mMovie.getReleasedate(),mMovie.getCertification());
+  getActivity().setResult(4);
+  getActivity().finish();
+}

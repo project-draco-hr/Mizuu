@@ -1,0 +1,10 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  setHasOptionsMenu(true);
+  Bundle arguments=getArguments();
+  mVideoUrl=arguments.getString("videoUrl");
+  mCoverUrl=arguments.getString("coverUrl");
+  mTitle=arguments.getString("title");
+  mMediaRouteSelector=new MediaRouteSelector.Builder().addControlCategory(MediaControlIntent.CATEGORY_REMOTE_PLAYBACK).build();
+}

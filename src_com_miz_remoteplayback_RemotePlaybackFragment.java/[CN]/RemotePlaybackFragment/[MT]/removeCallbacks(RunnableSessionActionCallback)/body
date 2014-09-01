@@ -1,0 +1,3 @@
+{
+  mBackgroundImage.removeCallbacks(callback);
+}

@@ -1,0 +1,4 @@
+{
+  mPaused=false;
+  updateMenu();
+}

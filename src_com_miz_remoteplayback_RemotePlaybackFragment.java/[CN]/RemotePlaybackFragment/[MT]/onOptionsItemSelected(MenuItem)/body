@@ -1,0 +1,19 @@
+{
+switch (item.getItemId()) {
+case R.id.play:
+    if (mPlaying && mPaused) {
+      resume();
+    }
+ else {
+      play();
+    }
+  return true;
+case R.id.stop:
+stop();
+return true;
+case R.id.pause:
+pause();
+return true;
+}
+return super.onOptionsItemSelected(item);
+}

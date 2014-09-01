@@ -83,17 +83,12 @@
     mFileSource.setVisibility(View.GONE);
   }
   mAirDate.setText(MizLib.getPrettyDatePrecise(getActivity(),mEpisode.getReleasedate()));
-  if (!mEpisode.getRating().equals("0.0/10")) {
-    if (mEpisode.getRating().contains("/")) {
-      try {
-        int rating=(int)(Double.parseDouble(mEpisode.getRating().substring(0,mEpisode.getRating().indexOf("/"))) * 10);
-        mRating.setText(Html.fromHtml(rating + "<small> %</small>"));
-      }
- catch (      NumberFormatException e) {
-        mRating.setText(Html.fromHtml(mEpisode.getRating().replace("/","<small> / ") + "</small>"));
-      }
+  if (!mEpisode.getRating().equals("0.0")) {
+    try {
+      int rating=(int)(Double.parseDouble(mEpisode.getRating()) * 10);
+      mRating.setText(Html.fromHtml(rating + "<small> %</small>"));
     }
- else {
+ catch (    NumberFormatException e) {
       mRating.setText(mEpisode.getRating());
     }
   }
