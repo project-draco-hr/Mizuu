@@ -1,0 +1,18 @@
+{
+  ArrayList<String> certifications=new ArrayList<String>();
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,new String[]{KEY_SHOW_CERTIFICATION},null,null,KEY_SHOW_CERTIFICATION,null,null);
+  if (cursor != null) {
+    try {
+      while (cursor.moveToNext()) {
+        String certification=cursor.getString(cursor.getColumnIndex(KEY_SHOW_CERTIFICATION));
+        if (!TextUtils.isEmpty(certification))         certifications.add(certification);
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+    }
+  }
+  return certifications;
+}

@@ -1,0 +1,5 @@
+{
+  MizuuApplication.getTvDbAdapter().editShow(mShow.getId(),mTitle.getText().toString(),mDescription.getText().toString(),mGenres.getText().toString(),mShow.getRuntime(),mShow.getRating(),mShow.getFirstAirdate(),mShow.getCertification());
+  getActivity().setResult(Activity.RESULT_OK);
+  getActivity().finish();
+}

@@ -1,0 +1,24 @@
+{
+  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+  builder.setTitle(R.string.set_certification);
+  ArrayList<String> temp=MizuuApplication.getTvDbAdapter().getCertifications();
+  final CharSequence[] items=new CharSequence[temp.size() + 1];
+  items[0]=getString(R.string.create_new_certification);
+  for (int i=0; i < temp.size(); i++) {
+    items[i + 1]=temp.get(i);
+  }
+  builder.setItems(items,new DialogInterface.OnClickListener(){
+    @Override public void onClick(    DialogInterface dialog,    int which){
+      if (which == 0) {
+        showNewCertificationDialog();
+      }
+ else {
+        mShow.setCertification(items[which].toString());
+        setupValues(false);
+        dialog.cancel();
+      }
+    }
+  }
+);
+  builder.show();
+}

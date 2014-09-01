@@ -1,0 +1,8 @@
+{
+  super.onCreate(savedInstanceState);
+  final String showId=getIntent().getStringExtra("showId");
+  final FragmentManager fm=getSupportFragmentManager();
+  if (fm.findFragmentById(android.R.id.content) == null) {
+    fm.beginTransaction().add(android.R.id.content,EditTvShowFragment.newInstance(showId)).commit();
+  }
+}

@@ -22,6 +22,9 @@ break;
 case R.id.identify_show:
 identifyShow();
 break;
+case R.id.editTvShow:
+editTvShow();
+break;
 case R.id.openInBrowser:
 Intent browserIntent=new Intent(Intent.ACTION_VIEW);
 if (thisShow.getIdType() == TvShow.TMDB) {

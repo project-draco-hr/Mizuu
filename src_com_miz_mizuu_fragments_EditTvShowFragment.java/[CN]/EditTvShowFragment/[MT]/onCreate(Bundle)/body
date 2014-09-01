@@ -1,0 +1,7 @@
+{
+  super.onCreate(savedInstanceState);
+  setHasOptionsMenu(true);
+  setRetainInstance(true);
+  loadTvShow(getArguments().getString("showId"));
+  getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+}

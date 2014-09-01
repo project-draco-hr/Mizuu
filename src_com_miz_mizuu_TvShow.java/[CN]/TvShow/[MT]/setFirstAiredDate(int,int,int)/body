@@ -1,0 +1,3 @@
+{
+  FIRST_AIR_DATE=year + "-" + MizLib.addIndexZero(month)+ "-"+ MizLib.addIndexZero(day);
+}

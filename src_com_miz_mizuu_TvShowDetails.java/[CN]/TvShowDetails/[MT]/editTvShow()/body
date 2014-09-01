@@ -1,0 +1,5 @@
+{
+  Intent intent=new Intent(this,EditTvShow.class);
+  intent.putExtra("showId",thisShow.getId());
+  startActivityForResult(intent,1);
+}

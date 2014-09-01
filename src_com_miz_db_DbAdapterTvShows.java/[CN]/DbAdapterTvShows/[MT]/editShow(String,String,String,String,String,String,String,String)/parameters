@@ -1,0 +1,8 @@
+String showId
+String title
+String description
+String genres
+String runtime
+String rating
+String firstAirDate
+String certification

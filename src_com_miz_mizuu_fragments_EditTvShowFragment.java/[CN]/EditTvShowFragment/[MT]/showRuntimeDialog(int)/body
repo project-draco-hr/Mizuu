@@ -1,0 +1,19 @@
+{
+  final View numberPickerLayout=getActivity().getLayoutInflater().inflate(R.layout.number_picker_dialog,null,false);
+  final NumberPicker numberPicker=(NumberPicker)numberPickerLayout.findViewById(R.id.number_picker);
+  numberPicker.setMaxValue(600);
+  numberPicker.setMinValue(0);
+  numberPicker.setValue(initialValue);
+  AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+  builder.setTitle(R.string.set_runtime);
+  builder.setView(numberPickerLayout);
+  builder.setNeutralButton(R.string.set,new DialogInterface.OnClickListener(){
+    @Override public void onClick(    DialogInterface dialog,    int which){
+      mShow.setRuntime(numberPicker.getValue());
+      setupValues(false);
+      dialog.cancel();
+    }
+  }
+);
+  builder.show();
+}
