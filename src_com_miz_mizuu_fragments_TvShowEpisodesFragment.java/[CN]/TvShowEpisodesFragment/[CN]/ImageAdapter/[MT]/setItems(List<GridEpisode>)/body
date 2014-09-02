@@ -1,0 +1,4 @@
+{
+  mItems=new ArrayList<GridEpisode>(items);
+  notifyDataSetChanged();
+}

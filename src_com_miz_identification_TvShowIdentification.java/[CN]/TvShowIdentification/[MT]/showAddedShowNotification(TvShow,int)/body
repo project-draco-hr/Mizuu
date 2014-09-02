@@ -9,5 +9,6 @@
  catch (  IOException e) {
     mCallback.onTvShowAdded(show.getId(),show.getTitle(),MizLib.getNotificationImageThumbnail(mContext,coverFile.getAbsolutePath()),MizLib.decodeSampledBitmapFromFile(backdropFile.getAbsolutePath(),getNotificationImageWidth(),getNotificationImageHeight()),episodeCount);
   }
+  LocalBroadcastUtils.updateTvShowLibrary(mContext);
   WidgetUtils.updateTvShowWidgets(mContext);
 }

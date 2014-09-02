@@ -1,0 +1,5 @@
+{
+  mTvShows=new ArrayList<TvShow>(shows);
+  mTvShowKeys=new ArrayList<Integer>(showKeys);
+  notifyDataSetChanged();
+}

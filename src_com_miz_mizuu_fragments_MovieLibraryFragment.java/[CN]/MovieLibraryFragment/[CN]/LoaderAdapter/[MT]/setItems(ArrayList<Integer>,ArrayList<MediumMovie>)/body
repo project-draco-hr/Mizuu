@@ -1,0 +1,5 @@
+{
+  mMovieKeys=new ArrayList<Integer>(movieKeys);
+  mMovies=new ArrayList<MediumMovie>(movies);
+  notifyDataSetChanged();
+}

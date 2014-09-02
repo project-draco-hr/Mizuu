@@ -1,4 +1,4 @@
 {
   mProgressBar.setVisibility(View.GONE);
-  mAdapter.notifyDataSetChanged();
+  mAdapter.setItems(mItems);
 }

@@ -1,4 +1,4 @@
 {
-  if (mAdapter != null)   mAdapter.notifyDataSetChanged();
+  if (mAdapter != null)   mAdapter.setItems(mTvShows,mTvShowKeys);
   if (mSpinnerAdapter != null)   mSpinnerAdapter.notifyDataSetChanged();
 }
