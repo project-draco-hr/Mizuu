@@ -1,0 +1,10 @@
+String showId
+int season
+int episode
+String title
+String description
+String director
+String writer
+String guestStars
+String rating
+String releaseDate

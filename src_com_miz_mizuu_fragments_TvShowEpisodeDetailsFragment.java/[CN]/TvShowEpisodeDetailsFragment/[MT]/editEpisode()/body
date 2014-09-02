@@ -1,0 +1,7 @@
+{
+  Intent intent=new Intent(getActivity(),EditTvShowEpisode.class);
+  intent.putExtra("showId",mEpisode.getShowId());
+  intent.putExtra("season",MizLib.getInteger(mEpisode.getSeason()));
+  intent.putExtra("episode",MizLib.getInteger(mEpisode.getEpisode()));
+  startActivityForResult(intent,0);
+}

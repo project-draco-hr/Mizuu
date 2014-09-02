@@ -1,0 +1,9 @@
+{
+  EditTvShowEpisodeFragment fragment=new EditTvShowEpisodeFragment();
+  Bundle args=new Bundle();
+  args.putString("showId",showId);
+  args.putInt("season",season);
+  args.putInt("episode",episode);
+  fragment.setArguments(args);
+  return fragment;
+}

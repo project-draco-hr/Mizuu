@@ -1,0 +1,5 @@
+{
+  MizuuApplication.getTvEpisodeDbAdapter().editEpisode(mEpisode.getShowId(),MizLib.getInteger(mEpisode.getSeason()),MizLib.getInteger(mEpisode.getEpisode()),mTitle.getText().toString(),mDescription.getText().toString(),mDirector.getText().toString(),mWriter.getText().toString(),mGuestStars.getText().toString(),mEpisode.getRating(),mEpisode.getReleasedate());
+  getActivity().setResult(Activity.RESULT_OK);
+  getActivity().finish();
+}

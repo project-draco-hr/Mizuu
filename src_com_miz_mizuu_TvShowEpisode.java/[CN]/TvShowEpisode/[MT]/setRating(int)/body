@@ -1,0 +1,3 @@
+{
+  mRating=String.valueOf(Double.valueOf((double)rating / 10));
+}

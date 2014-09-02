@@ -1,0 +1,8 @@
+{
+  if (requestCode == 0) {
+    if (resultCode == Activity.RESULT_OK) {
+      loadEpisode();
+      loadData();
+    }
+  }
+}

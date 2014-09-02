@@ -15,6 +15,9 @@ break;
 case R.id.watchOffline:
 watchOffline();
 break;
+case R.id.editTvShowEpisode:
+editEpisode();
+break;
 }
 return false;
 }

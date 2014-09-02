@@ -1,0 +1,11 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  mTitle=(EditText)v.findViewById(R.id.edit_title);
+  mDescription=(EditText)v.findViewById(R.id.edit_description);
+  mDirector=(EditText)v.findViewById(R.id.edit_director);
+  mWriter=(EditText)v.findViewById(R.id.edit_writer);
+  mGuestStars=(EditText)v.findViewById(R.id.edit_guest_stars);
+  mRating=(Button)v.findViewById(R.id.edit_rating);
+  mReleaseDate=(Button)v.findViewById(R.id.edit_release_date);
+  setupValues(true);
+}

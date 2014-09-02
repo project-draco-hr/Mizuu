@@ -1,0 +1,11 @@
+{
+  ContentValues cv=new ContentValues();
+  cv.put(KEY_EPISODE_TITLE,title);
+  cv.put(KEY_EPISODE_PLOT,description);
+  cv.put(KEY_EPISODE_RATING,rating);
+  cv.put(KEY_EPISODE_AIRDATE,releaseDate);
+  cv.put(KEY_EPISODE_DIRECTOR,director);
+  cv.put(KEY_EPISODE_WRITER,writer);
+  cv.put(KEY_EPISODE_GUESTSTARS,guestStars);
+  return mDatabase.update(DATABASE_TABLE,cv,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ MizLib.addIndexZero(season)+ "' AND "+ KEY_EPISODE+ "='"+ MizLib.addIndexZero(episode)+ "'",null) > 0;
+}
