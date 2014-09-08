@@ -1,4 +1,0 @@
-{
-  Process.setThreadPriority(THREAD_PRIORITY_BACKGROUND);
-  super.run();
-}

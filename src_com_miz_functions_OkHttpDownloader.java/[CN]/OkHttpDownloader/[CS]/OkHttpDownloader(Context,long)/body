@@ -1,4 +1,0 @@
-{
-  this(Utils.createDefaultCacheDir(context),maxSize);
-  mContext=context;
-}

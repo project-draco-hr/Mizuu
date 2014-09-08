@@ -1,7 +1,0 @@
-{
-  File cache=new File(context.getApplicationContext().getCacheDir(),PICASSO_CACHE);
-  if (!cache.exists()) {
-    cache.mkdirs();
-  }
-  return cache;
-}

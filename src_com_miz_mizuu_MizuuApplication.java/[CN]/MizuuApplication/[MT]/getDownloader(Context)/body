@@ -1,4 +1,4 @@
 {
-  if (sDownloader == null)   sDownloader=Utils.createDefaultDownloader(context);
+  if (sDownloader == null)   sDownloader=new OkHttpDownloader(context);
   return sDownloader;
 }

@@ -1,9 +1,7 @@
 {
   long size=MIN_DISK_CACHE_SIZE;
   try {
-    StatFs statFs=new StatFs(dir.getAbsolutePath());
-    long available=((long)statFs.getBlockCount()) * statFs.getBlockSize();
-    size=available / 50;
+    size=MizLib.getFreeMemory() / 50;
   }
  catch (  IllegalArgumentException ignored) {
   }
