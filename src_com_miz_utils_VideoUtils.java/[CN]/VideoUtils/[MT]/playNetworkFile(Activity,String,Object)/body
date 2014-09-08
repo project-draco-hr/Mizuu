@@ -19,7 +19,7 @@
   new Thread(){
     public void run(){
       try {
-        final SmbFile file=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),filepath,false));
+        final SmbFile file=new SmbFile(MizLib.createSmbLoginString(auth.getDomain(),auth.getUsername(),auth.getPassword(),filepath,false));
         s.setStreamSrc(file,MizLib.getSubtitleFiles(filepath,auth));
         activity.runOnUiThread(new Runnable(){
           public void run(){

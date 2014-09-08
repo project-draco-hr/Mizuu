@@ -16,7 +16,7 @@
  else {
     SmbFile temp;
     for (int i=1; i < 10; i++) {
-      temp=new SmbFile(createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),filepath + i + fileType,false));
+      temp=new SmbFile(createSmbLoginString(auth.getDomain(),auth.getUsername(),auth.getPassword(),filepath + i + fileType,false));
       if (temp.exists())       parts.add(temp.getPath());
     }
   }

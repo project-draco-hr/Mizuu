@@ -4,7 +4,7 @@
   String filename=filepath.substring(0,filepath.lastIndexOf(".")).replaceAll("part[1-9]|cd[1-9]","").trim();
   String[] list=MizuuApplication.getCifsFilesList(parentPath);
   if (list == null) {
-    SmbFile s=new SmbFile(createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),parentPath,false));
+    SmbFile s=new SmbFile(createSmbLoginString(auth.getDomain(),auth.getUsername(),auth.getPassword(),parentPath,false));
     list=s.list();
     s=null;
     MizuuApplication.putCifsFilesList(parentPath,list);
@@ -31,6 +31,6 @@
     }
   }
   list=null;
-  if (!customCoverArt.isEmpty())   return new SmbFile(createSmbLoginString(URLEncoder.encode(auth.getDomain(),"utf-8"),URLEncoder.encode(auth.getUsername(),"utf-8"),URLEncoder.encode(auth.getPassword(),"utf-8"),customCoverArt,false));
+  if (!customCoverArt.isEmpty())   return new SmbFile(createSmbLoginString(auth.getDomain(),auth.getUsername(),auth.getPassword(),customCoverArt,false));
   return null;
 }

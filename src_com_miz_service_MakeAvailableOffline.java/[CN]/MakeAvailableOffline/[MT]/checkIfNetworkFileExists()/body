@@ -5,7 +5,7 @@
  else {
     mAuth=MizLib.getAuthFromFilepath(mType,mFileUrl);
     try {
-      mSmb=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(mAuth.getDomain(),"utf-8"),URLEncoder.encode(mAuth.getUsername(),"utf-8"),URLEncoder.encode(mAuth.getPassword(),"utf-8"),mFileUrl,false));
+      mSmb=new SmbFile(MizLib.createSmbLoginString(mAuth.getDomain(),mAuth.getUsername(),mAuth.getPassword(),mFileUrl,false));
       return mSmb.exists() && mSmb.length() > 1000;
     }
  catch (    Exception e) {

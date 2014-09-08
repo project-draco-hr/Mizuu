@@ -1,7 +1,7 @@
 {
   try {
     FileSource fs=getFileSource();
-    SmbFile root=new SmbFile(MizLib.createSmbLoginString(URLEncoder.encode(fs.getDomain(),"utf-8"),URLEncoder.encode(fs.getUser(),"utf-8"),URLEncoder.encode(fs.getPassword(),"utf-8"),fs.getFilepath(),true));
+    SmbFile root=new SmbFile(MizLib.createSmbLoginString(fs.getDomain(),fs.getUser(),fs.getPassword(),fs.getFilepath(),true));
     return root;
   }
  catch (  Exception e) {
