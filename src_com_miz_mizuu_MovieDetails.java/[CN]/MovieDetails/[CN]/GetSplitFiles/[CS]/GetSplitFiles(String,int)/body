@@ -1,0 +1,4 @@
+{
+  this.orig_filepath=filepath;
+  fileType=filetype;
+}

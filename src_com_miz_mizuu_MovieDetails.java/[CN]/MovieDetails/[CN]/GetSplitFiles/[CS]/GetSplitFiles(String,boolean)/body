@@ -1,4 +1,0 @@
-{
-  this.orig_filepath=filepath;
-  this.isNetworkFile=isNetworkFile;
-}

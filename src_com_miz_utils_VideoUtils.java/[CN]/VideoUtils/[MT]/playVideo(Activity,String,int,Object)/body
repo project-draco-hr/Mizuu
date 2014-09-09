@@ -1,7 +1,8 @@
 {
+  System.out.println();
   boolean videoWildcard=PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(IGNORE_VIDEO_FILE_TYPE,false);
   boolean playbackStarted=false;
-  if (isNetworkFile) {
+  if (filetype == FileSource.SMB) {
     playbackStarted=playNetworkFile(activity,filepath,videoObject);
   }
  else {

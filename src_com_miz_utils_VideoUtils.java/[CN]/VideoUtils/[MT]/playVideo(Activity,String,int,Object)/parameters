@@ -1,4 +1,4 @@
 Activity activity
 String filepath
-boolean isNetworkFile
+int filetype
 Object videoObject

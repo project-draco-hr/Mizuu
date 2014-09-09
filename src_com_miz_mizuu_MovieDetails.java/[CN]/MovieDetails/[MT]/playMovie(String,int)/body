@@ -1,10 +1,10 @@
 {
   if (filepath.toLowerCase(Locale.getDefault()).matches(".*(cd1|part1).*")) {
-    new GetSplitFiles(filepath,isNetworkFile).execute();
+    new GetSplitFiles(filepath,filetype).execute();
   }
  else {
     mVideoPlaybackStarted=System.currentTimeMillis();
-    boolean playbackStarted=VideoUtils.playVideo(this,filepath,isNetworkFile,mMovie);
+    boolean playbackStarted=VideoUtils.playVideo(this,filepath,filetype,mMovie);
     if (playbackStarted)     checkIn();
   }
 }

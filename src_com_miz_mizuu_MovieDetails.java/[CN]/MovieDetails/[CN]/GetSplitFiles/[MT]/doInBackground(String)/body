@@ -2,7 +2,7 @@
   List<SplitFile> parts=new ArrayList<SplitFile>();
   List<String> temp;
   try {
-    if (isNetworkFile)     temp=MizLib.getSplitParts(orig_filepath,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,orig_filepath));
+    if (fileType == FileSource.SMB)     temp=MizLib.getSplitParts(orig_filepath,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,orig_filepath));
  else     temp=MizLib.getSplitParts(orig_filepath,null);
     for (int i=0; i < temp.size(); i++)     parts.add(new SplitFile(temp.get(i)));
   }

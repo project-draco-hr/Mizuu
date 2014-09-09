@@ -31,7 +31,6 @@
     mMovie=new Movie(this,cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_IMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_ACTORS)),MizuuApplication.getCollectionsAdapter().getCollection(cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_COLLECTION_ID))),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_COLLECTION_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_DATE_ADDED)),mIgnorePrefixes);
   }
  catch (  Exception e) {
-    System.out.println("EXCEPTION: " + e);
     finish();
     return;
   }
