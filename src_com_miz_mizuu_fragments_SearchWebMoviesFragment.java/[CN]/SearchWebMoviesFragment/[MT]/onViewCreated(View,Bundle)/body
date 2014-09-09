@@ -1,7 +1,7 @@
 {
   super.onViewCreated(v,savedInstanceState);
   pbar=(ProgressBar)v.findViewById(R.id.progressBar1);
-  v.findViewById(R.id.languageSection).setVisibility(View.GONE);
+  v.findViewById(R.id.spinner1).setVisibility(View.GONE);
   lv=(ListView)v.findViewById(R.id.listView1);
   hideProgressBar();
   lv.setOnItemClickListener(new OnItemClickListener(){
