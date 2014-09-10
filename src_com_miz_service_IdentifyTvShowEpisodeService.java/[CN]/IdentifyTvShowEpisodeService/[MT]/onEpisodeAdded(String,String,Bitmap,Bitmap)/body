@@ -1,0 +1,4 @@
+{
+  mEpisodeCount++;
+  updateEpisodeAddedNotification(showId,title,cover,photo);
+}

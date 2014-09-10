@@ -26,7 +26,7 @@
         i.putExtra(SHOW_ID,mShowId);
         i.putExtra(SEASON,mItems.get(arg2).getSeason());
         i.putExtra(EPISODE_COUNT,mItems.get(arg2).getEpisodeCount());
-        startActivity(i);
+        getActivity().startActivityForResult(i,0);
       }
  else {
         mBus.post(mItems.get(arg2));

@@ -1,11 +1,11 @@
 {
   if (mEpisode.getFilepaths().size() == 1) {
-    startActivity(getIdentifyIntent(mEpisode.getFilepaths().get(0).getFullFilepath()));
+    getActivity().startActivityForResult(getIdentifyIntent(mEpisode.getFilepaths().get(0).getFullFilepath()),0);
   }
  else {
     MizLib.showSelectFileDialog(getActivity(),mEpisode.getFilepaths(),new Dialog.OnClickListener(){
       @Override public void onClick(      DialogInterface dialog,      int which){
-        startActivity(getIdentifyIntent(mEpisode.getFilepaths().get(which).getFullFilepath()));
+        getActivity().startActivityForResult(getIdentifyIntent(mEpisode.getFilepaths().get(which).getFullFilepath()),0);
         dialog.dismiss();
       }
     }

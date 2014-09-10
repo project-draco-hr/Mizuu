@@ -5,13 +5,11 @@
   builder.setMessage(R.string.areYouSure);
   builder.setPositiveButton(android.R.string.yes,new DialogInterface.OnClickListener(){
     @Override public void onClick(    DialogInterface dialog,    int which){
-      System.out.println("SEASONS SIZE: " + selectedSeasons.size());
       for (      int season : selectedSeasons) {
         System.out.println("SEASON " + season);
         TvShowDatabaseUtils.removeSeason(activityContext,mShowId,season);
       }
       if (MizuuApplication.getTvEpisodeDbAdapter().getEpisodeCount(mShowId) == 0) {
-        System.out.println("NO EPISODES");
         LocalBroadcastUtils.updateTvShowLibrary(activityContext);
         getActivity().finish();
       }

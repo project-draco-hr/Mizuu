@@ -10,7 +10,7 @@ case R.id.watched:
 watched(true);
 break;
 case R.id.identify:
-Toast.makeText(getActivity(),"Not yet!",Toast.LENGTH_LONG).show();
+identifyEpisode();
 break;
 case R.id.watchOffline:
 watchOffline();

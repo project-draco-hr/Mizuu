@@ -1,0 +1,4 @@
+String showId
+String title
+Bitmap cover
+Bitmap backdrop

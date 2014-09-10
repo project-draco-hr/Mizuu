@@ -1,0 +1,3 @@
+{
+  return inflater.inflate(R.layout.identify_movie_and_tv_show,container,false);
+}

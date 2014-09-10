@@ -1,0 +1,6 @@
+{
+  for (  String path : mFilepaths) {
+    TvShowDatabaseUtils.removeEpisode(this,mOldShowId,path);
+  }
+  LocalBroadcastUtils.updateTvShowLibrary(this);
+}

@@ -1,3 +1,0 @@
-{
-  return updateSingleItem(showId,KEY_EPISODE_TITLE,"MIZ_REMOVED_EPISODE");
-}

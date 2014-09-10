@@ -1,6 +1,9 @@
 {
-  Intent i=new Intent(getActivity(),IdentifyTvShow.class);
-  i.putExtra("files",new String[]{filepath});
-  i.putExtra("isShow",false);
+  Intent i=new Intent(getActivity(),IdentifyTvShowEpisode.class);
+  ArrayList<String> filepaths=new ArrayList<String>();
+  filepaths.add(filepath);
+  i.putExtra("filepaths",filepaths);
+  i.putExtra("showId",mEpisode.getShowId());
+  i.putExtra("showTitle",MizuuApplication.getTvDbAdapter().getShowTitle(mEpisode.getShowId()));
   return i;
 }

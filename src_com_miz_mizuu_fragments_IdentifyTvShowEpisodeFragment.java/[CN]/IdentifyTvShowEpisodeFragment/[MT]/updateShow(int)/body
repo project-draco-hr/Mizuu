@@ -1,0 +1,16 @@
+{
+  if (MizLib.isOnline(getActivity())) {
+    Toast.makeText(getActivity(),getString(R.string.updatingShowInfo),Toast.LENGTH_LONG).show();
+    Intent identifyService=new Intent(getActivity(),IdentifyTvShowEpisodeService.class);
+    Bundle b=new Bundle();
+    b.putString("oldShowId",mShowId);
+    b.putString("newShowId",mAdapter.getItem(id).getId());
+    b.putString("language",getSelectedLanguage());
+    b.putStringArrayList("filepaths",mFilepaths);
+    identifyService.putExtras(b);
+    getActivity().startService(identifyService);
+    getActivity().setResult(Activity.RESULT_OK);
+    getActivity().finish();
+  }
+ else   Toast.makeText(getActivity(),getString(R.string.noInternet),Toast.LENGTH_SHORT).show();
+}

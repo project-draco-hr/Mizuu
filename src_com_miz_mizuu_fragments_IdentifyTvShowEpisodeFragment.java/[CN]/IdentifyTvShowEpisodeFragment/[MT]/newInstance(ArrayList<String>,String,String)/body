@@ -1,0 +1,9 @@
+{
+  IdentifyTvShowEpisodeFragment frag=new IdentifyTvShowEpisodeFragment();
+  Bundle args=new Bundle();
+  args.putStringArrayList("filepaths",filepaths);
+  args.putString("showTitle",showTitle);
+  args.putString("showId",showId);
+  frag.setArguments(args);
+  return frag;
+}

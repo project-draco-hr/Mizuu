@@ -1,0 +1,30 @@
+{
+  if (MizLib.isTvShowLibraryBeingUpdated(this)) {
+    Handler mHandler=new Handler(Looper.getMainLooper());
+    mHandler.post(new Runnable(){
+      @Override public void run(){
+        Toast.makeText(IdentifyTvShowEpisodeService.this,R.string.cant_identify_while_updating,Toast.LENGTH_LONG).show();
+      }
+    }
+);
+    return;
+  }
+  log("clear()");
+  clear();
+  log("setup()");
+  setup();
+  log("Intent extras");
+  Bundle b=intent.getExtras();
+  mNewShowId=b.getString("newShowId");
+  mOldShowId=b.getString("oldShowId");
+  mLanguage=b.getString("language","all");
+  mFilepaths=b.getStringArrayList("filepaths");
+  if (mFilepaths != null) {
+    log("setupList()");
+    setupList();
+    log("removeOldDatabaseEntries()");
+    removeOldDatabaseEntries();
+    log("start()");
+    start();
+  }
+}

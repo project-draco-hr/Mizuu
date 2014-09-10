@@ -1,0 +1,8 @@
+{
+  for (  String path : mFilepaths) {
+    mFiles.add(new ShowStructure(path));
+  }
+  for (  ShowStructure ss : mFiles) {
+    mTotalFiles+=ss.getEpisodes().size();
+  }
+}
