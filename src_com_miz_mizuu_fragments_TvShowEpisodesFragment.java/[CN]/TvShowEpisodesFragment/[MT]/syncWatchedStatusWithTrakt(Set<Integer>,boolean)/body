@@ -1,0 +1,21 @@
+{
+  new com.miz.functions.AsyncTask<Void,Boolean,Boolean>(){
+    private Set<Integer> mSelectedEpisodes;
+    private List<TvShowEpisode> mEpisodes=new ArrayList<TvShowEpisode>();
+    @Override protected void onPreExecute(){
+      mSelectedEpisodes=new HashSet<Integer>(checkedEpisodes);
+      for (      int episode : mSelectedEpisodes) {
+        mEpisodes.add(new TvShowEpisode(mShowId,episode,mSeason));
+      }
+    }
+    @Override protected Boolean doInBackground(    Void... params){
+      boolean result=Trakt.markEpisodeAsWatched(mShowId,mEpisodes,mContext,watched);
+      if (!result)       result=Trakt.markEpisodeAsWatched(mShowId,mEpisodes,mContext,watched);
+      return result;
+    }
+    @Override protected void onPostExecute(    Boolean result){
+      if (!result)       Toast.makeText(mContext,R.string.sync_error,Toast.LENGTH_LONG).show();
+    }
+  }
+.execute();
+}

@@ -1,19 +1,19 @@
 {
   final Context activityContext=getActivity();
   AlertDialog.Builder builder=new AlertDialog.Builder(activityContext);
-  builder.setTitle(R.string.remove_selected_seasons);
+  builder.setTitle(R.string.remove_selected_episodes);
   builder.setMessage(R.string.areYouSure);
   builder.setPositiveButton(android.R.string.yes,new DialogInterface.OnClickListener(){
     @Override public void onClick(    DialogInterface dialog,    int which){
-      for (      int season : selectedSeasons) {
-        TvShowDatabaseUtils.removeSeason(activityContext,mShowId,season);
+      for (      int episode : selectedEpisodes) {
+        TvShowDatabaseUtils.removeEpisode(activityContext,mShowId,mSeason,episode);
       }
-      if (MizuuApplication.getTvEpisodeDbAdapter().getEpisodeCount(mShowId) == 0) {
+      if (MizuuApplication.getTvEpisodeDbAdapter().getEpisodeCountForSeason(mShowId,MizLib.addIndexZero(mSeason)) == 0) {
         LocalBroadcastUtils.updateTvShowLibrary(activityContext);
         getActivity().finish();
       }
  else {
-        loadSeasons(true);
+        loadEpisodes();
       }
     }
   }

@@ -11,11 +11,23 @@
     if (mUseGridView)     holder.text.setSingleLine(true);
     holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
     if (mUseGridView)     holder.subtext.setSingleLine(true);
+    holder.highlight=(ImageView)convertView.findViewById(R.id.highlight);
     holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
     convertView.setTag(holder);
   }
  else {
     holder=(CoverItem)convertView.getTag();
+  }
+  if (mContextualActionBarEnabled) {
+    if (mCheckedEpisodes.contains(episode.getEpisode())) {
+      holder.highlight.setVisibility(View.VISIBLE);
+    }
+ else {
+      holder.highlight.setVisibility(View.GONE);
+    }
+  }
+ else {
+    holder.highlight.setVisibility(View.GONE);
   }
   holder.text.setText(episode.getTitle());
   if (mUseGridView)   holder.subtext.setText(episode.getSubtitleText());

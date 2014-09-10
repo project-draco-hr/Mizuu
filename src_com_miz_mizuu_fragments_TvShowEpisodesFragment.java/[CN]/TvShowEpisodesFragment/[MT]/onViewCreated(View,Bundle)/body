@@ -7,6 +7,7 @@
   mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
   mGridView=(GridView)v.findViewById(R.id.gridView);
   mGridView.setColumnWidth(mImageThumbSize);
+  mGridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
   mGridView.setEmptyView(v.findViewById(R.id.progress));
   mGridView.setAdapter(mAdapter);
   if (mUseGridView) {
@@ -38,5 +39,54 @@
     }
   }
 );
-  loadEpisodes();
+  mGridView.setOnItemLongClickListener(new OnItemLongClickListener(){
+    @Override public boolean onItemLongClick(    AdapterView<?> parent,    View view,    int position,    long id){
+      mGridView.setItemChecked(position,true);
+      return true;
+    }
+  }
+);
+  mGridView.setMultiChoiceModeListener(new MultiChoiceModeListener(){
+    @Override public boolean onCreateActionMode(    ActionMode mode,    Menu menu){
+      MenuInflater inflater=mode.getMenuInflater();
+      inflater.inflate(R.menu.episodes_contextual,menu);
+      mContextualActionBarEnabled=true;
+      return true;
+    }
+    @Override public boolean onPrepareActionMode(    ActionMode mode,    Menu menu){
+      return true;
+    }
+    @Override public boolean onActionItemClicked(    ActionMode mode,    MenuItem item){
+switch (item.getItemId()) {
+case R.id.watched:
+        changeWatchedStatus(true);
+      break;
+case R.id.unwatched:
+    changeWatchedStatus(false);
+  break;
+case R.id.remove:
+removeSelectedEpisodes(new HashSet<Integer>(mCheckedEpisodes));
+break;
+case R.id.identify:
+identify(new HashSet<Integer>(mCheckedEpisodes));
+break;
+}
+mode.finish();
+mBus.post(new com.miz.mizuu.TvShowEpisode());
+return true;
+}
+@Override public void onDestroyActionMode(ActionMode mode){
+mContextualActionBarEnabled=false;
+mCheckedEpisodes.clear();
+}
+@Override public void onItemCheckedStateChanged(ActionMode mode,int position,long id,boolean checked){
+if (checked) mCheckedEpisodes.add(mItems.get(position).getEpisode());
+ else mCheckedEpisodes.remove(mItems.get(position).getEpisode());
+int count=mCheckedEpisodes.size();
+mode.setTitle(count + " " + getResources().getQuantityString(R.plurals.episodes_selected,count,count));
+mAdapter.notifyDataSetChanged();
+}
+}
+);
+loadEpisodes();
 }

@@ -1,0 +1,12 @@
+{
+  ArrayList<String> filepaths=new ArrayList<String>();
+  for (  int episode : checkedEpisodes) {
+    ArrayList<String> paths=MizuuApplication.getTvShowEpisodeMappingsDbAdapter().getFilepathsForEpisode(mShowId,MizLib.addIndexZero(mSeason),MizLib.addIndexZero(episode));
+    for (    String path : paths)     filepaths.add(path);
+  }
+  Intent i=new Intent(getActivity(),IdentifyTvShowEpisode.class);
+  i.putExtra("filepaths",filepaths);
+  i.putExtra("showId",mShowId);
+  i.putExtra("showTitle",MizuuApplication.getTvDbAdapter().getShowTitle(mShowId));
+  getActivity().startActivityForResult(i,0);
+}

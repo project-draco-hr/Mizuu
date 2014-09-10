@@ -1,0 +1,24 @@
+{
+  boolean ignoreFiles=PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PreferenceKeys.IGNORED_FILES_ENABLED,false);
+  DbAdapterTvShows showAdapter=MizuuApplication.getTvDbAdapter();
+  DbAdapterTvShowEpisodes episodeAdapter=MizuuApplication.getTvEpisodeDbAdapter();
+  DbAdapterTvShowEpisodeMappings episodeMappingsAdapter=MizuuApplication.getTvShowEpisodeMappingsDbAdapter();
+  ArrayList<String> filepaths=episodeMappingsAdapter.getFilepathsForEpisode(showId,MizLib.addIndexZero(season),MizLib.addIndexZero(episode));
+  for (int i=0; i < filepaths.size(); i++) {
+    String filepath=filepaths.get(i);
+    if (ignoreFiles)     episodeMappingsAdapter.ignoreFilepath(filepath);
+ else     episodeMappingsAdapter.deleteFilepath(filepath);
+    if (i == (filepaths.size() - 1)) {
+      episodeAdapter.deleteEpisode(showId,season,episode);
+      MizLib.getTvShowEpisode(context,showId,season,episode).delete();
+      if (episodeAdapter.getEpisodesInSeason(context,showId,season).size() == 0) {
+        MizLib.getTvShowSeason(context,showId,season).delete();
+      }
+    }
+  }
+  if (episodeAdapter.getEpisodeCount(showId) == 0) {
+    showAdapter.deleteShow(showId);
+    MizLib.getTvShowThumb(context,showId).delete();
+    MizLib.getTvShowBackdrop(context,showId).delete();
+  }
+}

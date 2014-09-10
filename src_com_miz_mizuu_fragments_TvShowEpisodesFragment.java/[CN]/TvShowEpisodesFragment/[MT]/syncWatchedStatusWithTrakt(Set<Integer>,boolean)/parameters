@@ -1,0 +1,2 @@
+Set<Integer> checkedEpisodes
+boolean watched
