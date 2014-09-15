@@ -1,0 +1,4 @@
+{
+  mMovieId=movieId;
+  mContext=context;
+}

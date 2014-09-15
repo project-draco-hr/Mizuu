@@ -1,0 +1,25 @@
+{
+  if (mForeground != drawable) {
+    if (mForeground != null) {
+      mForeground.setCallback(null);
+      unscheduleDrawable(mForeground);
+    }
+    mForeground=drawable;
+    if (drawable != null) {
+      setWillNotDraw(false);
+      drawable.setCallback(this);
+      if (drawable.isStateful()) {
+        drawable.setState(getDrawableState());
+      }
+      if (mForegroundGravity == Gravity.FILL) {
+        Rect padding=new Rect();
+        drawable.getPadding(padding);
+      }
+    }
+ else {
+      setWillNotDraw(true);
+    }
+    requestLayout();
+    invalidate();
+  }
+}

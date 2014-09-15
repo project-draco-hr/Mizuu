@@ -2,9 +2,7 @@
 switch (position) {
 case 0:
     return getString(R.string.overview);
-case 1:
-  return getString(R.string.episodes);
 default :
-return getString(R.string.detailsActors);
+  return getString(R.string.episodes);
 }
 }

@@ -23,7 +23,12 @@
   mBuilder.setTicker(message);
   mBuilder.setContentTitle(message);
   mBuilder.setContentText(getContentText());
-  mBuilder.setLargeIcon(MizLib.getNotificationImageThumbnail(mContext,intent.getExtras().getString("thumb")));
+  try {
+    int size=MizLib.getThumbnailNotificationSize(mContext);
+    mBuilder.setLargeIcon(MizuuApplication.getPicasso(mContext).load(intent.getExtras().getString("thumb")).resize(size,(int)(size * 1.5)).get());
+  }
+ catch (  IOException ignored) {
+  }
   try {
     int width=MizLib.getLargeNotificationWidth(mContext);
     int height=(int)(width / 1.78);
@@ -72,7 +77,7 @@
   startForeground(NOTIFICATION_ID,mNotification);
   boolean success=beginTransfer();
   if (!success) {
-    if (mFileUrl.startsWith("http"))     MizLib.getOfflineFile(mContext,mFileUrl).delete();
- else     MizLib.getOfflineFile(mContext,mSmb.getCanonicalPath()).delete();
+    if (mFileUrl.startsWith("http"))     FileUtils.getOfflineFile(mContext,mFileUrl).delete();
+ else     FileUtils.getOfflineFile(mContext,mSmb.getCanonicalPath()).delete();
   }
 }

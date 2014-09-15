@@ -5,7 +5,7 @@
   try {
     String baseUrl=MizLib.getTmdbImageBaseUrl(mContext);
     JSONObject jObject=null;
-    if (json == null)     jObject=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/movie/" + id + "?api_key="+ mTmdbApiKey+ (language.equals("en") ? "" : "&language=" + language)+ "&append_to_response=releases,trailers,casts,images");
+    if (TextUtils.isEmpty(json))     jObject=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/movie/" + id + "?api_key="+ mTmdbApiKey+ (language.equals("en") ? "" : "&language=" + language)+ "&append_to_response=releases,trailers,credits,images");
  else     jObject=new JSONObject(json);
     movie.setTitle(MizLib.getStringFromJSONObject(jObject,"title",""));
     movie.setPlot(MizLib.getStringFromJSONObject(jObject,"overview",""));
@@ -72,7 +72,7 @@
     }
     try {
       StringBuilder cast=new StringBuilder();
-      JSONArray array=jObject.getJSONObject("casts").getJSONArray("cast");
+      JSONArray array=jObject.getJSONObject("credits").getJSONArray("cast");
       for (int i=0; i < array.length(); i++) {
         cast.append(array.getJSONObject(i).getString("name"));
         cast.append("|");
@@ -120,6 +120,7 @@
     }
   }
  catch (  Exception e) {
+    movie.setId(DbAdapterMovies.UNIDENTIFIED_ID);
   }
   return movie;
 }

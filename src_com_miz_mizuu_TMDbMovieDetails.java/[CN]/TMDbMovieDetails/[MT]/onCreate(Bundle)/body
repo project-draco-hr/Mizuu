@@ -1,40 +1,17 @@
 {
   super.onCreate(savedInstanceState);
-  mBus=MizuuApplication.getBus();
-  mBus.register(getApplicationContext());
   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
  else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
   if (MizLib.isPortrait(this)) {
     getWindow().setBackgroundDrawableResource(R.drawable.bg);
   }
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-  setContentView(R.layout.viewpager);
-  mActionBarOverlay=(ImageView)findViewById(R.id.actionbar_overlay);
-  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(this) : MizLib.getActionBarAndStatusBarHeight(this)));
-  mActionBar=getActionBar();
-  setTitle(getIntent().getExtras().getString("title"));
-  mMovieId=getIntent().getExtras().getString("tmdbid");
-  mTmdbApiKey=MizLib.getTmdbApiKey(this);
-  mYouTubeApiKey=MizLib.getYouTubeApiKey(this);
-  if (!MizLib.isPortrait(getApplicationContext()))   findViewById(R.id.layout).setBackgroundResource(R.drawable.bg);
-  mProgressBar=(ProgressBar)findViewById(R.id.progressbar);
-  mProgressBar.setVisibility(View.VISIBLE);
-  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
-  mViewPager.setOffscreenPageLimit(2);
-  mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
-    @Override public void onPageSelected(    int position){
-      mActionBar.setSelectedNavigationItem(position);
-      updateActionBarDrawable(1,false,false);
-    }
-  }
-);
-  if (savedInstanceState != null) {
-    mJson=savedInstanceState.getString("json","");
-    mBaseUrl=savedInstanceState.getString("baseUrl");
-    setupActionBarStuff();
-    mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
-  }
- else {
-    new MovieLoader(getApplicationContext()).execute(mMovieId);
+  setTitle(null);
+  mMovieId=getIntent().getExtras().getString("tmdbId");
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.add(android.R.id.content,TmdbMovieDetailsFragment.newInstance(mMovieId),TAG);
+    ft.commit();
   }
 }

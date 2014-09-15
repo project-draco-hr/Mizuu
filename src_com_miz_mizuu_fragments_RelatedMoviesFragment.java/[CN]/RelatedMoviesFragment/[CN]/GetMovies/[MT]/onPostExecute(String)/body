@@ -1,5 +1,0 @@
-{
-  if (isAdded()) {
-    new MoviesInLibraryCheck(pics_sources).execute();
-  }
-}

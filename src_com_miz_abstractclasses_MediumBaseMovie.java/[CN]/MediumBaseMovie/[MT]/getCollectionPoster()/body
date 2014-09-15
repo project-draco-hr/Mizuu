@@ -1,5 +1,5 @@
 {
-  File collectionImage=MizLib.getMovieThumb(mContext,COLLECTION_ID);
+  File collectionImage=FileUtils.getMovieThumb(mContext,COLLECTION_ID);
   if (collectionImage.exists() && collectionImage.length() > 0)   return collectionImage;
   return getThumbnail();
 }

@@ -1,4 +1,0 @@
-{
-  Toast.makeText(this,getString(R.string.searching),Toast.LENGTH_SHORT).show();
-  new TmdbTrailerSearch().execute(mMovieId);
-}

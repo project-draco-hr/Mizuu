@@ -1,6 +1,5 @@
 {
   super.onCreate(savedInstanceState);
-  if (MizLib.isTablet(this) && !MizLib.isPortrait(this))   finish();
   MizuuApplication.setupTheme(this);
   mContext=this;
   setContentView(R.layout.viewpager);

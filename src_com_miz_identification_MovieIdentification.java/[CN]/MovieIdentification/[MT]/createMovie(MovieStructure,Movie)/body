@@ -2,14 +2,14 @@
   boolean downloadCovers=true;
   if (!movie.getId().equals(DbAdapterMovies.UNIDENTIFIED_ID) && !TextUtils.isEmpty(movie.getId()))   downloadCovers=!MizuuApplication.getMovieAdapter().movieExists(movie.getId());
   if (downloadCovers) {
-    String thumb_filepath=MizLib.getMovieThumb(mContext,movie.getId()).getAbsolutePath();
+    String thumb_filepath=FileUtils.getMovieThumb(mContext,movie.getId()).getAbsolutePath();
     if (!MizLib.downloadFile(movie.getCover(),thumb_filepath))     MizLib.downloadFile(movie.getCover(),thumb_filepath);
     if (!TextUtils.isEmpty(movie.getBackdrop())) {
-      String backdropFile=MizLib.getMovieBackdrop(mContext,movie.getId()).getAbsolutePath();
+      String backdropFile=FileUtils.getMovieBackdrop(mContext,movie.getId()).getAbsolutePath();
       if (!MizLib.downloadFile(movie.getBackdrop(),backdropFile))       MizLib.downloadFile(movie.getBackdrop(),backdropFile);
     }
     if (!TextUtils.isEmpty(movie.getCollectionImage())) {
-      String collectionImage=MizLib.getMovieThumb(mContext,movie.getCollectionId()).getAbsolutePath();
+      String collectionImage=FileUtils.getMovieThumb(mContext,movie.getCollectionId()).getAbsolutePath();
       if (!MizLib.downloadFile(movie.getCollectionImage(),collectionImage))       MizLib.downloadFile(movie.getCollectionImage(),collectionImage);
     }
   }

@@ -11,7 +11,7 @@
   RUNTIME=runtime;
   LATEST_EPISODE_AIR_DATE=latestEpisodeAirDate;
   mFavorite=!(isFavorite.equals("0") || isFavorite.isEmpty());
-  mThumbnail=MizLib.getTvShowThumb(mContext,mId);
+  mThumbnail=FileUtils.getTvShowThumb(mContext,mId);
   if (TextUtils.isEmpty(TITLE)) {
     mTitle="";
   }

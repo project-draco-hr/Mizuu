@@ -5,7 +5,7 @@
     finish();
     return;
   }
-  if (MizLib.oldDataFolderExists()) {
+  if (FileUtils.oldDataFolderExists()) {
     Intent moveFiles=new Intent(this,MoveFilesService.class);
     startService(moveFiles);
     finish();

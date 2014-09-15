@@ -1,9 +1,0 @@
-{
-switch (index) {
-case 0:
-    return MovieDetailsFragment.newInstance(mMovieId);
-case 1:
-  return ActorBrowserFragment.newInstance(mMovie.getTmdbId());
-}
-return null;
-}

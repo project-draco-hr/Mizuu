@@ -1,1 +1,1 @@
-AsyncTask<String,String,String>
+AsyncTask<Void,Void,Void>

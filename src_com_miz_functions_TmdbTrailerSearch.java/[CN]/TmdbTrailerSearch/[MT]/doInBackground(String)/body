@@ -1,0 +1,10 @@
+{
+  try {
+    JSONObject jObject=MizLib.getJSONObject(mActivity,"https://api.themoviedb.org/3/movie/" + mMovieId + "/trailers?api_key="+ MizLib.getTmdbApiKey(mActivity));
+    JSONArray trailers=jObject.getJSONArray("youtube");
+    if (trailers.length() > 0)     return trailers.getJSONObject(0).getString("source");
+  }
+ catch (  Exception ignored) {
+  }
+  return null;
+}

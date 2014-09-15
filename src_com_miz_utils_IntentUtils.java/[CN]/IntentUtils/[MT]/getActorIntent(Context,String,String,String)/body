@@ -1,0 +1,7 @@
+{
+  Intent actorIntent=new Intent(context,ActorDetails.class);
+  actorIntent.putExtra("actorName",name);
+  actorIntent.putExtra("actorID",id);
+  actorIntent.putExtra("thumb",thumbnail);
+  return actorIntent;
+}

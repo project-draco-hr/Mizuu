@@ -1,0 +1,14 @@
+{
+  if (mMovie.getFilepaths().size() == 1) {
+    watchOffline(mMovie.getFilepaths().get(0));
+  }
+ else {
+    MizLib.showSelectFileDialog(mContext,mMovie.getFilepaths(),new Dialog.OnClickListener(){
+      @Override public void onClick(      DialogInterface dialog,      int which){
+        watchOffline(mMovie.getFilepaths().get(which));
+        dialog.dismiss();
+      }
+    }
+);
+  }
+}

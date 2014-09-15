@@ -10,7 +10,7 @@
       for (      Filepath path : mEpisode.getFilepaths())       deleted=deleted && MizuuApplication.getTvShowEpisodeMappingsDbAdapter().deleteFilepath(path.getFullFilepath());
       if (deleted) {
         try {
-          File episodePhoto=MizLib.getTvShowEpisode(getActivity(),mEpisode.getShowId(),mEpisode.getSeason(),mEpisode.getEpisode());
+          File episodePhoto=FileUtils.getTvShowEpisode(getActivity(),mEpisode.getShowId(),mEpisode.getSeason(),mEpisode.getEpisode());
           if (episodePhoto.exists()) {
             MizLib.deleteFile(episodePhoto);
           }
@@ -21,8 +21,8 @@
           DbAdapterTvShows dbShow=MizuuApplication.getTvDbAdapter();
           boolean deletedShow=dbShow.deleteShow(mEpisode.getShowId());
           if (deletedShow) {
-            MizLib.deleteFile(MizLib.getTvShowThumb(getActivity(),mEpisode.getShowId()));
-            MizLib.deleteFile(MizLib.getTvShowBackdrop(getActivity(),mEpisode.getShowId()));
+            MizLib.deleteFile(FileUtils.getTvShowThumb(getActivity(),mEpisode.getShowId()));
+            MizLib.deleteFile(FileUtils.getTvShowBackdrop(getActivity(),mEpisode.getShowId()));
           }
         }
         if (cb.isChecked()) {

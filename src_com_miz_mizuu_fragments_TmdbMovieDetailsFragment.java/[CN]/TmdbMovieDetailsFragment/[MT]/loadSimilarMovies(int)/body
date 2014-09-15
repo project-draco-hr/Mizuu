@@ -1,0 +1,27 @@
+{
+  new AsyncTask<Void,Void,Void>(){
+    private List<WebMovie> mSimilarMovies;
+    @Override protected Void doInBackground(    Void... params){
+      MovieApiService service=MizuuApplication.getMovieService(mContext);
+      mSimilarMovies=service.getSimilarMovies(mMovie.getId());
+      for (int i=0; i < mSimilarMovies.size(); i++) {
+        String id=mSimilarMovies.get(i).getId();
+        mSimilarMovies.get(i).setInLibrary(MizuuApplication.getMovieAdapter().movieExists(id));
+      }
+      return null;
+    }
+    @Override protected void onPostExecute(    Void result){
+      if (mSimilarMovies.size() > 0) {
+        LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(mImageThumbSize,LayoutParams.WRAP_CONTENT);
+        lp.setMargins(0,0,mImageThumbSpacing,0);
+        for (int i=0; i < mSimilarMovies.size() && i < capacity; i++) {
+          mSimilarMoviesLayout.addView(ViewUtils.setupMovieCard(mContext,mPicasso,mSimilarMovies.get(i)),i,lp);
+        }
+      }
+ else {
+        mSimilarMoviesLayout.setNoSimilarMoviesVisibility(true);
+      }
+    }
+  }
+.execute();
+}

@@ -1,3 +1,3 @@
 {
-  return MizLib.getTvShowBackdrop(mContext,mShowId);
+  return FileUtils.getTvShowBackdrop(mContext,mShowId);
 }

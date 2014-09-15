@@ -1,10 +1,9 @@
 {
-  if (!MizLib.isPortrait(getActivity())) {
-    mPicasso.load(mMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).transform(new PaletteTransformation(mMovie.getThumbnail().getAbsolutePath(),mDetailsArea)).into(mCover);
+  mPicasso.load(mMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).transform(new PaletteTransformation(mMovie.getThumbnail().getAbsolutePath(),mDetailsArea,mActorsLayout.getSeeMoreView())).into(mCover);
+  if (!MizLib.isPortrait(mContext)) {
     mPicasso.load(mMovie.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).into(mBackground);
   }
  else {
-    mPicasso.load(mMovie.getThumbnail()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).transform(new PaletteTransformation(mMovie.getThumbnail().getAbsolutePath(),mDetailsArea)).into(mCover);
     mPicasso.load(mMovie.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(mBackground,new Callback(){
       @Override public void onError(){
         if (!isAdded())         return;

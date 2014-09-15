@@ -1,60 +1,22 @@
 {
   super.onCreate(savedInstanceState);
-  mContext=this;
-  mBus=MizuuApplication.getBus();
   if (isFullscreen())   setTheme(R.style.Mizuu_Theme_Transparent_NoBackGround_FullScreen);
  else   setTheme(R.style.Mizuu_Theme_NoBackGround_Transparent);
   if (MizLib.isPortrait(this)) {
     getWindow().setBackgroundDrawableResource(R.drawable.bg);
   }
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-  setContentView(R.layout.viewpager);
-  mActionBarOverlay=(ImageView)findViewById(R.id.actionbar_overlay);
-  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(this) : MizLib.getActionBarAndStatusBarHeight(this)));
-  mActionBar=getActionBar();
-  mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-  if (mSpinnerAdater == null)   mSpinnerAdater=new ActionBarSpinner(this,mSpinnerItems);
   setTitle(null);
-  mIgnorePrefixes=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_TITLE_PREFIXES,false);
-  mRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(REMOVE_MOVIES_FROM_WATCHLIST,true);
-  mIgnoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(IGNORED_FILES_ENABLED,false);
-  mYouTubeApiKey=MizLib.getYouTubeApiKey(this);
   if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
     mMovieId=getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY);
   }
  else {
     mMovieId=getIntent().getExtras().getString("tmdbId");
   }
-  mDatabase=MizuuApplication.getMovieAdapter();
-  Cursor cursor=mDatabase.fetchMovie(mMovieId);
-  try {
-    mMovie=new Movie(this,cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TITLE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_PLOT)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TAGLINE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_IMDB_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RATING)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RELEASEDATE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_CERTIFICATION)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_RUNTIME)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TRAILER)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_GENRES)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_FAVOURITE)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_ACTORS)),MizuuApplication.getCollectionsAdapter().getCollection(cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_COLLECTION_ID))),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_COLLECTION_ID)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TO_WATCH)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_HAS_WATCHED)),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_DATE_ADDED)),mIgnorePrefixes);
-  }
- catch (  Exception e) {
-    finish();
-    return;
-  }
- finally {
-    cursor.close();
-  }
-  if (mMovie != null) {
-    mViewPager=(ViewPager)findViewById(R.id.awesomepager);
-    mViewPager.setAdapter(new MovieDetailsAdapter(getSupportFragmentManager()));
-    mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
-      @Override public void onPageSelected(      int position){
-        mActionBar.setSelectedNavigationItem(position);
-        updateActionBarDrawable(1,false,false);
-      }
-    }
-);
-    if (savedInstanceState != null) {
-      mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
-    }
-    setupSpinnerItems();
-  }
- else {
-    Toast.makeText(this,getString(R.string.errorSomethingWentWrong) + " (movie ID: " + mMovieId+ ")",Toast.LENGTH_SHORT).show();
-    finish();
-    return;
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.add(android.R.id.content,MovieDetailsFragment.newInstance(mMovieId),TAG);
+    ft.commit();
   }
 }

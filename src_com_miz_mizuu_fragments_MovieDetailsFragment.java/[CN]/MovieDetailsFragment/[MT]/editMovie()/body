@@ -1,0 +1,5 @@
+{
+  Intent intent=new Intent(mContext,EditMovie.class);
+  intent.putExtra("movieId",mMovie.getTmdbId());
+  getActivity().startActivityForResult(intent,1);
+}

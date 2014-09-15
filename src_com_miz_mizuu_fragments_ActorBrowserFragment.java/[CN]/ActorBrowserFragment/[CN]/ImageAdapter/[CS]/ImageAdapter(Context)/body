@@ -1,4 +1,4 @@
 {
   mContext=context;
-  mInflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+  mInflater=LayoutInflater.from(mContext);
 }

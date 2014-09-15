@@ -1,6 +1,6 @@
 {
   File f=null;
-  if (mFileUrl.startsWith("http"))   f=MizLib.getOfflineFile(mContext,mFileUrl);
- else   f=MizLib.getOfflineFile(mContext,mSmb.getCanonicalPath());
+  if (mFileUrl.startsWith("http"))   f=FileUtils.getOfflineFile(mContext,mFileUrl);
+ else   f=FileUtils.getOfflineFile(mContext,mSmb.getCanonicalPath());
   return f.exists() && mSize == f.length();
 }

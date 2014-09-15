@@ -1,12 +1,9 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  mGridView=(GridView)v.findViewById(R.id.gridView);
-  if (!MizLib.isPortrait(getActivity()))   v.findViewById(R.id.container).setBackgroundResource(MizuuApplication.getBackgroundColorResource(getActivity()));
-  if (!MizuuApplication.isFullscreen(getActivity()))   MizLib.addActionBarAndStatusBarPadding(getActivity(),v.findViewById(R.id.container));
- else   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
+  mEmptyView=v.findViewById(R.id.empty_library_layout);
   mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
-  if (mActors.size() > 0)   mProgressBar.setVisibility(View.GONE);
-  mAdapter=new ImageAdapter(getActivity());
+  mProgressBar.setVisibility(View.GONE);
+  mGridView=(GridView)v.findViewById(R.id.gridView);
   mGridView.setAdapter(mAdapter);
   mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
     @Override public void onGlobalLayout(){
@@ -19,11 +16,7 @@
 );
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      Intent intent=new Intent(getActivity(),com.miz.mizuu.Actor.class);
-      intent.putExtra("actorName",mActors.get(arg2).getName());
-      intent.putExtra("actorID",mActors.get(arg2).getId());
-      intent.putExtra("thumb",mActors.get(arg2).getUrl());
-      startActivity(intent);
+      startActivity(IntentUtils.getActorIntent(getActivity(),mActors.get(arg2)));
     }
   }
 );
@@ -31,9 +24,4 @@
   title.setText(R.string.no_actors);
   TextView description=(TextView)v.findViewById(R.id.empty_library_description);
   description.setText(R.string.no_actors_description);
-  mGridView.setEmptyView(v.findViewById(R.id.empty_library_layout));
-  if (getArguments().containsKey("json")) {
-    mJson=getArguments().getString("json");
-    loadJson(getArguments().getString("baseUrl"));
-  }
 }

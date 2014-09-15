@@ -1,0 +1,7 @@
+{
+  MizuuApplication.getMovieAdapter().deleteAllMovies();
+  MizuuApplication.getMovieMappingAdapter().deleteAllMovies();
+  MizuuApplication.getCollectionsAdapter().deleteAllCollections();
+  FileUtils.deleteRecursive(MizuuApplication.getMovieThumbFolder(context),false);
+  FileUtils.deleteRecursive(MizuuApplication.getMovieBackdropFolder(context),false);
+}

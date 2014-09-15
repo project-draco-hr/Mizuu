@@ -1,7 +1,9 @@
 {
   super.onCreate(savedInstanceState);
+  setHasOptionsMenu(true);
   setRetainInstance(true);
-  mBus=MizuuApplication.getBus();
+  mContext=getActivity();
+  mActionBar=getActivity().getActionBar();
   mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
   mLightItalic=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-LightItalic.ttf");
   mMedium=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Medium.ttf");

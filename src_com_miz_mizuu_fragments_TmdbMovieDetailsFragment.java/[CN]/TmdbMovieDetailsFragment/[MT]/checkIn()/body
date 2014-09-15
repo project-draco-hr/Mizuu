@@ -1,0 +1,12 @@
+{
+  new AsyncTask<Void,Void,Boolean>(){
+    @Override protected Boolean doInBackground(    Void... params){
+      return Trakt.performMovieCheckin(mMovie.getId(),mContext);
+    }
+    @Override protected void onPostExecute(    Boolean result){
+      if (result)       Toast.makeText(mContext,getString(R.string.checked_in),Toast.LENGTH_SHORT).show();
+ else       Toast.makeText(mContext,getString(R.string.errorSomethingWentWrong),Toast.LENGTH_SHORT).show();
+    }
+  }
+.execute();
+}

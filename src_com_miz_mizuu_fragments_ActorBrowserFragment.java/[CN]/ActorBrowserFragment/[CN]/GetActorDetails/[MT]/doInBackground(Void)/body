@@ -1,0 +1,5 @@
+{
+  MovieApiService service=MizuuApplication.getMovieService(mContext);
+  mActors=new ArrayList<Actor>(service.getActors(mMovieId));
+  return null;
+}

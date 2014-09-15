@@ -1,0 +1,11 @@
+{
+  if (visible) {
+    mErrorTextView.setText(R.string.no_actors);
+    mErrorTextView.setVisibility(VISIBLE);
+    setProgressBarVisibility(false);
+    mCardContent.setVisibility(GONE);
+  }
+ else {
+    mErrorTextView.setVisibility(GONE);
+  }
+}

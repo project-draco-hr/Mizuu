@@ -1,0 +1,7 @@
+{
+  SimilarMoviesFragment pageFragment=new SimilarMoviesFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("tmdbId",tmdbId);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

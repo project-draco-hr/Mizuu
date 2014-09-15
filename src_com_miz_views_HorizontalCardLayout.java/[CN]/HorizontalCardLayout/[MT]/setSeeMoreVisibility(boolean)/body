@@ -1,0 +1,3 @@
+{
+  mSeeMoreTextView.setVisibility(visible ? VISIBLE : GONE);
+}

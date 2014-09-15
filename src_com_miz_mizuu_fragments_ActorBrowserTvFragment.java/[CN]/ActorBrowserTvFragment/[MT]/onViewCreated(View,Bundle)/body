@@ -1,0 +1,28 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
+  if (mActors.size() > 0)   mProgressBar.setVisibility(View.GONE);
+  mAdapter=new ImageAdapter(getActivity());
+  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView.setAdapter(mAdapter);
+  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+      if (numColumns > 0) {
+        mGridView.setNumColumns(numColumns);
+      }
+    }
+  }
+);
+  mGridView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      startActivity(IntentUtils.getActorIntent(getActivity(),mActors.get(arg2)));
+    }
+  }
+);
+  TextView title=(TextView)v.findViewById(R.id.empty_library_title);
+  title.setText(R.string.no_actors);
+  TextView description=(TextView)v.findViewById(R.id.empty_library_description);
+  description.setText(R.string.no_actors_description);
+  mGridView.setEmptyView(v.findViewById(R.id.empty_library_layout));
+}

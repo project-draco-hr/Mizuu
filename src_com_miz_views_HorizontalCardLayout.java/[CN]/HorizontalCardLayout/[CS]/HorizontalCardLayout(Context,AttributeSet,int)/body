@@ -1,0 +1,15 @@
+{
+  super(context,attrs,defStyle);
+  setOrientation(VERTICAL);
+  LayoutInflater.from(context).inflate(R.layout.horizontal_grid_items,this,true);
+  mTitleLayout=getChildAt(0);
+  mTitleLayout.setClickable(true);
+  mTitleLayout.setFocusable(true);
+  mTitleTextView=(TextView)mTitleLayout.findViewById(R.id.title);
+  if (!isInEditMode())   mTitleTextView.setTypeface(MizuuApplication.getOrCreateTypeface(context,"RobotoCondensed-LightItalic.ttf"));
+  mSeeMoreTextView=(TextView)mTitleLayout.findViewById(R.id.see_more);
+  if (!isInEditMode())   mSeeMoreTextView.setTypeface(MizuuApplication.getOrCreateTypeface(context,"RobotoCondensed-Regular.ttf"));
+  mCardContent=(LinearLayout)getChildAt(1).findViewById(R.id.linear_layout);
+  mProgressBar=(ProgressBar)getChildAt(1).findViewById(R.id.progress_bar);
+  mErrorTextView=(TextView)getChildAt(1).findViewById(R.id.error_message);
+}

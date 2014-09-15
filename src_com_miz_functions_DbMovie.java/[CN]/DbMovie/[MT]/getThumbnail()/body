@@ -1,3 +1,3 @@
 {
-  return MizLib.getMovieThumb(mContext,mTmdbId).getAbsolutePath();
+  return FileUtils.getMovieThumb(mContext,mTmdbId).getAbsolutePath();
 }

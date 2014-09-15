@@ -1,0 +1,18 @@
+{
+  ArrayList<Actor> results=new ArrayList<Actor>();
+  String baseUrl=MizLib.getTmdbImageBaseUrl(mContext);
+  try {
+    JSONObject jObject=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/movie/" + id + "/credits?api_key="+ mTmdbApiKey);
+    JSONArray jArray=jObject.getJSONArray("cast");
+    Set<String> actorIds=new HashSet<String>();
+    for (int i=0; i < jArray.length(); i++) {
+      if (!actorIds.contains(jArray.getJSONObject(i).getString("id"))) {
+        actorIds.add(jArray.getJSONObject(i).getString("id"));
+        results.add(new Actor(jArray.getJSONObject(i).getString("name"),jArray.getJSONObject(i).getString("character"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getActorUrlSize(mContext) + jArray.getJSONObject(i).getString("profile_path")));
+      }
+    }
+  }
+ catch (  Exception ignored) {
+  }
+  return results;
+}

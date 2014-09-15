@@ -1,3 +1,0 @@
-{
-  return new File(MizuuApplication.getAvailableOfflineFolder(c),MizLib.md5(filepath) + "." + MizLib.getExtension(filepath));
-}

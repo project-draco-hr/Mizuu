@@ -1,6 +1,7 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
+  mContext=getActivity();
   mBus=MizuuApplication.getBus();
   mLight=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Light.ttf");
   mLightItalic=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-LightItalic.ttf");

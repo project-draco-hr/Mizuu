@@ -1,3 +1,5 @@
 {
-  return StringUtils.replacePipesWithCommas(mCharacter);
+  String character=StringUtils.replacePipesWithCommas(mCharacter);
+  if (TextUtils.isEmpty(character) || character.equals("null"))   return "";
+  return character;
 }

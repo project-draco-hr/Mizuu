@@ -1,7 +1,7 @@
 {
   fp=0;
   len=file.length();
-  mime=MizLib.getMimeType(file.getName(),false);
+  mime=VideoUtils.getMimeType(file.getName(),false);
   name=file.getName();
   this.file=file;
   bufferSize=16 * 1024;

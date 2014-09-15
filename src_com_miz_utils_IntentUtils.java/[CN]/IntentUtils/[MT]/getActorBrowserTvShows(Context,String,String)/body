@@ -1,0 +1,6 @@
+{
+  Intent actorIntent=new Intent(context,ActorBrowserTv.class);
+  actorIntent.putExtra("title",title);
+  actorIntent.putExtra("showId",showId);
+  return actorIntent;
+}

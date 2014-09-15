@@ -1,0 +1,16 @@
+{
+  String[] selectionArgs=new String[]{showId,filepath,season,episode};
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + " = ? AND " + KEY_FILEPATH+ " = ? AND "+ KEY_SEASON+ " = ? AND "+ KEY_EPISODE+ " = ?",selectionArgs,null,null,null);
+  boolean result=false;
+  if (cursor != null) {
+    try {
+      if (cursor.getCount() > 0)       result=true;
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+    }
+  }
+  return result;
+}

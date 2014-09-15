@@ -1,4 +1,4 @@
 {
-  thisMovie=mMovieApiService.get(movieId,params[0],"en");
+  mMovie=mMovieApiService.get(movieId,"en");
   return null;
 }

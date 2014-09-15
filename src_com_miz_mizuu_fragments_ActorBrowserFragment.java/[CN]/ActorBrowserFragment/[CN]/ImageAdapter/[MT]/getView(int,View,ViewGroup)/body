@@ -17,7 +17,7 @@
   }
   holder.cover.setImageResource(R.color.card_background_dark);
   holder.text.setText(mActors.get(position).getName());
-  holder.subtext.setText(mActors.get(position).getCharacter().equals("null") ? "" : mActors.get(position).getCharacter());
+  holder.subtext.setText(mActors.get(position).getCharacter());
   if (!mActors.get(position).getUrl().endsWith("null"))   mPicasso.load(mActors.get(position).getUrl()).error(R.drawable.noactor).config(mConfig).into(holder);
  else   holder.cover.setImageResource(R.drawable.noactor);
   return convertView;

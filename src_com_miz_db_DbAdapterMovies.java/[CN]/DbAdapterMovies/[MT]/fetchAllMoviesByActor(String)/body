@@ -1,4 +1,0 @@
-{
-  String newQuery=actor.replace("'","''");
-  return mDatabase.query(DATABASE_TABLE,SELECT_ALL,KEY_ACTORS + " like '%" + newQuery+ "%'",null,KEY_TMDB_ID,null,KEY_TITLE + " ASC");
-}

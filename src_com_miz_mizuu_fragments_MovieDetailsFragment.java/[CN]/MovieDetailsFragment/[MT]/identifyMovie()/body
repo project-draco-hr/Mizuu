@@ -1,0 +1,14 @@
+{
+  if (mMovie.getFilepaths().size() == 1) {
+    getActivity().startActivityForResult(getIdentifyIntent(mMovie.getFilepaths().get(0).getFullFilepath()),0);
+  }
+ else {
+    MizLib.showSelectFileDialog(mContext,mMovie.getFilepaths(),new Dialog.OnClickListener(){
+      @Override public void onClick(      DialogInterface dialog,      int which){
+        startActivity(getIdentifyIntent(mMovie.getFilepaths().get(which).getFullFilepath()));
+        dialog.dismiss();
+      }
+    }
+);
+  }
+}

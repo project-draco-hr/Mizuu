@@ -8,7 +8,7 @@
       Request request=new Request.Builder().url(mFileUrl).build();
       Response response=MizuuApplication.getOkHttpClient().newCall(request).execute();
       if (!response.isSuccessful())       return false;
-      File offline=MizLib.getOfflineFile(mContext,mFileUrl);
+      File offline=FileUtils.getOfflineFile(mContext,mFileUrl);
       offline.createNewFile();
       fileos=new BufferedOutputStream(new FileOutputStream(offline));
       in=new BufferedInputStream(response.body().byteStream(),bufferSize);
@@ -49,7 +49,7 @@
   }
  else {
     try {
-      File offline=MizLib.getOfflineFile(mContext,mSmb.getCanonicalPath());
+      File offline=FileUtils.getOfflineFile(mContext,mSmb.getCanonicalPath());
       offline.createNewFile();
       mTotalLength=mSmb.length();
       OutputStream os=new BufferedOutputStream(new FileOutputStream(offline),mBufferSize);

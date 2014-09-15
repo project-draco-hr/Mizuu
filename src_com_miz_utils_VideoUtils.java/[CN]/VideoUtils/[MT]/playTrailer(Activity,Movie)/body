@@ -1,0 +1,39 @@
+{
+  String localTrailer="";
+  for (  Filepath path : movie.getFilepaths()) {
+    if (path.getType() == FileSource.FILE) {
+      localTrailer=path.getFullFilepath();
+      break;
+    }
+  }
+  localTrailer=movie.getLocalTrailer(localTrailer);
+  if (!TextUtils.isEmpty(localTrailer)) {
+    try {
+      activity.startActivity(getVideoIntent(localTrailer,false,movie.getTitle() + " " + activity.getString(R.string.detailsTrailer)));
+    }
+ catch (    Exception e) {
+      try {
+        activity.startActivity(getVideoIntent(localTrailer,"video/*",movie.getTitle() + " " + activity.getString(R.string.detailsTrailer)));
+      }
+ catch (      Exception e2) {
+        Toast.makeText(activity,activity.getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
+      }
+    }
+  }
+ else {
+    if (!TextUtils.isEmpty(movie.getTrailer())) {
+      if (YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(activity).equals(YouTubeInitializationResult.SUCCESS)) {
+        Intent intent=YouTubeStandalonePlayer.createVideoIntent(activity,MizLib.getYouTubeApiKey(activity),MizLib.getYouTubeId(movie.getTrailer()),0,false,true);
+        activity.startActivity(intent);
+      }
+ else {
+        Intent intent=new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(movie.getTrailer()));
+        activity.startActivity(intent);
+      }
+    }
+ else {
+      new TmdbTrailerSearch(activity,movie.getTmdbId(),movie.getTitle()).execute();
+    }
+  }
+}

@@ -1,3 +1,0 @@
-{
-  return pics_sources.size();
-}

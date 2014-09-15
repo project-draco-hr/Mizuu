@@ -1,0 +1,6 @@
+{
+  Intent movieDetailsIntent=new Intent(context,movie.isInLibrary() ? MovieDetails.class : TMDbMovieDetails.class);
+  movieDetailsIntent.putExtra("tmdbId",movie.getId());
+  movieDetailsIntent.putExtra("title",movie.getTitle());
+  return movieDetailsIntent;
+}

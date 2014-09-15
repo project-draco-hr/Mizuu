@@ -1,5 +1,7 @@
 {
   super.onViewCreated(view,savedInstanceState);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_width);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   mDetailsArea=view.findViewById(R.id.details_area);
   mBackground=(ImageView)view.findViewById(R.id.imageBackground);
   mTitle=(TextView)view.findViewById(R.id.movieTitle);
@@ -12,9 +14,12 @@
   mTagline=(TextView)view.findViewById(R.id.textView6);
   mCertification=(TextView)view.findViewById(R.id.textView11);
   mCover=(ImageView)view.findViewById(R.id.traktIcon);
-  if (MizLib.isPortrait(getActivity())) {
-    final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
-    final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());
+  mActorsLayout=(HorizontalCardLayout)view.findViewById(R.id.horizontal_card_layout);
+  mActionBarOverlay=(ImageView)view.findViewById(R.id.actionbar_overlay);
+  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,MizuuApplication.isFullscreen(mContext) ? MizLib.getActionBarHeight(mContext) : MizLib.getActionBarAndStatusBarHeight(mContext)));
+  if (MizLib.isPortrait(mContext)) {
+    final boolean fullscreen=MizuuApplication.isFullscreen(mContext);
+    final int height=fullscreen ? MizLib.getActionBarHeight(mContext) : MizLib.getActionBarAndStatusBarHeight(mContext);
     ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.scrollView1);
     sv.setOnScrollChangedListener(new OnScrollChangedListener(){
       @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
@@ -22,7 +27,7 @@
         final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
         final int newAlpha=(int)(ratio * 255);
         if (t <= headerHeight * 1.2) {
-          mBus.post(Integer.valueOf(newAlpha));
+          ViewUtils.updateActionBarDrawable(mContext,mActionBarOverlay,mActionBarBackgroundDrawable,mActionBar,mMovie.getTitle(),newAlpha,true,false);
           mBackground.setPadding(0,(int)(t / 1.5),0,0);
         }
       }
@@ -31,17 +36,17 @@
   }
   mTitle.setVisibility(View.VISIBLE);
   mTitle.setText(mMovie.getTitle());
-  mTitle.setTypeface(MizuuApplication.getOrCreateTypeface(getActivity(),"RobotoCondensed-Regular.ttf"));
+  mTitle.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"RobotoCondensed-Regular.ttf"));
   mTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
   mPlot.setTypeface(mLight);
   mSrc.setTypeface(mLight);
   mRuntime.setTypeface(mMedium);
   mCertification.setTypeface(mMedium);
   mRating.setTypeface(mMedium);
-  if (!MizLib.isPortrait(getActivity())) {
+  if (!MizLib.isPortrait(mContext)) {
     mPlot.setBackgroundResource(R.drawable.selectable_background);
-    if (!mMovie.getTagline().isEmpty())     mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
- else     mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
+    if (!mMovie.getTagline().isEmpty())     mPlot.setMaxLines(mContext.getResources().getInteger(R.integer.movie_details_max_lines));
+ else     mPlot.setMaxLines(mContext.getResources().getInteger(R.integer.show_details_max_lines));
     mPlot.setTag(true);
     mPlot.setOnClickListener(new OnClickListener(){
       @Override public void onClick(      View v){
@@ -50,8 +55,8 @@
           mPlot.setTag(false);
         }
  else {
-          if (!mMovie.getTagline().isEmpty())           mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
- else           mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
+          if (!mMovie.getTagline().isEmpty())           mPlot.setMaxLines(mContext.getResources().getInteger(R.integer.movie_details_max_lines));
+ else           mPlot.setMaxLines(mContext.getResources().getInteger(R.integer.show_details_max_lines));
           mPlot.setTag(true);
         }
       }
@@ -61,7 +66,7 @@
     mPlot.setFocusable(true);
   }
  else {
-    if (MizLib.isTablet(getActivity()))     mPlot.setLineSpacing(0,1.15f);
+    if (MizLib.isTablet(mContext))     mPlot.setLineSpacing(0,1.15f);
   }
   mPlot.setText(mMovie.getPlot());
   if (mShowFileLocation) {
@@ -80,9 +85,9 @@
  else {
     mGenre.setVisibility(View.GONE);
   }
-  mRuntime.setText(MizLib.getPrettyRuntime(getActivity(),Integer.parseInt(mMovie.getRuntime())));
+  mRuntime.setText(MizLib.getPrettyRuntime(mContext,Integer.parseInt(mMovie.getRuntime())));
   mReleaseDate.setTypeface(mMedium);
-  mReleaseDate.setText(MizLib.getPrettyDate(getActivity(),mMovie.getReleasedate()));
+  mReleaseDate.setText(MizLib.getPrettyDate(mContext,mMovie.getReleasedate()));
   if (!mMovie.getRating().equals("0.0")) {
     try {
       int rating=(int)(Double.parseDouble(mMovie.getRating()) * 10);
@@ -101,5 +106,25 @@
  else {
     mCertification.setText(R.string.stringNA);
   }
+  mActorsLayout.setTitle(R.string.detailsActors);
+  mActorsLayout.setSeeMoreVisibility(true);
+  mActorsLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      if (mActorsLayout.getWidth() > 0) {
+        final int numColumns=(int)Math.floor(mActorsLayout.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+        mImageThumbSize=(mActorsLayout.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns;
+        loadActors(numColumns);
+        MizLib.removeViewTreeObserver(mActorsLayout.getViewTreeObserver(),this);
+      }
+    }
+  }
+);
+  mActorsLayout.setSeeMoreOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      startActivity(IntentUtils.getActorBrowserMovies(mContext,mMovie.getTitle(),mMovie.getTmdbId()));
+    }
+  }
+);
+  ViewUtils.updateActionBarDrawable(mContext,mActionBarOverlay,mActionBarBackgroundDrawable,mActionBar,mMovie.getTitle(),1,true,true);
   loadImages();
 }

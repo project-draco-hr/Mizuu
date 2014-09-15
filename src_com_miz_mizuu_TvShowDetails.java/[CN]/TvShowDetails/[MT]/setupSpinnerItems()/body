@@ -2,6 +2,5 @@
   spinnerItems.clear();
   spinnerItems.add(new SpinnerItem(thisShow.getTitle(),getString(R.string.overview)));
   spinnerItems.add(new SpinnerItem(thisShow.getTitle(),getString(R.string.seasons)));
-  spinnerItems.add(new SpinnerItem(thisShow.getTitle(),getString(R.string.detailsActors)));
   mActionBar.setListNavigationCallbacks(spinnerAdapter,this);
 }

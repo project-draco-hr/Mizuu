@@ -1,6 +1,6 @@
 {
   try {
-    MizLib.copyFile(backdrop,new File(MizuuApplication.getTvShowBackdropFolder(this),backdrop.getName()));
+    FileUtils.copyFile(backdrop,new File(MizuuApplication.getTvShowBackdropFolder(this),backdrop.getName()));
   }
  catch (  IOException e) {
   }

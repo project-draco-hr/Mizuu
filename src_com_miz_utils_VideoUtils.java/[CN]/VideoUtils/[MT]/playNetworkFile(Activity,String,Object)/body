@@ -25,12 +25,12 @@
           public void run(){
             try {
               Uri uri=Uri.parse(Streamer.URL + Uri.fromFile(new File(Uri.parse(filepath).getPath())).getEncodedPath());
-              activity.startActivity(MizLib.getVideoIntent(uri,videoWildcard,videoObject));
+              activity.startActivity(getVideoIntent(uri,videoWildcard,videoObject));
             }
  catch (            Exception e) {
               try {
                 Uri uri=Uri.parse(Streamer.URL + Uri.fromFile(new File(Uri.parse(filepath).getPath())).getEncodedPath());
-                activity.startActivity(MizLib.getVideoIntent(uri,"video/*",videoObject));
+                activity.startActivity(getVideoIntent(uri,"video/*",videoObject));
               }
  catch (              Exception e2) {
                 Toast.makeText(activity,activity.getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();

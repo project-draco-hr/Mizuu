@@ -1,0 +1,3 @@
+{
+  return MizLib.getPrettyDate(mContext,getDate()) + (isInLibrary() ? " (" + mContext.getString(R.string.inLibrary) + ")" : "");
+}

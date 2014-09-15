@@ -1,7 +1,0 @@
-{
-  ActorBrowserFragmentTv pageFragment=new ActorBrowserFragmentTv();
-  Bundle bundle=new Bundle();
-  bundle.putString("showId",showId);
-  pageFragment.setArguments(bundle);
-  return pageFragment;
-}

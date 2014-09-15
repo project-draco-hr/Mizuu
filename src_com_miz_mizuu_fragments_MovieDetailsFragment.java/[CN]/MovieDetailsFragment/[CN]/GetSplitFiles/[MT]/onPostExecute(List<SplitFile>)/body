@@ -1,0 +1,23 @@
+{
+  progress.dismiss();
+  if (result.size() > 0)   mVideoPlaybackStarted=System.currentTimeMillis();
+  if (result.size() > 1) {
+    AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
+    builder.setTitle(getString(R.string.playPart));
+    builder.setAdapter(new SplitAdapter(mContext,result),new DialogInterface.OnClickListener(){
+      public void onClick(      DialogInterface dialog,      int which){
+        boolean playbackStarted=VideoUtils.playVideo(getActivity(),result.get(which).getFilepath(),fileType,mMovie);
+        if (playbackStarted)         checkIn();
+      }
+    }
+);
+    builder.show();
+  }
+ else   if (result.size() == 1) {
+    boolean playbackStarted=VideoUtils.playVideo(getActivity(),result.get(0).getFilepath(),fileType,mMovie);
+    if (playbackStarted)     checkIn();
+  }
+ else {
+    Toast.makeText(mContext,getString(R.string.errorSomethingWentWrong),Toast.LENGTH_LONG).show();
+  }
+}

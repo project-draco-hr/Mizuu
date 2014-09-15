@@ -1,0 +1,25 @@
+{
+  actionBarOverlay.setVisibility(View.VISIBLE);
+  if (!MizLib.isPortrait(context)) {
+    newAlpha=0;
+    setBackground=true;
+    showActionBar=true;
+  }
+ else {
+    if (!MizLib.isTablet(context) && !MizLib.usesNavigationControl(context)) {
+      if (newAlpha == 0) {
+        actionBar.hide();
+        actionBarOverlay.setVisibility(View.GONE);
+      }
+ else       actionBar.show();
+    }
+  }
+  actionBar.setTitle(newAlpha > 127 ? title : null);
+  if (setBackground) {
+    actionBarBackgroundDrawable=new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,new int[]{Color.parseColor("#" + ((Integer.toHexString(newAlpha).length() == 1) ? ("0" + Integer.toHexString(newAlpha)) : Integer.toHexString(newAlpha)) + "000000"),(newAlpha >= 170) ? Color.parseColor("#" + Integer.toHexString(newAlpha) + "000000") : 0xaa000000});
+    actionBarOverlay.setImageDrawable(actionBarBackgroundDrawable);
+  }
+  if (showActionBar) {
+    actionBar.show();
+  }
+}

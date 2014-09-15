@@ -1,0 +1,24 @@
+{
+  CoverItem holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.grid_item,container,false);
+    holder=new CoverItem();
+    holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    holder.text=(TextView)convertView.findViewById(R.id.text);
+    holder.text.setSingleLine(true);
+    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.subtext.setSingleLine(true);
+    holder.text.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf"));
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(CoverItem)convertView.getTag();
+  }
+  holder.cover.setImageResource(R.color.card_background_dark);
+  holder.text.setText(mSimilarMovies.get(position).getTitle());
+  holder.subtext.setText(mSimilarMovies.get(position).getSubtitle());
+  if (!mSimilarMovies.get(position).getUrl().contains("null"))   mPicasso.load(mSimilarMovies.get(position).getUrl()).config(mConfig).into(holder);
+ else   holder.cover.setImageResource(R.drawable.loading_image);
+  return convertView;
+}

@@ -21,7 +21,7 @@
     @Override public void onPageSelected(    int position){
       mActionBar.setSelectedNavigationItem(position);
       invalidateOptionsMenu();
-      updateActionBarDrawable(1,false,false);
+      updateActionBarDrawable(1,true,false);
     }
   }
 );

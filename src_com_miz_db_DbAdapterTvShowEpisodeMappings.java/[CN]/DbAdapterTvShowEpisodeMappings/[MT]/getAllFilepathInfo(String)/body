@@ -1,3 +1,4 @@
 {
-  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_FILEPATH + "='" + filepath+ "'",null,null,null,null);
+  String[] selectionArgs=new String[]{filepath};
+  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_FILEPATH + " = ?",selectionArgs,null,null,null);
 }

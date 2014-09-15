@@ -1,0 +1,16 @@
+{
+  mMovie.setToWatch(false);
+  boolean success=mDatabase.updateMovieSingleItem(mMovie.getTmdbId(),DbAdapterMovies.KEY_TO_WATCH,mMovie.getToWatch());
+  if (success) {
+    getActivity().invalidateOptionsMenu();
+    notifyDatasetChanges();
+  }
+  new Thread(){
+    @Override public void run(){
+      ArrayList<Movie> watchlist=new ArrayList<Movie>();
+      watchlist.add(mMovie);
+      Trakt.movieWatchlist(watchlist,mContext);
+    }
+  }
+.start();
+}

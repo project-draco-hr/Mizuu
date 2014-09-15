@@ -1,0 +1,6 @@
+{
+  if (isAdded()) {
+    mProgressBar.setVisibility(View.GONE);
+    mAdapter.notifyDataSetChanged();
+  }
+}

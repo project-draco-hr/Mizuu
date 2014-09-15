@@ -12,7 +12,9 @@
     }
   }
  else {
-    mActionBarOverlay.setVisibility(View.GONE);
+    mActionBarBackgroundDrawable=new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,new int[]{Color.parseColor("#FF000000"),Color.parseColor("#FF000000")});
+    mActionBarOverlay.setImageDrawable(mActionBarBackgroundDrawable);
+    mActionBarOverlay.setVisibility(View.VISIBLE);
     if (MizLib.isPortrait(this) && !MizLib.isTablet(this) && !MizLib.usesNavigationControl(this))     mActionBar.show();
   }
   if (showActionBar) {

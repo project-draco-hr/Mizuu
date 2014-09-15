@@ -1,0 +1,14 @@
+{
+  try {
+    MovieApiService service=MizuuApplication.getMovieService(mContext);
+    mSimilarMovies=service.getSimilarMovies(params[0]);
+    for (int i=0; i < mSimilarMovies.size(); i++) {
+      String id=mSimilarMovies.get(i).getId();
+      mSimilarMovies.get(i).setInLibrary(MizuuApplication.getMovieAdapter().movieExists(id));
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  return null;
+}

@@ -4,8 +4,8 @@
   DbAdapterTvShowEpisodes dbEpisodes=MizuuApplication.getTvEpisodeDbAdapter();
   dbEpisodes.deleteAllEpisodesInDatabase();
   MizuuApplication.getTvShowEpisodeMappingsDbAdapter().deleteAllFilepaths();
-  MizLib.deleteRecursive(MizuuApplication.getTvShowThumbFolder(this),false);
-  MizLib.deleteRecursive(MizuuApplication.getTvShowEpisodeFolder(this),false);
-  MizLib.deleteRecursive(MizuuApplication.getTvShowBackdropFolder(this),false);
-  MizLib.deleteRecursive(MizuuApplication.getTvShowSeasonFolder(this),false);
+  FileUtils.deleteRecursive(MizuuApplication.getTvShowThumbFolder(this),false);
+  FileUtils.deleteRecursive(MizuuApplication.getTvShowEpisodeFolder(this),false);
+  FileUtils.deleteRecursive(MizuuApplication.getTvShowBackdropFolder(this),false);
+  FileUtils.deleteRecursive(MizuuApplication.getTvShowSeasonFolder(this),false);
 }

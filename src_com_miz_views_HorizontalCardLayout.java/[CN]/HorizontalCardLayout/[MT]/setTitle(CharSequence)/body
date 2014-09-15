@@ -1,0 +1,3 @@
+{
+  mTitleTextView.setText(title);
+}

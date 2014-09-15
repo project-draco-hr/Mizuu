@@ -1,0 +1,16 @@
+{
+  ArrayList<WebMovie> results=new ArrayList<WebMovie>();
+  String baseUrl=MizLib.getTmdbImageBaseUrl(mContext);
+  try {
+    JSONObject jObject=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/movie/" + id + "/similar_movies?api_key="+ mTmdbApiKey);
+    JSONArray jArray=jObject.getJSONArray("results");
+    for (int i=0; i < jArray.length(); i++) {
+      if (!MizLib.isAdultContent(mContext,jArray.getJSONObject(i).getString("title")) && !MizLib.isAdultContent(mContext,jArray.getJSONObject(i).getString("original_title"))) {
+        results.add(new WebMovie(mContext,jArray.getJSONObject(i).getString("original_title"),jArray.getJSONObject(i).getString("id"),baseUrl + MizLib.getImageUrlSize(mContext) + jArray.getJSONObject(i).getString("poster_path"),jArray.getJSONObject(i).getString("release_date")));
+      }
+    }
+  }
+ catch (  Exception ignored) {
+  }
+  return results;
+}

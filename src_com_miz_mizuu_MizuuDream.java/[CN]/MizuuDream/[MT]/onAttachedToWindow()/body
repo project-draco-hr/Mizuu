@@ -13,7 +13,7 @@
   Cursor cursor=mDatabaseHelper.fetchAllMovies(DbAdapterMovies.KEY_TITLE + " ASC",false);
   while (cursor.moveToNext()) {
     try {
-      temp=MizLib.getMovieBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapterMovies.KEY_TMDB_ID)));
+      temp=FileUtils.getMovieBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapterMovies.KEY_TMDB_ID)));
       if (temp.exists())       mBackdrops.add(new Backdrop(temp.getAbsolutePath(),cursor.getString(cache.getColumnIndex(cursor,DbAdapterMovies.KEY_TITLE))));
     }
  catch (    NullPointerException e) {
@@ -23,7 +23,7 @@
   cursor=mDatabaseHelperTv.getAllShows();
   while (cursor.moveToNext()) {
     try {
-      temp=MizLib.getTvShowBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_ID)));
+      temp=FileUtils.getTvShowBackdrop(this,cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_ID)));
       if (temp.exists())       mBackdrops.add(new Backdrop(temp.getAbsolutePath(),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_TITLE))));
     }
  catch (    NullPointerException e) {

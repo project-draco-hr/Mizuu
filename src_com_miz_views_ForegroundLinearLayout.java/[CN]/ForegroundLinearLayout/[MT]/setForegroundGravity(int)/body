@@ -1,0 +1,16 @@
+{
+  if (mForegroundGravity != foregroundGravity) {
+    if ((foregroundGravity & Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK) == 0) {
+      foregroundGravity|=Gravity.START;
+    }
+    if ((foregroundGravity & Gravity.VERTICAL_GRAVITY_MASK) == 0) {
+      foregroundGravity|=Gravity.TOP;
+    }
+    mForegroundGravity=foregroundGravity;
+    if (mForegroundGravity == Gravity.FILL && mForeground != null) {
+      Rect padding=new Rect();
+      mForeground.getPadding(padding);
+    }
+    requestLayout();
+  }
+}

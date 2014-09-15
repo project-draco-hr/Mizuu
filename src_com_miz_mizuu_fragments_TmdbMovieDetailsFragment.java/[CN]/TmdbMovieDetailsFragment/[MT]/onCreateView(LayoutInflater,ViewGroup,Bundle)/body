@@ -1,5 +1,7 @@
 {
   final View v=inflater.inflate(R.layout.movie_and_tv_show_details,container,false);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_width);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   movieDetailsLayout=MizLib.isPortrait(getActivity()) ? v.findViewById(R.id.movieDetailsLayout_portrait) : v.findViewById(R.id.movieDetailsLayout);
   progressBar=v.findViewById(R.id.progressBar1);
   mDetailsArea=v.findViewById(R.id.details_area);
@@ -14,7 +16,10 @@
   textTagline=(TextView)v.findViewById(R.id.textView6);
   textCertification=(TextView)v.findViewById(R.id.textView11);
   cover=(ImageView)v.findViewById(R.id.traktIcon);
-  cover.setImageResource(R.drawable.loading_image);
+  mActorsLayout=(HorizontalCardLayout)v.findViewById(R.id.horizontal_card_layout);
+  mSimilarMoviesLayout=(HorizontalCardLayout)v.findViewById(R.id.horizontal_card_layout_extra);
+  mActionBarOverlay=(ImageView)v.findViewById(R.id.actionbar_overlay);
+  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,MizuuApplication.isFullscreen(mContext) ? MizLib.getActionBarHeight(mContext) : MizLib.getActionBarAndStatusBarHeight(mContext)));
   v.findViewById(R.id.textView3).setVisibility(View.GONE);
   if (MizLib.isPortrait(getActivity())) {
     final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
@@ -26,7 +31,7 @@
         final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
         final int newAlpha=(int)(ratio * 255);
         if (t <= headerHeight * 1.2) {
-          mBus.post(Integer.valueOf(newAlpha));
+          ViewUtils.updateActionBarDrawable(mContext,mActionBarOverlay,mActionBarBackgroundDrawable,mActionBar,mMovie.getTitle(),newAlpha,true,false);
           background.setPadding(0,(int)(t / 1.5),0,0);
         }
       }
@@ -35,7 +40,7 @@
   }
   if (!isRetained) {
     setLoading(true);
-    new MovieLoader().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR,getArguments().getString("json"));
+    new MovieLoader().execute();
     isRetained=true;
   }
  else {

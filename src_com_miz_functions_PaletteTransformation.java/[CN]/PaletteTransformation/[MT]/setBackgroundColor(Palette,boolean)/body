@@ -1,16 +1,20 @@
 {
-  if (mView == null || mHasSetBackground)   return;
+  if (mViews == null || mHasSetBackground)   return;
   PaletteItem pi=p.getDarkVibrantColor();
   if (pi == null)   pi=p.getDarkMutedColor();
   if (pi == null)   pi=p.getVibrantColor();
   if (pi != null) {
     if (animate) {
-      ObjectAnimator backgroundColorAnimator=ObjectAnimator.ofObject(mView,"backgroundColor",new ArgbEvaluator(),0xFF666666,pi.getRgb());
-      backgroundColorAnimator.setDuration(500);
-      backgroundColorAnimator.start();
+      for (      View v : mViews) {
+        if (v != null) {
+          ObjectAnimator backgroundColorAnimator=ObjectAnimator.ofObject(v,"backgroundColor",new ArgbEvaluator(),0xFF666666,pi.getRgb());
+          backgroundColorAnimator.setDuration(500);
+          backgroundColorAnimator.start();
+        }
+      }
     }
  else {
-      mView.setBackgroundColor(pi.getRgb());
+      for (      View v : mViews)       if (v != null)       v.setBackgroundColor(pi.getRgb());
     }
   }
   mHasSetBackground=true;

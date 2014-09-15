@@ -10,10 +10,10 @@
   for (  GridEpisode episode : episodesInSeason) {
     episode.getCover().delete();
   }
-  MizLib.getTvShowSeason(context,showId,season).delete();
+  FileUtils.getTvShowSeason(context,showId,season).delete();
   if (episodeAdapter.getEpisodeCount(showId) == 0) {
     showAdapter.deleteShow(showId);
-    MizLib.getTvShowThumb(context,showId).delete();
-    MizLib.getTvShowBackdrop(context,showId).delete();
+    FileUtils.getTvShowThumb(context,showId).delete();
+    FileUtils.getTvShowBackdrop(context,showId).delete();
   }
 }

@@ -1,0 +1,10 @@
+{
+  if (filepath.toLowerCase(Locale.getDefault()).matches(".*(cd1|part1).*")) {
+    new GetSplitFiles(filepath,filetype).execute();
+  }
+ else {
+    mVideoPlaybackStarted=System.currentTimeMillis();
+    boolean playbackStarted=VideoUtils.playVideo(getActivity(),filepath,filetype,mMovie);
+    if (playbackStarted)     checkIn();
+  }
+}

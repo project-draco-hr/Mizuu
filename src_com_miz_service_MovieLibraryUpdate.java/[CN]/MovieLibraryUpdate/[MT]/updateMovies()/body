@@ -1,5 +1,4 @@
 {
-  System.out.println("WAT DA FUCK");
   mMovieIdentification=new MovieIdentification(getApplicationContext(),this,mMovieQueue,mNfoFiles);
   mMovieIdentification.start();
 }

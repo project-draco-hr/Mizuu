@@ -10,15 +10,15 @@
  else     episodeMappingsAdapter.deleteFilepath(filepath);
     if (i == (filepaths.size() - 1)) {
       episodeAdapter.deleteEpisode(showId,season,episode);
-      MizLib.getTvShowEpisode(context,showId,season,episode).delete();
+      FileUtils.getTvShowEpisode(context,showId,season,episode).delete();
       if (episodeAdapter.getEpisodesInSeason(context,showId,season).size() == 0) {
-        MizLib.getTvShowSeason(context,showId,season).delete();
+        FileUtils.getTvShowSeason(context,showId,season).delete();
       }
     }
   }
   if (episodeAdapter.getEpisodeCount(showId) == 0) {
     showAdapter.deleteShow(showId);
-    MizLib.getTvShowThumb(context,showId).delete();
-    MizLib.getTvShowBackdrop(context,showId).delete();
+    FileUtils.getTvShowThumb(context,showId).delete();
+    FileUtils.getTvShowBackdrop(context,showId).delete();
   }
 }
