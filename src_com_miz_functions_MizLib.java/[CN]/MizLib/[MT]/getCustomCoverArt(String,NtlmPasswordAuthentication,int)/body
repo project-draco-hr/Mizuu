@@ -31,6 +31,6 @@
     }
   }
   list=null;
-  if (!customCoverArt.isEmpty())   return new SmbFile(createSmbLoginString(auth.getDomain(),auth.getUsername(),auth.getPassword(),customCoverArt,false));
+  if (!TextUtils.isEmpty(customCoverArt))   return new SmbFile(createSmbLoginString(auth.getDomain(),auth.getUsername(),auth.getPassword(),customCoverArt,false));
   return null;
 }

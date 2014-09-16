@@ -19,10 +19,10 @@
   password=password.replace("+","%20");
   domain=domain.replace("+","%20");
   server=server.replace("smb://","");
-  if (!user.isEmpty()) {
-    if (!domain.isEmpty())     sb.append(domain).append(";");
+  if (!TextUtils.isEmpty(user)) {
+    if (!TextUtils.isEmpty(domain))     sb.append(domain).append(";");
     sb.append(user);
-    if (!password.isEmpty())     sb.append(":").append(password);
+    if (!TextUtils.isEmpty(password))     sb.append(":").append(password);
     sb.append("@");
   }
   sb.append(server);

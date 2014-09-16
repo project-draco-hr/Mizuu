@@ -48,6 +48,10 @@
     if (movie == null && results.size() > 0) {
       movie=service.get(results.get(0).getId(),mLocale);
     }
+ else {
+      movie=new Movie();
+      movie.setId(DbAdapterMovies.UNIDENTIFIED_ID);
+    }
     createMovie(ms,movie);
   }
 }

@@ -4,7 +4,7 @@
     auth=NtlmPasswordAuthentication.ANONYMOUS;
   }
  else {
-    if (source.getDomain().isEmpty() && source.getUser().isEmpty() && source.getPassword().isEmpty()) {
+    if (TextUtils.isEmpty(source.getDomain()) && TextUtils.isEmpty(source.getUser()) && TextUtils.isEmpty(source.getPassword())) {
       auth=NtlmPasswordAuthentication.ANONYMOUS;
     }
  else {

@@ -1,5 +1,5 @@
 {
   String key=context.getString(R.string.tvdb_api_key);
-  if (key.isEmpty() || key.equals("add_your_own"))   throw new RuntimeException("You need to add a TVDb API key!");
+  if (TextUtils.isEmpty(key) || key.equals("add_your_own"))   throw new RuntimeException("You need to add a TVDb API key!");
   return key;
 }

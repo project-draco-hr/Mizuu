@@ -1,6 +1,6 @@
 {
   ArrayList<TvShow> results=new ArrayList<TvShow>();
-  if (serviceUrl.isEmpty())   return results;
+  if (TextUtils.isEmpty(serviceUrl))   return results;
   try {
     DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
     DocumentBuilder db=dbf.newDocumentBuilder();

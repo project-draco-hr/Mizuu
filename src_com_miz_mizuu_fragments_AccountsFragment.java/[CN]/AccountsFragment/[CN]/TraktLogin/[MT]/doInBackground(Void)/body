@@ -25,7 +25,7 @@
       JSONObject jObject=new JSONObject(response.body().string());
       if (response.isSuccessful()) {
         String name=jObject.getString("full_name");
-        if (name.equals("null") || name.isEmpty())         name=jObject.getString("username");
+        if (TextUtils.isEmpty(name) || name.equals("null"))         name=jObject.getString("username");
         String avatar=jObject.getString("avatar");
         editor.putString(TRAKT_FULL_NAME,name);
         editor.commit();

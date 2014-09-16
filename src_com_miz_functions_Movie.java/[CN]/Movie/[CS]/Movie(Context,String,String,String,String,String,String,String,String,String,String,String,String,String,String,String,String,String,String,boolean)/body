@@ -5,13 +5,13 @@
   mTmdbId=tmdbId;
   IMDB_ID=imdbId;
   TRAILER=trailer;
-  if (PLOT == null || PLOT.isEmpty()) {
+  if (TextUtils.isEmpty(PLOT)) {
     mGetPlot=mContext.getString(R.string.stringNoPlot);
   }
  else {
     mGetPlot=PLOT;
   }
-  if (TAGLINE == null || TAGLINE.equals("NOTAGLINE")) {
+  if (TextUtils.isEmpty(TAGLINE) || TAGLINE.equals("NOTAGLINE")) {
     mGetTagline="";
   }
  else {

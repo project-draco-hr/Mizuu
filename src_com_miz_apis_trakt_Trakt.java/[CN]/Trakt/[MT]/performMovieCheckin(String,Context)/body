@@ -2,7 +2,7 @@
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
   String username=settings.getString(TRAKT_USERNAME,"").trim();
   String password=settings.getString(TRAKT_PASSWORD,"");
-  if (username.isEmpty() || password.isEmpty())   return false;
+  if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password))   return false;
   try {
     Request request=MizLib.getTraktAuthenticationRequest("http://api.trakt.tv/movie/cancelcheckin/" + getApiKey(c),username,password);
     Response response=MizuuApplication.getOkHttpClient().newCall(request).execute();

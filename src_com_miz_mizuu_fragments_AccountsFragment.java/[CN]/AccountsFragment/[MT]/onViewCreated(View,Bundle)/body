@@ -38,7 +38,7 @@
   }
 );
   traktUser.setText(settings.getString(TRAKT_USERNAME,""));
-  if (settings.getString(TRAKT_PASSWORD,"").isEmpty()) {
+  if (TextUtils.isEmpty(settings.getString(TRAKT_PASSWORD,""))) {
     traktPass.setText("");
     traktUser.setEnabled(true);
     traktPass.setEnabled(true);

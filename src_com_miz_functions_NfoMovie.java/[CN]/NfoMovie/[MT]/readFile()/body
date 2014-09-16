@@ -83,7 +83,7 @@
             mMovie.setReleasedate("");
           }
         }
-        if (mMovie.getReleasedate().isEmpty())         try {
+        if (TextUtils.isEmpty(mMovie.getReleasedate()))         try {
           list=firstElement.getElementsByTagName("year");
           element=(Element)list.item(0);
           tag=element.getChildNodes();

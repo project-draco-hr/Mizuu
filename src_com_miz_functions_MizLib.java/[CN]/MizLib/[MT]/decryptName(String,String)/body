@@ -11,7 +11,7 @@
  catch (      Exception e) {
       }
     }
-    if (!after.isEmpty())     output=after;
+    if (!TextUtils.isEmpty(after))     output=after;
   }
   output=output.replaceAll(WAREZ_PATTERN + "|\\)|\\(|\\[|\\]|\\{|\\}|\\'|\\<|\\>|\\-","");
   if (output.matches("(?i)^(c|l)(\\_|\\.)\\w.*?")) {
@@ -19,7 +19,7 @@
     sb.replace(1,2,"'");
     output=sb.toString();
   }
-  if (!customTags.isEmpty()) {
+  if (!TextUtils.isEmpty(customTags)) {
     String[] custom=customTags.split("<MiZ>");
     int count=custom.length;
     for (int i=0; i < count; i++)     try {

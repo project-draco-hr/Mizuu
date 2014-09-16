@@ -2,7 +2,7 @@
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(c);
   String username=settings.getString(TRAKT_USERNAME,"").trim();
   String password=settings.getString(TRAKT_PASSWORD,"");
-  if (username.isEmpty() || password.isEmpty() || shows.size() == 0)   return false;
+  if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password) || shows.size() == 0)   return false;
   try {
     JSONObject json=new JSONObject();
     json.put("username",username);

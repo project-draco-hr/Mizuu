@@ -1,6 +1,6 @@
 {
   boolean downloadCovers=true;
-  if (!thisShow.getId().equals(DbAdapterTvShows.UNIDENTIFIED_ID) && !thisShow.getId().isEmpty()) {
+  if (!TextUtils.isEmpty(thisShow.getId()) && !thisShow.getId().equals(DbAdapterTvShows.UNIDENTIFIED_ID)) {
     DbAdapterTvShows db=MizuuApplication.getTvDbAdapter();
     Cursor cursor=db.getShow(thisShow.getId());
     if (cursor.getCount() > 0) {
@@ -8,12 +8,12 @@
     }
   }
   if (downloadCovers) {
-    if (!thisShow.getId().equals(DbAdapterTvShows.UNIDENTIFIED_ID) && !thisShow.getId().isEmpty()) {
+    if (!TextUtils.isEmpty(thisShow.getId()) && !thisShow.getId().equals(DbAdapterTvShows.UNIDENTIFIED_ID)) {
       String thumb_filepath=FileUtils.getTvShowThumb(mContext,thisShow.getId()).getAbsolutePath();
       String backdrop_filepath=FileUtils.getTvShowBackdrop(mContext,thisShow.getId()).getAbsolutePath();
-      if (!thisShow.getCoverUrl().isEmpty())       if (!MizLib.downloadFile(thisShow.getCoverUrl(),thumb_filepath))       MizLib.downloadFile(thisShow.getCoverUrl(),thumb_filepath);
+      if (!TextUtils.isEmpty(thisShow.getCoverUrl()))       if (!MizLib.downloadFile(thisShow.getCoverUrl(),thumb_filepath))       MizLib.downloadFile(thisShow.getCoverUrl(),thumb_filepath);
       MizLib.resizeBitmapFileToCoverSize(mContext,thumb_filepath);
-      if (!thisShow.getBackdropUrl().isEmpty())       if (!MizLib.downloadFile(thisShow.getBackdropUrl(),backdrop_filepath))       MizLib.downloadFile(thisShow.getBackdropUrl(),backdrop_filepath);
+      if (!TextUtils.isEmpty(thisShow.getBackdropUrl()))       if (!MizLib.downloadFile(thisShow.getBackdropUrl(),backdrop_filepath))       MizLib.downloadFile(thisShow.getBackdropUrl(),backdrop_filepath);
       DbAdapterTvShows dbHelper=MizuuApplication.getTvDbAdapter();
       dbHelper.createShow(thisShow.getId(),thisShow.getTitle(),thisShow.getDescription(),thisShow.getActors(),thisShow.getGenres(),thisShow.getRating(),thisShow.getCertification(),thisShow.getRuntime(),thisShow.getFirstAired(),"0");
     }
