@@ -1,4 +1,5 @@
 {
+  final Filepath filepath=mFilepaths.get(position);
   ViewHolder holder;
   if (convertView == null) {
     convertView=inflater.inflate(R.layout.file_list_item,parent,false);
@@ -10,7 +11,7 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  holder.name.setText(getFilename(position));
-  holder.size.setText(getFilepath(position));
+  holder.name.setText(filepath.getFilepathName());
+  holder.size.setText(filepath.getFilepath());
   return convertView;
 }
