@@ -1,0 +1,6 @@
+{
+  Intent actorPhotosIntent=new Intent(context,ActorPhotos.class);
+  actorPhotosIntent.putExtra("actorName",actorName);
+  actorPhotosIntent.putExtra("actorId",actorId);
+  return actorPhotosIntent;
+}

@@ -1,0 +1,7 @@
+{
+  if (isAdded()) {
+    mProgressBar.setVisibility(View.GONE);
+    mAdapter=new ImageAdapter(getActivity());
+    mGridView.setAdapter(mAdapter);
+  }
+}

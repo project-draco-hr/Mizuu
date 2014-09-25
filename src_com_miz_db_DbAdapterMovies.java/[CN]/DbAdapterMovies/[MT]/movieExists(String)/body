@@ -1,5 +1,5 @@
 {
-  Cursor mCursor=mDatabase.query(true,DATABASE_TABLE,SELECT_ALL,KEY_TMDB_ID + "='" + movieId+ "'",null,null,null,null,null);
+  Cursor mCursor=mDatabase.query(DATABASE_TABLE,SELECT_ALL,KEY_TMDB_ID + " = ?",new String[]{movieId},null,null,null,null);
   if (mCursor == null)   return false;
   try {
     if (mCursor.getCount() == 0) {

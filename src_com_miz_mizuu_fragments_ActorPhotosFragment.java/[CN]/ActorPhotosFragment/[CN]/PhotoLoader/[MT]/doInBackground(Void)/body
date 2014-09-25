@@ -1,0 +1,4 @@
+{
+  mActor=TMDbMovieService.getInstance(mContext).getCompleteActorDetails(mActorId);
+  return null;
+}

@@ -1,7 +1,0 @@
-{
-  super.onSaveInstanceState(outState);
-  outState.putInt("tab",mViewPager.getCurrentItem());
-  outState.putString("json",mJson);
-  outState.putString("baseUrl",mBaseUrl);
-  outState.putString("mActorThumb",mActorThumb);
-}

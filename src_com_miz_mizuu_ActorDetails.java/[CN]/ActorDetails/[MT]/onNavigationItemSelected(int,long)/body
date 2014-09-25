@@ -1,4 +1,0 @@
-{
-  mViewPager.setCurrentItem(itemPosition);
-  return true;
-}

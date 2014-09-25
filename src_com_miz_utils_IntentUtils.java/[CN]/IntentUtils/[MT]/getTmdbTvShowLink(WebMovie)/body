@@ -1,0 +1,5 @@
+{
+  Intent showIntent=new Intent(Intent.ACTION_VIEW);
+  showIntent.setData(Uri.parse("http://www.themoviedb.org/tv/" + show.getId()));
+  return showIntent;
+}

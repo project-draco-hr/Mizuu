@@ -1,0 +1,6 @@
+Context context
+Picasso picasso
+int capacity
+int width
+List<?> items
+int type

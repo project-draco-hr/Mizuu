@@ -1,0 +1,7 @@
+{
+  ActorDetailsFragment frag=new ActorDetailsFragment();
+  Bundle args=new Bundle();
+  args.putString("actorId",actorId);
+  frag.setArguments(args);
+  return frag;
+}

@@ -1,4 +1,5 @@
 {
+  final WebMovie movie=mActor.getMovies().get(position);
   CoverItem holder;
   if (convertView == null) {
     convertView=inflater.inflate(R.layout.grid_item,container,false);
@@ -16,14 +17,9 @@
     holder=(CoverItem)convertView.getTag();
   }
   holder.cover.setImageResource(R.color.card_background_dark);
-  holder.text.setText(pics_sources.get(position).getTitle());
-  if (movieMap.get(Integer.valueOf(pics_sources.get(position).getId()))) {
-    holder.subtext.setText(MizLib.getPrettyDate(mContext,pics_sources.get(position).getDate()) + " (" + getString(R.string.inLibrary)+ ")");
-  }
- else {
-    holder.subtext.setText(MizLib.getPrettyDate(mContext,pics_sources.get(position).getDate()));
-  }
-  if (!pics_sources.get(position).getUrl().contains("null"))   mPicasso.load(pics_sources.get(position).getUrl()).config(mConfig).into(holder);
+  holder.text.setText(movie.getTitle());
+  holder.subtext.setText(movie.getSubtitle());
+  if (!movie.getUrl().contains("null"))   mPicasso.load(movie.getUrl()).error(R.drawable.loading_image).config(mConfig).into(holder);
  else   holder.cover.setImageResource(R.drawable.loading_image);
   return convertView;
 }

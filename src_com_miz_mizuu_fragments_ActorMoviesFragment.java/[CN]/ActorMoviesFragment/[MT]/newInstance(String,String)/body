@@ -1,8 +1,0 @@
-{
-  ActorMoviesFragment pageFragment=new ActorMoviesFragment();
-  Bundle bundle=new Bundle();
-  bundle.putString("json",json);
-  bundle.putString("baseUrl",baseUrl);
-  pageFragment.setArguments(bundle);
-  return pageFragment;
-}

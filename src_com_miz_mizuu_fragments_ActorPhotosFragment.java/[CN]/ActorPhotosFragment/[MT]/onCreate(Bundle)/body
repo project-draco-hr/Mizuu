@@ -1,10 +1,10 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
+  mContext=getActivity();
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  json=getArguments().getString("json");
-  baseUrl=getArguments().getString("baseUrl");
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
+  mActorId=getArguments().getString("actorId");
 }

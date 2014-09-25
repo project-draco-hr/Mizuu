@@ -1,3 +1,0 @@
-{
-  return inflater.inflate(R.layout.actor_bio,container,false);
-}

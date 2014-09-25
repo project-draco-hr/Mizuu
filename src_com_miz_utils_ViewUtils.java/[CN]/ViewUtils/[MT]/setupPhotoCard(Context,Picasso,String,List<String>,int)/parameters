@@ -1,0 +1,5 @@
+Context context
+Picasso picasso
+String url
+List<String> items
+int index

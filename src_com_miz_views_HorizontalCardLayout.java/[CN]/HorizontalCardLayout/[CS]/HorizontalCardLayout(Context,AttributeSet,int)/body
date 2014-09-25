@@ -9,7 +9,9 @@
   if (!isInEditMode())   mTitleTextView.setTypeface(MizuuApplication.getOrCreateTypeface(context,"RobotoCondensed-LightItalic.ttf"));
   mSeeMoreTextView=(TextView)mTitleLayout.findViewById(R.id.see_more);
   if (!isInEditMode())   mSeeMoreTextView.setTypeface(MizuuApplication.getOrCreateTypeface(context,"RobotoCondensed-Regular.ttf"));
-  mCardContent=(LinearLayout)getChildAt(1).findViewById(R.id.linear_layout);
-  mProgressBar=(ProgressBar)getChildAt(1).findViewById(R.id.progress_bar);
-  mErrorTextView=(TextView)getChildAt(1).findViewById(R.id.error_message);
+  if (!isInEditMode()) {
+    mCardContent=(LinearLayout)getChildAt(1).findViewById(R.id.linear_layout);
+    mProgressBar=(ProgressBar)getChildAt(1).findViewById(R.id.progress_bar);
+    mErrorTextView=(TextView)getChildAt(1).findViewById(R.id.error_message);
+  }
 }

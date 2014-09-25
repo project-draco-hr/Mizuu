@@ -11,35 +11,25 @@
   getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   setContentView(R.layout.viewpager);
   mBus=MizuuApplication.getBus();
-  mActionBarOverlay=(ImageView)findViewById(R.id.actionbar_overlay);
-  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(this) : MizLib.getActionBarAndStatusBarHeight(this)));
-  mActionBarOverlay.setImageResource(R.drawable.transparent_actionbar);
-  mActionBarOverlay.setVisibility(View.VISIBLE);
   getActionBar().setBackgroundDrawable(null);
   mPortraitPhotos=getIntent().getBooleanExtra("portraitPhotos",true);
-  photos=getIntent().getStringArrayExtra("photos");
-  setTitle(getIntent().getStringExtra("actorName"));
-  getActionBar().setSubtitle((getIntent().getIntExtra("selectedIndex",0) + 1) + " " + getString(R.string.of)+ " "+ photos.length);
-  awesomePager=(ViewPager)findViewById(R.id.awesomepager);
-  awesomePager.setPageMargin(MizLib.convertDpToPixels(getApplicationContext(),16));
-  awesomePager.setAdapter(new ActorPhotosAdapter(getSupportFragmentManager()));
-  awesomePager.setOnPageChangeListener(new OnPageChangeListener(){
-    @Override public void onPageScrollStateChanged(    int arg0){
-    }
-    @Override public void onPageScrolled(    int arg0,    float arg1,    int arg2){
-    }
+  mPhotos=getIntent().getStringArrayExtra("photos");
+  setTitle((getIntent().getIntExtra("selectedIndex",0) + 1) + " " + getString(R.string.of)+ " "+ mPhotos.length);
+  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
+  mViewPager.setPageMargin(MizLib.convertDpToPixels(getApplicationContext(),16));
+  mViewPager.setAdapter(new ActorPhotosAdapter(getSupportFragmentManager()));
+  mViewPager.setOnPageChangeListener(new SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int arg0){
-      getActionBar().setSubtitle((arg0 + 1) + " " + getString(R.string.of)+ " "+ photos.length);
+      setTitle((arg0 + 1) + " " + getString(R.string.of)+ " "+ mPhotos.length);
     }
   }
 );
-  awesomePager.setCurrentItem(getIntent().getIntExtra("selectedIndex",0));
+  mViewPager.setCurrentItem(getIntent().getIntExtra("selectedIndex",0));
   View decorView=getWindow().getDecorView();
   decorView.setOnSystemUiVisibilityChangeListener(new OnSystemUiVisibilityChangeListener(){
     @Override public void onSystemUiVisibilityChange(    int visibility){
-      if ((visibility & View.SYSTEM_UI_FLAG_VISIBLE) == 0) {
-        getActionBar().show();
-        mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,isFullscreen() ? MizLib.getActionBarHeight(getApplicationContext()) : MizLib.getActionBarAndStatusBarHeight(getApplicationContext())));
+      if (visibility == 0) {
+        mHandler.postDelayed(mHideSystemUiRunnable,3000);
       }
     }
   }

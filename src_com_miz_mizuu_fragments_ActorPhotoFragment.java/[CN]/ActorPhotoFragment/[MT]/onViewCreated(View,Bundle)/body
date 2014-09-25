@@ -15,14 +15,7 @@
   img.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
       if (isAdded()) {
-        ActionBar ab=getActivity().getActionBar();
-        mBus.post(Boolean.valueOf(!ab.isShowing()));
-        if (ab.isShowing()) {
-          ab.hide();
-        }
- else {
-          ab.show();
-        }
+        mBus.post(new Object());
       }
     }
   }

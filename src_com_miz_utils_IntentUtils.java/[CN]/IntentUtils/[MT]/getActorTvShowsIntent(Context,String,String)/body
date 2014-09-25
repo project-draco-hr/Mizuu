@@ -1,0 +1,6 @@
+{
+  Intent actorTvShowIntent=new Intent(context,ActorTvShows.class);
+  actorTvShowIntent.putExtra("actorName",actorName);
+  actorTvShowIntent.putExtra("actorId",actorId);
+  return actorTvShowIntent;
+}

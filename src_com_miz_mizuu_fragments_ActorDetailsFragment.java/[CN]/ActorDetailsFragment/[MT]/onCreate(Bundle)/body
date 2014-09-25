@@ -1,0 +1,9 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  mContext=getActivity();
+  mActionBar=getActivity().getActionBar();
+  mActorId=getArguments().getString("actorId");
+  mPicasso=MizuuApplication.getPicassoDetailsView(mContext);
+  mMedium=MizuuApplication.getOrCreateTypeface(mContext,"Roboto-Medium.ttf");
+}

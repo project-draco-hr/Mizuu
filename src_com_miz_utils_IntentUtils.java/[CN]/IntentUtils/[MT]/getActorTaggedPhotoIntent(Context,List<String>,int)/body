@@ -1,0 +1,9 @@
+{
+  String[] array=new String[photos.size()];
+  for (int i=0; i < photos.size(); i++)   array[i]=photos.get(i).replace(MizLib.getBackdropThumbUrlSize(context),"original");
+  Intent intent=new Intent(context,ImageViewer.class);
+  intent.putExtra("photos",array);
+  intent.putExtra("portraitPhotos",false);
+  intent.putExtra("selectedIndex",selectedIndex);
+  return intent;
+}

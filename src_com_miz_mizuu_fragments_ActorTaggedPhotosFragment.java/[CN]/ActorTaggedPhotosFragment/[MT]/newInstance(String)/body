@@ -1,0 +1,7 @@
+{
+  ActorTaggedPhotosFragment pageFragment=new ActorTaggedPhotosFragment();
+  Bundle bundle=new Bundle();
+  bundle.putString("actorId",actorId);
+  pageFragment.setArguments(bundle);
+  return pageFragment;
+}

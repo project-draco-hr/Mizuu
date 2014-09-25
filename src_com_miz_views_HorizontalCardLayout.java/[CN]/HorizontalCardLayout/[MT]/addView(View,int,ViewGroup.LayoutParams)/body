@@ -1,7 +1,7 @@
 {
   if (mCardContent != null) {
     mCardContent.addView(child,index,params);
-    setProgressBarVisibility(false);
+    if (mProgressBar.getVisibility() == VISIBLE)     setProgressBarVisibility(false);
   }
  else {
     super.addView(child,index,params);

@@ -1,11 +1,10 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
-  mDatabase=MizuuApplication.getTvDbAdapter();
+  mContext=getActivity();
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
-  json=getArguments().getString("json");
-  baseUrl=getArguments().getString("baseUrl");
+  mActorId=getArguments().getString("actorId");
 }

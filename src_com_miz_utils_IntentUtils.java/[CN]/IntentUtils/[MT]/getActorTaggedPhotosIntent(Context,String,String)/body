@@ -1,0 +1,6 @@
+{
+  Intent actorTaggedPhotosIntent=new Intent(context,ActorTaggedPhotos.class);
+  actorTaggedPhotosIntent.putExtra("actorName",actorName);
+  actorTaggedPhotosIntent.putExtra("actorId",actorId);
+  return actorTaggedPhotosIntent;
+}

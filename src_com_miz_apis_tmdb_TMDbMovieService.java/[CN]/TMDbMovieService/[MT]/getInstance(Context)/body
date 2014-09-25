@@ -1,0 +1,4 @@
+{
+  if (mService == null)   mService=new TMDbMovieService(context);
+  return mService;
+}

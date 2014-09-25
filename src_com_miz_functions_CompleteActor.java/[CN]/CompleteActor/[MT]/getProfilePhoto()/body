@@ -1,0 +1,4 @@
+{
+  if (TextUtils.isEmpty(mProfilePhoto))   return null;
+  return mProfilePhoto;
+}

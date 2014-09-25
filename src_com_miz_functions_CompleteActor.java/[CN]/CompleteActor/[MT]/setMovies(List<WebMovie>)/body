@@ -1,0 +1,4 @@
+{
+  mMovies=movies;
+  Collections.sort(mMovies,MizLib.getWebMovieDateComparator());
+}

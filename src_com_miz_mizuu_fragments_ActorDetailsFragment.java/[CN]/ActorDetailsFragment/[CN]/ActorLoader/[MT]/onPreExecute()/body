@@ -1,0 +1,3 @@
+{
+  mProgressLayout.setVisibility(View.VISIBLE);
+}

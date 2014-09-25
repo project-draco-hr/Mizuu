@@ -1,0 +1,11 @@
+{
+  View v=LayoutInflater.from(context).inflate(R.layout.horizontal_grid_item_small_landscape_no_text,null);
+  picasso.load(url).placeholder(R.color.card_background_dark).error(R.drawable.noactor).config(MizuuApplication.getBitmapConfig()).into(((ImageView)v.findViewById(R.id.cover)));
+  v.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      context.startActivity(IntentUtils.getActorTaggedPhotoIntent(context,items,index));
+    }
+  }
+);
+  return v;
+}

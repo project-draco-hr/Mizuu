@@ -1,0 +1,63 @@
+{
+  super.onViewCreated(view,savedInstanceState);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_width);
+  mImageThumbBackdropSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_backdrop_width);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  mProgressLayout=view.findViewById(R.id.progress_layout);
+  mDetailsLayout=view.findViewById(R.id.details_area);
+  mName=(TextView)view.findViewById(R.id.actor_name);
+  mName.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"RobotoCondensed-Regular.ttf"));
+  mPlaceOfBirth=(TextView)view.findViewById(R.id.place_of_birth);
+  mPlaceOfBirth.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"Roboto-LightItalic.ttf"));
+  mBirthday=(TextView)view.findViewById(R.id.actor_birthday);
+  mBirthday.setTypeface(mMedium);
+  mKnownCredits=(TextView)view.findViewById(R.id.actor_known_credits);
+  mKnownCredits.setTypeface(mMedium);
+  mBiography=(TextView)view.findViewById(R.id.actor_biography);
+  mBiography.setBackgroundResource(R.drawable.selectable_background);
+  mBiography.setMaxLines(mContext.getResources().getInteger(R.integer.show_details_max_lines));
+  mBiography.setTag(true);
+  mBiography.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      if (((Boolean)mBiography.getTag())) {
+        mBiography.setMaxLines(1000);
+        mBiography.setTag(false);
+      }
+ else {
+        mBiography.setMaxLines(mContext.getResources().getInteger(R.integer.show_details_max_lines));
+        mBiography.setTag(true);
+      }
+    }
+  }
+);
+  mBiography.setEllipsize(TextUtils.TruncateAt.END);
+  mBiography.setFocusable(true);
+  mPhoto=(ImageView)view.findViewById(R.id.actor_image);
+  mBackdrop=(ImageView)view.findViewById(R.id.imageBackground);
+  mMovieCards=(HorizontalCardLayout)view.findViewById(R.id.actor_movie_cards);
+  mTvCards=(HorizontalCardLayout)view.findViewById(R.id.actor_tv_cards);
+  mPhotoCards=(HorizontalCardLayout)view.findViewById(R.id.actor_photo_cards);
+  mTaggedPhotoCards=(HorizontalCardLayout)view.findViewById(R.id.actor_tagged_photo_cards);
+  mActionBarOverlay=(ImageView)view.findViewById(R.id.actionbar_overlay);
+  mActionBarOverlay.setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,MizuuApplication.isFullscreen(mContext) ? MizLib.getActionBarHeight(mContext) : MizLib.getActionBarAndStatusBarHeight(mContext)));
+  if (MizLib.isPortrait(mContext)) {
+    final boolean fullscreen=MizuuApplication.isFullscreen(mContext);
+    final int height=fullscreen ? MizLib.getActionBarHeight(mContext) : MizLib.getActionBarAndStatusBarHeight(mContext);
+    ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.scrollView1);
+    sv.setOnScrollChangedListener(new OnScrollChangedListener(){
+      @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
+        final int headerHeight=mPhoto.getHeight() - height;
+        final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
+        final int newAlpha=(int)(ratio * 255);
+        if (t <= headerHeight * 1.2) {
+          ViewUtils.updateActionBarDrawable(mContext,mActionBarOverlay,mActionBarBackgroundDrawable,mActionBar,mActor.getName(),newAlpha,true,false);
+          mPhoto.setPadding(0,(int)(t / 1.5),0,0);
+        }
+      }
+    }
+);
+  }
+  ViewUtils.updateActionBarDrawable(mContext,mActionBarOverlay,mActionBarBackgroundDrawable,mActionBar,"",1,true,true);
+  if (mActor == null)   new ActorLoader(mActorId).execute();
+ else   fillViews();
+}

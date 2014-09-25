@@ -1,0 +1,4 @@
+{
+  mProgressLayout.setVisibility(View.GONE);
+  fillViews();
+}

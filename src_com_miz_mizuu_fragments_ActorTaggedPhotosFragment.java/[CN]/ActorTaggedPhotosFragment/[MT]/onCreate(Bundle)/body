@@ -1,8 +1,8 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
-  json=getArguments().getString("json");
-  baseUrl=getArguments().getString("baseUrl");
+  mContext=getActivity();
   mPicasso=MizuuApplication.getPicasso(getActivity());
   mConfig=MizuuApplication.getBitmapConfig();
+  mActorId=getArguments().getString("actorId");
 }

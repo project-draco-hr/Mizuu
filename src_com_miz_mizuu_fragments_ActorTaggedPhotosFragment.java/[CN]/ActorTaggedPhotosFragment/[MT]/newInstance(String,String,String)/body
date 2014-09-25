@@ -1,9 +1,0 @@
-{
-  ActorTaggedPhotosFragment pageFragment=new ActorTaggedPhotosFragment();
-  Bundle bundle=new Bundle();
-  bundle.putString("json",json);
-  bundle.putString("actorName",actorName);
-  bundle.putString("baseUrl",baseUrl);
-  pageFragment.setArguments(bundle);
-  return pageFragment;
-}

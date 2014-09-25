@@ -1,0 +1,18 @@
+{
+  Random rndm=new Random();
+  if (getTaggedPhotos().size() > 0) {
+    int number=rndm.nextInt(getTaggedPhotos().size());
+    if (number > 0)     number--;
+    return getTaggedPhotos().get(number);
+  }
+ else {
+    if (getPhotos().size() > 0) {
+      int number=rndm.nextInt(getPhotos().size());
+      if (number > 0)       number--;
+      return getPhotos().get(number);
+    }
+ else {
+      return null;
+    }
+  }
+}

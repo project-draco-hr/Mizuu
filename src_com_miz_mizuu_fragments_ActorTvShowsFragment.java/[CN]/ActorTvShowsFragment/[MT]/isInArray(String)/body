@@ -1,4 +1,0 @@
-{
-  for (int i=0; i < pics_sources.size(); i++)   if (id.equals(pics_sources.get(i).getId()))   return true;
-  return false;
-}

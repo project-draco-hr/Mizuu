@@ -1,0 +1,79 @@
+{
+  JSONObject json=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/person/" + actorId + "?api_key="+ mTmdbApiKey+ "&append_to_response=movie_credits,tv_credits,images,tagged_images");
+  String baseUrl=MizLib.getTmdbImageBaseUrl(mContext);
+  boolean includeAdult=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(INCLUDE_ADULT_CONTENT,false);
+  CompleteActor actor=new CompleteActor(actorId);
+  actor.setName(MizLib.getStringFromJSONObject(json,"name",""));
+  actor.setBiography(MizLib.getStringFromJSONObject(json,"biography",""));
+  actor.setBirthday(MizLib.getStringFromJSONObject(json,"birthday",""));
+  actor.setDayOfDeath(MizLib.getStringFromJSONObject(json,"deathday",""));
+  actor.setPlaceOfBirth(MizLib.getStringFromJSONObject(json,"place_of_birth",""));
+  String profilePhoto=MizLib.getStringFromJSONObject(json,"profile_path","");
+  if (!TextUtils.isEmpty(profilePhoto))   profilePhoto=baseUrl + "w500" + profilePhoto;
+  actor.setProfilePhoto(profilePhoto);
+  List<WebMovie> movies=new ArrayList<WebMovie>();
+  try {
+    JSONArray movieArray=json.getJSONObject("movie_credits").getJSONArray("cast");
+    for (int i=0; i < movieArray.length(); i++) {
+      final JSONObject thisObject=movieArray.getJSONObject(i);
+      boolean isAdult=thisObject.getBoolean("adult") | MizLib.isAdultContent(mContext,MizLib.getStringFromJSONObject(thisObject,"title","")) | MizLib.isAdultContent(mContext,MizLib.getStringFromJSONObject(thisObject,"original_title",""));
+      if (!includeAdult && isAdult)       continue;
+      WebMovie movie=new WebMovie(mContext,MizLib.getStringFromJSONObject(thisObject,"title",""),String.valueOf(thisObject.getInt("id")),baseUrl + MizLib.getImageUrlSize(mContext) + MizLib.getStringFromJSONObject(thisObject,"poster_path",""),MizLib.getStringFromJSONObject(thisObject,"release_date",""));
+      movies.add(movie);
+    }
+  }
+ catch (  JSONException ignored) {
+  }
+ finally {
+    actor.setMovies(movies);
+  }
+  List<WebMovie> shows=new ArrayList<WebMovie>();
+  try {
+    JSONArray showArray=json.getJSONObject("tv_credits").getJSONArray("cast");
+    for (int i=0; i < showArray.length(); i++) {
+      final JSONObject thisObject=showArray.getJSONObject(i);
+      boolean isAdult=MizLib.isAdultContent(mContext,MizLib.getStringFromJSONObject(thisObject,"name","")) | MizLib.isAdultContent(mContext,MizLib.getStringFromJSONObject(thisObject,"original_name",""));
+      if (!includeAdult && isAdult)       continue;
+      WebMovie show=new WebMovie(mContext,MizLib.getStringFromJSONObject(thisObject,"name",""),String.valueOf(thisObject.getInt("id")),baseUrl + MizLib.getImageUrlSize(mContext) + MizLib.getStringFromJSONObject(thisObject,"poster_path",""),MizLib.getStringFromJSONObject(thisObject,"first_air_date",""));
+      shows.add(show);
+    }
+  }
+ catch (  JSONException ignored) {
+  }
+ finally {
+    actor.setTvShows(shows);
+  }
+  int count=0;
+  try {
+    count+=json.getJSONObject("movie_credits").getJSONArray("cast").length();
+    count+=json.getJSONObject("tv_credits").getJSONArray("cast").length();
+  }
+ catch (  JSONException ignored) {
+  }
+  actor.setKnownCreditCount(count);
+  List<String> photos=new ArrayList<String>();
+  try {
+    JSONArray photoArray=json.getJSONObject("images").getJSONArray("profiles");
+    for (int i=0; i < photoArray.length(); i++) {
+      photos.add(baseUrl + MizLib.getImageUrlSize(mContext) + photoArray.getJSONObject(i).getString("file_path"));
+    }
+  }
+ catch (  JSONException ignored) {
+  }
+ finally {
+    actor.setPhotos(photos);
+  }
+  List<String> taggedPhotos=new ArrayList<String>();
+  try {
+    JSONArray photoArray=json.getJSONObject("tagged_images").getJSONArray("results");
+    for (int i=0; i < photoArray.length(); i++) {
+      if (photoArray.getJSONObject(i).getString("image_type").equals("backdrop"))       taggedPhotos.add(baseUrl + MizLib.getBackdropThumbUrlSize(mContext) + photoArray.getJSONObject(i).getString("file_path"));
+    }
+  }
+ catch (  JSONException ignored) {
+  }
+ finally {
+    actor.setTaggedPhotos(taggedPhotos);
+  }
+  return actor;
+}

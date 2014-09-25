@@ -1,25 +1,12 @@
 {
   super.onViewCreated(v,savedInstanceState);
-  if (!MizLib.isPortrait(getActivity()))   v.findViewById(R.id.container).setBackgroundResource(MizuuApplication.getBackgroundColorResource(getActivity()));
-  if (!MizuuApplication.isFullscreen(getActivity()))   MizLib.addActionBarAndStatusBarPadding(getActivity(),v.findViewById(R.id.container));
- else   MizLib.addActionBarPadding(getActivity(),v.findViewById(R.id.container));
-  v.findViewById(R.id.progress).setVisibility(View.GONE);
-  mAdapter=new ImageAdapter(getActivity());
+  mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
   mGridView=(GridView)v.findViewById(R.id.gridView);
-  mGridView.setAdapter(mAdapter);
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      String[] photos=new String[pics_sources.size()];
-      for (int i=0; i < photos.length; i++)       photos[i]=pics_sources.get(i).replace(MizLib.getBackdropThumbUrlSize(getActivity()),"original");
-      Intent intent=new Intent();
-      intent.setClass(getActivity(),ImageViewer.class);
-      intent.putExtra("photos",photos);
-      intent.putExtra("actorName",getArguments().getString("actorName"));
-      intent.putExtra("portraitPhotos",false);
-      intent.putExtra("selectedIndex",arg2);
-      startActivity(intent);
+      startActivity(IntentUtils.getActorTaggedPhotoIntent(mContext,mActor.getTaggedPhotos(),arg2));
     }
   }
 );
-  loadData();
+  new TaggedPhotoLoader(mContext,mActorId).execute();
 }
