@@ -73,7 +73,7 @@
         if (mActorsLayout.getWidth() > 0) {
           final int numColumns=(int)Math.floor(mActorsLayout.getWidth() / (mImageThumbSize + mImageThumbSpacing));
           mImageThumbSize=(mActorsLayout.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns;
-          loadActors(numColumns);
+          mActorsLayout.loadItems(mContext,mPicasso,numColumns,mImageThumbSize,mMovie.getActors(),HorizontalCardLayout.ACTORS);
           MizLib.removeViewTreeObserver(mActorsLayout.getViewTreeObserver(),this);
         }
       }
@@ -93,7 +93,7 @@
         if (mSimilarMoviesLayout.getWidth() > 0) {
           final int numColumns=(int)Math.floor(mSimilarMoviesLayout.getWidth() / (mImageThumbSize + mImageThumbSpacing));
           mImageThumbSize=(mSimilarMoviesLayout.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns;
-          loadSimilarMovies(numColumns);
+          mSimilarMoviesLayout.loadItems(mContext,mPicasso,numColumns,mImageThumbSize,mMovie.getSimilarMovies(),HorizontalCardLayout.RELATED_MOVIES);
           MizLib.removeViewTreeObserver(mSimilarMoviesLayout.getViewTreeObserver(),this);
         }
       }

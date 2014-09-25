@@ -37,7 +37,6 @@
   mTitle.setVisibility(View.VISIBLE);
   mTitle.setText(mMovie.getTitle());
   mTitle.setTypeface(MizuuApplication.getOrCreateTypeface(mContext,"RobotoCondensed-Regular.ttf"));
-  mTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
   mPlot.setTypeface(mLight);
   mSrc.setTypeface(mLight);
   mRuntime.setTypeface(mMedium);

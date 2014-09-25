@@ -1,9 +1,11 @@
 {
-  inflater.inflate(R.menu.tmdb_details,menu);
-  if (MizLib.isTablet(mContext)) {
-    menu.findItem(R.id.share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-    menu.findItem(R.id.checkIn).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-    menu.findItem(R.id.openInBrowser).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+  if (mMovie != null) {
+    inflater.inflate(R.menu.tmdb_details,menu);
+    if (MizLib.isTablet(mContext)) {
+      menu.findItem(R.id.share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+      menu.findItem(R.id.checkIn).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+      menu.findItem(R.id.openInBrowser).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    }
+    if (!Trakt.hasTraktAccount(mContext))     menu.findItem(R.id.checkIn).setVisible(false);
   }
-  if (!Trakt.hasTraktAccount(mContext))   menu.findItem(R.id.checkIn).setVisible(false);
 }

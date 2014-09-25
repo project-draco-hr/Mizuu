@@ -3,7 +3,7 @@
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_width);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   movieDetailsLayout=MizLib.isPortrait(getActivity()) ? v.findViewById(R.id.movieDetailsLayout_portrait) : v.findViewById(R.id.movieDetailsLayout);
-  progressBar=v.findViewById(R.id.progressBar1);
+  progressBar=v.findViewById(R.id.progress_layout);
   mDetailsArea=v.findViewById(R.id.details_area);
   this.container=(FrameLayout)v.findViewById(R.id.container);
   background=(ImageView)v.findViewById(R.id.imageBackground);

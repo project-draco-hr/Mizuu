@@ -7,16 +7,7 @@
       return null;
     }
     @Override protected void onPostExecute(    Void result){
-      if (mActors.size() > 0) {
-        LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(mImageThumbSize,LayoutParams.WRAP_CONTENT);
-        lp.setMargins(0,0,mImageThumbSpacing,0);
-        for (int i=0; i < mActors.size() && i < capacity; i++) {
-          mActorsLayout.addView(ViewUtils.setupActorCard(mContext,mPicasso,mActors.get(i)),i,lp);
-        }
-      }
- else {
-        mActorsLayout.setNoActorsVisibility(true);
-      }
+      mActorsLayout.loadItems(mContext,mPicasso,capacity,mImageThumbSize,mActors,HorizontalCardLayout.ACTORS);
     }
   }
 .execute();

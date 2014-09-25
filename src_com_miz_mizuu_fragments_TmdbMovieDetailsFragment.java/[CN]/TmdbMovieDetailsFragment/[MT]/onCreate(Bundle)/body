@@ -8,7 +8,7 @@
   mLightItalic=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-LightItalic.ttf");
   mMedium=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-Medium.ttf");
   mBoldItalic=MizuuApplication.getOrCreateTypeface(getActivity(),"Roboto-BoldItalic.ttf");
-  mMovieApiService=MizuuApplication.getMovieService(getActivity());
+  mMovieApiService=TMDbMovieService.getInstance(mContext);
   movieId=getArguments().getString("movieId");
   mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
 }

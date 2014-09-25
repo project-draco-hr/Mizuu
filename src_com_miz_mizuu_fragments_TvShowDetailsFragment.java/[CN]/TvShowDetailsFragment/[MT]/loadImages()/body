@@ -1,7 +1,12 @@
 {
   mPicasso.load(thisShow.getCoverPhoto()).skipMemoryCache().error(R.drawable.loading_image).placeholder(R.drawable.loading_image).transform(new PaletteTransformation(thisShow.getCoverPhoto().getAbsolutePath(),mDetailsArea,mActorsLayout.getSeeMoreView())).into(cover);
   if (!MizLib.isPortrait(getActivity())) {
-    mPicasso.load(thisShow.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).into(background);
+    if (PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(PreferenceKeys.BLUR_BACKDROPS,false)) {
+      mPicasso.load(thisShow.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).transform(new BlurTransformation(mContext,thisShow.getBackdrop(),8)).into(background);
+    }
+ else {
+      mPicasso.load(thisShow.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).into(background);
+    }
   }
  else {
     mPicasso.load(thisShow.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(background,new Callback(){
