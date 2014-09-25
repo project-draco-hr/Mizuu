@@ -1,6 +1,6 @@
 {
   try {
-    TMDbTvShowService service=new TMDbTvShowService(mContext);
+    TMDbTvShowService service=TMDbTvShowService.getInstance(mContext);
     mActors=service.getActors(mId);
     mLoaded=true;
   }

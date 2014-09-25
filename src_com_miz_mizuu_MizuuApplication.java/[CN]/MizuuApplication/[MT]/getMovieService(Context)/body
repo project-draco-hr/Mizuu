@@ -1,3 +1,3 @@
 {
-  return new TMDbMovieService(context);
+  return TMDbMovieService.getInstance(context);
 }
