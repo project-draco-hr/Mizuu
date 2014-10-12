@@ -55,10 +55,10 @@
     @Override public boolean onActionItemClicked(    ActionMode mode,    MenuItem item){
 switch (item.getItemId()) {
 case R.id.watched:
-        changeWatchedStatus(true);
+        changeWatchedStatus(true,new HashSet<Integer>(mCheckedSeasons));
       break;
 case R.id.unwatched:
-    changeWatchedStatus(false);
+    changeWatchedStatus(false,new HashSet<Integer>(mCheckedSeasons));
   break;
 case R.id.remove:
 removeSelectedSeasons(new HashSet<Integer>(mCheckedSeasons));
@@ -72,8 +72,12 @@ mContextualActionBarEnabled=false;
 mCheckedSeasons.clear();
 }
 @Override public void onItemCheckedStateChanged(ActionMode mode,int position,long id,boolean checked){
-if (checked) mCheckedSeasons.add(mItems.get(position).getSeason());
- else mCheckedSeasons.remove(mItems.get(position).getSeason());
+if (checked) {
+mCheckedSeasons.add(mItems.get(position).getSeason());
+}
+ else {
+mCheckedSeasons.remove(mItems.get(position).getSeason());
+}
 int count=mCheckedSeasons.size();
 mode.setTitle(count + " " + getResources().getQuantityString(R.plurals.seasons_selected,count,count));
 mAdapter.notifyDataSetChanged();

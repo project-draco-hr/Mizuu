@@ -2,7 +2,7 @@
   super.onCreate(savedInstanceState);
   setContentView(R.layout.unidentified_files_layout);
   mList=(ListView)findViewById(R.id.listView1);
-  mList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+  mList.setChoiceMode(ListView.CHOICE_MODE_NONE);
   mList.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
       Intent intent=new Intent(UnidentifiedMovies.this,IdentifyMovie.class);

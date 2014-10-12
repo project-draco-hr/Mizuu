@@ -2,7 +2,7 @@
   final Filepath filepath=mFilepaths.get(position);
   ViewHolder holder;
   if (convertView == null) {
-    convertView=inflater.inflate(R.layout.file_list_item,parent,false);
+    convertView=mInflater.inflate(R.layout.file_list_item,parent,false);
     holder=new ViewHolder();
     holder.name=(TextView)convertView.findViewById(R.id.text1);
     holder.size=(TextView)convertView.findViewById(R.id.size);

@@ -1,3 +1,3 @@
 {
-  return mDatabase.delete(DATABASE_TABLE,KEY_COLLECTION_ID + "='" + collectionId+ "'",null) > 0;
+  return mDatabase.delete(DATABASE_TABLE,KEY_COLLECTION_ID + " = ?",new String[]{collectionId}) > 0;
 }

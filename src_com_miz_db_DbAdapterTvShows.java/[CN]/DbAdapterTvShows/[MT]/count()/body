@@ -1,5 +1,5 @@
 {
-  Cursor c=mDatabase.query(DATABASE_TABLE,new String[]{KEY_SHOW_ID,KEY_SHOW_TITLE},"not (" + KEY_SHOW_ID + " = '"+ UNIDENTIFIED_ID+ "') and not ("+ KEY_SHOW_TITLE+ " like '%MizUnidentified%'"+ ") and not ("+ KEY_SHOW_ID+ " = ''"+ ")",null,KEY_SHOW_ID,null,null);
+  Cursor c=mDatabase.query(DATABASE_TABLE,new String[]{KEY_SHOW_ID,KEY_SHOW_TITLE},"NOT (" + KEY_SHOW_ID + " = '"+ UNIDENTIFIED_ID+ "') AND NOT ("+ KEY_SHOW_TITLE+ " LIKE '%MizUnidentified%'"+ ") AND NOT ("+ KEY_SHOW_ID+ " = ''"+ ")",null,KEY_SHOW_ID,null,null);
   int count=c.getCount();
   c.close();
   return count;

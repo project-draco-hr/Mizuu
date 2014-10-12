@@ -1,0 +1,3 @@
+{
+  return mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + " = ?",new String[]{DbAdapterTvShows.UNIDENTIFIED_ID}) > 0;
+}

@@ -1,3 +1,3 @@
 {
-  return mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ MizLib.addIndexZero(season)+ "'",null) > 0;
+  return mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + " = ? AND " + KEY_SEASON+ " = ?",new String[]{showId,MizLib.addIndexZero(season)}) > 0;
 }

@@ -1,5 +1,5 @@
 {
-  Cursor cursor=mDatabase.query(DATABASE_TABLE,SELECT_ALL,KEY_TMDB_ID + "='" + tmdbId+ "'",null,null,null,null);
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,SELECT_ALL,KEY_TMDB_ID + " = ?",new String[]{tmdbId},null,null,null);
   String collectionId="";
   if (cursor != null) {
     try {

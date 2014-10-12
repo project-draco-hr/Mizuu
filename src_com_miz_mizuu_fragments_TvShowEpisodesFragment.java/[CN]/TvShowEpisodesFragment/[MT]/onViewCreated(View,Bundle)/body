@@ -59,10 +59,10 @@
     @Override public boolean onActionItemClicked(    ActionMode mode,    MenuItem item){
 switch (item.getItemId()) {
 case R.id.watched:
-        changeWatchedStatus(true);
+        changeWatchedStatus(true,new HashSet<Integer>(mCheckedEpisodes));
       break;
 case R.id.unwatched:
-    changeWatchedStatus(false);
+    changeWatchedStatus(false,new HashSet<Integer>(mCheckedEpisodes));
   break;
 case R.id.remove:
 removeSelectedEpisodes(new HashSet<Integer>(mCheckedEpisodes));

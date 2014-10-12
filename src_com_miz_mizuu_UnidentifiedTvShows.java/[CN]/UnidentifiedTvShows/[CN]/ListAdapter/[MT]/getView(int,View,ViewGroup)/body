@@ -10,7 +10,7 @@
  else {
     holder=(ViewHolder)convertView.getTag();
   }
-  holder.name.setText(mEpisodes.get(position).getTitle().substring(StringUtils.indexOfLastSeparator(mEpisodes.get(position).getTitle()),mEpisodes.get(position).getTitle().length()));
-  holder.size.setText(mEpisodes.get(position).getFilepaths().get(0).getFullFilepath());
+  holder.name.setText(mFilepaths.get(position).getFilepathName());
+  holder.size.setText(mFilepaths.get(position).getFilepath());
   return convertView;
 }

@@ -1,3 +1,3 @@
 {
-  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + "='" + showId+ "'",null,null,null,null);
+  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + " = ?",new String[]{showId},null,null,null);
 }

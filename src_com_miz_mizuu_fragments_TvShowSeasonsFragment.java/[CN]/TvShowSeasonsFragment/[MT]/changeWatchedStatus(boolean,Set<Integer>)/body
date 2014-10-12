@@ -1,0 +1,8 @@
+{
+  DbAdapterTvShowEpisodes db=MizuuApplication.getTvEpisodeDbAdapter();
+  for (  int season : selectedSeasons) {
+    db.setSeasonWatchStatus(mShowId,MizLib.addIndexZero(season),watched);
+  }
+  if (MizLib.isOnline(mContext) && Trakt.hasTraktAccount(mContext))   syncWatchedStatusWithTrakt(selectedSeasons,watched);
+  loadSeasons(true);
+}

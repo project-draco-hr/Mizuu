@@ -7,5 +7,5 @@
   cv.put(KEY_SHOW_CERTIFICATION,certification);
   cv.put(KEY_SHOW_RUNTIME,runtime);
   cv.put(KEY_SHOW_GENRES,genres);
-  return mDatabase.update(DATABASE_TABLE,cv,KEY_SHOW_ID + "='" + showId+ "'",null) > 0;
+  return mDatabase.update(DATABASE_TABLE,cv,KEY_SHOW_ID + " = ?",new String[]{showId}) > 0;
 }

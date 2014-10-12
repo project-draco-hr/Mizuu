@@ -1,5 +1,5 @@
 {
-  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ season+ "' AND "+ KEY_EPISODE+ "='"+ episode+ "'",null,null,null,null);
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + " = ? AND " + KEY_SEASON+ " = ? AND "+ KEY_EPISODE+ " = ?",new String[]{showId,season,episode},null,null,null);
   boolean result=false;
   if (cursor != null) {
     try {

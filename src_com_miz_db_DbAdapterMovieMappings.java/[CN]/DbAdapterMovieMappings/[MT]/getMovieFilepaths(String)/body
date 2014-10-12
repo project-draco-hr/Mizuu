@@ -1,5 +1,5 @@
 {
-  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_TMDB_ID + "='" + tmdbId+ "'",null,null,null,null);
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_TMDB_ID + " = ?",new String[]{tmdbId},null,null,null);
   ArrayList<String> paths=new ArrayList<String>();
   if (cursor != null) {
     try {

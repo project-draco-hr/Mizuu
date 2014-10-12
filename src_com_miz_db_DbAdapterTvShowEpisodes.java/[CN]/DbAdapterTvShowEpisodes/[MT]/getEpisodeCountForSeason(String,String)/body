@@ -1,5 +1,5 @@
 {
-  Cursor c=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ season+ "' AND NOT("+ KEY_EPISODE_TITLE+ " = 'MIZ_REMOVED_EPISODE')",null,KEY_SEASON + "," + KEY_EPISODE,null,KEY_SEASON + " asc, " + KEY_EPISODE+ " asc");
+  Cursor c=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + " = ? AND " + KEY_SEASON+ " = ? AND NOT("+ KEY_EPISODE_TITLE+ " = 'MIZ_REMOVED_EPISODE')",new String[]{showId,season},KEY_SEASON + "," + KEY_EPISODE,null,KEY_SEASON + " asc, " + KEY_EPISODE+ " asc");
   int count=c.getCount();
   c.close();
   return count;

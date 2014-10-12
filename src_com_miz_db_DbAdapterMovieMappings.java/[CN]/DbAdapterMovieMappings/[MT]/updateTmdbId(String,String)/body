@@ -1,5 +1,5 @@
 {
   ContentValues values=new ContentValues();
   values.put(KEY_TMDB_ID,newTmdbId);
-  return mDatabase.update(DATABASE_TABLE,values,KEY_FILEPATH + "='" + filepath+ "'",null) > 0;
+  return mDatabase.update(DATABASE_TABLE,values,KEY_FILEPATH + " = ?",new String[]{filepath}) > 0;
 }

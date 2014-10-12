@@ -1,0 +1,4 @@
+{
+  String[] selectionArgs=new String[]{DbAdapterTvShows.UNIDENTIFIED_ID};
+  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + " = ?",selectionArgs,null,null,null);
+}

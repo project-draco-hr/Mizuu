@@ -35,6 +35,12 @@ browserIntent.setData(Uri.parse("http://thetvdb.com/?tab=series&id=" + thisShow.
 }
 startActivity(browserIntent);
 break;
+case R.id.share:
+Intent intent=new Intent(Intent.ACTION_SEND);
+intent.setType("text/plain");
+intent.putExtra(Intent.EXTRA_TEXT,((thisShow.getIdType() == TvShow.THETVDB) ? "http://thetvdb.com/?tab=series&id=" : "http://www.themoviedb.org/tv/") + thisShow.getIdWithoutHack());
+startActivity(intent);
+return true;
 }
 return false;
 }

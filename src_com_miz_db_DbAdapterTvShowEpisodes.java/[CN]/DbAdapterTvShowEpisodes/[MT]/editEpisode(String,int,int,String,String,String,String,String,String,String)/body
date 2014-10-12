@@ -7,5 +7,5 @@
   cv.put(KEY_EPISODE_DIRECTOR,director);
   cv.put(KEY_EPISODE_WRITER,writer);
   cv.put(KEY_EPISODE_GUESTSTARS,guestStars);
-  return mDatabase.update(DATABASE_TABLE,cv,KEY_SHOW_ID + "='" + showId+ "' AND "+ KEY_SEASON+ "='"+ MizLib.addIndexZero(season)+ "' AND "+ KEY_EPISODE+ "='"+ MizLib.addIndexZero(episode)+ "'",null) > 0;
+  return mDatabase.update(DATABASE_TABLE,cv,KEY_SHOW_ID + " = ? AND " + KEY_SEASON+ " = ? AND "+ KEY_EPISODE+ " = ?",new String[]{showId,MizLib.addIndexZero(season),MizLib.addIndexZero(episode)}) > 0;
 }

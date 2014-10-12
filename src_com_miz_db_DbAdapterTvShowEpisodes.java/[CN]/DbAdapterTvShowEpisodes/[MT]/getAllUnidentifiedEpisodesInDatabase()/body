@@ -1,3 +1,0 @@
-{
-  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + " = '" + DbAdapterTvShows.UNIDENTIFIED_ID+ "'",null,null,null,null);
-}

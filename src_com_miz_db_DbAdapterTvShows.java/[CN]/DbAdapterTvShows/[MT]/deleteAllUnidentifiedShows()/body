@@ -1,3 +1,0 @@
-{
-  return mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + "= '" + UNIDENTIFIED_ID+ "'",null) > 0;
-}

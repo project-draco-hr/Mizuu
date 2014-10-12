@@ -8,5 +8,5 @@
   cv.put(KEY_CERTIFICATION,certification);
   cv.put(KEY_RUNTIME,runtime);
   cv.put(KEY_GENRES,genres);
-  return mDatabase.update(DATABASE_TABLE,cv,KEY_TMDB_ID + "='" + movieId+ "'",null) > 0;
+  return mDatabase.update(DATABASE_TABLE,cv,KEY_TMDB_ID + " = ?",new String[]{movieId}) > 0;
 }

@@ -2,18 +2,11 @@
 switch (mViewPager.getCurrentItem()) {
 case 0:
     getMenuInflater().inflate(R.menu.tv_show_details,menu);
-  try {
-    if (thisShow.isFavorite()) {
-      menu.findItem(R.id.show_fav).setIcon(R.drawable.fav);
-      menu.findItem(R.id.show_fav).setTitle(R.string.menuFavouriteTitleRemove);
-    }
- else {
-      menu.findItem(R.id.show_fav).setIcon(R.drawable.ic_action_star_0);
-      menu.findItem(R.id.show_fav).setTitle(R.string.menuFavouriteTitle);
-    }
-  }
- catch (  Exception e) {
-  }
+  if (MizLib.isTablet(this))   menu.findItem(R.id.share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+boolean favorite=false;
+if (thisShow != null) favorite=thisShow.isFavorite();
+menu.findItem(R.id.show_fav).setIcon(favorite ? R.drawable.fav : R.drawable.ic_action_star_0);
+menu.findItem(R.id.show_fav).setTitle(favorite ? R.string.menuFavouriteTitleRemove : R.string.menuFavouriteTitle);
 break;
 case 1:
 getMenuInflater().inflate(R.menu.seasons_tab,menu);

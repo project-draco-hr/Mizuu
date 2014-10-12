@@ -3,7 +3,7 @@
   ColumnIndexCache cache=new ColumnIndexCache();
   Cursor c=null;
   try {
-    c=mDatabase.query(DATABASE_TABLE,new String[]{KEY_SHOW_ID,KEY_EPISODE_TITLE,KEY_SEASON,KEY_HAS_WATCHED},KEY_SHOW_ID + "='" + showId+ "' AND NOT("+ KEY_EPISODE_TITLE+ " = 'MIZ_REMOVED_EPISODE')",null,KEY_SEASON + "," + KEY_EPISODE,null,KEY_SEASON + " asc");
+    c=mDatabase.query(DATABASE_TABLE,new String[]{KEY_SHOW_ID,KEY_EPISODE_TITLE,KEY_SEASON,KEY_HAS_WATCHED},KEY_SHOW_ID + " = ? AND NOT(" + KEY_EPISODE_TITLE+ " = 'MIZ_REMOVED_EPISODE')",new String[]{showId},KEY_SEASON + "," + KEY_EPISODE,null,KEY_SEASON + " asc");
     while (c.moveToNext()) {
       String season=c.getString(cache.getColumnIndex(c,KEY_SEASON));
       EpisodeCounter counter=results.get(season);

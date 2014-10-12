@@ -1,5 +1,5 @@
 {
   ContentValues values=new ContentValues();
   values.put(column,value);
-  return mDatabase.update(DATABASE_TABLE,values,KEY_TMDB_ID + "='" + tmdbId+ "'",null) > 0;
+  return mDatabase.update(DATABASE_TABLE,values,KEY_TMDB_ID + " = ?",new String[]{tmdbId}) > 0;
 }

@@ -4,7 +4,7 @@
   Cursor cursor=null;
   try {
     String seasonWithIndex=MizLib.addIndexZero(season);
-    cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + "='" + showId+ "' and "+ KEY_SEASON+ "='"+ seasonWithIndex+ "'",null,KEY_EPISODE,null,KEY_EPISODE + " asc");
+    cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + " = ? and " + KEY_SEASON+ " = ?",new String[]{showId,seasonWithIndex},KEY_EPISODE,null,KEY_EPISODE + " asc");
     File temp;
     while (cursor.moveToNext()) {
       temp=FileUtils.getTvShowEpisode(context,showId,cursor.getString(cache.getColumnIndex(cursor,KEY_SEASON)),cursor.getString(cache.getColumnIndex(cursor,KEY_EPISODE)));

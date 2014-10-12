@@ -1,5 +1,5 @@
 {
-  Cursor cursor=mDatabase.query(DATABASE_TABLE,new String[]{KEY_TMDB_ID,KEY_FILEPATH},KEY_TMDB_ID + "='" + tmdbId+ "'",null,null,null,null);
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,new String[]{KEY_TMDB_ID,KEY_FILEPATH},KEY_TMDB_ID + " = ?",new String[]{tmdbId},null,null,null);
   String filepath="";
   if (cursor != null) {
     try {

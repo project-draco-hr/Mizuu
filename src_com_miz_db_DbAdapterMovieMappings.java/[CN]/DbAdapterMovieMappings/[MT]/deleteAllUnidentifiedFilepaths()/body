@@ -1,0 +1,3 @@
+{
+  return mDatabase.delete(DATABASE_TABLE,KEY_TMDB_ID + " = ?",new String[]{DbAdapterMovies.UNIDENTIFIED_ID}) > 0;
+}

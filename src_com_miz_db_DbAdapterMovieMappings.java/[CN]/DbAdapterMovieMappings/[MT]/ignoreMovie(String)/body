@@ -1,5 +1,5 @@
 {
   ContentValues ignore=new ContentValues();
   ignore.put(KEY_IGNORED,1);
-  return mDatabase.update(DATABASE_TABLE,ignore,KEY_TMDB_ID + "='" + tmdbId+ "'",null) > 0;
+  return mDatabase.update(DATABASE_TABLE,ignore,KEY_TMDB_ID + " = ?",new String[]{tmdbId}) > 0;
 }
