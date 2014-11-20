@@ -15,7 +15,7 @@
   mBuilder.setOngoing(true);
   mBuilder.setOnlyAlertOnce(true);
   mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_sync_white_24dp));
-  mBuilder.addAction(R.drawable.ic_action_discard,getString(android.R.string.cancel),contentIntent);
+  mBuilder.addAction(R.drawable.ic_close_white_24dp,getString(android.R.string.cancel),contentIntent);
   Notification updateNotification=mBuilder.build();
   mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
   mNotificationManager.notify(NOTIFICATION_ID,updateNotification);

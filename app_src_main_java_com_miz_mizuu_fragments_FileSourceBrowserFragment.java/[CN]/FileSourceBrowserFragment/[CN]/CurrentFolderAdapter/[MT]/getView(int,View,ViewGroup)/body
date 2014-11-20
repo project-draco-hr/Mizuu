@@ -20,13 +20,13 @@
     final BrowserFileObject browser=mItems.get(position - 1);
     holder.name.setText(browser.getName());
     if (browser.isDirectory()) {
-      holder.icon.setImageResource(R.drawable.folder);
+      holder.icon.setImageResource(R.drawable.ic_folder_open_white_24dp);
       holder.size.setText("");
       holder.size.setVisibility(View.GONE);
     }
  else {
-      if (MizLib.isVideoFile(browser.getName()))       holder.icon.setImageResource(R.drawable.ic_action_movie);
- else       if (MizLib.isSubtitleFile(browser.getName()))       holder.icon.setImageResource(R.drawable.ic_action_subtitles);
+      if (MizLib.isVideoFile(browser.getName()))       holder.icon.setImageResource(R.drawable.ic_movie_white_24dp);
+ else       if (MizLib.isSubtitleFile(browser.getName()))       holder.icon.setImageResource(R.drawable.ic_subtitles_white_24dp);
  else       holder.icon.setImageResource(R.drawable.ic_insert_drive_file_white_24dp);
       holder.size.setText(MizLib.filesizeToString(browser.getSize()));
       holder.size.setVisibility(View.VISIBLE);

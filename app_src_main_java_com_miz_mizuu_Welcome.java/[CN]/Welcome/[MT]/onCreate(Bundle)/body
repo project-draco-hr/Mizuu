@@ -53,7 +53,7 @@ break;
 }
 i.setClass(getApplicationContext(),Main.class);
 startActivity(i);
-overridePendingTransition(R.anim.mainfadein,R.anim.splashfadeout);
+overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
 }
 }
 }

@@ -7,7 +7,7 @@
     holder.size=(TextView)convertView.findViewById(R.id.size);
     holder.size.setVisibility(View.GONE);
     holder.icon=(ImageView)convertView.findViewById(R.id.icon);
-    holder.icon.setImageResource(R.drawable.folder);
+    holder.icon.setImageResource(R.drawable.ic_folder_open_white_24dp);
     convertView.setTag(holder);
   }
  else {
