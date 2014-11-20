@@ -1,4 +1,0 @@
-{
-  getActionBar().setTitle(R.string.app_name);
-  menu.clear();
-}

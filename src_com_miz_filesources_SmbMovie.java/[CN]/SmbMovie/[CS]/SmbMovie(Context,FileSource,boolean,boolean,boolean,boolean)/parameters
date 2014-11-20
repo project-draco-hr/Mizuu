@@ -1,6 +1,0 @@
-Context context
-FileSource fileSource
-boolean ignoreRemovedFiles
-boolean subFolderSearch
-boolean clearLibrary
-boolean disableEthernetWiFiCheck

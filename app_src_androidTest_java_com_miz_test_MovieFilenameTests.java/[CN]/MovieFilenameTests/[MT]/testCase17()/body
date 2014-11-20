@@ -1,0 +1,10 @@
+{
+  MovieStructure ms=new MovieStructure("/G.I. Joe Retaliation (2013).mkv");
+  assertEquals("",ms.getParentFolderName());
+  assertEquals("G.I. Joe Retaliation (2013).mkv",ms.getFilename());
+  assertEquals(false,ms.hasImdbId());
+  assertEquals("",ms.getDecryptedParentFolderName());
+  assertEquals("GI Joe Retaliation",ms.getDecryptedFilename());
+  assertEquals(true,ms.hasReleaseYear());
+  assertEquals(2013,ms.getReleaseYear());
+}

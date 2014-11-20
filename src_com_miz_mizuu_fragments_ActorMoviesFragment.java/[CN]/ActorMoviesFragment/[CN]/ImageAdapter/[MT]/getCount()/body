@@ -1,3 +1,0 @@
-{
-  return mActor.getMovies().size();
-}

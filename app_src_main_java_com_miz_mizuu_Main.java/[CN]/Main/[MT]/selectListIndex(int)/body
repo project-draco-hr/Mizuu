@@ -1,0 +1,6 @@
+{
+  if (mMenuItems.get(index).getType() == MenuItem.SECTION) {
+    selectedIndex=mMenuItems.get(index).getFragment();
+    mDrawerList.setItemChecked(index,true);
+  }
+}

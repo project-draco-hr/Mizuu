@@ -1,0 +1,8 @@
+{
+  MovieDatabaseUtils.deleteAllMovies(mContext);
+  assertEquals(0,db.count());
+  DbAdapterCollections dbCollections=MizuuApplication.getCollectionsAdapter();
+  assertEquals(0,dbCollections.count());
+  DbAdapterMovieMappings dbMovieMappings=MizuuApplication.getMovieMappingAdapter();
+  assertEquals(0,dbMovieMappings.count());
+}

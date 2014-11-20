@@ -1,0 +1,5 @@
+Context context
+View layout
+ImageView background
+ObservableScrollView scrollView
+ViewTreeObserver.OnGlobalLayoutListener listener

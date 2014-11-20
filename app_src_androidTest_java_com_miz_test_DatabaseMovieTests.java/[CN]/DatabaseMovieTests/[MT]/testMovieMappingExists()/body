@@ -1,0 +1,10 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  createTwoTestMovies(db);
+  assertEquals(2,db.count());
+  DbAdapterMovieMappings dbMovieMappings=MizuuApplication.getMovieMappingAdapter();
+  assertEquals(false,dbMovieMappings.exists("1234"));
+  dbMovieMappings.createFilepathMapping("/test/lulz.mkv","1234");
+  assertEquals(true,dbMovieMappings.exists("1234"));
+}

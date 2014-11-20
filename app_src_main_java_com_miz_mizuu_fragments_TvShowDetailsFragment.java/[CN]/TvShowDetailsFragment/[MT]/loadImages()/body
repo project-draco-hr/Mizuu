@@ -1,0 +1,49 @@
+{
+  mPicasso.load(thisShow.getCoverPhoto()).error(R.drawable.loading_image).placeholder(R.drawable.loading_image).into(cover,new Callback(){
+    @Override public void onSuccess(){
+      if (mPaletteLoader == null) {
+        mPaletteLoader=new PaletteLoader(mPicasso,Uri.parse(thisShow.getCoverPhoto().toString()),new PaletteLoader.OnPaletteLoadedCallback(){
+          @Override public void onPaletteLoaded(          int swatchColor){
+            mToolbarColor=swatchColor;
+          }
+        }
+);
+        mPaletteLoader.addView(mDetailsArea);
+        mPaletteLoader.addView(mActorsLayout.getSeeMoreView());
+        mPaletteLoader.addView(mSeasonsLayout.getSeeMoreView());
+        mPaletteLoader.setFab(mFab);
+        mPaletteLoader.execute();
+      }
+ else {
+        mPaletteLoader.clearViews();
+        mPaletteLoader.addView(mDetailsArea);
+        mPaletteLoader.addView(mActorsLayout.getSeeMoreView());
+        mPaletteLoader.addView(mSeasonsLayout.getSeeMoreView());
+        mPaletteLoader.setFab(mFab);
+        mPaletteLoader.colorViews();
+      }
+    }
+    @Override public void onError(){
+    }
+  }
+);
+  if (!MizLib.isPortrait(getActivity())) {
+    if (PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(PreferenceKeys.BLUR_BACKDROPS,false)) {
+      mPicasso.load(thisShow.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).transform(new BlurTransformation(mContext,thisShow.getBackdrop(),8)).into(background);
+    }
+ else {
+      mPicasso.load(thisShow.getBackdrop()).skipMemoryCache().error(R.drawable.bg).placeholder(R.drawable.bg).into(background);
+    }
+  }
+ else {
+    mPicasso.load(thisShow.getBackdrop()).skipMemoryCache().placeholder(R.drawable.bg).into(background,new Callback(){
+      @Override public void onError(){
+        if (!isAdded())         return;
+        mPicasso.load(thisShow.getThumbnail()).skipMemoryCache().placeholder(R.drawable.bg).error(R.drawable.bg).into(background);
+      }
+      @Override public void onSuccess(){
+      }
+    }
+);
+  }
+}

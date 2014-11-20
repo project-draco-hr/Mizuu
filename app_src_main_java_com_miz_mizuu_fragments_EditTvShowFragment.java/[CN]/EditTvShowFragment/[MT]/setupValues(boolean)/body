@@ -1,0 +1,53 @@
+{
+  if (resetTextFields) {
+    mTitle.setText(mShow.getTitle());
+    mTitle.setTypeface(TypefaceUtils.getRobotoBold(getActivity()));
+    mTitle.setSelection(mShow.getTitle().length());
+    if (!mShow.getDescription().equals(getString(R.string.stringNoPlot)))     mDescription.setText(mShow.getDescription());
+    mGenres.setText(mShow.getGenres());
+  }
+  mRuntime.setText(MizLib.getPrettyRuntime(getActivity(),MizLib.getInteger(mShow.getRuntime())));
+  mRuntime.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      showRuntimeDialog(MizLib.getInteger(mShow.getRuntime()));
+    }
+  }
+);
+  if (!mShow.getRating().equals("0.0")) {
+    try {
+      int rating=(int)(Double.parseDouble(mShow.getRating()) * 10);
+      mRating.setText(rating + " %");
+    }
+ catch (    NumberFormatException e) {
+      mRating.setText(mShow.getRating());
+    }
+  }
+ else {
+    mRating.setText(R.string.stringNA);
+  }
+  mRating.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      showRatingDialog(mShow.getRawRating());
+    }
+  }
+);
+  mReleaseDate.setText(MizLib.getPrettyDatePrecise(getActivity(),mShow.getFirstAirdate()));
+  mReleaseDate.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      showDatePickerDialog(mShow.getFirstAirdate());
+    }
+  }
+);
+  if (!TextUtils.isEmpty(mShow.getCertification())) {
+    mCertification.setText(mShow.getCertification());
+  }
+ else {
+    mCertification.setText(R.string.stringNA);
+  }
+  mCertification.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      showCertificationDialog();
+    }
+  }
+);
+}

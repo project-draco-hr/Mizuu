@@ -1,0 +1,8 @@
+{
+  mMovie=mMovieApiService.getCompleteMovie(mMovie.getId(),"en");
+  for (int i=0; i < mMovie.getSimilarMovies().size(); i++) {
+    String id=mMovie.getSimilarMovies().get(i).getId();
+    mMovie.getSimilarMovies().get(i).setInLibrary(MizuuApplication.getMovieAdapter().movieExists(id));
+  }
+  return null;
+}

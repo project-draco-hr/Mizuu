@@ -1,0 +1,23 @@
+{
+switch (mLibraryType) {
+case ALL_MOVIES:
+    mMovieList.addAll(listFromCursor(mDatabase.getAllMovies()));
+  break;
+case COLLECTIONS:
+mMovieList.addAll(listFromCursor(mDatabase.getCollections()));
+break;
+case FAVORITES:
+break;
+case NEW_RELEASES:
+break;
+case UNWATCHED:
+break;
+case WATCHED:
+break;
+case WATCHLIST:
+break;
+default :
+break;
+}
+return null;
+}

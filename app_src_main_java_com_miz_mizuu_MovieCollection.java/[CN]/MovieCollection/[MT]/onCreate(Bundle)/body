@@ -1,0 +1,11 @@
+{
+  super.onCreate(savedInstanceState);
+  MizuuApplication.setupTheme(this);
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.add(R.id.content,CollectionLibraryFragment.newInstance(getIntent().getExtras().getString("collectionId"),getIntent().getExtras().getString("collectionTitle")),TAG);
+    ft.commit();
+  }
+  setTitle(null);
+}

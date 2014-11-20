@@ -1,0 +1,3 @@
+{
+  mInflater=LayoutInflater.from(((ActionBarActivity)getActivity()).getSupportActionBar().getThemedContext());
+}

@@ -1,0 +1,7 @@
+Activity context
+Picasso picasso
+int capacity
+int width
+List<?> items
+int type
+int toolbarColor

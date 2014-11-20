@@ -1,6 +1,0 @@
-{
-  spinnerItems.clear();
-  spinnerItems.add(new SpinnerItem(getString(R.string.chooserWebVideos),getString(R.string.choiceYouTube)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.chooserWebVideos),getString(R.string.choiceReddit)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.chooserWebVideos),getString(R.string.choiceTedTalks)));
-}

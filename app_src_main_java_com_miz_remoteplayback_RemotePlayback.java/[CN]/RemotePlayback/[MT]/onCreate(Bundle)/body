@@ -1,0 +1,12 @@
+{
+  super.onCreate(savedInstanceState);
+  Bundle extras=getIntent().getExtras();
+  final String videoUrl=extras.getString("videoUrl");
+  final String coverUrl=extras.getString("coverUrl");
+  final String title=extras.getString("title");
+  final String id=extras.getString("id");
+  final FragmentManager fm=getSupportFragmentManager();
+  if (fm.findFragmentById(android.R.id.content) == null) {
+    fm.beginTransaction().add(android.R.id.content,RemotePlaybackFragment.newInstance(videoUrl,coverUrl,title,id)).commit();
+  }
+}

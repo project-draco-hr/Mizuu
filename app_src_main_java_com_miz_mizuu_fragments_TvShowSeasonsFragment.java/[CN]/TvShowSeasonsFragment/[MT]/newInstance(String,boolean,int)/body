@@ -1,0 +1,9 @@
+{
+  TvShowSeasonsFragment frag=new TvShowSeasonsFragment();
+  Bundle b=new Bundle();
+  b.putString(SHOW_ID,showId);
+  b.putBoolean(DUAL_PANE,dualPane);
+  b.putInt(IntentKeys.TOOLBAR_COLOR,color);
+  frag.setArguments(b);
+  return frag;
+}

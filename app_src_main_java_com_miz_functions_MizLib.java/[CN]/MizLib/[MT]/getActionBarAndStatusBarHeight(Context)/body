@@ -1,0 +1,5 @@
+{
+  int actionBarHeight=getActionBarHeight(c);
+  int statusBarHeight=ViewUtils.getStatusBarHeight(c);
+  return hasKitKat() ? actionBarHeight + statusBarHeight : actionBarHeight;
+}

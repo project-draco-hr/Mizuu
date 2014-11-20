@@ -1,4 +1,0 @@
-{
-  if (getImageView().getDrawable() == null)   return -1;
-  return getImageView().getWidth();
-}

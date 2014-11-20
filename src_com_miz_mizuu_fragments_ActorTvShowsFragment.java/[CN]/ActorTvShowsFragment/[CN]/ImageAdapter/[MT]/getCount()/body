@@ -1,3 +1,0 @@
-{
-  return mActor.getTvShows().size();
-}

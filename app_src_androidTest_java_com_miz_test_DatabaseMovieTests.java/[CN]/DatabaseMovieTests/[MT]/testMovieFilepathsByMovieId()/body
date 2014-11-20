@@ -1,0 +1,13 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  createTestMovie(db);
+  assertEquals(1,db.count());
+  DbAdapterMovieMappings dbMovieMappings=MizuuApplication.getMovieMappingAdapter();
+  assertEquals(0,dbMovieMappings.getMovieFilepaths("1234").size());
+  dbMovieMappings.createFilepathMapping("/test/lulz.mkv","1234");
+  dbMovieMappings.createFilepathMapping("/test/lulzz.mkv","1234");
+  assertEquals(2,dbMovieMappings.getMovieFilepaths("1234").size());
+  assertEquals("/test/lulz.mkv",dbMovieMappings.getMovieFilepaths("1234").get(0));
+  assertEquals("/test/lulzz.mkv",dbMovieMappings.getMovieFilepaths("1234").get(1));
+}

@@ -1,0 +1,3 @@
+{
+  return mDatabase.delete(DATABASE_TABLE,KEY_FILEPATH + " = ?",new String[]{filepath}) > 0;
+}

@@ -1,0 +1,6 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  db.createMovie(DbAdapterMovies.UNIDENTIFIED_ID,"title","plot","tt1234567","7.9","tagline","1970-01-01","PG-13","90","http://youtube.com","genres","1","actors","collection","collectionId","1","1","123456789");
+  assertEquals(0,db.count());
+}

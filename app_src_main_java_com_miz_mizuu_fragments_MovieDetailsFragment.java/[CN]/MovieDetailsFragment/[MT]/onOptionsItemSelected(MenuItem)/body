@@ -1,0 +1,59 @@
+{
+switch (item.getItemId()) {
+case android.R.id.home:
+    if (getActivity().getIntent().getExtras().getBoolean("isFromWidget")) {
+      Intent i=new Intent(Intent.ACTION_VIEW);
+      i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+      i.putExtra("startup",String.valueOf(Main.MOVIES));
+      i.setClass(mContext,Main.class);
+      startActivity(i);
+    }
+  getActivity().finish();
+return true;
+case R.id.share:
+Intent intent=new Intent(Intent.ACTION_SEND);
+intent.setType("text/plain");
+intent.putExtra(Intent.EXTRA_TEXT,"http://www.imdb.com/title/" + mMovie.getImdbId());
+startActivity(intent);
+return true;
+case R.id.imdb:
+Intent imdbIntent=new Intent(Intent.ACTION_VIEW);
+imdbIntent.setData(Uri.parse("http://www.imdb.com/title/" + mMovie.getImdbId()));
+startActivity(imdbIntent);
+return true;
+case R.id.tmdb:
+Intent tmdbIntent=new Intent(Intent.ACTION_VIEW);
+tmdbIntent.setData(Uri.parse("http://www.themoviedb.org/movie/" + mMovie.getTmdbId()));
+startActivity(tmdbIntent);
+return true;
+case R.id.watchOffline:
+watchOffline();
+return true;
+case R.id.change_cover:
+searchCover();
+return true;
+case R.id.editMovie:
+editMovie();
+return true;
+case R.id.identify:
+identifyMovie();
+return true;
+case R.id.watched:
+watched(true);
+return true;
+case R.id.trailer:
+VideoUtils.playTrailer(getActivity(),mMovie);
+return true;
+case R.id.watch_list:
+watchList();
+return true;
+case R.id.movie_fav:
+favAction();
+return true;
+case R.id.delete_movie:
+deleteMovie();
+return true;
+default :
+return super.onOptionsItemSelected(item);
+}
+}

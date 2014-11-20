@@ -1,0 +1,126 @@
+{
+  Movie movie=new Movie();
+  movie.setId(id);
+  if (id.equals(DbAdapterMovies.UNIDENTIFIED_ID))   return movie;
+  try {
+    String baseUrl=MizLib.getTmdbImageBaseUrl(mContext);
+    JSONObject jObject=null;
+    if (TextUtils.isEmpty(json))     jObject=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/movie/" + id + "?api_key="+ mTmdbApiKey+ (language.equals("en") ? "" : "&language=" + language)+ "&append_to_response=releases,trailers,credits,images");
+ else     jObject=new JSONObject(json);
+    movie.setTitle(MizLib.getStringFromJSONObject(jObject,"title",""));
+    movie.setPlot(MizLib.getStringFromJSONObject(jObject,"overview",""));
+    movie.setImdbId(MizLib.getStringFromJSONObject(jObject,"imdb_id",""));
+    movie.setRating(MizLib.getStringFromJSONObject(jObject,"vote_average","0.0"));
+    movie.setTagline(MizLib.getStringFromJSONObject(jObject,"tagline",""));
+    movie.setReleasedate(MizLib.getStringFromJSONObject(jObject,"release_date",""));
+    movie.setRuntime(MizLib.getStringFromJSONObject(jObject,"runtime","0"));
+    if (!language.equals("en")) {
+      JSONObject englishResults=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/movie/" + id + "?api_key="+ mTmdbApiKey+ "&language=en&append_to_response=releases");
+      if (TextUtils.isEmpty(movie.getTitle()))       movie.setTitle(MizLib.getStringFromJSONObject(englishResults,"title",""));
+      if (TextUtils.isEmpty(movie.getPlot()))       movie.setPlot(MizLib.getStringFromJSONObject(englishResults,"overview",""));
+      if (TextUtils.isEmpty(movie.getTagline()))       movie.setTagline(MizLib.getStringFromJSONObject(englishResults,"tagline",""));
+      if (TextUtils.isEmpty(movie.getRating()))       movie.setRating(MizLib.getStringFromJSONObject(englishResults,"vote_average","0.0"));
+      if (TextUtils.isEmpty(movie.getReleasedate()))       movie.setReleasedate(MizLib.getStringFromJSONObject(englishResults,"release_date",""));
+      if (movie.getRuntime().equals("0"))       movie.setRuntime(MizLib.getStringFromJSONObject(englishResults,"runtime","0"));
+    }
+    try {
+      movie.setCover(baseUrl + MizLib.getImageUrlSize(mContext) + jObject.getString("poster_path"));
+    }
+ catch (    Exception e) {
+    }
+    try {
+      movie.setCollectionTitle(jObject.getJSONObject("belongs_to_collection").getString("name"));
+      movie.setCollectionId(jObject.getJSONObject("belongs_to_collection").getString("id"));
+    }
+ catch (    Exception e) {
+    }
+    if (!TextUtils.isEmpty(movie.getCollectionId()) && json == null) {
+      JSONObject collection=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/collection/" + movie.getCollectionId() + "/images?api_key="+ mTmdbApiKey);
+      JSONArray array=collection.getJSONArray("posters");
+      if (array.length() > 0)       movie.setCollectionImage(baseUrl + MizLib.getImageUrlSize(mContext) + array.getJSONObject(0).getString("file_path"));
+    }
+    try {
+      String genres="";
+      for (int i=0; i < jObject.getJSONArray("genres").length(); i++)       genres=genres + jObject.getJSONArray("genres").getJSONObject(i).getString("name") + ", ";
+      movie.setGenres(genres.substring(0,genres.length() - 2));
+    }
+ catch (    Exception e) {
+    }
+    try {
+      if (jObject.getJSONObject("trailers").getJSONArray("youtube").length() > 0) {
+        JSONArray youtube=jObject.getJSONObject("trailers").getJSONArray("youtube");
+        for (int i=0; i < youtube.length(); i++) {
+          if (youtube.getJSONObject(i).getString("type").equals("Trailer")) {
+            movie.setTrailer("http://www.youtube.com/watch?v=" + youtube.getJSONObject(i).getString("source"));
+            break;
+          }
+        }
+        if (TextUtils.isEmpty(movie.getTrailer())) {
+          movie.setTrailer("http://www.youtube.com/watch?v=" + jObject.getJSONObject("trailers").getJSONArray("youtube").getJSONObject(0).getString("source"));
+        }
+      }
+    }
+ catch (    Exception e) {
+    }
+    try {
+      for (int i=0; i < jObject.getJSONObject("releases").getJSONArray("countries").length(); i++) {
+        JSONObject jo=jObject.getJSONObject("releases").getJSONArray("countries").getJSONObject(i);
+        if (jo.getString("iso_3166_1").equalsIgnoreCase("us") || jo.getString("iso_3166_1").equalsIgnoreCase(language))         movie.setCertification(jo.getString("certification"));
+      }
+    }
+ catch (    Exception e) {
+    }
+    try {
+      StringBuilder cast=new StringBuilder();
+      JSONArray array=jObject.getJSONObject("credits").getJSONArray("cast");
+      for (int i=0; i < array.length(); i++) {
+        cast.append(array.getJSONObject(i).getString("name"));
+        cast.append("|");
+      }
+      movie.setCast(cast.toString());
+    }
+ catch (    Exception e) {
+    }
+    try {
+      JSONArray array=jObject.getJSONObject("images").getJSONArray("backdrops");
+      if (array.length() > 0) {
+        movie.setBackdrop(baseUrl + MizLib.getBackdropUrlSize(mContext) + array.getJSONObject(0).getString("file_path"));
+      }
+ else {
+        try {
+          jObject=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/movie/" + id + "/images?api_key="+ mTmdbApiKey);
+          JSONArray array2=jObject.getJSONArray("backdrops");
+          if (array2.length() > 0) {
+            movie.setBackdrop(baseUrl + MizLib.getBackdropUrlSize(mContext) + array2.getJSONObject(0).getString("file_path"));
+          }
+        }
+ catch (        Exception e) {
+        }
+      }
+    }
+ catch (    Exception e) {
+    }
+    if (getRatingsProvider().equals(mContext.getString(R.string.ratings_option_2)) && json == null) {
+      try {
+        com.miz.apis.trakt.Movie movieSummary=Trakt.getMovieSummary(mContext,id);
+        double rating=Double.valueOf(movieSummary.getRating()) / 10;
+        if (rating > 0 || movie.getRating().equals("0.0"))         movie.setRating(String.valueOf(rating));
+      }
+ catch (      Exception e) {
+      }
+    }
+    if (getRatingsProvider().equals(mContext.getString(R.string.ratings_option_3)) && json == null) {
+      try {
+        jObject=MizLib.getJSONObject(mContext,"http://www.omdbapi.com/?i=" + movie.getImdbId());
+        double rating=Double.valueOf(MizLib.getStringFromJSONObject(jObject,"imdbRating","0"));
+        if (rating > 0 || movie.getRating().equals("0.0"))         movie.setRating(String.valueOf(rating));
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+ catch (  Exception e) {
+    movie.setId(DbAdapterMovies.UNIDENTIFIED_ID);
+  }
+  return movie;
+}

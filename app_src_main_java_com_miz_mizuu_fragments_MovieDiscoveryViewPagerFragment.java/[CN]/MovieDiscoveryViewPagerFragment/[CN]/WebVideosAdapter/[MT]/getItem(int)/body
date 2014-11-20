@@ -1,0 +1,10 @@
+{
+switch (index) {
+case 0:
+    return MovieDiscoveryFragment.newInstance("upcoming",mJson,mBaseUrl);
+case 1:
+  return MovieDiscoveryFragment.newInstance("now_playing",mJson,mBaseUrl);
+default :
+return MovieDiscoveryFragment.newInstance("popular",mJson,mBaseUrl);
+}
+}

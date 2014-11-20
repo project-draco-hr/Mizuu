@@ -1,0 +1,12 @@
+{
+  int drawerWidth=0;
+  int toolbarHeight=MizLib.getActionBarHeight(context);
+  Display display=((WindowManager)context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+  Point size=new Point();
+  display.getSize(size);
+  int smallestDisplayWidth=Math.min(size.x,size.y);
+  drawerWidth=smallestDisplayWidth - toolbarHeight;
+  int maxWidth=MizLib.convertDpToPixels(context,5 * (MizLib.isTablet(context) ? 64 : 56));
+  if (drawerWidth > maxWidth)   drawerWidth=maxWidth;
+  return drawerWidth;
+}

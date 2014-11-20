@@ -1,0 +1,5 @@
+Activity activity
+Toolbar toolbar
+int alpha
+String title
+int color

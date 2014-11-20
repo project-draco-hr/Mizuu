@@ -1,4 +1,0 @@
-{
-  ContentValues updateValues=createUpdateContentValues(title,plot,imdbid,rating,tagline,release,certification,runtime,trailer,genres,actors,collectionId,date);
-  return mDatabase.update(DATABASE_TABLE,updateValues,KEY_TMDB_ID + " = ?",new String[]{tmdbid}) > 0 && MizuuApplication.getCollectionsAdapter().createCollection(collectionId,collectionId) > 0;
-}

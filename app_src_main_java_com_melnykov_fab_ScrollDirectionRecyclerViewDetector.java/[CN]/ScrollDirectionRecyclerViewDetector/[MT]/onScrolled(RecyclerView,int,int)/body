@@ -1,0 +1,12 @@
+{
+  super.onScrolled(recyclerView,dx,dy);
+  int newScrollY=estimateScrollY();
+  if (mScrollDirectionListener != null && isSameRow(getFirstVisibleItem()) && isSignificantDelta(newScrollY)) {
+    if (isScrollUp(newScrollY)) {
+      mScrollDirectionListener.onScrollUp();
+    }
+ else {
+      mScrollDirectionListener.onScrollDown();
+    }
+  }
+}

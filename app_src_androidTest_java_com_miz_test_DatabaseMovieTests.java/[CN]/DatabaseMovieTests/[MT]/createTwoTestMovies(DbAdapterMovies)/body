@@ -1,0 +1,4 @@
+{
+  db.createMovie("1234","title","plot","tt1234567","7.9","tagline","1970-01-01","PG-13","90","http://youtube.com","genres","1","actors","collection","collectionId","0","1","123456789");
+  db.createMovie("12345","title","plot","tt1234567","7.9","tagline","1970-01-01","PG-17","90","http://youtube.com","genres","1","actors","collection2","collectionId2","1","1","123456789");
+}

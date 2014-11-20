@@ -1,0 +1,65 @@
+{
+  super.onViewCreated(view,savedInstanceState);
+  mToolbar=(Toolbar)view.findViewById(R.id.toolbar);
+  mToolbar.setBackgroundResource(android.R.color.transparent);
+  ViewUtils.setProperToolbarSize(mContext,mToolbar);
+  ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_width);
+  mImageThumbBackdropSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_backdrop_width);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  mProgressLayout=view.findViewById(R.id.progress_layout);
+  mDetailsLayout=view.findViewById(R.id.details_area);
+  mName=(TextView)view.findViewById(R.id.actor_name);
+  mName.setTypeface(mCondensedRegular);
+  mPlaceOfBirth=(TextView)view.findViewById(R.id.place_of_birth);
+  mPlaceOfBirth.setTypeface(mBold);
+  mBirthday=(TextView)view.findViewById(R.id.actor_birthday);
+  mBirthday.setTypeface(mMedium);
+  mKnownCredits=(TextView)view.findViewById(R.id.actor_known_credits);
+  mKnownCredits.setTypeface(mMedium);
+  mBiography=(TextView)view.findViewById(R.id.actor_biography);
+  mBiography.setBackgroundResource(R.drawable.selectable_background);
+  mBiography.setMaxLines(mContext.getResources().getInteger(R.integer.show_details_max_lines));
+  mBiography.setTag(true);
+  mBiography.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      if (((Boolean)mBiography.getTag())) {
+        ViewUtils.animateTextViewMaxLines(mBiography,50);
+        mBiography.setTag(false);
+      }
+ else {
+        ViewUtils.animateTextViewMaxLines(mBiography,getResources().getInteger(R.integer.show_details_max_lines));
+        mBiography.setTag(true);
+      }
+    }
+  }
+);
+  mBiography.setEllipsize(TextUtils.TruncateAt.END);
+  mBiography.setFocusable(true);
+  mBiography.setTypeface(mCondensedRegular);
+  mPhoto=(ImageView)view.findViewById(R.id.actor_image);
+  mBackdrop=(ImageView)view.findViewById(R.id.imageBackground);
+  mMovieCards=(HorizontalCardLayout)view.findViewById(R.id.actor_movie_cards);
+  mTvCards=(HorizontalCardLayout)view.findViewById(R.id.actor_tv_cards);
+  mPhotoCards=(HorizontalCardLayout)view.findViewById(R.id.actor_photo_cards);
+  mTaggedPhotoCards=(HorizontalCardLayout)view.findViewById(R.id.actor_tagged_photo_cards);
+  mScrollView=(ObservableScrollView)view.findViewById(R.id.observableScrollView);
+  final boolean fullscreen=MizuuApplication.isFullscreen(mContext);
+  final int height=fullscreen ? MizLib.getActionBarHeight(mContext) : MizLib.getActionBarAndStatusBarHeight(mContext);
+  mScrollView.setOnScrollChangedListener(new OnScrollChangedListener(){
+    @Override public void onScrollChanged(    ScrollView who,    int l,    int t,    int oldl,    int oldt){
+      ViewUtils.handleOnScrollChangedEvent(getActivity(),view,mPhoto,mActor.getName(),height,t,mToolbar,mToolbarColor);
+    }
+  }
+);
+  mScrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      ViewUtils.setLayoutParamsForDetailsEmptyView(mContext,view,mBackdrop,mScrollView,this);
+    }
+  }
+);
+  ViewUtils.updateToolbarBackground(getActivity(),mToolbar,0,"",mToolbarColor);
+  if (mActor == null)   new ActorLoader(mActorId).execute();
+ else   fillViews();
+}

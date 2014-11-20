@@ -1,0 +1,10 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  mContext=getActivity();
+  mActorId=getArguments().getString("actorId");
+  mPicasso=MizuuApplication.getPicassoDetailsView(mContext);
+  mMedium=TypefaceUtils.getRobotoMedium(mContext);
+  mBold=TypefaceUtils.getRobotoBold(mContext);
+  mCondensedRegular=TypefaceUtils.getRobotoCondensedRegular(mContext);
+}

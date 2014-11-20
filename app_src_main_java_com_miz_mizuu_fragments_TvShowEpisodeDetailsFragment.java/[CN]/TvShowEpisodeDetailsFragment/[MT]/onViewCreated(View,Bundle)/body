@@ -1,0 +1,67 @@
+{
+  super.onViewCreated(view,savedInstanceState);
+  mBackdrop=(ImageView)view.findViewById(R.id.imageBackground);
+  mEpisodePhoto=(ImageView)view.findViewById(R.id.episodePhoto);
+  mDetailsArea=view.findViewById(R.id.details_area);
+  mTitle=(TextView)view.findViewById(R.id.movieTitle);
+  mSeasonEpisodeNumber=(TextView)view.findViewById(R.id.textView7);
+  mDescription=(TextView)view.findViewById(R.id.textView2);
+  mFileSource=(TextView)view.findViewById(R.id.textView3);
+  mAirDate=(TextView)view.findViewById(R.id.textReleaseDate);
+  mRating=(TextView)view.findViewById(R.id.textView12);
+  mDirector=(TextView)view.findViewById(R.id.director);
+  mWriter=(TextView)view.findViewById(R.id.writer);
+  mGuestStars=(TextView)view.findViewById(R.id.guest_stars);
+  if (MizLib.isPortrait(getActivity())) {
+    final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
+    final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());
+    ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.scrollView1);
+    sv.setOnScrollChangedListener(new OnScrollChangedListener(){
+      @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
+        final int headerHeight=mEpisodePhoto.getHeight() - height;
+        final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
+        final int newAlpha=(int)(ratio * 255);
+        if (t <= headerHeight * 1.2) {
+          mBus.post(Integer.valueOf(newAlpha));
+          mEpisodePhoto.setPadding(0,(int)(t / 1.5),0,0);
+        }
+      }
+    }
+);
+  }
+ else {
+    if (!MizuuApplication.isFullscreen(getActivity()))     MizLib.addActionBarAndStatusBarMargin(getActivity(),view.findViewById(R.id.episode_relative_layout));
+ else     MizLib.addActionBarMargin(getActivity(),view.findViewById(R.id.episode_relative_layout));
+  }
+  loadData();
+  mPicasso.load(mEpisode.getEpisodePhoto()).placeholder(R.drawable.bg).config(MizuuApplication.getBitmapConfig()).transform(new PaletteTransformation(mEpisode.getEpisodePhoto().getAbsolutePath(),mDetailsArea)).into(mEpisodePhoto,new Callback(){
+    @Override public void onError(){
+      if (!isAdded())       return;
+      int width=getActivity().getResources().getDimensionPixelSize(R.dimen.episode_details_background_overlay_width);
+      int height=getActivity().getResources().getDimensionPixelSize(R.dimen.episode_details_background_overlay_height);
+      mPicasso.load(mEpisode.getTvShowBackdrop()).placeholder(R.drawable.bg).error(R.drawable.nobackdrop).resize(width,height).config(MizuuApplication.getBitmapConfig()).into(mEpisodePhoto);
+    }
+    @Override public void onSuccess(){
+    }
+  }
+);
+  if (!MizLib.isPortrait(getActivity()))   mPicasso.load(mEpisode.getEpisodePhoto()).placeholder(R.drawable.bg).error(R.drawable.bg).transform(new BlurTransformation(getActivity().getApplicationContext(),mEpisode.getEpisodePhoto().getAbsolutePath() + "-blur",4)).into(mBackdrop,new Callback(){
+    @Override public void onError(){
+      if (!isAdded())       return;
+      mPicasso.load(mEpisode.getTvShowBackdrop()).placeholder(R.drawable.bg).error(R.drawable.nobackdrop).transform(new BlurTransformation(getActivity().getApplicationContext(),mEpisode.getTvShowBackdrop().getAbsolutePath() + "-blur",4)).into(mBackdrop,new Callback(){
+        @Override public void onError(){
+        }
+        @Override public void onSuccess(){
+          if (!isAdded())           return;
+          mBackdrop.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+        }
+      }
+);
+    }
+    @Override public void onSuccess(){
+      if (!isAdded())       return;
+      mBackdrop.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+    }
+  }
+);
+}

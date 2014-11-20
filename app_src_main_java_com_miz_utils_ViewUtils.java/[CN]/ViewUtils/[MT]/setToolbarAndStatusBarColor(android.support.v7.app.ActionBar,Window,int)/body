@@ -1,0 +1,6 @@
+{
+  if (color != 0) {
+    actionBar.setBackgroundDrawable(new ColorDrawable(color));
+    if (MizLib.hasLollipop())     window.setStatusBarColor(color);
+  }
+}

@@ -1,0 +1,18 @@
+{
+  if (requestCode == 0) {
+    if (resultCode == Activity.RESULT_OK) {
+      finish();
+    }
+  }
+ else   if (requestCode == 1) {
+    if (resultCode == Activity.RESULT_OK) {
+      Toast.makeText(this,getString(R.string.updatedTvShow),Toast.LENGTH_SHORT).show();
+      Intent intent=new Intent();
+      intent.setClass(getApplicationContext(),TvShowDetails.class);
+      intent.putExtra("showId",mShowId);
+      startActivity(intent);
+      finish();
+      return;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  final int headerHeight=(MizLib.isPortrait(activity) ? background.getHeight() : layout.findViewById(R.id.empty_view).getHeight()) - height;
+  final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
+  final int newAlpha=(int)(ratio * 255);
+  ViewUtils.updateToolbarBackground(activity,toolbar,newAlpha,title,toolbarColor);
+  if (MizLib.isPortrait(activity)) {
+    background.setPadding(0,(int)(t / 1.5),0,0);
+  }
+  if (!MizLib.isPortrait(activity)) {
+    View v=layout.findViewById(R.id.background_view);
+    View v2=layout.findViewById(R.id.background_view_more);
+    final int backgroundAlpha=(int)(ratio * 15) + 240;
+    v.setBackgroundColor(ViewUtils.adjustAlpha(Color.parseColor("#303030"),backgroundAlpha));
+    v2.setBackgroundColor(ViewUtils.adjustAlpha(Color.parseColor("#303030"),backgroundAlpha));
+  }
+}

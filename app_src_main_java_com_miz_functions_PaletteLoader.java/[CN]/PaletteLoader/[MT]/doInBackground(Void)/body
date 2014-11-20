@@ -1,0 +1,11 @@
+{
+  Palette palette=MizuuApplication.getPalette(getPaletteKey());
+  if (palette == null) {
+    try {
+      palette=Palette.generate(mPicasso.load(getImage()).get());
+    }
+ catch (    IOException e) {
+    }
+  }
+  return palette;
+}

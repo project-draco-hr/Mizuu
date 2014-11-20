@@ -1,0 +1,10 @@
+{
+  RecyclerView.LayoutManager mLayoutManager=mRecyclerView.getLayoutManager();
+  if (mLayoutManager == null)   throw new IllegalStateException("Your RecyclerView does not have a LayoutManager.");
+  if (mLayoutManager instanceof LinearLayoutManager) {
+    return ((LinearLayoutManager)mLayoutManager).findFirstVisibleItemPosition();
+  }
+ else {
+    throw new RuntimeException("Currently only LinearLayoutManager is supported for the RecyclerView.");
+  }
+}

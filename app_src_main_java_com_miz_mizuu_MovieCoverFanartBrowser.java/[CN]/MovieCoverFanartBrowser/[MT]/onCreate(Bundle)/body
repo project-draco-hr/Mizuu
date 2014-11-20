@@ -1,0 +1,26 @@
+{
+  super.onCreate(savedInstanceState);
+  MizuuApplication.setupTheme(this);
+  if (MizLib.hasLollipop())   getSupportActionBar().setElevation(0);
+  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  mTmdbId=getIntent().getExtras().getString("tmdbId");
+  mCollectionId=getIntent().getExtras().getString("collectionId");
+  mTmdbApiKey=MizLib.getTmdbApiKey(this);
+  mProgressBar=(ProgressBar)findViewById(R.id.progressbar);
+  mProgressBar.setVisibility(View.VISIBLE);
+  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
+  mViewPager.setOffscreenPageLimit(2);
+  mViewPager.setPageMargin(MizLib.convertDpToPixels(this,16));
+  mTabs=(PagerSlidingTabStrip)findViewById(R.id.tabs);
+  mTabs.setVisibility(View.GONE);
+  if (savedInstanceState != null) {
+    mJson=savedInstanceState.getString("json","");
+    mBaseUrl=savedInstanceState.getString("baseUrl");
+    mCollection=savedInstanceState.getString("collection");
+    setupActionBarStuff();
+    mViewPager.setCurrentItem(savedInstanceState.getInt("tab",0));
+  }
+ else {
+    new MovieLoader(getApplicationContext()).execute(mTmdbId,mCollectionId);
+  }
+}

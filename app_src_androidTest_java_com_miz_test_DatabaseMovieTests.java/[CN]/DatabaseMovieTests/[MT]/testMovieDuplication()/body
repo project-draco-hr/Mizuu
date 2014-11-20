@@ -1,0 +1,8 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  createTestMovie(db);
+  assertEquals(1,db.count());
+  createTestMovie(db);
+  assertEquals(1,db.count());
+}

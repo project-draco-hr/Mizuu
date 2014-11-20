@@ -1,0 +1,4 @@
+{
+  super.onResume();
+  if (mMovies.size() == 0)   forceLoaderLoad();
+}

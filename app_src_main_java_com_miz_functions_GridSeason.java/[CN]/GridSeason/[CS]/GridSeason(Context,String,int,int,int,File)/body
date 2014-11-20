@@ -1,0 +1,19 @@
+{
+  mContext=context;
+  mShowId=showId;
+  mSeason=season;
+  mEpisodeCount=episodeCount;
+  mWatchedCount=watchedCount;
+  mCover=cover;
+  mUseGridView=PreferenceManager.getDefaultSharedPreferences(mContext).getString(TVSHOWS_COLLECTION_LAYOUT,mContext.getString(R.string.gridView)).equals(mContext.getString(R.string.gridView));
+  mHeaderText=(mSeason == 0) ? context.getString(R.string.stringSpecials) : context.getString(R.string.showSeason) + " " + getSeasonZeroIndex();
+  StringBuilder sb=new StringBuilder();
+  sb.append(getEpisodeCount()).append(" ").append(mContext.getResources().getQuantityString(R.plurals.episodes,getEpisodeCount(),getEpisodeCount()));
+  if (getUnwatchedCount() > 0) {
+    if (MizLib.isXlargeTablet(mContext) || !mUseGridView)     sb.append(" (" + String.format(mContext.getString(R.string.unwatchedEpisodesCount),getUnwatchedCount()) + ")");
+ else     if (MizLib.isTablet(mContext))     sb.append(" (" + String.format(mContext.getString(R.string.leftEpisodesCount),getUnwatchedCount()) + ")");
+ else     sb.append(" (" + getUnwatchedCount() + ")");
+  }
+  mSubtitleText=sb.toString();
+  mSubtitleTextSimple=getEpisodeCount() + " " + mContext.getResources().getQuantityString(R.plurals.episodes,getEpisodeCount(),getEpisodeCount());
+}

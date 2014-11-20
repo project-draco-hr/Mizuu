@@ -1,0 +1,4 @@
+{
+  int id=context.getResources().getIdentifier("config_enableTranslucentDecor","bool","android");
+  return (id == 0) ? false : context.getResources().getBoolean(id);
+}

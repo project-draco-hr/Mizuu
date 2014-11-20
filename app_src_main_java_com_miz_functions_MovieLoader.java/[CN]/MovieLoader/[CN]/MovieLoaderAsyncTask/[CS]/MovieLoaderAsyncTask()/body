@@ -1,0 +1,3 @@
+{
+  mMovieList=new ArrayList<MediumMovie>();
+}

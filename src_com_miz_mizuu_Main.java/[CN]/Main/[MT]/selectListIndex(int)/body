@@ -1,7 +1,0 @@
-{
-  if (!(!MizLib.getRandomBackdropPath(getApplicationContext()).isEmpty() && !((!MizLib.isTablet(this) && !MizLib.isPortrait(this)) || MizLib.usesNavigationControl(getApplicationContext()))))   index--;
-  if (mMenuItems.get(index).getType() == MenuItem.SECTION) {
-    selectedIndex=mMenuItems.get(index).getFragment();
-    mDrawerList.setItemChecked(index,true);
-  }
-}

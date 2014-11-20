@@ -1,0 +1,12 @@
+{
+  ArrayList<String> files=new ArrayList<String>();
+  Cursor cursor=MizuuApplication.getTvShowEpisodeMappingsDbAdapter().getAllFilepaths(thisShow.getId());
+  while (cursor.moveToNext())   files.add(cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisodeMappings.KEY_FILEPATH)));
+  cursor.close();
+  Intent i=new Intent();
+  i.setClass(mContext,IdentifyTvShow.class);
+  i.putExtra("showTitle",thisShow.getTitle());
+  i.putExtra("showId",thisShow.getId());
+  i.putExtra(IntentKeys.TOOLBAR_COLOR,mToolbarColor);
+  startActivityForResult(i,0);
+}

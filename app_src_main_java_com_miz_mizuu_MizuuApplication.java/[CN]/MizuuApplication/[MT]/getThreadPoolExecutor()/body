@@ -1,0 +1,4 @@
+{
+  if (sThreadPoolExecutor == null)   sThreadPoolExecutor=new ThreadPoolExecutor(3,3,0,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>(),new PicassoThreadFactory());
+  return sThreadPoolExecutor;
+}

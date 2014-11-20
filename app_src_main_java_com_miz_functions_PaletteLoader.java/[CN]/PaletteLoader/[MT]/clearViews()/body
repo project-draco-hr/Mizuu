@@ -1,0 +1,4 @@
+{
+  mViews.clear();
+  mFab=null;
+}

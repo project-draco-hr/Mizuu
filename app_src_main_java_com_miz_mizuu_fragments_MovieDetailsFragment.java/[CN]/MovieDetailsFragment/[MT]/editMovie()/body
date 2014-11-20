@@ -1,0 +1,6 @@
+{
+  Intent intent=new Intent(mContext,EditMovie.class);
+  intent.putExtra("movieId",mMovie.getTmdbId());
+  intent.putExtra(IntentKeys.TOOLBAR_COLOR,mToolbarColor);
+  getActivity().startActivityForResult(intent,1);
+}

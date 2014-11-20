@@ -1,0 +1,13 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  setHasOptionsMenu(true);
+  mBus=MizuuApplication.getBus();
+  mShowFileLocation=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(SHOW_FILE_LOCATION,true);
+  mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
+  mLight=TypefaceUtils.getRobotoLight(getActivity());
+  mLightItalic=TypefaceUtils.getRobotoLightItalic(getActivity());
+  mMedium=TypefaceUtils.getRobotoMedium(getActivity());
+  mDatabaseHelper=MizuuApplication.getTvEpisodeDbAdapter();
+  loadEpisode();
+}

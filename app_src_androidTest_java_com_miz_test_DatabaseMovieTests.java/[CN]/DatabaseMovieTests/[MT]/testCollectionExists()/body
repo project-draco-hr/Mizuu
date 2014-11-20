@@ -1,0 +1,11 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  DbAdapterCollections dbCollections=MizuuApplication.getCollectionsAdapter();
+  assertEquals(0,db.count());
+  assertEquals(0,dbCollections.count());
+  createTestMovie(db);
+  assertEquals(1,db.count());
+  assertEquals(1,dbCollections.count());
+  assertEquals(true,dbCollections.collectionExists("collectionId"));
+  assertEquals(false,dbCollections.collectionExists("lulz"));
+}

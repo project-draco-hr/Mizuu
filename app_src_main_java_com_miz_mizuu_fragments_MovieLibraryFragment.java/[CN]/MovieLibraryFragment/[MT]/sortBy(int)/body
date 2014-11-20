@@ -1,0 +1,40 @@
+{
+  if (!isAdded())   return;
+  mCurrentSort=sort;
+  boolean isCollection=((ActionBarActivity)getActivity()).getSupportActionBar().getSelectedNavigationIndex() == COLLECTIONS;
+  String key=isCollection ? SORTING_COLLECTIONS_OVERVIEW : SORTING_MOVIES;
+  Editor editor=mSharedPreferences.edit();
+switch (mCurrentSort) {
+case TITLE:
+    editor.putString(key,"sortTitle");
+  break;
+case RELEASE:
+editor.putString(key,"sortRelease");
+break;
+case RATING:
+editor.putString(key,"sortRating");
+break;
+case WEIGHTED_RATING:
+editor.putString(key,"sortWeightedRating");
+break;
+case DATE:
+editor.putString(key,"sortAdded");
+break;
+case DURATION:
+editor.putString(key,"sortDuration");
+break;
+}
+editor.apply();
+ArrayList<MovieSortHelper> tempHelper=new ArrayList<MovieSortHelper>();
+for (int i=0; i < mMovieKeys.size(); i++) {
+tempHelper.add(new MovieSortHelper(mMovies.get(mMovieKeys.get(i)),mMovieKeys.get(i),mCurrentSort,isCollection));
+}
+Collections.sort(tempHelper);
+mMovieKeys.clear();
+for (int i=0; i < tempHelper.size(); i++) {
+mMovieKeys.add(tempHelper.get(i).getIndex());
+}
+tempHelper.clear();
+setProgressBarVisible(false);
+notifyDataSetChanged();
+}

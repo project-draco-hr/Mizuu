@@ -1,0 +1,16 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  createTestMovie(db);
+  assertEquals(1,db.count());
+  db.editMovie("1234","new title","new tagline","new plot","genres...","900","9.7","1970-01-02","PG-17");
+  assertEquals(1,db.count());
+  assertEquals("new title",db.getSingleItem("1234",DbAdapterMovies.KEY_TITLE));
+  assertEquals("new plot",db.getSingleItem("1234",DbAdapterMovies.KEY_PLOT));
+  assertEquals("9.7",db.getSingleItem("1234",DbAdapterMovies.KEY_RATING));
+  assertEquals("new tagline",db.getSingleItem("1234",DbAdapterMovies.KEY_TAGLINE));
+  assertEquals("1970-01-02",db.getSingleItem("1234",DbAdapterMovies.KEY_RELEASEDATE));
+  assertEquals("PG-17",db.getSingleItem("1234",DbAdapterMovies.KEY_CERTIFICATION));
+  assertEquals("900",db.getSingleItem("1234",DbAdapterMovies.KEY_RUNTIME));
+  assertEquals("genres...",db.getSingleItem("1234",DbAdapterMovies.KEY_GENRES));
+}

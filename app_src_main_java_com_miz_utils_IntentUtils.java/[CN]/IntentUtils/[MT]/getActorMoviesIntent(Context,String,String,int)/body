@@ -1,0 +1,7 @@
+{
+  Intent actorMoviesIntent=new Intent(context,ActorMovies.class);
+  actorMoviesIntent.putExtra("actorName",actorName);
+  actorMoviesIntent.putExtra("actorId",actorId);
+  actorMoviesIntent.putExtra(IntentKeys.TOOLBAR_COLOR,toolbarColor);
+  return actorMoviesIntent;
+}

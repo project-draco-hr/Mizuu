@@ -1,0 +1,6 @@
+Context context
+String showId
+int season
+int episodeCount
+int watchedCount
+File cover

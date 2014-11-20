@@ -1,0 +1,21 @@
+{
+  if (mViews == null || mHasSetBackground)   return;
+  Swatch sw=p.getDarkVibrantSwatch();
+  if (sw == null)   sw=p.getDarkMutedSwatch();
+  if (sw == null)   sw=p.getVibrantSwatch();
+  if (sw != null) {
+    if (animate) {
+      for (      View v : mViews) {
+        if (v != null) {
+          ObjectAnimator backgroundColorAnimator=ObjectAnimator.ofObject(v,"backgroundColor",new ArgbEvaluator(),0xFF666666,sw.getRgb());
+          backgroundColorAnimator.setDuration(500);
+          backgroundColorAnimator.start();
+        }
+      }
+    }
+ else {
+      for (      View v : mViews)       if (v != null)       v.setBackgroundColor(sw.getRgb());
+    }
+  }
+  mHasSetBackground=true;
+}

@@ -1,5 +1,0 @@
-{
-  super.onActivityCreated(savedInstanceState);
-  setupActionBar();
-  if (actionBar.getNavigationMode() == ActionBar.NAVIGATION_MODE_LIST)   actionBar.setListNavigationCallbacks(spinnerAdapter,this);
-}

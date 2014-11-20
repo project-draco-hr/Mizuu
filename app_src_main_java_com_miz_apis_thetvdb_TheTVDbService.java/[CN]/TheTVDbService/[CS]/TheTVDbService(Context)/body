@@ -1,0 +1,4 @@
+{
+  mContext=context;
+  mTvdbApiKey=MizLib.getTvdbApiKey(mContext);
+}

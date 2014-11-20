@@ -1,0 +1,17 @@
+{
+  inflater.inflate(R.menu.switch_button,menu);
+  int padding=MizLib.convertDpToPixels(getActivity(),16);
+  SwitchCompat switchCompat=(SwitchCompat)menu.findItem(R.id.switch_button).getActionView();
+  switchCompat.setChecked(mChecked);
+  switchCompat.setText(R.string.inLibrary);
+  switchCompat.setSwitchPadding(padding);
+  switchCompat.setPadding(0,0,padding,0);
+  switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
+      mChecked=isChecked;
+      mAdapter.notifyDataSetChanged();
+    }
+  }
+);
+  super.onCreateOptionsMenu(menu,inflater);
+}

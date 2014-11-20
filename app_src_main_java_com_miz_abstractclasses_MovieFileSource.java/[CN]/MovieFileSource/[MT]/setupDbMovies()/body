@@ -1,0 +1,17 @@
+{
+  mDbMovies.clear();
+  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
+  ColumnIndexCache cache=new ColumnIndexCache();
+  Cursor tempCursor=db.fetchAllMovies(DbAdapterMovies.KEY_TITLE + " ASC");
+  try {
+    while (tempCursor.moveToNext()) {
+      mDbMovies.add(new DbMovie(getContext(),MizuuApplication.getMovieMappingAdapter().getFirstFilepathForMovie(tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovieMappings.KEY_TMDB_ID))),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_TMDB_ID)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_RUNTIME)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_RELEASEDATE)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_GENRES)),tempCursor.getString(cache.getColumnIndex(tempCursor,DbAdapterMovies.KEY_TITLE))));
+    }
+  }
+ catch (  NullPointerException e) {
+  }
+ finally {
+    tempCursor.close();
+    cache.clear();
+  }
+}

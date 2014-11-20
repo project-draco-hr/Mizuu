@@ -1,8 +1,0 @@
-{
-switch (index) {
-case 0:
-    return TvShowDetailsFragment.newInstance(thisShow.getId());
-default :
-  return TvShowSeasonsEpisodesFragment.newInstance(thisShow.getId());
-}
-}

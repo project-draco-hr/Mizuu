@@ -1,0 +1,7 @@
+{
+  Intent intent=new Intent(mContext,IdentifyMovie.class);
+  intent.putExtra("fileName",filepath);
+  intent.putExtra("currentMovieId",mMovie.getTmdbId());
+  intent.putExtra(IntentKeys.TOOLBAR_COLOR,mToolbarColor);
+  return intent;
+}

@@ -1,9 +1,0 @@
-{
-  mOldMovieId=MizuuApplication.getMovieMappingAdapter().getIdForFilepath(mFilepath);
-  if (MizuuApplication.getMovieMappingAdapter().getMovieFilepaths(mOldMovieId).size() == 1) {
-    MizuuApplication.getMovieAdapter().deleteMovie(mOldMovieId);
-    FileUtils.getMovieThumb(this,mOldMovieId).delete();
-    FileUtils.getMovieBackdrop(this,mOldMovieId).delete();
-    LocalBroadcastUtils.updateMovieLibrary(this);
-  }
-}

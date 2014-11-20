@@ -1,0 +1,145 @@
+{
+  super.onViewCreated(view,savedInstanceState);
+  mToolbar=(Toolbar)view.findViewById(R.id.toolbar);
+  mToolbar.setBackgroundResource(android.R.color.transparent);
+  ViewUtils.setProperToolbarSize(mContext,mToolbar);
+  ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_width);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  mDetailsArea=view.findViewById(R.id.details_area);
+  mBackground=(ImageView)view.findViewById(R.id.imageBackground);
+  mTitle=(TextView)view.findViewById(R.id.movieTitle);
+  mPlot=(TextView)view.findViewById(R.id.textView2);
+  mSrc=(TextView)view.findViewById(R.id.textView3);
+  mGenre=(TextView)view.findViewById(R.id.textView7);
+  mRuntime=(TextView)view.findViewById(R.id.textView9);
+  mReleaseDate=(TextView)view.findViewById(R.id.textReleaseDate);
+  mRating=(TextView)view.findViewById(R.id.textView12);
+  mTagline=(TextView)view.findViewById(R.id.textView6);
+  mCertification=(TextView)view.findViewById(R.id.textView11);
+  mCover=(ImageView)view.findViewById(R.id.traktIcon);
+  mActorsLayout=(HorizontalCardLayout)view.findViewById(R.id.horizontal_card_layout);
+  mScrollView=(ObservableScrollView)view.findViewById(R.id.observableScrollView);
+  mFab=(FloatingActionButton)view.findViewById(R.id.fab);
+  mFab.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      ViewUtils.animateFabJump(v,new Animator.AnimatorListener(){
+        @Override public void onAnimationEnd(        Animator animation){
+          playMovie();
+        }
+        @Override public void onAnimationStart(        Animator animation){
+        }
+        @Override public void onAnimationCancel(        Animator animation){
+        }
+        @Override public void onAnimationRepeat(        Animator animation){
+        }
+      }
+);
+    }
+  }
+);
+  if (MizLib.isTablet(mContext))   mFab.setType(FloatingActionButton.TYPE_NORMAL);
+  final boolean fullscreen=MizuuApplication.isFullscreen(mContext);
+  final int height=fullscreen ? MizLib.getActionBarHeight(mContext) : MizLib.getActionBarAndStatusBarHeight(mContext);
+  mScrollView.setOnScrollChangedListener(new OnScrollChangedListener(){
+    @Override public void onScrollChanged(    ScrollView who,    int l,    int t,    int oldl,    int oldt){
+      ViewUtils.handleOnScrollChangedEvent(getActivity(),view,mBackground,mMovie.getTitle(),height,t,mToolbar,mToolbarColor);
+    }
+  }
+);
+  mScrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      ViewUtils.setLayoutParamsForDetailsEmptyView(mContext,view,mBackground,mScrollView,this);
+    }
+  }
+);
+  mTitle.setVisibility(View.VISIBLE);
+  mTitle.setText(mMovie.getTitle());
+  mTitle.setTypeface(mCondensedRegular);
+  mPlot.setTypeface(mCondensedRegular);
+  mSrc.setTypeface(mLight);
+  mRuntime.setTypeface(mMedium);
+  mCertification.setTypeface(mMedium);
+  mRating.setTypeface(mMedium);
+  mPlot.setBackgroundResource(R.drawable.selectable_background);
+  if (!mMovie.getTagline().isEmpty())   mPlot.setMaxLines(mContext.getResources().getInteger(R.integer.movie_details_max_lines));
+ else   mPlot.setMaxLines(mContext.getResources().getInteger(R.integer.show_details_max_lines));
+  mPlot.setTag(true);
+  mPlot.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      if (((Boolean)mPlot.getTag())) {
+        ViewUtils.animateTextViewMaxLines(mPlot,50);
+        mPlot.setTag(false);
+      }
+ else {
+        ViewUtils.animateTextViewMaxLines(mPlot,mMovie.getTagline().isEmpty() ? getResources().getInteger(R.integer.show_details_max_lines) : getResources().getInteger(R.integer.movie_details_max_lines));
+        mPlot.setTag(true);
+      }
+    }
+  }
+);
+  mPlot.setEllipsize(TextUtils.TruncateAt.END);
+  mPlot.setFocusable(true);
+  if (MizLib.isTablet(mContext))   mPlot.setLineSpacing(0,1.15f);
+  mPlot.setText(mMovie.getPlot());
+  mSrc.setTypeface(mCondensedRegular);
+  if (mShowFileLocation) {
+    mSrc.setText(mMovie.getAllFilepaths());
+  }
+ else {
+    mSrc.setVisibility(View.GONE);
+  }
+  mTagline.setTypeface(mBold);
+  if (mMovie.getTagline().isEmpty())   mTagline.setVisibility(TextView.GONE);
+ else   mTagline.setText(mMovie.getTagline());
+  mGenre.setTypeface(mMediumItalic);
+  if (!TextUtils.isEmpty(mMovie.getGenres())) {
+    mGenre.setText(mMovie.getGenres());
+  }
+ else {
+    mGenre.setVisibility(View.GONE);
+  }
+  mRuntime.setText(MizLib.getPrettyRuntime(mContext,Integer.parseInt(mMovie.getRuntime())));
+  mReleaseDate.setTypeface(mMedium);
+  mReleaseDate.setText(MizLib.getPrettyDate(mContext,mMovie.getReleasedate()));
+  if (!mMovie.getRating().equals("0.0")) {
+    try {
+      int rating=(int)(Double.parseDouble(mMovie.getRating()) * 10);
+      mRating.setText(Html.fromHtml(+rating + "<small> %</small>"));
+    }
+ catch (    NumberFormatException e) {
+      mRating.setText(mMovie.getRating());
+    }
+  }
+ else {
+    mRating.setText(R.string.stringNA);
+  }
+  if (!TextUtils.isEmpty(mMovie.getCertification())) {
+    mCertification.setText(mMovie.getCertification());
+  }
+ else {
+    mCertification.setText(R.string.stringNA);
+  }
+  mActorsLayout.setTitle(R.string.detailsActors);
+  mActorsLayout.setSeeMoreVisibility(true);
+  mActorsLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      if (mActorsLayout.getWidth() > 0) {
+        final int numColumns=(int)Math.floor(mActorsLayout.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+        mImageThumbSize=(mActorsLayout.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns;
+        loadActors(numColumns);
+        MizLib.removeViewTreeObserver(mActorsLayout.getViewTreeObserver(),this);
+      }
+    }
+  }
+);
+  mActorsLayout.setSeeMoreOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      startActivity(IntentUtils.getActorBrowserMovies(mContext,mMovie.getTitle(),mMovie.getTmdbId(),mToolbarColor));
+    }
+  }
+);
+  ViewUtils.updateToolbarBackground(getActivity(),mToolbar,0,mMovie.getTitle(),mToolbarColor);
+  loadImages();
+}

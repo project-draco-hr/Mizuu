@@ -1,0 +1,30 @@
+{
+  final WebMovie mMovie=mMovies.get(position);
+  CoverItem holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.grid_item,container,false);
+    holder=new CoverItem();
+    holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    holder.text=(TextView)convertView.findViewById(R.id.text);
+    holder.text.setSingleLine(true);
+    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.subtext.setSingleLine(true);
+    holder.text.setTypeface(TypefaceUtils.getRobotoMedium(mContext));
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(CoverItem)convertView.getTag();
+  }
+  holder.cover.setImageResource(R.color.card_background_dark);
+  holder.text.setText(mMovie.getTitle());
+  if (mMovieMap.get(Integer.valueOf(mMovie.getId()))) {
+    holder.subtext.setText(mMovie.getDate() + " (" + getString(R.string.inLibrary)+ ")");
+  }
+ else {
+    holder.subtext.setText(mMovie.getDate());
+  }
+  if (!mMovie.getUrl().contains("null"))   mPicasso.load(mMovie.getUrl()).config(mConfig).into(holder);
+ else   holder.cover.setImageResource(R.drawable.loading_image);
+  return convertView;
+}

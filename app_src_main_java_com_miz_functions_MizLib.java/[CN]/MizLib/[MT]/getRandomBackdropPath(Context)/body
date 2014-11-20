@@ -1,0 +1,16 @@
+{
+  ArrayList<File> files=new ArrayList<File>();
+  File[] f=MizuuApplication.getMovieBackdropFolder(c).listFiles();
+  if (f != null)   for (  File file : f) {
+    files.add(file);
+  }
+  f=MizuuApplication.getTvShowBackdropFolder(c).listFiles();
+  if (f != null)   for (  File file : f) {
+    files.add(file);
+  }
+  if (files.size() > 0) {
+    Random rndm=new Random();
+    return files.get(rndm.nextInt(files.size())).getAbsolutePath();
+  }
+  return "";
+}

@@ -1,0 +1,23 @@
+{
+  MizuuApplication.setupTheme(this);
+  super.onCreate(savedInstanceState);
+  mContext=this;
+  mProgressBar=(ProgressBar)findViewById(R.id.progressbar);
+  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
+  mViewPager.setAdapter(mSeasonAdapter);
+  mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+    @Override public void onPageSelected(    int position){
+      int episodeCount=mItems.get(position).getEpisodeCount();
+      getSupportActionBar().setSubtitle(getString(R.string.showSeason) + " " + mItems.get(position).getSeason()+ " ("+ episodeCount+ " "+ getResources().getQuantityString(R.plurals.episodes,episodeCount,episodeCount)+ ")");
+    }
+  }
+);
+  mShowId=getIntent().getExtras().getString(SHOW_ID);
+  mTitle=MizuuApplication.getTvDbAdapter().getShowTitle(mShowId);
+  mSeason=getIntent().getExtras().getInt(SEASON);
+  mEpisodeCount=getIntent().getExtras().getInt(EPISODE_COUNT);
+  mToolbarColor=getIntent().getExtras().getInt(IntentKeys.TOOLBAR_COLOR);
+  setTitle(mTitle);
+  getSupportActionBar().setSubtitle(getString(R.string.showSeason) + " " + mSeason+ " ("+ mEpisodeCount+ " "+ getResources().getQuantityString(R.plurals.episodes,mEpisodeCount,mEpisodeCount)+ ")");
+  loadSeasons();
+}

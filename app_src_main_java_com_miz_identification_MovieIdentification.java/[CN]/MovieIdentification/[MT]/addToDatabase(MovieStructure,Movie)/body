@@ -1,0 +1,19 @@
+{
+  DbAdapterMovieMappings dbHelperMovieMapping=MizuuApplication.getMovieMappingAdapter();
+  DbAdapterMovies dbHelper=MizuuApplication.getMovieAdapter();
+  if (overrideMovieId()) {
+    int currentCount=dbHelperMovieMapping.getMovieFilepaths(getCurrentMovieId()).size();
+    if (currentCount > 1) {
+      dbHelperMovieMapping.updateTmdbId(ms.getFilepath(),getCurrentMovieId(),getMovieId());
+    }
+ else {
+      MovieDatabaseUtils.deleteMovie(mContext,getCurrentMovieId());
+      dbHelperMovieMapping.createFilepathMapping(ms.getFilepath(),getMovieId());
+    }
+  }
+ else {
+    dbHelperMovieMapping.createFilepathMapping(ms.getFilepath(),movie.getId());
+  }
+  dbHelper.createOrUpdateMovie(movie.getId(),movie.getTitle(),movie.getPlot(),movie.getImdbId(),movie.getRating(),movie.getTagline(),movie.getReleasedate(),movie.getCertification(),movie.getRuntime(),movie.getTrailer(),movie.getGenres(),"0",movie.getCast(),movie.getCollectionTitle(),movie.getCollectionId(),"0","0",String.valueOf(System.currentTimeMillis()));
+  updateNotification(movie);
+}

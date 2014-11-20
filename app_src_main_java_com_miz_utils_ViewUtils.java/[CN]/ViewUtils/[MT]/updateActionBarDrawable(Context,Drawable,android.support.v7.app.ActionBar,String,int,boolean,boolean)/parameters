@@ -1,0 +1,7 @@
+Context context
+Drawable actionBarBackgroundDrawable
+android.support.v7.app.ActionBar actionBar
+String title
+int newAlpha
+boolean setBackground
+boolean showActionBar

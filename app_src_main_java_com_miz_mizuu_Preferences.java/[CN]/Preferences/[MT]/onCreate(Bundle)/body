@@ -1,0 +1,5 @@
+{
+  setTheme(R.style.Mizuu_Theme_Preference);
+  super.onCreate(savedInstanceState);
+  getActionBar().setDisplayHomeAsUpEnabled(true);
+}

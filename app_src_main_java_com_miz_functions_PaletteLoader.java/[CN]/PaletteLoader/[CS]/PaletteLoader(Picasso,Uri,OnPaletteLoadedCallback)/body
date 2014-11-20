@@ -1,0 +1,7 @@
+{
+  mPicasso=picasso;
+  mImage=image;
+  mKey=image.toString();
+  mViews=new ArrayList<View>();
+  mOnPaletteLoadedCallback=callback;
+}

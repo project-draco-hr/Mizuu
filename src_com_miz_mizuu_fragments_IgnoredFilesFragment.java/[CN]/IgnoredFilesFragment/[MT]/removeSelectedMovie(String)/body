@@ -1,4 +1,0 @@
-{
-  MizuuApplication.getMovieAdapter().deleteMovie(tmdbId);
-  refreshData();
-}

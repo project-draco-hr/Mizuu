@@ -1,6 +1,0 @@
-{
-  if (!mDetached) {
-    super.setImageResource(resId);
-    stopUpdateStartIfNecessary();
-  }
-}

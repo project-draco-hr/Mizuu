@@ -1,0 +1,3 @@
+{
+  toolbar.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,MizLib.hasKitKat() ? MizLib.getActionBarAndStatusBarHeight(context) : MizLib.getActionBarHeight(context)));
+}

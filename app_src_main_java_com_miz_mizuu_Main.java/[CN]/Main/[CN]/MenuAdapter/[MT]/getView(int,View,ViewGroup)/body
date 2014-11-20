@@ -1,0 +1,91 @@
+{
+  if (mMenuItems.get(position).getType() == MenuItem.HEADER) {
+    convertView=mInflater.inflate(R.layout.menu_drawer_header,parent,false);
+    final String fullName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString(TRAKT_FULL_NAME,"");
+    final String userName=PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString(TRAKT_USERNAME,"");
+    final ImageView backgroundImage=((ImageView)convertView.findViewById(R.id.userCover));
+    final ImageView userImage=((ImageView)convertView.findViewById(R.id.userPhoto));
+    final ImageView plusIcon=((ImageView)convertView.findViewById(R.id.plus_icon));
+    final TextView realName=((TextView)convertView.findViewById(R.id.real_name));
+    final TextView userNameTextField=((TextView)convertView.findViewById(R.id.username));
+    realName.setTypeface(mTfMedium);
+    userNameTextField.setTypeface(mTfRegular);
+    realName.setText(!TextUtils.isEmpty(fullName) ? fullName : "");
+    if (!TextUtils.isEmpty(userName)) {
+      userNameTextField.setText(String.format(getString(R.string.logged_in_as),userName));
+      plusIcon.setVisibility(View.GONE);
+    }
+ else {
+      userNameTextField.setText(R.string.sign_in_with_trakt);
+      plusIcon.setVisibility(View.VISIBLE);
+    }
+    mPicasso.load(new File(MizuuApplication.getCacheFolder(getApplicationContext()),"avatar.jpg")).resize(MizLib.convertDpToPixels(getApplicationContext(),64),MizLib.convertDpToPixels(getApplicationContext(),64)).into(userImage,new Callback(){
+      @Override public void onError(){
+        userImage.setVisibility(View.GONE);
+      }
+      @Override public void onSuccess(){
+      }
+    }
+);
+    if (!TextUtils.isEmpty(mBackdropPath))     mPicasso.load(mBackdropPath).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
+ else     mPicasso.load(R.drawable.default_menu_backdrop).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
+    convertView.findViewById(R.id.personalizedArea).setOnClickListener(new View.OnClickListener(){
+      @Override public void onClick(      View v){
+        Intent smallIntent=new Intent(getApplicationContext(),Preferences.class);
+        smallIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,AccountsFragment.class.getName());
+        smallIntent.putExtra(PreferenceActivity.EXTRA_NO_HEADERS,true);
+        smallIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,getString(R.string.social));
+        smallIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_SHORT_TITLE,getString(R.string.social));
+        startActivity(smallIntent);
+      }
+    }
+);
+  }
+ else   if (mMenuItems.get(position).getType() == MenuItem.SEPARATOR) {
+    convertView=mInflater.inflate(R.layout.menu_drawer_separator,parent,false);
+  }
+ else   if (mMenuItems.get(position).getType() == MenuItem.SEPARATOR_EXTRA_PADDING) {
+    convertView=mInflater.inflate(R.layout.menu_drawer_separator_extra_padding,parent,false);
+  }
+ else   if (mMenuItems.get(position).getType() == MenuItem.SUB_HEADER) {
+    convertView=mInflater.inflate(R.layout.menu_drawer_header_item,parent,false);
+    TextView title=(TextView)convertView.findViewById(R.id.title);
+    title.setText(mMenuItems.get(position).getTitle());
+    title.setTypeface(mTfMedium);
+  }
+ else   if (mMenuItems.get(position).getType() == MenuItem.THIRD_PARTY_APP || mMenuItems.get(position).getType() == MenuItem.SECTION) {
+    convertView=mInflater.inflate(R.layout.menu_drawer_item,parent,false);
+    ImageView icon=(ImageView)convertView.findViewById(R.id.icon);
+    icon.setImageResource(mMenuItems.get(position).getIcon());
+    TextView title=(TextView)convertView.findViewById(R.id.title);
+    title.setText(mMenuItems.get(position).getTitle());
+    title.setTypeface(mTfMedium);
+    TextView description=(TextView)convertView.findViewById(R.id.count);
+    description.setTypeface(mTfRegular);
+    if (mMenuItems.get(position).getType() == MenuItem.SECTION && mMenuItems.get(position).getFragment() == selectedIndex) {
+      convertView.setBackgroundColor(Color.parseColor("#e8e8e8"));
+      int color=Color.parseColor("#3f51b5");
+      title.setTextColor(color);
+      description.setTextColor(color);
+      icon.setColorFilter(color);
+    }
+ else {
+      int color=Color.parseColor("#DD000000");
+      title.setTextColor(color);
+      description.setTextColor(color);
+      icon.setColorFilter(Color.parseColor("#999999"));
+    }
+    if (mMenuItems.get(position).getCount() >= 0)     description.setText(String.valueOf(mMenuItems.get(position).getCount()));
+ else     description.setVisibility(View.GONE);
+  }
+ else {
+    convertView=mInflater.inflate(R.layout.menu_drawer_small_item,parent,false);
+    ImageView icon=(ImageView)convertView.findViewById(R.id.icon);
+    icon.setImageResource(mMenuItems.get(position).getIcon());
+    icon.setColorFilter(Color.parseColor("#737373"));
+    TextView title=(TextView)convertView.findViewById(R.id.title);
+    title.setText(mMenuItems.get(position).getTitle());
+    title.setTypeface(mTfMedium);
+  }
+  return convertView;
+}

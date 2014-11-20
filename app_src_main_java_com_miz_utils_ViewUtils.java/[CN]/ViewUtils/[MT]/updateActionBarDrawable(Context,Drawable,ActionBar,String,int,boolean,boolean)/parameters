@@ -1,0 +1,7 @@
+Context context
+Drawable actionBarBackgroundDrawable
+ActionBar actionBar
+String title
+int newAlpha
+boolean setBackground
+boolean showActionBar

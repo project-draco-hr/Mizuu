@@ -1,0 +1,62 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  mToolbar=(Toolbar)v.findViewById(R.id.toolbar);
+  ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  mListView=(ListView)v.findViewById(R.id.listView1);
+  mQuery=(EditText)v.findViewById(R.id.editText1);
+  mSpinner=(Spinner)v.findViewById(R.id.spinner1);
+  mProgress=(ProgressBar)v.findViewById(R.id.progressBar1);
+  mListView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      updateMovie(arg2);
+    }
+  }
+);
+  mListView.setEmptyView(v.findViewById(R.id.no_results));
+  v.findViewById(R.id.no_results).setVisibility(View.GONE);
+  mSpinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+    @Override public void onItemSelected(    AdapterView<?> parent,    View view,    int position,    long id){
+      mLocale=mSpinnerAdapter.getItem(position).getLanguage();
+      searchForMovies();
+    }
+    @Override public void onNothingSelected(    AdapterView<?> parent){
+    }
+  }
+);
+  mSpinnerAdapter=new LanguageAdapter();
+  mSpinner.setAdapter(mSpinnerAdapter);
+  String language=PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(LANGUAGE_PREFERENCE,"en");
+  mSpinner.setSelection(mSpinnerAdapter.getIndexForLocale(language));
+  mQuery.setText(mMovieStructure.getDecryptedFilename());
+  mQuery.setSelection(mQuery.length());
+  mQuery.addTextChangedListener(new TextWatcher(){
+    @Override public void beforeTextChanged(    CharSequence s,    int start,    int count,    int after){
+    }
+    @Override public void onTextChanged(    CharSequence s,    int start,    int before,    int count){
+    }
+    @Override public void afterTextChanged(    Editable s){
+      if (s.toString().length() > 0)       searchForMovies();
+ else {
+        mMovieSearch.cancel(true);
+        mAdapter.clearItems();
+        mAdapter.notifyDataSetChanged();
+      }
+    }
+  }
+);
+  mQuery.setOnEditorActionListener(new OnEditorActionListener(){
+    @Override public boolean onEditorAction(    TextView v,    int actionId,    KeyEvent event){
+      if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN || actionId == EditorInfo.IME_ACTION_SEARCH)       searchForMovies();
+      return true;
+    }
+  }
+);
+  if (mMovieSearch == null) {
+    if (MizLib.isOnline(getActivity())) {
+      mMovieSearch=new MovieSearch(getActivity(),mQuery.getText().toString());
+    }
+ else {
+      Toast.makeText(getActivity(),getString(R.string.noInternet),Toast.LENGTH_SHORT).show();
+    }
+  }
+}

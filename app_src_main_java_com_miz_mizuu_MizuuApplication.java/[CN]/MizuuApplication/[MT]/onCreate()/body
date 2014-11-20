@@ -1,0 +1,21 @@
+{
+  super.onCreate();
+  mInstance=this;
+  jcifs.Config.setProperty("jcifs.smb.client.disablePlainTextPasswords","false");
+  sDbMovies=new DbAdapterMovies(this);
+  sDbMovieMapping=new DbAdapterMovieMappings(this);
+  sDbTvShowEpisode=new DbAdapterTvShowEpisodes(this);
+  sDbTvShow=new DbAdapterTvShows(this);
+  sDbTvShowEpisodeMappings=new DbAdapterTvShowEpisodeMappings(this);
+  sDbSources=new DbAdapterSources(this);
+  sDbCollections=new DbAdapterCollections(this);
+  getMovieThumbFolder(this);
+  getMovieBackdropFolder(this);
+  getTvShowThumbFolder(this);
+  getTvShowBackdropFolder(this);
+  getTvShowEpisodeFolder(this);
+  getTvShowSeasonFolder(this);
+  getAvailableOfflineFolder(this);
+  transitionLocalizationPreference();
+  MizLib.copyDatabase(this);
+}

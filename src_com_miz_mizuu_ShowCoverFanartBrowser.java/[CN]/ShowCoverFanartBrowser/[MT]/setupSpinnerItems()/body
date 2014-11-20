@@ -1,6 +1,0 @@
-{
-  spinnerItems.clear();
-  spinnerItems.add(new SpinnerItem(getString(R.string.browseMedia),getString(R.string.coverart)));
-  spinnerItems.add(new SpinnerItem(getString(R.string.browseMedia),getString(R.string.backdrop)));
-  actionBar.setListNavigationCallbacks(spinnerAdapter,this);
-}

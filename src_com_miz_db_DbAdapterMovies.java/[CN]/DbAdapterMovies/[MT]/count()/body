@@ -1,6 +1,0 @@
-{
-  Cursor c=mDatabase.query(DATABASE_TABLE,new String[]{KEY_TITLE,KEY_TMDB_ID},"NOT(" + KEY_TITLE + " = '"+ REMOVED_MOVIE_TITLE+ "') AND NOT("+ KEY_TMDB_ID+ " = '"+ UNIDENTIFIED_ID+ "')",null,null,null,null);
-  int count=c.getCount();
-  c.close();
-  return count;
-}

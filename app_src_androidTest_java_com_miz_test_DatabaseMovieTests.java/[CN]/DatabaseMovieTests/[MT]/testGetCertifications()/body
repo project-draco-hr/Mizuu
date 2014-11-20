@@ -1,0 +1,9 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  createTwoTestMovies(db);
+  assertEquals(2,db.count());
+  assertEquals(2,db.getCertifications().size());
+  assertEquals("PG-13",db.getCertifications().get(0));
+  assertEquals("PG-17",db.getCertifications().get(1));
+}

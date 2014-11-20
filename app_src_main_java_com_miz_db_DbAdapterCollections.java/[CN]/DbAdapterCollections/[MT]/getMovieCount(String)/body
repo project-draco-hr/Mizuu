@@ -1,0 +1,15 @@
+{
+  int count=0;
+  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_COLLECTION_ID + " = ?",new String[]{collectionId},null,null,null);
+  if (cursor != null) {
+    try {
+      count=cursor.getCount();
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+    }
+  }
+  return count;
+}

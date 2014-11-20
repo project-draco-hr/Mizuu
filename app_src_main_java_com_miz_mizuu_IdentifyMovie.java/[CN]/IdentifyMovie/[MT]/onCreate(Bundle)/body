@@ -1,0 +1,12 @@
+{
+  super.onCreate(savedInstanceState);
+  String filepath=getIntent().getExtras().getString("fileName");
+  String currentMovieId=getIntent().getExtras().getString("currentMovieId");
+  mToolbarColor=getIntent().getExtras().getInt(IntentKeys.TOOLBAR_COLOR);
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.add(android.R.id.content,IdentifyMovieFragment.newInstance(filepath,currentMovieId),TAG);
+    ft.commit();
+  }
+}

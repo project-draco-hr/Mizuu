@@ -1,8 +1,0 @@
-{
-  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
-  List<DbMovie> dbMovies=getDbMovies();
-  int count=dbMovies.size();
-  for (int i=0; i < count; i++) {
-    if (dbMovies.get(i).isUpnpFile() && dbMovies.get(i).isUnidentified() && MizLib.exists(dbMovies.get(i).getFilepath()))     db.deleteMovie(dbMovies.get(i).getTmdbId());
-  }
-}

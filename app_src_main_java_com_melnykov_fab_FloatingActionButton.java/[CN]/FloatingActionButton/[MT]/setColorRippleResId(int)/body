@@ -1,0 +1,3 @@
+{
+  setColorRipple(getColor(colorResId));
+}

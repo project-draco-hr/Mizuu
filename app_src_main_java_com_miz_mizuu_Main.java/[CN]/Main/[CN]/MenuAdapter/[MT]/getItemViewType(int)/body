@@ -1,0 +1,17 @@
+{
+switch (mMenuItems.get(position).getType()) {
+case MenuItem.HEADER:
+    return 0;
+case MenuItem.SEPARATOR:
+  return 1;
+case MenuItem.SEPARATOR_EXTRA_PADDING:
+return 2;
+case MenuItem.SUB_HEADER:
+return 3;
+case MenuItem.SECTION:
+case MenuItem.THIRD_PARTY_APP:
+return 4;
+default :
+return 5;
+}
+}

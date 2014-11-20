@@ -1,3 +1,0 @@
-{
-  return mDatabase.query(DATABASE_TABLE,SELECT_ALL,KEY_TITLE + " = '" + REMOVED_MOVIE_TITLE+ "'",null,null,null,null);
-}

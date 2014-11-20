@@ -1,0 +1,17 @@
+{
+  thisShow.setFavorite(!thisShow.isFavorite());
+  if (dbHelper.updateShowSingleItem(thisShow.getId(),DbAdapterTvShows.KEY_SHOW_FAVOURITE,thisShow.getFavorite())) {
+    getActivity().invalidateOptionsMenu();
+    Toast.makeText(mContext,getString(thisShow.isFavorite() ? R.string.addedToFavs : R.string.removedFromFavs),Toast.LENGTH_SHORT).show();
+    LocalBroadcastUtils.updateTvShowLibrary(mContext);
+  }
+ else   Toast.makeText(mContext,getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();
+  new Thread(){
+    @Override public void run(){
+      ArrayList<TvShow> show=new ArrayList<TvShow>();
+      show.add(thisShow);
+      Trakt.tvShowFavorite(show,getActivity().getApplicationContext());
+    }
+  }
+.start();
+}

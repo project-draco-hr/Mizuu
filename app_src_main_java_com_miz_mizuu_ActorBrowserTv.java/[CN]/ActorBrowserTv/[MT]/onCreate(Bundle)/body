@@ -1,0 +1,13 @@
+{
+  super.onCreate(savedInstanceState);
+  String showId=getIntent().getExtras().getString("showId");
+  String title=getIntent().getExtras().getString("title");
+  mToolbarColor=getIntent().getExtras().getInt(IntentKeys.TOOLBAR_COLOR);
+  getSupportActionBar().setSubtitle(title);
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null && savedInstanceState == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.replace(R.id.content,ActorBrowserTvFragment.newInstance(showId),TAG);
+    ft.commit();
+  }
+}

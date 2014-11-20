@@ -1,6 +1,0 @@
-{
-  Intent actorIntent=new Intent(context,ActorBrowser.class);
-  actorIntent.putExtra("title",title);
-  actorIntent.putExtra("movieId",movieId);
-  return actorIntent;
-}

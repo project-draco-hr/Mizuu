@@ -1,0 +1,7 @@
+{
+  MovieIdentification identification=new MovieIdentification(this,this,mFiles,null);
+  identification.setMovieId(mMovieId);
+  identification.setCurrentMovieId(mOldMovieId);
+  identification.setLanguage(mLanguage);
+  identification.start();
+}

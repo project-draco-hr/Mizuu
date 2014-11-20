@@ -1,0 +1,16 @@
+{
+  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
+  if (db.movieExists(mResults.get(arg2).getId())) {
+    Intent intent=new Intent();
+    intent.setClass(getActivity(),MovieDetails.class);
+    intent.putExtra("tmdbId",mResults.get(arg2).getId());
+    startActivityForResult(intent,0);
+  }
+ else {
+    Intent i=new Intent(Intent.ACTION_VIEW);
+    i.setClass(getActivity(),TMDbMovieDetails.class);
+    i.putExtra("tmdbId",mResults.get(arg2).getId());
+    i.putExtra("title",mResults.get(arg2).getName());
+    startActivity(i);
+  }
+}

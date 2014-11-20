@@ -1,0 +1,4 @@
+{
+  mContext=context;
+  mTmdbApiKey=MizLib.getTmdbApiKey(mContext);
+}

@@ -1,0 +1,9 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  DbAdapterCollections dbCollections=MizuuApplication.getCollectionsAdapter();
+  assertEquals(0,db.count());
+  assertEquals(0,dbCollections.getMovieCount("collectionId"));
+  createTestMovie(db);
+  assertEquals(1,db.count());
+  assertEquals(1,dbCollections.getMovieCount("collectionId"));
+}

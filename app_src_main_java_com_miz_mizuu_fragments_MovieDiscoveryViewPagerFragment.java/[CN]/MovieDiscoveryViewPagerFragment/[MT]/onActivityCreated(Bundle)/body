@@ -1,0 +1,4 @@
+{
+  super.onActivityCreated(savedInstanceState);
+  getActivity().setTitle(R.string.drawerOnlineMovies);
+}

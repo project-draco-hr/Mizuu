@@ -1,0 +1,13 @@
+{
+  if (result != null) {
+    MizuuApplication.addToPaletteCache(getPaletteKey(),result);
+    Palette.Swatch sw=result.getDarkVibrantSwatch();
+    if (sw == null)     sw=result.getDarkMutedSwatch();
+    if (sw == null)     sw=result.getVibrantSwatch();
+    if (sw != null) {
+      mSwatchColor=sw.getRgb();
+      colorViews();
+      mOnPaletteLoadedCallback.onPaletteLoaded(getSwatchColor());
+    }
+  }
+}

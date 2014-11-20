@@ -1,0 +1,4 @@
+{
+  if (arg0.resourceId > 0)   return arg0;
+  return arg0.buildUpon().setUri(Uri.parse(arg0.uri.toString().replace("file://","/"))).build();
+}

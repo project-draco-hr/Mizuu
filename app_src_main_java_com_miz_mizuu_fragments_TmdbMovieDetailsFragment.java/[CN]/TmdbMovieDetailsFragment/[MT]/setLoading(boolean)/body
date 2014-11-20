@@ -1,0 +1,4 @@
+{
+  mProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+  mScrollView.setVisibility(isLoading ? View.GONE : View.VISIBLE);
+}

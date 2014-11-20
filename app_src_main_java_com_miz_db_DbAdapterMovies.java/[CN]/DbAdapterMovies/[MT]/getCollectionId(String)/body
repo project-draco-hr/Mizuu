@@ -1,0 +1,3 @@
+{
+  return getSingleItem(tmdbId,KEY_COLLECTION_ID);
+}

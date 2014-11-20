@@ -1,0 +1,12 @@
+{
+  mVisible=true;
+  mColorNormal=getColor(R.color.fab_default);
+  mColorPressed=getColor(R.color.fab_light);
+  mColorRipple=getColor(android.R.color.white);
+  mType=TYPE_NORMAL;
+  mShadow=true;
+  if (attributeSet != null) {
+    initAttributes(context,attributeSet);
+  }
+  updateBackground();
+}

@@ -1,0 +1,8 @@
+{
+  mShows=new ArrayList<WebMovie>();
+  for (  WebMovie show : mActor.getTvShows()) {
+    if (mChecked && !show.isInLibrary())     continue;
+    mShows.add(show);
+  }
+  super.notifyDataSetChanged();
+}

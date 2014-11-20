@@ -1,0 +1,14 @@
+{
+  super.onCreate(savedInstanceState);
+  setHasOptionsMenu(true);
+  setRetainInstance(true);
+  mContext=getActivity();
+  mMediumItalic=TypefaceUtils.getRobotoMediumItalic(mContext);
+  mMedium=TypefaceUtils.getRobotoMedium(mContext);
+  mBold=TypefaceUtils.getRobotoBold(mContext);
+  mCondensedRegular=TypefaceUtils.getRobotoCondensedRegular(mContext);
+  mMovieApiService=TMDbMovieService.getInstance(mContext);
+  mMovie=new Movie();
+  mMovie.setId(getArguments().getString("movieId"));
+  mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
+}

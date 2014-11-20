@@ -1,0 +1,6 @@
+String title
+int count
+int type
+String packageName
+int fragment
+int icon

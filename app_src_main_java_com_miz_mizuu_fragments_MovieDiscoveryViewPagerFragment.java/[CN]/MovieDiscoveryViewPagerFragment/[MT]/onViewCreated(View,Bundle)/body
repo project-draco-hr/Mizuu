@@ -1,0 +1,20 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  mProgressBar=(ProgressBar)v.findViewById(R.id.progressbar);
+  mProgressBar.setVisibility(View.VISIBLE);
+  mViewPager=(ViewPager)v.findViewById(R.id.awesomepager);
+  mViewPager.setOffscreenPageLimit(3);
+  mViewPager.setPageMargin(MizLib.convertDpToPixels(getActivity(),16));
+  mTabs=(PagerSlidingTabStrip)v.findViewById(R.id.tabs);
+  mTabs.setVisibility(View.GONE);
+  mTabs.setShouldExpand(true);
+  if (savedInstanceState != null) {
+    mViewPager.setCurrentItem(savedInstanceState.getInt("selectedIndex",0));
+  }
+  if (mJson.isEmpty()) {
+    new MovieLoader(getActivity()).execute();
+  }
+ else {
+    setupAdapterAndTabs();
+  }
+}

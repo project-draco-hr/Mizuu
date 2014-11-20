@@ -1,0 +1,7 @@
+{
+  getInstrumentation().waitForIdleSync();
+  mContext=getInstrumentation().getTargetContext().getApplicationContext();
+  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
+  resetDatabase(db);
+  return db;
+}

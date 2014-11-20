@@ -1,0 +1,35 @@
+{
+  movies.clear();
+  ColumnIndexCache cache=new ColumnIndexCache();
+  DbAdapterMovieMappings db=MizuuApplication.getMovieMappingAdapter();
+  Cursor cursor=db.getAllIgnoredFilepaths();
+  try {
+    while (cursor.moveToNext()) {
+      movies.add(cursor.getString(cache.getColumnIndex(cursor,DbAdapterMovieMappings.KEY_FILEPATH)));
+    }
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    cursor.close();
+    cache.clear();
+  }
+  mEpisodes.clear();
+  Cursor cursor2=MizuuApplication.getTvShowEpisodeMappingsDbAdapter().getAllIgnoredFilepaths();
+  try {
+    while (cursor2.moveToNext()) {
+      mEpisodes.add(cursor2.getString(cursor2.getColumnIndex(DbAdapterTvShowEpisodeMappings.KEY_FILEPATH)));
+    }
+  }
+ catch (  Exception e) {
+  }
+ finally {
+    cursor2.close();
+    cache.clear();
+  }
+  if (awesomePager != null) {
+    if (mAdapter == null)     mAdapter=new IgnoredFilesAdapter();
+    if (awesomePager.getAdapter() == null)     awesomePager.setAdapter(mAdapter);
+    mAdapter.notifyDataSetChanged();
+  }
+}

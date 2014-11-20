@@ -1,0 +1,13 @@
+{
+  try {
+    mBaseUrl=MizLib.getTmdbImageBaseUrl(mContext);
+    mJson=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/movie/" + params[0] + "/images?api_key="+ mTmdbApiKey).toString();
+    if (MizLib.isValidTmdbId(mCollectionId)) {
+      mCollection=MizLib.getJSONObject(mContext,"https://api.themoviedb.org/3/collection/" + params[1] + "/images?api_key="+ mTmdbApiKey).toString();
+    }
+    return mJson;
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

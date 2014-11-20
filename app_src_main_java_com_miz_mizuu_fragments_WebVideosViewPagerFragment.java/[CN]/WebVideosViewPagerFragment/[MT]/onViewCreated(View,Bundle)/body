@@ -1,0 +1,13 @@
+{
+  super.onViewCreated(v,savedInstanceState);
+  mViewPager=(ViewPager)v.findViewById(R.id.awesomepager);
+  mViewPager.setOffscreenPageLimit(3);
+  mViewPager.setAdapter(new WebVideosAdapter(getChildFragmentManager()));
+  mTabs=(PagerSlidingTabStrip)v.findViewById(R.id.tabs);
+  mTabs.setShouldExpand(true);
+  mTabs.setViewPager(mViewPager);
+  if (MizLib.hasLollipop())   ((ActionBarActivity)getActivity()).getSupportActionBar().setElevation(0);
+  if (savedInstanceState != null) {
+    mViewPager.setCurrentItem(savedInstanceState.getInt("selectedIndex",0));
+  }
+}

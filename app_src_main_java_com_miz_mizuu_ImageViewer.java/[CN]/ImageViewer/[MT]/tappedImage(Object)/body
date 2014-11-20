@@ -1,0 +1,9 @@
+{
+  boolean visible=getSupportActionBar().isShowing();
+  if (visible) {
+    hideSystemUi();
+  }
+ else {
+    showSystemUi();
+  }
+}

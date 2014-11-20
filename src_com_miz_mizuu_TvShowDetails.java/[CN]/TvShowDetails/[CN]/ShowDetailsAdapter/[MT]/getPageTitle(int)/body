@@ -1,8 +1,0 @@
-{
-switch (position) {
-case 0:
-    return getString(R.string.overview);
-default :
-  return getString(R.string.episodes);
-}
-}

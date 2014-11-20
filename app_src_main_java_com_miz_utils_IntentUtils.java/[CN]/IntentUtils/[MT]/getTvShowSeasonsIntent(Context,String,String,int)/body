@@ -1,0 +1,7 @@
+{
+  Intent seasonsIntent=new Intent(context,TvShowSeasons.class);
+  seasonsIntent.putExtra("showTitle",title);
+  seasonsIntent.putExtra("showId",showId);
+  seasonsIntent.putExtra(IntentKeys.TOOLBAR_COLOR,toolbarColor);
+  return seasonsIntent;
+}

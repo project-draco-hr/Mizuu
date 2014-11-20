@@ -1,6 +1,0 @@
-{
-  Intent i=new Intent();
-  i.putExtra("id",thisShow.getId());
-  i.setClass(this,ShowCoverFanartBrowser.class);
-  startActivity(i);
-}

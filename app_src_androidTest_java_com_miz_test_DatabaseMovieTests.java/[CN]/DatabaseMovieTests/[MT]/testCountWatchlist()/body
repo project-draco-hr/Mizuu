@@ -1,0 +1,11 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  assertEquals(0,db.countWatchlist());
+  createTestMovie(db);
+  assertEquals(0,db.countWatchlist());
+  createTwoTestMovies(db);
+  assertEquals(1,db.countWatchlist());
+  assertEquals(2,db.count());
+  db.updateMovieSingleItem("1234",DbAdapterMovies.KEY_TO_WATCH,"1");
+  assertEquals(2,db.countWatchlist());
+}

@@ -1,0 +1,5 @@
+{
+  if (mRecyclerView == null || mRecyclerView.getChildAt(0) == null)   return 0;
+  View topChild=mRecyclerView.getChildAt(0);
+  return getFirstVisibleItem() * topChild.getHeight() - topChild.getTop();
+}

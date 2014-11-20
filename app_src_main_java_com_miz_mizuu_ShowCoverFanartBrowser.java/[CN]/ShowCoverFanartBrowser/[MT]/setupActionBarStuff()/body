@@ -1,0 +1,7 @@
+{
+  if (!MizLib.isPortrait(getApplicationContext()))   findViewById(R.id.layout).setBackgroundResource(0);
+  mProgressBar.setVisibility(View.GONE);
+  mViewPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
+  mTabs.setViewPager(mViewPager);
+  mTabs.setVisibility(View.VISIBLE);
+}

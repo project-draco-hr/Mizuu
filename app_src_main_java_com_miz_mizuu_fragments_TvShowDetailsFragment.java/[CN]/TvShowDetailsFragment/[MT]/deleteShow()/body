@@ -1,0 +1,17 @@
+{
+  AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
+  builder.setMessage(getString(R.string.areYouSure)).setTitle(getString(R.string.removeShow)).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int id){
+      MizLib.deleteShow(getActivity().getApplicationContext(),thisShow,true);
+      LocalBroadcastUtils.updateTvShowLibrary(getActivity().getApplicationContext());
+      getActivity().finish();
+      return;
+    }
+  }
+).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int id){
+      dialog.cancel();
+    }
+  }
+).create().show();
+}

@@ -1,0 +1,41 @@
+{
+  final GridSeason mSeason=mItems.get(position);
+  final CoverItem holder;
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.grid_season_cover,container,false);
+    holder=new CoverItem();
+    holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    holder.highlight=(ImageView)convertView.findViewById(R.id.highlight);
+    holder.text=(TextView)convertView.findViewById(R.id.text);
+    holder.text.setSingleLine(true);
+    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.subtext.setSingleLine(true);
+    holder.text.setTypeface(TypefaceUtils.getRobotoMedium(mContext));
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(CoverItem)convertView.getTag();
+  }
+  holder.cover.setImageResource(R.color.card_background_dark);
+  if (!mContextualActionBarEnabled) {
+    if (position == mSelectedIndex && mDualPane) {
+      holder.highlight.setVisibility(View.VISIBLE);
+    }
+ else {
+      holder.highlight.setVisibility(View.GONE);
+    }
+  }
+ else {
+    if (mCheckedSeasons.contains(mSeason.getSeason())) {
+      holder.highlight.setVisibility(View.VISIBLE);
+    }
+ else {
+      holder.highlight.setVisibility(View.GONE);
+    }
+  }
+  holder.text.setText(mSeason.getHeaderText());
+  holder.subtext.setText(mSeason.getSubtitleText());
+  mPicasso.load(mSeason.getCover()).error(R.drawable.loading_image).fit().config(mConfig).into(holder.cover);
+  return convertView;
+}

@@ -1,0 +1,41 @@
+{
+  super.onCreate(savedInstanceState);
+  mList=(ListView)findViewById(R.id.listView1);
+  mList.setMultiChoiceModeListener(new MultiChoiceModeListener(){
+    @Override public boolean onActionItemClicked(    ActionMode mode,    MenuItem item){
+switch (item.getItemId()) {
+case R.id.identify:
+        identifySelectedFiles();
+      break;
+  }
+  mode.finish();
+  return true;
+}
+@Override public boolean onCreateActionMode(ActionMode mode,Menu menu){
+  MenuInflater inflater=mode.getMenuInflater();
+  inflater.inflate(R.menu.unidentified,menu);
+  return true;
+}
+@Override public void onDestroyActionMode(ActionMode mode){
+  mode=null;
+  mList.clearFocus();
+  mList.clearChoices();
+  mList.invalidate();
+}
+@Override public boolean onPrepareActionMode(ActionMode mode,Menu menu){
+  return true;
+}
+@Override public void onItemCheckedStateChanged(ActionMode mode,int position,long id,boolean checked){
+  mode.setTitle(mList.getCheckedItemCount() + " selected");
+}
+}
+);
+mList.setOnItemClickListener(new OnItemClickListener(){
+@Override public void onItemClick(AdapterView<?> arg0,View arg1,int arg2,long arg3){
+  mList.setItemChecked(arg2,!mList.isItemChecked(arg2));
+}
+}
+);
+loadData();
+LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_TV_SHOW_LIBRARY));
+}

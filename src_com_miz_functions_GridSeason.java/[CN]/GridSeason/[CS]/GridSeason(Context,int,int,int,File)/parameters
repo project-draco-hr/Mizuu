@@ -1,5 +1,0 @@
-Context context
-int season
-int episodeCount
-int watchedCount
-File cover

@@ -1,0 +1,10 @@
+{
+switch (index) {
+case 0:
+    return CoverSearchFragment.newInstance(mTmdbId,mJson,mBaseUrl);
+case 1:
+  return FanartSearchFragment.newInstance(mTmdbId,mJson,mBaseUrl);
+default :
+return CollectionCoverSearchFragment.newInstance(mCollectionId,mCollection,mBaseUrl);
+}
+}

@@ -1,0 +1,13 @@
+{
+  super.onCreate(savedInstanceState);
+  String actorId=getIntent().getExtras().getString("actorId");
+  String actorName=getIntent().getExtras().getString("actorName");
+  mToolbarColor=getIntent().getExtras().getInt(IntentKeys.TOOLBAR_COLOR);
+  getSupportActionBar().setSubtitle(actorName);
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null && savedInstanceState == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.replace(R.id.content,ActorMoviesFragment.newInstance(actorId),TAG);
+    ft.commit();
+  }
+}

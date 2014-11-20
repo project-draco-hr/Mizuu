@@ -1,0 +1,17 @@
+{
+  try {
+    if (isCancelled())     return null;
+    MovieApiService service=MizuuApplication.getMovieService(getActivity().getApplicationContext());
+    List<Movie> movieResults=service.searchNgram(params[0],"en");
+    if (isCancelled())     return null;
+    int count=movieResults.size();
+    for (int i=0; i < count; i++) {
+      mResults.add(new Result(movieResults.get(i).getTitle(),movieResults.get(i).getId(),movieResults.get(i).getCover(),movieResults.get(i).getRating(),movieResults.get(i).getReleasedate()));
+    }
+    if (isCancelled())     return null;
+    return "";
+  }
+ catch (  Exception e) {
+  }
+  return null;
+}

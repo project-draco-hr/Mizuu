@@ -1,0 +1,7 @@
+{
+  Intent actorTaggedPhotosIntent=new Intent(context,ActorTaggedPhotos.class);
+  actorTaggedPhotosIntent.putExtra("actorName",actorName);
+  actorTaggedPhotosIntent.putExtra("actorId",actorId);
+  actorTaggedPhotosIntent.putExtra(IntentKeys.TOOLBAR_COLOR,toolbarColor);
+  return actorTaggedPhotosIntent;
+}

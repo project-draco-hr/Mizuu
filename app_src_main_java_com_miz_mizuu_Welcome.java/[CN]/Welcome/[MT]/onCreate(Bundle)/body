@@ -1,0 +1,94 @@
+{
+  confirmExit=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(CONFIRM_BACK_PRESS,false);
+  requestWindowFeature(Window.FEATURE_NO_TITLE);
+  getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+  setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+  getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE);
+  super.onCreate(savedInstanceState);
+  tf=TypefaceUtils.getRobotoThin(this);
+  dbHelper=MizuuApplication.getMovieAdapter();
+  dbHelperTv=MizuuApplication.getTvDbAdapter();
+  Cursor cursor=dbHelper.fetchAllMovies(DbAdapterMovies.KEY_TITLE + " ASC");
+  while (cursor.moveToNext()) {
+    try {
+      backdrops.add(new Backdrop(FileUtils.getMovieBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TMDB_ID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TMDB_ID)),true,cursor.getString(cursor.getColumnIndex(DbAdapterMovies.KEY_TITLE))));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  cursor=dbHelperTv.getAllShows();
+  while (cursor.moveToNext()) {
+    try {
+      backdrops.add(new Backdrop(FileUtils.getTvShowBackdrop(this,cursor.getString(cursor.getColumnIndex(DbAdapterTvShows.KEY_SHOW_ID))).getAbsolutePath(),cursor.getString(cursor.getColumnIndex(DbAdapterTvShows.KEY_SHOW_ID)),false,cursor.getString(cursor.getColumnIndex(DbAdapterTvShows.KEY_SHOW_TITLE))));
+    }
+ catch (    NullPointerException e) {
+    }
+  }
+  cursor.close();
+  Collections.shuffle(backdrops,new Random(System.nanoTime()));
+  list=(ListView)findViewById(R.id.list);
+  list.setDivider(null);
+  list.setAdapter(new MenuAdapter());
+  list.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      if (!(arg2 == 0 || arg2 == 4)) {
+        Intent i=new Intent(Intent.ACTION_VIEW);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+switch (arg2) {
+case 1:
+          i.putExtra("startup","1");
+        break;
+case 2:
+      i.putExtra("startup","2");
+    break;
+case 3:
+  i.putExtra("startup","3");
+break;
+case 5:
+i.putExtra("startup","4");
+break;
+case 6:
+i.putExtra("startup","5");
+break;
+}
+i.setClass(getApplicationContext(),Main.class);
+startActivity(i);
+overridePendingTransition(R.anim.mainfadein,R.anim.splashfadeout);
+}
+}
+}
+);
+list.setSelection(1);
+updateLibraryCounts();
+title=(TextView)findViewById(R.id.title);
+if (MizLib.isTablet(this)) title.setTextSize(26f);
+ else title.setVisibility(View.GONE);
+Animation aniIn=AnimationUtils.loadAnimation(this,android.R.anim.fade_in);
+aniIn.setDuration(800);
+Animation aniOut=AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
+aniOut.setDuration(800);
+imageSwitcher=(ImageSwitcher)findViewById(R.id.imageSwitcher1);
+if (!MizLib.usesNavigationControl(getApplicationContext())) imageSwitcher.setOnClickListener(new OnClickListener(){
+@Override public void onClick(View v){
+Intent intent=new Intent();
+if (index == -1) index=0;
+if (backdrops.get(index).isMovie()) {
+intent.putExtra("tmdbId",backdrops.get(index).getId());
+intent.setClass(getApplicationContext(),MovieDetails.class);
+}
+ else {
+intent.putExtra("showId",backdrops.get(index).getId());
+intent.setClass(getApplicationContext(),TvShowDetails.class);
+}
+startActivity(intent);
+}
+}
+);
+imageSwitcher.setInAnimation(aniIn);
+imageSwitcher.setOutAnimation(aniOut);
+imageSwitcher.setFactory(this);
+handler=new Handler();
+if (backdrops.size() > 0) {
+handler.post(runnable);
+}
+}

@@ -1,0 +1,8 @@
+{
+  for (  View v : getViews())   animate(v);
+  if (getFab() != null) {
+    mFab.setColorNormal(getSwatchColor());
+    mFab.setColorPressed(getSwatchColor());
+    mFab.setColorRipple(Color.parseColor("#80ffffff"));
+  }
+}

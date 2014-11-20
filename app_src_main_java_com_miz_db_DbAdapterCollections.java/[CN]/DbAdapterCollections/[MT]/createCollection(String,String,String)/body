@@ -1,0 +1,12 @@
+{
+  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
+  if (collectionExists(collectionId) || !db.movieExists(tmdbId))   return -1;
+  String currentCollectionId=db.getSingleItem(tmdbId,DbAdapterMovies.KEY_COLLECTION_ID);
+  if (getMovieCount(currentCollectionId) == 1) {
+    deleteCollection(currentCollectionId);
+  }
+  ContentValues values=new ContentValues();
+  values.put(KEY_COLLECTION_ID,collectionId);
+  values.put(KEY_COLLECTION,collection);
+  return mDatabase.insert(DATABASE_TABLE,null,values);
+}

@@ -1,0 +1,37 @@
+{
+  mPicasso.load(mActor.getProfilePhotoThumb()).placeholder(R.drawable.noactor).error(R.drawable.noactor).into(mPhoto,new Callback(){
+    @Override public void onSuccess(){
+      if (mPaletteLoader == null) {
+        mPaletteLoader=new PaletteLoader(mPicasso,Uri.parse(mActor.getProfilePhotoThumb()),new PaletteLoader.OnPaletteLoadedCallback(){
+          @Override public void onPaletteLoaded(          int swatchColor){
+            mToolbarColor=swatchColor;
+          }
+        }
+);
+        mPaletteLoader.addView(mDetailsLayout);
+        mPaletteLoader.addView(mMovieCards.getSeeMoreView());
+        mPaletteLoader.addView(mTvCards.getSeeMoreView());
+        mPaletteLoader.addView(mPhotoCards.getSeeMoreView());
+        mPaletteLoader.addView(mTaggedPhotoCards.getSeeMoreView());
+        mPaletteLoader.execute();
+      }
+ else {
+        mPaletteLoader.clearViews();
+        mPaletteLoader.addView(mDetailsLayout);
+        mPaletteLoader.addView(mMovieCards.getSeeMoreView());
+        mPaletteLoader.addView(mTvCards.getSeeMoreView());
+        mPaletteLoader.addView(mPhotoCards.getSeeMoreView());
+        mPaletteLoader.addView(mTaggedPhotoCards.getSeeMoreView());
+        mPaletteLoader.colorViews();
+      }
+    }
+    @Override public void onError(){
+    }
+  }
+);
+  if (!MizLib.isPortrait(mContext)) {
+    String backdropImage=mActor.getBackdropImage();
+    mPicasso.load(backdropImage).placeholder(R.drawable.bg).error(R.drawable.bg).transform(new BlurTransformation(mContext,backdropImage,2)).into(mBackdrop);
+    mBackdrop.setColorFilter(Color.parseColor("#88181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+  }
+}

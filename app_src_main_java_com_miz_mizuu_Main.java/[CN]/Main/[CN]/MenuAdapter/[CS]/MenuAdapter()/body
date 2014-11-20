@@ -1,0 +1,4 @@
+{
+  mInflater=LayoutInflater.from(getApplicationContext());
+  mBackdropPath=MizLib.getRandomBackdropPath(getApplicationContext());
+}

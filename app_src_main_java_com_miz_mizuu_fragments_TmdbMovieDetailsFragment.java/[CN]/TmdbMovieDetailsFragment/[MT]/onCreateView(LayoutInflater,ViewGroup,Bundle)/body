@@ -1,0 +1,68 @@
+{
+  final View v=inflater.inflate(R.layout.movie_and_tv_show_details,container,false);
+  mToolbar=(Toolbar)v.findViewById(R.id.toolbar);
+  mToolbar.setBackgroundResource(android.R.color.transparent);
+  ViewUtils.setProperToolbarSize(mContext,mToolbar);
+  ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_width);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  mProgressBar=v.findViewById(R.id.progress_layout);
+  mDetailsArea=v.findViewById(R.id.details_area);
+  mBackground=(ImageView)v.findViewById(R.id.imageBackground);
+  mTitle=(TextView)v.findViewById(R.id.movieTitle);
+  mPlot=(TextView)v.findViewById(R.id.textView2);
+  mGenre=(TextView)v.findViewById(R.id.textView7);
+  mRuntime=(TextView)v.findViewById(R.id.textView9);
+  mReleaseDate=(TextView)v.findViewById(R.id.textReleaseDate);
+  mRating=(TextView)v.findViewById(R.id.textView12);
+  mTagline=(TextView)v.findViewById(R.id.textView6);
+  mCertification=(TextView)v.findViewById(R.id.textView11);
+  mCover=(ImageView)v.findViewById(R.id.traktIcon);
+  mActorsLayout=(HorizontalCardLayout)v.findViewById(R.id.horizontal_card_layout);
+  mSimilarMoviesLayout=(HorizontalCardLayout)v.findViewById(R.id.horizontal_card_layout_extra);
+  mScrollView=(ObservableScrollView)v.findViewById(R.id.observableScrollView);
+  mFab=(FloatingActionButton)v.findViewById(R.id.fab);
+  mFab.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      ViewUtils.animateFabJump(v,new Animator.AnimatorListener(){
+        @Override public void onAnimationEnd(        Animator animation){
+          watchTrailer();
+        }
+        @Override public void onAnimationStart(        Animator animation){
+        }
+        @Override public void onAnimationCancel(        Animator animation){
+        }
+        @Override public void onAnimationRepeat(        Animator animation){
+        }
+      }
+);
+    }
+  }
+);
+  if (MizLib.isTablet(mContext))   mFab.setType(FloatingActionButton.TYPE_NORMAL);
+  v.findViewById(R.id.textView3).setVisibility(View.GONE);
+  final boolean fullscreen=MizuuApplication.isFullscreen(mContext);
+  final int height=fullscreen ? MizLib.getActionBarHeight(mContext) : MizLib.getActionBarAndStatusBarHeight(mContext);
+  mScrollView.setOnScrollChangedListener(new OnScrollChangedListener(){
+    @Override public void onScrollChanged(    ScrollView who,    int l,    int t,    int oldl,    int oldt){
+      ViewUtils.handleOnScrollChangedEvent(getActivity(),v,mBackground,mMovie.getTitle(),height,t,mToolbar,mToolbarColor);
+    }
+  }
+);
+  mScrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      ViewUtils.setLayoutParamsForDetailsEmptyView(mContext,v,mBackground,mScrollView,this);
+    }
+  }
+);
+  if (!mRetained) {
+    setLoading(true);
+    new MovieLoader().execute();
+    mRetained=true;
+  }
+ else {
+    setupFields();
+  }
+  return v;
+}

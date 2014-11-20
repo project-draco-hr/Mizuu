@@ -1,0 +1,14 @@
+{
+  new AsyncTask<Void,Void,Void>(){
+    private List<Actor> mActors;
+    @Override protected Void doInBackground(    Void... params){
+      MovieApiService service=MizuuApplication.getMovieService(mContext);
+      mActors=service.getActors(mMovie.getTmdbId());
+      return null;
+    }
+    @Override protected void onPostExecute(    Void result){
+      mActorsLayout.loadItems(mContext,mPicasso,capacity,mImageThumbSize,mActors,HorizontalCardLayout.ACTORS,mToolbarColor);
+    }
+  }
+.execute();
+}

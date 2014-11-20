@@ -1,7 +1,0 @@
-{
-  if (collectionExists(collectionId))   return -1;
-  ContentValues values=new ContentValues();
-  values.put(KEY_COLLECTION_ID,collectionId);
-  values.put(KEY_COLLECTION,collection);
-  return mDatabase.insert(DATABASE_TABLE,null,values);
-}

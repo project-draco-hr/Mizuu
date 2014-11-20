@@ -1,0 +1,7 @@
+{
+  Intent actorIntent=new Intent(context,ActorBrowserTv.class);
+  actorIntent.putExtra("title",title);
+  actorIntent.putExtra("showId",showId);
+  actorIntent.putExtra(IntentKeys.TOOLBAR_COLOR,toolbarColor);
+  return actorIntent;
+}

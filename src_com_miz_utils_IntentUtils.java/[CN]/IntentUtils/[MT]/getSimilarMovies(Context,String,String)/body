@@ -1,6 +1,0 @@
-{
-  Intent similarMoviesIntent=new Intent(context,SimilarMovies.class);
-  similarMoviesIntent.putExtra("title",title);
-  similarMoviesIntent.putExtra("movieId",movieId);
-  return similarMoviesIntent;
-}

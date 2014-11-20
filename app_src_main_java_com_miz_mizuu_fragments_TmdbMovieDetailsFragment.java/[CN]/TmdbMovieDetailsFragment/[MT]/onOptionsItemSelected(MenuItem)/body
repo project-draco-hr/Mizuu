@@ -1,0 +1,17 @@
+{
+switch (item.getItemId()) {
+case android.R.id.home:
+    getActivity().finish();
+  break;
+case R.id.share:
+shareMovie();
+break;
+case R.id.openInBrowser:
+openInBrowser();
+break;
+case R.id.checkIn:
+checkIn();
+break;
+}
+return super.onOptionsItemSelected(item);
+}

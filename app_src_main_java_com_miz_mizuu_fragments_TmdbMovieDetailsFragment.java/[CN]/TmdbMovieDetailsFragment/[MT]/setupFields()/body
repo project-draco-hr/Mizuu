@@ -1,0 +1,106 @@
+{
+  if (isAdded() && mMovie != null) {
+    mTitle.setVisibility(View.VISIBLE);
+    mTitle.setText(mMovie.getTitle());
+    mTitle.setTypeface(mCondensedRegular);
+    mPlot.setTypeface(mCondensedRegular);
+    mReleaseDate.setTypeface(mMedium);
+    mRuntime.setTypeface(mMedium);
+    mCertification.setTypeface(mMedium);
+    mRating.setTypeface(mMedium);
+    mPlot.setBackgroundResource(R.drawable.selectable_background);
+    if (!mMovie.getTagline().isEmpty())     mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.movie_details_max_lines));
+ else     mPlot.setMaxLines(getActivity().getResources().getInteger(R.integer.show_details_max_lines));
+    mPlot.setTag(true);
+    mPlot.setOnClickListener(new OnClickListener(){
+      @Override public void onClick(      View v){
+        if (((Boolean)mPlot.getTag())) {
+          ViewUtils.animateTextViewMaxLines(mPlot,50);
+          mPlot.setTag(false);
+        }
+ else {
+          ViewUtils.animateTextViewMaxLines(mPlot,mMovie.getTagline().isEmpty() ? getResources().getInteger(R.integer.show_details_max_lines) : getResources().getInteger(R.integer.movie_details_max_lines));
+          mPlot.setTag(true);
+        }
+      }
+    }
+);
+    mPlot.setEllipsize(TextUtils.TruncateAt.END);
+    mPlot.setFocusable(true);
+    if (MizLib.isTablet(getActivity()))     mPlot.setLineSpacing(0,1.15f);
+    mPlot.setText(mMovie.getPlot());
+    mTagline.setTypeface(mBold);
+    if (mMovie.getTagline().equals("NOTAGLINE") || mMovie.getTagline().isEmpty())     mTagline.setVisibility(TextView.GONE);
+ else     mTagline.setText(mMovie.getTagline());
+    mGenre.setTypeface(mMediumItalic);
+    if (!TextUtils.isEmpty(mMovie.getGenres())) {
+      mGenre.setText(mMovie.getGenres());
+    }
+ else {
+      mGenre.setVisibility(View.GONE);
+    }
+    mRuntime.setText(MizLib.getPrettyRuntime(getActivity(),Integer.parseInt(mMovie.getRuntime())));
+    mReleaseDate.setTypeface(mMedium);
+    mReleaseDate.setText(MizLib.getPrettyDate(getActivity(),mMovie.getReleasedate()));
+    if (!mMovie.getRating().equals("0.0")) {
+      try {
+        int rating=(int)(Double.parseDouble(mMovie.getRating()) * 10);
+        mRating.setText(Html.fromHtml(rating + "<small> %</small>"));
+      }
+ catch (      NumberFormatException e) {
+        mRating.setText(mMovie.getRating());
+      }
+    }
+ else {
+      mRating.setText(R.string.stringNA);
+    }
+    if (!TextUtils.isEmpty(mMovie.getCertification())) {
+      mCertification.setText(mMovie.getCertification());
+    }
+ else {
+      mCertification.setText(R.string.stringNA);
+    }
+    mActorsLayout.setTitle(R.string.detailsActors);
+    mActorsLayout.setSeeMoreVisibility(true);
+    mActorsLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+      @Override public void onGlobalLayout(){
+        if (mActorsLayout.getWidth() > 0) {
+          final int numColumns=(int)Math.floor(mActorsLayout.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+          mImageThumbSize=(mActorsLayout.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns;
+          mActorsLayout.loadItems(mContext,mPicasso,numColumns,mImageThumbSize,mMovie.getActors(),HorizontalCardLayout.ACTORS,mToolbarColor);
+          MizLib.removeViewTreeObserver(mActorsLayout.getViewTreeObserver(),this);
+        }
+      }
+    }
+);
+    mActorsLayout.setSeeMoreOnClickListener(new OnClickListener(){
+      @Override public void onClick(      View v){
+        startActivity(IntentUtils.getActorBrowserMovies(mContext,mMovie.getTitle(),mMovie.getId(),mToolbarColor));
+      }
+    }
+);
+    mSimilarMoviesLayout.setVisibility(View.VISIBLE);
+    mSimilarMoviesLayout.setTitle(R.string.relatedMovies);
+    mSimilarMoviesLayout.setSeeMoreVisibility(true);
+    mSimilarMoviesLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+      @Override public void onGlobalLayout(){
+        if (mSimilarMoviesLayout.getWidth() > 0) {
+          final int numColumns=(int)Math.floor(mSimilarMoviesLayout.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+          mImageThumbSize=(mSimilarMoviesLayout.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns;
+          mSimilarMoviesLayout.loadItems(mContext,mPicasso,numColumns,mImageThumbSize,mMovie.getSimilarMovies(),HorizontalCardLayout.RELATED_MOVIES,mToolbarColor);
+          MizLib.removeViewTreeObserver(mSimilarMoviesLayout.getViewTreeObserver(),this);
+        }
+      }
+    }
+);
+    mSimilarMoviesLayout.setSeeMoreOnClickListener(new OnClickListener(){
+      @Override public void onClick(      View v){
+        startActivity(IntentUtils.getSimilarMovies(mContext,mMovie.getTitle(),mMovie.getId(),mToolbarColor));
+      }
+    }
+);
+    ViewUtils.updateToolbarBackground(getActivity(),mToolbar,0,mMovie.getTitle(),mToolbarColor);
+    setLoading(false);
+    loadImages();
+  }
+}

@@ -1,4 +1,0 @@
-{
-  if (!MizLib.isValidTmdbId(collectionId))   return 2;
-  return 3;
-}

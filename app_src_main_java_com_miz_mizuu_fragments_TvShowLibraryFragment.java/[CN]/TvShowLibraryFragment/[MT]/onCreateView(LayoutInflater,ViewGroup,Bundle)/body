@@ -1,0 +1,39 @@
+{
+  final View v=inflater.inflate(R.layout.image_grid_fragment,container,false);
+  mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
+  mEmptyLibraryLayout=v.findViewById(R.id.empty_library_layout);
+  mEmptyLibraryTitle=(TextView)v.findViewById(R.id.empty_library_title);
+  mEmptyLibraryTitle.setTypeface(TypefaceUtils.getRobotoCondensedRegular(getActivity()));
+  mEmptyLibraryDescription=(TextView)v.findViewById(R.id.empty_library_description);
+  mEmptyLibraryDescription.setTypeface(TypefaceUtils.getRobotoLight(getActivity()));
+  mAdapter=new LoaderAdapter(getActivity());
+  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView.setAdapter(mAdapter);
+  mGridView.setEmptyView(mEmptyLibraryLayout);
+  mGridView.setColumnWidth(mImageThumbSize);
+  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @SuppressLint("NewApi") @Override public void onGlobalLayout(){
+      if (mAdapter.getNumColumns() == 0) {
+        final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
+        if (numColumns > 0) {
+          mAdapter.setNumColumns(numColumns);
+          mResizedWidth=(int)(((mGridView.getWidth() - (numColumns * mImageThumbSpacing)) / numColumns) * 1.1);
+          mResizedHeight=(int)(mResizedWidth * 1.5);
+        }
+        MizLib.removeViewTreeObserver(mGridView.getViewTreeObserver(),this);
+      }
+    }
+  }
+);
+  mGridView.setOnItemClickListener(new OnItemClickListener(){
+    @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
+      Intent intent=new Intent();
+      intent.putExtra("showId",mTvShows.get(mTvShowKeys.get(arg2)).getId());
+      intent.setClass(getActivity(),TvShowDetails.class);
+      ActivityOptionsCompat options=ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),arg1.findViewById(R.id.cover),"cover");
+      ActivityCompat.startActivityForResult(getActivity(),intent,0,options.toBundle());
+    }
+  }
+);
+  return v;
+}

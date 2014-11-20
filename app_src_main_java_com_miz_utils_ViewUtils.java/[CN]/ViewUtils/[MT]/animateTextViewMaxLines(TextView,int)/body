@@ -1,0 +1,6 @@
+{
+  ObjectAnimator animation=ObjectAnimator.ofInt(text,"maxLines",maxLines);
+  animation.setInterpolator(new AccelerateInterpolator());
+  animation.setDuration(200);
+  animation.start();
+}

@@ -1,5 +1,0 @@
-{
-  mInflater=LayoutInflater.from(getApplicationContext());
-  mTablet=MizLib.isTablet(getApplicationContext());
-  mBackdropPath=MizLib.getRandomBackdropPath(getApplicationContext());
-}

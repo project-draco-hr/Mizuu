@@ -1,0 +1,20 @@
+{
+  new AsyncTask<Void,Void,Void>(){
+    private List<GridSeason> mSeasons=new ArrayList<GridSeason>();
+    @Override protected Void doInBackground(    Void... params){
+      HashMap<String,EpisodeCounter> seasons=MizuuApplication.getTvEpisodeDbAdapter().getSeasons(thisShow.getId());
+      for (      String key : seasons.keySet()) {
+        File temp=FileUtils.getTvShowSeason(mContext,thisShow.getId(),key);
+        mSeasons.add(new GridSeason(mContext,thisShow.getId(),Integer.valueOf(key),seasons.get(key).getEpisodeCount(),seasons.get(key).getWatchedCount(),temp.exists() ? temp : FileUtils.getTvShowThumb(mContext,thisShow.getId())));
+      }
+      seasons.clear();
+      Collections.sort(mSeasons);
+      return null;
+    }
+    @Override protected void onPostExecute(    Void result){
+      mSeasonsLayout.loadItems(mContext,mPicasso,capacity,mImageThumbSize,mSeasons,HorizontalCardLayout.SEASONS,mToolbarColor);
+      mSeasonsLayout.setSeeMoreVisibility(true);
+    }
+  }
+.execute();
+}

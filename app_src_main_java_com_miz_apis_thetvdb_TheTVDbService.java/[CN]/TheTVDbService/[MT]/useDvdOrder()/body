@@ -1,0 +1,3 @@
+{
+  return PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(DVD_ORDERING,false);
+}

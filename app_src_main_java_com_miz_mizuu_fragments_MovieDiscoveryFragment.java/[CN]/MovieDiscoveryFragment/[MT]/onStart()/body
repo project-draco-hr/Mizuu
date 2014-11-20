@@ -1,0 +1,4 @@
+{
+  super.onStart();
+  ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+}

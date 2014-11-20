@@ -1,0 +1,18 @@
+{
+  super.onCreate(savedInstanceState);
+  setTheme(R.style.Mizuu_Theme_NoBackground);
+  ViewUtils.setupWindowFlagsForStatusbarOverlay(getWindow(),isFullscreen(),true);
+  setTitle(null);
+  if (Intent.ACTION_SEARCH.equals(getIntent().getAction())) {
+    mShowId=getIntent().getStringExtra(SearchManager.EXTRA_DATA_KEY);
+  }
+ else {
+    mShowId=getIntent().getStringExtra("showId");
+  }
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.add(android.R.id.content,TvShowDetailsFragment.newInstance(mShowId),TAG);
+    ft.commit();
+  }
+}

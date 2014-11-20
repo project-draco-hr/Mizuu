@@ -1,0 +1,16 @@
+{
+  if (MizLib.isOnline(getActivity())) {
+    Toast.makeText(getActivity(),getString(R.string.updatingMovieInfo),Toast.LENGTH_LONG).show();
+    Intent identifyService=new Intent(getActivity(),IdentifyMovieService.class);
+    Bundle b=new Bundle();
+    b.putString("filepath",mFilepath);
+    b.putString("currentMovieId",mCurrentMovieId);
+    b.putString("movieId",mAdapter.getItem(id).getId());
+    b.putString("language",getSelectedLanguage());
+    identifyService.putExtras(b);
+    getActivity().startService(identifyService);
+    getActivity().setResult(Activity.RESULT_OK);
+    getActivity().finish();
+  }
+ else   Toast.makeText(getActivity(),getString(R.string.noInternet),Toast.LENGTH_SHORT).show();
+}

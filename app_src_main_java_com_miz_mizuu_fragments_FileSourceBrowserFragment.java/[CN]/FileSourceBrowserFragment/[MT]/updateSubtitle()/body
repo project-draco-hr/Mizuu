@@ -1,0 +1,3 @@
+{
+  ((ActionBarActivity)getActivity()).getSupportActionBar().setSubtitle(mBrowser.getSubtitle());
+}

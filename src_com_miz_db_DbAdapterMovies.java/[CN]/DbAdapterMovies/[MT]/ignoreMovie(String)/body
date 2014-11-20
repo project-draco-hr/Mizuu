@@ -1,4 +1,0 @@
-{
-  boolean result=updateMovieSingleItem(tmdbId,KEY_TITLE,REMOVED_MOVIE_TITLE);
-  return result && MizuuApplication.getMovieMappingAdapter().ignoreMovie(tmdbId);
-}

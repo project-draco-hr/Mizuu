@@ -1,0 +1,13 @@
+{
+  super.onCreate(savedInstanceState);
+  setTheme(R.style.Mizuu_Theme_NoBackground);
+  ViewUtils.setupWindowFlagsForStatusbarOverlay(getWindow(),isFullscreen(),true);
+  setTitle(null);
+  String actorId=getIntent().getExtras().getString("actorID");
+  Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);
+  if (frag == null && savedInstanceState == null) {
+    final FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+    ft.replace(android.R.id.content,ActorDetailsFragment.newInstance(actorId),TAG);
+    ft.commit();
+  }
+}

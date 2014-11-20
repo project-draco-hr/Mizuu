@@ -1,0 +1,6 @@
+{
+  mContext=context;
+  mLibraryType=libraryType;
+  mCallback=callback;
+  mDatabase=MizuuApplication.getMovieAdapter();
+}

@@ -1,3 +1,0 @@
-{
-  super(context,fileSource,ignoreRemovedFiles,subFolderSearch,clearLibrary,disableEthernetWiFiCheck);
-}

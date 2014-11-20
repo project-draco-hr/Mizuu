@@ -1,0 +1,37 @@
+{
+  if (MizLib.hasKitKat()) {
+    if (isFullscreen())     setTheme(R.style.Mizuu_Theme_Translucent_FullScreen);
+ else     setTheme(R.style.Mizuu_Theme_Translucent);
+  }
+ else {
+    if (isFullscreen())     setTheme(R.style.Mizuu_Theme_Transparent_FullScreen);
+ else     setTheme(R.style.Mizuu_Theme_Transparent);
+  }
+  super.onCreate(savedInstanceState);
+  mToolbar=(Toolbar)findViewById(R.id.toolbar);
+  setSupportActionBar(mToolbar);
+  getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.drawable.transparent_actionbar));
+  mBus=MizuuApplication.getBus();
+  mPortraitPhotos=getIntent().getBooleanExtra("portraitPhotos",true);
+  mPhotos=getIntent().getStringArrayExtra("photos");
+  getSupportActionBar().setTitle((getIntent().getIntExtra("selectedIndex",0) + 1) + " " + getString(R.string.of)+ " "+ mPhotos.length);
+  mViewPager=(ViewPager)findViewById(R.id.awesomepager);
+  mViewPager.setPageMargin(MizLib.convertDpToPixels(getApplicationContext(),16));
+  mViewPager.setAdapter(new ActorPhotosAdapter(getSupportFragmentManager()));
+  mViewPager.setOnPageChangeListener(new SimpleOnPageChangeListener(){
+    @Override public void onPageSelected(    int arg0){
+      getSupportActionBar().setTitle((arg0 + 1) + " " + getString(R.string.of)+ " "+ mPhotos.length);
+    }
+  }
+);
+  mViewPager.setCurrentItem(getIntent().getIntExtra("selectedIndex",0));
+  View decorView=getWindow().getDecorView();
+  decorView.setOnSystemUiVisibilityChangeListener(new OnSystemUiVisibilityChangeListener(){
+    @Override public void onSystemUiVisibilityChange(    int visibility){
+      if (visibility == 0) {
+        mHandler.postDelayed(mHideSystemUiRunnable,3000);
+      }
+    }
+  }
+);
+}

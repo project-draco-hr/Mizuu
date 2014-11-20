@@ -1,0 +1,4 @@
+String videoUrl
+String coverUrl
+String title
+String id

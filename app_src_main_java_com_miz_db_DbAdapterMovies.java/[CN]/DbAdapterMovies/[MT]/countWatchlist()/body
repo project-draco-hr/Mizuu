@@ -1,0 +1,6 @@
+{
+  Cursor c=mDatabase.query(DATABASE_TABLE,new String[]{KEY_TO_WATCH},KEY_TO_WATCH + " = '1'",null,null,null,null);
+  int count=c.getCount();
+  c.close();
+  return count;
+}

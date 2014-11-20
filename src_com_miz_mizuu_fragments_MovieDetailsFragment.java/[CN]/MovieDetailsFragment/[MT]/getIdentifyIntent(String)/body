@@ -1,5 +1,0 @@
-{
-  Intent intent=new Intent(mContext,IdentifyMovie.class);
-  intent.putExtra("fileName",filepath);
-  return intent;
-}

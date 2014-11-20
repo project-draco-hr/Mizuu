@@ -1,0 +1,11 @@
+{
+  super.onCreate(savedInstanceState);
+  setRetainInstance(true);
+  getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+  mFilepath=getArguments().getString("filepath");
+  mCurrentMovieId=getArguments().getString("currentMovieId");
+  mMovieStructure=new MovieStructure(mFilepath);
+  mPicasso=MizuuApplication.getPicasso(getActivity());
+  mConfig=MizuuApplication.getBitmapConfig();
+  mAdapter=new ListAdapter(getActivity());
+}

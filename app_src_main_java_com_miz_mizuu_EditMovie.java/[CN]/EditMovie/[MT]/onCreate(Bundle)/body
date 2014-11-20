@@ -1,0 +1,9 @@
+{
+  super.onCreate(savedInstanceState);
+  final String movieId=getIntent().getStringExtra("movieId");
+  mToolbarColor=getIntent().getExtras().getInt(IntentKeys.TOOLBAR_COLOR);
+  final FragmentManager fm=getSupportFragmentManager();
+  if (fm.findFragmentById(android.R.id.content) == null) {
+    fm.beginTransaction().add(android.R.id.content,EditMovieFragment.newInstance(movieId)).commit();
+  }
+}

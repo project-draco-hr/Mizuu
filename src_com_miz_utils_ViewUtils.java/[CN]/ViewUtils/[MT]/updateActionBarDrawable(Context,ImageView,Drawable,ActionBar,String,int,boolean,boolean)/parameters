@@ -1,8 +1,0 @@
-Context context
-ImageView actionBarOverlay
-Drawable actionBarBackgroundDrawable
-ActionBar actionBar
-String title
-int newAlpha
-boolean setBackground
-boolean showActionBar

@@ -1,0 +1,26 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  createTestMovie(db);
+  assertEquals(1,db.count());
+  db.createOrUpdateMovie("1234","new title","new plot","tt12345678","9.7","new tagline","1970-01-02","PG-17","900","youtube.com","genres...","0","new actors","collectionName","collID","0","0","123456");
+  assertEquals(1,db.count());
+  assertEquals("new title",db.getSingleItem("1234",DbAdapterMovies.KEY_TITLE));
+  assertEquals("new plot",db.getSingleItem("1234",DbAdapterMovies.KEY_PLOT));
+  assertEquals("tt12345678",db.getSingleItem("1234",DbAdapterMovies.KEY_IMDB_ID));
+  assertEquals("9.7",db.getSingleItem("1234",DbAdapterMovies.KEY_RATING));
+  assertEquals("new tagline",db.getSingleItem("1234",DbAdapterMovies.KEY_TAGLINE));
+  assertEquals("1970-01-02",db.getSingleItem("1234",DbAdapterMovies.KEY_RELEASEDATE));
+  assertEquals("PG-17",db.getSingleItem("1234",DbAdapterMovies.KEY_CERTIFICATION));
+  assertEquals("900",db.getSingleItem("1234",DbAdapterMovies.KEY_RUNTIME));
+  assertEquals("youtube.com",db.getSingleItem("1234",DbAdapterMovies.KEY_TRAILER));
+  assertEquals("genres...",db.getSingleItem("1234",DbAdapterMovies.KEY_GENRES));
+  assertEquals("1",db.getSingleItem("1234",DbAdapterMovies.KEY_FAVOURITE));
+  assertEquals("new actors",db.getSingleItem("1234",DbAdapterMovies.KEY_ACTORS));
+  assertEquals("collID",db.getSingleItem("1234",DbAdapterMovies.KEY_COLLECTION_ID));
+  assertEquals("0",db.getSingleItem("1234",DbAdapterMovies.KEY_TO_WATCH));
+  assertEquals("1",db.getSingleItem("1234",DbAdapterMovies.KEY_HAS_WATCHED));
+  assertEquals("123456",db.getSingleItem("1234",DbAdapterMovies.KEY_DATE_ADDED));
+  DbAdapterCollections dbCollections=MizuuApplication.getCollectionsAdapter();
+  assertEquals("collectionName",dbCollections.getCollection("collID"));
+}

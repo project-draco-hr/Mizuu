@@ -1,0 +1,15 @@
+{
+  final View v=LayoutInflater.from(context).inflate(R.layout.horizontal_grid_item_small,null);
+  picasso.load(season.getCover()).placeholder(R.color.card_background_dark).error(R.drawable.loading_image).config(MizuuApplication.getBitmapConfig()).into(((ImageView)v.findViewById(R.id.cover)));
+  ((TextView)v.findViewById(R.id.text)).setText(season.getHeaderText());
+  ((TextView)v.findViewById(R.id.text)).setTypeface(TypefaceUtils.getRobotoMedium(context));
+  ((TextView)v.findViewById(R.id.gridCoverSubtitle)).setText(season.getSimpleSubtitleText());
+  ((TextView)v.findViewById(R.id.gridCoverSubtitle)).setSingleLine(true);
+  v.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      context.startActivityForResult(IntentUtils.getTvShowSeasonIntent(context,season.getShowId(),season.getSeason(),season.getEpisodeCount(),toolbarColor),0);
+    }
+  }
+);
+  return v;
+}

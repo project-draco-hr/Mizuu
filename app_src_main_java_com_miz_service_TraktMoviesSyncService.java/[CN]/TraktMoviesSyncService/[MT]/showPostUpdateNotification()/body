@@ -1,0 +1,14 @@
+{
+  mNotificationManager.cancel(NOTIFICATION_ID);
+  mBuilder=new NotificationCompat.Builder(getApplicationContext());
+  mBuilder.setTicker(getString(R.string.finishedTraktMovieSync));
+  mBuilder.setContentTitle(getString(R.string.finishedTraktMovieSync));
+  mBuilder.setSmallIcon(R.drawable.ic_done_white_24dp);
+  mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_done_white_24dp));
+  mBuilder.setOngoing(false);
+  mBuilder.setAutoCancel(true);
+  mBuilder.setOnlyAlertOnce(true);
+  Notification updateNotification=mBuilder.build();
+  mNotificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+  mNotificationManager.notify(NOTIFICATION_ID + 1000,updateNotification);
+}

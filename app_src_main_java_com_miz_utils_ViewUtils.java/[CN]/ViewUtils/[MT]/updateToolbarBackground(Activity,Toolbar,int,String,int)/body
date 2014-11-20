@@ -1,0 +1,11 @@
+{
+  if (alpha < 127) {
+    toolbar.setTitle(null);
+    toolbar.setBackgroundResource(R.drawable.transparent_actionbar);
+    if (MizLib.hasLollipop())     activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+  }
+ else {
+    toolbar.setTitle(title);
+    toolbar.setBackgroundColor(adjustAlpha(color,alpha));
+  }
+}

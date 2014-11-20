@@ -1,0 +1,3 @@
+{
+  return WebVideoFragment.newInstance(getPageTitle(index).toString());
+}

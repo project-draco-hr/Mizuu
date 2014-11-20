@@ -1,0 +1,5 @@
+{
+  super.onStart();
+  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  ViewUtils.setToolbarAndStatusBarColor(getSupportActionBar(),getWindow(),mToolbarColor);
+}

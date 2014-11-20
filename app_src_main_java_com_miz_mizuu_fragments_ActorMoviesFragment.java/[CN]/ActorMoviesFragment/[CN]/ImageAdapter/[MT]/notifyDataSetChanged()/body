@@ -1,0 +1,8 @@
+{
+  mMovies=new ArrayList<WebMovie>();
+  for (  WebMovie movie : mActor.getMovies()) {
+    if (mChecked && !movie.isInLibrary())     continue;
+    mMovies.add(movie);
+  }
+  super.notifyDataSetChanged();
+}

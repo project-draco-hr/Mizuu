@@ -1,0 +1,6 @@
+{
+  Intent intent=new Intent(mContext,EditTvShow.class);
+  intent.putExtra("showId",thisShow.getId());
+  intent.putExtra(IntentKeys.TOOLBAR_COLOR,mToolbarColor);
+  startActivityForResult(intent,1);
+}

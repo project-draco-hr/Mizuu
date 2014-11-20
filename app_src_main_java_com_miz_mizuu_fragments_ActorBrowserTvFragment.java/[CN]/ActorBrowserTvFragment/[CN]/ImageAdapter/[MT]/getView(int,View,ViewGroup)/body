@@ -1,0 +1,25 @@
+{
+  CoverItem holder;
+  final Actor actor=mActors.get(position);
+  if (convertView == null) {
+    convertView=inflater.inflate(R.layout.grid_item,container,false);
+    holder=new CoverItem();
+    holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
+    holder.cover=(ImageView)convertView.findViewById(R.id.cover);
+    holder.text=(TextView)convertView.findViewById(R.id.text);
+    holder.text.setSingleLine(true);
+    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
+    holder.subtext.setSingleLine(true);
+    holder.text.setTypeface(TypefaceUtils.getRobotoMedium(mContext));
+    convertView.setTag(holder);
+  }
+ else {
+    holder=(CoverItem)convertView.getTag();
+  }
+  holder.cover.setImageResource(R.color.card_background_dark);
+  holder.text.setText(actor.getName());
+  holder.subtext.setText(actor.getCharacter());
+  if (!actor.getUrl().endsWith("null"))   mPicasso.load(actor.getUrl()).error(R.drawable.noactor).config(mConfig).into(holder);
+ else   holder.cover.setImageResource(R.drawable.noactor);
+  return convertView;
+}

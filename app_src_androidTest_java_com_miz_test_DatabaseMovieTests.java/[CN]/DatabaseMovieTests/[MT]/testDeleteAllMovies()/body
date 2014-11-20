@@ -1,0 +1,14 @@
+{
+  DbAdapterMovies db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  createTwoTestMovies(db);
+  assertEquals(2,db.count());
+  MovieDatabaseUtils.deleteAllMovies(mContext);
+  assertEquals(0,db.count());
+  DbAdapterCollections dbCollections=MizuuApplication.getCollectionsAdapter();
+  assertEquals(0,dbCollections.count());
+  DbAdapterMovieMappings dbMovieMappings=MizuuApplication.getMovieMappingAdapter();
+  assertEquals(0,dbMovieMappings.count());
+  assertEquals(0,MizuuApplication.getMovieThumbFolder(mContext).listFiles().length);
+  assertEquals(0,MizuuApplication.getMovieBackdropFolder(mContext).listFiles().length);
+}

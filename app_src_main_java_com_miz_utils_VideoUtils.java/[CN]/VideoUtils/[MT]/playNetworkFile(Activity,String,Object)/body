@@ -1,0 +1,51 @@
+{
+  final boolean videoWildcard=PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(IGNORE_VIDEO_FILE_TYPE,false);
+  if (!MizLib.isWifiConnected(activity)) {
+    Toast.makeText(activity,activity.getString(R.string.noConnection),Toast.LENGTH_LONG).show();
+    return false;
+  }
+  int bufferSize;
+  String buff=PreferenceManager.getDefaultSharedPreferences(activity).getString(BUFFER_SIZE,activity.getString(R.string._16kb));
+  if (buff.equals(activity.getString(R.string._16kb)))   bufferSize=8192 * 2;
+ else   bufferSize=8192;
+  final Streamer s=Streamer.getInstance();
+  if (s != null)   s.setBufferSize(bufferSize);
+ else {
+    Toast.makeText(activity,activity.getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();
+    return false;
+  }
+  int contentType=(videoObject instanceof Movie) ? MizLib.TYPE_MOVIE : MizLib.TYPE_SHOWS;
+  final NtlmPasswordAuthentication auth=MizLib.getAuthFromFilepath(contentType,filepath);
+  new Thread(){
+    public void run(){
+      try {
+        final SmbFile file=new SmbFile(MizLib.createSmbLoginString(auth.getDomain(),auth.getUsername(),auth.getPassword(),filepath,false));
+        s.setStreamSrc(file,MizLib.getSubtitleFiles(filepath,auth));
+        activity.runOnUiThread(new Runnable(){
+          public void run(){
+            try {
+              Uri uri=Uri.parse(s.getUrl() + Uri.fromFile(new File(Uri.parse(filepath).getPath())).getEncodedPath());
+              activity.startActivity(getVideoIntent(uri,videoWildcard,videoObject));
+            }
+ catch (            Exception e) {
+              try {
+                Uri uri=Uri.parse(s.getUrl() + Uri.fromFile(new File(Uri.parse(filepath).getPath())).getEncodedPath());
+                activity.startActivity(getVideoIntent(uri,"video/*",videoObject));
+              }
+ catch (              Exception e2) {
+                Toast.makeText(activity,activity.getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
+              }
+            }
+          }
+        }
+);
+      }
+ catch (      MalformedURLException e) {
+      }
+catch (      UnsupportedEncodingException e1) {
+      }
+    }
+  }
+.start();
+  return true;
+}

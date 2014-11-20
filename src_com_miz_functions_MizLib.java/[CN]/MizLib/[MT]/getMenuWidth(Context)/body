@@ -1,7 +1,0 @@
-{
-  Resources r=c.getResources();
-  if (MizLib.isTablet(c)) {
-    return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,320,r.getDisplayMetrics());
-  }
- else   return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,300,r.getDisplayMetrics());
-}

@@ -1,0 +1,8 @@
+{
+  if (!hasLollipopApi()) {
+    RelativeLayout.LayoutParams p=(RelativeLayout.LayoutParams)params;
+    p.setMargins(p.leftMargin,p.topMargin - MizLib.convertDpToPixels(getContext(),8),p.rightMargin,p.bottomMargin);
+    params=p;
+  }
+  super.setLayoutParams(params);
+}

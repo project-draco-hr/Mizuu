@@ -1,0 +1,15 @@
+{
+  View v=LayoutInflater.from(context).inflate(R.layout.horizontal_grid_item_small,null);
+  picasso.load(actor.getUrl()).placeholder(R.color.card_background_dark).error(R.drawable.noactor).config(MizuuApplication.getBitmapConfig()).into(((ImageView)v.findViewById(R.id.cover)));
+  ((TextView)v.findViewById(R.id.text)).setText(actor.getName());
+  ((TextView)v.findViewById(R.id.text)).setTypeface(TypefaceUtils.getRobotoMedium(context));
+  ((TextView)v.findViewById(R.id.gridCoverSubtitle)).setText(actor.getCharacter());
+  ((TextView)v.findViewById(R.id.gridCoverSubtitle)).setSingleLine(true);
+  v.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      context.startActivity(IntentUtils.getActorIntent(context,actor));
+    }
+  }
+);
+  return v;
+}

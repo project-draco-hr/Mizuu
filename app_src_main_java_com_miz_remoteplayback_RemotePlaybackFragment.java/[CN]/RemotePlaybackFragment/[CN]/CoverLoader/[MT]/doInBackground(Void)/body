@@ -1,0 +1,8 @@
+{
+  TMDbMovieService service=TMDbMovieService.getInstance(getActivity());
+  List<String> covers=service.getCovers(mId);
+  if (covers.size() > 0) {
+    return covers.get(0);
+  }
+  return null;
+}

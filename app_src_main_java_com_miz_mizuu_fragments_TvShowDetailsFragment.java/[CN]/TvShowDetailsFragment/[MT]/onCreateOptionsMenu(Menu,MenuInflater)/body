@@ -1,0 +1,5 @@
+{
+  inflater.inflate(R.menu.tv_show_details,menu);
+  if (MizLib.isTablet(mContext))   menu.findItem(R.id.share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+  menu.findItem(R.id.show_fav).setIcon(thisShow.isFavorite() ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_outline_white_24dp).setTitle(thisShow.isFavorite() ? R.string.menuFavouriteTitleRemove : R.string.menuFavouriteTitle);
+}

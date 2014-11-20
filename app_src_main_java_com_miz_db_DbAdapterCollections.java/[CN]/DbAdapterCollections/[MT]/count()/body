@@ -1,0 +1,6 @@
+{
+  Cursor c=mDatabase.query(DATABASE_TABLE,new String[]{KEY_COLLECTION_ID},null,null,null,null,null);
+  int count=c.getCount();
+  c.close();
+  return count;
+}

@@ -1,0 +1,13 @@
+{
+  super.onCreate(savedInstanceState);
+  mContext=getActivity().getApplicationContext();
+  mBus=MizuuApplication.getBus();
+  mBus.register(this);
+  mPicasso=MizuuApplication.getPicasso(mContext);
+  mConfig=MizuuApplication.getBitmapConfig();
+  mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+  mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
+  mShowId=getArguments().getString(SHOW_ID);
+  mDualPane=getArguments().getBoolean(DUAL_PANE);
+  mToolbarColor=getArguments().getInt(IntentKeys.TOOLBAR_COLOR);
+}
