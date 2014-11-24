@@ -1,0 +1,12 @@
+{
+  View v=inflater.inflate(R.layout.viewpager_with_tabs,container,false);
+  if (MizLib.hasLollipop())   ((ActionBarActivity)getActivity()).getSupportActionBar().setElevation(0);
+  mViewPager=(ViewPager)v.findViewById(R.id.awesomepager);
+  mViewPager.setPageMargin(MizLib.convertDpToPixels(getActivity(),16));
+  mTabs=(PagerSlidingTabStrip)v.findViewById(R.id.tabs);
+  mViewPager.setAdapter(new PagerAdapter(getChildFragmentManager()));
+  mTabs.setViewPager(mViewPager);
+  mTabs.setVisibility(View.VISIBLE);
+  if (MizLib.hasLollipop())   mTabs.setElevation(4);
+  return v;
+}

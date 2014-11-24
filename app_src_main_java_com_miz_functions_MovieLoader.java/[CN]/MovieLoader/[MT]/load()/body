@@ -1,7 +1,0 @@
-{
-  if (mAsyncTask != null) {
-    mAsyncTask.cancel(true);
-  }
-  mAsyncTask=new MovieLoaderAsyncTask();
-  mAsyncTask.execute();
-}

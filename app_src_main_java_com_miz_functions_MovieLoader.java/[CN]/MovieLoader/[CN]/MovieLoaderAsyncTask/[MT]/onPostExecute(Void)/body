@@ -1,4 +1,0 @@
-{
-  if (!isCancelled())   mCallback.onLoadCompleted(mMovieList);
- else   mMovieList.clear();
-}

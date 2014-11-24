@@ -1,0 +1,3 @@
+{
+  return mMovies.size() == 0 && !mLoading;
+}

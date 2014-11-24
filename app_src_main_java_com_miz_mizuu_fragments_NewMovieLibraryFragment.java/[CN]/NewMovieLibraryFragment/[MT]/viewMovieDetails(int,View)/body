@@ -1,0 +1,20 @@
+{
+  Intent intent=new Intent();
+  if (mMovieLoader.getType() == MovieLibraryType.COLLECTIONS) {
+    intent.putExtra("collectionId",mAdapter.getItem(position).getCollectionId());
+    intent.putExtra("collectionTitle",mAdapter.getItem(position).getCollection());
+    intent.setClass(getActivity(),MovieCollection.class);
+    startActivity(intent);
+  }
+ else {
+    intent.putExtra("tmdbId",mAdapter.getItem(position).getTmdbId());
+    intent.setClass(getActivity(),MovieDetails.class);
+    if (view != null) {
+      ActivityOptionsCompat options=ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),view.findViewById(R.id.cover),"cover");
+      ActivityCompat.startActivityForResult(getActivity(),intent,0,options.toBundle());
+    }
+ else {
+      startActivityForResult(intent,0);
+    }
+  }
+}

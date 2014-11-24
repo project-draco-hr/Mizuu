@@ -1,0 +1,23 @@
+{
+  super.onOptionsItemSelected(item);
+switch (item.getItemId()) {
+case R.id.update:
+    Intent intent=new Intent();
+  intent.setClass(getActivity(),Update.class);
+intent.putExtra("isMovie",true);
+startActivityForResult(intent,0);
+break;
+case R.id.clear_filters:
+break;
+case R.id.random:
+if (mAdapter.getCount() > 0) {
+int random=new Random().nextInt(mAdapter.getCount());
+viewMovieDetails(random,null);
+}
+break;
+case R.id.unidentifiedFiles:
+startActivity(new Intent(getActivity(),UnidentifiedMovies.class));
+break;
+}
+return true;
+}

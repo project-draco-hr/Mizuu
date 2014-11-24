@@ -7,7 +7,7 @@
     ft.setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
 switch (type) {
 case MOVIES:
-      ft.replace(R.id.content_frame,MovieLibraryFragment.newInstance(MovieLibraryFragment.MAIN),"frag" + type);
+      ft.replace(R.id.content_frame,MovieLibraryOverviewFragment.newInstance(),"frag" + type);
     break;
 case SHOWS:
   ft.replace(R.id.content_frame,TvShowLibraryFragment.newInstance(),"frag" + type);
