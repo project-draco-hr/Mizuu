@@ -1,3 +1,16 @@
 {
   loadHeadersFromResource(R.xml.preference_headers,target);
+  if (MizLib.hasLollipop()) {
+    mBreadcrumb=findViewById(android.R.id.title);
+    if (mBreadcrumb == null) {
+      return;
+    }
+    try {
+      final Field titleColor=mBreadcrumb.getClass().getDeclaredField("mTextColor");
+      titleColor.setAccessible(true);
+      titleColor.setInt(mBreadcrumb,Color.WHITE);
+    }
+ catch (    final Exception ignored) {
+    }
+  }
 }
