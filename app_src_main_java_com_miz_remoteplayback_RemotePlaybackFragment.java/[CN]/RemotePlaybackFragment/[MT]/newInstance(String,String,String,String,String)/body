@@ -5,6 +5,7 @@
   args.putString("coverUrl",coverUrl);
   args.putString("title",title);
   args.putString("id",id);
+  args.putString("type",type);
   fragment.setArguments(args);
   return fragment;
 }

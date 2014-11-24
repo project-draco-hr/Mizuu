@@ -1,5 +1,47 @@
 {
   inflater.inflate(R.menu.episode_details,menu);
+  if (PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(CHROMECAST_BETA_SUPPORT,false)) {
+    boolean add=false;
+    for (    Filepath path : mEpisode.getFilepaths()) {
+      if (path.isNetworkFile()) {
+        add=true;
+        break;
+      }
+    }
+    if (add) {
+      menu.add("Remote play").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
+        @Override public boolean onMenuItemClick(        MenuItem item){
+          final ArrayList<Filepath> networkFiles=new ArrayList<Filepath>();
+          for (          Filepath path : mEpisode.getFilepaths()) {
+            if (path.isNetworkFile()) {
+              networkFiles.add(path);
+            }
+          }
+          MizLib.showSelectFileDialog(getActivity(),networkFiles,new DialogInterface.OnClickListener(){
+            @Override public void onClick(            DialogInterface dialog,            int which){
+              String showName=MizuuApplication.getTvDbAdapter().getShowTitle(mEpisode.getShowId());
+              Intent i=new Intent(getActivity(),RemotePlayback.class);
+              i.putExtra("coverUrl","");
+              i.putExtra("title",showName + " (S" + MizLib.addIndexZero(mEpisode.getSeason())+ "E"+ MizLib.addIndexZero(mEpisode.getEpisode())+ "): "+ mEpisode.getTitle());
+              i.putExtra("id",mEpisode.getShowId());
+              i.putExtra("type","tv");
+              if (networkFiles.get(which).getType() == FileSource.SMB) {
+                String url=VideoUtils.startSmbServer(getActivity(),networkFiles.get(which).getFilepath(),mEpisode);
+                i.putExtra("videoUrl",url);
+              }
+ else {
+                i.putExtra("videoUrl",networkFiles.get(which).getFilepath());
+              }
+              startActivity(i);
+            }
+          }
+);
+          return false;
+        }
+      }
+);
+    }
+  }
   try {
     if (mEpisode.hasWatched()) {
       menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsUnwatched);

@@ -1,0 +1,3 @@
+{
+  ViewUtils.updateToolbarBackground(this,mToolbar,object.getAlpha(),mEpisodes.get(mViewPager.getCurrentItem()).getTitle(),object.getToolbarColor());
+}

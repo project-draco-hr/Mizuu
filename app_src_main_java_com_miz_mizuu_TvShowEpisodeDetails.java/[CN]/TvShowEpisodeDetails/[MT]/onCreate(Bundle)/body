@@ -1,13 +1,9 @@
 {
   mBus=MizuuApplication.getBus();
-  if (isFullscreen())   setTheme(R.style.Mizuu_Theme_NoBackground_FullScreen);
- else   setTheme(R.style.Mizuu_Theme_NoBackground);
-  if (MizLib.isPortrait(this)) {
-    getWindow().setBackgroundDrawableResource(R.drawable.bg);
-  }
-  getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
   super.onCreate(savedInstanceState);
-  mActionBar=getActionBar();
+  setTheme(R.style.Mizuu_Theme_NoBackground);
+  ViewUtils.setupWindowFlagsForStatusbarOverlay(getWindow(),isFullscreen(),true);
+  ViewUtils.setProperToolbarSize(this,mToolbar);
   mShowId=getIntent().getExtras().getString(SHOW_ID);
   mSeason=getIntent().getExtras().getInt("season");
   mEpisode=getIntent().getExtras().getInt("episode");
@@ -24,13 +20,12 @@
     cursor.close();
   }
   mShowTitle=MizuuApplication.getTvDbAdapter().getShowTitle(mShowId);
-  mActionBar.setTitle(mShowTitle);
+  setTitle(mShowTitle);
   mViewPager=(ViewPager)findViewById(R.id.awesomepager);
   mViewPager.setAdapter(new TvShowEpisodeDetailsAdapter(getSupportFragmentManager()));
   mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
     @Override public void onPageSelected(    int position){
-      updateActionBar(position);
-      updateActionBarDrawable(1,true,false);
+      ViewUtils.updateToolbarBackground(TvShowEpisodeDetails.this,mToolbar,0,mEpisodes.get(position).getTitle(),Color.TRANSPARENT);
     }
   }
 );
@@ -41,7 +36,6 @@
     for (int i=0; i < mEpisodes.size(); i++) {
       if (mEpisodes.get(i).getSeason().equals(MizLib.addIndexZero(mSeason)) && mEpisodes.get(i).getEpisode().equals(MizLib.addIndexZero(mEpisode))) {
         mViewPager.setCurrentItem(i);
-        updateActionBar(i);
         continue;
       }
     }

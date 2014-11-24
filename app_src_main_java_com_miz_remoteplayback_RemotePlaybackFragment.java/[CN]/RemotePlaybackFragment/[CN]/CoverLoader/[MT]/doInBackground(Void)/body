@@ -1,8 +1,19 @@
 {
-  TMDbMovieService service=TMDbMovieService.getInstance(getActivity());
-  List<String> covers=service.getCovers(mId);
-  if (covers.size() > 0) {
-    return covers.get(0);
+  List<String> covers=new ArrayList<String>();
+  if (mType.equals("movie")) {
+    TMDbMovieService service=TMDbMovieService.getInstance(getActivity());
+    covers=service.getCovers(mId);
   }
+ else {
+    if (mId.startsWith("tmdb_")) {
+      TMDbTvShowService service=TMDbTvShowService.getInstance(getActivity());
+      covers=service.getCovers(mId.replace("tmdb_",""));
+    }
+ else {
+      TheTVDbService service=TheTVDbService.getInstance(getActivity());
+      covers=service.getCovers(mId);
+    }
+  }
+  if (covers.size() > 0)   return covers.get(0);
   return null;
 }

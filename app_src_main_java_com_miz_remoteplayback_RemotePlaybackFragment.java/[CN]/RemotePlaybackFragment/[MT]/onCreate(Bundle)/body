@@ -7,6 +7,7 @@
   mCoverUrl=arguments.getString("coverUrl");
   mTitle=arguments.getString("title");
   mId=arguments.getString("id");
+  mType=arguments.getString("type");
   mMediaRouteSelector=new MediaRouteSelector.Builder().addControlCategory(MediaControlIntent.CATEGORY_REMOTE_PLAYBACK).build();
   new CoverLoader().execute();
 }
