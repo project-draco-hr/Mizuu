@@ -1,6 +1,5 @@
 {
   mBuilder.setSmallIcon(R.drawable.ic_sync_white_24dp);
-  mBuilder.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.ic_sync_white_24dp));
   mBuilder.setContentTitle(getString(R.string.updatingMovies));
   mBuilder.setContentText(getString(R.string.scanning) + ": " + filesource);
   mNotificationManager.notify(NOTIFICATION_ID,mBuilder.build());

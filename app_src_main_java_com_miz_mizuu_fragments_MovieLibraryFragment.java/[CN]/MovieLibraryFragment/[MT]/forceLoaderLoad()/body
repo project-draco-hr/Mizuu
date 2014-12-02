@@ -1,8 +1,0 @@
-{
-  if (isAdded())   if (getLoaderManager().getLoader(0) == null) {
-    getLoaderManager().initLoader(0,null,loaderCallbacks);
-  }
- else {
-    getLoaderManager().restartLoader(0,null,loaderCallbacks);
-  }
-}

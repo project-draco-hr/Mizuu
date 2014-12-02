@@ -12,9 +12,6 @@ case MOVIES:
 case SHOWS:
   ft.replace(R.id.content_frame,TvShowLibraryFragment.newInstance(),"frag" + type);
 break;
-case WATCHLIST:
-ft.replace(R.id.content_frame,MovieLibraryFragment.newInstance(MovieLibraryFragment.OTHER),"frag" + type);
-break;
 case WEB_MOVIES:
 ft.replace(R.id.content_frame,MovieDiscoveryViewPagerFragment.newInstance(),"frag" + type);
 break;

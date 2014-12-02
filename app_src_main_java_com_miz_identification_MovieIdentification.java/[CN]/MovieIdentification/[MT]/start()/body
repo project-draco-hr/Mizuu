@@ -1,4 +1,5 @@
 {
+  shareFilenames();
   for (int i=0; i < mMovieStructures.size(); i++) {
     if (mCancel)     return;
     if (!mIgnoreNfoFiles)     continue;

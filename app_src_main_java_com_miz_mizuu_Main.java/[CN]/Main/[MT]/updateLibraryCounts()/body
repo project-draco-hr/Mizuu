@@ -3,7 +3,6 @@
     @Override public void run(){
       try {
         mNumMovies=mDbHelper.count();
-        mNumWatchlist=mDbHelper.countWatchlist();
         mNumShows=mDbHelperTv.count();
         runOnUiThread(new Runnable(){
           @Override public void run(){

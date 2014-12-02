@@ -3,14 +3,15 @@
   if (mMovieLoader.getType() == MovieLibraryType.COLLECTIONS) {
     intent.putExtra("collectionId",mAdapter.getItem(position).getCollectionId());
     intent.putExtra("collectionTitle",mAdapter.getItem(position).getCollection());
-    intent.setClass(getActivity(),MovieCollection.class);
+    intent.setClass(mContext,MovieCollection.class);
     startActivity(intent);
   }
  else {
     intent.putExtra("tmdbId",mAdapter.getItem(position).getTmdbId());
-    intent.setClass(getActivity(),MovieDetails.class);
+    intent.setClass(mContext,MovieDetails.class);
     if (view != null) {
-      ActivityOptionsCompat options=ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),view.findViewById(R.id.cover),"cover");
+      Pair<View,String> pair=new Pair<>(view.findViewById(R.id.cover),"cover");
+      ActivityOptionsCompat options=ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),pair);
       ActivityCompat.startActivityForResult(getActivity(),intent,0,options.toBundle());
     }
  else {

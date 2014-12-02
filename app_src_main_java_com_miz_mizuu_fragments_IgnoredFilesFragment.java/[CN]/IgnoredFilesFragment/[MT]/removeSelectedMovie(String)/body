@@ -1,4 +1,0 @@
-{
-  MizuuApplication.getMovieMappingAdapter().deleteIgnoredFilepath(filepath);
-  refreshData();
-}

@@ -1,5 +1,0 @@
-{
-  mActionBar=((ActionBarActivity)getActivity()).getSupportActionBar();
-  mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-  if (mSpinnerAdapter == null)   mSpinnerAdapter=new ActionBarSpinner();
-}

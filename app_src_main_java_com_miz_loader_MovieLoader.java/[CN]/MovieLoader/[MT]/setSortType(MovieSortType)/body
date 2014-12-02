@@ -1,0 +1,8 @@
+{
+  if (getSortType() == type) {
+    getSortType().toggleSortOrder();
+  }
+ else {
+    mSortType=type;
+  }
+}

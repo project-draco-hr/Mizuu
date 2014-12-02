@@ -1,6 +1,4 @@
 {
   super.onActivityCreated(savedInstanceState);
-  setupActionBar();
-  mActionBar.setListNavigationCallbacks(mSpinnerAdapter,this);
   LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_MOVIE_LIBRARY));
 }

@@ -29,7 +29,7 @@
 );
     if (!TextUtils.isEmpty(mBackdropPath))     mPicasso.load(mBackdropPath).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
  else     mPicasso.load(R.drawable.default_menu_backdrop).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
-    backgroundImage.setColorFilter(Color.parseColor("#aa181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+    backgroundImage.setColorFilter(Color.parseColor("#66181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
     convertView.findViewById(R.id.personalizedArea).setOnClickListener(new View.OnClickListener(){
       @Override public void onClick(      View v){
         Intent smallIntent=new Intent(getApplicationContext(),Preferences.class);

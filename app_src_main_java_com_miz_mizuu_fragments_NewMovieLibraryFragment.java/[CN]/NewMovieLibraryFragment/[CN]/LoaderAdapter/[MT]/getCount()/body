@@ -1,3 +1,4 @@
 {
-  return mMovies.size();
+  if (mMovieLoader != null)   return mMovieLoader.getResults().size();
+  return 0;
 }

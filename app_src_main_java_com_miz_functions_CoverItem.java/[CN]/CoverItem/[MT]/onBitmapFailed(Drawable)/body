@@ -1,4 +1,9 @@
 {
   cover.setImageResource(R.drawable.loading_image);
-  ObjectAnimator.ofFloat(cover,"alpha",0f,1f).setDuration(animationDuration).start();
+  try {
+    ObjectAnimator.ofFloat(cover,"alpha",0f,1f).setDuration(animationDuration).start();
+  }
+ catch (  Exception e) {
+    cover.setAlpha(1f);
+  }
 }

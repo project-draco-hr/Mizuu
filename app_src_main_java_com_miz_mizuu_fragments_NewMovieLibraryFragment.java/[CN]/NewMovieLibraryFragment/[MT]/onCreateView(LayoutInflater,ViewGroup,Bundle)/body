@@ -3,34 +3,25 @@
   mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
   mEmptyLibraryLayout=v.findViewById(R.id.empty_library_layout);
   mEmptyLibraryTitle=(TextView)v.findViewById(R.id.empty_library_title);
-  mEmptyLibraryTitle.setTypeface(TypefaceUtils.getRobotoCondensedRegular(getActivity()));
+  mEmptyLibraryTitle.setTypeface(TypefaceUtils.getRobotoCondensedRegular(mContext));
   mEmptyLibraryDescription=(TextView)v.findViewById(R.id.empty_library_description);
-  mEmptyLibraryDescription.setTypeface(TypefaceUtils.getRobotoLight(getActivity()));
-  mAdapter=new LoaderAdapter(getActivity());
+  mEmptyLibraryDescription.setTypeface(TypefaceUtils.getRobotoLight(mContext));
+  mAdapter=new LoaderAdapter(mContext);
   mGridView=(GridView)v.findViewById(R.id.gridView);
   mGridView.setAdapter(mAdapter);
-  mGridView.setEmptyView(mEmptyLibraryLayout);
   mGridView.setColumnWidth(mImageThumbSize);
-  mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
-    @Override public void onGlobalLayout(){
-      if (mAdapter.getNumColumns() == 0) {
-        final int numColumns=(int)Math.floor(mGridView.getWidth() / (mImageThumbSize + mImageThumbSpacing));
-        if (numColumns > 0) {
-          mAdapter.setNumColumns(numColumns);
-        }
-        MizLib.removeViewTreeObserver(mGridView.getViewTreeObserver(),this);
-      }
-    }
-  }
-);
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
       viewMovieDetails(arg2,arg1);
     }
   }
 );
-  mMovieLoader=new MovieLoader(getActivity(),MovieLibraryType.fromInt(getArguments().getInt("type")),callback);
+  mMovieLoader=new MovieLoader(mContext,MovieLibraryType.fromInt(getArguments().getInt("type")),callback);
+  mMovieLoader.setIgnorePrefixes(mIgnorePrefixes);
+  if (mMovieLoader.getType() == MovieLibraryType.NEW_RELEASES) {
+    mMovieLoader.setSortType(MovieSortType.RELEASE);
+  }
   mMovieLoader.load();
-  mLoading=true;
+  showProgressBar();
   return v;
 }

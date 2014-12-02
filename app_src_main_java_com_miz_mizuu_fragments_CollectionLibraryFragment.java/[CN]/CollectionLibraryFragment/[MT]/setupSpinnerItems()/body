@@ -1,9 +1,0 @@
-{
-  mSpinnerItems.clear();
-  mSpinnerItems.add(new SpinnerItem(getArguments().getString("collectionTitle",getString(R.string.chooserMovies)),getString(R.string.choiceAllMovies)));
-  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceFavorites),getString(R.string.choiceFavorites)));
-  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceAvailableFiles),getString(R.string.choiceAvailableFiles)));
-  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceWatchedMovies),getString(R.string.choiceWatchedMovies)));
-  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceUnwatchedMovies),getString(R.string.choiceUnwatchedMovies)));
-  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceOffline),getString(R.string.choiceOffline)));
-}

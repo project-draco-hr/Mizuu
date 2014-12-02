@@ -1,0 +1,18 @@
+{
+  if (key.equals(IGNORED_TITLE_PREFIXES)) {
+    mIgnorePrefixes=mSharedPreferences.getBoolean(IGNORED_TITLE_PREFIXES,false);
+    if (mMovieLoader != null) {
+      mMovieLoader.setIgnorePrefixes(mIgnorePrefixes);
+      mMovieLoader.load();
+    }
+  }
+ else   if (key.equals(GRID_ITEM_SIZE)) {
+    mImageThumbSize=ViewUtils.getGridViewThumbSize(mContext);
+    if (mGridView != null)     mGridView.setColumnWidth(mImageThumbSize);
+    mAdapter.notifyDataSetChanged();
+  }
+ else   if (key.equals(SHOW_TITLES_IN_GRID)) {
+    mShowTitles=sharedPreferences.getBoolean(SHOW_TITLES_IN_GRID,true);
+    mAdapter.notifyDataSetChanged();
+  }
+}

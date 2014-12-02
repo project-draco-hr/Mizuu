@@ -1,4 +1,3 @@
 {
   if (mAdapter != null)   mAdapter.setItems(mMovieKeys,mMovies);
-  if (mSpinnerAdapter != null)   mSpinnerAdapter.notifyDataSetChanged();
 }

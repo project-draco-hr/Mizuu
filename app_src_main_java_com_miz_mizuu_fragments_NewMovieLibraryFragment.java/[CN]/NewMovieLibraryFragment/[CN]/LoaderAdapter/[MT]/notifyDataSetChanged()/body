@@ -1,0 +1,10 @@
+{
+  super.notifyDataSetChanged();
+  hideProgressBar();
+  if (isEmpty()) {
+    showEmptyView();
+  }
+ else {
+    hideEmptyView();
+  }
+}

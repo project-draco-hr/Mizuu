@@ -1,6 +1,10 @@
 {
-  ObjectAnimator animation=ObjectAnimator.ofFloat(fab,"translationY",-10f,-5f,0f,5f,10f,5f,0f,-5f,-10f,-5f,0f);
-  animation.setDuration(350);
-  animation.addListener(listener);
-  animation.start();
+  try {
+    ObjectAnimator animation=ObjectAnimator.ofFloat(fab,"translationY",-10f,-5f,0f,5f,10f,5f,0f,-5f,-10f,-5f,0f);
+    animation.setDuration(350);
+    animation.addListener(listener);
+    animation.start();
+  }
+ catch (  Exception e) {
+  }
 }

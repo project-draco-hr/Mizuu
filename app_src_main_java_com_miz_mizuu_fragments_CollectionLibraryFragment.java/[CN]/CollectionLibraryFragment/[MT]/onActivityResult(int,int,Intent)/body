@@ -3,9 +3,6 @@
   if (resultCode == 1) {
     forceLoaderLoad();
   }
- else   if (resultCode == 2 && mActionBar.getSelectedNavigationIndex() == FAVORITES) {
-    showMovieSection(FAVORITES);
-  }
  else   if (resultCode == 3) {
     notifyDataSetChanged();
   }

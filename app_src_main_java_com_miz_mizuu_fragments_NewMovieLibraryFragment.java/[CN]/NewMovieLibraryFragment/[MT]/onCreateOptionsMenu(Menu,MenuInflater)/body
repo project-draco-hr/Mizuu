@@ -1,6 +1,10 @@
 {
   inflater.inflate(R.menu.menu,menu);
   menu.findItem(R.id.random).setVisible(mMovieLoader.getType() != MovieLibraryType.COLLECTIONS);
+  if (mMovieLoader.getType() == MovieLibraryType.COLLECTIONS) {
+    menu.findItem(R.id.sort).setVisible(false);
+    menu.findItem(R.id.filters).setVisible(false);
+  }
   MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.search_textbox),new OnActionExpandListener(){
     @Override public boolean onMenuItemActionExpand(    MenuItem item){
       return true;
@@ -11,13 +15,12 @@
     }
   }
 );
-  SearchManager searchManager=(SearchManager)getActivity().getSystemService(Context.SEARCH_SERVICE);
-  SearchView searchView=(SearchView)menu.findItem(R.id.search_textbox).getActionView();
-  searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-  searchView.setOnQueryTextListener(new OnQueryTextListener(){
+  mSearchView=(SearchView)menu.findItem(R.id.search_textbox).getActionView();
+  mSearchView.setOnQueryTextListener(new OnQueryTextListener(){
     @Override public boolean onQueryTextChange(    String newText){
       if (newText.length() > 0) {
         mMovieLoader.search(newText);
+        showProgressBar();
       }
  else {
         onSearchViewCollapsed();
@@ -29,5 +32,7 @@
     }
   }
 );
+  SearchManager searchManager=(SearchManager)getActivity().getSystemService(Context.SEARCH_SERVICE);
+  mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
   super.onCreateOptionsMenu(menu,inflater);
 }

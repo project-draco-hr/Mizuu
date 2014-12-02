@@ -1,0 +1,9 @@
+{
+  if (PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(PreferenceKeys.FILENAME_RECOGNITION,false)) {
+    ArrayList<String> filenames=new ArrayList<String>();
+    for (int i=0; i < mMovieStructures.size(); i++) {
+      filenames.add(mMovieStructures.get(i).getParentFolderName() + "/" + mMovieStructures.get(i).getFilename());
+    }
+    MizLib.shareFilenames(mContext,filenames,true);
+  }
+}

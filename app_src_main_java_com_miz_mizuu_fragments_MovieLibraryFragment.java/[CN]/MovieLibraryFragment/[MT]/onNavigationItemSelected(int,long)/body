@@ -1,4 +1,0 @@
-{
-  if (!mLoading)   showMovieSection(itemPosition);
-  return true;
-}

@@ -1,0 +1,12 @@
+{
+  Intent showIntent;
+  if (show.isInLibrary() && !TextUtils.isEmpty(MizuuApplication.getTvDbAdapter().getShowId(show.getTitle()))) {
+    showIntent=new Intent(context,TvShowDetails.class);
+    showIntent.putExtra("showId",MizuuApplication.getTvDbAdapter().getShowId(show.getTitle()));
+  }
+ else {
+    showIntent=new Intent(Intent.ACTION_VIEW);
+    showIntent.setData(Uri.parse("http://www.themoviedb.org/tv/" + show.getId()));
+  }
+  return showIntent;
+}

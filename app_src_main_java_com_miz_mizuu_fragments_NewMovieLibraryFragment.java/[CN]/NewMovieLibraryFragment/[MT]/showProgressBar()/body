@@ -1,0 +1,5 @@
+{
+  mGridView.setVisibility(View.GONE);
+  mProgressBar.setVisibility(View.VISIBLE);
+  mLoading=true;
+}

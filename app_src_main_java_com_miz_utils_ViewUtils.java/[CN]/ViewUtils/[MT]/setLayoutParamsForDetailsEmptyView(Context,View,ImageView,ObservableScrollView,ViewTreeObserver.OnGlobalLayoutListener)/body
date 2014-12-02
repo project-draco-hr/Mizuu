@@ -1,6 +1,7 @@
 {
   if (!MizLib.isPortrait(context)) {
     View empty=layout.findViewById(R.id.empty_view);
+    if (empty == null)     return;
     int fullHeight=background.getHeight();
     int contentHeight=context.getResources().getDimensionPixelSize(R.dimen.content_details_main_height);
     empty.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,fullHeight - contentHeight));

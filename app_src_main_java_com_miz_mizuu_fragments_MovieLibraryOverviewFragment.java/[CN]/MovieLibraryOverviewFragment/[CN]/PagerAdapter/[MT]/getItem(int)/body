@@ -7,10 +7,12 @@ case 1:
 case 2:
 return NewMovieLibraryFragment.newInstance(MovieLoader.NEW_RELEASES);
 case 3:
-return NewMovieLibraryFragment.newInstance(MovieLoader.WATCHED);
+return NewMovieLibraryFragment.newInstance(MovieLoader.WATCHLIST);
 case 4:
-return NewMovieLibraryFragment.newInstance(MovieLoader.UNWATCHED);
+return NewMovieLibraryFragment.newInstance(MovieLoader.WATCHED);
 case 5:
+return NewMovieLibraryFragment.newInstance(MovieLoader.UNWATCHED);
+case 6:
 return NewMovieLibraryFragment.newInstance(MovieLoader.COLLECTIONS);
 default :
 return null;

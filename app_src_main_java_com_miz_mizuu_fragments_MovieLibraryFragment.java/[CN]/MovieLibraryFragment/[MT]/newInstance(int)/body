@@ -1,7 +1,0 @@
-{
-  MovieLibraryFragment frag=new MovieLibraryFragment();
-  Bundle b=new Bundle();
-  b.putInt("type",type);
-  frag.setArguments(b);
-  return frag;
-}

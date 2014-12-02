@@ -1,0 +1,15 @@
+{
+  final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
+  for (int i=0; i < mResults.size(); i++) {
+    String certification=mResults.get(i).getCertification();
+    if (!TextUtils.isEmpty(certification)) {
+      if (map.containsKey(certification.trim())) {
+        map.put(certification.trim(),map.get(certification.trim()) + 1);
+      }
+ else {
+        map.put(certification.trim(),1);
+      }
+    }
+  }
+  createAndShowAlertDialog(activity,setupItemArray(map),R.string.selectCertification,MovieFilter.CERTIFICATION);
+}

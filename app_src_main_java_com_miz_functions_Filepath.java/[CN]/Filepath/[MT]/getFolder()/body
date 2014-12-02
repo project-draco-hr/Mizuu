@@ -1,0 +1,7 @@
+{
+  String filepath=getFilepath();
+  if (filepath.contains("/")) {
+    return filepath.substring(0,filepath.lastIndexOf("/")).trim();
+  }
+  return filepath.trim();
+}

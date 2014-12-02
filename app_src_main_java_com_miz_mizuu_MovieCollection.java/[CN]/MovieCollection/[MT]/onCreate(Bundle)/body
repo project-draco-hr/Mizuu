@@ -7,5 +7,5 @@
     ft.add(R.id.content,CollectionLibraryFragment.newInstance(getIntent().getExtras().getString("collectionId"),getIntent().getExtras().getString("collectionTitle")),TAG);
     ft.commit();
   }
-  setTitle(null);
+  setTitle(getIntent().getExtras().getString("collectionTitle"));
 }

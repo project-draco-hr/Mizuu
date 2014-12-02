@@ -1,0 +1,8 @@
+{
+switch (position) {
+case 0:
+    return new IgnoredMovieFilesFragment();
+default :
+  return new IgnoredTvShowFilesFragment();
+}
+}

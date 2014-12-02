@@ -1,0 +1,7 @@
+{
+  if (!isCancelled()) {
+    mResults=new ArrayList<>(mMovieList);
+    mCallback.onLoadCompleted();
+  }
+ else   mMovieList.clear();
+}

@@ -1,0 +1,15 @@
+{
+  final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
+  for (int i=0; i < mResults.size(); i++) {
+    for (    Filepath path : mResults.get(i).getFilepaths()) {
+      String type=path.getTypeAsString(activity);
+      if (map.containsKey(type)) {
+        map.put(type,map.get(type) + 1);
+      }
+ else {
+        map.put(type,1);
+      }
+    }
+  }
+  createAndShowAlertDialog(activity,setupItemArray(map),R.string.selectFileSource,MovieFilter.FILE_SOURCE);
+}

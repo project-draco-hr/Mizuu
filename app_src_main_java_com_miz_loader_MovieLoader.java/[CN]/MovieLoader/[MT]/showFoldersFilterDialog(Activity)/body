@@ -1,0 +1,17 @@
+{
+  final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
+  for (int i=0; i < mResults.size(); i++) {
+    for (    Filepath path : mResults.get(i).getFilepaths()) {
+      String folder=path.getFolder();
+      if (!TextUtils.isEmpty(folder)) {
+        if (map.containsKey(folder)) {
+          map.put(folder,map.get(folder) + 1);
+        }
+ else {
+          map.put(folder,1);
+        }
+      }
+    }
+  }
+  createAndShowAlertDialog(activity,setupItemArray(map),R.string.selectFolder,MovieFilter.FOLDER);
+}

@@ -1,6 +1,0 @@
-{
-  mMovies.clear();
-  mMovies.addAll(movies);
-  notifyDataSetChanged();
-  mProgressBar.setVisibility(View.GONE);
-}

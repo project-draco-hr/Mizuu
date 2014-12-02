@@ -12,27 +12,49 @@
   mDirector=(TextView)view.findViewById(R.id.director);
   mWriter=(TextView)view.findViewById(R.id.writer);
   mGuestStars=(TextView)view.findViewById(R.id.guest_stars);
-  if (MizLib.isPortrait(getActivity())) {
-    final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
-    final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());
-    ObservableScrollView sv=(ObservableScrollView)view.findViewById(R.id.observableScrollView);
-    sv.setOnScrollChangedListener(new OnScrollChangedListener(){
-      @Override public void onScrollChanged(      ScrollView who,      int l,      int t,      int oldl,      int oldt){
-        final int headerHeight=mEpisodePhoto.getHeight() - height;
-        final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
-        final int newAlpha=(int)(ratio * 255);
-        mBus.post(new BusToolbarColorObject(mToolbarColor,newAlpha));
+  mScrollView=(ObservableScrollView)view.findViewById(R.id.observableScrollView);
+  mFab=(FloatingActionButton)view.findViewById(R.id.fab);
+  mFab.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      ViewUtils.animateFabJump(v,new Animator.AnimatorListener(){
+        @Override public void onAnimationEnd(        Animator animation){
+          play();
+        }
+        @Override public void onAnimationStart(        Animator animation){
+        }
+        @Override public void onAnimationCancel(        Animator animation){
+        }
+        @Override public void onAnimationRepeat(        Animator animation){
+        }
+      }
+);
+    }
+  }
+);
+  if (MizLib.isTablet(mContext))   mFab.setType(FloatingActionButton.TYPE_NORMAL);
+  final boolean fullscreen=MizuuApplication.isFullscreen(getActivity());
+  final int height=fullscreen ? MizLib.getActionBarHeight(getActivity()) : MizLib.getActionBarAndStatusBarHeight(getActivity());
+  mScrollView=(ObservableScrollView)view.findViewById(R.id.observableScrollView);
+  mScrollView.setOnScrollChangedListener(new OnScrollChangedListener(){
+    @Override public void onScrollChanged(    ScrollView who,    int l,    int t,    int oldl,    int oldt){
+      final int headerHeight=mEpisodePhoto.getHeight() - height;
+      final float ratio=(float)Math.min(Math.max(t,0),headerHeight) / headerHeight;
+      final int newAlpha=(int)(ratio * 255);
+      mBus.post(new BusToolbarColorObject(mToolbarColor,newAlpha));
+      if (MizLib.isPortrait(mContext)) {
         mEpisodePhoto.setPadding(0,(int)(t / 1.5),0,0);
       }
     }
+  }
 );
+  mScrollView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+    @Override public void onGlobalLayout(){
+      ViewUtils.setLayoutParamsForDetailsEmptyView(mContext,view,mBackdrop,mScrollView,this);
+    }
   }
- else {
-    if (!MizuuApplication.isFullscreen(getActivity()))     MizLib.addActionBarAndStatusBarMargin(getActivity(),view.findViewById(R.id.episode_relative_layout));
- else     MizLib.addActionBarMargin(getActivity(),view.findViewById(R.id.episode_relative_layout));
-  }
+);
   loadData();
-  mPicasso.load(mEpisode.getEpisodePhoto()).placeholder(R.drawable.bg).config(MizuuApplication.getBitmapConfig()).transform(new PaletteTransformation(mEpisode.getEpisodePhoto().getAbsolutePath(),mDetailsArea)).into(mEpisodePhoto,new Callback(){
+  mPicasso.load(mEpisode.getEpisodePhoto()).placeholder(R.drawable.bg).config(MizuuApplication.getBitmapConfig()).into(mEpisodePhoto,new Callback(){
     @Override public void onError(){
       if (!isAdded())       return;
       int width=getActivity().getResources().getDimensionPixelSize(R.dimen.episode_details_background_overlay_width);
@@ -48,11 +70,13 @@
         }
 );
         mPaletteLoader.addView(mDetailsArea);
+        mPaletteLoader.setFab(mFab);
         mPaletteLoader.execute();
       }
  else {
         mPaletteLoader.clearViews();
         mPaletteLoader.addView(mDetailsArea);
+        mPaletteLoader.setFab(mFab);
         mPaletteLoader.colorViews();
       }
     }

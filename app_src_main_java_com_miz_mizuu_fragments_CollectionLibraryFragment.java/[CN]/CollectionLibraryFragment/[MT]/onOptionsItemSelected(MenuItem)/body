@@ -1,48 +1,12 @@
 {
   super.onOptionsItemSelected(item);
 switch (item.getItemId()) {
-case R.id.menuSortAdded:
-    sortBy(DATE);
-  break;
-case R.id.menuSortRating:
-sortBy(RATING);
-break;
-case R.id.menuSortWeightedRating:
-sortBy(WEIGHTED_RATING);
-break;
-case R.id.menuSortRelease:
-sortBy(RELEASE);
-break;
-case R.id.menuSortTitle:
-sortBy(TITLE);
-break;
-case R.id.menuSortDuration:
-sortBy(DURATION);
-break;
-case R.id.genres:
-showGenres();
-break;
-case R.id.certifications:
-showCertifications();
-break;
-case R.id.folders:
-showFolders();
-break;
-case R.id.fileSources:
-showFileSources();
-break;
-case R.id.release_year:
-showReleaseYear();
-break;
-case R.id.clear_filters:
-showMovieSection(mActionBar.getSelectedNavigationIndex());
-break;
 case R.id.random:
-if (mMovieKeys.size() > 0) {
-int random=new Random().nextInt(mMovieKeys.size());
-showDetails(random);
-}
-break;
+    if (mMovieKeys.size() > 0) {
+      int random=new Random().nextInt(mMovieKeys.size());
+      showDetails(random);
+    }
+  break;
 case R.id.view_collection_online:
 Intent i=new Intent(Intent.ACTION_VIEW);
 i.setData(Uri.parse("http://www.themoviedb.org/collection/" + mCollectionId));

@@ -1,0 +1,41 @@
+{
+  mGridView.setVisibility(View.GONE);
+  mProgressBar.setVisibility(View.GONE);
+  mEmptyLibraryLayout.setVisibility(View.VISIBLE);
+  if (mMovieLoader.isShowingSearchResults()) {
+    mEmptyLibraryTitle.setText(R.string.no_search_results);
+    mEmptyLibraryDescription.setText(R.string.no_search_results_description);
+  }
+ else {
+switch (mMovieLoader.getType()) {
+case ALL_MOVIES:
+      mEmptyLibraryTitle.setText(R.string.no_movies);
+    mEmptyLibraryDescription.setText(MizLib.isTablet(mContext) ? R.string.no_movies_description_tablet : R.string.no_movies_description);
+  break;
+case FAVORITES:
+mEmptyLibraryTitle.setText(R.string.no_favorites);
+mEmptyLibraryDescription.setText(R.string.no_favorites_description);
+break;
+case NEW_RELEASES:
+mEmptyLibraryTitle.setText(R.string.no_new_releases);
+mEmptyLibraryDescription.setText(R.string.no_new_releases_description);
+break;
+case WATCHLIST:
+mEmptyLibraryTitle.setText(R.string.empty_watchlist);
+mEmptyLibraryDescription.setText(R.string.empty_watchlist_description);
+break;
+case WATCHED:
+mEmptyLibraryTitle.setText(R.string.no_watched_movies);
+mEmptyLibraryDescription.setText(R.string.no_watched_movies_description);
+break;
+case UNWATCHED:
+mEmptyLibraryTitle.setText(R.string.no_unwatched_movies);
+mEmptyLibraryDescription.setText(R.string.no_unwatched_movies_description);
+break;
+case COLLECTIONS:
+mEmptyLibraryTitle.setText(R.string.no_movie_collections);
+mEmptyLibraryDescription.setText(R.string.no_movie_collections_description);
+break;
+}
+}
+}

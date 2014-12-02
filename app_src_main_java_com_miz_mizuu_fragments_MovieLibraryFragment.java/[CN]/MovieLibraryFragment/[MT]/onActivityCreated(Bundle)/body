@@ -1,9 +1,0 @@
-{
-  super.onActivityCreated(savedInstanceState);
-  if (mType == OTHER)   getActivity().setTitle(R.string.chooserWatchList);
- else   getActivity().setTitle(R.string.chooserMovies);
-  setupActionBar();
-  if (mActionBar.getNavigationMode() == ActionBar.NAVIGATION_MODE_LIST)   mActionBar.setListNavigationCallbacks(mSpinnerAdapter,this);
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_MOVIE_LIBRARY));
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-movie-actor-search"));
-}

@@ -2,14 +2,11 @@
   final MediumMovie movie=getItem(position);
   CoverItem holder;
   if (convertView == null) {
-    convertView=mInflater.inflate(R.layout.grid_item,container,false);
+    convertView=mInflater.inflate(R.layout.grid_cover,container,false);
     holder=new CoverItem();
-    holder.mLinearLayout=(LinearLayout)convertView.findViewById(R.id.card_layout);
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
-    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
-    holder.subtext.setSingleLine(true);
-    holder.text.setTypeface(TypefaceUtils.getRobotoMedium(mContext));
+    holder.text.setTypeface(mTypeface);
     convertView.setTag(holder);
   }
  else {
@@ -17,17 +14,12 @@
   }
   if (!mShowTitles) {
     holder.text.setVisibility(View.GONE);
-    holder.subtext.setVisibility(View.GONE);
   }
  else {
     holder.text.setVisibility(View.VISIBLE);
     holder.text.setText(mMovieLoader.getType() == MovieLibraryType.COLLECTIONS ? movie.getCollection() : movie.getTitle());
-    holder.text.setSingleLine(true);
-    holder.text.setLines(1);
-    holder.text.setMaxLines(1);
-    holder.subtext.setVisibility(View.VISIBLE);
   }
   holder.cover.setImageResource(R.color.card_background_dark);
-  mPicasso.load(mMovieLoader.getType() == MovieLibraryType.COLLECTIONS ? movie.getCollectionPoster() : movie.getThumbnail()).config(mConfig).into(holder);
+  mPicasso.load(mMovieLoader.getType() == MovieLibraryType.COLLECTIONS ? movie.getCollectionPoster() : movie.getThumbnail()).placeholder(R.drawable.bg).config(mConfig).into(holder);
   return convertView;
 }

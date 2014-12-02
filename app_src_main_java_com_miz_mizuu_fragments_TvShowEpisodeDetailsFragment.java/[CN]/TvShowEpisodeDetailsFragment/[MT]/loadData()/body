@@ -1,23 +1,16 @@
 {
   mTitle.setVisibility(View.VISIBLE);
   mTitle.setText(mEpisode.getTitle());
-  mTitle.setTypeface(TypefaceUtils.getRobotoCondensedRegular(getActivity()));
-  mTitle.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
-  mDescription.setTypeface(mLight);
-  mFileSource.setTypeface(mLight);
-  mDirector.setTypeface(mLight);
-  mWriter.setTypeface(mLight);
-  mGuestStars.setTypeface(mLight);
-  if (MizLib.isPortrait(getActivity())) {
-    mAirDate.setTypeface(mMedium);
-    mRating.setTypeface(mMedium);
-    mSeasonEpisodeNumber.setTypeface(mLightItalic);
-    mSeasonEpisodeNumber.setText(getString(R.string.showSeason) + " " + mEpisode.getSeason()+ ", "+ getString(R.string.showEpisode)+ " "+ mEpisode.getEpisode());
-  }
- else {
-    mAirDate.setTypeface(mLight);
-    mRating.setTypeface(mLight);
-  }
+  mTitle.setTypeface(mCondensedRegular);
+  mDescription.setTypeface(mCondensedRegular);
+  mFileSource.setTypeface(mCondensedRegular);
+  mDirector.setTypeface(mCondensedRegular);
+  mWriter.setTypeface(mCondensedRegular);
+  mGuestStars.setTypeface(mCondensedRegular);
+  mAirDate.setTypeface(mMedium);
+  mRating.setTypeface(mMedium);
+  mSeasonEpisodeNumber.setTypeface(mMediumItalic);
+  mSeasonEpisodeNumber.setText(getString(R.string.showSeason) + " " + mEpisode.getSeason()+ ", "+ getString(R.string.showEpisode)+ " "+ mEpisode.getEpisode());
   if (!MizLib.isPortrait(getActivity())) {
     mDescription.setBackgroundResource(R.drawable.selectable_background);
     mDescription.setMaxLines(getActivity().getResources().getInteger(R.integer.episode_details_max_lines));

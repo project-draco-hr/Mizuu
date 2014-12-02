@@ -1,11 +1,8 @@
 {
 switch (item.getItemId()) {
-case R.id.play_video:
-    play();
-  break;
 case R.id.menuDeleteEpisode:
-deleteEpisode();
-break;
+    deleteEpisode();
+  break;
 case R.id.watched:
 watched(true);
 break;

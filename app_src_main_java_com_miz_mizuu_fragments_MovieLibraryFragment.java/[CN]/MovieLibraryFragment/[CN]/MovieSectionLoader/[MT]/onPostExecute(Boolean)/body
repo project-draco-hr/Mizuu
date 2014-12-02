@@ -1,8 +1,0 @@
-{
-  if (success && isAdded()) {
-    mMovieKeys.addAll(mTempKeys);
-    sortMovies();
-    notifyDataSetChanged();
-    setProgressBarVisible(false);
-  }
-}

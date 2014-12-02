@@ -1,0 +1,11 @@
+{
+  if (getType() == FileSource.SMB) {
+    return context.getString(R.string.contentLocationSMB_Alternative);
+  }
+ else   if (getType() == FileSource.UPNP) {
+    return context.getString(R.string.contentLocationUPnP_Alternative);
+  }
+ else {
+    return context.getString(R.string.contentLocationDevice_Alternative);
+  }
+}

@@ -7,7 +7,7 @@
   ((TextView)v.findViewById(R.id.gridCoverSubtitle)).setSingleLine(true);
   v.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
-      context.startActivity(IntentUtils.getTmdbTvShowLink(show));
+      context.startActivity(IntentUtils.getTmdbTvShowLink(context,show));
     }
   }
 );

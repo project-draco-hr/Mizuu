@@ -7,7 +7,6 @@
   mStartup=Integer.valueOf(settings.getString(STARTUP_SELECTION,"1"));
   mDbHelper=MizuuApplication.getMovieAdapter();
   mDbHelperTv=MizuuApplication.getTvDbAdapter();
-  mTfCondensed=TypefaceUtils.getRobotoCondensedRegular(getApplicationContext());
   mTfMedium=TypefaceUtils.getRobotoMedium(getApplicationContext());
   mTfRegular=TypefaceUtils.getRoboto(getApplicationContext());
   setupMenuItems(true);

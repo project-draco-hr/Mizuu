@@ -156,7 +156,6 @@
             episode.setEpisode(MizLib.getInteger(Double.valueOf(((Node)tag.item(0)).getNodeValue())));
           }
  catch (          Exception e) {
-            System.out.println("EXCEPTION: DVD_episodenumber");
           }
         }
         if (episode.getEpisode() == -1) {
@@ -167,7 +166,6 @@
             episode.setEpisode(MizLib.getInteger(((Node)tag.item(0)).getNodeValue()));
           }
  catch (          Exception e) {
-            System.out.println("EXCEPTION: EpisodeNumber");
             episode.setEpisode(0);
           }
         }

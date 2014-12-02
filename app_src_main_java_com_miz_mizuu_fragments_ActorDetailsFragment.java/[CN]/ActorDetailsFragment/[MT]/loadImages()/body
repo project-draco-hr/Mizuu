@@ -1,5 +1,5 @@
 {
-  mPicasso.load(mActor.getProfilePhotoThumb()).placeholder(R.drawable.noactor).error(R.drawable.noactor).into(mPhoto,new Callback(){
+  mPicasso.load(mActor.getProfilePhoto()).placeholder(R.drawable.noactor).error(R.drawable.noactor).into(mPhoto,new Callback(){
     @Override public void onSuccess(){
       if (mPaletteLoader == null) {
         mPaletteLoader=new PaletteLoader(mPicasso,Uri.parse(mActor.getProfilePhotoThumb()),new PaletteLoader.OnPaletteLoadedCallback(){

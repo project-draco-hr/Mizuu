@@ -1,0 +1,16 @@
+{
+  StringBuilder sb=new StringBuilder();
+  for (  String s : filenames) {
+    sb.append(s);
+    sb.append(",");
+  }
+  sb.substring(0,sb.length() - 1);
+  final OkHttpClient client=MizuuApplication.getOkHttpClient();
+  RequestBody formBody=new FormEncodingBuilder().add("filepaths",sb.toString()).add("type",movie ? "0" : "1").add("key",getMizuuKey(context)).build();
+  Request request=new Request.Builder().url("http://mizuu.tv/add_filepath.php").post(formBody).build();
+  try {
+    client.newCall(request).execute();
+  }
+ catch (  Exception e) {
+  }
+}

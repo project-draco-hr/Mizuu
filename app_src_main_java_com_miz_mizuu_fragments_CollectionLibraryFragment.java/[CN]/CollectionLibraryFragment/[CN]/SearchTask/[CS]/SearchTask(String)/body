@@ -1,3 +1,0 @@
-{
-  mSearchQuery=query.toLowerCase(Locale.ENGLISH);
-}

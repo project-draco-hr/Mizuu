@@ -1,0 +1,166 @@
+{
+switch (mLibraryType) {
+case ALL_MOVIES:
+    mMovieList.addAll(listFromCursor(mDatabase.getAllMovies()));
+  break;
+case COLLECTIONS:
+mMovieList.addAll(listFromCursor(mDatabase.getCollections()));
+break;
+case FAVORITES:
+mMovieList.addAll(listFromCursor(mDatabase.getFavorites()));
+break;
+case NEW_RELEASES:
+mMovieList.addAll(listFromCursor(mDatabase.getNewReleases()));
+break;
+case UNWATCHED:
+mMovieList.addAll(listFromCursor(mDatabase.getUnwatched()));
+break;
+case WATCHED:
+mMovieList.addAll(listFromCursor(mDatabase.getWatched()));
+break;
+case WATCHLIST:
+mMovieList.addAll(listFromCursor(mDatabase.getWatchlist()));
+break;
+default :
+break;
+}
+int totalSize=mMovieList.size();
+for (MovieFilter filter : getFilters()) {
+for (int i=0; i < totalSize; i++) {
+boolean condition=false;
+switch (filter.getType()) {
+case MovieFilter.GENRE:
+if (mMovieList.get(i).getGenres().contains(filter.getFilter())) {
+String[] genres=mMovieList.get(i).getGenres().split(",");
+for (String genre : genres) {
+if (genre.trim().equals(filter.getFilter())) {
+condition=true;
+break;
+}
+}
+}
+break;
+case MovieFilter.CERTIFICATION:
+condition=mMovieList.get(i).getCertification().trim().equals(filter.getFilter());
+break;
+case MovieFilter.FILE_SOURCE:
+for (Filepath path : mMovieList.get(i).getFilepaths()) {
+condition=path.getTypeAsString(mContext).equals(filter.getFilter());
+if (condition) break;
+}
+break;
+case MovieFilter.RELEASE_YEAR:
+condition=mMovieList.get(i).getReleaseYear().trim().contains(filter.getFilter());
+break;
+case MovieFilter.FOLDER:
+for (Filepath path : mMovieList.get(i).getFilepaths()) {
+condition=path.getFilepath().trim().startsWith(filter.getFilter());
+if (condition) break;
+}
+break;
+case MovieFilter.OFFLINE_FILES:
+for (Filepath path : mMovieList.get(i).getFilepaths()) {
+condition=mMovieList.get(i).hasOfflineCopy(path);
+if (condition) break;
+}
+break;
+case MovieFilter.AVAILABLE_FILES:
+ArrayList<FileSource> filesources=MizLib.getFileSources(MizLib.TYPE_MOVIE,true);
+if (isCancelled()) return null;
+for (Filepath path : mMovieList.get(i).getFilepaths()) {
+if (path.isNetworkFile()) if (mMovieList.get(i).hasOfflineCopy(path)) {
+condition=true;
+break;
+}
+ else {
+if (path.getType() == FileSource.SMB) {
+if (MizLib.isWifiConnected(mContext)) {
+FileSource source=null;
+for (int j=0; j < filesources.size(); j++) if (path.getFilepath().contains(filesources.get(j).getFilepath())) {
+source=filesources.get(j);
+continue;
+}
+if (source == null) continue;
+try {
+final SmbFile file=new SmbFile(MizLib.createSmbLoginString(source.getDomain(),source.getUser(),source.getPassword(),path.getFilepath(),false));
+if (file.exists()) {
+condition=true;
+break;
+}
+}
+ catch (Exception e) {
+}
+}
+}
+ else if (path.getType() == FileSource.UPNP) {
+if (MizLib.exists(path.getFilepath())) {
+condition=true;
+break;
+}
+}
+}
+ else {
+if (new File(path.getFilepath()).exists()) {
+condition=true;
+break;
+}
+}
+}
+break;
+}
+if (!condition && mMovieList.size() > i) {
+mMovieList.remove(i);
+i--;
+totalSize--;
+}
+}
+}
+if (!TextUtils.isEmpty(mSearchQuery)) {
+ArrayList<MediumMovie> tempCollection=Lists.newArrayList();
+if (mSearchQuery.startsWith("actor:")) {
+for (int i=0; i < mResults.size(); i++) {
+if (isCancelled()) return null;
+if (mResults.get(i).getCast().toLowerCase(Locale.ENGLISH).contains(mSearchQuery.replace("actor:","").trim())) tempCollection.add(mResults.get(i));
+}
+}
+ else if (mSearchQuery.equalsIgnoreCase("missing_genres")) {
+for (int i=0; i < mResults.size(); i++) {
+if (isCancelled()) return null;
+if (TextUtils.isEmpty(mResults.get(i).getGenres())) tempCollection.add(mResults.get(i));
+}
+}
+ else if (mSearchQuery.equalsIgnoreCase("multiple_versions")) {
+DbAdapterMovieMappings db=MizuuApplication.getMovieMappingAdapter();
+for (int i=0; i < mResults.size(); i++) {
+if (isCancelled()) return null;
+if (db.hasMultipleFilepaths(mResults.get(i).getTmdbId())) tempCollection.add(mResults.get(i));
+}
+}
+ else {
+Pattern p=Pattern.compile(MizLib.CHARACTER_REGEX);
+for (int i=0; i < mResults.size(); i++) {
+if (isCancelled()) return null;
+String lowerCaseTitle=(getType() == MovieLibraryType.COLLECTIONS) ? mResults.get(i).getCollection().toLowerCase(Locale.ENGLISH) : mResults.get(i).getTitle().toLowerCase(Locale.ENGLISH);
+boolean foundInTitle=false;
+if (lowerCaseTitle.indexOf(mSearchQuery) != -1 || p.matcher(lowerCaseTitle).replaceAll("").indexOf(mSearchQuery) != -1) {
+tempCollection.add(mResults.get(i));
+foundInTitle=true;
+}
+if (!foundInTitle) {
+for (Filepath path : mResults.get(i).getFilepaths()) {
+String filepath=path.getFilepath().toLowerCase(Locale.ENGLISH);
+if (filepath.indexOf(mSearchQuery) != -1) {
+tempCollection.add(mResults.get(i));
+break;
+}
+}
+}
+}
+}
+mMovieList.clear();
+mMovieList.addAll(tempCollection);
+tempCollection.clear();
+}
+Collections.sort(mMovieList,getSortType().getComparator());
+return null;
+}

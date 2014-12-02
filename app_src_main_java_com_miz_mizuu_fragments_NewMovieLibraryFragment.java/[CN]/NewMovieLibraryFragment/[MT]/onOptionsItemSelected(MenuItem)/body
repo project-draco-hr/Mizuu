@@ -3,11 +3,69 @@
 switch (item.getItemId()) {
 case R.id.update:
     Intent intent=new Intent();
-  intent.setClass(getActivity(),Update.class);
+  intent.setClass(mContext,Update.class);
 intent.putExtra("isMovie",true);
 startActivityForResult(intent,0);
 break;
+case R.id.menuSortAdded:
+mMovieLoader.setSortType(MovieSortType.DATE_ADDED);
+mMovieLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortRating:
+mMovieLoader.setSortType(MovieSortType.RATING);
+mMovieLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortWeightedRating:
+mMovieLoader.setSortType(MovieSortType.WEIGHTED_RATING);
+mMovieLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortRelease:
+mMovieLoader.setSortType(MovieSortType.RELEASE);
+mMovieLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortTitle:
+mMovieLoader.setSortType(MovieSortType.TITLE);
+mMovieLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortDuration:
+mMovieLoader.setSortType(MovieSortType.DURATION);
+mMovieLoader.load();
+showProgressBar();
+break;
+case R.id.genres:
+mMovieLoader.showGenresFilterDialog(getActivity());
+break;
+case R.id.certifications:
+mMovieLoader.showCertificationsFilterDialog(getActivity());
+break;
+case R.id.folders:
+mMovieLoader.showFoldersFilterDialog(getActivity());
+break;
+case R.id.fileSources:
+mMovieLoader.showFileSourcesFilterDialog(getActivity());
+break;
+case R.id.release_year:
+mMovieLoader.showReleaseYearFilterDialog(getActivity());
+break;
+case R.id.offline_files:
+mMovieLoader.addFilter(new MovieFilter(MovieFilter.OFFLINE_FILES));
+mMovieLoader.load();
+showProgressBar();
+break;
+case R.id.available_files:
+mMovieLoader.addFilter(new MovieFilter(MovieFilter.AVAILABLE_FILES));
+mMovieLoader.load();
+showProgressBar();
+break;
 case R.id.clear_filters:
+mMovieLoader.clearFilters();
+mMovieLoader.load();
+showProgressBar();
 break;
 case R.id.random:
 if (mAdapter.getCount() > 0) {
@@ -16,7 +74,7 @@ viewMovieDetails(random,null);
 }
 break;
 case R.id.unidentifiedFiles:
-startActivity(new Intent(getActivity(),UnidentifiedMovies.class));
+startActivity(new Intent(mContext,UnidentifiedMovies.class));
 break;
 }
 return true;

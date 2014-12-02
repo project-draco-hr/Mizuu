@@ -1,6 +1,0 @@
-{
-  Intent intent=new Intent();
-  intent.setClass(getActivity(),Update.class);
-  intent.putExtra("isMovie",true);
-  return intent;
-}

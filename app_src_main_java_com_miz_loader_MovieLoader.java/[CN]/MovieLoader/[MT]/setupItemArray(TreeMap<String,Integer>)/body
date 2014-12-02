@@ -1,0 +1,5 @@
+{
+  final CharSequence[] tempArray=map.keySet().toArray(new CharSequence[map.keySet().size()]);
+  for (int i=0; i < tempArray.length; i++)   tempArray[i]=tempArray[i] + " (" + map.get(tempArray[i])+ ")";
+  return tempArray;
+}

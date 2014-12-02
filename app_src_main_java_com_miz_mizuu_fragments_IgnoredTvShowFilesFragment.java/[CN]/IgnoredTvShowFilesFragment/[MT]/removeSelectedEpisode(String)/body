@@ -1,0 +1,4 @@
+{
+  MizuuApplication.getTvShowEpisodeMappingsDbAdapter().deleteFilepath(filepath);
+  mListView.setAdapter(new TvShowAdapter(getActivity()));
+}

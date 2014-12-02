@@ -1,5 +1,4 @@
 {
-  if (mSpinnerAdapter != null)   mSpinnerAdapter.notifyDataSetChanged();
   if (mMovieSectionLoader != null)   mMovieSectionLoader.cancel(true);
   mMovieSectionLoader=new MovieSectionLoader(position);
   mMovieSectionLoader.execute();
