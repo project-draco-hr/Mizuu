@@ -1,5 +1,4 @@
 {
   mProgressBar.setVisibility(View.GONE);
   mAdapter.notifyDataSetChanged();
-  if (mDualPane && mItems.size() > 0 && mSelectFirstSeason)   mBus.post(mItems.get(0));
 }

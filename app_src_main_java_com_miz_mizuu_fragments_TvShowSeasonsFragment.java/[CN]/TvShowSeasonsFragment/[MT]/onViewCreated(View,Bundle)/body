@@ -21,13 +21,7 @@
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
       mSelectedIndex=arg2;
-      if (!mDualPane) {
-        getActivity().startActivityForResult(IntentUtils.getTvShowSeasonIntent(getActivity(),mShowId,mItems.get(arg2).getSeason(),mItems.get(arg2).getEpisodeCount(),mToolbarColor),0);
-      }
- else {
-        mBus.post(mItems.get(arg2));
-        mAdapter.notifyDataSetChanged();
-      }
+      getActivity().startActivityForResult(IntentUtils.getTvShowSeasonIntent(getActivity(),mShowId,mItems.get(arg2).getSeason(),mItems.get(arg2).getEpisodeCount(),mToolbarColor),0);
     }
   }
 );
