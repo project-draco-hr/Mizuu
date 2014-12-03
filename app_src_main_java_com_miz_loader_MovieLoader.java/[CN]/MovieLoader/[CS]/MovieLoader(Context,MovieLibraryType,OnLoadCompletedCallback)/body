@@ -3,5 +3,5 @@
   mLibraryType=libraryType;
   mCallback=callback;
   mDatabase=MizuuApplication.getMovieAdapter();
-  setSortType(mLibraryType != MovieLibraryType.COLLECTIONS ? MovieSortType.TITLE : MovieSortType.COLLECTION_TITLE);
+  setupSortType();
 }

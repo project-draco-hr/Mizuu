@@ -1,0 +1,34 @@
+{
+  if (getType() == MovieLibraryType.ALL_MOVIES) {
+    String savedSortType=PreferenceManager.getDefaultSharedPreferences(mContext).getString(PreferenceKeys.SORTING_MOVIES,SORT_TITLE);
+switch (savedSortType) {
+case SORT_TITLE:
+      setSortType(MovieSortType.TITLE);
+    break;
+case SORT_RELEASE:
+  setSortType(MovieSortType.RELEASE);
+break;
+case SORT_RATING:
+setSortType(MovieSortType.RATING);
+break;
+case SORT_WEIGHTED_RATING:
+setSortType(MovieSortType.WEIGHTED_RATING);
+break;
+case SORT_DATE_ADDED:
+setSortType(MovieSortType.DATE_ADDED);
+break;
+case SORT_DURATION:
+setSortType(MovieSortType.DURATION);
+break;
+}
+}
+ else if (getType() == MovieLibraryType.COLLECTIONS) {
+setSortType(MovieSortType.COLLECTION_TITLE);
+}
+ else if (getType() == MovieLibraryType.NEW_RELEASES) {
+setSortType(MovieSortType.RELEASE);
+}
+ else {
+setSortType(MovieSortType.TITLE);
+}
+}

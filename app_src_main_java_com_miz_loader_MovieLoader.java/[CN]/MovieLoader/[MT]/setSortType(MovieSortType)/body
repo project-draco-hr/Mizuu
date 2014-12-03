@@ -4,5 +4,29 @@
   }
  else {
     mSortType=type;
-  }
+    if (getType() == MovieLibraryType.ALL_MOVIES) {
+      SharedPreferences.Editor editor=PreferenceManager.getDefaultSharedPreferences(mContext).edit();
+switch (getSortType()) {
+case TITLE:
+        editor.putString(PreferenceKeys.SORTING_MOVIES,SORT_TITLE);
+      break;
+case RELEASE:
+    editor.putString(PreferenceKeys.SORTING_MOVIES,SORT_RELEASE);
+  break;
+case RATING:
+editor.putString(PreferenceKeys.SORTING_MOVIES,SORT_RATING);
+break;
+case WEIGHTED_RATING:
+editor.putString(PreferenceKeys.SORTING_MOVIES,SORT_WEIGHTED_RATING);
+break;
+case DATE_ADDED:
+editor.putString(PreferenceKeys.SORTING_MOVIES,SORT_DATE_ADDED);
+break;
+case DURATION:
+editor.putString(PreferenceKeys.SORTING_MOVIES,SORT_DURATION);
+break;
+}
+editor.apply();
+}
+}
 }
