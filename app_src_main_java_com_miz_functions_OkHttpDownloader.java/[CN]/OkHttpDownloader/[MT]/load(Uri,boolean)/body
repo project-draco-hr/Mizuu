@@ -36,16 +36,18 @@
     for (    Filepath path : filepaths) {
       String filename=path.getFilepath();
       if (path.getType() == FileSource.SMB) {
-        if (!TextUtils.isEmpty(filename)) {
-          SmbFile s=null;
-          if (imageUri.contains("movie")) {
-            if (imageUri.contains("movie-thumbs")) {
-              s=MizLib.getCustomCoverArt(filename,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.COVER);
-            }
+        if (MizLib.isOnline(mContext)) {
+          if (!TextUtils.isEmpty(filename)) {
+            SmbFile s=null;
+            if (imageUri.contains("movie")) {
+              if (imageUri.contains("movie-thumbs")) {
+                s=MizLib.getCustomCoverArt(filename,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.COVER);
+              }
  else {
-              s=MizLib.getCustomCoverArt(filename,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.BACKDROP);
+                s=MizLib.getCustomCoverArt(filename,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.BACKDROP);
+              }
+              if (s != null)               return new Response(s.getInputStream(),localCacheOnly,s.getContentLength());
             }
-            if (s != null)             return new Response(s.getInputStream(),localCacheOnly,s.getContentLength());
           }
         }
       }

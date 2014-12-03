@@ -17,5 +17,4 @@
   getTvShowSeasonFolder(this);
   getAvailableOfflineFolder(this);
   transitionLocalizationPreference();
-  MizLib.copyDatabase(this);
 }

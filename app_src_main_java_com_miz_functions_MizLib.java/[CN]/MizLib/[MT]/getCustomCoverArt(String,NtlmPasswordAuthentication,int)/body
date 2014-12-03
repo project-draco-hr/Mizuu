@@ -5,9 +5,13 @@
   String[] list=MizuuApplication.getCifsFilesList(parentPath);
   if (list == null) {
     SmbFile s=new SmbFile(createSmbLoginString(auth.getDomain(),auth.getUsername(),auth.getPassword(),parentPath,false));
-    list=s.list();
-    s=null;
-    MizuuApplication.putCifsFilesList(parentPath,list);
+    try {
+      list=s.list();
+      MizuuApplication.putCifsFilesList(parentPath,list);
+    }
+ catch (    Exception e) {
+      return null;
+    }
   }
   String name="", absolutePath="", customCoverArt="";
   if (type == COVER) {
@@ -30,7 +34,6 @@
       }
     }
   }
-  list=null;
   if (!TextUtils.isEmpty(customCoverArt))   return new SmbFile(createSmbLoginString(auth.getDomain(),auth.getUsername(),auth.getPassword(),customCoverArt,false));
   return null;
 }
