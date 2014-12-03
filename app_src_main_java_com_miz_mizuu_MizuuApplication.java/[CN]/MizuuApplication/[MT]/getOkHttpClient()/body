@@ -3,7 +3,7 @@
     mOkHttpClient=new OkHttpClient();
     try {
       File cacheDir=getContext().getCacheDir();
-      Cache cache=new Cache(cacheDir,25 * 1024 * 1024);
+      Cache cache=new Cache(cacheDir,2 * 1024 * 1024);
       mOkHttpClient.setCache(cache);
     }
  catch (    IOException e) {
