@@ -27,6 +27,7 @@ break;
 int totalSize=mMovieList.size();
 for (MovieFilter filter : getFilters()) {
 for (int i=0; i < totalSize; i++) {
+if (isCancelled()) return null;
 boolean condition=false;
 switch (filter.getType()) {
 case MovieFilter.GENRE:
