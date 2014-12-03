@@ -26,6 +26,7 @@
     @Override public void onClick(    View v){
       ViewUtils.animateFabJump(v,new Animator.AnimatorListener(){
         @Override public void onAnimationEnd(        Animator animation){
+          playFirstEpisode();
         }
         @Override public void onAnimationStart(        Animator animation){
         }
