@@ -9,7 +9,7 @@
   mShowTitles=mSharedPreferences.getBoolean(SHOW_TITLES_IN_GRID,true);
   String thumbnailSize=mSharedPreferences.getString(GRID_ITEM_SIZE,getString(R.string.normal));
   if (thumbnailSize.equals(getString(R.string.large)))   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1.33);
- else   if (thumbnailSize.equals(getString(R.string.normal)))   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1);
+ else   if (thumbnailSize.equals(getString(R.string.normal)))   mImageThumbSize=(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1);
  else   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 0.75);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   mPicasso=MizuuApplication.getPicasso(getActivity());

@@ -21,7 +21,7 @@
             list2=firstElement.getElementsByTagName("BannerPath");
             for (int i=0; i < list.getLength(); i++) {
               element=(Element)list.item(i);
-              if (element.getTextContent().equals("poster"))               covers.add("http://thetvdb.com/banners/_cache/" + ((Element)list2.item(i)).getTextContent());
+              if (element.getTextContent().equals("poster"))               covers.add("http://thetvdb.com/banners/_cache/" + list2.item(i).getTextContent());
             }
           }
  catch (          Exception e) {

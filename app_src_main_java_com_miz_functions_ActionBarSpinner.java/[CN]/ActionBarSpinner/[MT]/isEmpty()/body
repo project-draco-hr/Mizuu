@@ -1,3 +1,0 @@
-{
-  return mSpinnerItems.size() == 0;
-}

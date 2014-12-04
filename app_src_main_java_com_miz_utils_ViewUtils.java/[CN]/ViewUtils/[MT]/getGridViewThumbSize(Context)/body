@@ -2,7 +2,7 @@
   int thumbSize=0;
   String thumbnailSize=PreferenceManager.getDefaultSharedPreferences(context).getString(GRID_ITEM_SIZE,context.getString(R.string.normal));
   if (thumbnailSize.equals(context.getString(R.string.large)))   thumbSize=(int)(context.getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1.33);
- else   if (thumbnailSize.equals(context.getString(R.string.normal)))   thumbSize=(int)(context.getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1);
+ else   if (thumbnailSize.equals(context.getString(R.string.normal)))   thumbSize=(context.getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1);
  else   thumbSize=(int)(context.getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 0.75);
   return thumbSize;
 }

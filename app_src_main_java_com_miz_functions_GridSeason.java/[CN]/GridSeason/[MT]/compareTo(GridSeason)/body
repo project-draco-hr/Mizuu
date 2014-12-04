@@ -5,6 +5,6 @@
   if (getSeason() == 0)   return 1;
   if (another.getSeason() == 0)   return -1;
   if (getSeason() < another.getSeason())   return -1 * multiplier;
-  if (getSeason() > another.getSeason())   return 1 * multiplier;
+  if (getSeason() > another.getSeason())   return multiplier;
   return 0;
 }

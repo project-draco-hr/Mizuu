@@ -1,4 +1,3 @@
 {
   mActionBar=((ActionBarActivity)getActivity()).getSupportActionBar();
-  if (mSpinnerAdapter == null)   mSpinnerAdapter=new ActionBarSpinner();
 }

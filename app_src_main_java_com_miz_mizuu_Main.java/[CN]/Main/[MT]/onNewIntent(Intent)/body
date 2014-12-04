@@ -1,7 +1,7 @@
 {
   super.onNewIntent(newIntent);
   if (!newIntent.hasExtra("fromUpdate")) {
-    Intent i=null;
+    Intent i;
     if (selectedIndex == MOVIES)     i=new Intent("mizuu-movie-actor-search");
  else     i=new Intent("mizuu-shows-actor-search");
     i.putExtras(newIntent.getExtras());

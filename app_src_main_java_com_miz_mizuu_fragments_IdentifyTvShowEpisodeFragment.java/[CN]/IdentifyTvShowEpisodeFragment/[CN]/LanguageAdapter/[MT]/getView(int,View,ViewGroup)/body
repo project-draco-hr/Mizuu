@@ -1,6 +1,6 @@
 {
   if (convertView == null) {
-    convertView=(TextView)mInflater.inflate(android.R.layout.simple_spinner_item,parent,false);
+    convertView=mInflater.inflate(android.R.layout.simple_spinner_item,parent,false);
   }
   ((TextView)convertView).setText(mLocales.get(position).getDisplayLanguage(Locale.getDefault()));
   return convertView;

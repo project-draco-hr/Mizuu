@@ -22,7 +22,7 @@
           list=firstElement.getElementsByTagName("SeriesName");
           element=(Element)list.item(0);
           tag=element.getChildNodes();
-          show.setTitle(((Node)tag.item(0)).getNodeValue());
+          show.setTitle(tag.item(0).getNodeValue());
         }
  catch (        Exception e) {
           show.setTitle(mContext.getString(R.string.stringNA));
@@ -31,7 +31,7 @@
           list=firstElement.getElementsByTagName("Overview");
           element=(Element)list.item(0);
           tag=element.getChildNodes();
-          show.setDescription(((Node)tag.item(0)).getNodeValue());
+          show.setDescription(tag.item(0).getNodeValue());
         }
  catch (        Exception e) {
           show.setDescription(mContext.getString(R.string.stringNA));
@@ -40,7 +40,7 @@
           list=firstElement.getElementsByTagName("id");
           element=(Element)list.item(0);
           tag=element.getChildNodes();
-          show.setId(((Node)tag.item(0)).getNodeValue());
+          show.setId(tag.item(0).getNodeValue());
         }
  catch (        Exception e) {
           show.setId(DbAdapterTvShows.UNIDENTIFIED_ID);
@@ -49,7 +49,7 @@
           list=firstElement.getElementsByTagName("id");
           element=(Element)list.item(0);
           tag=element.getChildNodes();
-          show.setCoverUrl("http://thetvdb.com/banners/posters/" + ((Node)tag.item(0)).getNodeValue() + "-1.jpg");
+          show.setCoverUrl("http://thetvdb.com/banners/posters/" + tag.item(0).getNodeValue() + "-1.jpg");
         }
  catch (        Exception e) {
           show.setCoverUrl("");
@@ -58,7 +58,7 @@
           list=firstElement.getElementsByTagName("FirstAired");
           element=(Element)list.item(0);
           tag=element.getChildNodes();
-          show.setFirstAired(((Node)tag.item(0)).getNodeValue());
+          show.setFirstAired(tag.item(0).getNodeValue());
         }
  catch (        Exception e) {
           show.setFirstAired(mContext.getString(R.string.stringNA));

@@ -1,4 +1,0 @@
-{
-  mSpinnerItems=spinnerItems;
-  mInflater=LayoutInflater.from(context);
-}
