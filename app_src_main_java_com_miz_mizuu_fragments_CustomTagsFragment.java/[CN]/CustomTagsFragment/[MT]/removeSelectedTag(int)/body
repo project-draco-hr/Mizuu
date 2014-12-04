@@ -12,6 +12,6 @@
   items_string=result;
   Editor editor=settings.edit();
   editor.putString(IGNORED_FILENAME_TAGS,items_string);
-  editor.commit();
+  editor.apply();
   ((BaseAdapter)lv.getAdapter()).notifyDataSetChanged();
 }

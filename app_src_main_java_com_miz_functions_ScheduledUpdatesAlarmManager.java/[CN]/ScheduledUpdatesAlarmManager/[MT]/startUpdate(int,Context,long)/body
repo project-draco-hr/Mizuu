@@ -14,6 +14,6 @@
     SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(context);
     Editor editor=settings.edit();
     editor.putLong((type == MOVIES) ? NEXT_SCHEDULED_MOVIE_UPDATE : NEXT_SCHEDULED_TVSHOWS_UPDATE,System.currentTimeMillis() + when);
-    editor.commit();
+    editor.apply();
   }
 }

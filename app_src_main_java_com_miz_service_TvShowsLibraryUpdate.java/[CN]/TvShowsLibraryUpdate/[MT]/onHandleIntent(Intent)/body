@@ -14,7 +14,7 @@
   if (mClearLibrary) {
     mEditor=mSettings.edit();
     mEditor.putBoolean(CLEAR_LIBRARY_TVSHOWS,false);
-    mEditor.commit();
+    mEditor.apply();
     log("removeTvShowsFromDatabase()");
     removeTvShowsFromDatabase();
   }

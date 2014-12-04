@@ -26,6 +26,6 @@ if (!hasShown) {
 Toast.makeText(this,R.string.browser_help_message,Toast.LENGTH_LONG).show();
 Editor editor=PreferenceManager.getDefaultSharedPreferences(this).edit();
 editor.putBoolean(HAS_SHOWN_FILEBROWSER_MESSAGE,true);
-editor.commit();
+editor.apply();
 }
 }

@@ -10,7 +10,7 @@
       if (items_string.startsWith("<MiZ>"))       items_string=items_string.substring(5);
       Editor editor=settings.edit();
       editor.putString(IGNORED_FILENAME_TAGS,items_string);
-      editor.commit();
+      editor.apply();
       items.clear();
       String[] split=items_string.split("<MiZ>");
       Collections.addAll(items,split);

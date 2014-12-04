@@ -3,7 +3,7 @@
   editor.putString(TRAKT_USERNAME,"");
   editor.putString(TRAKT_PASSWORD,"");
   editor.putString(TRAKT_FULL_NAME,"");
-  editor.commit();
+  editor.apply();
   new File(MizuuApplication.getCacheFolder(getActivity()),"avatar.jpg").delete();
   traktUser.setText("");
   traktUser.setEnabled(true);

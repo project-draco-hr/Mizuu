@@ -18,7 +18,7 @@
     Editor editor=settings.edit();
     editor.putString(TRAKT_USERNAME,username);
     editor.putString(TRAKT_PASSWORD,MizLib.SHA1(password));
-    editor.commit();
+    editor.apply();
     try {
       Request request=MizLib.getTraktAuthenticationRequest("http://api.trakt.tv/user/profile.json/" + mTraktApiKey + "/"+ username,username,MizLib.SHA1(password));
       Response response=MizuuApplication.getOkHttpClient().newCall(request).execute();
@@ -28,7 +28,7 @@
         if (TextUtils.isEmpty(name) || name.equals("null"))         name=jObject.getString("username");
         String avatar=jObject.getString("avatar");
         editor.putString(TRAKT_FULL_NAME,name);
-        editor.commit();
+        editor.apply();
         if (isAdded() && (avatar.contains("gravatar") || (avatar.contains("trakt") && !avatar.contains("avatar-large.jpg"))))         MizLib.downloadFile(avatar,new File(MizuuApplication.getCacheFolder(getActivity()),"avatar.jpg").getAbsolutePath());
       }
     }

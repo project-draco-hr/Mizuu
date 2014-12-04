@@ -1,7 +1,7 @@
 {
   editor=settings.edit();
   editor.putInt(SCHEDULED_UPDATES_MOVIE,isDisabled ? NOT_ENABLED : moviesSpinner.getSelectedItemPosition() + 1);
-  editor.commit();
+  editor.apply();
   if (isAdded()) {
     if ((moviesSpinner.getSelectedItemPosition() + 1) > AT_LAUNCH) {
       MizLib.scheduleMovieUpdate(getActivity());

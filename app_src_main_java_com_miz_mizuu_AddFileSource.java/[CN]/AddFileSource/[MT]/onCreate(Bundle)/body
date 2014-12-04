@@ -1,14 +1,14 @@
 {
   super.onCreate(savedInstanceState);
   setTitle(R.string.addFileSourceTitle);
-  mTypeface=TypefaceUtils.getRobotoCondensedRegular(this);
-  mContentType=(TextView)findViewById(R.id.contentType);
+  Typeface mTypeface=TypefaceUtils.getRobotoCondensedRegular(this);
+  TextView mContentType=(TextView)findViewById(R.id.contentType);
   mContentType.setTypeface(mTypeface);
   mContent=(RadioGroup)findViewById(R.id.content_type);
   mFilesource=(RadioGroup)findViewById(R.id.filesource_type);
-  mContentLocation=(TextView)findViewById(R.id.contentLocation);
+  TextView mContentLocation=(TextView)findViewById(R.id.contentLocation);
   mContentLocation.setTypeface(mTypeface);
-  mContinue=(Button)findViewById(R.id.continue_button);
+  Button mContinue=(Button)findViewById(R.id.continue_button);
   mContinue.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
       Intent i=new Intent();

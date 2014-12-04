@@ -33,7 +33,7 @@
     @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
       Editor editor=settings.edit();
       editor.putBoolean(SYNC_WITH_TRAKT,isChecked);
-      editor.commit();
+      editor.apply();
     }
   }
 );
