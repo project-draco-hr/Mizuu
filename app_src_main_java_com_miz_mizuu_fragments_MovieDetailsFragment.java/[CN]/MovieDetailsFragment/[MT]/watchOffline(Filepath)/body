@@ -6,7 +6,6 @@
         boolean success=mMovie.getOfflineCopyFile(path).delete();
         if (!success)         mMovie.getOfflineCopyFile(path).delete();
         getActivity().invalidateOptionsMenu();
-        return;
       }
     }
 ).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){
@@ -27,7 +26,6 @@
         i.putExtra("thumb",mMovie.getThumbnail().getAbsolutePath());
         i.putExtra("backdrop",mMovie.getBackdrop().getAbsolutePath());
         mContext.startService(i);
-        return;
       }
     }
 ).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){

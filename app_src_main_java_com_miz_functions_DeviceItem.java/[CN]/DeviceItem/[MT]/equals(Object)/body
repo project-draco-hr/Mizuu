@@ -2,6 +2,5 @@
   if (this == o)   return true;
   if (o == null || getClass() != o.getClass())   return false;
   DeviceItem that=(DeviceItem)o;
-  if (!udn.equals(that.udn))   return false;
-  return true;
+  return udn.equals(that.udn);
 }

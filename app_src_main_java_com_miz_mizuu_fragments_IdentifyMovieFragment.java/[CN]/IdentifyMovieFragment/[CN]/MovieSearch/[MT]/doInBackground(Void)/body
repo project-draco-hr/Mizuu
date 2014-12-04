@@ -8,8 +8,7 @@
     for (int i=0; i < count; i++) {
       mResults.add(new Result(movieResults.get(i).getTitle(),movieResults.get(i).getOriginalTitle(),movieResults.get(i).getId(),movieResults.get(i).getCover(),movieResults.get(i).getRating(),movieResults.get(i).getReleasedate()));
     }
-    if (isCancelled())     return false;
-    return true;
+    return !isCancelled();
   }
  catch (  Exception e) {
   }

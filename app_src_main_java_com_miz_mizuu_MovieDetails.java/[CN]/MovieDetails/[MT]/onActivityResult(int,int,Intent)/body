@@ -13,6 +13,5 @@
     intent.putExtra("tmdbId",mMovieId);
     startActivity(intent);
     finish();
-    return;
   }
 }

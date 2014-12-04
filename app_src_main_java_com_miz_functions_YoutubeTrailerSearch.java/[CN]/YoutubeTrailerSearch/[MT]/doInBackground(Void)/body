@@ -8,8 +8,8 @@
       boolean embedding=false, mobile=false;
       JSONArray access=item0.getJSONArray("yt$accessControl");
       for (int j=0; j < access.length(); j++) {
-        if (access.getJSONObject(i).getString("action").equals("embed"))         embedding=access.getJSONObject(i).getString("permission").equals("allowed") ? true : false;
-        if (access.getJSONObject(i).getString("action").equals("syndicate"))         mobile=access.getJSONObject(i).getString("permission").equals("allowed") ? true : false;
+        if (access.getJSONObject(i).getString("action").equals("embed"))         embedding=access.getJSONObject(i).getString("permission").equals("allowed");
+        if (access.getJSONObject(i).getString("action").equals("syndicate"))         mobile=access.getJSONObject(i).getString("permission").equals("allowed");
       }
       if (embedding || mobile) {
         JSONObject id=item0.getJSONObject("id");

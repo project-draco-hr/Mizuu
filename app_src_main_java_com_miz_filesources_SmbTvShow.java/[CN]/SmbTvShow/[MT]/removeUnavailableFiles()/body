@@ -21,7 +21,7 @@
       FileSource source=null;
       for (int j=0; j < filesources.size(); j++)       if (dbEpisodes.get(i).getFilepath().contains(filesources.get(j).getFilepath())) {
         source=filesources.get(j);
-        continue;
+        break;
       }
       if (source == null) {
         boolean deleted=db.deleteEpisode(dbEpisodes.get(i).getShowId(),MizLib.getInteger(dbEpisodes.get(i).getSeason()),MizLib.getInteger(dbEpisodes.get(i).getEpisode()));

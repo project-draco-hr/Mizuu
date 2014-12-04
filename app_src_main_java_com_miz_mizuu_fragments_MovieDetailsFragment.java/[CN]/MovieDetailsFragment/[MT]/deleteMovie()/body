@@ -48,7 +48,6 @@
       }
       notifyDatasetChanges();
       getActivity().finish();
-      return;
     }
   }
 ).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){

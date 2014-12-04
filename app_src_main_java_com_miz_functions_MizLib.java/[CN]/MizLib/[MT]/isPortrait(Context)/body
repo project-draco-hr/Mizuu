@@ -1,4 +1,4 @@
 {
   if (c == null)   return false;
-  return (c.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) ? true : false;
+  return (c.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT);
 }

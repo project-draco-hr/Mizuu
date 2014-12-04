@@ -12,7 +12,6 @@
       intent.putExtra("showId",mShowId);
       startActivity(intent);
       finish();
-      return;
     }
   }
 }

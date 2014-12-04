@@ -12,8 +12,7 @@
         addedIds.add(results.get(i).getId());
       }
     }
-    if (isCancelled())     return false;
-    return true;
+    return !isCancelled();
   }
  catch (  Exception e) {
   }

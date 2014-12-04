@@ -20,7 +20,7 @@
       absolutePath=parentPath + list[i];
       if (name.equalsIgnoreCase("poster.jpg") || name.equalsIgnoreCase("poster.jpeg") || name.equalsIgnoreCase("poster.tbn")|| name.equalsIgnoreCase("folder.jpg")|| name.equalsIgnoreCase("folder.jpeg")|| name.equalsIgnoreCase("folder.tbn")|| name.equalsIgnoreCase("cover.jpg")|| name.equalsIgnoreCase("cover.jpeg")|| name.equalsIgnoreCase("cover.tbn")|| absolutePath.equalsIgnoreCase(filename + "-poster.jpg")|| absolutePath.equalsIgnoreCase(filename + "-poster.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-poster.tbn")|| absolutePath.equalsIgnoreCase(filename + "-folder.jpg")|| absolutePath.equalsIgnoreCase(filename + "-folder.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-folder.tbn")|| absolutePath.equalsIgnoreCase(filename + "-cover.jpg")|| absolutePath.equalsIgnoreCase(filename + "-cover.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-cover.tbn")|| absolutePath.equalsIgnoreCase(filename + ".jpg")|| absolutePath.equalsIgnoreCase(filename + ".jpeg")|| absolutePath.equalsIgnoreCase(filename + ".tbn")) {
         customCoverArt=absolutePath;
-        continue;
+        break;
       }
     }
   }
@@ -30,7 +30,7 @@
       absolutePath=parentPath + list[i];
       if (name.equalsIgnoreCase("fanart.jpg") || name.equalsIgnoreCase("fanart.jpeg") || name.equalsIgnoreCase("fanart.tbn")|| name.equalsIgnoreCase("banner.jpg")|| name.equalsIgnoreCase("banner.jpeg")|| name.equalsIgnoreCase("banner.tbn")|| name.equalsIgnoreCase("backdrop.jpg")|| name.equalsIgnoreCase("backdrop.jpeg")|| name.equalsIgnoreCase("backdrop.tbn")|| absolutePath.equalsIgnoreCase(filename + "-fanart.jpg")|| absolutePath.equalsIgnoreCase(filename + "-fanart.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-fanart.tbn")|| absolutePath.equalsIgnoreCase(filename + "-banner.jpg")|| absolutePath.equalsIgnoreCase(filename + "-banner.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-banner.tbn")|| absolutePath.equalsIgnoreCase(filename + "-backdrop.jpg")|| absolutePath.equalsIgnoreCase(filename + "-backdrop.jpeg")|| absolutePath.equalsIgnoreCase(filename + "-backdrop.tbn")) {
         customCoverArt=absolutePath;
-        continue;
+        break;
       }
     }
   }

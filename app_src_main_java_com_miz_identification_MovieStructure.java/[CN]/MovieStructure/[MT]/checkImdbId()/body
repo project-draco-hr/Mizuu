@@ -7,6 +7,5 @@
   temp=MizLib.decryptImdbId(getParentFolderName());
   if (null != temp) {
     mImdbId=temp;
-    return;
   }
 }

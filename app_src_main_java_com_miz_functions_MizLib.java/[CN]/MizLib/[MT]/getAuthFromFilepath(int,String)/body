@@ -4,7 +4,7 @@
   for (int i=0; i < filesources.size(); i++) {
     if (filepath.contains(filesources.get(i).getFilepath())) {
       source=filesources.get(i);
-      continue;
+      break;
     }
   }
   return getAuthFromFilesource(source);

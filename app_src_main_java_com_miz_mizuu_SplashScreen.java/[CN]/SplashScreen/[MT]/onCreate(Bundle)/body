@@ -40,5 +40,4 @@
   }
   startActivity(i);
   finish();
-  return;
 }

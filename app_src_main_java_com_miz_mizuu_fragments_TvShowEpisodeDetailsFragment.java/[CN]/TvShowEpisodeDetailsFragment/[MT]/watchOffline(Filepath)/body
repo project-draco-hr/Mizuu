@@ -6,7 +6,6 @@
         boolean success=mEpisode.getOfflineCopyFile(path).delete();
         if (!success)         mEpisode.getOfflineCopyFile(path).delete();
         getActivity().invalidateOptionsMenu();
-        return;
       }
     }
 ).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){
@@ -27,7 +26,6 @@
         i.putExtra("thumb",mEpisode.getThumbnail().getAbsolutePath());
         i.putExtra("backdrop",mEpisode.getEpisodePhoto().getAbsolutePath());
         getActivity().startService(i);
-        return;
       }
     }
 ).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){

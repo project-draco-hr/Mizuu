@@ -1,4 +1,3 @@
 {
-  if (getRuntime().equals("0") && TextUtils.isEmpty(getReleaseYear()) && TextUtils.isEmpty(getGenres())&& TextUtils.isEmpty(getTitle()))   return true;
-  return false;
+  return getRuntime().equals("0") && TextUtils.isEmpty(getReleaseYear()) && TextUtils.isEmpty(getGenres())&& TextUtils.isEmpty(getTitle());
 }
