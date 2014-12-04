@@ -13,7 +13,7 @@
       editor.commit();
       items.clear();
       String[] split=items_string.split("<MiZ>");
-      for (int i=0; i < split.length; i++)       items.add(split[i]);
+      Collections.addAll(items,split);
       ((BaseAdapter)lv.getAdapter()).notifyDataSetChanged();
       tagText.setText("");
     }

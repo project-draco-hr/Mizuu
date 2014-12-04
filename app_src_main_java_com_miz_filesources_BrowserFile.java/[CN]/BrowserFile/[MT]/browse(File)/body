@@ -5,7 +5,7 @@
   try {
     File[] listFiles=folder.listFiles();
     if (listFiles == null)     return false;
-    for (    File f : listFiles)     orderedArray.add(f);
+    Collections.addAll(orderedArray,listFiles);
     Collections.sort(orderedArray,new Comparator<File>(){
       @Override public int compare(      File f1,      File f2){
         try {

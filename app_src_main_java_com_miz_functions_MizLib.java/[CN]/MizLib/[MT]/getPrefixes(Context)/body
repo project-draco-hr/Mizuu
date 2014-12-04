@@ -3,8 +3,8 @@
   String prefix=c.getString(R.string.prefixes);
   String[] split=prefix.split(",");
   int count=split.length;
-  for (int i=0; i < count; i++)   prefixesArray.add(split[i]);
+  prefixesArray.addAll(Arrays.asList(split).subList(0,count));
   count=prefixes.length;
-  for (int i=0; i < count; i++)   prefixesArray.add(prefixes[i]);
-  return prefixesArray.toArray(new String[]{});
+  prefixesArray.addAll(Arrays.asList(prefixes).subList(0,count));
+  return prefixesArray.toArray(new String[prefixesArray.size()]);
 }

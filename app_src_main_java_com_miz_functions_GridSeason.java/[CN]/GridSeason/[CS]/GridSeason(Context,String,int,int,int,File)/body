@@ -10,9 +10,21 @@
   StringBuilder sb=new StringBuilder();
   sb.append(getEpisodeCount()).append(" ").append(mContext.getResources().getQuantityString(R.plurals.episodes,getEpisodeCount(),getEpisodeCount()));
   if (getUnwatchedCount() > 0) {
-    if (MizLib.isXlargeTablet(mContext) || !mUseGridView)     sb.append(" (" + String.format(mContext.getString(R.string.unwatchedEpisodesCount),getUnwatchedCount()) + ")");
- else     if (MizLib.isTablet(mContext))     sb.append(" (" + String.format(mContext.getString(R.string.leftEpisodesCount),getUnwatchedCount()) + ")");
- else     sb.append(" (" + getUnwatchedCount() + ")");
+    if (MizLib.isXlargeTablet(mContext) || !mUseGridView) {
+      sb.append(" (");
+      sb.append(String.format(mContext.getString(R.string.unwatchedEpisodesCount),getUnwatchedCount()));
+      sb.append(")");
+    }
+ else     if (MizLib.isTablet(mContext)) {
+      sb.append(" (");
+      sb.append(String.format(mContext.getString(R.string.leftEpisodesCount),getUnwatchedCount()));
+      sb.append(")");
+    }
+ else {
+      sb.append(" (");
+      sb.append(getUnwatchedCount());
+      sb.append(")");
+    }
   }
   mSubtitleText=sb.toString();
   mSubtitleTextSimple=getEpisodeCount() + " " + mContext.getResources().getQuantityString(R.plurals.episodes,getEpisodeCount(),getEpisodeCount());
