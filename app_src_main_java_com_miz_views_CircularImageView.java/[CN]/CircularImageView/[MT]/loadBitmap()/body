@@ -1,4 +1,0 @@
-{
-  BitmapDrawable bitmapDrawable=(BitmapDrawable)this.getDrawable();
-  if (bitmapDrawable != null)   image=bitmapDrawable.getBitmap();
-}

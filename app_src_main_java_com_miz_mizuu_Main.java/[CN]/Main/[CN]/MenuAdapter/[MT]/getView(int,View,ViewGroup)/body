@@ -19,17 +19,19 @@
       userNameTextField.setText(R.string.sign_in_with_trakt);
       plusIcon.setVisibility(View.VISIBLE);
     }
-    mPicasso.load(new File(MizuuApplication.getCacheFolder(getApplicationContext()),"avatar.jpg")).resize(MizLib.convertDpToPixels(getApplicationContext(),64),MizLib.convertDpToPixels(getApplicationContext(),64)).into(userImage,new Callback(){
-      @Override public void onError(){
-        userImage.setVisibility(View.GONE);
-      }
-      @Override public void onSuccess(){
-      }
+    Bitmap src=BitmapFactory.decodeFile(new File(MizuuApplication.getCacheFolder(getApplicationContext()),"avatar.jpg").getAbsolutePath());
+    if (src != null) {
+      RoundedBitmapDrawable dr=RoundedBitmapDrawableFactory.create(getResources(),src);
+      dr.setCornerRadius(Math.min(dr.getMinimumWidth(),dr.getMinimumHeight()));
+      dr.setAntiAlias(true);
+      userImage.setImageDrawable(dr);
     }
-);
-    if (!TextUtils.isEmpty(mBackdropPath))     mPicasso.load(mBackdropPath).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
+ else {
+      userImage.setVisibility(View.GONE);
+    }
+    if (!TextUtils.isEmpty(mBackdropPath))     mPicasso.load(mBackdropPath).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).transform(new BlurTransformation(getApplicationContext(),mBackdropPath + "-blur",5)).into(backgroundImage);
  else     mPicasso.load(R.drawable.default_menu_backdrop).resize(MizLib.convertDpToPixels(getApplicationContext(),320),MizLib.convertDpToPixels(getApplicationContext(),180)).into(backgroundImage);
-    backgroundImage.setColorFilter(Color.parseColor("#66181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
+    backgroundImage.setColorFilter(Color.parseColor("#50181818"),android.graphics.PorterDuff.Mode.SRC_OVER);
     convertView.findViewById(R.id.personalizedArea).setOnClickListener(new View.OnClickListener(){
       @Override public void onClick(      View v){
         Intent smallIntent=new Intent(getApplicationContext(),Preferences.class);

@@ -1,7 +1,0 @@
-{
-  int width=measureWidth(widthMeasureSpec);
-  int height=measureHeight(heightMeasureSpec,widthMeasureSpec);
-  viewWidth=width - (borderWidth * 2);
-  viewHeight=height - (borderWidth * 2);
-  setMeasuredDimension(width,height);
-}
