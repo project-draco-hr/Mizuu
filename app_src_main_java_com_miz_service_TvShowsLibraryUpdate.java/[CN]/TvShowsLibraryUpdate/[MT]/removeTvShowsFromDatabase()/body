@@ -2,7 +2,7 @@
   DbAdapterTvShows db=MizuuApplication.getTvDbAdapter();
   db.deleteAllShowsInDatabase();
   DbAdapterTvShowEpisodes dbEpisodes=MizuuApplication.getTvEpisodeDbAdapter();
-  dbEpisodes.deleteAllEpisodesInDatabase();
+  dbEpisodes.deleteAllEpisodes();
   MizuuApplication.getTvShowEpisodeMappingsDbAdapter().deleteAllFilepaths();
   FileUtils.deleteRecursive(MizuuApplication.getTvShowThumbFolder(this),false);
   FileUtils.deleteRecursive(MizuuApplication.getTvShowEpisodeFolder(this),false);

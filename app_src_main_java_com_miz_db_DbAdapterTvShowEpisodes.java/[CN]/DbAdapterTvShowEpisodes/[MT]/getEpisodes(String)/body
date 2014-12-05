@@ -1,0 +1,3 @@
+{
+  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_SHOW_ID + " = ? AND NOT(" + KEY_EPISODE_TITLE+ " = 'MIZ_REMOVED_EPISODE')",new String[]{showId},KEY_SEASON + "," + KEY_EPISODE,null,KEY_SEASON + " asc, " + KEY_EPISODE+ " asc");
+}

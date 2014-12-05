@@ -1,5 +1,3 @@
 {
-  boolean result=true;
-  if (getEpisodeCount(showId) == 1)   result=MizuuApplication.getTvDbAdapter().deleteShow(showId);
-  return result && mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + " = ? AND " + KEY_SEASON+ " = ? AND "+ KEY_EPISODE+ " = ?",new String[]{showId,MizLib.addIndexZero(season),MizLib.addIndexZero(episode)}) > 0;
+  return mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + " = ? AND " + KEY_SEASON+ " = ? AND "+ KEY_EPISODE+ " = ?",new String[]{showId,MizLib.addIndexZero(season),MizLib.addIndexZero(episode)}) > 0;
 }

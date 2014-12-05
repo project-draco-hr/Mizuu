@@ -1,0 +1,13 @@
+{
+  DbAdapterTvShows db=getAndResetDatabase();
+  createTestShow(db);
+  db.editShow("1234","new title","new plot","genres...","200","9.7","1970-01-02","PG-17");
+  assertEquals(1,db.count());
+  assertEquals("new title",db.getSingleItem("1234",DbAdapterTvShows.KEY_SHOW_TITLE));
+  assertEquals("new plot",db.getSingleItem("1234",DbAdapterTvShows.KEY_SHOW_PLOT));
+  assertEquals("genres...",db.getSingleItem("1234",DbAdapterTvShows.KEY_SHOW_GENRES));
+  assertEquals("200",db.getSingleItem("1234",DbAdapterTvShows.KEY_SHOW_RUNTIME));
+  assertEquals("9.7",db.getSingleItem("1234",DbAdapterTvShows.KEY_SHOW_RATING));
+  assertEquals("1970-01-02",db.getSingleItem("1234",DbAdapterTvShows.KEY_SHOW_FIRST_AIRDATE));
+  assertEquals("PG-17",db.getSingleItem("1234",DbAdapterTvShows.KEY_SHOW_CERTIFICATION));
+}

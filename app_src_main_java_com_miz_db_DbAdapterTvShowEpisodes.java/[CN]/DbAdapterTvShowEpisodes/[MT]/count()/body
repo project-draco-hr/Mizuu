@@ -1,0 +1,6 @@
+{
+  Cursor c=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,"NOT(" + KEY_EPISODE_TITLE + " = 'MIZ_REMOVED_EPISODE')",null,KEY_SEASON + "," + KEY_EPISODE,null,null);
+  int count=c.getCount();
+  c.close();
+  return count;
+}

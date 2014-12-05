@@ -1,0 +1,15 @@
+{
+  String singleItem="";
+  Cursor c=mDatabase.query(DATABASE_TABLE,new String[]{column},KEY_SHOW_ID + " = ?",new String[]{showId},null,null,null);
+  if (c != null) {
+    try {
+      if (c.moveToFirst())       singleItem=c.getString(c.getColumnIndex(column));
+    }
+ catch (    SQLException e) {
+    }
+ finally {
+      c.close();
+    }
+  }
+  return singleItem;
+}

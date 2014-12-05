@@ -7,7 +7,7 @@ case R.id.remove_all:
 AlertDialog.Builder builder=new AlertDialog.Builder(this);
 builder.setMessage(getString(R.string.areYouSure)).setTitle(getString(R.string.removeAllUnidentifiedFiles)).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
 public void onClick(DialogInterface dialog,int id){
-  TvShowDatabaseUtils.removeAllUnidentifiedFiles();
+  TvShowDatabaseUtils.deleteAllUnidentifiedFiles();
   mFilepaths.clear();
   ((BaseAdapter)mList.getAdapter()).notifyDataSetChanged();
   enableNoFilesMessage(true);

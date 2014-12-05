@@ -1,0 +1,8 @@
+{
+  DbAdapterTvShows db=getAndResetDatabase();
+  createTestShow(db);
+  createTestShow2(db);
+  assertEquals(2,db.getCertifications().size());
+  assertEquals("PG",db.getCertifications().get(0));
+  assertEquals("PG-13",db.getCertifications().get(1));
+}

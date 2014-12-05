@@ -1,9 +1,7 @@
 {
+  if (showId.equals(UNIDENTIFIED_ID))   return;
   if (getShow(showId).getCount() == 0) {
     ContentValues initialValues=createContentValues(showId,showTitle,showPlot,showActors,showGenres,showRating,showCertification,showRuntime,showFirstAirdate,isFavorite);
-    return mDatabase.insert(DATABASE_TABLE,null,initialValues);
-  }
- else {
-    return -1;
+    mDatabase.insert(DATABASE_TABLE,null,initialValues);
   }
 }

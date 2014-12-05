@@ -1,0 +1,7 @@
+{
+  getInstrumentation().waitForIdleSync();
+  mContext=getInstrumentation().getTargetContext().getApplicationContext();
+  DbAdapterTvShows db=MizuuApplication.getTvDbAdapter();
+  resetDatabase(db);
+  return db;
+}

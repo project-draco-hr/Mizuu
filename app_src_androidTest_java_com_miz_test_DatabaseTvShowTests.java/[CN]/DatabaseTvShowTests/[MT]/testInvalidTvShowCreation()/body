@@ -1,0 +1,6 @@
+{
+  DbAdapterTvShows db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  db.createShow(DbAdapterTvShows.UNIDENTIFIED_ID,"title","plot","actors","genres","8.5","PG","100","2014-12-04","1");
+  assertEquals(0,db.count());
+}

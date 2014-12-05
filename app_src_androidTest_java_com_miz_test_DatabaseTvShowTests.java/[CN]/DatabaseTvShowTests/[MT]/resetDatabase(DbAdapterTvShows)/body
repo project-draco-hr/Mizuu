@@ -1,0 +1,8 @@
+{
+  TvShowDatabaseUtils.deleteAllTvShows(mContext);
+  assertEquals(0,db.count());
+  DbAdapterTvShowEpisodes dbEpisodes=MizuuApplication.getTvEpisodeDbAdapter();
+  assertEquals(0,dbEpisodes.count());
+  DbAdapterTvShowEpisodeMappings dbEpisodeMappings=MizuuApplication.getTvShowEpisodeMappingsDbAdapter();
+  assertEquals(0,dbEpisodeMappings.count());
+}

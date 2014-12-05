@@ -6,7 +6,7 @@
   builder.setPositiveButton(android.R.string.yes,new DialogInterface.OnClickListener(){
     @Override public void onClick(    DialogInterface dialog,    int which){
       for (      int season : selectedSeasons) {
-        TvShowDatabaseUtils.removeSeason(activityContext,mShowId,season);
+        TvShowDatabaseUtils.deleteSeason(activityContext,mShowId,season);
       }
       if (MizuuApplication.getTvEpisodeDbAdapter().getEpisodeCount(mShowId) == 0) {
         LocalBroadcastUtils.updateTvShowLibrary(activityContext);

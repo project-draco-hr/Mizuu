@@ -1,0 +1,8 @@
+{
+  DbAdapterTvShows db=getAndResetDatabase();
+  assertEquals(0,db.count());
+  createTestShow(db);
+  assertEquals(1,db.count());
+  createTestShow(db);
+  assertEquals(1,db.count());
+}

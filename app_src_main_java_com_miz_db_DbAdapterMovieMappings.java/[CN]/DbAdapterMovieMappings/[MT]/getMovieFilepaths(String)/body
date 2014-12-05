@@ -1,4 +1,5 @@
 {
+  if (TextUtils.isEmpty(tmdbId))   return new ArrayList<>();
   Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_TMDB_ID + " = ? AND " + KEY_IGNORED+ " = '0'",new String[]{tmdbId},null,null,null);
   ArrayList<String> paths=new ArrayList<String>();
   if (cursor != null) {

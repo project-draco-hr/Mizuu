@@ -1,4 +1,0 @@
-{
-  ContentValues initialValues=createContentValues(season,episode,showId,episodeTitle,episodePlot,episodeAirdate,episodeRating,episodeDirector,episodeWriter,episodeGuestStars,hasWatched,favorite);
-  return mDatabase.update(DATABASE_TABLE,initialValues,KEY_SHOW_ID + " = ?",new String[]{showId}) > 0;
-}

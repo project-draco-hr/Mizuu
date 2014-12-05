@@ -1,0 +1,8 @@
+{
+  DbAdapterTvShows db=getAndResetDatabase();
+  assertEquals(false,db.showExists("","title"));
+  assertEquals(false,db.showExists("1234",""));
+  createTestShow(db);
+  assertEquals(true,db.showExists("","title"));
+  assertEquals(true,db.showExists("1234",""));
+}

@@ -1,3 +1,0 @@
-{
-  return mDatabase.delete(DATABASE_TABLE,null,null) > 0 && MizuuApplication.getTvDbAdapter().deleteAllShowsInDatabase();
-}

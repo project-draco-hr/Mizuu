@@ -1,0 +1,14 @@
+{
+  getAndResetDatabase();
+  DbAdapterTvShowEpisodes dbEpisodes=MizuuApplication.getTvEpisodeDbAdapter();
+  assertEquals(0,dbEpisodes.getEpisodeCount("1234"));
+  dbEpisodes.createEpisode("/test/lulz.mkv","05","15","1234","episode title","episode plot","1980-06-07","7.6","director","writer","guest stars","1","1");
+  dbEpisodes.createEpisode("/test/lulaz.mkv","06","15","1234","episode title","episode plot","1980-06-07","7.6","director","writer","guest stars","1","1");
+  assertEquals(2,dbEpisodes.getEpisodeCount("1234"));
+  dbEpisodes.deleteEpisode("1234",5,15);
+  assertEquals(1,dbEpisodes.getEpisodeCount("1234"));
+  assertEquals(1,dbEpisodes.getEpisode("1234",6,15).getCount());
+  dbEpisodes.deleteEpisode("1234",6,15);
+  assertEquals(0,dbEpisodes.getEpisodeCount("1234"));
+  assertEquals(0,dbEpisodes.getEpisode("1234",6,15).getCount());
+}

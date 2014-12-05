@@ -1,4 +1,3 @@
 {
-  boolean result=MizuuApplication.getTvDbAdapter().deleteShow(showId);
-  return result && mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + " = ?",new String[]{showId}) > 0;
+  return mDatabase.delete(DATABASE_TABLE,KEY_SHOW_ID + " = ?",new String[]{showId}) > 0;
 }

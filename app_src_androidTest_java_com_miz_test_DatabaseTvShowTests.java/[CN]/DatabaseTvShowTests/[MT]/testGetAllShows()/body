@@ -1,0 +1,8 @@
+{
+  DbAdapterTvShows db=getAndResetDatabase();
+  assertEquals(0,db.getAllShows().getCount());
+  createTestShow(db);
+  assertEquals(1,db.getAllShows().getCount());
+  createTestShow2(db);
+  assertEquals(2,db.getAllShows().getCount());
+}
