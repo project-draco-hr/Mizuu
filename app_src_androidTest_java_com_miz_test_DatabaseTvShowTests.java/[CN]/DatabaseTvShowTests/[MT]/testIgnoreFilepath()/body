@@ -1,0 +1,9 @@
+{
+  getAndResetDatabase();
+  DbAdapterTvShowEpisodeMappings dbMappings=MizuuApplication.getTvShowEpisodeMappingsDbAdapter();
+  dbMappings.createFilepathMapping("/test/lulz.mkv","1234","05","15");
+  dbMappings.ignoreFilepath("/test/lulz.mkv");
+  Cursor c=dbMappings.getAllFilepathInfo("/test/lulz.mkv");
+  c.moveToFirst();
+  assertEquals("1",c.getString(c.getColumnIndex(DbAdapterTvShowEpisodeMappings.KEY_IGNORED)));
+}

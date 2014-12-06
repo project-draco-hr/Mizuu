@@ -1,14 +1,4 @@
 {
-  String showId, season, episode;
   String[] selectionArgs=new String[]{filepath};
-  Cursor cursor=mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_FILEPATH + " = ?",selectionArgs,null,null,null);
-  if (cursor != null && cursor.moveToFirst()) {
-    showId=cursor.getString(cursor.getColumnIndex(KEY_SHOW_ID));
-    season=cursor.getString(cursor.getColumnIndex(KEY_SEASON));
-    episode=cursor.getString(cursor.getColumnIndex(KEY_EPISODE));
-    if (!hasMultipleFilepaths(showId,season,episode)) {
-      MizuuApplication.getTvEpisodeDbAdapter().deleteEpisode(showId,Integer.parseInt(season),Integer.parseInt(episode));
-    }
-  }
   return mDatabase.delete(DATABASE_TABLE,KEY_FILEPATH + " = ?",selectionArgs) > 0;
 }

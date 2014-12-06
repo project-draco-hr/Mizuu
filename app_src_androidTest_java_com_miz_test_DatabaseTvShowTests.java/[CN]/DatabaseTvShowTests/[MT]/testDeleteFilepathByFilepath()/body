@@ -1,0 +1,13 @@
+{
+  getAndResetDatabase();
+  DbAdapterTvShowEpisodeMappings dbMappings=MizuuApplication.getTvShowEpisodeMappingsDbAdapter();
+  assertEquals(0,dbMappings.getAllFilepaths().getCount());
+  dbMappings.createFilepathMapping("/test/lulz.mkv","1234","05","15");
+  dbMappings.createFilepathMapping("/test/lulzfs.mkv","1234","05","16");
+  dbMappings.createFilepathMapping("/test/lulzfs.mkv","12345","05","16");
+  assertEquals(3,dbMappings.getAllFilepaths().getCount());
+  dbMappings.deleteFilepath("/test/lulz.mkv");
+  assertEquals(2,dbMappings.getAllFilepaths().getCount());
+  dbMappings.deleteFilepath("/test/lulzfs.mkv");
+  assertEquals(0,dbMappings.getAllFilepaths().getCount());
+}
