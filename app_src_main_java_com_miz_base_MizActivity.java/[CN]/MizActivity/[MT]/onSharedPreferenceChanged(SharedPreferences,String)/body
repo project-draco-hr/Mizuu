@@ -1,5 +1,0 @@
-{
-  if (FULLSCREEN_TAG.equals(key)) {
-    mFullscreen=PreferenceManager.getDefaultSharedPreferences(this).getBoolean(FULLSCREEN_TAG,false);
-  }
-}

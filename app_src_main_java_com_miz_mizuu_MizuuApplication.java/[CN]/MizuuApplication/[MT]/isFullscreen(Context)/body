@@ -1,3 +1,0 @@
-{
-  return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(FULLSCREEN_TAG,false);
-}

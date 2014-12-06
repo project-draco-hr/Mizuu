@@ -40,8 +40,7 @@
   }
 );
   if (MizLib.isTablet(mContext))   mFab.setType(FloatingActionButton.TYPE_NORMAL);
-  final boolean fullscreen=MizuuApplication.isFullscreen(mContext);
-  final int height=fullscreen ? MizLib.getActionBarHeight(mContext) : MizLib.getActionBarAndStatusBarHeight(mContext);
+  final int height=MizLib.getActionBarAndStatusBarHeight(mContext);
   mScrollView.setOnScrollChangedListener(new OnScrollChangedListener(){
     @Override public void onScrollChanged(    ScrollView who,    int l,    int t,    int oldl,    int oldt){
       ViewUtils.handleOnScrollChangedEvent(getActivity(),view,mBackground,mMovie.getTitle(),height,t,mToolbar,mToolbarColor);

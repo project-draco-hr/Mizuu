@@ -2,7 +2,7 @@
   mBus=MizuuApplication.getBus();
   super.onCreate(savedInstanceState);
   setTheme(R.style.Mizuu_Theme_NoBackground);
-  ViewUtils.setupWindowFlagsForStatusbarOverlay(getWindow(),isFullscreen(),true);
+  ViewUtils.setupWindowFlagsForStatusbarOverlay(getWindow(),true);
   ViewUtils.setProperToolbarSize(this,mToolbar);
   mShowId=getIntent().getExtras().getString(SHOW_ID);
   mSeason=getIntent().getExtras().getInt("season");

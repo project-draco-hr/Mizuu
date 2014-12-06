@@ -1,4 +1,3 @@
 {
-  if (isFullscreen(context))   context.setTheme(R.style.Mizuu_Theme_FullScreen);
- else   context.setTheme(R.style.Mizuu_Theme);
+  context.setTheme(R.style.Mizuu_Theme);
 }

@@ -1,7 +1,7 @@
 {
   super.onCreate(savedInstanceState);
   setTheme(R.style.Mizuu_Theme_NoBackground);
-  ViewUtils.setupWindowFlagsForStatusbarOverlay(getWindow(),isFullscreen(),true);
+  ViewUtils.setupWindowFlagsForStatusbarOverlay(getWindow(),true);
   setTitle(null);
   String actorId=getIntent().getExtras().getString("actorID");
   Fragment frag=getSupportFragmentManager().findFragmentByTag(TAG);

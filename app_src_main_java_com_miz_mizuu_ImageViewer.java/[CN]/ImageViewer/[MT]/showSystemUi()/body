@@ -1,5 +1,5 @@
 {
   getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-  ViewUtils.setupWindowFlagsForStatusbarOverlay(getWindow(),isFullscreen(),true);
+  ViewUtils.setupWindowFlagsForStatusbarOverlay(getWindow(),true);
   getSupportActionBar().show();
 }
