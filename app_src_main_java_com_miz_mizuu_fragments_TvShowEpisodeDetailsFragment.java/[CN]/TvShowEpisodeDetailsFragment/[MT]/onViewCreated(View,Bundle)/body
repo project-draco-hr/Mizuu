@@ -16,15 +16,9 @@
   mFab=(FloatingActionButton)view.findViewById(R.id.fab);
   mFab.setOnClickListener(new OnClickListener(){
     @Override public void onClick(    View v){
-      ViewUtils.animateFabJump(v,new Animator.AnimatorListener(){
+      ViewUtils.animateFabJump(v,new SimpleAnimatorListener(){
         @Override public void onAnimationEnd(        Animator animation){
           play();
-        }
-        @Override public void onAnimationStart(        Animator animation){
-        }
-        @Override public void onAnimationCancel(        Animator animation){
-        }
-        @Override public void onAnimationRepeat(        Animator animation){
         }
       }
 );
