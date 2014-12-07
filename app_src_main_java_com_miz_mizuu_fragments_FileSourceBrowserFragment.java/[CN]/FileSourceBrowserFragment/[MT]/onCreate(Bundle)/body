@@ -1,7 +1,6 @@
 {
   super.onCreate(savedInstanceState);
   setRetainInstance(true);
-  setHasOptionsMenu(true);
   mIsMovie=getArguments().getBoolean(MOVIE,false);
   mType=getArguments().getInt(TYPE,FileSource.FILE);
   if (mType == FileSource.UPNP) {

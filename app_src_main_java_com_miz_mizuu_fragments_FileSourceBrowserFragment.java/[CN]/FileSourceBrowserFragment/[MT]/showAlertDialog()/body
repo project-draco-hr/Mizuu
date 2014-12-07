@@ -1,0 +1,19 @@
+{
+  AlertDialog.Builder ab=new AlertDialog.Builder(getActivity());
+  ab.setTitle(R.string.addCurrentFolderAsFileSource);
+  ab.setMessage(R.string.areYouSure);
+  ab.setPositiveButton(android.R.string.yes,new DialogInterface.OnClickListener(){
+    @Override public void onClick(    DialogInterface dialog,    int which){
+      addFileSource();
+      dialog.dismiss();
+    }
+  }
+);
+  ab.setNegativeButton(android.R.string.no,new DialogInterface.OnClickListener(){
+    @Override public void onClick(    DialogInterface dialog,    int which){
+      dialog.dismiss();
+    }
+  }
+);
+  ab.show();
+}

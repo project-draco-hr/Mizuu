@@ -1,9 +1,0 @@
-{
-  super.onOptionsItemSelected(item);
-switch (item.getItemId()) {
-case R.id.add_source:
-    addFileSource();
-  break;
-}
-return true;
-}
