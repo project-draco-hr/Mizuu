@@ -1,0 +1,20 @@
+{
+  TextView textView=(TextView)tabView.findViewById(R.id.tab_title);
+  if (textView != null) {
+    if (title != null)     textView.setText(title);
+    float alpha=pager.getCurrentItem() == position ? tabTextSelectedAlpha : tabTextAlpha;
+    ViewCompat.setAlpha(textView,alpha);
+  }
+  tabView.setFocusable(true);
+  tabView.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      if (pager.getCurrentItem() != position) {
+        View tab=tabsContainer.getChildAt(pager.getCurrentItem());
+        notSelected(tab);
+        pager.setCurrentItem(position);
+      }
+    }
+  }
+);
+  tabsContainer.addView(tabView,position,shouldExpand ? expandedTabLayoutParams : defaultTabLayoutParams);
+}
