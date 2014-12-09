@@ -1,11 +1,7 @@
 {
   super.onViewCreated(v,savedInstanceState);
   mToolbar=(Toolbar)v.findViewById(R.id.toolbar);
-  try {
-    ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
-  }
- catch (  Throwable t) {
-  }
+  ((MizActivity)getActivity()).setSupportActionBar(mToolbar);
   mListView=(ListView)v.findViewById(R.id.listView1);
   mQuery=(EditText)v.findViewById(R.id.editText1);
   mSpinner=(Spinner)v.findViewById(R.id.spinner1);

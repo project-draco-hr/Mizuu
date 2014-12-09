@@ -1,12 +1,7 @@
 {
   super.onCreate(savedInstanceState);
-  setContentView(R.layout.update_layout);
   mToolbar=(Toolbar)findViewById(R.id.toolbar);
-  try {
-    setSupportActionBar(mToolbar);
-  }
- catch (  Throwable t) {
-  }
+  setSupportActionBar(mToolbar);
   mIsMovie=getIntent().getExtras().getBoolean("isMovie");
   mTypeface=TypefaceUtils.getRobotoLight(this);
   if (!mIsMovie)   setTitle(getString(R.string.updateTvShowsTitle));

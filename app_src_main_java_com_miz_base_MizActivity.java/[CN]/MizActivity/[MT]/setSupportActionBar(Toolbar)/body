@@ -1,0 +1,8 @@
+{
+  try {
+    if (MizLib.hasLollipop())     toolbar.setElevation(1f);
+    super.setSupportActionBar(toolbar);
+  }
+ catch (  Throwable t) {
+  }
+}
