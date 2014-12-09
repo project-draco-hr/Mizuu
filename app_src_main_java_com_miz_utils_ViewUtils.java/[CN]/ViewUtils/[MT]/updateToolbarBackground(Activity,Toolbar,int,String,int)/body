@@ -10,10 +10,7 @@
   toolbar.setTitle(title);
   toolbar.setTitleTextColor(adjustAlpha(defaultTitleTextColor,alpha));
   int toolbarColor=adjustAlpha(color,alpha);
-  if (MizLib.hasLollipop()) {
-    if (alpha < 127) {
-      activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-    }
+  if (MizLib.hasJellyBean()) {
     int topColor=darkenColor(color,alpha / 255f);
     topColor=adjustAlpha(topColor,Math.max(125,alpha));
     int[] colors={topColor,toolbarColor};
