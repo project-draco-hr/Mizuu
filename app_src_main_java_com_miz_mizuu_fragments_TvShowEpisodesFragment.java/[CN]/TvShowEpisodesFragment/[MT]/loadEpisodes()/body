@@ -1,3 +1,4 @@
 {
-  new EpisodeLoader().execute();
+  mEpisodeLoader=new TvShowEpisodeLoader(mContext,mShowId,mSeason,mCallback);
+  mEpisodeLoader.load();
 }

@@ -1,0 +1,7 @@
+{
+  if (mAsyncTask != null) {
+    mAsyncTask.cancel(true);
+  }
+  mAsyncTask=new TvShowEpisodeLoaderAsyncTask();
+  mAsyncTask.execute();
+}

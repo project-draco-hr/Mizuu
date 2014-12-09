@@ -1,0 +1,31 @@
+{
+  super.onOptionsItemSelected(item);
+switch (item.getItemId()) {
+case R.id.menuSortDesc:
+    mEpisodeLoader.setSortType(TvShowEpisodeLoader.TvShowEpisodeSortType.DESCENDING);
+  mEpisodeLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortAsc:
+mEpisodeLoader.setSortType(TvShowEpisodeLoader.TvShowEpisodeSortType.ASCENDING);
+mEpisodeLoader.load();
+showProgressBar();
+break;
+case R.id.all_episodes:
+mEpisodeLoader.setWatchedFilter(TvShowEpisodeLoader.TvShowEpisodeWatchedFilter.ALL);
+mEpisodeLoader.load();
+showProgressBar();
+break;
+case R.id.watched:
+mEpisodeLoader.setWatchedFilter(TvShowEpisodeLoader.TvShowEpisodeWatchedFilter.WATCHED);
+mEpisodeLoader.load();
+showProgressBar();
+break;
+case R.id.unwatched:
+mEpisodeLoader.setWatchedFilter(TvShowEpisodeLoader.TvShowEpisodeWatchedFilter.UNWATCHED);
+mEpisodeLoader.load();
+showProgressBar();
+break;
+}
+return true;
+}

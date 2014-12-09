@@ -1,0 +1,8 @@
+Context context
+String title
+ArrayList<String> filepaths
+int season
+int episode
+boolean watched
+File cover
+String airdate

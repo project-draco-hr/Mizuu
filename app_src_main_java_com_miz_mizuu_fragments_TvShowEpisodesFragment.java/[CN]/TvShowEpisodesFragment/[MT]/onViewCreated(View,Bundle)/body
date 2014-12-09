@@ -33,7 +33,7 @@
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
       Intent i=new Intent(mContext,TvShowEpisodeDetails.class);
       i.putExtra(SHOW_ID,mShowId);
-      i.putExtra("episode",mItems.get(arg2).getEpisode());
+      i.putExtra("episode",mEpisodeLoader.getResults().get(arg2).getEpisode());
       i.putExtra("season",mSeason);
       getActivity().startActivityForResult(i,0);
     }
@@ -80,8 +80,8 @@ mContextualActionBarEnabled=false;
 mCheckedEpisodes.clear();
 }
 @Override public void onItemCheckedStateChanged(ActionMode mode,int position,long id,boolean checked){
-if (checked) mCheckedEpisodes.add(mItems.get(position).getEpisode());
- else mCheckedEpisodes.remove(mItems.get(position).getEpisode());
+if (checked) mCheckedEpisodes.add(mEpisodeLoader.getResults().get(position).getEpisode());
+ else mCheckedEpisodes.remove(mEpisodeLoader.getResults().get(position).getEpisode());
 int count=mCheckedEpisodes.size();
 mode.setTitle(count + " " + getResources().getQuantityString(R.plurals.episodes_selected,count,count));
 mAdapter.notifyDataSetChanged();

@@ -1,0 +1,79 @@
+{
+  mEpisodeList.addAll(MizuuApplication.getTvEpisodeDbAdapter().getEpisodesInSeason(mContext,getShowId(),getShowSeason()));
+  int totalSize=mEpisodeList.size();
+switch (getWatchedFilter()) {
+case WATCHED:
+    for (int i=0; i < totalSize; i++) {
+      if (!mEpisodeList.get(i).hasWatched()) {
+        mEpisodeList.remove(i);
+        i--;
+        totalSize--;
+      }
+    }
+  break;
+case UNWATCHED:
+for (int i=0; i < totalSize; i++) {
+  if (mEpisodeList.get(i).hasWatched()) {
+    mEpisodeList.remove(i);
+    i--;
+    totalSize--;
+  }
+}
+break;
+default :
+break;
+}
+if (showAvailableFiles()) {
+for (int i=0; i < totalSize; i++) {
+ArrayList<FileSource> filesources=MizLib.getFileSources(MizLib.TYPE_SHOWS,true);
+if (isCancelled()) return null;
+boolean condition=false;
+for (Filepath path : mEpisodeList.get(i).getFilepaths()) {
+if (path.isNetworkFile()) if (FileUtils.hasOfflineCopy(mContext,path)) {
+condition=true;
+break;
+}
+ else {
+if (path.getType() == FileSource.SMB) {
+  if (MizLib.isWifiConnected(mContext)) {
+    FileSource source=null;
+    for (int j=0; j < filesources.size(); j++)     if (path.getFilepath().contains(filesources.get(j).getFilepath())) {
+      source=filesources.get(j);
+      break;
+    }
+    if (source == null)     continue;
+    try {
+      final SmbFile file=new SmbFile(MizLib.createSmbLoginString(source.getDomain(),source.getUser(),source.getPassword(),path.getFilepath(),false));
+      if (file.exists()) {
+        condition=true;
+        break;
+      }
+    }
+ catch (    Exception e) {
+    }
+  }
+}
+ else if (path.getType() == FileSource.UPNP) {
+  if (MizLib.exists(path.getFilepath())) {
+    condition=true;
+    break;
+  }
+}
+}
+ else {
+if (new File(path.getFilepath()).exists()) {
+  condition=true;
+  break;
+}
+}
+}
+if (!condition && mEpisodeList.size() > i) {
+mEpisodeList.remove(i);
+i--;
+totalSize--;
+}
+}
+}
+Collections.sort(mEpisodeList,getSortType().getComparator());
+return null;
+}

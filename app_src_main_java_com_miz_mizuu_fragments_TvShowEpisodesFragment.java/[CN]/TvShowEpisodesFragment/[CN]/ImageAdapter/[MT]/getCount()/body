@@ -1,3 +1,4 @@
 {
-  return mItems.size();
+  if (mEpisodeLoader != null)   return mEpisodeLoader.getResults().size();
+  return 0;
 }

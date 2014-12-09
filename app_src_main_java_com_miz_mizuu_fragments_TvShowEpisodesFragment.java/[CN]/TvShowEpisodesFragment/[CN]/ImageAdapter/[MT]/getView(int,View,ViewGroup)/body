@@ -1,6 +1,6 @@
 {
   final CoverItem holder;
-  final GridEpisode episode=mItems.get(position);
+  final GridEpisode episode=getItem(position);
   if (convertView == null) {
     if (mUseGridView)     convertView=inflater.inflate(R.layout.grid_episode,container,false);
  else     convertView=inflater.inflate(R.layout.list_episode,container,false);

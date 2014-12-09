@@ -1,0 +1,3 @@
+{
+  mEpisodeList=new ArrayList<GridEpisode>();
+}

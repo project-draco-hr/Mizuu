@@ -1,0 +1,6 @@
+{
+  mSortType=type;
+  SharedPreferences.Editor editor=PreferenceManager.getDefaultSharedPreferences(mContext).edit();
+  editor.putString(TVSHOWS_EPISODE_ORDER,getSortType() == TvShowEpisodeSortType.ASCENDING ? mContext.getString(R.string.oldestFirst) : mContext.getString(R.string.newestFirst));
+  editor.apply();
+}

@@ -119,39 +119,39 @@ totalSize--;
 if (!TextUtils.isEmpty(mSearchQuery)) {
 ArrayList<MediumMovie> tempCollection=Lists.newArrayList();
 if (mSearchQuery.startsWith("actor:")) {
-for (int i=0; i < mResults.size(); i++) {
+for (int i=0; i < mMovieList.size(); i++) {
 if (isCancelled()) return null;
-if (mResults.get(i).getCast().toLowerCase(Locale.ENGLISH).contains(mSearchQuery.replace("actor:","").trim())) tempCollection.add(mResults.get(i));
+if (mMovieList.get(i).getCast().toLowerCase(Locale.ENGLISH).contains(mSearchQuery.replace("actor:","").trim())) tempCollection.add(mMovieList.get(i));
 }
 }
  else if (mSearchQuery.equalsIgnoreCase("missing_genres")) {
-for (int i=0; i < mResults.size(); i++) {
+for (int i=0; i < mMovieList.size(); i++) {
 if (isCancelled()) return null;
-if (TextUtils.isEmpty(mResults.get(i).getGenres())) tempCollection.add(mResults.get(i));
+if (TextUtils.isEmpty(mMovieList.get(i).getGenres())) tempCollection.add(mMovieList.get(i));
 }
 }
  else if (mSearchQuery.equalsIgnoreCase("multiple_versions")) {
 DbAdapterMovieMappings db=MizuuApplication.getMovieMappingAdapter();
-for (int i=0; i < mResults.size(); i++) {
+for (int i=0; i < mMovieList.size(); i++) {
 if (isCancelled()) return null;
-if (db.hasMultipleFilepaths(mResults.get(i).getTmdbId())) tempCollection.add(mResults.get(i));
+if (db.hasMultipleFilepaths(mMovieList.get(i).getTmdbId())) tempCollection.add(mMovieList.get(i));
 }
 }
  else {
 Pattern p=Pattern.compile(MizLib.CHARACTER_REGEX);
-for (int i=0; i < mResults.size(); i++) {
+for (int i=0; i < mMovieList.size(); i++) {
 if (isCancelled()) return null;
-String lowerCaseTitle=(getType() == MovieLibraryType.COLLECTIONS) ? mResults.get(i).getCollection().toLowerCase(Locale.ENGLISH) : mResults.get(i).getTitle().toLowerCase(Locale.ENGLISH);
+String lowerCaseTitle=(getType() == MovieLibraryType.COLLECTIONS) ? mMovieList.get(i).getCollection().toLowerCase(Locale.ENGLISH) : mMovieList.get(i).getTitle().toLowerCase(Locale.ENGLISH);
 boolean foundInTitle=false;
-if (lowerCaseTitle.indexOf(mSearchQuery) != -1 || p.matcher(lowerCaseTitle).replaceAll("").indexOf(mSearchQuery) != -1) {
-tempCollection.add(mResults.get(i));
+if (lowerCaseTitle.contains(mSearchQuery) || p.matcher(lowerCaseTitle).replaceAll("").indexOf(mSearchQuery) != -1) {
+tempCollection.add(mMovieList.get(i));
 foundInTitle=true;
 }
 if (!foundInTitle) {
-for (Filepath path : mResults.get(i).getFilepaths()) {
+for (Filepath path : mMovieList.get(i).getFilepaths()) {
 String filepath=path.getFilepath().toLowerCase(Locale.ENGLISH);
 if (filepath.indexOf(mSearchQuery) != -1) {
-tempCollection.add(mResults.get(i));
+tempCollection.add(mMovieList.get(i));
 break;
 }
 }

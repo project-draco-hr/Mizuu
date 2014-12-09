@@ -1,5 +1,6 @@
 {
   super.onCreate(savedInstanceState);
+  setHasOptionsMenu(true);
   mContext=getActivity().getApplicationContext();
   mPicasso=MizuuApplication.getPicasso(mContext);
   mConfig=MizuuApplication.getBitmapConfig();

@@ -1,0 +1,11 @@
+{
+  return new Comparator<GridEpisode>(){
+    @Override public int compare(    GridEpisode lhs,    GridEpisode rhs){
+      int multiplier=mType == SORT_ASCENDING ? 1 : -1;
+      if (lhs.getEpisode() < rhs.getEpisode())       return -1 * multiplier;
+      if (lhs.getEpisode() > rhs.getEpisode())       return multiplier;
+      return 0;
+    }
+  }
+;
+}

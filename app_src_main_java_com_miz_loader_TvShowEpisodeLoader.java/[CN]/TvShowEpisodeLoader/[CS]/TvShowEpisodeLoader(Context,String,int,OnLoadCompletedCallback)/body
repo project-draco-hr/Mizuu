@@ -1,0 +1,9 @@
+{
+  mContext=context;
+  mCallback=callback;
+  mShowId=showId;
+  mShowSeason=showSeason;
+  mTvShowEpisodeDatabase=MizuuApplication.getTvEpisodeDbAdapter();
+  setWatchedFilter(TvShowEpisodeWatchedFilter.ALL);
+  setupSortType();
+}

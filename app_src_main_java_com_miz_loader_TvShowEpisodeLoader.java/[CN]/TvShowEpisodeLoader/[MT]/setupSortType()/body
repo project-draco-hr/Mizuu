@@ -1,0 +1,9 @@
+{
+  boolean ascending=PreferenceManager.getDefaultSharedPreferences(mContext).getString(TVSHOWS_EPISODE_ORDER,mContext.getString(R.string.oldestFirst)).equals(mContext.getString(R.string.oldestFirst));
+  if (ascending) {
+    setSortType(TvShowEpisodeSortType.ASCENDING);
+  }
+ else {
+    setSortType(TvShowEpisodeSortType.DESCENDING);
+  }
+}

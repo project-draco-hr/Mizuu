@@ -1,0 +1,16 @@
+{
+  mContext=context;
+  mTitle=title;
+  mSeason=season;
+  mEpisode=episode;
+  mWatched=watched;
+  mCover=cover;
+  mAirDate=airdate;
+  for (  String filepath : filepaths)   mFilepaths.add(new Filepath(filepath));
+  StringBuilder sb=new StringBuilder();
+  sb.append(mContext.getString(R.string.showEpisode)).append(" ").append(getEpisode());
+  if (!hasWatched()) {
+    sb.append(" ").append(mContext.getString(R.string.unwatched));
+  }
+  mSubtitleText=sb.toString();
+}

@@ -1,6 +1,0 @@
-{
-  mItems.clear();
-  mItems.addAll(MizuuApplication.getTvEpisodeDbAdapter().getEpisodesInSeason(mContext,mShowId,mSeason));
-  Collections.sort(mItems);
-  return null;
-}

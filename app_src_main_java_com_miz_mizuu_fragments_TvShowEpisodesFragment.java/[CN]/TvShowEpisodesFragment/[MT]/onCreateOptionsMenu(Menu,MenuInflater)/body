@@ -1,0 +1,18 @@
+{
+  inflater.inflate(R.menu.episodes_overview,menu);
+  int padding=MizLib.convertDpToPixels(getActivity(),16);
+  SwitchCompat switchCompat=(SwitchCompat)menu.findItem(R.id.switch_button).getActionView();
+  switchCompat.setChecked(mEpisodeLoader != null ? mEpisodeLoader.showAvailableFiles() : false);
+  switchCompat.setText(R.string.choiceAvailableFiles);
+  switchCompat.setSwitchPadding(padding);
+  switchCompat.setPadding(0,0,padding,0);
+  switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+    @Override public void onCheckedChanged(    CompoundButton buttonView,    boolean isChecked){
+      mEpisodeLoader.setShowAvailableFiles(isChecked);
+      mEpisodeLoader.load();
+      showProgressBar();
+    }
+  }
+);
+  super.onCreateOptionsMenu(menu,inflater);
+}
