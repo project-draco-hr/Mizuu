@@ -5,39 +5,16 @@
   cb.setChecked(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(ALWAYS_DELETE_FILE,true));
   builder.setTitle(getString(R.string.removeEpisode) + " S" + mEpisode.getSeason()+ "E"+ mEpisode.getEpisode()).setView(dialogLayout).setCancelable(false).setPositiveButton(getString(android.R.string.yes),new DialogInterface.OnClickListener(){
     public void onClick(    DialogInterface dialog,    int id){
-      mDatabaseHelper=MizuuApplication.getTvEpisodeDbAdapter();
-      boolean deleted=true;
-      for (      Filepath path : mEpisode.getFilepaths())       deleted=deleted && MizuuApplication.getTvShowEpisodeMappingsDbAdapter().deleteFilepath(path.getFullFilepath());
-      if (deleted) {
-        try {
-          File episodePhoto=FileUtils.getTvShowEpisode(getActivity(),mEpisode.getShowId(),mEpisode.getSeason(),mEpisode.getEpisode());
-          if (episodePhoto.exists()) {
-            MizLib.deleteFile(episodePhoto);
-          }
+      TvShowDatabaseUtils.deleteEpisode(mContext,mEpisode.getShowId(),MizLib.getInteger(mEpisode.getSeason()),MizLib.getInteger(mEpisode.getEpisode()));
+      if (cb.isChecked()) {
+        for (        Filepath path : mEpisode.getFilepaths()) {
+          Intent deleteIntent=new Intent(getActivity(),DeleteFile.class);
+          deleteIntent.putExtra("filepath",path.getFilepath());
+          getActivity().startService(deleteIntent);
         }
- catch (        NullPointerException e) {
-        }
-        if (mDatabaseHelper.getEpisodeCount(mEpisode.getShowId()) == 0) {
-          DbAdapterTvShows dbShow=MizuuApplication.getTvDbAdapter();
-          boolean deletedShow=dbShow.deleteShow(mEpisode.getShowId());
-          if (deletedShow) {
-            MizLib.deleteFile(FileUtils.getTvShowThumb(getActivity(),mEpisode.getShowId()));
-            MizLib.deleteFile(FileUtils.getTvShowBackdrop(getActivity(),mEpisode.getShowId()));
-          }
-        }
-        if (cb.isChecked()) {
-          for (          Filepath path : mEpisode.getFilepaths()) {
-            Intent deleteIntent=new Intent(getActivity(),DeleteFile.class);
-            deleteIntent.putExtra("filepath",path.getFilepath());
-            getActivity().startService(deleteIntent);
-          }
-        }
-        notifyDatasetChanges();
-        getActivity().finish();
       }
- else {
-        Toast.makeText(getActivity(),getString(R.string.failedToRemoveEpisode),Toast.LENGTH_SHORT).show();
-      }
+      notifyDatasetChanges();
+      getActivity().finish();
     }
   }
 ).setNegativeButton(getString(android.R.string.no),new DialogInterface.OnClickListener(){

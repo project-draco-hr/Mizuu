@@ -1,5 +1,4 @@
 {
-  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
   List<DbMovie> dbMovies=getDbMovies();
   ArrayList<FileSource> filesources=MizLib.getFileSources(MizLib.TYPE_MOVIE,true);
   FileSource source;

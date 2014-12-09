@@ -1,5 +1,5 @@
 {
-  mContext.bindService(new Intent(mContext,WireUpnpService.class),serviceConnection,Context.BIND_AUTO_CREATE);
+  mContext.getApplicationContext().bindService(new Intent(mContext,WireUpnpService.class),serviceConnection,Context.BIND_AUTO_CREATE);
   try {
     mLatch.await(10,TimeUnit.MINUTES);
   }

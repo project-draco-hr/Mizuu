@@ -1,5 +1,4 @@
 {
-  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
   List<DbMovie> dbMovies=getDbMovies();
   int count=dbMovies.size();
   for (int i=0; i < count; i++) {
