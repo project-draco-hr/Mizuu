@@ -4,6 +4,7 @@
   if (MizLib.hasLollipop())   getSupportActionBar().setElevation(0);
   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   tvdbId=getIntent().getExtras().getString("id");
+  mToolbarColor=getIntent().getExtras().getInt(IntentKeys.TOOLBAR_COLOR);
   mProgressBar=(ProgressBar)findViewById(R.id.progressbar);
   mProgressBar.setVisibility(View.VISIBLE);
   mViewPager=(ViewPager)findViewById(R.id.awesomepager);

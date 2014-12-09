@@ -3,6 +3,7 @@
     Intent intent=new Intent(mContext,MovieCoverFanartBrowser.class);
     intent.putExtra("tmdbId",mMovie.getTmdbId());
     intent.putExtra("collectionId",mMovie.getCollectionId());
+    intent.putExtra(IntentKeys.TOOLBAR_COLOR,mToolbarColor);
     startActivity(intent);
   }
  else {

@@ -2,9 +2,9 @@
   super.onCreate(savedInstanceState);
   MizuuApplication.setupTheme(this);
   if (MizLib.hasLollipop())   getSupportActionBar().setElevation(0);
-  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   mTmdbId=getIntent().getExtras().getString("tmdbId");
   mCollectionId=getIntent().getExtras().getString("collectionId");
+  mToolbarColor=getIntent().getExtras().getInt(IntentKeys.TOOLBAR_COLOR);
   mTmdbApiKey=MizLib.getTmdbApiKey(this);
   mProgressBar=(ProgressBar)findViewById(R.id.progressbar);
   mProgressBar.setVisibility(View.VISIBLE);
