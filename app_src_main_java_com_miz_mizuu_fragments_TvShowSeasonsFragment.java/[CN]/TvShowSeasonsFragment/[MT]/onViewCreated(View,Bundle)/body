@@ -74,5 +74,5 @@ mAdapter.notifyDataSetChanged();
 }
 }
 );
-loadSeasons(true);
+loadSeasons();
 }

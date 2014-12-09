@@ -1,17 +1,14 @@
 {
   new com.miz.functions.AsyncTask<Void,Boolean,Boolean>(){
-    private Set<Integer> mSelectedSeasons;
-    private List<TvShowEpisode> mEpisodes=new ArrayList<TvShowEpisode>();
+    private List<TvShowEpisode> mEpisodes=new ArrayList<>();
     @Override protected void onPreExecute(){
-      mSelectedSeasons=new HashSet<Integer>(checkedSeasons);
       DbAdapterTvShowEpisodes db=MizuuApplication.getTvEpisodeDbAdapter();
-      for (      int season : mSelectedSeasons) {
-        List<GridEpisode> temp=db.getEpisodesInSeason(mContext,mShowId,mItems.get(season).getSeason());
+      for (      int season : checkedSeasons) {
+        List<GridEpisode> temp=db.getEpisodesInSeason(mContext,mShowId,season);
         for (int i=0; i < temp.size(); i++) {
           mEpisodes.add(new TvShowEpisode(mShowId,temp.get(i).getEpisode(),temp.get(i).getSeason()));
         }
         temp.clear();
-        temp=null;
       }
     }
     @Override protected Boolean doInBackground(    Void... params){
