@@ -3,7 +3,11 @@
   mToolbar=(Toolbar)view.findViewById(R.id.toolbar);
   mToolbar.setBackgroundResource(android.R.color.transparent);
   ViewUtils.setProperToolbarSize(mContext,mToolbar);
-  ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  try {
+    ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  }
+ catch (  Throwable t) {
+  }
   ((ActionBarActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
   mImageThumbSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_width);
   mImageThumbBackdropSize=getResources().getDimensionPixelSize(R.dimen.horizontal_grid_item_backdrop_width);

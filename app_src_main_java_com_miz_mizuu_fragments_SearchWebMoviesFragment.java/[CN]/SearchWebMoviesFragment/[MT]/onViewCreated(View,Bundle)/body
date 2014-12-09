@@ -1,7 +1,11 @@
 {
   super.onViewCreated(v,savedInstanceState);
   mToolbar=(Toolbar)v.findViewById(R.id.toolbar);
-  ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  try {
+    ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  }
+ catch (  Throwable t) {
+  }
   mProgressBar=(ProgressBar)v.findViewById(R.id.progressBar1);
   v.findViewById(R.id.spinner1).setVisibility(View.GONE);
   mListView=(ListView)v.findViewById(R.id.listView1);

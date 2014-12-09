@@ -1,7 +1,11 @@
 {
   super.onViewCreated(v,savedInstanceState);
   mToolbar=(Toolbar)v.findViewById(R.id.toolbar);
-  ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  try {
+    ((ActionBarActivity)getActivity()).setSupportActionBar(mToolbar);
+  }
+ catch (  Throwable t) {
+  }
   mTitle=(EditText)v.findViewById(R.id.edit_title);
   mDescription=(EditText)v.findViewById(R.id.edit_description);
   mDirector=(EditText)v.findViewById(R.id.edit_director);
