@@ -1,11 +1,25 @@
 {
-  if (alpha < 127) {
-    toolbar.setTitle(null);
-    toolbar.setBackgroundResource(R.drawable.transparent_actionbar);
-    if (MizLib.hasLollipop())     activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+  if (defaultTitleTextColor == -1) {
+    int[] textColorAttr=new int[]{R.attr.actionMenuTextColor};
+    TypedValue typedValue=new TypedValue();
+    int indexOfAttrTextColor=0;
+    TypedArray a=activity.obtainStyledAttributes(typedValue.data,textColorAttr);
+    defaultTitleTextColor=a.getColor(indexOfAttrTextColor,-1);
+    a.recycle();
+  }
+  toolbar.setTitle(title);
+  toolbar.setTitleTextColor(adjustAlpha(defaultTitleTextColor,alpha));
+  int toolbarColor=adjustAlpha(color,alpha);
+  if (MizLib.hasLollipop()) {
+    if (alpha < 127) {
+      activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+    }
+    int topColor=darkenColor(color,alpha / 255f);
+    topColor=adjustAlpha(topColor,Math.max(125,alpha));
+    int[] colors={topColor,toolbarColor};
+    toolbar.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,colors));
   }
  else {
-    toolbar.setTitle(title);
-    toolbar.setBackgroundColor(adjustAlpha(color,alpha));
+    toolbar.setBackgroundColor(toolbarColor);
   }
 }
