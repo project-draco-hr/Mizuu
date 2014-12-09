@@ -1,3 +1,3 @@
 {
-  return inflater.inflate(R.layout.new_episode_details,container,false);
+  return inflater.inflate(R.layout.episode_details,container,false);
 }

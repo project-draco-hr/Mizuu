@@ -8,6 +8,6 @@
   mTabs.setViewPager(mViewPager);
   mTabs.setVisibility(View.VISIBLE);
   mViewPager.setCurrentItem(0);
-  if (MizLib.hasLollipop())   mTabs.setElevation(4);
+  if (MizLib.hasLollipop())   mTabs.setElevation(1f);
   return v;
 }
