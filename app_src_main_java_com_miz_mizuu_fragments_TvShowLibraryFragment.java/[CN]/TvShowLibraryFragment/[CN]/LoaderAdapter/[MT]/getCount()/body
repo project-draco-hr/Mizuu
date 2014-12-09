@@ -1,3 +1,4 @@
 {
-  return mTvShowKeys.size();
+  if (mTvShowLoader != null)   return mTvShowLoader.getResults().size();
+  return 0;
 }

@@ -1,4 +1,0 @@
-{
-  if (!mLoading)   showTvShowSection(itemPosition);
-  return true;
-}

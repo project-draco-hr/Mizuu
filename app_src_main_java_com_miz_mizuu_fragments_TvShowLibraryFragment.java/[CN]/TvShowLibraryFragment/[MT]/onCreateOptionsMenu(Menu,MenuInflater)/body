@@ -1,8 +1,5 @@
 {
-  setupActionBar();
   inflater.inflate(R.menu.menutv,menu);
-  if (mTvShows.size() == 0)   menu.findItem(R.id.random).setVisible(false);
- else   menu.findItem(R.id.random).setVisible(true);
   MenuItemCompat.setOnActionExpandListener(menu.findItem(R.id.search_textbox),new OnActionExpandListener(){
     @Override public boolean onMenuItemActionExpand(    MenuItem item){
       return true;
@@ -13,14 +10,12 @@
     }
   }
 );
-  SearchManager searchManager=(SearchManager)getActivity().getSystemService(Context.SEARCH_SERVICE);
-  SearchView searchView=(SearchView)menu.findItem(R.id.search_textbox).getActionView();
-  ComponentName cn=new ComponentName(getActivity(),TvShowActorSearchActivity.class);
-  searchView.setSearchableInfo(searchManager.getSearchableInfo(cn));
-  searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+  mSearchView=(SearchView)MenuItemCompat.getActionView(menu.findItem(R.id.search_textbox));
+  mSearchView.setOnQueryTextListener(new OnQueryTextListener(){
     @Override public boolean onQueryTextChange(    String newText){
       if (newText.length() > 0) {
-        search(newText);
+        mTvShowLoader.search(newText);
+        showProgressBar();
       }
  else {
         onSearchViewCollapsed();
@@ -32,5 +27,8 @@
     }
   }
 );
+  SearchManager searchManager=(SearchManager)getActivity().getSystemService(Context.SEARCH_SERVICE);
+  ComponentName cn=new ComponentName(getActivity(),TvShowActorSearchActivity.class);
+  mSearchView.setSearchableInfo(searchManager.getSearchableInfo(cn));
   super.onCreateOptionsMenu(menu,inflater);
 }

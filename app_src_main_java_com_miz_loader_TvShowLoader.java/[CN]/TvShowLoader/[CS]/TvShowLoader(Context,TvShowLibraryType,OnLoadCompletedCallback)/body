@@ -1,0 +1,8 @@
+{
+  mContext=context;
+  mLibraryType=libraryType;
+  mCallback=callback;
+  mTvShowDatabase=MizuuApplication.getTvDbAdapter();
+  mTvShowEpisodeDatabase=MizuuApplication.getTvEpisodeDbAdapter();
+  setupSortType();
+}

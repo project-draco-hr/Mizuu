@@ -1,0 +1,32 @@
+{
+  if (getSortType() == type) {
+    getSortType().toggleSortOrder();
+  }
+ else {
+    mSortType=type;
+    if (getType() == TvShowLibraryType.ALL_SHOWS) {
+      SharedPreferences.Editor editor=PreferenceManager.getDefaultSharedPreferences(mContext).edit();
+switch (getSortType()) {
+case TITLE:
+        editor.putString(PreferenceKeys.SORTING_TVSHOWS,SORT_TITLE);
+      break;
+case FIRST_AIR_DATE:
+    editor.putString(PreferenceKeys.SORTING_TVSHOWS,SORT_RELEASE);
+  break;
+case NEWEST_EPISODE:
+editor.putString(PreferenceKeys.SORTING_TVSHOWS,SORT_NEWEST_EPISODE);
+break;
+case DURATION:
+editor.putString(PreferenceKeys.SORTING_TVSHOWS,SORT_DURATION);
+break;
+case RATING:
+editor.putString(PreferenceKeys.SORTING_TVSHOWS,SORT_RATING);
+break;
+case WEIGHTED_RATING:
+editor.putString(PreferenceKeys.SORTING_TVSHOWS,SORT_WEIGHTED_RATING);
+break;
+}
+editor.apply();
+}
+}
+}

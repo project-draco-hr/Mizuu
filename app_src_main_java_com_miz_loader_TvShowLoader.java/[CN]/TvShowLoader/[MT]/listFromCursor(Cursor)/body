@@ -1,0 +1,19 @@
+{
+  ArrayList<TvShow> list=new ArrayList<>();
+  if (cursor != null) {
+    ColumnIndexCache cache=new ColumnIndexCache();
+    try {
+      while (cursor.moveToNext()) {
+        list.add(new TvShow(mContext,cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_ID)),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_TITLE)),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_PLOT)),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_RATING)),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_GENRES)),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_ACTORS)),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_CERTIFICATION)),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_FIRST_AIRDATE)),cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_RUNTIME)),mIgnorePrefixes,cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_FAVOURITE)),mTvShowEpisodeDatabase.getLatestEpisodeAirdate(cursor.getString(cache.getColumnIndex(cursor,DbAdapterTvShows.KEY_SHOW_ID)))));
+      }
+    }
+ catch (    Exception e) {
+    }
+ finally {
+      cursor.close();
+      cache.clear();
+    }
+  }
+  mResults=list;
+  return list;
+}

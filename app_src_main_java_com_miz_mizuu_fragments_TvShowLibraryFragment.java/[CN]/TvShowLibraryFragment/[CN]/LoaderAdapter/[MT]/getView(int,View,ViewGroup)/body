@@ -1,15 +1,12 @@
 {
-  final TvShow mTvShow=mTvShows.get(mTvShowKeys.get(position));
+  final TvShow show=getItem(position);
   CoverItem holder;
   if (convertView == null) {
-    convertView=inflater.inflate(R.layout.grid_item,container,false);
+    convertView=mInflater.inflate(R.layout.grid_cover,container,false);
     holder=new CoverItem();
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
-    holder.text.setSingleLine(true);
-    holder.subtext=(TextView)convertView.findViewById(R.id.gridCoverSubtitle);
-    holder.subtext.setSingleLine(true);
-    holder.text.setTypeface(TypefaceUtils.getRobotoMedium(mContext));
+    holder.text.setTypeface(mTypeface);
     convertView.setTag(holder);
   }
  else {
@@ -17,16 +14,12 @@
   }
   if (!mShowTitles) {
     holder.text.setVisibility(View.GONE);
-    holder.subtext.setVisibility(View.GONE);
   }
  else {
     holder.text.setVisibility(View.VISIBLE);
-    holder.subtext.setVisibility(View.VISIBLE);
-    holder.text.setText(mTvShow.getTitle());
-    holder.subtext.setText(mTvShow.getSubText(mCurrentSort));
+    holder.text.setText(show.getTitle());
   }
   holder.cover.setImageResource(R.color.card_background_dark);
-  if (mResizedWidth > 0)   mPicasso.load(mTvShow.getThumbnail()).resize(mResizedWidth,mResizedHeight).config(mConfig).into(holder);
- else   mPicasso.load(mTvShow.getThumbnail()).config(mConfig).into(holder);
+  mPicasso.load(show.getThumbnail()).placeholder(R.drawable.bg).config(mConfig).into(holder);
   return convertView;
 }

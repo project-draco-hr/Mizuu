@@ -1,18 +1,16 @@
 {
   super.onCreate(savedInstanceState);
-  setRetainInstance(true);
   setHasOptionsMenu(true);
-  setupSpinnerItems();
-  PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
+  mContext=getActivity().getApplicationContext();
+  PreferenceManager.getDefaultSharedPreferences(mContext).registerOnSharedPreferenceChangeListener(this);
   mSharedPreferences=PreferenceManager.getDefaultSharedPreferences(getActivity());
   mIgnorePrefixes=mSharedPreferences.getBoolean(IGNORED_TITLE_PREFIXES,false);
   mShowTitles=mSharedPreferences.getBoolean(SHOW_TITLES_IN_GRID,true);
-  String thumbnailSize=mSharedPreferences.getString(GRID_ITEM_SIZE,getString(R.string.normal));
-  if (thumbnailSize.equals(getString(R.string.large)))   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1.33);
- else   if (thumbnailSize.equals(getString(R.string.normal)))   mImageThumbSize=(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 1);
- else   mImageThumbSize=(int)(getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size) * 0.75);
+  mImageThumbSize=ViewUtils.getGridViewThumbSize(mContext);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
-  mPicasso=MizuuApplication.getPicasso(getActivity());
+  mPicasso=MizuuApplication.getPicasso(mContext);
   mConfig=MizuuApplication.getBitmapConfig();
-  mAdapter=new LoaderAdapter(getActivity());
+  mAdapter=new LoaderAdapter(mContext);
+  LocalBroadcastManager.getInstance(mContext).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_TV_SHOW_LIBRARY));
+  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-shows-actor-search"));
 }

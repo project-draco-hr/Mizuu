@@ -1,6 +1,0 @@
-{
-  mSpinnerItems.clear();
-  mSpinnerItems.add(new SpinnerItem(getString(R.string.chooserTVShows),getString(R.string.choiceAllShows)));
-  mSpinnerItems.add(new SpinnerItem(getString(R.string.choiceFavorites),getString(R.string.choiceFavorites)));
-  mSpinnerItems.add(new SpinnerItem(getString(R.string.tvShowsWithUnwatchedEpisodes),getString(R.string.tvShowsWithUnwatchedEpisodes)));
-}

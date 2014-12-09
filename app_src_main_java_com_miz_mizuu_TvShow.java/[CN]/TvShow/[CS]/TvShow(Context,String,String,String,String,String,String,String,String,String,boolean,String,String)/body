@@ -47,9 +47,4 @@
  else {
     mGetReleaseYear=mContext.getString(R.string.unknownYear);
   }
-  mWeightedCompatibility=(int)(getWeightedRating() * 10) + "% " + mContext.getString(R.string.compatibility);
-  mRuntime=MizLib.getPrettyTime(mContext,Integer.parseInt(getRuntime()));
-  mReleaseDate=MizLib.getPrettyDate(mContext,getFirstAirdate());
-  mLatestEpisodeAirDate=MizLib.getPrettyDate(mContext,getLatestEpisodeAirdate());
-  ;
 }

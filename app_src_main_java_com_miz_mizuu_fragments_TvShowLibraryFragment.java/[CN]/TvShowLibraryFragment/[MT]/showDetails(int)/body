@@ -1,6 +1,0 @@
-{
-  Intent intent=new Intent();
-  intent.putExtra("showId",mTvShows.get(mTvShowKeys.get(arg2)).getId());
-  intent.setClass(getActivity(),TvShowDetails.class);
-  startActivityForResult(intent,0);
-}

@@ -1,0 +1,4 @@
+{
+  mSearchQuery=searchQuery.toLowerCase(Locale.getDefault());
+  mTvShowList=new ArrayList<TvShow>();
+}

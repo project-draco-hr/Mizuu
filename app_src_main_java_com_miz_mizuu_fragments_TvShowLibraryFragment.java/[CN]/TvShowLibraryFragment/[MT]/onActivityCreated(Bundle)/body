@@ -1,7 +1,0 @@
-{
-  super.onActivityCreated(savedInstanceState);
-  getActivity().setTitle(R.string.chooserTVShows);
-  setupActionBar();
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_TV_SHOW_LIBRARY));
-  LocalBroadcastManager.getInstance(getActivity()).registerReceiver(mMessageReceiver,new IntentFilter("mizuu-shows-actor-search"));
-}

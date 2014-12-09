@@ -1,0 +1,16 @@
+{
+  AlertDialog.Builder builder=new AlertDialog.Builder(activity);
+  builder.setTitle(title).setItems(temp,new DialogInterface.OnClickListener(){
+    public void onClick(    DialogInterface dialog,    int which){
+      String selected=temp[which].toString();
+      selected=selected.substring(0,selected.lastIndexOf("(")).trim();
+      TvShowFilter filter=new TvShowFilter(type);
+      filter.setFilter(selected);
+      addFilter(filter);
+      load();
+      dialog.dismiss();
+    }
+  }
+);
+  builder.show();
+}

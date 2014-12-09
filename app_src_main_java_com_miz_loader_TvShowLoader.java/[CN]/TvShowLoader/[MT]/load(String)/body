@@ -1,0 +1,8 @@
+{
+  if (mAsyncTask != null) {
+    mAsyncTask.cancel(true);
+  }
+  mShowingSearchResults=!TextUtils.isEmpty(query);
+  mAsyncTask=new TvShowLoaderAsyncTask(query);
+  mAsyncTask.execute();
+}

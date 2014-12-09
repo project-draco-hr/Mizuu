@@ -1,0 +1,3 @@
+{
+  return FileUtils.getOfflineFile(mContext,path.getFilepath());
+}

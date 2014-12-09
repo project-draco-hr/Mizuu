@@ -1,0 +1,21 @@
+{
+  final TreeMap<String,Integer> map=new TreeMap<String,Integer>();
+  for (int i=0; i < mResults.size(); i++) {
+    ArrayList<Filepath> paths=new ArrayList<>();
+    for (    String s : MizuuApplication.getTvShowEpisodeMappingsDbAdapter().getFilepathsForShow(mResults.get(i).getId())) {
+      paths.add(new Filepath(s));
+    }
+    for (    Filepath path : paths) {
+      String folder=path.getFolder();
+      if (!TextUtils.isEmpty(folder)) {
+        if (map.containsKey(folder)) {
+          map.put(folder,map.get(folder) + 1);
+        }
+ else {
+          map.put(folder,1);
+        }
+      }
+    }
+  }
+  createAndShowAlertDialog(activity,setupItemArray(map,true),R.string.selectFolder,TvShowFilter.FOLDER);
+}

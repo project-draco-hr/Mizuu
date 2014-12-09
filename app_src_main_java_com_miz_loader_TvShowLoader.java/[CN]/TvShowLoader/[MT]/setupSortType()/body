@@ -1,0 +1,31 @@
+{
+  if (getType() == TvShowLibraryType.ALL_SHOWS) {
+    String savedSortType=PreferenceManager.getDefaultSharedPreferences(mContext).getString(PreferenceKeys.SORTING_TVSHOWS,SORT_TITLE);
+switch (savedSortType) {
+case SORT_TITLE:
+      setSortType(TvShowSortType.TITLE);
+    break;
+case SORT_RELEASE:
+  setSortType(TvShowSortType.FIRST_AIR_DATE);
+break;
+case SORT_RATING:
+setSortType(TvShowSortType.RATING);
+break;
+case SORT_WEIGHTED_RATING:
+setSortType(TvShowSortType.WEIGHTED_RATING);
+break;
+case SORT_NEWEST_EPISODE:
+setSortType(TvShowSortType.NEWEST_EPISODE);
+break;
+case SORT_DURATION:
+setSortType(TvShowSortType.DURATION);
+break;
+}
+}
+ else if (getType() == TvShowLibraryType.RECENTLY_AIRED) {
+setSortType(TvShowSortType.NEWEST_EPISODE);
+}
+ else {
+setSortType(TvShowSortType.TITLE);
+}
+}

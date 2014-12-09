@@ -2,46 +2,79 @@
   super.onOptionsItemSelected(item);
 switch (item.getItemId()) {
 case R.id.update:
-    startActivityForResult(getUpdateIntent(),0);
-  break;
-case R.id.menuSortRating:
-sortBy(RATING);
-break;
-case R.id.menuSortWeightedRating:
-sortBy(WEIGHTED_RATING);
-break;
-case R.id.menuSortTitle:
-sortBy(TITLE);
-break;
-case R.id.menuSortRelease:
-sortBy(RELEASE);
+    Intent intent=new Intent();
+  intent.setClass(mContext,Update.class);
+intent.putExtra("isMovie",false);
+startActivityForResult(intent,0);
 break;
 case R.id.menuSortNewestEpisode:
-sortBy(NEWEST_EPISODE);
+mTvShowLoader.setSortType(TvShowSortType.NEWEST_EPISODE);
+mTvShowLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortRating:
+mTvShowLoader.setSortType(TvShowSortType.RATING);
+mTvShowLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortWeightedRating:
+mTvShowLoader.setSortType(TvShowSortType.WEIGHTED_RATING);
+mTvShowLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortRelease:
+mTvShowLoader.setSortType(TvShowSortType.FIRST_AIR_DATE);
+mTvShowLoader.load();
+showProgressBar();
+break;
+case R.id.menuSortTitle:
+mTvShowLoader.setSortType(TvShowSortType.TITLE);
+mTvShowLoader.load();
+showProgressBar();
 break;
 case R.id.menuSortDuration:
-sortBy(DURATION);
+mTvShowLoader.setSortType(TvShowSortType.DURATION);
+mTvShowLoader.load();
+showProgressBar();
 break;
 case R.id.genres:
-showGenres();
+mTvShowLoader.showGenresFilterDialog(getActivity());
 break;
 case R.id.certifications:
-showCertifications();
+mTvShowLoader.showCertificationsFilterDialog(getActivity());
+break;
+case R.id.folders:
+mTvShowLoader.showFoldersFilterDialog(getActivity());
+break;
+case R.id.fileSources:
+mTvShowLoader.showFileSourcesFilterDialog(getActivity());
 break;
 case R.id.release_year:
-showReleaseYear();
+mTvShowLoader.showReleaseYearFilterDialog(getActivity());
 break;
-case R.id.unidentifiedFiles:
-startActivity(new Intent(getActivity(),UnidentifiedTvShows.class));
+case R.id.offline_files:
+mTvShowLoader.addFilter(new TvShowFilter(TvShowFilter.OFFLINE_FILES));
+mTvShowLoader.load();
+showProgressBar();
+break;
+case R.id.available_files:
+mTvShowLoader.addFilter(new TvShowFilter(TvShowFilter.AVAILABLE_FILES));
+mTvShowLoader.load();
+showProgressBar();
 break;
 case R.id.clear_filters:
-showTvShowSection(0);
+mTvShowLoader.clearFilters();
+mTvShowLoader.load();
+showProgressBar();
 break;
 case R.id.random:
-if (mTvShowKeys.size() > 0) {
-int random=new Random().nextInt(mTvShowKeys.size());
-showDetails(random);
+if (mAdapter.getCount() > 0) {
+int random=new Random().nextInt(mAdapter.getCount());
+viewTvShowDetails(random,null);
 }
+break;
+case R.id.unidentifiedFiles:
+startActivity(new Intent(mContext,UnidentifiedTvShows.class));
 break;
 }
 return true;

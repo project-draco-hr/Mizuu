@@ -1,0 +1,184 @@
+{
+switch (mLibraryType) {
+case ALL_SHOWS:
+    mTvShowList.addAll(listFromCursor(mTvShowDatabase.getAllShows()));
+  break;
+case FAVORITES:
+mTvShowList.addAll(listFromCursor(mTvShowDatabase.getAllFavorites()));
+break;
+case RECENTLY_AIRED:
+mTvShowList.addAll(listFromCursor(mTvShowDatabase.getAllShows()));
+int listSize=mTvShowList.size();
+long now=System.currentTimeMillis();
+Calendar cal=Calendar.getInstance();
+SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+for (int i=0; i < listSize; i++) {
+String latestEpisode=mTvShowEpisodeDatabase.getLatestEpisodeAirdate(mTvShowList.get(i).getId());
+try {
+cal.setTime(sdf.parse(latestEpisode));
+cal.add(Calendar.MONTH,3);
+}
+ catch (ParseException e) {
+mTvShowList.remove(i);
+i--;
+listSize--;
+}
+if (cal.getTimeInMillis() < now) {
+mTvShowList.remove(i);
+i--;
+listSize--;
+}
+}
+break;
+case UNWATCHED:
+mTvShowList.addAll(listFromCursor(mTvShowDatabase.getAllShows()));
+int size=mTvShowList.size();
+for (int i=0; i < size; i++) {
+if (!mTvShowEpisodeDatabase.hasUnwatchedEpisodes(mTvShowList.get(i).getId())) {
+mTvShowList.remove(i);
+i--;
+size--;
+}
+}
+break;
+case WATCHED:
+mTvShowList.addAll(listFromCursor(mTvShowDatabase.getAllShows()));
+int totalSize=mTvShowList.size();
+for (int i=0; i < totalSize; i++) {
+if (mTvShowEpisodeDatabase.hasUnwatchedEpisodes(mTvShowList.get(i).getId())) {
+mTvShowList.remove(i);
+i--;
+totalSize--;
+}
+}
+break;
+default :
+break;
+}
+int totalSize=mTvShowList.size();
+for (TvShowFilter filter : getFilters()) {
+for (int i=0; i < totalSize; i++) {
+if (isCancelled()) return null;
+ArrayList<Filepath> paths=new ArrayList<>();
+for (String s : MizuuApplication.getTvShowEpisodeMappingsDbAdapter().getFilepathsForShow(mTvShowList.get(i).getId())) {
+paths.add(new Filepath(s));
+}
+boolean condition=false;
+switch (filter.getType()) {
+case TvShowFilter.GENRE:
+if (mTvShowList.get(i).getGenres().contains(filter.getFilter())) {
+String[] genres=mTvShowList.get(i).getGenres().split(",");
+for (String genre : genres) {
+if (genre.trim().equals(filter.getFilter())) {
+condition=true;
+break;
+}
+}
+}
+break;
+case TvShowFilter.CERTIFICATION:
+condition=mTvShowList.get(i).getCertification().trim().equals(filter.getFilter());
+break;
+case TvShowFilter.FILE_SOURCE:
+for (Filepath path : paths) {
+condition=path.getTypeAsString(mContext).equals(filter.getFilter());
+if (condition) break;
+}
+break;
+case TvShowFilter.RELEASE_YEAR:
+condition=mTvShowList.get(i).getReleaseYear().trim().contains(filter.getFilter());
+break;
+case TvShowFilter.FOLDER:
+for (Filepath path : paths) {
+condition=path.getFilepath().trim().startsWith(filter.getFilter());
+if (condition) break;
+}
+break;
+case TvShowFilter.OFFLINE_FILES:
+for (Filepath path : paths) {
+condition=mTvShowList.get(i).hasOfflineCopy(path);
+if (condition) break;
+}
+break;
+case TvShowFilter.AVAILABLE_FILES:
+ArrayList<FileSource> filesources=MizLib.getFileSources(MizLib.TYPE_SHOWS,true);
+if (isCancelled()) return null;
+for (Filepath path : paths) {
+if (path.isNetworkFile()) if (mTvShowList.get(i).hasOfflineCopy(path)) {
+condition=true;
+break;
+}
+ else {
+if (path.getType() == FileSource.SMB) {
+if (MizLib.isWifiConnected(mContext)) {
+FileSource source=null;
+for (int j=0; j < filesources.size(); j++) if (path.getFilepath().contains(filesources.get(j).getFilepath())) {
+source=filesources.get(j);
+break;
+}
+if (source == null) continue;
+try {
+final SmbFile file=new SmbFile(MizLib.createSmbLoginString(source.getDomain(),source.getUser(),source.getPassword(),path.getFilepath(),false));
+if (file.exists()) {
+condition=true;
+break;
+}
+}
+ catch (Exception e) {
+}
+}
+}
+ else if (path.getType() == FileSource.UPNP) {
+if (MizLib.exists(path.getFilepath())) {
+condition=true;
+break;
+}
+}
+}
+ else {
+if (new File(path.getFilepath()).exists()) {
+condition=true;
+break;
+}
+}
+}
+break;
+}
+if (!condition && mTvShowList.size() > i) {
+mTvShowList.remove(i);
+i--;
+totalSize--;
+}
+}
+}
+if (!TextUtils.isEmpty(mSearchQuery)) {
+ArrayList<TvShow> tempCollection=Lists.newArrayList();
+if (mSearchQuery.startsWith("actor:")) {
+for (int i=0; i < mTvShowList.size(); i++) {
+if (isCancelled()) return null;
+if (mTvShowList.get(i).getActors().toLowerCase(Locale.ENGLISH).contains(mSearchQuery.replace("actor:","").trim())) tempCollection.add(mTvShowList.get(i));
+}
+}
+ else if (mSearchQuery.equalsIgnoreCase("missing_genres")) {
+for (int i=0; i < mTvShowList.size(); i++) {
+if (isCancelled()) return null;
+if (TextUtils.isEmpty(mTvShowList.get(i).getGenres())) tempCollection.add(mTvShowList.get(i));
+}
+}
+ else {
+Pattern p=Pattern.compile(MizLib.CHARACTER_REGEX);
+for (int i=0; i < mTvShowList.size(); i++) {
+if (isCancelled()) return null;
+String lowerCaseTitle=mTvShowList.get(i).getTitle().toLowerCase(Locale.ENGLISH);
+if (lowerCaseTitle.contains(mSearchQuery) || p.matcher(lowerCaseTitle).replaceAll("").indexOf(mSearchQuery) != -1) {
+tempCollection.add(mTvShowList.get(i));
+}
+}
+}
+mTvShowList.clear();
+mTvShowList.addAll(tempCollection);
+tempCollection.clear();
+}
+Collections.sort(mTvShowList,getSortType().getComparator());
+return null;
+}

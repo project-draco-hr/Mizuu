@@ -1,5 +1,0 @@
-{
-  super.onResume();
-  if (mTvShows.size() == 0)   forceLoaderLoad();
-  notifyDataSetChanged();
-}

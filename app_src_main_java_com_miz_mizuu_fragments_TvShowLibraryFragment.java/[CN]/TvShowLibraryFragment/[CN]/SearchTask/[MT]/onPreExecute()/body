@@ -1,4 +1,0 @@
-{
-  setProgressBarVisible(true);
-  mTvShowKeys.clear();
-}

@@ -1,0 +1,4 @@
+Activity activity
+CharSequence[] temp
+int title
+int type

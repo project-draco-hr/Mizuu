@@ -1,3 +1,0 @@
-{
-  if (isAdded())   MizuuApplication.clearLruCache(getActivity());
-}

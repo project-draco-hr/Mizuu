@@ -1,0 +1,3 @@
+{
+  return mDatabase.query(DATABASE_TABLE,SELECT_ALL,KEY_SHOW_FAVOURITE + " = '1' AND NOT(" + KEY_SHOW_ID+ " = '"+ UNIDENTIFIED_ID+ "')",null,null,null,KEY_SHOW_TITLE + " ASC");
+}

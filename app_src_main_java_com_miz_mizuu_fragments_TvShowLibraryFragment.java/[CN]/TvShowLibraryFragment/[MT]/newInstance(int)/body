@@ -1,0 +1,7 @@
+{
+  TvShowLibraryFragment frag=new TvShowLibraryFragment();
+  Bundle b=new Bundle();
+  b.putInt("type",type);
+  frag.setArguments(b);
+  return frag;
+}

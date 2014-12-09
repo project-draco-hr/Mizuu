@@ -1,5 +1,4 @@
 {
-  if (isAdded() && mActionBar != null) {
-    showTvShowSection(ALL_SHOWS);
-  }
+  mTvShowLoader.load();
+  showProgressBar();
 }

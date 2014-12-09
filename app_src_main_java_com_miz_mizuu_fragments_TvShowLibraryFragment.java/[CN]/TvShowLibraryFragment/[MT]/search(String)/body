@@ -1,6 +1,0 @@
-{
-  setProgressBarVisible(true);
-  if (mSearch != null)   mSearch.cancel(true);
-  mSearch=new SearchTask(query);
-  mSearch.execute();
-}

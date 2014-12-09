@@ -1,0 +1,3 @@
+{
+  mEmptyLibraryLayout.setVisibility(View.GONE);
+}

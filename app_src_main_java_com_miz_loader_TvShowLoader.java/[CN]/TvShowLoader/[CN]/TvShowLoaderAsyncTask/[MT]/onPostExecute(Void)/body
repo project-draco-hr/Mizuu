@@ -1,0 +1,7 @@
+{
+  if (!isCancelled()) {
+    mResults=new ArrayList<>(mTvShowList);
+    mCallback.onLoadCompleted();
+  }
+ else   mTvShowList.clear();
+}

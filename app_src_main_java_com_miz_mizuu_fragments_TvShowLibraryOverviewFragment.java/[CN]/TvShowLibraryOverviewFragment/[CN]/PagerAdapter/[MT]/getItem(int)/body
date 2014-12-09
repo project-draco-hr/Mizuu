@@ -1,0 +1,16 @@
+{
+switch (index) {
+case 0:
+    return TvShowLibraryFragment.newInstance(TvShowLoader.ALL_SHOWS);
+case 1:
+  return TvShowLibraryFragment.newInstance(TvShowLoader.FAVORITES);
+case 2:
+return TvShowLibraryFragment.newInstance(TvShowLoader.RECENTLY_AIRED);
+case 3:
+return TvShowLibraryFragment.newInstance(TvShowLoader.WATCHED);
+case 4:
+return TvShowLibraryFragment.newInstance(TvShowLoader.UNWATCHED);
+default :
+return null;
+}
+}
