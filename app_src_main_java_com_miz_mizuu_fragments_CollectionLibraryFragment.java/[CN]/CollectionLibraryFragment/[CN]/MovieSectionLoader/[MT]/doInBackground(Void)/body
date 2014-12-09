@@ -1,7 +1,7 @@
 {
   if (isCancelled())   return false;
 switch (mPosition) {
-case ALL_MOVIES:
+case 0:
     for (int i=0; i < mMovies.size(); i++)     mTempKeys.add(i);
   break;
 }
