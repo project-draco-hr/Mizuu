@@ -1,4 +1,5 @@
 {
+  if (TextUtils.isEmpty(tmdbId))   return;
   DbAdapterMovies db=MizuuApplication.getMovieAdapter();
   db.deleteMovie(tmdbId);
   String collectionId=db.getCollectionId(tmdbId);

@@ -1,4 +1,5 @@
 {
+  if (TextUtils.isEmpty(tmdbId))   return "";
   String singleItem="";
   Cursor c=mDatabase.query(DATABASE_TABLE,new String[]{column},KEY_TMDB_ID + " = ?",new String[]{tmdbId},null,null,null);
   if (c != null) {
