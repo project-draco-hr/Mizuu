@@ -1,3 +1,0 @@
-{
-  attachToRecyclerView(recyclerView,new FabRecyclerOnViewScrollListener());
-}

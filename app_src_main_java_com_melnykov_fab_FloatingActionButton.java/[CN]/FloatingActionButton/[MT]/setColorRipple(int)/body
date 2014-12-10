@@ -1,6 +1,0 @@
-{
-  if (color != mColorRipple) {
-    mColorRipple=color;
-    updateBackground();
-  }
-}

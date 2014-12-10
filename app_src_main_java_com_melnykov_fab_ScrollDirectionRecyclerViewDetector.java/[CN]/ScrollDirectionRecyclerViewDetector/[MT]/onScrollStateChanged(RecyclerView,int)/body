@@ -1,4 +1,0 @@
-{
-  super.onScrollStateChanged(recyclerView,newState);
-  mMinSignificantScroll=recyclerView.getContext().getResources().getDimensionPixelOffset(R.dimen.fab_min_significant_scroll);
-}
