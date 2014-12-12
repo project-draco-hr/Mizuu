@@ -1,6 +1,6 @@
 {
   for (  String path : mFilepaths) {
-    TvShowDatabaseUtils.deleteEpisode(this,mOldShowId,path);
+    if (!TextUtils.isEmpty(mOldShowId))     TvShowDatabaseUtils.deleteEpisode(this,mOldShowId,path);
   }
   LocalBroadcastUtils.updateTvShowLibrary(this);
 }
