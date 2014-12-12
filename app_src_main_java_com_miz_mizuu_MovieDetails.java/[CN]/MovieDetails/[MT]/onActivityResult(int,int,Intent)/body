@@ -1,13 +1,7 @@
 {
   super.onActivityResult(requestCode,resultCode,data);
-  if (requestCode == 0) {
-    if (resultCode == Activity.RESULT_OK) {
-      finish();
-    }
-  }
-  if (resultCode == 1)   WidgetUtils.updateMovieWidgets(this);
-  if (resultCode == 2 || resultCode == 4) {
-    if (resultCode == 4)     Toast.makeText(this,getString(R.string.updatedMovie),Toast.LENGTH_SHORT).show();
+  if (resultCode == 4) {
+    Toast.makeText(this,getString(R.string.updatedMovie),Toast.LENGTH_SHORT).show();
     Intent intent=new Intent();
     intent.setClass(getApplicationContext(),MovieDetails.class);
     intent.putExtra("tmdbId",mMovieId);
