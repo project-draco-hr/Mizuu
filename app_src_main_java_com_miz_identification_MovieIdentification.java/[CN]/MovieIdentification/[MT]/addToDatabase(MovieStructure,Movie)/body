@@ -1,4 +1,7 @@
 {
+  System.out.println("OLD ID: " + getCurrentMovieId());
+  System.out.println("NEW ID: " + getMovieId());
+  System.out.println("MOVIE ID: " + movie.getId());
   DbAdapterMovieMappings dbHelperMovieMapping=MizuuApplication.getMovieMappingAdapter();
   DbAdapterMovies dbHelper=MizuuApplication.getMovieAdapter();
   if (overrideMovieId()) {
@@ -7,8 +10,13 @@
       dbHelperMovieMapping.updateTmdbId(ms.getFilepath(),getCurrentMovieId(),getMovieId());
     }
  else {
-      MovieDatabaseUtils.deleteMovie(mContext,getCurrentMovieId());
-      dbHelperMovieMapping.createFilepathMapping(ms.getFilepath(),getMovieId());
+      if (TextUtils.isEmpty(getCurrentMovieId())) {
+        dbHelperMovieMapping.updateTmdbId(ms.getFilepath(),getMovieId());
+      }
+ else {
+        MovieDatabaseUtils.deleteMovie(mContext,getCurrentMovieId());
+        dbHelperMovieMapping.createFilepathMapping(ms.getFilepath(),getMovieId());
+      }
     }
   }
  else {
