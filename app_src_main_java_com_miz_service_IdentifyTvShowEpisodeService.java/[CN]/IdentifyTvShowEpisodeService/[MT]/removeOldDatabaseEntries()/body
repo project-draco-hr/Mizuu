@@ -1,6 +1,7 @@
 {
   for (  String path : mFilepaths) {
     if (!TextUtils.isEmpty(mOldShowId))     TvShowDatabaseUtils.deleteEpisode(this,mOldShowId,path);
+ else     MizuuApplication.getTvShowEpisodeMappingsDbAdapter().deleteFilepath(path);
   }
   LocalBroadcastUtils.updateTvShowLibrary(this);
 }
