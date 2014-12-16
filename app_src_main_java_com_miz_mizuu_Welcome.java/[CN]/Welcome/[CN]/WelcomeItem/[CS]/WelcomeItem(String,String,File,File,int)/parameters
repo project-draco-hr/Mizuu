@@ -1,0 +1,5 @@
+String itemId
+String title
+File backdrop
+File cover
+int type

@@ -1,6 +1,0 @@
-{
-  mPath=path;
-  mId=id;
-  mMovie=isMovie;
-  mTitle=title;
-}

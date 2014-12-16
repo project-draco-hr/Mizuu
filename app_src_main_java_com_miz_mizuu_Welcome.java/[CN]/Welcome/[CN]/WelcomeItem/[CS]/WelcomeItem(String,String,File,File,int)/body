@@ -1,0 +1,7 @@
+{
+  mItemId=itemId;
+  mTitle=title;
+  mBackdrop=backdrop;
+  mCover=cover;
+  mType=type;
+}

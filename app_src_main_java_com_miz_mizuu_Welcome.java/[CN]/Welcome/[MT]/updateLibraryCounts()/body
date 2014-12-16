@@ -2,15 +2,8 @@
   new Thread(){
     @Override public void run(){
       try {
-        mNumMovies=dbHelper.count();
-        mNumWatchlist=dbHelper.countWatchlist();
-        mNumShows=dbHelperTv.count();
-        runOnUiThread(new Runnable(){
-          @Override public void run(){
-            ((BaseAdapter)list.getAdapter()).notifyDataSetChanged();
-          }
-        }
-);
+        mNumMovies=MizuuApplication.getMovieAdapter().count();
+        mNumShows=MizuuApplication.getTvDbAdapter().count();
       }
  catch (      Exception e) {
       }

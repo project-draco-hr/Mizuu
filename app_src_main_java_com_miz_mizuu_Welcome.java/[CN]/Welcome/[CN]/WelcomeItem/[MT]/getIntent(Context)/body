@@ -1,0 +1,5 @@
+{
+  Intent i=new Intent(context,getType() == MOVIE ? MovieDetails.class : TvShowDetails.class);
+  i.putExtra(getType() == MOVIE ? "tmdbId" : "showId",getItemId());
+  return i;
+}

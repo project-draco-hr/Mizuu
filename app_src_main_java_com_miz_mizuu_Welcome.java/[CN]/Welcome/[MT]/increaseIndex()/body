@@ -1,9 +1,4 @@
 {
-  index++;
-  index=index % backdrops.size();
-  tFile=new File(backdrops.get(index).getPath());
-  if (!tFile.exists() && tries < 10) {
-    tries++;
-    increaseIndex();
-  }
+  if (index >= (mItems.size() - 1))   index=0;
+ else   index++;
 }
