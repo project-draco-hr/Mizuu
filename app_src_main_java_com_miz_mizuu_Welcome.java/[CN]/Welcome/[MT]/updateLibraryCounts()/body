@@ -1,13 +1,6 @@
 {
-  new Thread(){
-    @Override public void run(){
-      try {
-        mNumMovies=MizuuApplication.getMovieAdapter().count();
-        mNumShows=MizuuApplication.getTvDbAdapter().count();
-      }
- catch (      Exception e) {
-      }
-    }
-  }
-.start();
+  mNumMovies=MizuuApplication.getMovieAdapter().count();
+  mNumShows=MizuuApplication.getTvDbAdapter().count();
+  setupMenuItems();
+  ((BaseAdapter)mListView.getAdapter()).notifyDataSetChanged();
 }

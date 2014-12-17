@@ -1,0 +1,4 @@
+{
+  int type=mMenuItems.get(position).getType();
+  return !(type == MenuItem.SEPARATOR || type == MenuItem.SUB_HEADER);
+}
