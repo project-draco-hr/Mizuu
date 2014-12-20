@@ -1,11 +1,11 @@
 {
   final RenderScript rs=RenderScript.create(context);
-  final Allocation input=Allocation.createFromBitmap(rs,sentBitmap,Allocation.MipmapControl.MIPMAP_NONE,Allocation.USAGE_SCRIPT);
+  final Allocation input=Allocation.createFromBitmap(rs,originalBitmap);
   final Allocation output=Allocation.createTyped(rs,input.getType());
   final ScriptIntrinsicBlur script=ScriptIntrinsicBlur.create(rs,Element.U8_4(rs));
   script.setRadius(radius);
   script.setInput(input);
   script.forEach(output);
-  output.copyTo(sentBitmap);
-  return sentBitmap;
+  output.copyTo(originalBitmap);
+  return originalBitmap;
 }
