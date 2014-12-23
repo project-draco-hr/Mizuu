@@ -19,15 +19,23 @@
   mDrawerList.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
 switch (mMenuItems.get(arg2).getType()) {
+case MenuItem.HEADER:
+        Intent intent=new Intent(getApplicationContext(),Preferences.class);
+      intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,AccountsFragment.class.getName());
+    intent.putExtra(PreferenceActivity.EXTRA_NO_HEADERS,true);
+  intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,getString(R.string.social));
+intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_SHORT_TITLE,getString(R.string.social));
+startActivity(intent);
+break;
 case MenuItem.SECTION:
-        loadFragment(mMenuItems.get(arg2).getFragment());
-      break;
+loadFragment(mMenuItems.get(arg2).getFragment());
+break;
 case MenuItem.THIRD_PARTY_APP:
-    final PackageManager pm=getPackageManager();
-  Intent i=pm.getLaunchIntentForPackage(mMenuItems.get(arg2).getPackageName());
+final PackageManager pm=getPackageManager();
+Intent i=pm.getLaunchIntentForPackage(mMenuItems.get(arg2).getPackageName());
 if (i != null) {
-  i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-  startActivity(i);
+i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+startActivity(i);
 }
 break;
 case MenuItem.SETTINGS_AREA:
