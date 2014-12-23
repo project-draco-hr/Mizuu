@@ -19,6 +19,10 @@
         i.putExtra("startup",String.valueOf(Main.SHOWS));
         startActivity(i);
       }
+ else {
+        LocalBroadcastUtils.updateTvShowSeasonsOverview(mContext);
+        LocalBroadcastUtils.updateTvShowEpisodesOverview(mContext);
+      }
       notifyDatasetChanges();
       getActivity().finish();
     }

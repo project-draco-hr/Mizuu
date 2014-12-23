@@ -9,4 +9,5 @@
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
   mShowId=getArguments().getString(SHOW_ID);
   mToolbarColor=getArguments().getInt(IntentKeys.TOOLBAR_COLOR);
+  LocalBroadcastManager.getInstance(mContext).registerReceiver(mBroadcastReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_TV_SHOW_SEASONS_OVERVIEW));
 }

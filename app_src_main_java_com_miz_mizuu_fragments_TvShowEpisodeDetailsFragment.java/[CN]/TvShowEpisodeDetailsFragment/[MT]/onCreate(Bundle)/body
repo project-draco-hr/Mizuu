@@ -6,11 +6,10 @@
   mBus=MizuuApplication.getBus();
   mShowFileLocation=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(SHOW_FILE_LOCATION,true);
   mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
-  mLight=TypefaceUtils.getRobotoLight(mContext);
   mMediumItalic=TypefaceUtils.getRobotoMediumItalic(mContext);
   mMedium=TypefaceUtils.getRobotoMedium(mContext);
-  mBold=TypefaceUtils.getRobotoBold(mContext);
   mCondensedRegular=TypefaceUtils.getRobotoCondensedRegular(mContext);
   mDatabaseHelper=MizuuApplication.getTvEpisodeDbAdapter();
+  LocalBroadcastManager.getInstance(mContext).registerReceiver(mBroadcastReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_TV_SHOW_EPISODE_DETAILS_OVERVIEW));
   loadEpisode();
 }

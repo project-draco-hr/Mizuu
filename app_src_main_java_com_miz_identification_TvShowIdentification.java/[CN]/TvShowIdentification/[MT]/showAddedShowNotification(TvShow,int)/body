@@ -10,5 +10,6 @@
     mCallback.onTvShowAdded(show.getId(),show.getTitle(),null,null,episodeCount);
   }
   LocalBroadcastUtils.updateTvShowLibrary(mContext);
+  LocalBroadcastUtils.updateTvShowSeasonsOverview(mContext);
   WidgetUtils.updateTvShowWidgets(mContext);
 }

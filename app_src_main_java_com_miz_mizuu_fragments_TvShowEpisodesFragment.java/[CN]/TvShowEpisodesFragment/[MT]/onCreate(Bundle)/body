@@ -11,4 +11,5 @@
   mShowId=getArguments().getString(SHOW_ID);
   mSeason=getArguments().getInt(SEASON);
   mUseGridView=PreferenceManager.getDefaultSharedPreferences(mContext).getString(TVSHOWS_COLLECTION_LAYOUT,getString(R.string.gridView)).equals(getString(R.string.gridView));
+  LocalBroadcastManager.getInstance(mContext).registerReceiver(mBroadcastReceiver,new IntentFilter(LocalBroadcastUtils.UPDATE_TV_SHOW_EPISODES_OVERVIEW));
 }

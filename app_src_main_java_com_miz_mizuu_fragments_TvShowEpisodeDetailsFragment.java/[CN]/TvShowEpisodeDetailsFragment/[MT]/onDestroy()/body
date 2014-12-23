@@ -1,5 +1,4 @@
 {
   super.onDestroy();
-  mBus.unregister(this);
   LocalBroadcastManager.getInstance(mContext).unregisterReceiver(mBroadcastReceiver);
 }

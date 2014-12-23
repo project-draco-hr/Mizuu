@@ -1,0 +1,3 @@
+{
+  LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(UPDATE_TV_SHOW_EPISODES_OVERVIEW));
+}
