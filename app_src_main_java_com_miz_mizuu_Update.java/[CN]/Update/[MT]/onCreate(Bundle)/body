@@ -1,10 +1,10 @@
 {
   super.onCreate(savedInstanceState);
-  mToolbar=(Toolbar)findViewById(R.id.toolbar);
-  setSupportActionBar(mToolbar);
   mIsMovie=getIntent().getExtras().getBoolean("isMovie");
+  mToolbar=(Toolbar)findViewById(R.id.toolbar);
+  if (!mIsMovie)   mToolbar.setTitle(getString(R.string.updateTvShowsTitle));
+  setSupportActionBar(mToolbar);
   mTypeface=TypefaceUtils.getRobotoLight(this);
-  if (!mIsMovie)   setTitle(getString(R.string.updateTvShowsTitle));
   mSharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
   mClearLibrary=(CheckBox)findViewById(R.id.checkBox);
   mClearLibrary.setTypeface(mTypeface);
