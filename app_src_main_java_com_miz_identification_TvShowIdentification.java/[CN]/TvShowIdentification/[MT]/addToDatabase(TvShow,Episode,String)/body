@@ -1,5 +1,10 @@
 {
   DbAdapterTvShowEpisodes dbHelper=MizuuApplication.getTvEpisodeDbAdapter();
-  dbHelper.createEpisode(filepath,MizLib.addIndexZero(ep.getSeason()),MizLib.addIndexZero(ep.getEpisode()),thisShow.getId(),ep.getTitle(),ep.getDescription(),ep.getAirdate(),ep.getRating(),ep.getDirector(),ep.getWriter(),ep.getGueststars(),"0","0");
+  if (thisShow.getId().equals(DbAdapterTvShows.UNIDENTIFIED_ID)) {
+    MizuuApplication.getTvShowEpisodeMappingsDbAdapter().createFilepathMapping(filepath,thisShow.getId(),MizLib.addIndexZero(ep.getSeason()),MizLib.addIndexZero(ep.getEpisode()));
+  }
+ else {
+    dbHelper.createEpisode(filepath,MizLib.addIndexZero(ep.getSeason()),MizLib.addIndexZero(ep.getEpisode()),thisShow.getId(),ep.getTitle(),ep.getDescription(),ep.getAirdate(),ep.getRating(),ep.getDirector(),ep.getWriter(),ep.getGueststars(),"0","0");
+  }
   updateNotification(thisShow,ep,filepath);
 }
