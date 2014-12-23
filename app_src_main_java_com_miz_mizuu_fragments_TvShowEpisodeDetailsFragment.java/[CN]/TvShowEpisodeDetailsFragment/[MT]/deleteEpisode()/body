@@ -13,6 +13,12 @@
           getActivity().startService(deleteIntent);
         }
       }
+      if (MizuuApplication.getTvEpisodeDbAdapter().getEpisodeCount(mEpisode.getShowId()) == 0) {
+        Intent i=new Intent(mContext,Main.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        i.putExtra("startup",String.valueOf(Main.SHOWS));
+        startActivity(i);
+      }
       notifyDatasetChanges();
       getActivity().finish();
     }
