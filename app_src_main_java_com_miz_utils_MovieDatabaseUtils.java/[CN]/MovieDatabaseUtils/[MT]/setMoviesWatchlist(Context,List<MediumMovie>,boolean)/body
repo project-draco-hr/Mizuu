@@ -1,0 +1,13 @@
+{
+  boolean success=true;
+  for (  MediumMovie movie : movies)   success=success && MizuuApplication.getMovieAdapter().updateMovieSingleItem(movie.getTmdbId(),DbAdapterMovies.KEY_TO_WATCH,toWatch ? "1" : "0");
+  if (success)   if (toWatch)   Toast.makeText(context,context.getString(R.string.addedToWatchList),Toast.LENGTH_SHORT).show();
+ else   Toast.makeText(context,context.getString(R.string.removedFromWatchList),Toast.LENGTH_SHORT).show();
+ else   Toast.makeText(context,context.getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();
+  new Thread(){
+    @Override public void run(){
+      Trakt.moviesWatchlist(movies,context);
+    }
+  }
+.start();
+}

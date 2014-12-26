@@ -1,0 +1,5 @@
+{
+  if (checked)   mChecked.add(index);
+ else   mChecked.remove(index);
+  notifyDataSetChanged();
+}

@@ -16,9 +16,57 @@
     }
   }
 );
-  mMovieLoader=new MovieLoader(mContext,MovieLibraryType.fromInt(getArguments().getInt("type")),mCallback);
-  mMovieLoader.setIgnorePrefixes(mIgnorePrefixes);
-  mMovieLoader.load();
-  showProgressBar();
-  return v;
+  if (getArguments().getInt("type") != MovieLoader.COLLECTIONS) {
+    mGridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
+    mGridView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener(){
+      @Override public void onItemCheckedStateChanged(      ActionMode mode,      int position,      long id,      boolean checked){
+        mAdapter.setItemChecked(position,checked);
+        mode.setTitle(String.format(getString(R.string.selected),mAdapter.getCheckedItemCount()));
+      }
+      @Override public boolean onCreateActionMode(      ActionMode mode,      Menu menu){
+        getActivity().getMenuInflater().inflate(R.menu.movie_library_cab,menu);
+        return true;
+      }
+      @Override public boolean onPrepareActionMode(      ActionMode mode,      Menu menu){
+        return false;
+      }
+      @Override public boolean onActionItemClicked(      ActionMode mode,      MenuItem item){
+        int id=item.getItemId();
+switch (id) {
+case R.id.movie_add_fav:
+          MovieDatabaseUtils.setMoviesFavourite(mContext,mAdapter.getCheckedMovies(),true);
+        break;
+case R.id.movie_remove_fav:
+      MovieDatabaseUtils.setMoviesFavourite(mContext,mAdapter.getCheckedMovies(),false);
+    break;
+case R.id.movie_watched:
+  MovieDatabaseUtils.setMoviesWatched(mContext,mAdapter.getCheckedMovies(),true);
+break;
+case R.id.movie_unwatched:
+MovieDatabaseUtils.setMoviesWatched(mContext,mAdapter.getCheckedMovies(),false);
+break;
+case R.id.add_to_watchlist:
+MovieDatabaseUtils.setMoviesWatchlist(mContext,mAdapter.getCheckedMovies(),true);
+break;
+case R.id.remove_from_watchlist:
+MovieDatabaseUtils.setMoviesWatchlist(mContext,mAdapter.getCheckedMovies(),false);
+break;
+}
+if (!(id == R.id.watched_menu || id == R.id.watchlist_menu || id == R.id.favorite_menu)) {
+mode.finish();
+LocalBroadcastUtils.updateMovieLibrary(mContext);
+}
+return true;
+}
+@Override public void onDestroyActionMode(ActionMode mode){
+mAdapter.clearCheckedItems();
+}
+}
+);
+}
+mMovieLoader=new MovieLoader(mContext,MovieLibraryType.fromInt(getArguments().getInt("type")),mCallback);
+mMovieLoader.setIgnorePrefixes(mIgnorePrefixes);
+mMovieLoader.load();
+showProgressBar();
+return v;
 }

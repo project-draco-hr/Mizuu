@@ -1,0 +1,5 @@
+{
+  List<MediumMovie> movies=new ArrayList<>(mChecked.size());
+  for (  Integer i : mChecked)   movies.add(getItem(i));
+  return movies;
+}
