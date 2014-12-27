@@ -16,9 +16,49 @@
     }
   }
 );
-  mTvShowLoader=new TvShowLoader(mContext,TvShowLibraryType.fromInt(getArguments().getInt("type")),mCallback);
-  mTvShowLoader.setIgnorePrefixes(mIgnorePrefixes);
-  mTvShowLoader.load();
-  showProgressBar();
-  return v;
+  mGridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
+  mGridView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener(){
+    @Override public void onItemCheckedStateChanged(    ActionMode mode,    int position,    long id,    boolean checked){
+      mAdapter.setItemChecked(position,checked);
+      mode.setTitle(String.format(getString(R.string.selected),mAdapter.getCheckedItemCount()));
+    }
+    @Override public boolean onCreateActionMode(    ActionMode mode,    Menu menu){
+      getActivity().getMenuInflater().inflate(R.menu.show_library_cab,menu);
+      return true;
+    }
+    @Override public boolean onPrepareActionMode(    ActionMode mode,    Menu menu){
+      return false;
+    }
+    @Override public boolean onActionItemClicked(    ActionMode mode,    MenuItem item){
+      int id=item.getItemId();
+switch (id) {
+case R.id.show_add_fav:
+        TvShowDatabaseUtils.setTvShowsFavourite(mContext,mAdapter.getCheckedShows(),true);
+      break;
+case R.id.show_remove_fav:
+    TvShowDatabaseUtils.setTvShowsFavourite(mContext,mAdapter.getCheckedShows(),false);
+  break;
+case R.id.show_watched:
+TvShowDatabaseUtils.setTvShowsWatched(mContext,mAdapter.getCheckedShows(),true);
+break;
+case R.id.show_unwatched:
+TvShowDatabaseUtils.setTvShowsWatched(mContext,mAdapter.getCheckedShows(),false);
+break;
+}
+if (!(id == R.id.watched_menu || id == R.id.favorite_menu)) {
+mode.finish();
+LocalBroadcastUtils.updateTvShowLibrary(mContext);
+}
+return true;
+}
+@Override public void onDestroyActionMode(ActionMode mode){
+mAdapter.clearCheckedItems();
+}
+}
+);
+mTvShowLoader=new TvShowLoader(mContext,TvShowLibraryType.fromInt(getArguments().getInt("type")),mCallback);
+mTvShowLoader.setIgnorePrefixes(mIgnorePrefixes);
+mTvShowLoader.load();
+showProgressBar();
+return v;
 }

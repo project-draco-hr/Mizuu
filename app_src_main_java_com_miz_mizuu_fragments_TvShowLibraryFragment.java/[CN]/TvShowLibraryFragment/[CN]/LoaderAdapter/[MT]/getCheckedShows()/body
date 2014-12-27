@@ -1,0 +1,5 @@
+{
+  List<TvShow> shows=new ArrayList<>(mChecked.size());
+  for (  Integer i : mChecked)   shows.add(getItem(i));
+  return shows;
+}

@@ -1,0 +1,29 @@
+{
+  boolean success=true;
+  for (  TvShow show : shows)   success=success && MizuuApplication.getTvEpisodeDbAdapter().setShowWatchStatus(show.getId(),watched);
+  if (success)   if (watched)   Toast.makeText(context,context.getString(R.string.markedAsWatched),Toast.LENGTH_SHORT).show();
+ else   Toast.makeText(context,context.getString(R.string.markedAsUnwatched),Toast.LENGTH_SHORT).show();
+ else   Toast.makeText(context,context.getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();
+  new Thread(){
+    @Override public void run(){
+      for (      TvShow show : shows) {
+        Cursor cursor=MizuuApplication.getTvEpisodeDbAdapter().getEpisodes(show.getId());
+        if (cursor != null) {
+          try {
+            List<TvShowEpisode> episodes=new ArrayList<>();
+            while (cursor.moveToNext()) {
+              episodes.add(new TvShowEpisode(show.getId(),MizLib.getInteger(cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisodes.KEY_EPISODE))),MizLib.getInteger(cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisodes.KEY_SEASON)))));
+            }
+            Trakt.markEpisodeAsWatched(show.getId(),episodes,context,watched);
+          }
+ catch (          Exception e) {
+          }
+ finally {
+            cursor.close();
+          }
+        }
+      }
+    }
+  }
+.start();
+}

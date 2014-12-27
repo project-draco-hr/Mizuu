@@ -4,6 +4,7 @@
   if (convertView == null) {
     convertView=mInflater.inflate(R.layout.grid_cover,container,false);
     holder=new CoverItem();
+    holder.cardview=(CardView)convertView.findViewById(R.id.card);
     holder.cover=(ImageView)convertView.findViewById(R.id.cover);
     holder.text=(TextView)convertView.findViewById(R.id.text);
     holder.text.setTypeface(mTypeface);
@@ -21,5 +22,11 @@
   }
   holder.cover.setImageResource(R.color.card_background_dark);
   mPicasso.load(show.getThumbnail()).placeholder(R.drawable.bg).config(mConfig).into(holder);
+  if (mChecked.contains(position)) {
+    holder.cardview.setForeground(getResources().getDrawable(R.drawable.checked_foreground_drawable));
+  }
+ else {
+    holder.cardview.setForeground(null);
+  }
   return convertView;
 }
