@@ -7,7 +7,7 @@
   mEmptyLibraryDescription=(TextView)v.findViewById(R.id.empty_library_description);
   mEmptyLibraryDescription.setTypeface(TypefaceUtils.getRobotoLight(mContext));
   mAdapter=new LoaderAdapter(mContext);
-  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView=(ObservableGridView)v.findViewById(R.id.gridView);
   mGridView.setAdapter(mAdapter);
   mGridView.setColumnWidth(mImageThumbSize);
   mGridView.setOnItemClickListener(new OnItemClickListener(){
@@ -16,6 +16,7 @@
     }
   }
 );
+  mGridView.setScrollViewCallbacks(ViewUtils.getLibraryScrollViewCallback(getActivity()));
   mGridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
   mGridView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener(){
     @Override public void onItemCheckedStateChanged(    ActionMode mode,    int position,    long id,    boolean checked){

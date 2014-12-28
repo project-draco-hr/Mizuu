@@ -3,7 +3,7 @@
   mProgressBar=(ProgressBar)v.findViewById(R.id.progress);
   if (mVideos.size() > 0)   mProgressBar.setVisibility(View.GONE);
   mAdapter=new ImageAdapter(getActivity());
-  mGridView=(GridView)v.findViewById(R.id.gridView);
+  mGridView=(ObservableGridView)v.findViewById(R.id.gridView);
   mGridView.setClipToPadding(false);
   mGridView.setAdapter(mAdapter);
   mGridView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
@@ -32,4 +32,5 @@
     }
   }
 );
+  mGridView.setScrollViewCallbacks(ViewUtils.getLibraryScrollViewCallback(getActivity()));
 }
