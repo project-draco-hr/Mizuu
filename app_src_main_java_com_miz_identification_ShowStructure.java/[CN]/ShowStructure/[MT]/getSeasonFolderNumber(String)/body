@@ -1,6 +1,6 @@
 {
   folderName=folderName.trim();
-  Pattern pattern=Pattern.compile("^(?:season|staffel)[-_ \\.]?(\\d{1,4}).*?$",Pattern.CASE_INSENSITIVE);
+  Pattern pattern=Pattern.compile("^(?:season|staffel|series)[-_ \\.]?(\\d{1,4}).*?$",Pattern.CASE_INSENSITIVE);
   Matcher matcher=pattern.matcher(folderName);
   if (matcher.find())   return MizLib.getInteger(matcher.group(1));
   pattern=Pattern.compile("^s[-_ \\.]?(\\d{1,4}).*?$",Pattern.CASE_INSENSITIVE);
