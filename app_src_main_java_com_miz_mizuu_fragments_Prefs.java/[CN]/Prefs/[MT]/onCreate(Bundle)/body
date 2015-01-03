@@ -5,6 +5,23 @@
   PreferenceManager.getDefaultSharedPreferences(getActivity()).registerOnSharedPreferenceChangeListener(this);
   mPref=getPreferenceScreen().findPreference("prefsIgnoredFiles");
   if (mPref != null)   mPref.setEnabled(PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(IGNORED_FILES_ENABLED,false));
+  mCopyDatabase=getPreferenceScreen().findPreference("prefsCopyDatabase");
+  if (mCopyDatabase != null)   mCopyDatabase.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+    @Override public boolean onPreferenceClick(    Preference preference){
+      try {
+        File newPath=new File(MizuuApplication.getAppFolder(getActivity()),"database.db");
+        newPath.createNewFile();
+        FileUtils.copyFile(FileUtils.getDatabaseFile(getActivity()),newPath);
+        Toast.makeText(getActivity(),getString(R.string.database_copied) + "\n(" + newPath.getAbsolutePath()+ ")",Toast.LENGTH_LONG).show();
+      }
+ catch (      IOException e) {
+        Toast.makeText(getActivity(),R.string.errorSomethingWentWrong,Toast.LENGTH_SHORT).show();
+        e.printStackTrace();
+      }
+      return true;
+    }
+  }
+);
   mLanguagePref=getPreferenceScreen().findPreference(LANGUAGE_PREFERENCE);
   if (mLanguagePref != null)   mLanguagePref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
     @Override public boolean onPreferenceClick(    Preference preference){
