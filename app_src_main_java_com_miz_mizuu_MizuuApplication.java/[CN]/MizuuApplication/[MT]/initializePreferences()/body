@@ -1,0 +1,7 @@
+{
+  PreferenceManager.setDefaultValues(this,R.xml.advanced_prefs,false);
+  PreferenceManager.setDefaultValues(this,R.xml.general_prefs,false);
+  PreferenceManager.setDefaultValues(this,R.xml.identification_search_prefs,false);
+  PreferenceManager.setDefaultValues(this,R.xml.other_prefs,false);
+  PreferenceManager.setDefaultValues(this,R.xml.user_interface_prefs,false);
+}

@@ -7,5 +7,5 @@
       break;
     }
   }
-  return getAuthFromFilesource(source);
+  return getLoginFromFilesource(source);
 }

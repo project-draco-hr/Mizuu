@@ -38,7 +38,7 @@
     episodes.add(new Episode(season,episode,"",after));
   }
   if (episodes.size() > 0)   return episodes;
-  pattern=Pattern.compile("(.*?)season[ ._-]*(\\d{1,4})[ ._-]*episode[ ._-]*(\\d{1,3})(.*)",Pattern.CASE_INSENSITIVE);
+  pattern=Pattern.compile("(.*?)(?:season|staffel|series)[ ._-]*(\\d{1,4})[ ._-]*episode[ ._-]*(\\d{1,3})(.*)",Pattern.CASE_INSENSITIVE);
   matcher=pattern.matcher(filename);
   if (matcher.find()) {
     String before=matcher.group(1);

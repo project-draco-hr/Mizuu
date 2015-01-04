@@ -14,7 +14,7 @@
     return "";
   }
   int contentType=(videoObject instanceof Movie) ? MizLib.TYPE_MOVIE : MizLib.TYPE_SHOWS;
-  final NtlmPasswordAuthentication auth=MizLib.getAuthFromFilepath(contentType,filepath);
+  final SmbLogin auth=MizLib.getLoginFromFilepath(contentType,filepath);
   new Thread(){
     public void run(){
       try {

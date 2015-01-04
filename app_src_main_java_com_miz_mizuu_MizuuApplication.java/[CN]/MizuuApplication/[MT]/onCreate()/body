@@ -2,6 +2,7 @@
   super.onCreate();
   mInstance=this;
   jcifs.Config.setProperty("jcifs.smb.client.disablePlainTextPasswords","false");
+  initializePreferences();
   sDbMovies=new DbAdapterMovies(this);
   sDbMovieMapping=new DbAdapterMovieMappings(this);
   sDbTvShowEpisode=new DbAdapterTvShowEpisodes(this);
