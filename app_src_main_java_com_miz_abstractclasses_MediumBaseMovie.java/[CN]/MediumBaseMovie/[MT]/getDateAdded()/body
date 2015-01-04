@@ -1,4 +1,4 @@
 {
-  if (!MizLib.isNumber(DATE_ADDED))   return "0";
+  if (TextUtils.isEmpty(DATE_ADDED) || !MizLib.isNumber(DATE_ADDED))   return "0";
   return DATE_ADDED;
 }
