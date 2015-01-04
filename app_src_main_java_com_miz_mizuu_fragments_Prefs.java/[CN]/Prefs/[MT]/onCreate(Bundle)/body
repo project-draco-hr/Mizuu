@@ -22,6 +22,15 @@
     }
   }
 );
+  mIgnoreNfoFiles=getPreferenceScreen().findPreference(PreferenceKeys.IGNORED_NFO_FILES);
+  if (mIgnoreNfoFiles != null)   mIgnoreNfoFiles.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener(){
+    @Override public boolean onPreferenceChange(    Preference preference,    Object newValue){
+      MizuuApplication.clearLruCache(getActivity());
+      LocalBroadcastUtils.updateMovieLibrary(getActivity());
+      return true;
+    }
+  }
+);
   mLanguagePref=getPreferenceScreen().findPreference(LANGUAGE_PREFERENCE);
   if (mLanguagePref != null)   mLanguagePref.setOnPreferenceClickListener(new OnPreferenceClickListener(){
     @Override public boolean onPreferenceClick(    Preference preference){

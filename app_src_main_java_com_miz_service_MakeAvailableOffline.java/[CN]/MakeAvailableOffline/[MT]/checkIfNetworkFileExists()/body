@@ -3,7 +3,7 @@
     return MizLib.exists(mFileUrl);
   }
  else {
-    mAuth=MizLib.getAuthFromFilepath(mType,mFileUrl);
+    mAuth=MizLib.getLoginFromFilepath(mType,mFileUrl);
     try {
       mSmb=new SmbFile(MizLib.createSmbLoginString(mAuth.getDomain(),mAuth.getUsername(),mAuth.getPassword(),mFileUrl,false));
       return mSmb.exists() && mSmb.length() > 1000;

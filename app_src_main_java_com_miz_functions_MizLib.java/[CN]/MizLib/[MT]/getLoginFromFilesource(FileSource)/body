@@ -1,0 +1,8 @@
+{
+  if (source == null || TextUtils.isEmpty(source.getDomain()) && TextUtils.isEmpty(source.getUser()) && TextUtils.isEmpty(source.getPassword())) {
+    return new SmbLogin("?","GUEST","");
+  }
+ else {
+    return new SmbLogin(source.getDomain(),source.getUser(),source.getPassword());
+  }
+}

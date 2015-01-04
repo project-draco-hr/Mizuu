@@ -38,14 +38,9 @@
       if (path.getType() == FileSource.SMB) {
         if (MizLib.isOnline(mContext)) {
           if (!TextUtils.isEmpty(filename)) {
-            SmbFile s=null;
+            SmbFile s;
             if (imageUri.contains("movie")) {
-              if (imageUri.contains("movie-thumbs")) {
-                s=MizLib.getCustomCoverArt(filename,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.COVER);
-              }
- else {
-                s=MizLib.getCustomCoverArt(filename,MizLib.getAuthFromFilepath(MizLib.TYPE_MOVIE,imageUri),MizLib.BACKDROP);
-              }
+              s=MizLib.getCustomCoverArt(filename,MizLib.getLoginFromFilepath(MizLib.TYPE_MOVIE,filename),imageUri.contains("movie-thumbs") ? MizLib.COVER : MizLib.BACKDROP);
               if (s != null)               return new Response(s.getInputStream(),localCacheOnly,s.getContentLength());
             }
           }
