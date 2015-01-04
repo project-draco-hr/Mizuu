@@ -1,6 +1,7 @@
 {
   super.onViewCreated(v,savedInstanceState);
   if (!MizLib.isTablet(getActivity()))   getActivity().setTitle(R.string.menuAboutContact);
+  mCheckBox=(CheckBox)v.findViewById(R.id.includeDatabase);
   subject=(Spinner)v.findViewById(R.id.subjectSpinner);
   message=(EditText)v.findViewById(R.id.traktUsername);
   deviceDetails=(TextView)v.findViewById(R.id.textView2);

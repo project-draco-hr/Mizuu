@@ -16,6 +16,10 @@
       }
       if (best != null)       emailIntent.setClassName(best.activityInfo.packageName,best.activityInfo.name);
       emailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+      if (mCheckBox.isChecked()) {
+        String path=FileUtils.copyDatabase(getActivity());
+        if (!TextUtils.isEmpty(path))         emailIntent.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(path)));
+      }
       startActivity(emailIntent);
       Toast.makeText(getActivity(),getString(R.string.launchingGmail),Toast.LENGTH_SHORT).show();
     }

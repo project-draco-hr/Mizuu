@@ -1,0 +1,12 @@
+{
+  try {
+    File newPath=new File(MizuuApplication.getAppFolder(context),"database.db");
+    newPath.createNewFile();
+    newPath.setReadable(true);
+    FileUtils.copyFile(FileUtils.getDatabaseFile(context),newPath);
+    return newPath.exists() ? newPath.getAbsolutePath() : null;
+  }
+ catch (  IOException e) {
+    return null;
+  }
+}
