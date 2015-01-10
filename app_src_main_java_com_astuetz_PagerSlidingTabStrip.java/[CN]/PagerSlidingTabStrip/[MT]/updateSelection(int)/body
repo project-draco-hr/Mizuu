@@ -1,6 +1,0 @@
-{
-  for (int i=0; i < tabCount; ++i) {
-    View tv=tabsContainer.getChildAt(i);
-    tv.setSelected(i == position);
-  }
-}

@@ -1,4 +1,0 @@
-{
-  this.dividerWidth=dividerWidthPx;
-  invalidate();
-}
