@@ -16,7 +16,6 @@
     }
   }
 );
-  mGridView.setScrollViewCallbacks(ViewUtils.getLibraryScrollViewCallback(getActivity()));
   if (getArguments().getInt("type") != MovieLoader.COLLECTIONS) {
     mGridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
     mGridView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener(){

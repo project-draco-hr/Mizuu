@@ -33,7 +33,6 @@
     }
   }
 );
-  mGridView.setScrollViewCallbacks(ViewUtils.getLibraryScrollViewCallback(getActivity()));
   if (getArguments().containsKey("json")) {
     mJson=getArguments().getString("json");
     mBaseUrl=getArguments().getString("baseUrl");
