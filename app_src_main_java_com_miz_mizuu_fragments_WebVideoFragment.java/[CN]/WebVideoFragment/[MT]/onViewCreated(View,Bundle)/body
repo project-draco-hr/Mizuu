@@ -20,15 +20,9 @@
 );
   mGridView.setOnItemClickListener(new OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-      if (YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(getActivity()).equals(YouTubeInitializationResult.SUCCESS)) {
-        Intent intent=YouTubeStandalonePlayer.createVideoIntent(getActivity(),MizLib.getYouTubeApiKey(getActivity()),mVideos.get(arg2).getId(),0,false,true);
-        startActivity(intent);
-      }
- else {
-        Intent intent=new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("http://www.youtube.com/watch?v=" + mVideos.get(arg2).getId()));
-        startActivity(intent);
-      }
+      Intent intent=new Intent(Intent.ACTION_VIEW);
+      intent.setData(Uri.parse("http://www.youtube.com/watch?v=" + mVideos.get(arg2).getId()));
+      startActivity(intent);
     }
   }
 );

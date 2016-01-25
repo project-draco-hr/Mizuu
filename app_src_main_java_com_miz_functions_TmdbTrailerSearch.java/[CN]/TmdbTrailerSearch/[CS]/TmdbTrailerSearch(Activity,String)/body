@@ -1,5 +1,4 @@
 {
   mActivity=activity;
   mMovieId=movieId;
-  mSearchQuery=searchQuery;
 }

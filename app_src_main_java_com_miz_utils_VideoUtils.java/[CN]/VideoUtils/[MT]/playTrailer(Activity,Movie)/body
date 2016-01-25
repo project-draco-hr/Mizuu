@@ -22,18 +22,12 @@
   }
  else {
     if (!TextUtils.isEmpty(movie.getTrailer())) {
-      if (YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(activity).equals(YouTubeInitializationResult.SUCCESS)) {
-        Intent intent=YouTubeStandalonePlayer.createVideoIntent(activity,MizLib.getYouTubeApiKey(activity),MizLib.getYouTubeId(movie.getTrailer()),0,false,true);
-        activity.startActivity(intent);
-      }
- else {
-        Intent intent=new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(movie.getTrailer()));
-        activity.startActivity(intent);
-      }
+      Intent intent=new Intent(Intent.ACTION_VIEW);
+      intent.setData(Uri.parse(movie.getTrailer()));
+      activity.startActivity(intent);
     }
  else {
-      new TmdbTrailerSearch(activity,movie.getTmdbId(),movie.getTitle()).execute();
+      new TmdbTrailerSearch(activity,movie.getTmdbId()).execute();
     }
   }
 }

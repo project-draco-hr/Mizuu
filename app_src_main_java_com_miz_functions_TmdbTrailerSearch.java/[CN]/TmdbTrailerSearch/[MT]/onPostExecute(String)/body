@@ -1,15 +1,6 @@
 {
   if (result != null) {
-    if (YouTubeApiServiceUtil.isYouTubeApiServiceAvailable(mActivity).equals(YouTubeInitializationResult.SUCCESS)) {
-      Intent intent=YouTubeStandalonePlayer.createVideoIntent(mActivity,MizLib.getYouTubeApiKey(mActivity),MizLib.getYouTubeId(result),0,false,true);
-      mActivity.startActivity(intent);
-    }
- else {
-      Intent intent=new Intent(Intent.ACTION_VIEW);
-      intent.setData(Uri.parse(result));
-    }
-  }
- else {
-    new YoutubeTrailerSearch(mActivity,mSearchQuery).execute();
+    Intent intent=new Intent(Intent.ACTION_VIEW);
+    intent.setData(Uri.parse(result));
   }
 }
