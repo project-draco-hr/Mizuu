@@ -1,5 +1,4 @@
 {
-  shareFilenames();
   for (int i=0; i < mShowStructures.size(); i++) {
     if (mCancel)     return;
     ShowStructure ss=mShowStructures.get(i);
