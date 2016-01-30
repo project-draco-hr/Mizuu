@@ -1,9 +1,0 @@
-{
-  MovieDiscoveryFragment pageFragment=new MovieDiscoveryFragment();
-  Bundle bundle=new Bundle();
-  bundle.putString("type",type);
-  bundle.putString("json",json);
-  bundle.putString("baseUrl",baseUrl);
-  pageFragment.setArguments(bundle);
-  return pageFragment;
-}

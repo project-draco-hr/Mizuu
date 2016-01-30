@@ -1,3 +1,0 @@
-{
-  return inflater.inflate(R.layout.viewpager_with_tabs,container,false);
-}

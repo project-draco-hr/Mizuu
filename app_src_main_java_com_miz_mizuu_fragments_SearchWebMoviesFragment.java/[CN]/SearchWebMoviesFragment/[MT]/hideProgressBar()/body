@@ -1,4 +1,0 @@
-{
-  mListView.setVisibility(View.VISIBLE);
-  mProgressBar.setVisibility(View.GONE);
-}

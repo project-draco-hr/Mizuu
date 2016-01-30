@@ -1,4 +1,0 @@
-{
-  if (mRelease.equals("null"))   return getString(R.string.unknownYear);
-  return mRelease;
-}

@@ -1,4 +1,0 @@
-{
-  this.movies=movies;
-  mMovieMap.clear();
-}

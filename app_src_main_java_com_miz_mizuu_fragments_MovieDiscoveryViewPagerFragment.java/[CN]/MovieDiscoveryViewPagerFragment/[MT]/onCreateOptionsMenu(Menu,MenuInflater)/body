@@ -1,4 +1,0 @@
-{
-  inflater.inflate(R.menu.menu_web_movies,menu);
-  super.onCreateOptionsMenu(menu,inflater);
-}

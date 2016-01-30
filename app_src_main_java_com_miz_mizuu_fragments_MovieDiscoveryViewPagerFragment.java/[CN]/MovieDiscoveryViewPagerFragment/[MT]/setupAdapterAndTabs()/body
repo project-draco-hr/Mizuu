@@ -1,8 +1,0 @@
-{
-  if (MizLib.hasLollipop())   ((ActionBarActivity)getActivity()).getSupportActionBar().setElevation(0);
-  mViewPager.setAdapter(new WebVideosAdapter(getChildFragmentManager()));
-  mTabs.setViewPager(mViewPager);
-  mTabs.setVisibility(View.VISIBLE);
-  if (MizLib.hasLollipop())   mTabs.setElevation(1f);
-  mProgressBar.setVisibility(View.GONE);
-}

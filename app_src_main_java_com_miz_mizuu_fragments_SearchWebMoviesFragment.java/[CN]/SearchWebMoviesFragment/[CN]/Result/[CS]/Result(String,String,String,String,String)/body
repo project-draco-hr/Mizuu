@@ -1,7 +1,0 @@
-{
-  mName=name;
-  mId=id;
-  mImage=image;
-  mRating=rating;
-  mRelease=MizLib.getPrettyDate(getActivity(),release);
-}

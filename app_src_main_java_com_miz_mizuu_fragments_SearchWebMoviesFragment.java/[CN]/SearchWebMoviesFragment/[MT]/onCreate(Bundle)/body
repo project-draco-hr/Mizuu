@@ -1,8 +1,0 @@
-{
-  super.onCreate(savedInstanceState);
-  setRetainInstance(true);
-  getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-  mPicasso=MizuuApplication.getPicasso(getActivity());
-  mConfig=MizuuApplication.getBitmapConfig();
-  mSearchTask=new SearchTask();
-}
