@@ -1,3 +1,0 @@
-{
-  return new RemoteViews(mContext.getPackageName(),R.layout.movie_backdrop_widget_item);
-}

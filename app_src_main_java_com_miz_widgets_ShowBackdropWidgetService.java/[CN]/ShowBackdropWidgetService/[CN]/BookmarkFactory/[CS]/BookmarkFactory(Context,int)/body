@@ -1,5 +1,0 @@
-{
-  mContext=context.getApplicationContext();
-  isTablet=MizLib.isTablet(mContext);
-  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORED_TITLE_PREFIXES,false);
-}

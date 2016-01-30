@@ -1,7 +1,0 @@
-{
-  mContext=context.getApplicationContext();
-  ignorePrefixes=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORED_TITLE_PREFIXES,false);
-  mPicasso=MizuuApplication.getPicasso(mContext);
-  mConfig=MizuuApplication.getBitmapConfig();
-  mLoadingView=new RemoteViews(mContext.getPackageName(),R.layout.movie_backdrop_widget_item);
-}
