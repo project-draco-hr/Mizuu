@@ -10,5 +10,4 @@
     }
   }
   LocalBroadcastUtils.updateMovieLibrary(mContext);
-  WidgetUtils.updateMovieWidgets(mContext);
 }

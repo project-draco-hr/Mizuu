@@ -5,7 +5,6 @@
   mNotificationManager.cancel(NOTIFICATION_ID);
   LocalBroadcastUtils.updateTvShowLibrary(this);
   showPostUpdateNotification();
-  WidgetUtils.updateTvShowWidgets(this);
   LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
   MizLib.scheduleShowsUpdate(this);
   if (Trakt.hasTraktAccount(this) && mSyncLibraries && (mEpisodeCount > 0)) {

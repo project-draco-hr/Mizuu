@@ -1,13 +1,3 @@
 {
   LocalBroadcastUtils.clearImageCache(this);
-switch (mImageType) {
-case IMAGE_TYPE_TVSHOW_COVER:
-case IMAGE_TYPE_TVSHOW_BACKDROP:
-    WidgetUtils.updateTvShowWidgets(this);
-  break;
-case IMAGE_TYPE_MOVIE_COVER:
-case IMAGE_TYPE_MOVIE_BACKDROP:
-WidgetUtils.updateMovieWidgets(this);
-break;
-}
 }

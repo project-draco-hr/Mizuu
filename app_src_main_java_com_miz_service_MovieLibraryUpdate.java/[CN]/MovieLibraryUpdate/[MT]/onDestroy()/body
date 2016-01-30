@@ -5,7 +5,6 @@
   mNotificationManager.cancel(NOTIFICATION_ID);
   reloadLibrary();
   showPostUpdateNotification();
-  WidgetUtils.updateMovieWidgets(this);
   LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
   MizLib.scheduleMovieUpdate(this);
   if (Trakt.hasTraktAccount(this) && mSyncLibraries && mCount > 0) {
