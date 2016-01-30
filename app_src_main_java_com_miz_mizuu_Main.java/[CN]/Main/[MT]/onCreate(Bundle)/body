@@ -32,12 +32,6 @@ loadFragment(mMenuItems.get(arg2).getFragment());
 break;
 case MenuItem.SETTINGS_AREA:
 Intent smallIntent=new Intent(getApplicationContext(),Preferences.class);
-if (mMenuItems.get(arg2).getIcon() == R.drawable.ic_help_grey600_24dp) {
-smallIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,ContactDeveloperFragment.class.getName());
-smallIntent.putExtra(PreferenceActivity.EXTRA_NO_HEADERS,true);
-smallIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,getString(R.string.menuAboutContact));
-smallIntent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_SHORT_TITLE,getString(R.string.menuAboutContact));
-}
 startActivity(smallIntent);
 mDrawerLayout.closeDrawers();
 break;

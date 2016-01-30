@@ -5,5 +5,4 @@
   mMenuItems.add(new MenuItem(getString(R.string.drawerMyTvShows),mNumShows,MenuItem.SECTION,SHOWS,R.drawable.ic_tv_grey600_24dp));
   mMenuItems.add(new MenuItem(MenuItem.SEPARATOR_EXTRA_PADDING));
   mMenuItems.add(new MenuItem(getString(R.string.settings_name),MenuItem.SETTINGS_AREA,R.drawable.ic_settings_grey600_24dp));
-  mMenuItems.add(new MenuItem(getString(R.string.menuAboutContact),MenuItem.SETTINGS_AREA,R.drawable.ic_help_grey600_24dp));
 }
