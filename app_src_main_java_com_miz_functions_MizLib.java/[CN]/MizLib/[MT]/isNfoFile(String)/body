@@ -1,7 +1,0 @@
-{
-  if (file.contains(".")) {
-    String type=file.substring(file.lastIndexOf("."));
-    return type.equalsIgnoreCase(".nfo");
-  }
-  return false;
-}

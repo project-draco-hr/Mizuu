@@ -1,9 +1,0 @@
-{
-  mFilepath=file;
-  mInputStream=is;
-  mContext=c;
-  mCallback=callback;
-  mPicasso=Picasso.with(mContext);
-  mCount=count;
-  readFile();
-}

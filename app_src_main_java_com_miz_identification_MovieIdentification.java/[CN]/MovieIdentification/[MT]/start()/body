@@ -1,7 +1,6 @@
 {
   for (int i=0; i < mMovieStructures.size(); i++) {
     if (mCancel)     return;
-    if (!mIgnoreNfoFiles)     continue;
     MovieStructure ms=mMovieStructures.get(i);
     ms.setCustomTags(mIgnoredTags);
     mImdbMap.put(i,ms.hasImdbId());
@@ -10,21 +9,6 @@
   for (  MovieStructure ms : mMovieStructures) {
     if (mCancel)     return;
     mCount++;
-    if (!mIgnoreNfoFiles) {
-      boolean match=true;
-      String nfo1=ms.getFilepath().replaceAll("part[1-9]|cd[1-9]","").trim();
-      String nfo2=MizLib.convertToGenericNfo(ms.getFilepath());
-      if (mNfoFiles.containsKey(nfo1)) {
-        new NfoMovie(ms.getFilepath(),mNfoFiles.get(nfo1),mContext,mCallback,mCount);
-      }
- else       if (mNfoFiles.containsKey(nfo2)) {
-        new NfoMovie(ms.getFilepath(),mNfoFiles.get(nfo2),mContext,mCallback,mCount);
-      }
- else {
-        match=false;
-      }
-      if (match)       continue;
-    }
     Movie movie=null;
     List<Movie> results=new ArrayList<Movie>();
     if (!overrideMovieId()) {

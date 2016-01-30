@@ -1,4 +1,4 @@
 {
-  mMovieIdentification=new MovieIdentification(getApplicationContext(),this,mMovieQueue,mNfoFiles);
+  mMovieIdentification=new MovieIdentification(getApplicationContext(),this,mMovieQueue);
   mMovieIdentification.start();
 }

@@ -1,12 +1,5 @@
 {
-  if (supportsNfo() && MizLib.isNfoFile(file.getCanonicalPath())) {
-    try {
-      addNfoFile(MizLib.removeExtension(file.getCanonicalPath()),file.getInputStream());
-    }
- catch (    IOException ignored) {
-    }
-  }
- else   if (MizLib.checkFileTypes(file.getCanonicalPath())) {
+  if (MizLib.checkFileTypes(file.getCanonicalPath())) {
     try {
       if (file.length() < getFileSizeLimit() && !file.getName().equalsIgnoreCase("video_ts.ifo"))       return;
     }
