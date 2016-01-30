@@ -6,7 +6,7 @@
         mNumShows=mDbHelperTv.count();
         runOnUiThread(new Runnable(){
           @Override public void run(){
-            setupMenuItems(false);
+            setupMenuItems();
             ((BaseAdapter)mDrawerList.getAdapter()).notifyDataSetChanged();
           }
         }

@@ -9,7 +9,7 @@
   mDbHelperTv=MizuuApplication.getTvDbAdapter();
   mTfMedium=TypefaceUtils.getRobotoMedium(getApplicationContext());
   mTfRegular=TypefaceUtils.getRoboto(getApplicationContext());
-  setupMenuItems(true);
+  setupMenuItems();
   mDrawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
   mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.color_primary_dark));
   mDrawerLayout.setDrawerShadow(R.drawable.drawer_list_shadow,GravityCompat.START);
@@ -29,14 +29,6 @@ startActivity(intent);
 break;
 case MenuItem.SECTION:
 loadFragment(mMenuItems.get(arg2).getFragment());
-break;
-case MenuItem.THIRD_PARTY_APP:
-final PackageManager pm=getPackageManager();
-Intent i=pm.getLaunchIntentForPackage(mMenuItems.get(arg2).getPackageName());
-if (i != null) {
-i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-startActivity(i);
-}
 break;
 case MenuItem.SETTINGS_AREA:
 Intent smallIntent=new Intent(getApplicationContext(),Preferences.class);

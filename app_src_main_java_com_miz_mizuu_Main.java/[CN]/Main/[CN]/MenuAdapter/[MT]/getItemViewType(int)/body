@@ -9,7 +9,6 @@ return 2;
 case MenuItem.SUB_HEADER:
 return 3;
 case MenuItem.SECTION:
-case MenuItem.THIRD_PARTY_APP:
 return 4;
 default :
 return 5;

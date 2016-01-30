@@ -15,73 +15,61 @@
   mListView.setAdapter(new MenuAdapter());
   mListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
     @Override public void onItemClick(    AdapterView<?> arg0,    View arg1,    int arg2,    long arg3){
-switch (mMenuItems.get(arg2).getType()) {
-case MenuItem.SECTION:
-        Intent mainIntent=new Intent(getApplicationContext(),Main.class);
+      Intent mainIntent=new Intent(getApplicationContext(),Main.class);
       mainIntent.putExtra("startup",String.valueOf(mMenuItems.get(arg2).getFragment()));
-    startActivity(mainIntent);
-  break;
-case MenuItem.THIRD_PARTY_APP:
-final PackageManager pm=getPackageManager();
-Intent i=pm.getLaunchIntentForPackage(mMenuItems.get(arg2).getPackageName());
-if (i != null) {
-i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-startActivity(i);
-}
-break;
-}
-}
-}
+      startActivity(mainIntent);
+    }
+  }
 );
-mImageCover=(ImageSwitcher)findViewById(R.id.imageCover);
-mImageCover.setInAnimation(mAnimationIn);
-mImageCover.setOutAnimation(mAnimationOut);
-mImageCover.setFactory(new ViewFactory(){
-@Override public View makeView(){
-ImageView imageView=new ImageView(getApplicationContext());
-imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-imageView.setLayoutParams(new ImageSwitcher.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
-return imageView;
-}
-}
+  mImageCover=(ImageSwitcher)findViewById(R.id.imageCover);
+  mImageCover.setInAnimation(mAnimationIn);
+  mImageCover.setOutAnimation(mAnimationOut);
+  mImageCover.setFactory(new ViewFactory(){
+    @Override public View makeView(){
+      ImageView imageView=new ImageView(getApplicationContext());
+      imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+      imageView.setLayoutParams(new ImageSwitcher.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+      return imageView;
+    }
+  }
 );
-title=(TextSwitcher)findViewById(R.id.title);
-title.setInAnimation(mAnimationIn);
-title.setOutAnimation(mAnimationOut);
-title.setFactory(new ViewFactory(){
-@Override public View makeView(){
-TextView tv=new TextView(getApplicationContext());
-tv.setTextAppearance(getApplicationContext(),android.R.style.TextAppearance_Large);
-tv.setShadowLayer(1f,0,0,Color.BLACK);
-tv.setTextIsSelectable(false);
-tv.setGravity(Gravity.RIGHT);
-tv.setTypeface(TypefaceUtils.getRobotoCondensedRegular(getApplicationContext()));
-tv.setSingleLine();
-tv.setEllipsize(TextUtils.TruncateAt.END);
-tv.setLayoutParams(new TextSwitcher.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
-return tv;
-}
-}
+  title=(TextSwitcher)findViewById(R.id.title);
+  title.setInAnimation(mAnimationIn);
+  title.setOutAnimation(mAnimationOut);
+  title.setFactory(new ViewFactory(){
+    @Override public View makeView(){
+      TextView tv=new TextView(getApplicationContext());
+      tv.setTextAppearance(getApplicationContext(),android.R.style.TextAppearance_Large);
+      tv.setShadowLayer(1f,0,0,Color.BLACK);
+      tv.setTextIsSelectable(false);
+      tv.setGravity(Gravity.RIGHT);
+      tv.setTypeface(TypefaceUtils.getRobotoCondensedRegular(getApplicationContext()));
+      tv.setSingleLine();
+      tv.setEllipsize(TextUtils.TruncateAt.END);
+      tv.setLayoutParams(new TextSwitcher.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+      return tv;
+    }
+  }
 );
-mImageSwitcher=(ImageSwitcher)findViewById(R.id.imageSwitcher1);
-if (!MizLib.usesNavigationControl(getApplicationContext())) mImageCover.setOnClickListener(new OnClickListener(){
-@Override public void onClick(View v){
-startActivity(mItems.get(index).getIntent(getApplicationContext()));
-}
-}
+  mImageSwitcher=(ImageSwitcher)findViewById(R.id.imageSwitcher1);
+  if (!MizLib.usesNavigationControl(getApplicationContext()))   mImageCover.setOnClickListener(new OnClickListener(){
+    @Override public void onClick(    View v){
+      startActivity(mItems.get(index).getIntent(getApplicationContext()));
+    }
+  }
 );
-mImageSwitcher.setInAnimation(mAnimationIn);
-mImageSwitcher.setOutAnimation(mAnimationOut);
-mImageSwitcher.setFactory(new ViewFactory(){
-@Override public View makeView(){
-ImageView imageView=new ImageView(getApplicationContext());
-imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-imageView.setLayoutParams(new ImageSwitcher.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
-return imageView;
-}
-}
+  mImageSwitcher.setInAnimation(mAnimationIn);
+  mImageSwitcher.setOutAnimation(mAnimationOut);
+  mImageSwitcher.setFactory(new ViewFactory(){
+    @Override public View makeView(){
+      ImageView imageView=new ImageView(getApplicationContext());
+      imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+      imageView.setLayoutParams(new ImageSwitcher.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
+      return imageView;
+    }
+  }
 );
-updateLibraryCounts();
-mListView.setSelection(0);
-new WelcomeLoader(getApplicationContext()).execute();
+  updateLibraryCounts();
+  mListView.setSelection(0);
+  new WelcomeLoader(getApplicationContext()).execute();
 }

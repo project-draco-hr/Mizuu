@@ -10,7 +10,7 @@
     title.setTypeface(mTfMedium);
     title.setTextColor(Color.parseColor("#DDDDDD"));
   }
- else   if (mMenuItems.get(position).getType() == MenuItem.THIRD_PARTY_APP || mMenuItems.get(position).getType() == MenuItem.SECTION) {
+ else   if (mMenuItems.get(position).getType() == MenuItem.SECTION) {
     convertView=mInflater.inflate(R.layout.menu_drawer_item,parent,false);
     ImageView icon=(ImageView)convertView.findViewById(R.id.icon);
     icon.setImageResource(mMenuItems.get(position).getIcon());

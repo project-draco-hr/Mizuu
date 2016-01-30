@@ -1,8 +1,0 @@
-{
-  mTitle=title;
-  mCount=count;
-  mType=type;
-  mPackageName=packageName;
-  mFragment=fragment;
-  mIcon=icon;
-}
