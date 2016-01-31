@@ -1,19 +1,10 @@
 {
 switch (mImageType) {
 case IMAGE_TYPE_TVSHOW_COVER:
-    if (!mContentId.startsWith("tmdb_")) {
-      mImageUrl=mImageUrl.replace("/_cache/","/");
-      mNeedsResizing=true;
-    }
-  mDownloadPath=FileUtils.getTvShowThumb(this,mContentId).getAbsolutePath();
-break;
+    mDownloadPath=FileUtils.getTvShowThumb(this,mContentId).getAbsolutePath();
+  break;
 case IMAGE_TYPE_TVSHOW_BACKDROP:
-if (mContentId.startsWith("tmdb_")) {
 mImageUrl=mImageUrl.replace(MizLib.getBackdropThumbUrlSize(this),MizLib.getBackdropUrlSize(this));
-}
- else {
-mImageUrl=mImageUrl.replace("","").replace("/_cache/","/");
-}
 mDownloadPath=FileUtils.getTvShowBackdrop(this,mContentId).getAbsolutePath();
 break;
 case IMAGE_TYPE_MOVIE_COVER:

@@ -1,3 +1,0 @@
-{
-  return PreferenceManager.getDefaultSharedPreferences(mContext).getString(TVSHOWS_RATINGS_SOURCE,mContext.getString(R.string.ratings_option_4));
-}

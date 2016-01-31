@@ -1,4 +1,0 @@
-{
-  if (mService == null)   mService=new TheTVDbService(context);
-  return mService;
-}

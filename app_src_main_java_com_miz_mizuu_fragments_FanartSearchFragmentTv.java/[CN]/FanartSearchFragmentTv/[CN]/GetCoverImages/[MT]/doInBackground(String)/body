@@ -1,13 +1,6 @@
 {
   String id=params[0];
-  TvShowApiService service=null;
-  if (id.startsWith("tmdb_")) {
-    id=id.replace("tmdb_","");
-    service=TMDbTvShowService.getInstance(getActivity());
-  }
- else {
-    service=TheTVDbService.getInstance(getActivity());
-  }
+  TvShowApiService service=TMDbTvShowService.getInstance(getActivity());
   mImages.addAll(service.getBackdrops(id));
   return null;
 }
