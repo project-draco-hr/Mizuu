@@ -1,6 +1,5 @@
 {
   List<String> tempList=null;
-  HashMap<String,InputStream> tempNfoMap=null;
   for (int j=0; j < mMovieFileSources.size(); j++) {
     updateMovieScaningNotification(mMovieFileSources.get(j).toString());
     tempList=mMovieFileSources.get(j).searchFolder();
@@ -9,6 +8,5 @@
     }
   }
   if (tempList != null)   tempList.clear();
-  if (tempNfoMap != null)   tempNfoMap.clear();
   mTotalFiles=mMovieQueue.size();
 }
