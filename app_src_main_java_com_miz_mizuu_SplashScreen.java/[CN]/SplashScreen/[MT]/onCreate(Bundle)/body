@@ -12,7 +12,6 @@
     return;
   }
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
-  String startup=settings.getString(STARTUP_SELECTION,"1");
   if (settings.getInt(SCHEDULED_UPDATES_MOVIE,ScheduledUpdatesFragment.NOT_ENABLED) == ScheduledUpdatesFragment.AT_LAUNCH)   getApplicationContext().startService(new Intent(getApplicationContext(),MovieLibraryUpdate.class));
   if (settings.getInt(SCHEDULED_UPDATES_TVSHOWS,ScheduledUpdatesFragment.NOT_ENABLED) == ScheduledUpdatesFragment.AT_LAUNCH)   getApplicationContext().startService(new Intent(getApplicationContext(),TvShowsLibraryUpdate.class));
   Intent i=new Intent();
