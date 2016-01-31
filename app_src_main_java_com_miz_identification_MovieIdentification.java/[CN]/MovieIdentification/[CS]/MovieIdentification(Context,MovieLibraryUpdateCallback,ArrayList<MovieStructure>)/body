@@ -2,7 +2,6 @@
   mContext=context;
   mCallback=callback;
   mMovieStructures=new ArrayList<MovieStructure>(files);
-  mIgnoredTags=PreferenceManager.getDefaultSharedPreferences(mContext).getString(IGNORED_FILENAME_TAGS,"");
   mPicasso=Picasso.with(mContext);
   getLanguagePreference();
 }

@@ -2,7 +2,6 @@
   for (int i=0; i < mShowStructures.size(); i++) {
     if (mCancel)     return;
     ShowStructure ss=mShowStructures.get(i);
-    ss.setCustomTags(mIgnoredTags);
     mShowFolderNameMap.put(ss.getDecryptedShowFolderName(),i);
     mImdbMap.put(i,ss.hasImdbId());
   }

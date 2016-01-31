@@ -2,7 +2,6 @@
   for (int i=0; i < mMovieStructures.size(); i++) {
     if (mCancel)     return;
     MovieStructure ms=mMovieStructures.get(i);
-    ms.setCustomTags(mIgnoredTags);
     mImdbMap.put(i,ms.hasImdbId());
   }
   MovieApiService service=MizuuApplication.getMovieService(mContext);
