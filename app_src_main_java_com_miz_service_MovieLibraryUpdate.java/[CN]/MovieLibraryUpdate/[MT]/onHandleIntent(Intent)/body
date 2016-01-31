@@ -6,7 +6,7 @@
   log("loadFileSources()");
   loadFileSources();
   log("setupMovieFileSources()");
-  setupMovieFileSources(mSearchSubfolders,mClearLibrary);
+  setupMovieFileSources(mClearLibrary);
   if (mStopUpdate)   return;
   log("removeUnidentifiedFiles()");
   if (!mClearLibrary)   removeUnidentifiedFiles();

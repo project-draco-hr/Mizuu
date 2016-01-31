@@ -3,7 +3,6 @@
   mMovieFileSources=new ArrayList<MovieFileSource<?>>();
   mMovieQueue=new ArrayList<MovieStructure>();
   mClearLibrary=false;
-  mSearchSubfolders=true;
   mClearUnavailable=false;
   mSyncLibraries=true;
   mStopUpdate=false;

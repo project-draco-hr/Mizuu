@@ -1,8 +1,0 @@
-{
-  mContext=context;
-  mFileSource=fileSource;
-  mSubFolderSearch=subFolderSearch;
-  mClearLibrary=clearLibrary;
-  mFileSizeLimit=MizLib.getFileSizeLimit(getContext());
-  setFolder(getRootFolder());
-}

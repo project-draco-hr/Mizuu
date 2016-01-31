@@ -4,7 +4,6 @@
   mFiles=new ArrayList<ShowStructure>();
   mUniqueShowIds=new HashSet<String>();
   mClearLibrary=false;
-  mSearchSubfolders=true;
   mClearUnavailable=false;
   mSyncLibraries=true;
   mStopUpdate=false;
