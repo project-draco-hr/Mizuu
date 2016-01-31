@@ -7,7 +7,6 @@
   mClearLibrary=false;
   mSearchSubfolders=true;
   mClearUnavailable=false;
-  mDisableEthernetWiFiCheck=false;
   mSyncLibraries=true;
   mStopUpdate=false;
   mEditor=null;

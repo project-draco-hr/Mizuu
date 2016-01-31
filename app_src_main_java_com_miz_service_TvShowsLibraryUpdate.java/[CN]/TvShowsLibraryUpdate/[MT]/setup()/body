@@ -27,7 +27,6 @@
   mClearLibrary=mSettings.getBoolean(CLEAR_LIBRARY_TVSHOWS,false);
   mSearchSubfolders=mSettings.getBoolean(ENABLE_SUBFOLDER_SEARCH,true);
   mClearUnavailable=mSettings.getBoolean(REMOVE_UNAVAILABLE_FILES_TVSHOWS,false);
-  mDisableEthernetWiFiCheck=mSettings.getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
   mIgnoreRemovedFiles=mSettings.getBoolean(IGNORED_FILES_ENABLED,false);
   mSyncLibraries=mSettings.getBoolean(SYNC_WITH_TRAKT,true);
 }

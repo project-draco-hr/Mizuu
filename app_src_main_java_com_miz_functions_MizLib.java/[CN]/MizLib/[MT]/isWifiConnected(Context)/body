@@ -1,7 +1,5 @@
 {
   if (c != null) {
-    boolean disableEthernetWiFiCheck=PreferenceManager.getDefaultSharedPreferences(c).getBoolean(DISABLE_ETHERNET_WIFI_CHECK,false);
-    if (disableEthernetWiFiCheck)     return isOnline(c);
     ConnectivityManager connManager=(ConnectivityManager)c.getSystemService(Context.CONNECTIVITY_SERVICE);
     NetworkInfo[] connections=connManager.getAllNetworkInfo();
     int count=connections.length;

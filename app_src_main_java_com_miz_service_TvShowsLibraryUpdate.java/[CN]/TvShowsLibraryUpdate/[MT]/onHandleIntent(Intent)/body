@@ -6,7 +6,7 @@
   log("loadFileSources()");
   loadFileSources();
   log("setupTvShowsFileSources()");
-  setupTvShowsFileSources(mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary,mDisableEthernetWiFiCheck);
+  setupTvShowsFileSources(mIgnoreRemovedFiles,mSearchSubfolders,mClearLibrary);
   if (mStopUpdate)   return;
   log("removeUnidentifiedFiles()");
   if (!mClearLibrary)   removeUnidentifiedFiles();

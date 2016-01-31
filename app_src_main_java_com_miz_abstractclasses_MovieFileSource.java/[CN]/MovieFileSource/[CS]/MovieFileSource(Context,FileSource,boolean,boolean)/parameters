@@ -2,4 +2,3 @@ Context context
 FileSource fileSource
 boolean subFolderSearch
 boolean clearLibrary
-boolean disableEthernetWiFiCheck

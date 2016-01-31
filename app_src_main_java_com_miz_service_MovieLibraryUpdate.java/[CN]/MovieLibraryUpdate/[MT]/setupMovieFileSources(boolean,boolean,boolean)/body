@@ -1,0 +1,16 @@
+{
+  for (  FileSource fileSource : mFileSources) {
+    if (mStopUpdate)     return;
+switch (fileSource.getFileSourceType()) {
+case FileSource.FILE:
+      mMovieFileSources.add(new FileMovie(getApplicationContext(),fileSource,mSearchSubfolders,mClearLibrary));
+    break;
+case FileSource.SMB:
+  mMovieFileSources.add(new SmbMovie(getApplicationContext(),fileSource,mSearchSubfolders,mClearLibrary));
+break;
+case FileSource.UPNP:
+mMovieFileSources.add(new UpnpMovie(getApplicationContext(),fileSource,mSearchSubfolders,mClearLibrary));
+break;
+}
+}
+}

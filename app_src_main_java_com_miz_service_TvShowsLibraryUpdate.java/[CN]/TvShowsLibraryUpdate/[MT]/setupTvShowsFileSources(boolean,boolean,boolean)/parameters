@@ -1,4 +1,3 @@
 boolean mIgnoreRemovedFiles
 boolean mSearchSubfolders
 boolean mClearLibrary
-boolean mDisableEthernetWiFiCheck
