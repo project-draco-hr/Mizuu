@@ -1,5 +1,0 @@
-{
-  mMenuItems.clear();
-  mMenuItems.add(new MenuItem(getString(R.string.drawerMyMovies),mNumMovies,MenuItem.SECTION,1,R.drawable.ic_movie_grey600_24dp));
-  mMenuItems.add(new MenuItem(getString(R.string.drawerMyTvShows),mNumShows,MenuItem.SECTION,2,R.drawable.ic_tv_grey600_24dp));
-}

@@ -1,6 +1,0 @@
-{
-  mItems.addAll(mTempItems);
-  if (mItems.size() > 0) {
-    mHandler.post(runnable);
-  }
-}

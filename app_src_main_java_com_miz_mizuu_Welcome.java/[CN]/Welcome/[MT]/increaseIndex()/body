@@ -1,4 +1,0 @@
-{
-  if (index >= (mItems.size() - 1))   index=0;
- else   index++;
-}

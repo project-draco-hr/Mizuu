@@ -1,7 +1,0 @@
-{
-  super.onResume();
-  if (!isRunning) {
-    startAnimatedBackground();
-    isRunning=true;
-  }
-}

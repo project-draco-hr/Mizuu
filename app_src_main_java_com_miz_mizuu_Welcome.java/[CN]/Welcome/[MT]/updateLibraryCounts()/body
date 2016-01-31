@@ -1,6 +1,0 @@
-{
-  mNumMovies=MizuuApplication.getMovieAdapter().count();
-  mNumShows=MizuuApplication.getTvDbAdapter().count();
-  setupMenuItems();
-  ((BaseAdapter)mListView.getAdapter()).notifyDataSetChanged();
-}
