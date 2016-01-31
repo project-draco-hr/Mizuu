@@ -5,7 +5,6 @@
   mContext=getActivity();
   mIgnorePrefixes=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORED_TITLE_PREFIXES,false);
   mShowFileLocation=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(SHOW_FILE_LOCATION,true);
-  mIgnoreDeletedFiles=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORED_FILES_ENABLED,false);
   mRemoveMoviesFromWatchlist=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(REMOVE_MOVIES_FROM_WATCHLIST,true);
   mLight=TypefaceUtils.getRobotoLight(mContext);
   mMediumItalic=TypefaceUtils.getRobotoMediumItalic(mContext);

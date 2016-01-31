@@ -1,3 +1,0 @@
-{
-  return mDatabase.query(DATABASE_TABLE,ALL_COLUMNS,KEY_IGNORED + " = '1'",null,null,null,null);
-}

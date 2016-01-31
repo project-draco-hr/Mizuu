@@ -3,7 +3,6 @@
   mTvShowFileSources=new ArrayList<TvShowFileSource<?>>();
   mFiles=new ArrayList<ShowStructure>();
   mUniqueShowIds=new HashSet<String>();
-  mIgnoreRemovedFiles=false;
   mClearLibrary=false;
   mSearchSubfolders=true;
   mClearUnavailable=false;

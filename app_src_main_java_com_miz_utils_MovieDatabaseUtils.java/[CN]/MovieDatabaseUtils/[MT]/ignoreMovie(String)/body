@@ -1,8 +1,0 @@
-{
-  if (TextUtils.isEmpty(tmdbId))   return;
-  DbAdapterMovies db=MizuuApplication.getMovieAdapter();
-  db.deleteMovie(tmdbId);
-  String collectionId=db.getCollectionId(tmdbId);
-  if (MizuuApplication.getCollectionsAdapter().getMovieCount(collectionId) == 1)   MizuuApplication.getCollectionsAdapter().deleteCollection(collectionId);
-  MizuuApplication.getMovieMappingAdapter().ignoreMovie(tmdbId);
-}

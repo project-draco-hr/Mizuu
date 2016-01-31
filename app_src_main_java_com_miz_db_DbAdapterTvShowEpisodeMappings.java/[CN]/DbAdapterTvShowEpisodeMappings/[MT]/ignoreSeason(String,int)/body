@@ -1,5 +1,0 @@
-{
-  ContentValues values=new ContentValues();
-  values.put(KEY_IGNORED,1);
-  return mDatabase.update(DATABASE_TABLE,values,KEY_SHOW_ID + " = ? AND " + KEY_SEASON+ " = ?",new String[]{showId,MizLib.addIndexZero(season)}) > 0;
-}

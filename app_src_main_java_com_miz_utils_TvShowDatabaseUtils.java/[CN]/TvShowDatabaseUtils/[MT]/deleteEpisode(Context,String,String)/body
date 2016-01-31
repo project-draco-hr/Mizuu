@@ -1,5 +1,4 @@
 {
-  boolean ignoreFiles=PreferenceManager.getDefaultSharedPreferences(context).getBoolean(PreferenceKeys.IGNORED_FILES_ENABLED,false);
   DbAdapterTvShows showAdapter=MizuuApplication.getTvDbAdapter();
   DbAdapterTvShowEpisodes episodeAdapter=MizuuApplication.getTvEpisodeDbAdapter();
   DbAdapterTvShowEpisodeMappings episodeMappingsAdapter=MizuuApplication.getTvShowEpisodeMappingsDbAdapter();
@@ -9,8 +8,7 @@
       while (cursor.moveToNext()) {
         String season=cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisodeMappings.KEY_SEASON));
         String episode=cursor.getString(cursor.getColumnIndex(DbAdapterTvShowEpisodeMappings.KEY_EPISODE));
-        if (ignoreFiles)         episodeMappingsAdapter.ignoreFilepath(filepath);
- else         episodeMappingsAdapter.deleteFilepath(filepath);
+        episodeMappingsAdapter.deleteFilepath(filepath);
         if (!episodeMappingsAdapter.hasMultipleFilepaths(showId,season,episode)) {
           episodeAdapter.deleteEpisode(showId,MizLib.getInteger(season),MizLib.getInteger(episode));
           FileUtils.getTvShowEpisode(context,showId,season,episode).delete();

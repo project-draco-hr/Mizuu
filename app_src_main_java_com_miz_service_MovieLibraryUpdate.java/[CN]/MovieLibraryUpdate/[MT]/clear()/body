@@ -2,7 +2,6 @@
   mFileSources=new ArrayList<FileSource>();
   mMovieFileSources=new ArrayList<MovieFileSource<?>>();
   mMovieQueue=new ArrayList<MovieStructure>();
-  mIgnoreRemovedFiles=false;
   mClearLibrary=false;
   mSearchSubfolders=true;
   mClearUnavailable=false;

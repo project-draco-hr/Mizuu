@@ -1,9 +1,0 @@
-{
-  final View v=inflater.inflate(R.layout.viewpager_with_tabs,container,false);
-  mViewPager=(ViewPager)v.findViewById(R.id.awesomepager);
-  mViewPager.setAdapter(new IgnoredFilesAdapter(getFragmentManager()));
-  mTabs=(PagerSlidingTabStrip)v.findViewById(R.id.tabs);
-  mTabs.setBackgroundResource(R.drawable.bg);
-  mTabs.setViewPager(mViewPager);
-  return v;
-}
