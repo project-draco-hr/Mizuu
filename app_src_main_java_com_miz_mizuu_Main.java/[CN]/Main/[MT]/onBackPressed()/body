@@ -8,18 +8,7 @@
     return;
   }
   if (!mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer))) {
-    if (mConfirmExit) {
-      if (mTriedOnce) {
-        finish();
-      }
- else {
-        Toast.makeText(this,getString(R.string.pressBackToExit),Toast.LENGTH_SHORT).show();
-        mTriedOnce=true;
-      }
-    }
- else {
-      finish();
-    }
+    finish();
   }
  else {
     mDrawerLayout.closeDrawers();

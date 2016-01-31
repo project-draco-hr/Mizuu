@@ -3,7 +3,6 @@
   super.onCreate(savedInstanceState);
   mPicasso=MizuuApplication.getPicasso(getApplicationContext());
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
-  mConfirmExit=settings.getBoolean(CONFIRM_BACK_PRESS,false);
   mStartup=Integer.valueOf(settings.getString(STARTUP_SELECTION,"1"));
   mDbHelper=MizuuApplication.getMovieAdapter();
   mDbHelperTv=MizuuApplication.getTvDbAdapter();
