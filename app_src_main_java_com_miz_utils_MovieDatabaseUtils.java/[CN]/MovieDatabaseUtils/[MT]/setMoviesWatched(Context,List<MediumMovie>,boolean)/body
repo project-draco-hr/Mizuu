@@ -3,7 +3,7 @@
   for (  MediumMovie movie : movies)   success=success && MizuuApplication.getMovieAdapter().updateMovieSingleItem(movie.getTmdbId(),DbAdapterMovies.KEY_HAS_WATCHED,watched ? "1" : "0");
   if (success)   if (watched) {
     Toast.makeText(context,context.getString(R.string.markedAsWatched),Toast.LENGTH_SHORT).show();
-    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(REMOVE_MOVIES_FROM_WATCHLIST,true))     setMoviesWatchlist(context,movies,false);
+    setMoviesWatchlist(context,movies,false);
   }
  else   Toast.makeText(context,context.getString(R.string.markedAsUnwatched),Toast.LENGTH_SHORT).show();
  else   Toast.makeText(context,context.getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();

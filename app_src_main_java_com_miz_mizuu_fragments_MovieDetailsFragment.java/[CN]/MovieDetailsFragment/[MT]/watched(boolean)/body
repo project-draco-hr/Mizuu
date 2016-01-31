@@ -12,7 +12,7 @@
     notifyDatasetChanges();
   }
  else   Toast.makeText(mContext,getString(R.string.errorOccured),Toast.LENGTH_SHORT).show();
-  if (mRemoveMoviesFromWatchlist)   removeFromWatchlist();
+  removeFromWatchlist();
   new Thread(){
     @Override public void run(){
       ArrayList<Movie> watchedMovies=new ArrayList<Movie>();
