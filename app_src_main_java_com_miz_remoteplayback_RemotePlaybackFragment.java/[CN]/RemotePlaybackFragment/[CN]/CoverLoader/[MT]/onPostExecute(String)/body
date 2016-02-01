@@ -1,3 +1,0 @@
-{
-  if (!TextUtils.isEmpty(result))   mCoverUrl=result;
-}

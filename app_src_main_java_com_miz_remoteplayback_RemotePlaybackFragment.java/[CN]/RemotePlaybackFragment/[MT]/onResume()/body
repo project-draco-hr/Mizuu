@@ -1,4 +1,0 @@
-{
-  super.onResume();
-  mMediaRouter.addCallback(mMediaRouteSelector,mCallback,MediaRouter.CALLBACK_FLAG_REQUEST_DISCOVERY);
-}

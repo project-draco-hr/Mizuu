@@ -1,3 +1,0 @@
-{
-  return inflater.inflate(R.layout.remote_playback,container,false);
-}

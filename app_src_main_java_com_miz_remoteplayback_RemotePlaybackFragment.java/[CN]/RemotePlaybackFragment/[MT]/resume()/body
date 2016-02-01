@@ -1,5 +1,0 @@
-{
-  ResumeCallback resumeCallback=new ResumeCallback();
-  mRemotePlaybackClient.resume(null,resumeCallback);
-  postCallback(resumeCallback);
-}

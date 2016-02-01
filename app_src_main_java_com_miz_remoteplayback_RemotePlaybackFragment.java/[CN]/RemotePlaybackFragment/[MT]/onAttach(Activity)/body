@@ -1,4 +1,0 @@
-{
-  super.onAttach(host);
-  mMediaRouter=MediaRouter.getInstance(host);
-}

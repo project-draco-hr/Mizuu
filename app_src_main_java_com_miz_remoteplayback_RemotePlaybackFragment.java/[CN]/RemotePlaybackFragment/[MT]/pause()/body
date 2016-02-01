@@ -1,5 +1,0 @@
-{
-  PauseCallback pauseCallback=new PauseCallback();
-  mRemotePlaybackClient.pause(null,pauseCallback);
-  postCallback(pauseCallback);
-}

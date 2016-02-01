@@ -1,7 +1,0 @@
-{
-  mRemotePlaybackClient.release();
-  mRemotePlaybackClient=null;
-  if (getActivity() != null) {
-    updateMenu();
-  }
-}

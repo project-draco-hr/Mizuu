@@ -1,3 +1,0 @@
-{
-  return R.layout.empty_layout_with_toolbar;
-}

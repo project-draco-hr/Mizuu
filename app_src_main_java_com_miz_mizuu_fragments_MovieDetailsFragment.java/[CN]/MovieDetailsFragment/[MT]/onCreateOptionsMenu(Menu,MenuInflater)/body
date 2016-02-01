@@ -5,47 +5,6 @@
     menu.findItem(R.id.share).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     menu.findItem(R.id.watch_list).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
   }
-  if (PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(CHROMECAST_BETA_SUPPORT,false)) {
-    boolean add=false;
-    for (    Filepath path : mMovie.getFilepaths()) {
-      if (path.isNetworkFile()) {
-        add=true;
-        break;
-      }
-    }
-    if (add) {
-      menu.add("Remote play").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
-        @Override public boolean onMenuItemClick(        MenuItem item){
-          final ArrayList<Filepath> networkFiles=new ArrayList<Filepath>();
-          for (          Filepath path : mMovie.getFilepaths()) {
-            if (path.isNetworkFile()) {
-              networkFiles.add(path);
-            }
-          }
-          MizLib.showSelectFileDialog(mContext,networkFiles,new DialogInterface.OnClickListener(){
-            @Override public void onClick(            DialogInterface dialog,            int which){
-              Intent i=new Intent(mContext,RemotePlayback.class);
-              i.putExtra("coverUrl","");
-              i.putExtra("title",mMovie.getTitle());
-              i.putExtra("id",mMovie.getTmdbId());
-              i.putExtra("type","movie");
-              if (networkFiles.get(which).getType() == FileSource.SMB) {
-                String url=VideoUtils.startSmbServer(getActivity(),networkFiles.get(which).getFilepath(),mMovie);
-                i.putExtra("videoUrl",url);
-              }
- else {
-                i.putExtra("videoUrl",networkFiles.get(which).getFilepath());
-              }
-              startActivity(i);
-            }
-          }
-);
-          return false;
-        }
-      }
-);
-    }
-  }
   menu.findItem(R.id.movie_fav).setIcon(mMovie.isFavourite() ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_outline_white_24dp).setTitle(mMovie.isFavourite() ? R.string.menuFavouriteTitleRemove : R.string.menuFavouriteTitle);
   menu.findItem(R.id.watch_list).setIcon(mMovie.toWatch() ? R.drawable.ic_video_collection_white_24dp : R.drawable.ic_queue_white_24dp).setTitle(mMovie.toWatch() ? R.string.removeFromWatchlist : R.string.watchLater);
   menu.findItem(R.id.watched).setTitle(mMovie.hasWatched() ? R.string.stringMarkAsUnwatched : R.string.stringMarkAsWatched);
