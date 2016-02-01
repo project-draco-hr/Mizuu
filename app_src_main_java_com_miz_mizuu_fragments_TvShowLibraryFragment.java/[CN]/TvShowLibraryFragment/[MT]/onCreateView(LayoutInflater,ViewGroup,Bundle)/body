@@ -57,7 +57,6 @@ mAdapter.clearCheckedItems();
 }
 );
 mTvShowLoader=new TvShowLoader(mContext,TvShowLibraryType.fromInt(getArguments().getInt("type")),mCallback);
-mTvShowLoader.setIgnorePrefixes(mIgnorePrefixes);
 mTvShowLoader.load();
 showProgressBar();
 return v;

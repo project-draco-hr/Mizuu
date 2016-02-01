@@ -65,7 +65,6 @@ mAdapter.clearCheckedItems();
 );
 }
 mMovieLoader=new MovieLoader(mContext,MovieLibraryType.fromInt(getArguments().getInt("type")),mCallback);
-mMovieLoader.setIgnorePrefixes(mIgnorePrefixes);
 mMovieLoader.load();
 showProgressBar();
 return v;

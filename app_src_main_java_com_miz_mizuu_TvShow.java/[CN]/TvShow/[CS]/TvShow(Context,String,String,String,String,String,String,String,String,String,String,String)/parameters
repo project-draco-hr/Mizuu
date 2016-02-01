@@ -8,6 +8,5 @@ String actors
 String certification
 String firstAirdate
 String runtime
-boolean ignorePrefixes
 String isFavorite
 String latestEpisodeAirDate

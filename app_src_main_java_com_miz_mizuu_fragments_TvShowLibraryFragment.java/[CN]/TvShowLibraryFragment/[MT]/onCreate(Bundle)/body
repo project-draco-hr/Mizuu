@@ -4,7 +4,6 @@
   mContext=getActivity().getApplicationContext();
   PreferenceManager.getDefaultSharedPreferences(mContext).registerOnSharedPreferenceChangeListener(this);
   mSharedPreferences=PreferenceManager.getDefaultSharedPreferences(getActivity());
-  mIgnorePrefixes=mSharedPreferences.getBoolean(IGNORED_TITLE_PREFIXES,false);
   mShowTitles=mSharedPreferences.getBoolean(SHOW_TITLES_IN_GRID,true);
   mImageThumbSize=ViewUtils.getGridViewThumbSize(mContext);
   mImageThumbSpacing=getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);

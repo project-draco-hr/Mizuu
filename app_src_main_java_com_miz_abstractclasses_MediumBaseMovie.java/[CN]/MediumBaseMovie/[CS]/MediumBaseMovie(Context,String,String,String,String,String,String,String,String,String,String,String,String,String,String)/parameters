@@ -13,4 +13,3 @@ String hasWatched
 String date_added
 String certification
 String runtime
-boolean ignorePrefixes

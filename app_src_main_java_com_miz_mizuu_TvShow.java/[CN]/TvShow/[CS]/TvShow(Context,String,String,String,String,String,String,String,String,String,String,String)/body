@@ -17,17 +17,6 @@
   }
  else {
     mTitle=TITLE;
-    if (ignorePrefixes) {
-      String temp=TITLE.toLowerCase(Locale.ENGLISH);
-      String[] prefixes=MizLib.getPrefixes(mContext);
-      int count=prefixes.length;
-      for (int i=0; i < count; i++) {
-        if (temp.startsWith(prefixes[i])) {
-          mTitle=TITLE.substring(prefixes[i].length());
-          break;
-        }
-      }
-    }
   }
   if (!TextUtils.isEmpty(FIRST_AIR_DATE)) {
     String YEAR=FIRST_AIR_DATE.trim();

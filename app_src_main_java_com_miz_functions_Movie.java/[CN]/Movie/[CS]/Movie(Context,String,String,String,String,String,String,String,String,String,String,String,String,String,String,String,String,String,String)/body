@@ -1,5 +1,5 @@
 {
-  super(context,title,tmdbId,rating,releasedate,genres,favourite,cast,collection,collectionId,toWatch,hasWatched,date_added,certification,runtime,ignorePrefixes);
+  super(context,title,tmdbId,rating,releasedate,genres,favourite,cast,collection,collectionId,toWatch,hasWatched,date_added,certification,runtime);
   PLOT=plot;
   TAGLINE=tagline;
   mTmdbId=tmdbId;

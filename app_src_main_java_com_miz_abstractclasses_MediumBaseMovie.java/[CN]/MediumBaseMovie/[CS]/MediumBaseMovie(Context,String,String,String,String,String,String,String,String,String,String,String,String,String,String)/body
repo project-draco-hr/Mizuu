@@ -1,5 +1,5 @@
 {
-  super(context,title,tmdbId,ignorePrefixes);
+  super(context,title,tmdbId);
   RATING=rating;
   RELEASEDATE=releasedate;
   GENRES=genres;

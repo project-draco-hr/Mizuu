@@ -1,8 +1,14 @@
 Context context
 String title
+String plot
+String tagline
 String tmdbId
+String imdbId
 String rating
 String releasedate
+String certification
+String runtime
+String trailer
 String genres
 String favourite
 String cast
@@ -11,6 +17,3 @@ String collectionId
 String toWatch
 String hasWatched
 String date_added
-String certification
-String runtime
-boolean ignorePrefixes
