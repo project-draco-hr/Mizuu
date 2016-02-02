@@ -26,9 +26,6 @@ Intent tmdbIntent=new Intent(Intent.ACTION_VIEW);
 tmdbIntent.setData(Uri.parse("http://www.themoviedb.org/movie/" + mMovie.getTmdbId()));
 startActivity(tmdbIntent);
 return true;
-case R.id.watchOffline:
-watchOffline();
-return true;
 case R.id.change_cover:
 searchCover();
 return true;

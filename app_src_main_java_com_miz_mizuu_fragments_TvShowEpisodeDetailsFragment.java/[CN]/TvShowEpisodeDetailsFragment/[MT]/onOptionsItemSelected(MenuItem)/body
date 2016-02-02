@@ -9,9 +9,6 @@ break;
 case R.id.identify:
 identifyEpisode();
 break;
-case R.id.watchOffline:
-watchOffline();
-break;
 case R.id.editTvShowEpisode:
 editEpisode();
 break;

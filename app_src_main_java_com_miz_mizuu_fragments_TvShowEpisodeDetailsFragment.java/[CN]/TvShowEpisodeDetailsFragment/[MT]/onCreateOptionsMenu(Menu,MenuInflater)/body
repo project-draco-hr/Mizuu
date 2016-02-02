@@ -7,14 +7,6 @@
  else {
       menu.findItem(R.id.watched).setTitle(R.string.stringMarkAsWatched);
     }
-    for (    Filepath path : mEpisode.getFilepaths()) {
-      if (path.isNetworkFile()) {
-        menu.findItem(R.id.watchOffline).setVisible(true);
-        if (mEpisode.hasOfflineCopy(path))         menu.findItem(R.id.watchOffline).setTitle(R.string.removeOfflineCopy);
- else         menu.findItem(R.id.watchOffline).setTitle(R.string.watchOffline);
-        break;
-      }
-    }
   }
  catch (  Exception e) {
   }
