@@ -6,9 +6,6 @@ case android.R.id.home:
 case R.id.share:
 shareMovie();
 break;
-case R.id.openInBrowser:
-openInBrowser();
-break;
 case R.id.checkIn:
 checkIn();
 break;
