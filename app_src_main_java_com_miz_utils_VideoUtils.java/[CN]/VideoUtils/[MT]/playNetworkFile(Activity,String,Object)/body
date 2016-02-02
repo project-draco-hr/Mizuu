@@ -1,5 +1,4 @@
 {
-  final boolean videoWildcard=PreferenceManager.getDefaultSharedPreferences(activity).getBoolean(IGNORE_VIDEO_FILE_TYPE,false);
   if (!MizLib.isWifiConnected(activity)) {
     Toast.makeText(activity,activity.getString(R.string.noConnection),Toast.LENGTH_LONG).show();
     return false;
@@ -25,7 +24,7 @@
           public void run(){
             try {
               Uri uri=Uri.parse(s.getUrl() + Uri.fromFile(new File(Uri.parse(filepath).getPath())).getEncodedPath());
-              activity.startActivity(getVideoIntent(uri,videoWildcard,videoObject));
+              activity.startActivity(getVideoIntent(uri,videoObject));
             }
  catch (            Exception e) {
               try {

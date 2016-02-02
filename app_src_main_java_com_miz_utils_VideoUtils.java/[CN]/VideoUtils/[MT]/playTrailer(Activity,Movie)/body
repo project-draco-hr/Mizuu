@@ -9,15 +9,10 @@
   localTrailer=movie.getLocalTrailer(localTrailer);
   if (!TextUtils.isEmpty(localTrailer)) {
     try {
-      activity.startActivity(getVideoIntent(localTrailer,false,movie.getTitle() + " " + activity.getString(R.string.detailsTrailer)));
+      activity.startActivity(getVideoIntent(localTrailer,movie.getTitle() + " " + activity.getString(R.string.detailsTrailer)));
     }
  catch (    Exception e) {
-      try {
-        activity.startActivity(getVideoIntent(localTrailer,"video/*",movie.getTitle() + " " + activity.getString(R.string.detailsTrailer)));
-      }
- catch (      Exception e2) {
-        Toast.makeText(activity,activity.getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
-      }
+      Toast.makeText(activity,activity.getString(R.string.noVideoPlayerFound),Toast.LENGTH_LONG).show();
     }
   }
  else {

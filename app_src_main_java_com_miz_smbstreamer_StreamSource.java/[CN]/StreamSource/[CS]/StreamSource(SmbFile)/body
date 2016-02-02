@@ -1,7 +1,7 @@
 {
   fp=0;
   len=file.length();
-  mime=VideoUtils.getMimeType(file.getName(),false);
+  mime="video/*";
   name=file.getName();
   this.file=file;
   bufferSize=16 * 1024;
