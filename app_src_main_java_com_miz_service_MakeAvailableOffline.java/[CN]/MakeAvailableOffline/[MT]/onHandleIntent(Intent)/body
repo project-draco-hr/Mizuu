@@ -49,20 +49,6 @@
     stopSelf();
     return;
   }
-  boolean ignoreSizeCheck=PreferenceManager.getDefaultSharedPreferences(mContext).getBoolean(IGNORE_FILESIZE_CHECK,false);
-  if (!ignoreSizeCheck) {
-    boolean sizeOK=checkFilesize();
-    if (!sizeOK) {
-      mHandler.post(new Runnable(){
-        @Override public void run(){
-          Toast.makeText(mContext,R.string.not_enough_space,Toast.LENGTH_LONG).show();
-        }
-      }
-);
-      stopSelf();
-      return;
-    }
-  }
   exists=checkIfLocalCopyExists();
   if (exists) {
     stopSelf();
