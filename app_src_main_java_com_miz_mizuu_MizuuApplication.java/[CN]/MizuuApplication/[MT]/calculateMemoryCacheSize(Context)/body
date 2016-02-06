@@ -1,5 +1,0 @@
-{
-  ActivityManager am=(ActivityManager)context.getSystemService(ACTIVITY_SERVICE);
-  int memoryClass=am.getLargeMemoryClass();
-  return 1024 * 1024 * memoryClass / 5;
-}

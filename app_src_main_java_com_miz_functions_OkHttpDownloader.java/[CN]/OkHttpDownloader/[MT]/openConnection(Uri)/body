@@ -1,6 +1,0 @@
-{
-  HttpURLConnection connection=mUrlFactory.open(new URL(uri.toString()));
-  connection.setConnectTimeout(15 * 1000);
-  connection.setReadTimeout(20 * 1000);
-  return connection;
-}

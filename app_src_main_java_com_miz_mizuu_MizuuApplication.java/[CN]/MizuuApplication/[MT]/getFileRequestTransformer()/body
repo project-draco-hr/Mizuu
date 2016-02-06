@@ -1,4 +1,0 @@
-{
-  if (mFileRequestTransformer == null)   mFileRequestTransformer=new FileRequestTransformer();
-  return mFileRequestTransformer;
-}

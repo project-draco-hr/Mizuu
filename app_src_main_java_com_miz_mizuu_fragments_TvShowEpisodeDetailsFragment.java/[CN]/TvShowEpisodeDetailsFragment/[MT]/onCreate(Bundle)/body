@@ -5,7 +5,7 @@
   mContext=getActivity();
   mBus=MizuuApplication.getBus();
   mShowFileLocation=PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean(SHOW_FILE_LOCATION,true);
-  mPicasso=MizuuApplication.getPicassoDetailsView(getActivity());
+  mPicasso=MizuuApplication.getPicasso(getActivity());
   mMediumItalic=TypefaceUtils.getRobotoMediumItalic(mContext);
   mMedium=TypefaceUtils.getRobotoMedium(mContext);
   mCondensedRegular=TypefaceUtils.getRobotoCondensedRegular(mContext);

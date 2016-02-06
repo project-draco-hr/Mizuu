@@ -9,7 +9,7 @@
   mMedium=TypefaceUtils.getRobotoMedium(mContext);
   mBold=TypefaceUtils.getRobotoBold(mContext);
   mCondensedRegular=TypefaceUtils.getRobotoCondensedRegular(mContext);
-  mPicasso=MizuuApplication.getPicassoDetailsView(mContext);
+  mPicasso=MizuuApplication.getPicasso(mContext);
   mDatabase=MizuuApplication.getMovieAdapter();
   Cursor cursor=mDatabase.fetchMovie(getArguments().getString("tmdbId"));
   try {

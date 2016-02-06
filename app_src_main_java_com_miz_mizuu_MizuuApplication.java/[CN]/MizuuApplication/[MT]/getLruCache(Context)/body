@@ -1,4 +1,0 @@
-{
-  if (sLruCache == null)   sLruCache=new LruCache(calculateMemoryCacheSize(context));
-  return sLruCache;
-}

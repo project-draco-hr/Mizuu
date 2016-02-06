@@ -1,0 +1,3 @@
+{
+  PicassoTools.clearCache(getPicasso(context));
+}

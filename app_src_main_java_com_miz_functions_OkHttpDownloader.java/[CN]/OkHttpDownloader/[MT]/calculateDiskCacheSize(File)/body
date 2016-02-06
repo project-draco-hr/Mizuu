@@ -1,9 +1,0 @@
-{
-  long size=MIN_DISK_CACHE_SIZE;
-  try {
-    size=MizLib.getFreeMemory() / 50;
-  }
- catch (  IllegalArgumentException ignored) {
-  }
-  return Math.max(Math.min(size,MAX_DISK_CACHE_SIZE),MIN_DISK_CACHE_SIZE);
-}

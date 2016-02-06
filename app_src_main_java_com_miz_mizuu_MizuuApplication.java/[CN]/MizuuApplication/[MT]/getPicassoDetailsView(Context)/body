@@ -1,4 +1,0 @@
-{
-  if (sPicassoDetailsView == null)   sPicassoDetailsView=new Picasso.Builder(context).downloader(getDownloader(context)).memoryCache(getLruCache(context)).requestTransformer(getFileRequestTransformer()).build();
-  return sPicassoDetailsView;
-}

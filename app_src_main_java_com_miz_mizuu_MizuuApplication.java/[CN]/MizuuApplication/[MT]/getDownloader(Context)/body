@@ -1,4 +1,0 @@
-{
-  if (sDownloader == null)   sDownloader=new OkHttpDownloader(context);
-  return sDownloader;
-}
