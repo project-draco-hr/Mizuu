@@ -1,7 +1,0 @@
-{
-  try {
-    FileUtils.copyFile(thumb,new File(MizuuApplication.getMovieThumbFolder(this),thumb.getName()));
-  }
- catch (  IOException e) {
-  }
-}

@@ -1,4 +1,0 @@
-{
-  copyFile(src,dst);
-  src.delete();
-}

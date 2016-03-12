@@ -1,7 +1,0 @@
-{
-  try {
-    FileUtils.copyFile(episode,new File(MizuuApplication.getTvShowEpisodeFolder(this),episode.getName()));
-  }
- catch (  IOException e) {
-  }
-}

@@ -1,16 +1,5 @@
 {
   super.onCreate(savedInstanceState);
-  if (!isDeviceCompatible()) {
-    Toast.makeText(this,getString(R.string.deviceNotSupported),Toast.LENGTH_LONG).show();
-    finish();
-    return;
-  }
-  if (FileUtils.oldDataFolderExists()) {
-    Intent moveFiles=new Intent(this,MoveFilesService.class);
-    startService(moveFiles);
-    finish();
-    return;
-  }
   SharedPreferences settings=PreferenceManager.getDefaultSharedPreferences(this);
   if (settings.getInt(SCHEDULED_UPDATES_MOVIE,ScheduledUpdatesFragment.NOT_ENABLED) == ScheduledUpdatesFragment.AT_LAUNCH)   getApplicationContext().startService(new Intent(getApplicationContext(),MovieLibraryUpdate.class));
   if (settings.getInt(SCHEDULED_UPDATES_TVSHOWS,ScheduledUpdatesFragment.NOT_ENABLED) == ScheduledUpdatesFragment.AT_LAUNCH)   getApplicationContext().startService(new Intent(getApplicationContext(),TvShowsLibraryUpdate.class));

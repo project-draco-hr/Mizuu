@@ -1,7 +1,0 @@
-{
-  try {
-    FileUtils.copyFile(backdrop,new File(MizuuApplication.getMovieBackdropFolder(this),backdrop.getName()));
-  }
- catch (  IOException e) {
-  }
-}

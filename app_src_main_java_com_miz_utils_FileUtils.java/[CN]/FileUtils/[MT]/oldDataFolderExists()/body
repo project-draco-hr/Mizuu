@@ -1,3 +1,0 @@
-{
-  return getOldDataFolder().exists() && getOldDataFolder().list() != null;
-}
